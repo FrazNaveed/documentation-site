@@ -12,6 +12,7 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
 ## Getting Started
 
 1. Create a local Postgres DB in Docker.
+Note: This step may be skipped now that the DB is built into the Docker image.
 
 ```
  docker run -d --name flare-network-db \
@@ -25,9 +26,12 @@ You can then use the `DATABASE_URI` environment variable in your application to 
 
 2. Install dependencies with `npm i`. Use the `--force` flag if you run into any version conflicts.
 
-1. Install Payload: `npx create-payload-app@beta`
+1. Create a `.env` file in the root of this project and add the following environment variable ():
 
-When prompted for the PostGres connection URI, use: `postgres://postgres:password@127.0.0.1:5432/flare-network`
+```
+DATABASE_URI=postgres://postgres:password@127.0.0.1:5432/flare-network
+PAYLOAD_SECRET=
+```
 
 4. Run the development server:
 
