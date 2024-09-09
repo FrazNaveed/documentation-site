@@ -26,11 +26,14 @@ You can then use the `DATABASE_URI` environment variable in your application to 
 
 2. Install dependencies with `npm i`. Use the `--force` flag if you run into any version conflicts.
 
-1. Create a `.env` file in the root of this project and add the following environment variable ():
+1. Create a `.env` file in the root of this project and add the following environment variables and respective values:
 
 ```
 DATABASE_URI=postgres://postgres:password@127.0.0.1:5432/flare-network
-PAYLOAD_SECRET=
+PAYLOAD_SECRET=[your payload secret]
+PG_USERNAME=[your db username]
+PG_PASSWORD=[your db password]
+PG_DBNAME=[your db name]
 ```
 
 4. Run the development server:
