@@ -5,13 +5,13 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "next": "cross-env NODE_OPTIONS=--no-deprecation next",
     "build": "cross-env next build",
-    "dev": "npm run next build dev",
-    "devsafe": "rm -rf .next && npm run next build dev",
-    "generate:importmap": "npm run payload generate:importmap",
-    "generate:types": "npm run payload generate:types",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "generate:importmap": "cross-env payload generate:importmap",
+    "generate:types": "cross-env payload generate:types",
     "lint": "cross-env next lint",
+    "payload": "cross-env payload",
     "start": "cross-env next start"
   },
   "dependencies": {
