@@ -22,7 +22,7 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
 1. Create a `.env` file in the root of this project and add the following environment variables and respective values:
 
     ```
-    DATABASE_URI=postgres://postgres@127.0.0.1:5432/postgres
+    DATABASE_URI=postgres://postgres:postgres@127.0.0.1:5432/postgres
     PAYLOAD_SECRET=payload
     PG_USERNAME=postgres
     PG_PASSWORD=postgres
