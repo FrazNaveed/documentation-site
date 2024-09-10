@@ -11,11 +11,13 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
 
 ## Getting Started
 
+1. Run `nvm i` to install the node version specified in `.nvmrc` (you must have [nvm](https://github.com/nvm-sh/nvm) installed for this).
+
 1. Have a Docker runtime on your machine and make sure you can run `docker compose` commands for local dev.
 
 You can then use the `DATABASE_URI` environment variable in your application to connect to your local database.
 
-2. Install dependencies with `npm i`. Use the `--force` flag if you run into any version conflicts.
+1. Install dependencies with `npm i`. Use the `--force` flag if you run into any version conflicts.
 
 1. Create a `.env` file in the root of this project and add the following environment variables and respective values:
 
@@ -35,7 +37,7 @@ PG_DBNAME=postgres
 
 1. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-2. Open [http://localhost:3000/admin](http://localhost:3000/admin) to see the Payload CMS. Create a user to log in and start using the CMS.
+1. Open [http://localhost:3000/admin](http://localhost:3000/admin) to see the Payload CMS. Create a user to log in and start using the CMS.
 
 ## Learn More
 
