@@ -11,41 +11,43 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
 
 ## Getting Started
 
+1. Run `nvm i` to install the node version specified in `.nvmrc` (you must have [nvm](https://github.com/nvm-sh/nvm) installed for this).
+
 1. Create a local Postgres DB in Docker.
-Note: This step may be skipped now that the DB is built into the Docker image.
+    Note: This step may be skipped now that the DB is built into the Docker image.
 
-```
- docker run -d --name flare-network-db \
-   -p 5432:5432 \
-   -e POSTGRES_USER=postgres \
-   -e POSTGRES_PASSWORD=password \
-   -e POSTGRES_DB=flare-network \
-   postgres:13-alpine
-```
-You can then use the `DATABASE_URI` environment variable in your application to connect to this database.
+    ```
+     docker run -d --name flare-network-db \
+       -p 5432:5432 \
+       -e POSTGRES_USER=postgres \
+       -e POSTGRES_PASSWORD=password \
+       -e POSTGRES_DB=flare-network \
+       postgres:13-alpine
+    ```
+    You can then use the `DATABASE_URI` environment variable in your application to connect to this database.
 
-2. Install dependencies with `npm i`. Use the `--force` flag if you run into any version conflicts.
+1. Install dependencies with `npm i`. Use the `--force` flag if you run into any version conflicts.
 
 1. Create a `.env` file in the root of this project and add the following environment variables and respective values:
 
-```
-DATABASE_URI=postgres://postgres:password@127.0.0.1:5432/flare-network
-PAYLOAD_SECRET=[your payload secret]
-PG_USERNAME=[your db username]
-PG_PASSWORD=[your db password]
-PG_DBNAME=[your db name]
-```
+    ```
+    DATABASE_URI=postgres://postgres:password@127.0.0.1:5432/flare-network
+    PAYLOAD_SECRET=[your payload secret]
+    PG_USERNAME=[your db username]
+    PG_PASSWORD=[your db password]
+    PG_DBNAME=[your db name]
+    ```
 
-4. Run the development server:
+1. Run the development server:
 
-```bash
-yarn dev
-```
+    ```bash
+    npm run dev
+    ```
 ## Local Development
 
 1. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-2. Open [http://localhost:3000/admin](http://localhost:3000/admin) to see the Payload CMS. Create a user to log in and start using the CMS.
+1. Open [http://localhost:3000/admin](http://localhost:3000/admin) to see the Payload CMS. Create a user to log in and start using the CMS.
 
 ## Learn More
 
