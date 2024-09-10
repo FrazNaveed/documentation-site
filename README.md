@@ -23,7 +23,7 @@ You can then use the `DATABASE_URI` environment variable in your application to 
 
 ```
 DATABASE_URI=postgres://postgres@127.0.0.1:5432/postgres
-PAYLOAD_SECRET=[your payload secret]
+PAYLOAD_SECRET=payload
 PG_USERNAME=postgres
 PG_PASSWORD=postgres
 PG_DBNAME=postgres
