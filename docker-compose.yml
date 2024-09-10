@@ -9,7 +9,7 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=${PG_USERNAME}
-      - POSTGRES_PASSWORD=${PG_PASSWORD}
-      - POSTGRES_DB=${PG_DBNAME}
-      - DATABASE_URI=postgres://${PG_USERNAME}:${PG_PASSWORD}@127.0.0.1:5432/${PG_DBNAME}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+      - DATABASE_URI=postgres://postgres@127.0.0.1:5432/postgres
