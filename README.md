@@ -11,36 +11,26 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
 
 ## Getting Started
 
-1. Create a local Postgres DB in Docker.
-Note: This step may be skipped now that the DB is built into the Docker image.
+1. Have a Docker runtime on your machine and make sure you can run `docker compose` commands for local dev.
 
-```
- docker run -d --name flare-network-db \
-   -p 5432:5432 \
-   -e POSTGRES_USER=postgres \
-   -e POSTGRES_PASSWORD=password \
-   -e POSTGRES_DB=flare-network \
-   postgres:13-alpine
-```
-You can then use the `DATABASE_URI` environment variable in your application to connect to this database.
+You can then use the `DATABASE_URI` environment variable in your application to connect to your local database.
 
 2. Install dependencies with `npm i`. Use the `--force` flag if you run into any version conflicts.
 
 1. Create a `.env` file in the root of this project and add the following environment variables and respective values:
 
 ```
-DATABASE_URI=postgres://postgres:password@127.0.0.1:5432/flare-network
+DATABASE_URI=postgres://postgres@127.0.0.1:5432/postgres
 PAYLOAD_SECRET=[your payload secret]
-PG_USERNAME=[your db username]
-PG_PASSWORD=[your db password]
-PG_DBNAME=[your db name]
+PG_USERNAME=postgres
+PG_PASSWORD=postgres
+PG_DBNAME=postgres
 ```
 
-4. Run the development server:
+4. In a new terminal window, run `docker compose up` from this project's root directory. 
 
-```bash
-yarn dev
-```
+1. Run the development server with `npm run dev`.
+
 ## Local Development
 
 1. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
