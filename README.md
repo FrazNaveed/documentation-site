@@ -15,21 +15,21 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
 
 1. Have a Docker runtime on your machine and make sure you can run `docker compose` commands for local dev.
 
-You can then use the `DATABASE_URI` environment variable in your application to connect to your local database.
+    You can then use the `DATABASE_URI` environment variable in your application to connect to your local database.
 
 1. Install dependencies with `npm i`. Use the `--force` flag if you run into any version conflicts.
 
 1. Create a `.env` file in the root of this project and add the following environment variables and respective values:
 
-```
-DATABASE_URI=postgres://postgres@127.0.0.1:5432/postgres
-PAYLOAD_SECRET=payload
-PG_USERNAME=postgres
-PG_PASSWORD=postgres
-PG_DBNAME=postgres
-```
+    ```
+    DATABASE_URI=postgres://postgres@127.0.0.1:5432/postgres
+    PAYLOAD_SECRET=payload
+    PG_USERNAME=postgres
+    PG_PASSWORD=postgres
+    PG_DBNAME=postgres
+    ```
 
-4. In a new terminal window, run `docker compose up` from this project's root directory. 
+1. In a new terminal window, run `docker compose up` from this project's root directory.
 
 1. Run the development server with `npm run dev`.
 
