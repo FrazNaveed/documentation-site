@@ -15,6 +15,7 @@
     "start": "cross-env next start"
   },
   "dependencies": {
+    "@payloadcms/db-postgres": "beta",
     "@payloadcms/next": "beta",
     "@payloadcms/plugin-cloud": "beta",
     "@payloadcms/richtext-lexical": "beta",
@@ -24,15 +25,16 @@
     "payload": "beta",
     "react": "19.0.0-rc-06d0b89e-20240801",
     "react-dom": "19.0.0-rc-06d0b89e-20240801",
-    "sharp": "0.32.6",
-    "@payloadcms/db-postgres": "beta"
+    "sharp": "0.32.6"
   },
   "devDependencies": {
+    "@aleph/nought-sass-mixins": "^2.0.0",
     "@types/node": "22.5.4",
     "@types/react": "npm:types-react@19.0.0-rc.0",
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.0",
     "eslint": "^8",
     "eslint-config-next": "15.0.0-canary.104",
+    "sass": "^1.78.0",
     "typescript": "5.6.2"
   },
   "engines": {
