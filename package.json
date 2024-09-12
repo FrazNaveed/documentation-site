@@ -13,7 +13,8 @@
     "lint": "cross-env next lint",
     "lint:styles": "stylelint \"**/*.{css,sass,scss}\"",
     "payload": "cross-env payload",
-    "start": "cross-env next start"
+    "start": "cross-env next start",
+    "prepare": "husky"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^14.2.11",
@@ -45,6 +46,8 @@
     "eslint-plugin-jsx-a11y": "^6.10.0",
     "eslint-plugin-react": "^7.36.1",
     "eslint-plugin-react-hooks": "^4.6.2",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "postcss": "^8.4.45",
     "prettier": "^3.3.3",
     "sass": "^1.78.0",
