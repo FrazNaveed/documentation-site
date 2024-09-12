@@ -5,11 +5,7 @@ const buildEslintCommand = (filenames) =>
     .map((f) => path.relative(process.cwd(), f))
     .join(' --file ')}`
 
-const buildStylelintCommand = (filenames) =>
-  `next lint --file ${filenames
-    .map((f) => path.relative(process.cwd(), f))
-    .join(' --file ')}`
-
 export default {
   '*.{js,jsx,ts,tsx}': [buildEslintCommand],
+  '**/*.{css,sass,scss}': "npm run lint:styles",
 }
