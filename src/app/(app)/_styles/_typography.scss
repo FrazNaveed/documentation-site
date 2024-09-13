@@ -1,0 +1,278 @@
+@use "sass:math";
+@use "./colors" as *;
+@use "./mixins" as *;
+@use "./spacing" as *;
+
+$font-family-sathoshi: var(--satoshi);
+
+@mixin fontStyle($fontStyle: 16, $lineHeight: 24) {
+  font-size: $fontStyle * 1px;
+  font-size: math.div($fontStyle, 16) + rem;
+  line-height: $lineHeight * 1px;
+  line-height: math.div($lineHeight, 16) + rem;
+}
+
+@mixin bodyBase() {
+  @include fontStyle(20, 32);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+}
+
+@mixin headerDesktopH1() {
+  @include fontStyle(64, 86.4);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+}
+
+@mixin headerDesktopH2() {
+  @include fontStyle(48, 64.8);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+@mixin headerDesktopH3() {
+  @include fontStyle(40, 54);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+}
+
+@mixin headerDesktopH4() {
+  @include fontStyle(32, 43.2);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+}
+
+@mixin headerDesktopH5() {
+  @include fontStyle(28, 37.8);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+@mixin headerDesktopH6() {
+  @include fontStyle(24, 32.4);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+}
+
+@mixin headerDesktopH7() {
+  @include fontStyle(20, 27);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+@mixin headerMobileH1() {
+  @include fontStyle(50, 67.5);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+}
+
+@mixin headerMobileH2() {
+  @include fontStyle(38, 51.3);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+  letter-spacing: unset;
+}
+
+@mixin headerMobileH3() {
+  @include fontStyle(32, 43.2);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+}
+
+@mixin headerMobileH4() {
+  @include fontStyle(26, 35.1);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+}
+
+@mixin headerMobileH5() {
+  @include fontStyle(22, 29.7);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+  letter-spacing: unset;
+}
+
+@mixin headerMobileH6() {
+  @include fontStyle(19, 25.65);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+}
+
+@mixin headerMobileH7() {
+  @include fontStyle(16, 21.6);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 700;
+  letter-spacing: unset;
+}
+
+@mixin h1() {
+  @include headerDesktopH1;
+
+  margin-top: 0;
+  margin-bottom: to-rem(36px);
+  color: $black;
+
+  @include media-breakpoint-down(md) {
+    @include headerMobileH1;
+  }
+}
+
+@mixin h2() {
+  @include headerDesktopH2;
+
+  margin-top: 0;
+  margin-bottom: to-rem(36px);
+  color: $black;
+
+  @include media-breakpoint-down(md) {
+    @include headerMobileH2;
+  }
+}
+
+@mixin h3() {
+  @include headerDesktopH3;
+
+  margin-top: 0;
+  margin-bottom: to-rem(36px);
+  color: $black;
+
+  @include media-breakpoint-down(md) {
+    @include headerMobileH3;
+  }
+}
+
+@mixin h4() {
+  @include headerDesktopH4;
+
+  margin-top: 0;
+  margin-bottom: to-rem(36px);
+  color: $black;
+
+  @include media-breakpoint-down(md) {
+    @include headerMobileH4;
+  }
+}
+
+@mixin h5() {
+  @include headerDesktopH5;
+
+  margin-top: 0;
+  margin-bottom: to-rem(36px);
+  color: $black;
+
+  @include media-breakpoint-down(md) {
+    @include headerMobileH5;
+  }
+}
+
+@mixin h6() {
+  @include headerDesktopH6;
+
+  margin-top: 0;
+  margin-bottom: to-rem(36px);
+  color: $black;
+
+  @include media-breakpoint-down(md) {
+    @include headerMobileH6;
+  }
+}
+
+@mixin paragraphSm() {
+  @include fontStyle(16, 24);
+
+  margin-top: 0;
+  margin-bottom: to-rem(24px);
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+
+  @include media-breakpoint-down(md) {
+    @include fontStyle(14, 20);
+
+    margin-bottom: to-rem(20px);
+  }
+}
+
+@mixin paragraphXSm() {
+  @include fontStyle(14, 20);
+
+  margin-top: 0;
+  margin-bottom: to-rem(20px);
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+
+  @include media-breakpoint-down(md) {
+    @include fontStyle(12, 16);
+
+    margin-bottom: to-rem(16px);
+  }
+}
+
+@mixin labelL() {
+  @include fontStyle(20, 27);
+
+  margin-top: 0;
+  margin-bottom: to-rem(12px);
+  font-family: $font-family-sathoshi;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+
+  @include media-breakpoint-down(md) {
+    @include fontStyle(16, 21.6);
+  }
+}
+
+@mixin label() {
+  @include fontStyle(14, 18.9);
+
+  margin-top: 0;
+  margin-bottom: to-rem(12px);
+  font-family: $font-family-sathoshi;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+
+  @include media-breakpoint-down(md) {
+    @include fontStyle(12, 16.2);
+  }
+}
+
+@mixin labelS() {
+  @include fontStyle(12, 16.2);
+
+  margin-top: 0;
+  margin-bottom: to-rem(12px);
+  font-family: $font-family-sathoshi;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+@mixin link() {
+  &,
+  &:visited {
+    color: $pink-700;
+    text-decoration: none;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $pink-900;
+  }
+}
