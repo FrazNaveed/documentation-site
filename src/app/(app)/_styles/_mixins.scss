@@ -1,1 +1,25 @@
+@use "./spacing" as *;
+
+@forward "@aleph/nought-sass-mixins" with (
+  $grid-column-count: 12,
+  $grid-column-gap: $grid-column-gap,
+  $container-width: $container-width,
+  $container-padding: $container-padding,
+  $container-responsive-padding: (
+    lg: $container-padding-lg,
+    md: $container-padding-md,
+  ),
+  $grid-responsive-column-counts: (
+    lg: 9,
+    md: 3,
+  ),
+  $grid-breakpoints: (
+    xs: $breakpoint-xs,
+    sm: $breakpoint-sm,
+    md: $breakpoint-md,
+    lg: $breakpoint-lg,
+    xl: $breakpoint-xl,
+  )
+);
+
 @use "@aleph/nought-sass-mixins" as *;
