@@ -1,3 +1,4 @@
+import satoshi from './_lib/fonts'
 import './_styles/globals.scss'
 
 export default function RootLayout({
@@ -7,7 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body>{children}</body>
+      <body className={satoshi.variable}>{children}</body>
     </html>
   )
 }
