@@ -8,7 +8,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={satoshi.variable}>{children}</body>
+      <body className={satoshi.variable}>
+        <a className='skipToMainContentLink' href='#mainContent'>
+          Skip to content
+        </a>
+        <div id='mainContent' />
+        {children}
+      </body>
     </html>
   )
 }
