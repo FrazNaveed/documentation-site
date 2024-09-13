@@ -39,6 +39,11 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
 
 1. Open [http://localhost:3000/admin](http://localhost:3000/admin) to see the Payload CMS. Create a user to log in and start using the CMS.
 
+## Linting
+You will not be able to run a build with eslint or TypeScript errors in the `src/app/(app)` directory. To see all the eslint errors and warnings from the terminal run `npm run lint` from the project root. You can run `npm run lint --fix` to fix errors that can be automatically fixed. To see all the TypeScript errors in the terminal run `npx tsc --noEmit` from the project root.
+
+We use husky to check for eslint, TypeScript, and stylelint errors before committing. `lint-staged` is used to run `next lint` only on files that are staged for commit. However, we must check for TypeScript errors in all files because types changed in a staged file could affect and cause errors in other files that import them. stylelint is run for all staged style files within the entire directory.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

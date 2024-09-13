@@ -11,10 +11,14 @@
     "generate:importmap": "cross-env payload generate:importmap",
     "generate:types": "cross-env payload generate:types",
     "lint": "cross-env next lint",
+    "lint:styles": "stylelint \"**/*.{css,sass,scss}\"",
     "payload": "cross-env payload",
-    "start": "cross-env next start"
+    "start": "cross-env next start",
+    "prepare": "husky"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^14.2.11",
+    "@payloadcms/db-postgres": "beta",
     "@payloadcms/next": "beta",
     "@payloadcms/plugin-cloud": "beta",
     "@payloadcms/richtext-lexical": "beta",
@@ -24,15 +28,34 @@
     "payload": "beta",
     "react": "19.0.0-rc-06d0b89e-20240801",
     "react-dom": "19.0.0-rc-06d0b89e-20240801",
-    "sharp": "0.32.6",
-    "@payloadcms/db-postgres": "beta"
+    "sharp": "0.32.6"
   },
   "devDependencies": {
+    "@aleph/eslint-config-nought": "^1.1.10",
+    "@aleph/nought-sass-mixins": "^2.0.0",
+    "@next/eslint-plugin-next": "^15.0.0-canary.104",
     "@types/node": "22.5.4",
     "@types/react": "npm:types-react@19.0.0-rc.0",
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.0",
+    "@typescript-eslint/eslint-plugin": "^8.5.0",
+    "@typescript-eslint/parser": "^8.5.0",
     "eslint": "^8",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "15.0.0-canary.104",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-jsx-a11y": "^6.10.0",
+    "eslint-plugin-react": "^7.36.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "postcss": "^8.4.45",
+    "prettier": "^3.3.3",
+    "sass": "^1.78.0",
+    "stylelint": "^16.9.0",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-prettier": "^5.0.2",
+    "stylelint-scss": "^6.5.1",
     "typescript": "5.6.2"
   },
   "engines": {

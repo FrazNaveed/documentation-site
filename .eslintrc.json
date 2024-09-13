@@ -1,0 +1,9 @@
+{
+  "root": true,
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@next/next/recommended",
+    "@aleph/eslint-config-nought"
+  ],
+  "ignorePatterns": ["/src/*", "!/src/app", "/src/app/*", "!/src/app/(app)"]
+}
