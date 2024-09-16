@@ -14,7 +14,8 @@
     "lint:styles": "stylelint \"**/*.{css,sass,scss}\"",
     "payload": "cross-env payload",
     "start": "cross-env next start",
-    "prepare": "husky"
+    "prepare": "husky",
+    "seed": "cross-env scripts/seed.js"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^14.2.11",
