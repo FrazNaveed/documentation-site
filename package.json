@@ -15,7 +15,7 @@
     "payload": "cross-env payload",
     "start": "cross-env next start",
     "prepare": "husky",
-    "seed": "cross-env scripts/seedData.js"
+    "seed": "node 'src/app/(payload)/scripts/seedData.js'"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^14.2.11",
@@ -34,6 +34,7 @@
   "devDependencies": {
     "@aleph/eslint-config-nought": "^1.1.10",
     "@aleph/nought-sass-mixins": "^2.0.0",
+    "@faker-js/faker": "^9.0.1",
     "@next/eslint-plugin-next": "^15.0.0-canary.104",
     "@types/node": "22.5.4",
     "@types/react": "npm:types-react@19.0.0-rc.0",
