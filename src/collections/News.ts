@@ -1,9 +1,11 @@
 import type { CollectionConfig } from 'payload'
-import { fa } from 'payload/i18n/fa'
-import { getSiblingData } from 'payload/shared'
 
 export const News: CollectionConfig = {
   slug: 'news',
+  access: {
+    read: () => true,
+    create: () => true,
+  },
   fields: [
     {
       name: 'title',
@@ -41,11 +43,11 @@ export const News: CollectionConfig = {
       name: 'type',
       type: 'radio',
       options: [
-        { label: 'flareUpdates', value: 'Flare Updates' },
-        { label: 'amaInterviews', value: 'AMA & Interviews'},
-        { label: 'pastEvents', value: 'Past Events' },
-        { label: 'ecosystem', value: 'Ecosystem' },
-        { label: 'research', value: 'Research' },
+        'Flare Updates',
+        'AMA & Interviews',
+        'Past Events',
+        'Ecosystem',
+        'Research',
       ],
       defaultValue: 'Flare Updates',
     },
