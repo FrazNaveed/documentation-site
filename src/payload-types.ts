@@ -93,7 +93,7 @@ export interface News {
   slug: string;
   excerpt?: string | null;
   publishDate: string;
-  author: (number | User)[];
+  author: number | User;
   type?: ('Flare Updates' | 'AMA & Interviews' | 'Past Events' | 'Ecosystem' | 'Research') | null;
   pin?: boolean | null;
   pinPriority?: ('0' | '1' | '2' | '3') | null;
