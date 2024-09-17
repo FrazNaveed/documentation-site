@@ -6,6 +6,9 @@ export const News: CollectionConfig = {
     read: () => true,
     create: () => true,
   },
+  admin: {
+    useAsTitle: 'title'
+  },
   fields: [
     {
       name: 'title',
@@ -31,14 +34,14 @@ export const News: CollectionConfig = {
       },
       required: true,
     },
-    {
-      name: 'author',
-      type:'relationship',
-      relationTo: 'users',
-      hasMany: true,
-      minRows: 1,
-      required: true,
-    },
+    // {
+    //   name: 'author',
+    //   type:'relationship',
+    //   relationTo: 'users',
+    //   hasMany: true,
+    //   minRows: 1,
+    //   required: true,
+    // },
     {
       name: 'type',
       type: 'radio',
@@ -57,7 +60,7 @@ export const News: CollectionConfig = {
       defaultValue: false,
     },
     {
-      name: 'pin priority',
+      name: 'pinPriority',
       type: 'radio',
       options: [
         '0',
