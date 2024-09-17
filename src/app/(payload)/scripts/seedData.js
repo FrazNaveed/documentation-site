@@ -5,12 +5,16 @@ import { faker } from '@faker-js/faker'
 const API_URL = 'http://localhost:3000/api'; // Change this to your Payload CMS API URL
 
 // Function to generate random test data for the news collection
-const createRandomNewsItem = () => {
+function createRandomNewsItem() {
   const title = faker.lorem.sentence();
   const slug = faker.helpers.slugify(title.replace(/\.$/, '').toLowerCase());
   const excerpt = faker.lorem.sentences(3);
   const publishDate = faker.date.past();
-  
+
+  // Randomly assign an author from a set of predefined authors
+  const authors = [1, 2];
+  const author = [faker.helpers.shuffle(authors)[0]];
+
   // Randomly assign a type from a set of predefined types
   const types = ['Flare Updates', 'AMA & Interviews', 'Past Events', 'Ecosystem', 'Research'];
   const type = faker.helpers.shuffle(types)[0];
@@ -25,15 +29,15 @@ const createRandomNewsItem = () => {
   return {
     title,
     slug,
+    author,
     excerpt,
     publishDate,
     type,
     pin,
     pinPriority,
   };
-};
+}
 
-// Function to seed data into Payload CMS
 const seedNewsData = async (numOfItems = 10) => {
   for (let i = 0; i < numOfItems; i++) {
     const newsItem = createRandomNewsItem();
