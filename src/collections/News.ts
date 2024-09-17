@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const News: CollectionConfig = {
   slug: 'news',
   access: {
+    // for seeding purposes; review for production
     read: () => true,
     create: () => true,
   },
