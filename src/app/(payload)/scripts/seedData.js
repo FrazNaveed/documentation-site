@@ -4,6 +4,28 @@ import { faker } from '@faker-js/faker'
 // Define the base URL of your Payload CMS
 const API_URL = 'http://localhost:3000/api'; // Change this to your Payload CMS API URL
 
+// Function to generate random users for the users collection
+// While authors are currently not used for news articles, this is a good look into relationships between collections
+const createRandomUser = () => {
+  const email = faker.internet.email();
+  const loginAttempts = Math.floor(Math.random()*10) + 1;
+  const password = 'password';
+
+  return {
+    email,
+    password,
+    loginAttempts
+  };
+};
+
+const userIds = await axios.get(`${API_URL}/users`)
+.then(response => {
+  const usersDocs = response.data.docs;
+  const mappedUserIds = usersDocs.map(user => +user.id)
+  return mappedUserIds;
+})
+.catch(error => console.error(error));
+
 // Function to generate random test data for the news collection
 function createRandomNewsItem() {
   const title = faker.lorem.sentence();
@@ -11,9 +33,8 @@ function createRandomNewsItem() {
   const excerpt = faker.lorem.sentences(3);
   const publishDate = faker.date.past();
 
-  // Randomly assign an author from a set of predefined authors
-  const authors = [1, 2];
-  const author = [faker.helpers.shuffle(authors)[0]];
+  // Randomly assign an author from Users collection
+  const author = [faker.helpers.shuffle(userIds)[0]];
 
   // Randomly assign a type from a set of predefined types
   const types = ['Flare Updates', 'AMA & Interviews', 'Past Events', 'Ecosystem', 'Research'];
@@ -38,6 +59,27 @@ function createRandomNewsItem() {
   };
 }
 
+// Functions to seed data into Payload CMS
+const seedUserData = async (numOfUsers = 5) => {
+  for (let i = 0; i < numOfUsers; i++) {
+    const user = createRandomUser();
+
+    try {
+      console.log(`Trying to POST /news with data: ${JSON.stringify(user)}`);
+      const response = await axios.post(`${API_URL}/users`, user, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      // console.log('POST /users response:', response);
+    } catch (error) {
+      console.error('Error creating news item:', error.response ? error.response.data : error.message);
+      console.error('Request headers:', axios.defaults.headers.common);
+      console.error('Request body:', user);
+    }
+  }
+};
+
 const seedNewsData = async (numOfItems = 10) => {
   for (let i = 0; i < numOfItems; i++) {
     const newsItem = createRandomNewsItem();
@@ -51,7 +93,7 @@ const seedNewsData = async (numOfItems = 10) => {
       });
       // console.log('POST /news response:', response);
       // console.log(`Created news item ${response.data.id}:`, response.data);
-      // console.log(`Created news item ${i + 1}:`, response.data);
+      // console.log(`Created news item ${is + 1}:`, response.data);
     } catch (error) {
       console.error('Error creating news item:', error.response ? error.response.data : error.message);
       console.error('Request headers:', axios.defaults.headers.common);
@@ -59,6 +101,9 @@ const seedNewsData = async (numOfItems = 10) => {
     }
   }
 };
+
+// Seed 5 users
+// seedUserData();
 
 // Seed 10 news items
 seedNewsData(10);
