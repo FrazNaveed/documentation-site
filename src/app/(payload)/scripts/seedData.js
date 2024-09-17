@@ -34,7 +34,7 @@ function createRandomNewsItem() {
   const publishDate = faker.date.past();
 
   // Randomly assign an author from Users collection
-  const author = [faker.helpers.shuffle(userIds)[0]];
+  const author = faker.helpers.shuffle(userIds)[0];
 
   // Randomly assign a type from a set of predefined types
   const types = ['Flare Updates', 'AMA & Interviews', 'Past Events', 'Ecosystem', 'Research'];
