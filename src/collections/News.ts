@@ -7,7 +7,16 @@ export const News: CollectionConfig = {
     create: () => true,
   },
   admin: {
-    useAsTitle: 'title'
+    useAsTitle: 'title',
+    defaultColumns: [
+      'title',
+      'slug',
+      'author',
+      'publishDate',
+      'type',
+      'pin',
+      'pinPriority',
+    ],
   },
   fields: [
     {
@@ -34,14 +43,14 @@ export const News: CollectionConfig = {
       },
       required: true,
     },
-    // {
-    //   name: 'author',
-    //   type:'relationship',
-    //   relationTo: 'users',
-    //   hasMany: true,
-    //   minRows: 1,
-    //   required: true,
-    // },
+    {
+      name: 'author',
+      type:'relationship',
+      relationTo: 'users',
+      hasMany: true,
+      minRows: 1,
+      required: true,
+    },
     {
       name: 'type',
       type: 'radio',
