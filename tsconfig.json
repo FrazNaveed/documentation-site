@@ -36,7 +36,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/app/(payload)/scripts/seedData.js"
   ],
   "exclude": [
     "node_modules"

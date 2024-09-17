@@ -52,6 +52,9 @@ export interface User {
   id: number;
   updatedAt: string;
   createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
   email: string;
   resetPasswordToken?: string | null;
   resetPasswordExpiration?: string | null;
@@ -93,7 +96,7 @@ export interface News {
   author: (number | User)[];
   type?: ('Flare Updates' | 'AMA & Interviews' | 'Past Events' | 'Ecosystem' | 'Research') | null;
   pin?: boolean | null;
-  'pin priority'?: ('0' | '1' | '2' | '3') | null;
+  pinPriority?: ('0' | '1' | '2' | '3') | null;
   updatedAt: string;
   createdAt: string;
 }
