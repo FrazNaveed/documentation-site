@@ -2,6 +2,23 @@ import axios from 'axios'
 import { faker } from '@faker-js/faker'
 
 /* eslint-disable */
+// Define the base URL of your Payload CMS
+const API_URL = 'http://localhost:3000/api'; // Change this to your Payload CMS API URL
+
+// Function to generate random users for the users collection
+// While authors are currently not used for news articles, this is a good look into relationships between collections
+const createRandomUser = () => {
+  const email = faker.internet.email();
+  const loginAttempts = Math.floor(Math.random()*10) + 1;
+  const password = 'password';
+
+  return {
+    email,
+    password,
+    loginAttempts
+  };
+};
+
 const userIds = await axios.get(`${API_URL}/users`)
   .then((response) => {
     const usersDocs = response.data.docs
