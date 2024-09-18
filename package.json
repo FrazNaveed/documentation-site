@@ -15,14 +15,16 @@
     "payload": "cross-env payload",
     "start": "cross-env next start",
     "prepare": "husky",
-    "seed": "node 'src/app/(payload)/scripts/seedData.js'"
+    "seed:news": "node 'scripts/seedNews.js'"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.0.1",
     "@next/bundle-analyzer": "^14.2.11",
     "@payloadcms/db-postgres": "beta",
     "@payloadcms/next": "beta",
     "@payloadcms/plugin-cloud": "beta",
     "@payloadcms/richtext-lexical": "beta",
+    "axios": "^1.7.7",
     "cross-env": "^7.0.3",
     "graphql": "^16.8.1",
     "next": "15.0.0-canary.104",
@@ -34,7 +36,6 @@
   "devDependencies": {
     "@aleph/eslint-config-nought": "^1.1.10",
     "@aleph/nought-sass-mixins": "^2.0.0",
-    "@faker-js/faker": "^9.0.1",
     "@next/eslint-plugin-next": "^15.0.0-canary.104",
     "@types/node": "22.5.4",
     "@types/react": "npm:types-react@19.0.0-rc.0",
