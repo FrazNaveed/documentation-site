@@ -1,0 +1,101 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.Button {
+  @include utils.buttonReset;
+
+  display: inline-block;
+  margin-bottom: to-rem(24px);
+  padding: to-rem(10px) to-rem(20px);
+  transition: all $transition-snappy;
+  border-radius: 10px;
+  background-color: $pink-700;
+  text-align: center;
+
+  &,
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $pink-800;
+  }
+
+  &[disabled] {
+    background-color: $pink-100;
+    color: $pink-400;
+    cursor: not-allowed;
+  }
+}
+
+.text {
+  color: #fff;
+}
+
+.medium {
+  @include fontStyle(16, 24);
+}
+
+.large {
+  @include bodyBase;
+
+  max-width: 100%;
+  padding: to-rem(10px) to-rem(24px);
+}
+
+.small {
+  @include fontStyle(14, 20);
+
+  padding: 8px to-rem(16px);
+}
+
+.black {
+  background-color: $black;
+
+  &:hover,
+  &:focus {
+    background-color: $gray;
+  }
+
+  &[disabled] {
+    background-color: $gray-200;
+    color: $gray;
+  }
+}
+
+.secondary {
+  padding: to-rem(8px) to-rem(18px);
+  border: 1px solid $gray-200;
+  background-color: $white;
+  color: $black;
+
+  &:hover,
+  &:focus {
+    border: 1px solid transparent;
+    background-color: $gray-50;
+  }
+
+  .text {
+    color: $black;
+  }
+
+  &.large {
+    padding: to-rem(8px) to-rem(22px);
+  }
+
+  &.small {
+    padding: to-rem(6px) to-rem(14px);
+  }
+
+  &[disabled] {
+    border: 1px solid $gray-50;
+    background-color: $white;
+    color: $gray-200;
+  }
+}
