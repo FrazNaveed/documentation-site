@@ -1,3 +1,7 @@
+import axios from 'axios'
+import { faker } from '@faker-js/faker'
+
+/* eslint-disable */
 const userIds = await axios.get(`${API_URL}/users`)
   .then((response) => {
     const usersDocs = response.data.docs
@@ -87,3 +91,5 @@ const seedNewsData = async (numOfItems = 10) => {
 
 // Seed 10 news items
 seedNewsData(10)
+
+/* eslint-enable */
