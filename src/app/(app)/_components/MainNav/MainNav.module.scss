@@ -3,6 +3,7 @@
 @use "../../_styles/colors" as *;
 @use "../../_styles/spacing" as *;
 @use "../../_styles/mixins" as *;
+@use "../../_styles/transitions" as *;
 @use "../../_styles/typography" as *;
 
 .mobileToggle {
@@ -28,7 +29,7 @@
     height: 2px;
     margin-right: auto;
     margin-left: auto;
-    transition: opacity 150ms;
+    transition: opacity $transition-snappy;
     background-color: $pink-600;
     opacity: 1;
 
@@ -52,7 +53,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: opacity 150ms;
+    transition: opacity $transition-snappy;
     color: $black;
     text-decoration: underline;
     opacity: 0;
@@ -81,8 +82,8 @@
 
     &__isMobile {
       transition:
-        opacity 250ms,
-        visibility 250ms;
+        opacity $transition-snappy,
+        visibility $transition-snappy;
     }
 
     &__mobileOpen {
@@ -125,7 +126,7 @@
 
     display: block;
     position: relative;
-    transition: color 250ms;
+    transition: color $transition-snappy;
     text-align: left;
 
     @include media-breakpoint-up(md) {
@@ -155,7 +156,7 @@
     @include media-breakpoint-up(md) {
       position: absolute;
       margin-left: to-rem($spacing-x-small);
-      transition: opacity 250ms;
+      transition: opacity $transition-snappy;
       opacity: 0;
     }
 
@@ -164,7 +165,7 @@
     }
 
     svg {
-      transition: transform 250ms;
+      transition: transform $transition-snappy;
 
       @include media-breakpoint-down(md) {
         width: 12px;
@@ -207,8 +208,8 @@
     position: fixed;
     transform: translateX(100%);
     transition:
-      transform 250ms,
-      visibility 250ms;
+      transform $transition-snappy,
+      visibility $transition-snappy;
     border-top: 0.5px solid $gray-200;
     border-left: 0.5px solid $gray-200;
     background-color: $white;
@@ -223,14 +224,14 @@
   @include media-breakpoint-down(md) {
     max-height: 0;
     transition:
-      max-height 250ms ease-out,
-      visibility 1ms 250ms;
+      max-height $transition-speed-snappy ease-out,
+      visibility 1ms $transition-snappy;
     overflow: hidden;
 
     &__open {
       height: auto;
       max-height: 800px;
-      transition: max-height 250ms ease-in;
+      transition: max-height $transition-speed-snappy ease-in;
     }
   }
 }

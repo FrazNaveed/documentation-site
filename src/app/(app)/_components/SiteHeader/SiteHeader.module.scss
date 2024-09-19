@@ -1,13 +1,14 @@
 @use "../../_styles/colors" as *;
 @use "../../_styles/mixins" as *;
 @use "../../_styles/spacing" as *;
+@use "../../_styles/transitions" as *;
 
 .header {
   position: sticky;
   top: 0;
   padding-top: 44px;
   padding-bottom: 44px;
-  transition: transform 250ms;
+  transition: transform $transition-default;
   background-color: $white;
   z-index: 100;
   backdrop-filter: none;
