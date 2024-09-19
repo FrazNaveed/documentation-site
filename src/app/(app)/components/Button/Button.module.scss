@@ -2,13 +2,14 @@
 @use "../../_styles/typography" as *;
 @use "../../_styles/colors" as *;
 @use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .Button {
   @include utils.buttonReset;
 
   display: inline-block;
-  margin-bottom: to-rem($p-margin-bottom);
+  margin-bottom: $p-margin-bottom;
   padding: to-rem(10px) to-rem(20px);
   transition: all $transition-snappy;
   border-radius: 10px;
