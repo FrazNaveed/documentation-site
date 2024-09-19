@@ -14,15 +14,18 @@
     "lint:styles": "stylelint \"**/*.{css,sass,scss}\"",
     "payload": "cross-env payload",
     "start": "cross-env next start",
-    "prepare": "husky"
+    "prepare": "husky",
+    "seed:news": "node 'scripts/seedNews.js'"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.0.1",
     "@next/bundle-analyzer": "^14.2.11",
     "@payloadcms/db-postgres": "beta",
     "@payloadcms/next": "beta",
     "@payloadcms/plugin-cloud": "beta",
     "@payloadcms/richtext-lexical": "beta",
     "classnames": "^2.5.1",
+    "axios": "^1.7.7",
     "cross-env": "^7.0.3",
     "graphql": "^16.8.1",
     "next": "15.0.0-canary.104",
