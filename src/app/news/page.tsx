@@ -6,8 +6,8 @@ export default async function Page() {
   return (
     <>
       <h1>News</h1>
-      {news.map((item) => (
-        <p>Title: {item.title}</p>
+      {news.map((item, index) => (
+        <p key={index}>Title: {item.title}</p>
         )
       )}
     </>
