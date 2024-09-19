@@ -1,23 +1,24 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-unused-vars */
 import axios from 'axios'
 import { faker } from '@faker-js/faker'
 
-/* eslint-disable */
 // Define the base URL of your Payload CMS
-const API_URL = 'http://localhost:3000/api'; // Change this to your Payload CMS API URL
+const API_URL = 'http://localhost:3000/api' // Change this to your Payload CMS API URL
 
 // Function to generate random users for the users collection
 // While authors are currently not used for news articles, this is a good look into relationships between collections
 const createRandomUser = () => {
-  const email = faker.internet.email();
-  const loginAttempts = Math.floor(Math.random()*10) + 1;
-  const password = 'password';
+  const email = faker.internet.email()
+  const loginAttempts = Math.floor(Math.random() * 10) + 1
+  const password = 'password'
 
   return {
     email,
     password,
-    loginAttempts
-  };
-};
+    loginAttempts,
+  }
+}
 
 const userIds = await axios.get(`${API_URL}/users`)
   .then((response) => {
@@ -67,12 +68,13 @@ const seedUserData = async (numOfUsers = 5) => {
 
     try {
       console.log(`Trying to POST /news with data: ${JSON.stringify(user)}`)
+      // eslint-disable-next-line no-await-in-loop
       const response = await axios.post(`${API_URL}/users`, user, {
         headers: {
           'Content-Type': 'application/json',
         },
       })
-      // console.log('POST /users response:', response);
+      console.log('POST /users response:', response)
     } catch (error) {
       console.error('Error creating news item:', error.response ? error.response.data : error.message)
       console.error('Request headers:', axios.defaults.headers.common)
@@ -87,13 +89,14 @@ const seedNewsData = async (numOfItems = 10) => {
 
     try {
       // console.log(`Trying to POST /news with data: ${JSON.stringify(newsItem)}`);
+      // eslint-disable-next-line no-await-in-loop
       const response = await axios.post(`${API_URL}/news`, newsItem, {
         headers: {
           'Content-Type': 'application/json',
-        }
+        },
       })
       // console.log('POST /news response:', response);
-      // console.log(`Created news item ${response.data.id}:`, response.data);
+      console.log(`Created news item ${response.data.id}:`, response.data)
       // console.log(`Created news item ${is + 1}:`, response.data);
     } catch (error) {
       console.error('Error creating news item:', error.response ? error.response.data : error.message)
@@ -108,5 +111,3 @@ const seedNewsData = async (numOfItems = 10) => {
 
 // Seed 10 news items
 seedNewsData(10)
-
-/* eslint-enable */
