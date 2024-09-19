@@ -1,11 +1,17 @@
 @use "sass:math";
 @use "./spacing" as *;
 
+$container-width-flare: 1400px;
+$container-padding-flare: 24px;
+$container-padding-lg: 18px;
+$container-padding-md: 16px;
+$grid-column-gap-flare: 20px;
+
 @forward "@aleph/nought-sass-mixins" with (
   $grid-column-count: 12,
-  $grid-column-gap: $grid-column-gap,
-  $container-width: $container-width,
-  $container-padding: $container-padding,
+  $grid-column-gap: $grid-column-gap-flare,
+  $container-width: $container-width-flare,
+  $container-padding: $container-padding-flare,
   $container-responsive-padding: (
     lg: $container-padding-lg,
     md: $container-padding-md,
@@ -25,10 +31,11 @@
 
 @use "@aleph/nought-sass-mixins" as *;
 
-$root-font-size: 20px;
+$root-font-size-number: 20;
+$root-font-size: $root-font-size-number * 1px;
 // Convert pixels to rem
 @function to-rem($pixelSize) {
   $remSize: math.div($pixelSize, $root-font-size);
 
-  @return #{$remSize}rem;
+  @return $remSize * 1rem;
 }
