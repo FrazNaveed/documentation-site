@@ -1,4 +1,3 @@
-import { get } from 'http'
 import getNewsData from '../_lib/payload/newsQueries'
 
 export default async function Page() {
