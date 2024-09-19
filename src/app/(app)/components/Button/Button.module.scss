@@ -8,7 +8,7 @@
   @include utils.buttonReset;
 
   display: inline-block;
-  margin-bottom: to-rem(24px);
+  margin-bottom: to-rem($p-margin-bottom);
   padding: to-rem(10px) to-rem(20px);
   transition: all $transition-snappy;
   border-radius: 10px;
@@ -35,7 +35,7 @@
 }
 
 .text {
-  color: #fff;
+  color: $white;
 }
 
 .medium {
