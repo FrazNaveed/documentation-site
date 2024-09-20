@@ -5,11 +5,11 @@
 
 $font-family-sathoshi: var(--satoshi);
 
-@mixin fontStyle($fontStyle: 16, $lineHeight: 24) {
+@mixin fontStyle($fontStyle: $root-font-size-number, $lineHeight: 24) {
   font-size: $fontStyle * 1px;
-  font-size: math.div($fontStyle, 16) + rem;
+  font-size: math.div($fontStyle, $root-font-size-number) * 1rem;
   line-height: $lineHeight * 1px;
-  line-height: math.div($lineHeight, 16) + rem;
+  line-height: math.div($lineHeight, $root-font-size-number) * 1rem;
 }
 
 @mixin bodyBase() {
@@ -123,104 +123,150 @@ $font-family-sathoshi: var(--satoshi);
   letter-spacing: unset;
 }
 
-@mixin h1() {
+@mixin headerH1() {
   @include headerDesktopH1;
-
-  margin-top: 0;
-  margin-bottom: to-rem(36px);
-  color: $black;
 
   @include media-breakpoint-down(md) {
     @include headerMobileH1;
   }
 }
 
-@mixin h2() {
+@mixin headerH2() {
   @include headerDesktopH2;
-
-  margin-top: 0;
-  margin-bottom: to-rem(36px);
-  color: $black;
 
   @include media-breakpoint-down(md) {
     @include headerMobileH2;
   }
 }
 
-@mixin h3() {
+@mixin headerH3() {
   @include headerDesktopH3;
-
-  margin-top: 0;
-  margin-bottom: to-rem(36px);
-  color: $black;
 
   @include media-breakpoint-down(md) {
     @include headerMobileH3;
   }
 }
 
-@mixin h4() {
+@mixin headerH4() {
   @include headerDesktopH4;
-
-  margin-top: 0;
-  margin-bottom: to-rem(36px);
-  color: $black;
 
   @include media-breakpoint-down(md) {
     @include headerMobileH4;
   }
 }
 
-@mixin h5() {
+@mixin headerH5() {
   @include headerDesktopH5;
-
-  margin-top: 0;
-  margin-bottom: to-rem(36px);
-  color: $black;
 
   @include media-breakpoint-down(md) {
     @include headerMobileH5;
   }
 }
 
-@mixin h6() {
+@mixin headerH6() {
   @include headerDesktopH6;
-
-  margin-top: 0;
-  margin-bottom: to-rem(36px);
-  color: $black;
 
   @include media-breakpoint-down(md) {
     @include headerMobileH6;
   }
 }
 
-@mixin paragraphSm() {
-  @include fontStyle(16, 24);
+@mixin headerH7() {
+  @include headerDesktopH7;
+
+  @include media-breakpoint-down(md) {
+    @include headerMobileH7;
+  }
+}
+
+@mixin h1() {
+  @include headerH1;
 
   margin-top: 0;
-  margin-bottom: to-rem(24px);
+  margin-bottom: to-rem(36px);
+  color: $black;
+}
+
+@mixin h2() {
+  @include headerH2;
+
+  margin-top: 0;
+  margin-bottom: to-rem(36px);
+  color: $black;
+}
+
+@mixin h3() {
+  @include headerH3;
+
+  margin-top: 0;
+  margin-bottom: to-rem(36px);
+  color: $black;
+}
+
+@mixin h4() {
+  @include headerH4;
+
+  margin-top: 0;
+  margin-bottom: to-rem(36px);
+  color: $black;
+}
+
+@mixin h5() {
+  @include headerH5;
+
+  margin-top: 0;
+  margin-bottom: to-rem(36px);
+  color: $black;
+}
+
+@mixin h6() {
+  @include headerH6;
+
+  margin-top: 0;
+  margin-bottom: to-rem(36px);
+  color: $black;
+}
+
+@mixin paragraphSmFont() {
+  @include fontStyle(16, 24);
+
   font-family: $font-family-sathoshi;
   font-weight: 500;
 
   @include media-breakpoint-down(md) {
     @include fontStyle(14, 20);
+  }
+}
 
+@mixin paragraphSm() {
+  @include paragraphSmFont;
+
+  margin-top: 0;
+  margin-bottom: to-rem(24px);
+
+  @include media-breakpoint-down(md) {
     margin-bottom: to-rem(20px);
   }
 }
 
-@mixin paragraphXSm() {
+@mixin paragraphXSmFont() {
   @include fontStyle(14, 20);
 
-  margin-top: 0;
-  margin-bottom: to-rem(20px);
   font-family: $font-family-sathoshi;
   font-weight: 500;
 
   @include media-breakpoint-down(md) {
     @include fontStyle(12, 16);
+  }
+}
 
+@mixin paragraphXSm() {
+  @include paragraphXSmFont;
+
+  margin-top: 0;
+  margin-bottom: to-rem(20px);
+
+  @include media-breakpoint-down(md) {
     margin-bottom: to-rem(16px);
   }
 }
@@ -233,6 +279,7 @@ $font-family-sathoshi: var(--satoshi);
   font-family: $font-family-sathoshi;
   font-weight: 700;
   letter-spacing: 0.1em;
+  text-transform: uppercase;
 
   @include media-breakpoint-down(md) {
     @include fontStyle(16, 21.6);
@@ -247,6 +294,7 @@ $font-family-sathoshi: var(--satoshi);
   font-family: $font-family-sathoshi;
   font-weight: 700;
   letter-spacing: 0.1em;
+  text-transform: uppercase;
 
   @include media-breakpoint-down(md) {
     @include fontStyle(12, 16.2);
@@ -261,6 +309,7 @@ $font-family-sathoshi: var(--satoshi);
   font-family: $font-family-sathoshi;
   font-weight: 700;
   letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 @mixin link() {

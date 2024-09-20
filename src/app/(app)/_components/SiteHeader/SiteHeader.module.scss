@@ -1,0 +1,44 @@
+@use "../../_styles/colors" as *;
+@use "../../_styles/mixins" as *;
+@use "../../_styles/spacing" as *;
+@use "../../_styles/transitions" as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  padding-top: 44px;
+  padding-bottom: 44px;
+  transition: transform $transition-default;
+  background-color: $white;
+  z-index: 100;
+  backdrop-filter: none;
+
+  @include media-breakpoint-down(md) {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  &:global(.siteHeader__flownAway) {
+    transform: translateY(-100%);
+  }
+}
+
+.container {
+  @include container;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: $spacing-standard;
+}
+
+.brandLink {
+  flex-shrink: 0;
+
+  svg {
+    display: block;
+    width: 69px;
+    max-width: 100%;
+    height: auto;
+  }
+}
