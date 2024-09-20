@@ -35,6 +35,7 @@ export default function MainNav({ navData }: { navData: MainNavigation }) {
   const [openSubmenuIndex, setOpenSubmenuIndex] = useState<number | null>(null)
   const [headerBottomPos, setHeaderBottomPos] = useState<number>(120)
   const [nevLeftPos, setNavLeftPos] = useState<string>('50%')
+  const [navWidth, setNavWidth] = useState<string>('100%')
 
   useEffect(() => {
     setOpenSubmenuIndex(null)
@@ -58,11 +59,12 @@ export default function MainNav({ navData }: { navData: MainNavigation }) {
     }
   }, [])
 
-  const getNavLeftPos = useCallback(() => {
-    const headerRect = document.getElementById('mainNav')?.getBoundingClientRect()
-    if (headerRect) {
-      const { x } = headerRect
+  const getNavPos = useCallback(() => {
+    const navRect = document.getElementById('mainNav')?.getBoundingClientRect()
+    if (navRect) {
+      const { width, x } = navRect
       setNavLeftPos(`${x}px`)
+      setNavWidth(`${width}px`)
     }
   }, [])
 
@@ -77,13 +79,13 @@ export default function MainNav({ navData }: { navData: MainNavigation }) {
   useEffect(() => {
     const getHeaderBottomPosDebounced = debounce(getHeaderBottomPos, 400)
     window.addEventListener('resize', getHeaderBottomPosDebounced)
-    getNavLeftPos()
-    window.addEventListener('resize', getNavLeftPos)
+    getNavPos()
+    window.addEventListener('resize', getNavPos)
     return () => {
       window.removeEventListener('resize', getHeaderBottomPosDebounced)
-      window.removeEventListener('resize', getNavLeftPos)
+      window.removeEventListener('resize', getNavPos)
     }
-  }, [getHeaderBottomPos, getNavLeftPos])
+  }, [getHeaderBottomPos, getNavPos])
 
   return (
     <>
@@ -158,28 +160,38 @@ export default function MainNav({ navData }: { navData: MainNavigation }) {
                     >
                       <div className={styles.submenus}>
                         {subNavSections.map((linkGroup) => (
-                          <ul
+                          <div
                             key={linkGroup._key}
                             className={cx(
-                              styles.linkGroup,
+                              styles.linkGroupWrap,
                               {
-                                [styles.linkGroup__hasBg]: linkGroup.hasBackground,
+                                [styles.linkGroupWrap__hasBg]: linkGroup.hasBackground,
                               },
                             )}
                           >
-                            {linkGroup.title && (
-                              <li className={styles.linkGroupHeader}>
-                                {linkGroup.title}
-                              </li>
-                            )}
-                            {linkGroup.links.map((link) => (
-                              <li key={link._key} className={styles.linkGroupItem}>
-                                <Link href={link.url} className={styles.submenuLink}>
-                                  {link.title}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
+                            <ul
+                              className={cx(
+                                styles.linkGroup,
+                                {
+                                  [styles.linkGroup__hasBg]: linkGroup.hasBackground,
+                                },
+                              )}
+                              style={{ maxWidth: linkGroup.hasBackground ? `calc(${navWidth} - 30px)` : navWidth }}
+                            >
+                              {linkGroup.title && (
+                                <li className={styles.linkGroupHeader}>
+                                  {linkGroup.title}
+                                </li>
+                              )}
+                              {linkGroup.links.map((link) => (
+                                <li key={link._key} className={styles.linkGroupItem}>
+                                  <Link href={link.url} className={styles.submenuLink}>
+                                    {link.title}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         ))}
                       </div>
                     </div>

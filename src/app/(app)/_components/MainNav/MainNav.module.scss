@@ -247,15 +247,10 @@
 $link-group-padding: 60px;
 $link-group-with-bg-side-padding: 30px;
 
-.linkGroup {
-  @include utils.listReset;
-
+.linkGroupWrap {
   @include media-breakpoint-up(md) {
-    padding: $link-group-padding;
-    padding-right: $container-padding-lg;
-
     &:not(:first-child) {
-      border-top: 1px solid $gray-200;
+      border-top: 0.5px solid $gray-200;
     }
   }
 
@@ -269,16 +264,37 @@ $link-group-with-bg-side-padding: 30px;
 
   &__hasBg {
     @include media-breakpoint-up(md) {
-      margin-right: $container-padding-lg;
+      &,
+      &:not(:first-child) {
+        border: 0;
+      }
+    }
+  }
+}
+
+.linkGroup {
+  @include utils.listReset;
+
+  @include media-breakpoint-up(md) {
+    padding: $link-group-padding;
+    padding-right: $container-padding-lg;
+  }
+
+  @include media-breakpoint-down(md) {
+    max-width: 100% !important;
+  }
+
+  &__hasBg {
+    @include media-breakpoint-up(md) {
+      margin-right: $container-padding;
       margin-bottom: $link-group-padding;
       margin-left: $link-group-padding - $link-group-with-bg-side-padding;
       padding: 40px $link-group-with-bg-side-padding 48px;
       border-radius: 10px;
       background-color: $gray-50;
 
-      &,
-      &:not(:first-child) {
-        border: 0;
+      @include media-breakpoint-down(lg) {
+        margin-right: $container-padding-lg;
       }
     }
   }
