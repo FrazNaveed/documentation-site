@@ -57,7 +57,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
   const [headerBottomPos, setHeaderBottomPos] = useState<number>(120)
   const [nevLeftPos, setNavLeftPos] = useState<string>('50%')
   const [navWidth, setNavWidth] = useState<string>('100%')
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  const [windowWidth, setWindowWidth] = useState<number | null>(null)
 
   useEffect(() => {
     setOpenSubmenuIndex(null)
