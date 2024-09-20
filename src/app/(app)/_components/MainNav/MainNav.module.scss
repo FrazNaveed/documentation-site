@@ -6,6 +6,11 @@
 @use "../../_styles/transitions" as *;
 @use "../../_styles/typography" as *;
 
+.buttonsWrap {
+  display: flex;
+  align-items: center;
+}
+
 .mobileToggle {
   @include utils.buttonReset;
 
@@ -66,6 +71,10 @@
 
 .nav {
   color: $black;
+
+  @include media-breakpoint-up(md) {
+    display: flex;
+  }
 
   @include media-breakpoint-down(md) {
     @include container;
@@ -512,6 +521,20 @@ $mobile-link-margin-bottom: to-rem($spacing-standard);
       right: calc($spacing-standard / -2 - 2px);
       transform: translateY(-50%);
       content: "•";
+    }
+  }
+}
+
+.searchButton {
+  @include media-breakpoint-down(md) {
+    &__hideMobile {
+      display: none;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    &__hideDesktop {
+      display: none;
     }
   }
 }

@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { RemoveScroll } from 'react-remove-scroll'
 import cx from 'classnames'
 import useIsBelowBreakpoint from 'src/app/(app)/_hooks/useIsBelowBreakpoint'
+import SearchButton from './components/SearchButton'
 import CaretDropdown from '../svgs/CaretDropdown'
 import Connector from '../svgs/Connector'
 import FAssets from '../svgs/FAssets'
@@ -131,23 +132,26 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
 
   return (
     <>
-      <button
-        className={cx(styles.mobileToggle, { [styles.mobileToggle__open]: mobileNavIsOpen })}
-        onClick={toggleMobileNav}
-        type='button'
-        aria-label='Toggle main navigation'
-        aria-controls='mainNav'
-        aria-expanded={mobileNavIsOpen}
-      >
-        <span className={styles.mobileToggle_Bars}>
-          <span className={cx(styles.mobileToggle_Bar, { [styles.mobileToggle_Bar__open]: mobileNavIsOpen })} />
-          <span className={cx(styles.mobileToggle_Bar, { [styles.mobileToggle_Bar__open]: mobileNavIsOpen })} />
-          <span className={cx(styles.mobileToggle_Bar, { [styles.mobileToggle_Bar__open]: mobileNavIsOpen })} />
-        </span>
-        <span className={cx(styles.mobileToggle_Close, { [styles.mobileToggle_Close__open]: mobileNavIsOpen })}>
-          Close
-        </span>
-      </button>
+      <span className={styles.buttonsWrap}>
+        <SearchButton className={styles.searchButton__hideDesktop} />
+        <button
+          className={cx(styles.mobileToggle, { [styles.mobileToggle__open]: mobileNavIsOpen })}
+          onClick={toggleMobileNav}
+          type='button'
+          aria-label='Toggle main navigation'
+          aria-controls='mainNav'
+          aria-expanded={mobileNavIsOpen}
+        >
+          <span className={styles.mobileToggle_Bars}>
+            <span className={cx(styles.mobileToggle_Bar, { [styles.mobileToggle_Bar__open]: mobileNavIsOpen })} />
+            <span className={cx(styles.mobileToggle_Bar, { [styles.mobileToggle_Bar__open]: mobileNavIsOpen })} />
+            <span className={cx(styles.mobileToggle_Bar, { [styles.mobileToggle_Bar__open]: mobileNavIsOpen })} />
+          </span>
+          <span className={cx(styles.mobileToggle_Close, { [styles.mobileToggle_Close__open]: mobileNavIsOpen })}>
+            Close
+          </span>
+        </button>
+      </span>
       <RemoveScroll forwardProps enabled={(mobileNavIsOpen && isBelowBreakpoint) || openSubmenuIndex !== null}>
         <nav
           className={cx(styles.nav, { [styles.nav__mobileOpen]: mobileNavIsOpen, [styles.nav__isMobile]: isBelowBreakpoint }, 'scroll')}
@@ -156,122 +160,125 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
           style={{ top: `${headerBottomPos}px` }}
         >
           {navData && (
-            <ul className={styles.navList}>
-              {navData?.map((section, sectionIndex) => {
-                const {
-                  title: sectionTitle,
-                  subNavSections,
-                } = section
-                return (
-                  <li
-                    key={sectionTitle}
-                    className={cx(
-                      styles.menuItem,
-                      { [styles.menuItem__open]: openSubmenuIndex === sectionIndex },
-                    )}
-                  >
-                    <button
-                      type='button'
+            <>
+              <ul className={styles.navList}>
+                {navData?.map((section, sectionIndex) => {
+                  const {
+                    title: sectionTitle,
+                    subNavSections,
+                  } = section
+                  return (
+                    <li
+                      key={sectionTitle}
                       className={cx(
-                        styles.menuItem_TopLevelMenuItem,
-                        { [styles.menuItem_TopLevelMenuItem__open]: openSubmenuIndex === sectionIndex },
+                        styles.menuItem,
+                        { [styles.menuItem__open]: openSubmenuIndex === sectionIndex },
                       )}
-                      onClick={() => toggleSubmenuOpen(sectionIndex)}
-                      aria-expanded={openSubmenuIndex === sectionIndex}
-                      aria-controls={`submenu-${sectionIndex}`}
                     >
-                      {sectionTitle}
-                      <span
+                      <button
+                        type='button'
                         className={cx(
-                          styles.menuItem_TopLevelMenuItemArrow,
-                          { [styles.menuItem_TopLevelMenuItemArrow__open]: openSubmenuIndex === sectionIndex },
+                          styles.menuItem_TopLevelMenuItem,
+                          { [styles.menuItem_TopLevelMenuItem__open]: openSubmenuIndex === sectionIndex },
                         )}
+                        onClick={() => toggleSubmenuOpen(sectionIndex)}
+                        aria-expanded={openSubmenuIndex === sectionIndex}
+                        aria-controls={`submenu-${sectionIndex}`}
                       >
-                        <CaretDropdown />
-                      </span>
-                    </button>
-                    <div
-                      id={`submenu-${sectionIndex}`}
-                      className={cx(
-                        styles.submenu,
-                        {
-                          [styles.submenu__open]: openSubmenuIndex === sectionIndex,
-                        },
-                      )}
-                      style={{ top: `${headerBottomPos}px`, left: nevLeftPos }}
-                    >
-                      <div className={styles.submenus}>
-                        {subNavSections.map((linkGroup) => (
-                          <div
-                            key={linkGroup._key}
-                            className={cx(
-                              styles.linkGroupWrap,
-                              {
-                                [styles.linkGroupWrap__hasBg]: linkGroup.hasBackground,
-                                [styles.linkGroupWrap__standout]: linkGroup.standout,
-                              },
-                            )}
-                          >
-                            <ul
+                        {sectionTitle}
+                        <span
+                          className={cx(
+                            styles.menuItem_TopLevelMenuItemArrow,
+                            { [styles.menuItem_TopLevelMenuItemArrow__open]: openSubmenuIndex === sectionIndex },
+                          )}
+                        >
+                          <CaretDropdown />
+                        </span>
+                      </button>
+                      <div
+                        id={`submenu-${sectionIndex}`}
+                        className={cx(
+                          styles.submenu,
+                          {
+                            [styles.submenu__open]: openSubmenuIndex === sectionIndex,
+                          },
+                        )}
+                        style={{ top: `${headerBottomPos}px`, left: nevLeftPos }}
+                      >
+                        <div className={styles.submenus}>
+                          {subNavSections.map((linkGroup) => (
+                            <div
+                              key={linkGroup._key}
                               className={cx(
-                                styles.linkGroup,
+                                styles.linkGroupWrap,
                                 {
-                                  [styles.linkGroup__hasBg]: linkGroup.hasBackground,
-                                  [styles.linkGroup__standout]: linkGroup.standout,
+                                  [styles.linkGroupWrap__hasBg]: linkGroup.hasBackground,
+                                  [styles.linkGroupWrap__standout]: linkGroup.standout,
                                 },
                               )}
-                              style={{ maxWidth: linkGroup.hasBackground ? `calc(${navWidth} - 30px)` : navWidth }}
                             >
-                              {linkGroup.title && (
-                                <li className={styles.linkGroupHeader}>
-                                  {linkGroup.title}
-                                </li>
-                              )}
-                              {linkGroup.links.map((link) => (
-                                <li key={link._key} className={styles.linkGroupItem}>
-                                  <Link
-                                    href={link.url}
-                                    className={cx(
-                                      styles.submenuLink,
-                                      {
-                                        [styles.submenuLink__hasIcon]: link.icon,
-                                        [styles.submenuLink__standout]: linkGroup.standout,
-                                      },
-                                    )}
-                                  >
-                                    {link.icon && (
-                                      <span
-                                        className={cx(
-                                          styles.submenuLink_Icon,
-                                          styles[`submenuLink_Icon__${link.icon}`],
-                                          {
-                                            [styles.submenuLink_Icon__standout]: linkGroup.standout,
-                                          },
-                                        )}
-                                      >
-                                        {navIvons[link.icon]}
-                                      </span>
-                                    )}
-                                    <span className={cx({ [styles.submenuLinkWrap]: link.description })}>
-                                      {link.title}
-                                      {link.description && (
-                                        <span className={styles.submenuLink_Description}>
-                                          {link.description}
+                              <ul
+                                className={cx(
+                                  styles.linkGroup,
+                                  {
+                                    [styles.linkGroup__hasBg]: linkGroup.hasBackground,
+                                    [styles.linkGroup__standout]: linkGroup.standout,
+                                  },
+                                )}
+                                style={{ maxWidth: linkGroup.hasBackground ? `calc(${navWidth} - 30px)` : navWidth }}
+                              >
+                                {linkGroup.title && (
+                                  <li className={styles.linkGroupHeader}>
+                                    {linkGroup.title}
+                                  </li>
+                                )}
+                                {linkGroup.links.map((link) => (
+                                  <li key={link._key} className={styles.linkGroupItem}>
+                                    <Link
+                                      href={link.url}
+                                      className={cx(
+                                        styles.submenuLink,
+                                        {
+                                          [styles.submenuLink__hasIcon]: link.icon,
+                                          [styles.submenuLink__standout]: linkGroup.standout,
+                                        },
+                                      )}
+                                    >
+                                      {link.icon && (
+                                        <span
+                                          className={cx(
+                                            styles.submenuLink_Icon,
+                                            styles[`submenuLink_Icon__${link.icon}`],
+                                            {
+                                              [styles.submenuLink_Icon__standout]: linkGroup.standout,
+                                            },
+                                          )}
+                                        >
+                                          {navIvons[link.icon]}
                                         </span>
                                       )}
-                                    </span>
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
+                                      <span className={cx({ [styles.submenuLinkWrap]: link.description })}>
+                                        {link.title}
+                                        {link.description && (
+                                          <span className={styles.submenuLink_Description}>
+                                            {link.description}
+                                          </span>
+                                        )}
+                                      </span>
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                )
-              })}
-            </ul>
+                    </li>
+                  )
+                })}
+              </ul>
+              <SearchButton className={styles.searchButton__hideMobile} />
+            </>
           )}
           {secondaryNavData?.length && (
             <ul className={styles.secondaryMenu}>
