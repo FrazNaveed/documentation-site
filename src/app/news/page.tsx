@@ -14,12 +14,12 @@ export default async function Page() {
         )
       )}
       <h2>Query News by One Type 'Past Events'</h2>
-      {pastEvents && pastEvents.map((item, index) => (
+      {pastEvents?.map((item, index) => (
         <p key={index}>Title: {item.title}</p>
         )
       )}
       <h2>Query News by Two Types 'Past Events' and 'Ecosystem'</h2>
-      {twoTypesOfNews && twoTypesOfNews.map((item, index) => (
+      {twoTypesOfNews?.map((item, index) => (
         <p key={index}>Title: {item.title}</p>
         )
       )}
