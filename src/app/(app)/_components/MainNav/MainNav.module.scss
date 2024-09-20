@@ -336,6 +336,10 @@ $link-group-with-bg-side-padding: 30px;
 }
 
 .submenuLink {
+  display: flex;
+  align-items: center;
+  column-gap: $spacing-x-small;
+
   &,
   &:visited {
     color: $black;
@@ -348,6 +352,44 @@ $link-group-with-bg-side-padding: 30px;
 
   &:active {
     color: $pink-800;
+  }
+
+  &_Icon {
+    flex-shrink: 0;
+    width: 34px;
+
+    svg {
+      display: block;
+      height: auto;
+    }
+
+    @include media-breakpoint-down(md) {
+      width: 28px;
+
+      &__flareLogo {
+        svg {
+          width: 19px;
+        }
+      }
+
+      &__fassets {
+        svg {
+          width: 24px;
+        }
+      }
+
+      &__connector {
+        svg {
+          width: 23px;
+        }
+      }
+
+      &__oracle {
+        svg {
+          width: 28px;
+        }
+      }
+    }
   }
 }
 

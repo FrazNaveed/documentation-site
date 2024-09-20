@@ -8,6 +8,10 @@ import debounce from 'lodash.debounce'
 import cx from 'classnames'
 import useIsBelowBreakpoint from 'src/app/(app)/_hooks/useIsBelowBreakpoint'
 import CaretDropdown from '../svgs/CaretDropdown'
+import Connector from '../svgs/Connector'
+import FAssets from '../svgs/FAssets'
+import Flare from '../svgs/Flare'
+import Oracle from '../svgs/Oracle'
 import styles from './MainNav.module.scss'
 
 export type MainNavigation = {
@@ -37,6 +41,13 @@ export type SecondaryNavigation = {
 type MainNavProps = {
   navData: MainNavigation
   secondaryNavData: SecondaryNavigation
+}
+
+const navIvons = {
+  flareLogo: <Flare />,
+  fassets: <FAssets />,
+  connector: <Connector />,
+  oracle: <Oracle />,
 }
 
 export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
@@ -197,6 +208,16 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
                               {linkGroup.links.map((link) => (
                                 <li key={link._key} className={styles.linkGroupItem}>
                                   <Link href={link.url} className={styles.submenuLink}>
+                                    {link.icon && (
+                                      <span
+                                        className={cx(
+                                          styles.submenuLink_Icon,
+                                          styles[`submenuLink_Icon__${link.icon}`],
+                                        )}
+                                      >
+                                        {navIvons[link.icon]}
+                                      </span>
+                                    )}
                                     {link.title}
                                   </Link>
                                 </li>
