@@ -4,7 +4,7 @@ import MainNav from '../MainNav'
 import type { MainNavigation, SecondaryNavigation } from '../MainNav/MainNav'
 import styles from './SiteHeader.module.scss'
 
-export default async function SiteHeader() {
+export default function SiteHeader() {
   const mainNavData: MainNavigation = [
     {
       title: 'Products',
