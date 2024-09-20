@@ -4,19 +4,14 @@ import Link from 'next/link'
 
 // const news = await getNewsData()
 
-export default function Links({ navLinks }: { navLinks: string[] }) {
+export default function Links({ navLinks }: {navLinks: { text: string, link: string }[]}) {
   return (
     <div>
       <nav>
-        {navLinks && navLinks.map((type: string, index: number) => (
+        {navLinks && navLinks.map((navLink, index) => (
           <li key={index}>
-            <Link
-              href='/news/#' //{`/news/type/${type}`}
-              // onClick={() => setActiveLink(type)}
-              // className active if this index link is clicked
-              // className={`${activeLink === type ? 'active' : ''}`}
-            >
-              {`Type ${type} Link ${index}`}
+            <Link href={`/news/${navLink.link}`}>
+              {navLink.text}
             </Link>
           </li>
         ))}
@@ -31,5 +26,5 @@ export default function Links({ navLinks }: { navLinks: string[] }) {
         }
       </div> */}
     </div>
-  );
+  )
 }
