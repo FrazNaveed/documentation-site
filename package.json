@@ -31,8 +31,7 @@
     "next": "15.0.0-canary.104",
     "payload": "beta",
     "react": "19.0.0-rc-06d0b89e-20240801",
-    "react-dom": "19.0.0-rc-06d0b89e-20240801",
-    "sharp": "0.32.6"
+    "react-dom": "19.0.0-rc-06d0b89e-20240801"
   },
   "devDependencies": {
     "@aleph/eslint-config-nought": "^1.1.10",
