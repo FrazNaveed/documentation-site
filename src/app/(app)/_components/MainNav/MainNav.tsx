@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { RemoveScroll } from 'react-remove-scroll'
-import debounce from 'lodash.debounce'
 import cx from 'classnames'
 import useIsBelowBreakpoint from 'src/app/(app)/_hooks/useIsBelowBreakpoint'
 import CaretDropdown from '../svgs/CaretDropdown'
@@ -58,6 +57,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
   const [headerBottomPos, setHeaderBottomPos] = useState<number>(120)
   const [nevLeftPos, setNavLeftPos] = useState<string>('50%')
   const [navWidth, setNavWidth] = useState<string>('100%')
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
   useEffect(() => {
     setOpenSubmenuIndex(null)
@@ -97,17 +97,26 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
     setMobileNavIsOpen((prev) => !prev)
   }
 
-  // Update headerBottomPos on window resize in case user widens to desktop nav, scrolls, then narrows to mobile nav
   useEffect(() => {
-    const getHeaderBottomPosDebounced = debounce(getHeaderBottomPos, 400)
-    window.addEventListener('resize', getHeaderBottomPosDebounced)
+    getHeaderBottomPos()
     getNavPos()
-    window.addEventListener('resize', getNavPos)
-    return () => {
-      window.removeEventListener('resize', getHeaderBottomPosDebounced)
-      window.removeEventListener('resize', getNavPos)
-    }
   }, [getHeaderBottomPos, getNavPos])
+
+  // Check for window width change in resize events to avoid recalculating
+  // when resize is fired due to iOS Safari menu going in and out on scroll
+  useEffect(() => {
+    const handleResize = () => {
+      const { innerWidth } = window
+      // The window width has changed
+      if (innerWidth !== windowWidth) {
+        setWindowWidth(innerWidth)
+        getHeaderBottomPos()
+        getNavPos()
+      }
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [windowWidth, getHeaderBottomPos, getNavPos])
 
   return (
     <>
