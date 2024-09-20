@@ -118,6 +118,17 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
     return () => window.removeEventListener('resize', handleResize)
   }, [windowWidth, getHeaderBottomPos, getNavPos])
 
+  useEffect(() => {
+    const wrapper = document.getElementById('mainNav')
+    const closeSubMenuWhenClickOutsideNav = (e: MouseEvent) => {
+      if (!isBelowBreakpoint && openSubmenuIndex !== null && !wrapper?.contains(e.target as Node)) {
+        setOpenSubmenuIndex(null)
+      }
+    }
+    window.addEventListener('click', closeSubMenuWhenClickOutsideNav)
+    return () => window.removeEventListener('click', closeSubMenuWhenClickOutsideNav)
+  }, [isBelowBreakpoint, openSubmenuIndex])
+
   return (
     <>
       <button
