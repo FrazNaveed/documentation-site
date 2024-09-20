@@ -74,29 +74,41 @@ export default async function SiteHeader() {
         {
           _key: '3',
           title: '',
+          standout: true,
           links: [
             {
               _key: '1',
               title: 'FAssets',
               url: '/products/fassets',
               description: 'Lorem ipsum dolor sit',
-              standout: true,
               icon: 'fassets',
             },
+          ],
+        },
+        {
+          _key: '32',
+          title: '',
+          standout: true,
+          links: [
             {
               _key: '2',
               title: 'Flare Data Connector',
               url: '/products/flare-data-connector',
               description: 'Get a Data Feed',
-              standout: true,
               icon: 'connector',
             },
+          ],
+        },
+        {
+          _key: '33',
+          title: '',
+          standout: true,
+          links: [
             {
               _key: '3',
               title: 'Flare Time Series Oracle',
               url: '/products/flare-time-series-oracle',
               description: 'Get a Price',
-              standout: true,
               icon: 'oracle',
             },
           ],

@@ -252,6 +252,7 @@
 
 $link-group-padding: 60px;
 $link-group-with-bg-side-padding: 30px;
+$mobile-link-margin-bottom: to-rem($spacing-standard);
 
 .linkGroupWrap {
   @include media-breakpoint-up(md) {
@@ -273,6 +274,14 @@ $link-group-with-bg-side-padding: 30px;
       &,
       &:not(:first-child) {
         border: 0;
+      }
+    }
+  }
+
+  &__standout {
+    @include media-breakpoint-down(md) {
+      &:not(:last-child) {
+        margin-bottom: $mobile-link-margin-bottom;
       }
     }
   }
@@ -304,6 +313,13 @@ $link-group-with-bg-side-padding: 30px;
       }
     }
   }
+
+  &__standout {
+    @include media-breakpoint-up(md) {
+      padding-top: $spacing-x-large;
+      padding-bottom: $spacing-x-large;
+    }
+  }
 }
 
 .linkGroupHeader {
@@ -327,7 +343,7 @@ $link-group-with-bg-side-padding: 30px;
   }
 
   &:not(:last-child) {
-    margin-bottom: to-rem($spacing-standard);
+    margin-bottom: $mobile-link-margin-bottom;
 
     @include media-breakpoint-up(md) {
       margin-bottom: to-rem($spacing-small);
@@ -335,10 +351,23 @@ $link-group-with-bg-side-padding: 30px;
   }
 }
 
-.submenuLink {
+.submenuLinkWrap {
   display: flex;
-  align-items: center;
-  column-gap: $spacing-x-small;
+  flex-direction: column;
+}
+
+.submenuLink {
+  &__hasIcon {
+    display: inline-flex;
+    align-items: center;
+    column-gap: $spacing-x-small;
+
+    &.submenuLink__standout {
+      @include media-breakpoint-up(md) {
+        column-gap: $spacing-medium;
+      }
+    }
+  }
 
   &,
   &:visited {
@@ -356,7 +385,7 @@ $link-group-with-bg-side-padding: 30px;
 
   &_Icon {
     flex-shrink: 0;
-    width: 34px;
+    min-width: 34px;
 
     svg {
       display: block;
@@ -364,7 +393,7 @@ $link-group-with-bg-side-padding: 30px;
     }
 
     @include media-breakpoint-down(md) {
-      width: 28px;
+      min-width: 28px;
 
       &__flareLogo {
         svg {
@@ -389,6 +418,46 @@ $link-group-with-bg-side-padding: 30px;
           width: 28px;
         }
       }
+    }
+
+    &__standout {
+      @include media-breakpoint-up(md) {
+        min-width: 91px;
+
+        &.submenuLink_Icon__flareLogo {
+          svg {
+            width: 60px;
+          }
+        }
+
+        &.submenuLink_Icon__fassets {
+          svg {
+            width: 74px;
+          }
+        }
+
+        &.submenuLink_Icon__connector {
+          svg {
+            width: 76px;
+          }
+        }
+
+        &.submenuLink_Icon__oracle {
+          svg {
+            width: 91px;
+          }
+        }
+      }
+    }
+  }
+
+  &_Description {
+    @include bodyBase;
+
+    color: $gray;
+
+    @include media-breakpoint-down(md) {
+      display: none;
     }
   }
 }

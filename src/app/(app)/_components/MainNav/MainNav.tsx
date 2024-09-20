@@ -19,6 +19,7 @@ export type MainNavigation = {
   subNavSections: {
     _key: string
     title: string
+    standout?: boolean
     hasBackground?: boolean
     links: {
       _key: string
@@ -26,7 +27,6 @@ export type MainNavigation = {
       url: string
       isExternal?: boolean
       description?: string
-      standout?: boolean
       icon?: 'flareLogo' | 'fassets' | 'connector' | 'oracle'
     }[]
   }[]
@@ -188,6 +188,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
                               styles.linkGroupWrap,
                               {
                                 [styles.linkGroupWrap__hasBg]: linkGroup.hasBackground,
+                                [styles.linkGroupWrap__standout]: linkGroup.standout,
                               },
                             )}
                           >
@@ -196,6 +197,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
                                 styles.linkGroup,
                                 {
                                   [styles.linkGroup__hasBg]: linkGroup.hasBackground,
+                                  [styles.linkGroup__standout]: linkGroup.standout,
                                 },
                               )}
                               style={{ maxWidth: linkGroup.hasBackground ? `calc(${navWidth} - 30px)` : navWidth }}
@@ -207,18 +209,37 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
                               )}
                               {linkGroup.links.map((link) => (
                                 <li key={link._key} className={styles.linkGroupItem}>
-                                  <Link href={link.url} className={styles.submenuLink}>
+                                  <Link
+                                    href={link.url}
+                                    className={cx(
+                                      styles.submenuLink,
+                                      {
+                                        [styles.submenuLink__hasIcon]: link.icon,
+                                        [styles.submenuLink__standout]: linkGroup.standout,
+                                      },
+                                    )}
+                                  >
                                     {link.icon && (
                                       <span
                                         className={cx(
                                           styles.submenuLink_Icon,
                                           styles[`submenuLink_Icon__${link.icon}`],
+                                          {
+                                            [styles.submenuLink_Icon__standout]: linkGroup.standout,
+                                          },
                                         )}
                                       >
                                         {navIvons[link.icon]}
                                       </span>
                                     )}
-                                    {link.title}
+                                    <span className={cx({ [styles.submenuLinkWrap]: link.description })}>
+                                      {link.title}
+                                      {link.description && (
+                                        <span className={styles.submenuLink_Description}>
+                                          {link.description}
+                                        </span>
+                                      )}
+                                    </span>
                                   </Link>
                                 </li>
                               ))}
