@@ -70,7 +70,9 @@
   @include media-breakpoint-down(md) {
     @include container;
 
+    display: flex;
     position: fixed;
+    flex-direction: column;
     padding-top: 14px;
     border-top: 1px solid $gray-100;
     background-color: $white;
@@ -96,6 +98,10 @@
 
 .navList {
   @include utils.listReset;
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: $spacing-large;
+  }
 
   @include media-breakpoint-up(md) {
     display: flex;
@@ -342,5 +348,59 @@ $link-group-with-bg-side-padding: 30px;
 
   &:active {
     color: $pink-800;
+  }
+}
+
+.secondaryMenu {
+  @include utils.listReset;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: $spacing-standard;
+  column-gap: $spacing-standard;
+
+  @include media-breakpoint-up(md) {
+    display: none;
+  }
+
+  &_Link {
+    @include paragraphSmFont;
+
+    position: relative;
+
+    &,
+    &:visited {
+      color: $gray;
+    }
+
+    &:hover,
+    &:focus {
+      color: $pink-600;
+    }
+
+    &:active {
+      color: $pink-800;
+    }
+
+    &,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      &::after {
+        color: $gray;
+      }
+    }
+
+    .secondaryMenu_Item:not(:last-child) &::after {
+      display: block;
+      position: absolute;
+      top: 50%;
+      right: calc($spacing-standard / -2 - 2px);
+      transform: translateY(-50%);
+      content: "•";
+    }
   }
 }

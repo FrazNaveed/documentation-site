@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import BrandLogo from '../svgs/BrandLogo'
 import MainNav from '../MainNav'
-import type { MainNavigation } from '../MainNav/MainNav'
+import type { MainNavigation, SecondaryNavigation } from '../MainNav/MainNav'
 import styles from './SiteHeader.module.scss'
 
 export default async function SiteHeader() {
@@ -251,13 +251,26 @@ export default async function SiteHeader() {
     },
   ]
 
+  const secondaryNavData: SecondaryNavigation = [
+    {
+      _key: '1',
+      title: 'privacy policy',
+      url: '/privacy-policy',
+    },
+    {
+      _key: '2',
+      title: 'terms and conditions',
+      url: '/terms-and-conditions',
+    },
+  ]
+
   return (
     <header className={styles.header} id='siteHeader'>
       <div className={styles.container}>
         <Link href='/' className={styles.brandLink} aria-label='Flare brand logo'>
           <BrandLogo />
         </Link>
-        <MainNav navData={mainNavData} />
+        <MainNav navData={mainNavData} secondaryNavData={secondaryNavData} />
       </div>
     </header>
   )

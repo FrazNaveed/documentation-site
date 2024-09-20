@@ -28,7 +28,18 @@ export type MainNavigation = {
   }[]
 }[]
 
-export default function MainNav({ navData }: { navData: MainNavigation }) {
+export type SecondaryNavigation = {
+  _key: string
+  title: string
+  url: string
+}[]
+
+type MainNavProps = {
+  navData: MainNavigation
+  secondaryNavData: SecondaryNavigation
+}
+
+export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
   const pathname = usePathname()
   const [isBelowBreakpoint] = useIsBelowBreakpoint()
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false)
@@ -198,6 +209,17 @@ export default function MainNav({ navData }: { navData: MainNavigation }) {
                   </li>
                 )
               })}
+            </ul>
+          )}
+          {secondaryNavData?.length && (
+            <ul className={styles.secondaryMenu}>
+              {secondaryNavData.map((link) => (
+                <li key={link._key} className={styles.secondaryMenu_Item}>
+                  <Link href={link.url} className={styles.secondaryMenu_Link}>
+                    {link.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           )}
         </nav>
