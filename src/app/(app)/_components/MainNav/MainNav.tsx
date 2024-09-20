@@ -56,7 +56,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false)
   const [openSubmenuIndex, setOpenSubmenuIndex] = useState<number | null>(null)
   const [headerBottomPos, setHeaderBottomPos] = useState<number>(120)
-  const [nevLeftPos, setNavLeftPos] = useState<string>('50%')
+  const [navLeftPos, setNavLeftPos] = useState<string>('50%')
   const [navWidth, setNavWidth] = useState<string>('100%')
   const [windowWidth, setWindowWidth] = useState<number | null>(null)
 
@@ -203,7 +203,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
                             [styles.submenu__open]: openSubmenuIndex === sectionIndex,
                           },
                         )}
-                        style={{ top: `${headerBottomPos}px`, left: nevLeftPos }}
+                        style={{ top: `${headerBottomPos}px`, left: navLeftPos }}
                       >
                         <div className={styles.submenus}>
                           {subNavSections.map((linkGroup) => (
