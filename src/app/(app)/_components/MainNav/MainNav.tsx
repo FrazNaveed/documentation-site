@@ -43,7 +43,7 @@ type MainNavProps = {
   secondaryNavData: SecondaryNavigation
 }
 
-const navIvons = {
+const navIcons = {
   flareLogo: <Flare />,
   fassets: <FAssets />,
   connector: <Connector />,
@@ -254,7 +254,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
                                             },
                                           )}
                                         >
-                                          {navIvons[link.icon]}
+                                          {navIcons[link.icon]}
                                         </span>
                                       )}
                                       <span className={cx({ [styles.submenuLinkWrap]: link.description })}>
