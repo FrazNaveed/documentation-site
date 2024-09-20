@@ -1,4 +1,5 @@
 import getNewsData from '../_lib/payload/newsQueries'
+import NewsFilter from '../_components/NewsFilter'
 
 export default async function Page() {
   const news = await getNewsData()
@@ -7,7 +8,9 @@ export default async function Page() {
 
   return (
     <>
-      <h1>News</h1>
+      <p>Header component here</p>
+      <h1>Flare News</h1>
+      <NewsFilter />
       <h2>Default News query</h2>
       {news.map((item, index) => (
         <p key={index}>Title: {item.title}</p>
