@@ -53,15 +53,10 @@ export const News: CollectionConfig = {
     },
     {
       name: 'type',
-      type: 'radio',
-      options: [
-        'Flare Updates',
-        'AMA & Interviews',
-        'Past Events',
-        'Ecosystem',
-        'Research',
-      ],
-      defaultValue: 'Flare Updates',
+      type: 'relationship',
+      relationTo: 'news-types',
+      hasMany: false,
+      required: true,
     },
     {
       name: 'pin',
