@@ -6,11 +6,13 @@ export default async function Page() {
   const pastEvents = await getNewsData('Past Events')
   const twoTypesOfNews = await getNewsData('Past Events', 'Ecosystem')
 
+  const latestNewsNav = ['All News', 'Flare Updates', 'AMA & Interviews', 'Past Events', 'Ecosystem', 'Research']
+
   return (
     <>
       <p>Header component here</p>
       <h1>Flare News</h1>
-      <NewsFilter />
+      <NewsFilter navLinks={latestNewsNav} />
       <h2>Default News query</h2>
       {news.map((item, index) => (
         <p key={index}>Title: {item.title}</p>

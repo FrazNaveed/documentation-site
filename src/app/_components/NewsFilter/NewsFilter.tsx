@@ -2,14 +2,13 @@ import getNewsData from '../../_lib/payload/newsQueries'
 import React from 'react'
 import Link from 'next/link'
 
-const types = ['All News', 'Flare Updates', 'AMA & Interviews', 'Past Events', 'Ecosystem', 'Research']
 // const news = await getNewsData()
 
-export default function Links() {
+export default function Links({ navLinks }: { navLinks: string[] }) {
   return (
     <div>
       <nav>
-        {types.map((type, index) => (
+        {navLinks && navLinks.map((type: string, index: number) => (
           <li key={index}>
             <Link
               href='/news/#' //{`/news/type/${type}`}
