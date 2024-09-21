@@ -11,7 +11,7 @@ export type LinksProps = {
 export default function Links({
   navLinks, className }: LinksProps) {
   return (
-    <div className={cx(styles.NewsFilter)}>
+    <div className={cx(styles.NewsFilter, className)}>
       <div className={cx(styles.wrap)}>
         <nav>
           {navLinks?.map((navLink, index) => (

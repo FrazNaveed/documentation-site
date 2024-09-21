@@ -1,0 +1,62 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.wrap {
+  display: flex;
+}
+
+.NewsFilter {
+  li {
+    list-style: none;
+  }
+
+  nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding: to-rem(5px);
+    border-radius: to-rem(14px);
+    background-color: $pink-50;
+    gap: to-rem($spacing-small);
+  }
+}
+
+.text {
+  @include paragraphXSmFont;
+
+  color: $pink-900;
+}
+
+.active {
+  transition: background-color $transition-speed-default;
+  border-radius: to-rem(14px);
+  background-color: $pink-900;
+
+  .text {
+    color: $white;
+    font-size: 16px;
+  }
+}
+
+.filter {
+  flex: 0 1 auto;
+  padding: to-rem(8px) to-rem(16px);
+
+  &:hover,
+  &:active,
+  &:focus {
+    transition: background-color $transition-speed-default;
+    border-radius: to-rem(14px);
+    background-color: $pink-900;
+
+    .text {
+      color: $white;
+      font-size: 16px;
+    }
+  }
+}
