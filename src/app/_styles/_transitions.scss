@@ -1,2 +1,4 @@
-$transition-default: 300ms ease-in;
-$transition-snappy: 200ms ease-in;
+$transition-speed-default: 300ms;
+$transition-speed-snappy: 200ms;
+$transition-default: $transition-speed-default ease-in;
+$transition-snappy: $transition-speed-snappy ease-in;

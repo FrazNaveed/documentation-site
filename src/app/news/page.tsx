@@ -22,17 +22,17 @@ export default async function Page() {
       <NewsFilter navLinks={latestNewsNav} />
       <h2>Default News query</h2>
       {news.map((item, index) => (
-        <p key={index}>Title: {item.title}</p>
+        <p key={item.id}>Title: {item.title}</p>
         )
       )}
       <h2>Query News by One Type 'Past Events'</h2>
-      {pastEvents && pastEvents.map((item, index) => (
-        <p key={index}>Title: {item.title}</p>
+      {pastEvents?.map((item, index) => (
+        <p key={item.id}>Title: {item.title}</p>
         )
       )}
       <h2>Query News by Two Types 'Past Events' and 'Ecosystem'</h2>
-      {twoTypesOfNews && twoTypesOfNews.map((item, index) => (
-        <p key={index}>Title: {item.title}</p>
+      {twoTypesOfNews?.map((item, index) => (
+        <p key={item.id}>Title: {item.title}</p>
         )
       )}
     </>

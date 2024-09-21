@@ -1,0 +1,540 @@
+@use "sass:math";
+@use "@aleph/nought-sass-mixins/sass/utils";
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "../../_styles/mixins" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/typography" as *;
+
+.buttonsWrap {
+  display: flex;
+  align-items: center;
+}
+
+.mobileToggle {
+  @include utils.buttonReset;
+
+  position: relative;
+  width: 44px;
+  height: 26px;
+
+  @include media-breakpoint-up(md) {
+    display: none;
+  }
+
+  &_Bars {
+    display: block;
+    width: 28px;
+    margin-left: auto;
+  }
+
+  &_Bar {
+    display: block;
+    width: 21px;
+    height: 2px;
+    margin-right: auto;
+    margin-left: auto;
+    transition: opacity $transition-snappy;
+    background-color: $pink-600;
+    opacity: 1;
+
+    &:nth-child(2) {
+      width: 28px;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+
+    &__open {
+      opacity: 0;
+    }
+  }
+
+  &_Close {
+    @include labelS;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity $transition-snappy;
+    color: $black;
+    text-decoration: underline;
+    opacity: 0;
+
+    &__open {
+      opacity: 1;
+    }
+  }
+}
+
+.nav {
+  color: $black;
+
+  @include media-breakpoint-up(md) {
+    display: flex;
+  }
+
+  @include media-breakpoint-down(md) {
+    @include container;
+
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    padding-top: 14px;
+    border-top: 1px solid $gray-100;
+    background-color: $white;
+    opacity: 0;
+    overflow: auto;
+    visibility: hidden;
+    inset: 120px 0 0;
+    pointer-events: none;
+
+    &__isMobile {
+      transition:
+        opacity $transition-snappy,
+        visibility $transition-snappy;
+    }
+
+    &__mobileOpen {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+  }
+}
+
+.navList {
+  @include utils.listReset;
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: $spacing-large;
+  }
+
+  @include media-breakpoint-up(md) {
+    display: flex;
+    position: relative;
+    align-items: flex-end;
+    column-gap: $spacing-small;
+  }
+
+  @include media-breakpoint-up(lg) {
+    column-gap: $spacing-medium;
+  }
+}
+
+.menuItem {
+  @include media-breakpoint-down(md) {
+    width: 100%;
+  }
+
+  &__open {
+    @include media-breakpoint-up(md) {
+      z-index: 1;
+    }
+  }
+
+  &_TopLevelMenuItem {
+    @include utils.buttonReset;
+    @include paragraphXSmFont;
+
+    display: block;
+    position: relative;
+    transition: color $transition-snappy;
+    text-align: left;
+
+    @include media-breakpoint-up(md) {
+      padding: $spacing-x-small $spacing-small;
+    }
+
+    @include media-breakpoint-down(md) {
+      @include headerMobileH5;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding-top: $spacing-standard;
+      padding-bottom: $spacing-standard;
+      column-gap: $spacing-x-small;
+    }
+
+    &__open {
+      @include media-breakpoint-up(md) {
+        color: $pink-600;
+      }
+    }
+  }
+
+  &_TopLevelMenuItemArrow {
+    @include media-breakpoint-up(md) {
+      position: absolute;
+      margin-left: to-rem($spacing-x-small);
+      transition: opacity $transition-snappy;
+      opacity: 0;
+    }
+
+    @include media-breakpoint-down(md) {
+      margin-top: -4px;
+    }
+
+    svg {
+      transition: transform $transition-snappy;
+
+      @include media-breakpoint-down(md) {
+        width: 12px;
+        height: auto;
+        transform: rotate(-90deg);
+
+        path {
+          fill: $black;
+        }
+      }
+    }
+
+    &__open {
+      @include media-breakpoint-up(md) {
+        opacity: 1;
+      }
+
+      svg {
+        @include media-breakpoint-down(md) {
+          transform: rotate(0deg);
+        }
+      }
+    }
+  }
+}
+
+.submenu {
+  &,
+  :global(.siteHeader__flownAway) & {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  &__open {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  @include media-breakpoint-up(md) {
+    position: fixed;
+    transform: translateX(100%);
+    transition:
+      transform $transition-snappy,
+      visibility $transition-snappy;
+    border-top: 0.5px solid $gray-200;
+    border-left: 0.5px solid $gray-200;
+    background-color: $white;
+    overflow: auto;
+    inset: 124px 0 0 50%;
+
+    &__open {
+      transform: translateX(0);
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    max-height: 0;
+    transition:
+      max-height $transition-speed-snappy ease-out,
+      visibility 1ms $transition-snappy;
+    overflow: hidden;
+
+    &__open {
+      height: auto;
+      max-height: 800px;
+      transition: max-height $transition-speed-snappy ease-in;
+    }
+  }
+}
+
+.submenus {
+  @include media-breakpoint-down(md) {
+    margin-top: $spacing-x-small;
+    margin-right: $spacing-small;
+    margin-left: $spacing-small;
+  }
+}
+
+$link-group-padding: 60px;
+$link-group-with-bg-side-padding: 30px;
+$mobile-link-margin-bottom: to-rem($spacing-standard);
+
+.linkGroupWrap {
+  @include media-breakpoint-up(md) {
+    &:not(:first-child) {
+      border-top: 0.5px solid $gray-200;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: $spacing-x-large;
+
+    &:last-child {
+      margin-bottom: $spacing-medium;
+    }
+  }
+
+  &__hasBg {
+    @include media-breakpoint-up(md) {
+      &,
+      &:not(:first-child) {
+        border: 0;
+      }
+    }
+  }
+
+  &__standout {
+    @include media-breakpoint-down(md) {
+      &:not(:last-child) {
+        margin-bottom: $mobile-link-margin-bottom;
+      }
+    }
+  }
+}
+
+.linkGroup {
+  @include utils.listReset;
+
+  @include media-breakpoint-up(md) {
+    padding: $link-group-padding;
+    padding-right: $container-padding-lg;
+  }
+
+  @include media-breakpoint-down(md) {
+    max-width: 100% !important;
+  }
+
+  &__hasBg {
+    @include media-breakpoint-up(md) {
+      margin-right: $container-padding;
+      margin-bottom: $link-group-padding;
+      margin-left: $link-group-padding - $link-group-with-bg-side-padding;
+      padding: 40px $link-group-with-bg-side-padding 48px;
+      border-radius: 10px;
+      background-color: $gray-50;
+
+      @include media-breakpoint-down(lg) {
+        margin-right: $container-padding-lg;
+      }
+    }
+  }
+
+  &__standout {
+    @include media-breakpoint-up(md) {
+      padding-top: $spacing-x-large;
+      padding-bottom: $spacing-x-large;
+    }
+  }
+}
+
+.linkGroupHeader {
+  @include paragraphSmFont;
+
+  margin-bottom: to-rem($spacing-small);
+  color: $gray;
+
+  @include media-breakpoint-down(md) {
+    @include labelS;
+
+    margin-bottom: to-rem($spacing-small);
+  }
+}
+
+.linkGroupItem {
+  @include headerDesktopH4;
+
+  @include media-breakpoint-down(md) {
+    @include fontStyle(16, 24);
+  }
+
+  &:not(:last-child) {
+    margin-bottom: $mobile-link-margin-bottom;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: to-rem($spacing-small);
+    }
+  }
+}
+
+.submenuLinkWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.submenuLink {
+  &__hasIcon {
+    display: inline-flex;
+    align-items: center;
+    column-gap: $spacing-x-small;
+
+    &.submenuLink__standout {
+      @include media-breakpoint-up(md) {
+        column-gap: $spacing-medium;
+      }
+    }
+  }
+
+  &,
+  &:visited {
+    color: $black;
+  }
+
+  &:hover,
+  &:focus {
+    color: $pink-600;
+  }
+
+  &:active {
+    color: $pink-800;
+  }
+
+  &_Icon {
+    flex-shrink: 0;
+    min-width: 34px;
+
+    svg {
+      display: block;
+      height: auto;
+    }
+
+    @include media-breakpoint-down(md) {
+      min-width: 28px;
+
+      &__flareLogo {
+        svg {
+          width: 19px;
+        }
+      }
+
+      &__fassets {
+        svg {
+          width: 24px;
+        }
+      }
+
+      &__connector {
+        svg {
+          width: 23px;
+        }
+      }
+
+      &__oracle {
+        svg {
+          width: 28px;
+        }
+      }
+    }
+
+    &__standout {
+      @include media-breakpoint-up(md) {
+        min-width: 91px;
+
+        &.submenuLink_Icon__flareLogo {
+          svg {
+            width: 60px;
+          }
+        }
+
+        &.submenuLink_Icon__fassets {
+          svg {
+            width: 74px;
+          }
+        }
+
+        &.submenuLink_Icon__connector {
+          svg {
+            width: 76px;
+          }
+        }
+
+        &.submenuLink_Icon__oracle {
+          svg {
+            width: 91px;
+          }
+        }
+      }
+    }
+  }
+
+  &_Description {
+    @include bodyBase;
+
+    color: $gray;
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+}
+
+.secondaryMenu {
+  @include utils.listReset;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: $spacing-standard;
+  column-gap: $spacing-standard;
+
+  @include media-breakpoint-up(md) {
+    display: none;
+  }
+
+  &_Link {
+    @include paragraphSmFont;
+
+    position: relative;
+
+    &,
+    &:visited {
+      color: $gray;
+    }
+
+    &:hover,
+    &:focus {
+      color: $pink-600;
+    }
+
+    &:active {
+      color: $pink-800;
+    }
+
+    &,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      &::after {
+        color: $gray;
+      }
+    }
+
+    .secondaryMenu_Item:not(:last-child) &::after {
+      display: block;
+      position: absolute;
+      top: 50%;
+      right: calc($spacing-standard / -2 - 2px);
+      transform: translateY(-50%);
+      content: "•";
+    }
+  }
+}
+
+.searchButton {
+  @include media-breakpoint-down(md) {
+    &__hideMobile {
+      display: none;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    &__hideDesktop {
+      display: none;
+    }
+  }
+}
