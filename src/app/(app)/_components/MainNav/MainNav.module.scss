@@ -350,7 +350,7 @@ $mobile-link-margin-bottom: to-rem($spacing-standard);
 }
 
 .linkGroupHeader {
-  @include paragraphSmFont;
+  @include label;
 
   margin-bottom: to-rem($spacing-small);
   color: $gray;
@@ -360,8 +360,6 @@ $mobile-link-margin-bottom: to-rem($spacing-standard);
   }
 
   @include media-breakpoint-down(md) {
-    @include labelS;
-
     margin-bottom: to-rem($spacing-small);
   }
 }
