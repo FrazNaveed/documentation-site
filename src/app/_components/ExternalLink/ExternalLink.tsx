@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import cx from 'classnames'
 import DiagonalArrow from '../svgs/DiagonalArrow'
 import styles from './ExternalLink.module.scss'
 
@@ -10,10 +11,10 @@ type ExternalLinkProps = {
 
 export default function ExternalLink({ href, className, iconClassName, children }: React.PropsWithChildren<ExternalLinkProps>) {
   return (
-    <Link href={href} className={className}>
+    <Link href={href} className={cx(styles.linkWrap, className)}>
       <span className={styles.wrap}>
         {children}
-        <DiagonalArrow className={iconClassName} />
+        <DiagonalArrow className={cx(styles.arrow, iconClassName)} />
       </span>
     </Link>
   )

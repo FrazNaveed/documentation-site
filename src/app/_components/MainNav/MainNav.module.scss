@@ -410,7 +410,7 @@ $mobile-link-margin-bottom: to-rem($spacing-standard);
   &:visited {
     color: $link-base-color;
 
-    .submenuLink_ExternalIcon path {
+    svg.submenuLink_ExternalIcon path {
       fill: $link-base-color;
     }
   }
@@ -419,7 +419,7 @@ $mobile-link-margin-bottom: to-rem($spacing-standard);
   &:focus {
     color: $link-hover-color;
 
-    .submenuLink_ExternalIcon path {
+    svg.submenuLink_ExternalIcon path {
       fill: $link-hover-color;
     }
   }
@@ -427,7 +427,7 @@ $mobile-link-margin-bottom: to-rem($spacing-standard);
   &:active {
     color: $link-active-color;
 
-    .submenuLink_ExternalIcon path {
+    svg.submenuLink_ExternalIcon path {
       fill: $link-active-color;
     }
   }
