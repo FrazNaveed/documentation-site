@@ -7,6 +7,7 @@ import { RemoveScroll } from 'react-remove-scroll'
 import throttle from 'lodash.throttle'
 import cx from 'classnames'
 import useIsBelowBreakpoint from 'src/app/_hooks/useIsBelowBreakpoint'
+import ExternalLink from '../ExternalLink'
 import SearchButton from './components/SearchButton'
 import CaretDropdown from '../svgs/CaretDropdown'
 import Connector from '../svgs/Connector'
@@ -271,42 +272,47 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
                                     {linkGroup.title}
                                   </li>
                                 )}
-                                {linkGroup.links.map((link) => (
-                                  <li key={link._key} className={styles.linkGroupItem}>
-                                    <Link
-                                      href={link.url}
-                                      className={cx(
-                                        styles.submenuLink,
-                                        {
-                                          [styles.submenuLink__hasIcon]: link.icon,
-                                          [styles.submenuLink__standout]: linkGroup.standout,
-                                        },
-                                      )}
-                                    >
-                                      {link.icon && (
-                                        <span
-                                          className={cx(
-                                            styles.submenuLink_Icon,
-                                            styles[`submenuLink_Icon__${link.icon}`],
-                                            {
-                                              [styles.submenuLink_Icon__standout]: linkGroup.standout,
-                                            },
-                                          )}
-                                        >
-                                          {navIcons[link.icon]}
-                                        </span>
-                                      )}
-                                      <span className={cx({ [styles.submenuLinkWrap]: link.description })}>
-                                        {link.title}
-                                        {link.description && (
-                                          <span className={styles.submenuLink_Description}>
-                                            {link.description}
+                                {linkGroup.links.map((link) => {
+                                  const { description, icon, isExternal } = link
+                                  const LinkComponent = isExternal ? ExternalLink : Link
+                                  return (
+                                    <li key={link._key} className={styles.linkGroupItem}>
+                                      <LinkComponent
+                                        href={link.url}
+                                        className={cx(
+                                          styles.submenuLink,
+                                          {
+                                            [styles.submenuLink__hasIcon]: icon,
+                                            [styles.submenuLink__standout]: linkGroup.standout,
+                                          },
+                                        )}
+                                        iconClassName={styles.submenuLink_ExternalIcon}
+                                      >
+                                        {icon && (
+                                          <span
+                                            className={cx(
+                                              styles.submenuLink_Icon,
+                                              styles[`submenuLink_Icon__${icon}`],
+                                              {
+                                                [styles.submenuLink_Icon__standout]: linkGroup.standout,
+                                              },
+                                            )}
+                                          >
+                                            {navIcons[icon]}
                                           </span>
                                         )}
-                                      </span>
-                                    </Link>
-                                  </li>
-                                ))}
+                                        <span className={cx({ [styles.submenuLinkWrap]: description })}>
+                                          {link.title}
+                                          {description && (
+                                            <span className={styles.submenuLink_Description}>
+                                              {description}
+                                            </span>
+                                          )}
+                                        </span>
+                                      </LinkComponent>
+                                    </li>
+                                  )
+                                })}
                               </ul>
                             </div>
                           ))}

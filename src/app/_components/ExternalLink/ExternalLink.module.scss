@@ -1,0 +1,8 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/spacing" as *;
+
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  column-gap: to-rem($spacing-x-small);
+}
