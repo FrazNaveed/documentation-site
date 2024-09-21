@@ -124,7 +124,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
     return () => window.removeEventListener('resize', handleResize)
   }, [windowWidth, getHeaderBottomPos, getNavPos])
 
-  // CLose desktop submenus when clicking outside nav
+  // Close desktop submenus when clicking outside nav
   useEffect(() => {
     const wrapper = document.getElementById(mainNavId)
     const closeSubMenuWhenClickOutsideNav = (e: MouseEvent) => {
