@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { RemoveScroll } from 'react-remove-scroll'
+import throttle from 'lodash.throttle'
 import cx from 'classnames'
 import useIsBelowBreakpoint from 'src/app/(app)/_hooks/useIsBelowBreakpoint'
 import SearchButton from './components/SearchButton'
@@ -59,6 +60,10 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
   const [navLeftPos, setNavLeftPos] = useState<string>('50%')
   const [navWidth, setNavWidth] = useState<string>('100%')
   const [windowWidth, setWindowWidth] = useState<number | null>(null)
+  const [siteHeaderHidden, setSiteHeaderHidden] = useState(false)
+  const headerHiddenClassName = 'siteHeader__flownAway'
+  const siteHeaderId = 'siteHeader'
+  const mainNavId = 'mainNav'
 
   useEffect(() => {
     setOpenSubmenuIndex(null)
@@ -75,7 +80,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
   }
 
   const getHeaderBottomPos = useCallback(() => {
-    const headerRect = document.getElementById('siteHeader')?.getBoundingClientRect()
+    const headerRect = document.getElementById(siteHeaderId)?.getBoundingClientRect()
     if (headerRect) {
       const { y, height } = headerRect
       setHeaderBottomPos(y + height)
@@ -83,7 +88,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
   }, [])
 
   const getNavPos = useCallback(() => {
-    const navRect = document.getElementById('mainNav')?.getBoundingClientRect()
+    const navRect = document.getElementById(mainNavId)?.getBoundingClientRect()
     if (navRect) {
       const { width, x } = navRect
       setNavLeftPos(`${x}px`)
@@ -119,8 +124,9 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
     return () => window.removeEventListener('resize', handleResize)
   }, [windowWidth, getHeaderBottomPos, getNavPos])
 
+  // CLose desktop submenus when clicking outside nav
   useEffect(() => {
-    const wrapper = document.getElementById('mainNav')
+    const wrapper = document.getElementById(mainNavId)
     const closeSubMenuWhenClickOutsideNav = (e: MouseEvent) => {
       if (!isBelowBreakpoint && openSubmenuIndex !== null && !wrapper?.contains(e.target as Node)) {
         setOpenSubmenuIndex(null)
@@ -129,6 +135,33 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
     window.addEventListener('click', closeSubMenuWhenClickOutsideNav)
     return () => window.removeEventListener('click', closeSubMenuWhenClickOutsideNav)
   }, [isBelowBreakpoint, openSubmenuIndex])
+
+  // Hide site header on scroll down and reveal on scroll up
+  useEffect(() => {
+    const siteHeader = document.getElementById(siteHeaderId)
+    let prevScroll = window.scrollY
+    const toggleHeaderVisibilityOnScroll = throttle(() => {
+      if (prevScroll > window.scrollY || window.scrollY === 0) {
+        if (siteHeaderHidden) {
+          // Showing site header
+          siteHeader?.classList.remove(headerHiddenClassName)
+          setSiteHeaderHidden(false)
+        }
+      } else if (prevScroll < window.scrollY) {
+        if (!siteHeaderHidden) {
+          // Hiding site header
+          siteHeader?.classList.add(headerHiddenClassName)
+          setSiteHeaderHidden(true)
+        }
+      }
+      prevScroll = window.scrollY
+    }, 200)
+    if (siteHeader) {
+      window.addEventListener('scroll', toggleHeaderVisibilityOnScroll)
+    }
+
+    return () => window.removeEventListener('scroll', toggleHeaderVisibilityOnScroll)
+  }, [siteHeaderHidden])
 
   return (
     <>
@@ -139,7 +172,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
           onClick={toggleMobileNav}
           type='button'
           aria-label='Toggle main navigation'
-          aria-controls='mainNav'
+          aria-controls={mainNavId}
           aria-expanded={mobileNavIsOpen}
         >
           <span className={styles.mobileToggle_Bars}>
@@ -152,10 +185,16 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
           </span>
         </button>
       </span>
-      <RemoveScroll forwardProps enabled={(mobileNavIsOpen && isBelowBreakpoint) || openSubmenuIndex !== null}>
+      <RemoveScroll
+        forwardProps
+        enabled={
+          (mobileNavIsOpen && isBelowBreakpoint)
+          || (openSubmenuIndex !== null && !isBelowBreakpoint)
+        }
+      >
         <nav
           className={cx(styles.nav, { [styles.nav__mobileOpen]: mobileNavIsOpen, [styles.nav__isMobile]: isBelowBreakpoint }, 'scroll')}
-          id='mainNav'
+          id={mainNavId}
           aria-label='Main menu'
           style={{ top: `${headerBottomPos}px` }}
         >
