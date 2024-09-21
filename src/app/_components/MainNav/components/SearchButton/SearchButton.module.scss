@@ -1,0 +1,27 @@
+@use "@aleph/nought-sass-mixins/sass/utils";
+@use "../../../../_styles/colors" as *;
+@use "../../../../_styles/spacing" as *;
+@use "../../../../_styles/mixins" as *;
+
+.searchButton {
+  @include utils.buttonReset;
+
+  @include media-breakpoint-down(md) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-right: $spacing-small;
+    border-radius: 6px;
+    background-color: $gray-50;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-left: $spacing-large;
+  }
+
+  svg {
+    display: block;
+  }
+}
