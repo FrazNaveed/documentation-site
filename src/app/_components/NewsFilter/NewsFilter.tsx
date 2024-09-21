@@ -1,30 +1,28 @@
-import getNewsData from '../../_lib/payload/newsQueries'
 import React from 'react'
 import Link from 'next/link'
+import cx from 'classnames'
+import styles from './NewsFilter.module.scss'
 
-// const news = await getNewsData()
+export type LinksProps = {
+  navLinks: { text: string, link: string, id: number }[]
+  className?: string
+}
 
-export default function Links({ navLinks }: {navLinks: { text: string, link: string }[]}) {
+export default function Links({
+  navLinks, className }: LinksProps) {
   return (
-    <div>
-      <nav>
-        {navLinks && navLinks.map((navLink, index) => (
-          <li key={index}>
-            <Link href={`/news/${navLink.link}`}>
-              {navLink.text}
+    <div className={cx(styles.NewsFilter)}>
+      <div className={cx(styles.wrap)}>
+        <nav>
+          {navLinks?.map((navLink, index) => (
+            <Link href={`/news/${navLink.link}`} className={cx(styles.filter)}>
+              <li key={navLink.id} className={cx(styles.text)}>
+                {navLink.text}
+              </li>
             </Link>
-          </li>
-        ))}
-      </nav>
-      {/* <div>
-        {
-          news.slice(0,3).map((news, index) => (
-            <div>
-              <p key={index}>{news.title}</p>
-            </div>
-          ))
-        }
-      </div> */}
+          ))}
+        </nav>
+      </div>
     </div>
   )
 }

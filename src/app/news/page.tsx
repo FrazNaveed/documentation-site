@@ -7,12 +7,12 @@ export default async function Page() {
   const twoTypesOfNews = await getNewsData('Past Events', 'Ecosystem')
 
   const latestNewsNav = [
-    {text: 'All News', link: '/'},
-    {text: 'Flare Updates', link: 'type/updates'},
-    {text: 'AMA & Interviews', link: 'type/ama-interviews'},
-    {text: 'Past Events', link: 'type/past-events'},
-    {text: 'Ecosystem', link: 'type/ecosystem'},
-    {text: 'Research', link: 'type/research'}
+    {text: 'All News', link: '/', id: 0},
+    {text: 'Flare Updates', link: 'type/updates', id: 1},
+    {text: 'AMA & Interviews', link: 'type/ama-interviews', id: 2},
+    {text: 'Past Events', link: 'type/past-events', id: 3},
+    {text: 'Ecosystem', link: 'type/ecosystem', id: 4},
+    {text: 'Research', link: 'type/research', id: 5}
   ]
 
   return (
