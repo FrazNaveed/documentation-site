@@ -8,11 +8,11 @@ export default async function Page() {
 
   const latestNewsNav = [
     {text: 'All News', link: '/', id: 0},
-    {text: 'Flare Updates', link: 'type/updates', id: 1},
-    {text: 'AMA & Interviews', link: 'type/ama-interviews', id: 2},
-    {text: 'Past Events', link: 'type/past-events', id: 3},
-    {text: 'Ecosystem', link: 'type/ecosystem', id: 4},
-    {text: 'Research', link: 'type/research', id: 5}
+    {text: 'Flare Updates', link: '/#', id: 1}, // 'type/updates'
+    {text: 'AMA & Interviews', link: '/#', id: 2}, // 'type/ama-interviews'
+    {text: 'Past Events', link: '/#', id: 3}, // 'type/past-events'
+    {text: 'Ecosystem', link: '/#', id: 4}, // 'type/ecosystem'
+    {text: 'Research', link: '/#', id: 5} // 'type/research'
   ]
 
   return (
