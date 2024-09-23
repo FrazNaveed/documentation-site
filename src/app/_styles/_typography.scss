@@ -315,13 +315,13 @@ $font-family-sathoshi: var(--satoshi);
 @mixin link() {
   &,
   &:visited {
-    color: $pink-700;
+    color: $link-color;
     text-decoration: none;
   }
 
   &:hover,
   &:focus,
   &:active {
-    color: $pink-900;
+    color: $link-hover-color;
   }
 }

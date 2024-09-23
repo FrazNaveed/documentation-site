@@ -18,6 +18,10 @@
   }
 
   @include media-breakpoint-up(md) {
+    margin-left: $spacing-small;
+  }
+
+  @include media-breakpoint-up(lg) {
     margin-left: $spacing-large;
   }
 
