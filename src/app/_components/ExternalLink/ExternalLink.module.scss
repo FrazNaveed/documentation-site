@@ -1,0 +1,26 @@
+@use "../../_styles/colors" as *;
+@use "../../_styles/mixins" as *;
+@use "../../_styles/spacing" as *;
+
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  column-gap: to-rem($spacing-x-small);
+}
+
+.linkWrap {
+  &,
+  &:visited {
+    .arrow path {
+      fill: $link-color;
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    .arrow path {
+      fill: $link-hover-color;
+    }
+  }
+}
