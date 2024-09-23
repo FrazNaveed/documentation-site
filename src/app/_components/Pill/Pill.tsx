@@ -19,7 +19,7 @@ export default function Pill({
     className,
     {
       [styles.active]: active,
-      [styles.isLink]: link!! && !active,
+      [styles.isLink]: link && !active,
     }
   )
 
