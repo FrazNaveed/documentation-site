@@ -1,9 +1,10 @@
 import Button from '../../_components/Button'
+import Pill from '../../_components/Pill'
 
 export default function Page() {
   return (
     <>
-      <h1>Buttons</h1>
+      <h2>Buttons</h2>
       <Button text='Default' />
       &nbsp;
       <Button text='Default Link' link='/hello' />
@@ -57,6 +58,24 @@ export default function Page() {
       <Button text='Small secondary link' buttonStyle='secondary' link='/hello' size='small' />
       &nbsp;
       <Button text='Small secondary disabled' buttonStyle='secondary' size='small' disabled />
+      <br />
+      <h1>Pills</h1>
+      <Pill text='Link' link='/hello' />
+      &nbsp;
+      <Pill text='Link active' active link='/hello' />
+      <br />
+      <Pill text='No Link' />
+      &nbsp;
+      <Pill text='No Link active' active />
+      <br />
+      <Pill text='Small Link' size='small' link='/hello' />
+      &nbsp;
+      <Pill text='Small Link active' size='small' active link='/hello' />
+      <br />
+      <Pill text='Small No Link' size='small' />
+      &nbsp;
+      <Pill text='Small No Link active' size='small' active />
+      <br />
     </>
   )
 }

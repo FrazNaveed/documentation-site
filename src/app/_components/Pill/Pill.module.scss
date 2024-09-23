@@ -1,0 +1,59 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+
+.Pill {
+  display: inline-block;
+  margin-bottom: 0;
+  padding: to-rem(8px) to-rem(16px);
+  transition: all $transition-snappy;
+  border: 1px solid $gray-200;
+  border-radius: 10px;
+  background-color: $white;
+  line-height: to-rem(14px);
+  text-align: center;
+
+  .text {
+    @include label;
+
+    color: $pink-700;
+  }
+
+  &.active {
+    border-color: $black;
+    background-color: $black;
+
+    .text {
+      color: $white;
+    }
+  }
+
+  &.isLink {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $gray-50;
+
+      .text {
+        color: $pink-900;
+      }
+    }
+  }
+
+  &.small {
+    padding: to-rem(6px) to-rem(12px);
+    line-height: to-rem(12px);
+
+    .text {
+      @include labelS;
+    }
+  }
+}
