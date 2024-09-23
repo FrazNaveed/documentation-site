@@ -7,9 +7,11 @@
 
 .wrap {
   display: flex;
+  justify-content: center;
 
-  // @include media-breakpoint-down(md) {
-  // }
+  @include media-breakpoint-down(md) {
+    position: relative;
+  }
 }
 
 .NewsFilter {
@@ -19,19 +21,21 @@
 
   nav {
     display: inline-flex;
+    position: relative;
     align-items: center;
     justify-content: center;
     margin: auto;
     padding: to-rem(5px);
-    border-radius: to-rem(14px);
-    background-color: $pink-50;
+    // border-radius: to-rem(14px);
+    // background-color: $pink-50;
     gap: to-rem($spacing-small);
 
     @include media-breakpoint-down(md) {
       display: flex;
+      position: relative;
       flex-wrap: nowrap;
       justify-content: flex-start;
-      scroll-padding: 0 to-rem($spacing-small);
+      scroll-padding: 0 to-rem($spacing-standard);
       scroll-snap-type: x mandatory;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
@@ -40,6 +44,17 @@
       &::-webkit-scrollbar {
         display: none;
       }
+    }
+
+    &::before,
+    &::after {
+      position: absolute;
+      border-radius: $border-radius;
+      background-color: $pink-50;
+      content: "";
+      z-index: -1;
+      inset: 0; // or -$border-radius; ?
+      overflow-x: auto;
     }
   }
 }
