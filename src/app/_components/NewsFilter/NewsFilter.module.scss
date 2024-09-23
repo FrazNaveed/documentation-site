@@ -31,6 +31,8 @@
       display: flex;
       flex-wrap: nowrap;
       justify-content: flex-start;
+      scroll-padding: 0 to-rem($spacing-small);
+      scroll-snap-type: x mandatory;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
