@@ -27,15 +27,27 @@ export default buildConfig({
   localization: {
     locales: [
       {
-        label: 'English',
+        label: {
+          en: 'English',
+          es: 'Inglés',
+          de: 'Englisch',
+        },
         code: 'en',
       },
       {
-        label: 'Spanish',
+        label: {
+          en: 'Spanish',
+          es: 'Español',
+          de: 'Spanisch',
+        },
         code: 'es',
        }, 
       {
-        label: 'German',
+        label: {
+          en: 'German',
+          es: 'Alemán',
+          de: 'Deutsch',
+        },
         code: 'de',
       },
     ],
