@@ -27,13 +27,12 @@
 
 .nav {
   display: inline-flex;
-  // position: relative;
   flex-shrink: 0;
   align-items: center;
   margin-right: $container-padding;
   margin-left: $container-padding;
   padding: to-rem(5px);
-  border-radius: to-rem(14px);
+  border-radius: $border-radius;
   background-color: $pink-50;
   gap: to-rem($spacing-small);
 
