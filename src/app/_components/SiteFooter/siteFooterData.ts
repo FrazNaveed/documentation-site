@@ -1,15 +1,16 @@
-type FooterNavigation = {
+interface NavigationItem {
   _key: string
   title: string
   url: string
-}[]
+}
 
-type secondaryNavigationData = {
-  _key: string
-  title: string
-  url: string
+type FooterNavigation = NavigationItem[]
+
+interface SecondaryNavigationItem extends NavigationItem {
   isExternal?: boolean
-}[]
+}
+
+type SecondaryNavigation = SecondaryNavigationItem[]
 
 export const navData: FooterNavigation = [
   {
@@ -31,7 +32,7 @@ export const navData: FooterNavigation = [
 
 export const secondaryNavLabel = 'Dev Links'
 
-export const secondaryNavData: secondaryNavigationData = [
+export const secondaryNavData: SecondaryNavigation = [
   {
     _key: '1',
     title: 'Flarescan',
