@@ -21,7 +21,7 @@ export default function Links({
 
   return (
     <div className={cx(styles.NewsFilter, className)}>
-      <div className={cx(styles.wrap)}>
+      <div className={styles.wrap}>
         <nav>
           {navLinks?.map((navLink, index) => (
             <Link
@@ -32,7 +32,7 @@ export default function Links({
               )}
               onClick={() => handleClick(index)}
               >
-              <li key={navLink.id} className={cx(styles.text)}>
+              <li key={navLink.id} className={styles.text}>
                 {navLink.text}
               </li>
             </Link>
