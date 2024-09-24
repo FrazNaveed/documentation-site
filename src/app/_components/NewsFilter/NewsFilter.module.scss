@@ -5,7 +5,7 @@
 @use "../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
-$border-radius: 14px;
+$pill-border-radius: 10px;
 $active-font-size: to-rem(16px);
 $active-font-size-lg: to-rem(14px);
 
@@ -37,7 +37,7 @@ $active-font-size-lg: to-rem(14px);
   margin-right: $container-padding;
   margin-left: $container-padding;
   padding: to-rem(5px);
-  border-radius: $border-radius;
+  border-radius: 14px;
   background-color: $pink-50;
   gap: to-rem($spacing-small) to-rem(5px);
 
@@ -82,7 +82,7 @@ a.text {
 
 .active {
   transition: background-color $transition-speed-default;
-  border-radius: $border-radius;
+  border-radius: $pill-border-radius;
   background-color: $pink-900;
 
   .text {
@@ -102,7 +102,7 @@ a.text {
   &:active,
   &:focus {
     transition: background-color $transition-speed-default;
-    border-radius: $border-radius;
+    border-radius: $pill-border-radius;
     background-color: $pink-900;
 
     .text {
