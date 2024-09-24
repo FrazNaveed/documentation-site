@@ -26,18 +26,18 @@ export default function Links({
           <ul>
             {navLinks?.map((navLink, index) => (
               <li
-                  className={cx(
+                className={cx(
                   styles.filter,
                   {[styles.active]: !hasClicked && index === 0 || activeIndex === index},
                 )}
+                key={navLink.id}
               >
               <Link
                 href={index !== 0 ? `/news/type/${navLink.link}` : `/news/`}
                 className={styles.text}
                 onClick={() => handleClick(index)}
-                key={navLink.id}
               >
-                  {navLink.text}
+                {navLink.text}
               </Link>
               </li>
             ))}
