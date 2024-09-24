@@ -31,8 +31,9 @@ export default function Links({
                 {[styles.active]: !hasClicked && index === 0 || activeIndex === index},
               )}
               onClick={() => handleClick(index)}
-              >
-              <li key={navLink.id} className={styles.text}>
+              key={navLink.id}
+            >
+              <li className={styles.text}>
                 {navLink.text}
               </li>
             </Link>
