@@ -22,7 +22,7 @@ export default function Links({
   return (
     <div className={cx(styles.NewsFilter, className)}>
       <div className={styles.wrap}>
-        <nav>
+        <nav className={styles.nav}>
           {navLinks?.map((navLink, index) => (
             <Link
               href={index !== 0 ? `/news/type/${navLink.link}` : `/news/`}
