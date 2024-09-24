@@ -33,6 +33,8 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
 
 1. Run the development server with `npm run dev`.
 
+1. Seed your dev environment with News Article types with `npm run seed:news-types` to add default types. Then seed News articles with `npm run seed:news`. Additional users may be added with `npm run seed:news` by uncommenting `seedUserData()` in `scripts/seedNews.js` before running `npm run seed:news`.
+
 ## Local Development
 
 1. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
