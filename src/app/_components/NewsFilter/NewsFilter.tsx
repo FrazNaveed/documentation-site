@@ -21,29 +21,28 @@ export default function Links({
 
   return (
     <div className={cx(styles.NewsFilter, className)}>
-      <div className={styles.wrap}>
-        <nav className={styles.nav}>
-          <ul>
-            {navLinks?.map((navLink, index) => (
-              <li
-                className={cx(
-                  styles.filter,
-                  {[styles.active]: !hasClicked && index === 0 || activeIndex === index},
-                )}
-                key={navLink.id}
-              >
-              <Link
-                href={index !== 0 ? `/news/type/${navLink.link}` : `/news/`}
-                className={styles.text}
-                onClick={() => handleClick(index)}
-              >
-                {navLink.text}
-              </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
+      <nav className={styles.nav}>
+        <ul className={styles.navList}>
+          {navLinks?.map((navLink, index) => (
+            <li
+              className={cx(
+                styles.filter,
+                {[styles.active]: !hasClicked && index === 0 || activeIndex === index},
+              )}
+              key={navLink.id}
+            >
+            <Link
+              href={index !== 0 ? `/news/type/${navLink.link}` : `/news/`}
+              className={styles.text}
+              onClick={() => handleClick(index)}
+              title={navLink.text}
+            >
+              {navLink.text}
+            </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   )
 }

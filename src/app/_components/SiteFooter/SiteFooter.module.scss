@@ -1,0 +1,173 @@
+@use "@aleph/nought-sass-mixins/sass/utils";
+@use "../../_styles/colors" as *;
+@use "../../_styles/mixins" as *;
+@use "../../_styles/spacing" as *;
+@use "../../_styles/typography" as *;
+
+.footer {
+  padding-top: to-rem($spacing-large);
+  padding-bottom: to-rem($spacing-large);
+  border-top: 1px solid $gray-200;
+  background-color: $white;
+}
+
+.container {
+  @include containerGrid;
+}
+
+.main {
+  @include columns(1, 7);
+}
+
+.devLinks {
+  @include columns(8, -1, lg);
+
+  @include media-breakpoint-up(lg) {
+    padding-top: to-rem(6px);
+  }
+
+  @include media-breakpoint-down(lg) {
+    margin-top: to-rem($spacing-xx-large);
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-top: to-rem($spacing-x-large);
+  }
+}
+
+.brandLink {
+  display: inline-block;
+  margin-bottom: to-rem($spacing-standard);
+}
+
+.logoTagline {
+  max-width: 100%;
+  height: auto;
+}
+
+.secondaryNavLabel {
+  @include labelS;
+
+  margin-bottom: to-rem($spacing-standard);
+}
+
+.footerNavWrap {
+  margin-bottom: to-rem($spacing-standard);
+}
+
+.footerNav {
+  @include utils.listReset;
+
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: to-rem($spacing-x-small);
+
+  &_Item {
+    @include paragraphXSmFont;
+
+    line-height: 1;
+
+    &:not(:last-child) {
+      margin-right: $spacing-small;
+      padding-right: $spacing-small;
+      border-right: 1px solid $gray-100;
+    }
+  }
+
+  &_Link {
+    &,
+    &:visited {
+      color: $gray;
+    }
+
+    &:hover,
+    &:focus {
+      color: $pink-600;
+    }
+
+    &:active {
+      color: $pink-800;
+    }
+
+    &,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      &::after {
+        color: $gray;
+      }
+    }
+  }
+}
+
+.socialIcons {
+  @include utils.listReset;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: to-rem($spacing-standard);
+
+  &_Link {
+    svg {
+      display: block;
+    }
+  }
+}
+
+.secondaryNav {
+  @include utils.listReset;
+
+  columns: 2;
+
+  &_Item {
+    @include paragraphXSmFont;
+
+    &:not(:last-child) {
+      margin-bottom: to-rem($spacing-small);
+    }
+  }
+
+  $link-base-color: $body-text-color;
+  $link-hover-color: $pink-600;
+  $link-active-color: $pink-800;
+
+  &_Link {
+    &,
+    &:visited {
+      color: $link-base-color;
+
+      svg.secondaryNav_LinkExternalIcon path {
+        fill: $link-base-color;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: $link-hover-color;
+
+      svg.secondaryNav_LinkExternalIcon path {
+        fill: $link-hover-color;
+      }
+    }
+
+    &:active {
+      color: $link-active-color;
+
+      svg.secondaryNav_LinkExternalIcon path {
+        fill: $link-active-color;
+      }
+    }
+
+    &,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      &::after {
+        color: $gray;
+      }
+    }
+  }
+}
