@@ -5,12 +5,15 @@
 @use "../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
-.wrap {
+$border-radius: 14px;
+$active-font-size: to-rem(16px);
+$active-font-size-lg: to-rem(14px);
+
+.nav {
   display: flex;
   justify-content: center;
 
   @include media-breakpoint-down(md) {
-    display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
     scroll-padding: 0 to-rem($spacing-standard);
@@ -25,7 +28,9 @@
   }
 }
 
-.nav {
+.navList {
+  @include utils.listReset;
+
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
@@ -34,7 +39,7 @@
   padding: to-rem(5px);
   border-radius: $border-radius;
   background-color: $pink-50;
-  gap: to-rem($spacing-small);
+  gap: to-rem($spacing-small) to-rem(5px);
 
   @include media-breakpoint-down(lg) {
     margin-right: $container-padding-lg;
@@ -47,56 +52,70 @@
   }
 }
 
-.NewsFilter {
-  ul {
-    margin: 0;
-    padding: 0;
-  }
+.text {
+  display: block;
+  padding: to-rem($spacing-x-small) to-rem($spacing-small);
 
-  li {
-    display: inline-block;
-    list-style: none;
+  // To avoid layout shift on hover
+  &::before {
+    display: block;
+    height: 0;
+    font-size: $active-font-size;
+    font-style: normal;
+    content: attr(title);
+    overflow: hidden;
+    visibility: hidden;
+    user-select: none;
+    pointer-events: none;
+
+    @include media-breakpoint-down(lg) {
+      font-size: $active-font-size-lg;
+    }
   }
 }
 
-a {
-  &.text {
-    @include paragraphXSmFont;
+a.text {
+  @include paragraphXSmFont;
 
-    color: $pink-900;
-  }
+  color: $pink-900;
 }
 
 .active {
   transition: background-color $transition-speed-default;
-  border-radius: to-rem(14px);
+  border-radius: $border-radius;
   background-color: $pink-900;
 
   .text {
     color: $white;
-    font-size: 16px;
+    font-size: $active-font-size;
+
+    @include media-breakpoint-down(lg) {
+      font-size: $active-font-size-lg;
+    }
   }
 }
 
 .filter {
   flex: 0 1 auto;
-  padding: to-rem(2px) to-rem(16px);
 
   &:hover,
   &:active,
   &:focus {
     transition: background-color $transition-speed-default;
-    border-radius: to-rem(14px);
+    border-radius: $border-radius;
     background-color: $pink-900;
 
     .text {
       color: $white;
-      font-size: 16px;
+      font-size: $active-font-size;
+
+      @include media-breakpoint-down(lg) {
+        font-size: $active-font-size-lg;
+      }
     }
   }
 
   @include media-breakpoint-down(md) {
     flex: 0 0 auto;
-    // margin-right: 16px;
   }
 }
