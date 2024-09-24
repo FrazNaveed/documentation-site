@@ -48,7 +48,13 @@
 }
 
 .NewsFilter {
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
   li {
+    display: inline-block;
     list-style: none;
   }
 }
@@ -72,7 +78,7 @@
 
 .filter {
   flex: 0 1 auto;
-  padding: to-rem(8px) to-rem(16px);
+  padding: to-rem(2px) to-rem(16px);
 
   &:hover,
   &:active,
