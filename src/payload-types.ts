@@ -108,7 +108,7 @@ export interface News {
  */
 export interface NewsType {
   id: number;
-  name?: string | null;
+  name: string;
   slug: string;
   updatedAt: string;
   createdAt: string;

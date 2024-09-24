@@ -18,6 +18,8 @@ export const NewsTypes: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
+      required: true,
+      unique: true,
     },
     {
       name: 'slug',
