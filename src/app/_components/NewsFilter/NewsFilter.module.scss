@@ -59,10 +59,12 @@
   }
 }
 
-.text {
-  @include paragraphXSmFont;
+a {
+  &.text {
+    @include paragraphXSmFont;
 
-  color: $pink-900;
+    color: $pink-900;
+  }
 }
 
 .active {
