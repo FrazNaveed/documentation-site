@@ -37,3 +37,5 @@ const seedNewsTypesData = async (newsTypes) => {
 
 // Seed default News Types
 seedNewsTypesData(defaultNewsTypes)
+  .then(() => console.log('Default News types seeded successfully'))
+  .catch((error) => console.error('Seeding failed: ', error))
