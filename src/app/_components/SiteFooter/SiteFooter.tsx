@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { navData, secondaryNavLabel, secondaryNavData } from './siteFooterData'
 import ExternalLink from '../ExternalLink'
 import FooterLogoTagline from '../svgs/FooterLogoTagline'
 import GitHub from '../svgs/GitHub'
@@ -24,56 +25,14 @@ type secondaryNavigationData = {
 }[]
 
 export default async function SiteFooter() {
-  const navData: FooterNavigation = [
-    {
-      _key: '1',
-      title: 'Contact',
-      url: '/contact',
-    },
-    {
-      _key: '2',
-      title: 'Terminology',
-      url: '/terminology',
-    },
-    {
-      _key: '3',
-      title: 'Audits',
-      url: '/audits',
-    },
-  ]
-
-  const seconadryNavLabel = 'Dev Links'
-
-  const secondaryNavData: secondaryNavigationData = [
-    {
-      _key: '1',
-      title: 'Flarescan',
-      url: 'https://dev.flare.network/flarescan',
-      isExternal: true,
-    },
-    {
-      _key: '2',
-      title: 'FTSO Monitor',
-      url: 'https://dev.flare.network/ftso-monitor',
-      isExternal: true,
-    },
-    {
-      _key: '3',
-      title: 'Brand Assets',
-      url: '/brand-assets',
-    },
-    {
-      _key: '4',
-      title: 'Flare Systems Explorer',
-      url: 'https://flare-systems-explorer.flare.network/',
-      isExternal: true,
-    },
-    {
-      _key: '5',
-      title: 'Flare P-Chain Explorer',
-      url: 'https://flare.space/dapp/p-chain-explorer/',
-      isExternal: true,
-    },
+  const socialLinks = [
+    { href: 'https://github.com/flare-foundation', label: 'GitHub', Icon: GitHub },
+    { href: 'https://www.youtube.com/c/Flare_Networks', label: 'YouTube', Icon: YouTube },
+    { href: 'https://www.linkedin.com/company/flarenetwork/', label: 'LinkedIn', Icon: LinkedIn },
+    { href: 'https://discord.com/invite/flarenetwork', label: 'Discord', Icon: Discord },
+    { href: 'https://twitter.com/FlareNetworks', label: 'X', Icon: XSocial },
+    { href: 'https://medium.com/flarenetwork', label: 'Medium', Icon: Medium },
+    { href: 'https://t.me/FlareNetwork', label: 'Telegram', Icon: Telegram },
   ]
 
   return (
@@ -100,49 +59,21 @@ export default async function SiteFooter() {
             </nav>
           )}
           <ul className={styles.socialIcons}>
-            <li className={styles.socialIcons_Item}>
-              <Link href='https://github.com/flare-foundation' className={styles.socialIcons_Link} aria-label='GitHub' >
-                <GitHub />
-              </Link>
-            </li>
-            <li className={styles.socialIcons_Item}>
-              <Link href='https://www.youtube.com/c/Flare_Networks' className={styles.socialIcons_Link} aria-label='YouTube' >
-                <YouTube />
-              </Link>
-            </li>
-            <li className={styles.socialIcons_Item}>
-              <Link href='https://www.linkedin.com/company/flarenetwork/' className={styles.socialIcons_Link} aria-label='LinkedIn' >
-                <LinkedIn />
-              </Link>
-            </li>
-            <li className={styles.socialIcons_Item}>
-              <Link href='https://discord.com/invite/flarenetwork' className={styles.socialIcons_Link} aria-label='Discord' >
-                <Discord />
-              </Link>
-            </li>
-            <li className={styles.socialIcons_Item}>
-              <Link href='https://twitter.com/FlareNetworks' className={styles.socialIcons_Link} aria-label='XSocial' >
-                <XSocial />
-              </Link>
-            </li>
-            <li className={styles.socialIcons_Item}>
-              <Link href='https://medium.com/flarenetwork' className={styles.socialIcons_Link} aria-label='Medium' >
-                <Medium />
-              </Link>
-            </li>
-            <li className={styles.socialIcons_Item}>
-              <Link href='https://t.me/FlareNetwork' className={styles.socialIcons_Link} aria-label='Telegram' >
-                <Telegram />
-              </Link>
-            </li>
+            {socialLinks.map(({ href, label, Icon }) => (
+              <li key={label} className={styles.socialIcons_Item}>
+                <Link href={href} className={styles.socialIcons_Link} aria-label={label}>
+                  <Icon />
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
         <div className={styles.devLinks}>
           <p className={styles.secondaryNavLabel}>
-            {seconadryNavLabel}
+            {secondaryNavLabel}
           </p>
           {secondaryNavData?.length && (
-            <nav id='devLinksNav' className={styles.secondaryNavWrap} aria-label={`${seconadryNavLabel} menu`}>
+            <nav id='devLinksNav' className={styles.secondaryNavWrap} aria-label={`${secondaryNavLabel} menu`}>
               <ul className={styles.secondaryNav}>
                 {secondaryNavData.map((link) => {
                   const LinkComponent = link.isExternal ? ExternalLink : Link
