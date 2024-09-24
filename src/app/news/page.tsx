@@ -1,13 +1,25 @@
 import getNewsData from '../_lib/payload/newsQueries'
+import NewsFilter from '../_components/NewsFilter'
 
 export default async function Page() {
   const news = await getNewsData()
   const pastEvents = await getNewsData('Past Events')
   const twoTypesOfNews = await getNewsData('Past Events', 'Ecosystem')
 
+  const latestNewsNav = [
+    {text: 'All News', link: '/', id: 0},
+    {text: 'Flare Updates', link: 'updates', id: 1},
+    {text: 'AMA & Interviews', link: 'ama-interviews', id: 2},
+    {text: 'Past Events', link: 'past-events', id: 3},
+    {text: 'Ecosystem', link: 'ecosystem', id: 4},
+    {text: 'Research', link: 'research', id: 5}
+  ]
+
   return (
     <>
-      <h1>News</h1>
+      <p>Header component here</p>
+      <h1>Flare News</h1>
+      <NewsFilter navLinks={latestNewsNav} />
       <h2>Default News query</h2>
       {news.map((item, index) => (
         <p key={item.id}>Title: {item.title}</p>

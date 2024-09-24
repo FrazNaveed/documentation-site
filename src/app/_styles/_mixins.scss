@@ -6,6 +6,7 @@ $container-padding-flare: 24px;
 $container-padding-lg: 18px;
 $container-padding-md: 16px;
 $grid-column-gap-flare: 20px;
+$border-radius: 14px;
 
 @forward "@aleph/nought-sass-mixins" with (
   $grid-column-count: 12,

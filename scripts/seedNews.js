@@ -28,6 +28,14 @@ const userIds = await axios.get(`${API_URL}/users`)
   })
   .catch((error) => console.error(error))
 
+const newsTypesIds = await axios.get(`${API_URL}/news-types`)
+  .then((response) => {
+    const newsTypesDocs = response.data.docs
+    const mappedNewsTypesIds = newsTypesDocs.map((newsType) => +newsType.id)
+    return mappedNewsTypesIds
+  })
+  .catch((error) => console.error(error))
+
 // Function to generate random test data for the news collection
 function createRandomNewsItem() {
   const title = faker.lorem.sentence()
@@ -39,8 +47,8 @@ function createRandomNewsItem() {
   const author = faker.helpers.shuffle(userIds)[0]
 
   // Randomly assign a type from a set of predefined types
-  const types = ['Flare Updates', 'AMA & Interviews', 'Past Events', 'Ecosystem', 'Research']
-  const type = faker.helpers.shuffle(types)[0]
+  // const types = ['Flare Updates', 'AMA & Interviews', 'Past Events', 'Ecosystem', 'Research']
+  const type = faker.helpers.shuffle(newsTypesIds)[0]
 
   // Randomly set pin boolean to true or false
   const pin = faker.datatype.boolean()
