@@ -198,12 +198,6 @@ export const mainNavData: MainNavigation = [
             url: 'https://dev.flare.network/ftso-monitor',
             isExternal: true,
           },
-          {
-            _key: '4',
-            title: 'Flare Block Explorer',
-            url: 'https://dev.flare.network/flare-block-explorer',
-            isExternal: true,
-          },
         ],
       },
       {
