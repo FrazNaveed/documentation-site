@@ -70,4 +70,4 @@ const seedNewsTypesDataForTranslations = async (newsTypes, locale) => {
 
 // Seed translations
 seedNewsTypesDataForTranslations(newsTypesIDs, 'es')
-seedNewsTypesDataForTranslations(newsTypesIDs, 'de')
+// seedNewsTypesDataForTranslations(newsTypesIDs, 'de')
