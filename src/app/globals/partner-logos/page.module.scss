@@ -1,0 +1,13 @@
+@use "../../_styles/mixins" as *;
+
+.container {
+  @include container;
+}
+
+.logoWrap {
+  width: 300px;
+  max-width: 100%;
+  height: 300px;
+  margin-bottom: 100px;
+  background-color: beige;
+}
