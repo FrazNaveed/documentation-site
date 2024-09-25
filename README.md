@@ -5,41 +5,51 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
 
 
 ## Attributes
-
 - **Database**: postgres
 - **Storage Adapter**: localDisk
 
 ## Getting Started
-
 1. Run `nvm i` to install the node version specified in `.nvmrc` (you must have [nvm](https://github.com/nvm-sh/nvm) installed for this).
 
 1. Have a Docker runtime on your machine and make sure you can run `docker compose` commands for local dev.
-
-    You can then use the `DATABASE_URI` environment variable in your application to connect to your local database.
-
 1. Install dependencies with `npm i`. Use the `--force` flag if you run into any version conflicts.
-
 1. Create a `.env` file in the root of this project and add the following environment variables and respective values:
-
     ```
     DATABASE_URI=postgres://postgres:postgres@127.0.0.1:5432/postgres
     PAYLOAD_SECRET=payload
-    PG_USERNAME=postgres
-    PG_PASSWORD=postgres
-    PG_DBNAME=postgres
     ```
-
-1. In a new terminal window, run `docker compose up` from this project's root directory.
-
+1. In a new terminal window, run `docker:init` from this project's root directory. This will bootstrap a Postgres Database, 
+   seed it with the necessary data for Payload, and start a Postgres container.
 1. Run the development server with `npm run dev`.
 
-1. Seed your dev environment with News Article types with `npm run seed:news-types` to add default types. Then seed News articles with `npm run seed:news`. Additional users may be added with `npm run seed:news` by uncommenting `seedUserData()` in `scripts/seedNews.js` before running `npm run seed:news`.
+You will see the local dev build at [http://localhost:3000](http://localhost:3000). You can log into Payload at [http://localhost:3000/admin](http://localhost:3000/admin) using the default Payload admin user (username: `test@alephsf.com`, password: `password`).
 
-## Local Development
+## Environments + Options
+After following the steps above, your local dev environment is entirely self-contained, and will run the following:
+- A Postgres database container (for Payload) running on `localhost` on port `5432` with password, username and db name all set to `postgres`.
+- NextJS and Payload running side-by-side at [https://localhost:3000](https://localhost:3000) and [https://localhost:3000/admin](https://localhost:3000/admin) respectively. This part of the stack can be run in NodeJS for development (with `npm run dev`) or in Docker Compose (with `npm run docker:up`).
 
-1. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To change the database your local instance of Payload (and NextJS) is pointing at, you simply modify your local `.env` file
+and change `DATABASE_URI`. 
 
-1. Open [http://localhost:3000/admin](http://localhost:3000/admin) to see the Payload CMS. Create a user to log in and start using the CMS.
+**NB!** If your local environment is pointing at a remote database, **all operations, including seeding data, will happen on that database.**  This is useful for seeding remote staging Payload instances, but bad if you're doing it to the production site! We will try and make this impossible in a future release.
+
+## Seeding Data
+After the above set up, you will have random users and data seeded into your local Payload instance. If you'd like to add more, you can simply run `npm run seed:news` to add more users and news, as long as the stack is running. 
+
+## Docker Notes
+While we will be doing most of our local development in Node with HMR and such, the production build of the NextJS/Payload stack
+will run in a Docker container. If there are issues with any of the cloud deployments you should be able to replicate them by
+running that container locally, which can be done at any time with `npm run docker:up:next`. To run the full stack including Postgres, use `npm run docker:up` instead.
+
+# Remote Builds and Deployments
+Our Docker environment is meant to be entirely portable, and should be able to be built and run on any Docker-compatible runtime or
+orchestration platform. You will need to make sure the following two environment variables are present **both at build time as
+arguments and at runtime as env vars**:
+- `PAYLOAD_SECRET`: A secret string used for signing tokens and other cryptographic operations. This should be a random, long string of characters, and should be unique per environment.
+- `POSTGRES_URL`: The URL to your Postgres database instance. This is in the format `postgres://username:password@hostname/dbname`.
+
+(These are extremely sensitive credentials that should not be exposed publicly or committed to version control.)
 
 ## Linting
 You will not be able to run a build with eslint or TypeScript errors in the `src/app/(app)` directory. To see all the eslint errors and warnings from the terminal run `npm run lint` from the project root. You can run `npm run lint --fix` to fix errors that can be automatically fixed. To see all the TypeScript errors in the terminal run `npx tsc --noEmit` from the project root.
@@ -47,6 +57,9 @@ You will not be able to run a build with eslint or TypeScript errors in the `src
 We use husky to check for eslint, TypeScript, and stylelint errors before committing. `lint-staged` is used to run `next lint` only on files that are staged for commit. However, we must check for TypeScript errors in all files because types changed in a staged file could affect and cause errors in other files that import them. stylelint is run for all staged style files within the entire directory.
 
 Sometimes when removing directories they are still cached in the `.next` build directory and you will get an error that the module cannot be found when trying to commit. To fix, delete the `.next` directory.
+
+## Docker Workflow
+
 
 ## Learn More
 

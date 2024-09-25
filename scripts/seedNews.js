@@ -7,9 +7,8 @@ import { faker } from '@faker-js/faker'
 const API_URL = 'http://localhost:3000/api' // Change this to your Payload CMS API URL
 
 // Function to generate random users for the users collection
-// While authors are currently not used for news articles, this is a good look into relationships between collections
-const createRandomUser = () => {
-  const email = faker.internet.email()
+const createRandomUser = (emailOverride) => {
+  const email = emailOverride || faker.internet.email()
   const loginAttempts = Math.floor(Math.random() * 10) + 1
   const password = 'password'
 
@@ -20,24 +19,32 @@ const createRandomUser = () => {
   }
 }
 
-const userIds = await axios.get(`${API_URL}/users`)
-  .then((response) => {
+// Fetching user IDs from the API
+const getUserIds = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/users`)
     const usersDocs = response.data.docs
-    const mappedUserIds = usersDocs.map((user) => +user.id)
-    return mappedUserIds
-  })
-  .catch((error) => console.error(error))
+    return usersDocs.map((user) => +user.id)
+  } catch (error) {
+    console.error('Error fetching user IDs:', error.response ? error.response.data : error.message)
+    return []
+  }
+}
 
-const newsTypesIds = await axios.get(`${API_URL}/news-types`)
-  .then((response) => {
+// Fetching news types from the API
+const getNewsTypesIds = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/news-types`)
     const newsTypesDocs = response.data.docs
-    const mappedNewsTypesIds = newsTypesDocs.map((newsType) => +newsType.id)
-    return mappedNewsTypesIds
-  })
-  .catch((error) => console.error(error))
+    return newsTypesDocs.map((newsType) => +newsType.id)
+  } catch (error) {
+    console.error('Error fetching news types:', error.response ? error.response.data : error.message)
+    return []
+  }
+}
 
 // Function to generate random test data for the news collection
-function createRandomNewsItem() {
+const createRandomNewsItem = (userIds, newsTypesIds) => {
   const title = faker.lorem.sentence()
   const slug = faker.helpers.slugify(title.replace(/\.$/, '').toLowerCase())
   const excerpt = faker.lorem.sentences(3)
@@ -46,14 +53,13 @@ function createRandomNewsItem() {
   // Randomly assign an author from Users collection
   const author = faker.helpers.shuffle(userIds)[0]
 
-  // Randomly assign a type from a set of predefined types
-  // const types = ['Flare Updates', 'AMA & Interviews', 'Past Events', 'Ecosystem', 'Research']
+  // Randomly assign a type from news types collection
   const type = faker.helpers.shuffle(newsTypesIds)[0]
 
   // Randomly set pin boolean to true or false
   const pin = faker.datatype.boolean()
 
-  // Randomly set pinPriority to a number between 0 and 3.
+  // Randomly set pinPriority to a number between 0 and 3
   const priorities = ['0', '1', '2', '3']
   const pinPriority = pin ? faker.helpers.shuffle(priorities)[0] : '0'
 
@@ -69,53 +75,81 @@ function createRandomNewsItem() {
   }
 }
 
-// Functions to seed data into Payload CMS
+// Function to seed user data into Payload CMS
 const seedUserData = async (numOfUsers = 5) => {
   for (let i = 0; i < numOfUsers; i++) {
-    const user = createRandomUser()
+    let user = createRandomUser()
+    if (i === 0) { // add one known user to the first iteration
+      user = createRandomUser('test@alephsf.com')
+    }
 
     try {
-      console.log(`Trying to POST /news with data: ${JSON.stringify(user)}`)
+      console.log(`POST /users with data: ${JSON.stringify(user)}`)
       // eslint-disable-next-line no-await-in-loop
       const response = await axios.post(`${API_URL}/users`, user, {
         headers: {
           'Content-Type': 'application/json',
         },
       })
-      console.log('POST /users response:', response)
+      console.log('User created:', response.data)
     } catch (error) {
-      console.error('Error creating news item:', error.response ? error.response.data : error.message)
-      console.error('Request headers:', axios.defaults.headers.common)
-      console.error('Request body:', user)
+      console.error('Error creating user:', error.response ? error.response.data : error.message)
     }
   }
 }
 
-const seedNewsData = async (numOfItems = 10) => {
+// Function to seed news data into Payload CMS
+const seedNewsData = async (userIds, newsTypesIds, numOfItems = 10) => {
   for (let i = 0; i < numOfItems; i++) {
-    const newsItem = createRandomNewsItem()
+    const newsItem = createRandomNewsItem(userIds, newsTypesIds)
 
     try {
-      // console.log(`Trying to POST /news with data: ${JSON.stringify(newsItem)}`);
+      console.log(`POST /news with data: ${JSON.stringify(newsItem)}`)
       // eslint-disable-next-line no-await-in-loop
       const response = await axios.post(`${API_URL}/news`, newsItem, {
         headers: {
           'Content-Type': 'application/json',
         },
       })
-      // console.log('POST /news response:', response);
       console.log(`Created news item ${response.data.id}:`, response.data)
-      // console.log(`Created news item ${is + 1}:`, response.data);
     } catch (error) {
       console.error('Error creating news item:', error.response ? error.response.data : error.message)
-      console.error('Request headers:', axios.defaults.headers.common)
-      console.error('Request body:', newsItem)
     }
   }
 }
 
-// Seed 5 users
-// seedUserData();
+// Main function to handle the seeding process
+const main = async () => {
+  // Fetch user IDs before seeding users
+  let userIds = await getUserIds()
 
-// Seed 10 news items
-seedNewsData(10)
+  // If there are no user IDs, seed users first
+  if (userIds.length === 0) {
+    console.log('No users found in the database, seeding new users...')
+    await seedUserData(5) // Seed 5 users
+
+    // Fetch the user IDs again after seeding new users
+    userIds = await getUserIds()
+
+    // If seeding users failed (i.e., userIds is still empty), abort
+    if (userIds.length === 0) {
+      console.error('Failed to seed users, aborting the process.')
+      return
+    }
+  } else {
+    console.log(`Found ${userIds.length} users in the database, proceeding with news item seeding...`)
+  }
+
+  // Fetch news type IDs
+  const newsTypesIds = await getNewsTypesIds()
+  if (newsTypesIds.length === 0) {
+    console.error('No news types found, aborting news item creation.')
+    return
+  }
+
+  // Seed 55 news items
+  await seedNewsData(userIds, newsTypesIds, 55)
+}
+
+// Start the seeding process
+main()
