@@ -23,6 +23,7 @@ export const News: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
+      localized: true,
     },
     {
       name:'slug',
@@ -33,6 +34,7 @@ export const News: CollectionConfig = {
     {
       name: 'excerpt',
       type: 'textarea',
+      localized: true,
     },
     {
       name: 'publishDate',
@@ -57,6 +59,7 @@ export const News: CollectionConfig = {
       relationTo: 'news-types',
       hasMany: false,
       required: true,
+      localized: true,
     },
     {
       name: 'pin',

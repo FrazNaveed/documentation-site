@@ -6,11 +6,11 @@ import axios from 'axios'
 const API_URL = 'http://localhost:3000/api' // Change this to your Payload CMS API URL
 
 const defaultNewsTypes = [
-  { name: 'Flare Updates', slug: 'type/updates' },
-  { name: 'AMA & Interviews', slug: 'type/ama-interviews' },
-  { name: 'Past Events', slug: 'type/past-events' },
-  { name: 'Ecosystem', slug: 'type/ecosystem' },
-  { name: 'Research', slug: 'type/research' },
+  { name: 'Flare Updates', slug: 'updates' },
+  { name: 'AMA & Interviews', slug: 'ama-interviews' },
+  { name: 'Past Events', slug: 'past-events' },
+  { name: 'Ecosystem', slug: 'ecosystem' },
+  { name: 'Research', slug: 'research' },
 ]
 
 // Functions to seed data into Payload CMS
@@ -37,5 +37,5 @@ const seedNewsTypesData = async (newsTypes) => {
 
 // Seed default News Types
 seedNewsTypesData(defaultNewsTypes)
-  .then(() => console.log('Default News types seeded successfully'))
-  .catch((error) => console.error('Seeding failed: ', error))
+// .then(() => console.log('Default News types seeded successfully'))
+// .catch((error) => console.error('Seeding failed: ', error))
