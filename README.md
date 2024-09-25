@@ -46,6 +46,8 @@ You will not be able to run a build with eslint or TypeScript errors in the `src
 
 We use husky to check for eslint, TypeScript, and stylelint errors before committing. `lint-staged` is used to run `next lint` only on files that are staged for commit. However, we must check for TypeScript errors in all files because types changed in a staged file could affect and cause errors in other files that import them. stylelint is run for all staged style files within the entire directory.
 
+Sometimes when removing directories they are still cached in the `.next` build directory and you will get an error that the module cannot be found when trying to commit. To fix, delete the `.next` directory.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
