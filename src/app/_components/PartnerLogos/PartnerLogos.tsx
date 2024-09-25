@@ -22,19 +22,19 @@ export default function PartnerLogos({ logos, stacked }: PartnerLogosProps) {
         if (!url) {
           return null
         }
-        let imageWidth = width
-        let imageHeight = height
+        let imageWidth = width ?? 0
+        let imageHeight = height ?? 0
         if (mimeType !== 'image/svg+xml') {
-          imageWidth = width && width / 2
-          imageHeight = height && height / 2
+          imageWidth =  imageWidth / 2
+          imageHeight = imageHeight / 2
         }
         return (
           <div key={id} className={styles.imgWrap}>
             <Image
               className={styles.img}
               src={url}
-              width={imageWidth ? imageWidth : undefined}
-              height={imageHeight ? imageHeight : undefined}
+              width={imageWidth}
+              height={imageHeight}
               alt={alt}
             />
           </div>
