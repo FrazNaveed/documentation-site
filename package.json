@@ -16,7 +16,8 @@
     "start": "cross-env next start",
     "prepare": "husky",
     "seed:news": "node 'scripts/seedNews.js'",
-    "seed:news-types": "node 'scripts/seedNewsTypes.js'"
+    "seed:news-types": "node 'scripts/seedNewsTypes.js'",
+    "seed:news-types-localized": "node 'scripts/seedNewsTypesTranslations.js'"
   },
   "dependencies": {
     "@faker-js/faker": "^9.0.1",
