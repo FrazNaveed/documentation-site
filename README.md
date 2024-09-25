@@ -58,9 +58,6 @@ We use husky to check for eslint, TypeScript, and stylelint errors before commit
 
 Sometimes when removing directories they are still cached in the `.next` build directory and you will get an error that the module cannot be found when trying to commit. To fix, delete the `.next` directory.
 
-## Docker Workflow
-
-
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

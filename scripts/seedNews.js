@@ -77,45 +77,47 @@ const createRandomNewsItem = (userIds, newsTypesIds) => {
 
 // Function to seed user data into Payload CMS
 const seedUserData = async (numOfUsers = 5) => {
+  const userPromises = []
   for (let i = 0; i < numOfUsers; i++) {
     let user = createRandomUser()
     if (i === 0) { // add one known user to the first iteration
       user = createRandomUser('test@alephsf.com')
     }
-
-    try {
-      console.log(`POST /users with data: ${JSON.stringify(user)}`)
-      // eslint-disable-next-line no-await-in-loop
-      const response = await axios.post(`${API_URL}/users`, user, {
+    console.log(`POST /users with data: ${JSON.stringify(user)}`)
+    userPromises.push(
+      axios.post(`${API_URL}/users`, user, {
         headers: {
           'Content-Type': 'application/json',
         },
-      })
-      console.log('User created:', response.data)
-    } catch (error) {
-      console.error('Error creating user:', error.response ? error.response.data : error.message)
-    }
+      }).then((response) => {
+        console.log('User created:', response.data)
+      }).catch((error) => {
+        console.error('Error creating user:', error.response ? error.response.data : error.message)
+      }),
+    )
   }
+  await Promise.all(userPromises)
 }
 
 // Function to seed news data into Payload CMS
 const seedNewsData = async (userIds, newsTypesIds, numOfItems = 10) => {
+  const newsPromises = []
   for (let i = 0; i < numOfItems; i++) {
     const newsItem = createRandomNewsItem(userIds, newsTypesIds)
-
-    try {
-      console.log(`POST /news with data: ${JSON.stringify(newsItem)}`)
-      // eslint-disable-next-line no-await-in-loop
-      const response = await axios.post(`${API_URL}/news`, newsItem, {
+    console.log(`POST /news with data: ${JSON.stringify(newsItem)}`)
+    newsPromises.push(
+      axios.post(`${API_URL}/news`, newsItem, {
         headers: {
           'Content-Type': 'application/json',
         },
-      })
-      console.log(`Created news item ${response.data.id}:`, response.data)
-    } catch (error) {
-      console.error('Error creating news item:', error.response ? error.response.data : error.message)
-    }
+      }).then((response) => {
+        console.log(`Created news item ${response.data.id}:`, response.data)
+      }).catch((error) => {
+        console.error('Error creating news item:', error.response ? error.response.data : error.message)
+      }),
+    )
   }
+  await Promise.all(newsPromises)
 }
 
 // Main function to handle the seeding process

@@ -1,7 +1,6 @@
 #!/bin/bash
 # This script will clean and bootstrap a new Docker based env for local testing.
 # NB! Not for production use! See the README.md for details
-#!/bin/bash
 
 confirm() {
     # Prompt the user
