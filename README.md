@@ -12,15 +12,15 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
 1. Run `nvm i` to install the node version specified in `.nvmrc` (you must have [nvm](https://github.com/nvm-sh/nvm) installed for this).
 
 1. Have a Docker runtime on your machine and make sure you can run `docker compose` commands for local dev.
-1. Install dependencies with `npm i`. Use the `--force` flag if you run into any version conflicts.
-1. Create a `.env` file in the root of this project and add the following environment variables and respective values:
+2. Install dependencies with `npm i --legacy-peer-deps`.
+3. Create a `.env` file in the root of this project and add the following environment variables and respective values:
     ```
     POSTGRES_URL=postgres://postgres:postgres@127.0.0.1:5432/postgres
     PAYLOAD_SECRET=payload
     ```
-1. In a new terminal window, run `npm run docker:init` from this project's root directory. This will bootstrap a Postgres Database, 
+4. In a new terminal window, run `npm run docker:init` from this project's root directory. This will bootstrap a Postgres Database, 
    seed it with the necessary data for Payload, and start a Postgres container.
-1. Run the development server with `npm run dev`.
+5. Run the development server with `npm run dev`.
 
 You will see the local dev build at [http://localhost:3000](http://localhost:3000). You can log into Payload at [http://localhost:3000/admin](http://localhost:3000/admin) using the default Payload admin user (username: `test@alephsf.com`, password: `password`).
 
