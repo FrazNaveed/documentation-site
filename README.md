@@ -15,7 +15,7 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
 1. Install dependencies with `npm i`. Use the `--force` flag if you run into any version conflicts.
 1. Create a `.env` file in the root of this project and add the following environment variables and respective values:
     ```
-    DATABASE_URI=postgres://postgres:postgres@127.0.0.1:5432/postgres
+    POSTGRES_URL=postgres://postgres:postgres@127.0.0.1:5432/postgres
     PAYLOAD_SECRET=payload
     ```
 1. In a new terminal window, run `npm run docker:init` from this project's root directory. This will bootstrap a Postgres Database, 
@@ -30,7 +30,7 @@ After following the steps above, your local dev environment is entirely self-con
 - NextJS and Payload running side-by-side at [https://localhost:3000](https://localhost:3000) and [https://localhost:3000/admin](https://localhost:3000/admin) respectively. This part of the stack can be run in NodeJS for development (with `npm run dev`) or in Docker Compose (with `npm run docker:up`).
 
 To change the database your local instance of Payload (and NextJS) is pointing at, you simply modify your local `.env` file
-and change `DATABASE_URI`. 
+and change `POSTGRES_URL`. 
 
 **NB!** If your local environment is pointing at a remote database, **all operations, including seeding data, will happen on that database.**  This is useful for seeding remote staging Payload instances, but bad if you're doing it to the production site! We will try and make this impossible in a future release.
 
