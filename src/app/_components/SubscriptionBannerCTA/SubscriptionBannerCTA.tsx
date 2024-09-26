@@ -21,8 +21,8 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
     <section className={cx(styles.subscriptionBanner, className)}>
       <div className={styles.container}>
         <div className={styles.formWrap}>
-          <h2>{header}</h2>
-          <p>{text}</p>
+          <h2 className={styles.header}>{header}</h2>
+          <p className={styles.text}>{text}</p>
           <form className={styles.subscriptionBanner_Form}>
             <input
               type="email"
