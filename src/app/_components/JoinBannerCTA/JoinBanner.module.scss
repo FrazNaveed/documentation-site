@@ -1,0 +1,62 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+
+.joinBanner {
+  display: flex;
+  justify-content: space-between;
+  padding: to-rem($spacing-x-large) to-rem($spacing-large);
+  background-color: $black;
+  gap: $grid-column-gap-flare;
+
+  @include media-breakpoint-down(md) {
+    padding: to-rem($spacing-x-large) to-rem($spacing-large) to-rem($spacing-large);
+  }
+
+  @include media-breakpoint-down(sm) {
+    flex-direction: column;
+    padding: to-rem($spacing-x-large) to-rem(20px) to-rem($spacing-xxx-large);
+    gap: 0;
+  }
+
+  & > * {
+    align-self: center;
+
+    @include media-breakpoint-down(sm) {
+      align-self: flex-start;
+    }
+  }
+}
+
+.header,
+.text {
+  margin-bottom: 0;
+  color: $white;
+}
+
+.header {
+  @include fontStyle(26, 36);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+
+  @include media-breakpoint-down(sm) {
+    margin-bottom: to-rem(12px);
+  }
+}
+
+.text {
+  @include fontStyle(19, 24);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+
+  @include media-breakpoint-down(sm) {
+    margin-bottom: to-rem(18px);
+  }
+}
+
+.button {
+  flex-shrink: 0;
+}
