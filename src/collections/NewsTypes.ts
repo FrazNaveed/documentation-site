@@ -6,6 +6,7 @@ export const NewsTypes: CollectionConfig = {
     // for seeding purposes; review for production
     read: () => true,
     create: () => true,
+    update: () => true,
   },
   labels: {
     singular: 'News Type',
@@ -20,12 +21,14 @@ export const NewsTypes: CollectionConfig = {
       type: 'text',
       required: true,
       unique: true,
+      localized: true,
     },
     {
       name: 'slug',
       type: 'text',
       required: true,
       unique: true,
+      localized: true,
     }
   ],
 }

@@ -24,6 +24,36 @@ export default buildConfig({
   },
   collections: [Users, Media, News, NewsTypes],
   editor: lexicalEditor(),
+  localization: {
+    locales: [
+      {
+        label: {
+          en: 'English',
+          es: 'Inglés',
+          de: 'Englisch',
+        },
+        code: 'en',
+      },
+      {
+        label: {
+          en: 'Spanish',
+          es: 'Español',
+          de: 'Spanisch',
+        },
+        code: 'es',
+       }, 
+      {
+        label: {
+          en: 'German',
+          es: 'Alemán',
+          de: 'Deutsch',
+        },
+        code: 'de',
+      },
+    ],
+    defaultLocale: 'en',
+    fallback: true,
+  },
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
