@@ -23,7 +23,7 @@ const newsTypesIds = await axios.get(`${API_URL}/news-types`)
   .catch((error) => console.error(error))
 
 // Function to generate random test data for the news collection
-function createNewsFieldsEs() {
+function createNewsFieldsEs() { // TODO: add currentNewsId as arg
   const title = faker.lorem.sentence()
   const titleTagged = `ES ${title}`
   const excerpt = faker.lorem.sentences(3)
@@ -31,6 +31,18 @@ function createNewsFieldsEs() {
 
   // Randomly assign a type from the list of available types
   const type = faker.helpers.shuffle(newsTypesIds)[0]
+
+  // Get the News doc at the News Id endpoint, get its type.id to push to es data.doc.type.id
+  // const restUrl = `${API_URL}/news/${currentNewsId}`
+  // const newsIdEn = axios.get(restUrl)
+  //   .then((response) => {
+  //     const enNewsId = response.data
+  //     console.log('English News Object: ', enNewsId.type.id)
+  //     return { type: enNewsId.type.id }
+  //   })
+  //   .catch((error) => console.log('failed to get id of English news post.', error))
+  // const type = newsIdEn
+  // console.log('the type in the generated data: ', type)
 
   return {
     title: titleTagged,
@@ -41,10 +53,12 @@ function createNewsFieldsEs() {
 
 // Functions to seed data into Payload CMS
 const seedNewsData = async (newsIdsList, locale) => {
+  // console.log('newsIds: ', newsIdsList)
   for (let i = 0; i < newsIdsList.length; i++) {
     const newsId = newsIdsList[i]
-    const newsItem = createNewsFieldsEs()
+    const newsItem = createNewsFieldsEs() // add newsId as arg
     const restUrl = `${API_URL}/news/${newsId}?locale=${locale}`
+    // console.log('current news Id: ', newsId)
 
     try {
       // console.log(`Trying to POST /news with data: ${JSON.stringify(newsItem)}`);
@@ -57,6 +71,7 @@ const seedNewsData = async (newsIdsList, locale) => {
       // console.log('POST /news response:', response);
       // console.log(`Created news item ${response.data.id}:`, response.data)
       // console.log(`Created news item ${is + 1}:`, response.data);
+      // console.log(`news item locale-${locale} ${response.data.doc.id}'s news type id:`, response.data.doc.type.id)
     } catch (error) {
       console.warn('Make sure English posts are seeded first.')
       console.error('Error creating news item:', error.response ? error.response.data : error.message)
