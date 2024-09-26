@@ -7,7 +7,7 @@ const bundleAnalyzer = withBundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  // Your Next.js config here
 }
 
 export default bundleAnalyzer(withPayload(nextConfig))
