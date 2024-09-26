@@ -16,6 +16,18 @@ import Flare from '../svgs/Flare'
 import Oracle from '../svgs/Oracle'
 import styles from './MainNav.module.scss'
 
+interface NavigationItem {
+  _key: string
+  title: string
+  url: string
+}
+
+interface MainNavigationItem extends NavigationItem {
+  isExternal?: boolean
+  description?: string
+  icon?: 'flareLogo' | 'fassets' | 'connector' | 'oracle'
+}
+
 export type MainNavigation = {
   title?: string
   subNavSections: {
@@ -23,22 +35,11 @@ export type MainNavigation = {
     title: string
     standout?: boolean
     hasBackground?: boolean
-    links: {
-      _key: string
-      title: string
-      url: string
-      isExternal?: boolean
-      description?: string
-      icon?: 'flareLogo' | 'fassets' | 'connector' | 'oracle'
-    }[]
+    links: MainNavigationItem[]
   }[]
 }[]
 
-export type SecondaryNavigation = {
-  _key: string
-  title: string
-  url: string
-}[]
+export type SecondaryNavigation = NavigationItem[]
 
 type MainNavProps = {
   navData: MainNavigation
@@ -286,7 +287,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
                                             [styles.submenuLink__standout]: linkGroup.standout,
                                           },
                                         )}
-                                        iconClassName={styles.submenuLink_ExternalIcon}
+                                        {...(isExternal ? {iconClassName: styles.submenuLink_ExternalIcon} : {})}
                                       >
                                         {icon && (
                                           <span

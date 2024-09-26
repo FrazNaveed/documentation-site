@@ -6,6 +6,7 @@ export const News: CollectionConfig = {
     // for seeding purposes; review for production
     read: () => true,
     create: () => true,
+    update: () => true,
   },
   admin: {
     useAsTitle: 'title',
@@ -23,6 +24,7 @@ export const News: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
+      localized: true,
     },
     {
       name:'slug',
@@ -33,6 +35,7 @@ export const News: CollectionConfig = {
     {
       name: 'excerpt',
       type: 'textarea',
+      localized: true,
     },
     {
       name: 'publishDate',
@@ -53,15 +56,11 @@ export const News: CollectionConfig = {
     },
     {
       name: 'type',
-      type: 'radio',
-      options: [
-        'Flare Updates',
-        'AMA & Interviews',
-        'Past Events',
-        'Ecosystem',
-        'Research',
-      ],
-      defaultValue: 'Flare Updates',
+      type: 'relationship',
+      relationTo: 'news-types',
+      hasMany: false,
+      required: true,
+      localized: true,
     },
     {
       name: 'pin',

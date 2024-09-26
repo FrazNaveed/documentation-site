@@ -1,0 +1,121 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+$pill-border-radius: 10px;
+$active-font-size: to-rem(16px);
+$active-font-size-lg: to-rem(14px);
+
+.nav {
+  display: flex;
+  justify-content: center;
+
+  @include media-breakpoint-down(md) {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    scroll-padding: 0 to-rem($spacing-standard);
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.navList {
+  @include utils.listReset;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  margin-right: $container-padding;
+  margin-left: $container-padding;
+  padding: to-rem(5px);
+  border-radius: 14px;
+  background-color: $pink-50;
+  gap: to-rem($spacing-small) to-rem(5px);
+
+  @include media-breakpoint-down(lg) {
+    margin-right: $container-padding-lg;
+    margin-left: $container-padding-lg;
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-right: $container-padding-md;
+    margin-left: $container-padding-md;
+  }
+}
+
+.text {
+  display: block;
+  padding: to-rem($spacing-x-small) to-rem($spacing-small);
+
+  // To avoid layout shift on hover
+  &::before {
+    display: block;
+    height: 0;
+    font-size: $active-font-size;
+    font-style: normal;
+    content: attr(title);
+    overflow: hidden;
+    visibility: hidden;
+    user-select: none;
+    pointer-events: none;
+
+    @include media-breakpoint-down(lg) {
+      font-size: $active-font-size-lg;
+    }
+  }
+}
+
+a.text {
+  @include paragraphXSmFont;
+
+  color: $pink-900;
+}
+
+.active {
+  transition: background-color $transition-speed-default;
+  border-radius: $pill-border-radius;
+  background-color: $pink-900;
+
+  .text {
+    color: $white;
+    font-size: $active-font-size;
+
+    @include media-breakpoint-down(lg) {
+      font-size: $active-font-size-lg;
+    }
+  }
+}
+
+.filter {
+  flex: 0 1 auto;
+
+  &:hover,
+  &:active,
+  &:focus {
+    transition: background-color $transition-speed-default;
+    border-radius: $pill-border-radius;
+    background-color: $pink-900;
+
+    .text {
+      color: $white;
+      font-size: $active-font-size;
+
+      @include media-breakpoint-down(lg) {
+        font-size: $active-font-size-lg;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    flex: 0 0 auto;
+  }
+}
