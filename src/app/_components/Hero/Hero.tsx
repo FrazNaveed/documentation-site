@@ -23,7 +23,7 @@ export type HeroProps = {
   }
   cta?: {
     text: string
-    link?: string
+    link: string
   }
 }
 
