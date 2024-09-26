@@ -28,6 +28,15 @@
       align-self: flex-start;
     }
   }
+
+  .button {
+    flex-shrink: 0;
+    margin-bottom: 0;
+
+    span {
+      color: $pink-700;
+    }
+  }
 }
 
 .header,
@@ -56,9 +65,4 @@
   @include media-breakpoint-down(sm) {
     margin-bottom: to-rem(18px);
   }
-}
-
-.button {
-  flex-shrink: 0;
-  margin-bottom: 0;
 }
