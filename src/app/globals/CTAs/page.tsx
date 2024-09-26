@@ -6,13 +6,12 @@ export default function Page() {
   return (
     <>
       <h2>Join Banner CTA</h2>
-      <JoinBannerCTA header='Header' text='foo' link={linkUrl}
+      <JoinBannerCTA header='[dev.sessions]' text='Q+A  / Every Wednesday / 3pm UTC' link={linkUrl}
         button={{
           text: 'Join our Discord',
           link: linkUrl,
           className: undefined,
           size: 'small',
-          active: true
         }}
       />
     </>
