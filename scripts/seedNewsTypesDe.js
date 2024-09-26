@@ -6,7 +6,7 @@ import { faker } from '@faker-js/faker'
 // Define the base URL of your Payload CMS
 const API_URL = 'http://localhost:3000/api' // Change this to your Payload CMS API URL
 
-const newsTypesIDs = await axios.get(`${API_URL}/news-types`)
+export const newsTypesIDs = await axios.get(`${API_URL}/news-types`)
   .then((response) => {
     const newsTypesDocs = response.data.docs
     const mappedNewsTypesProp = newsTypesDocs.map((newsType) => +newsType.id)
@@ -17,7 +17,7 @@ const newsTypesIDs = await axios.get(`${API_URL}/news-types`)
   .catch((error) => console.error(error))
 
 // Functions to add translations seed data
-const seedNewsTypesDataForTranslations = async (newsTypes, locale) => {
+export const seedNewsTypesDataForTranslations = async (newsTypes, locale) => {
   //  const promises = []
 
   for (let i = 0; i < newsTypes.length; i++) {
@@ -69,5 +69,4 @@ const seedNewsTypesDataForTranslations = async (newsTypes, locale) => {
 }
 
 // Seed translations
-seedNewsTypesDataForTranslations(newsTypesIDs, 'es')
-// seedNewsTypesDataForTranslations(newsTypesIDs, 'de')
+seedNewsTypesDataForTranslations(newsTypesIDs, 'de')

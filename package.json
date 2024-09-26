@@ -17,7 +17,8 @@
     "prepare": "husky",
     "seed:news": "node 'scripts/seedNews.js'",
     "seed:news-types": "node 'scripts/seedNewsTypes.js'",
-    "seed:news-types-localized": "node 'scripts/seedNewsTypesTranslations.js'"
+    "seed:news-types-es": "node 'scripts/seedNewsTypesEs.js'",
+    "seed:news-types-de": "node 'scripts/seedNewsTypesDe.js'"
   },
   "dependencies": {
     "@faker-js/faker": "^9.0.1",
