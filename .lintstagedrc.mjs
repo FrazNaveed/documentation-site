@@ -7,5 +7,5 @@ const buildEslintCommand = (filenames) =>
 
 export default {
   '*.{js,jsx,ts,tsx}': [buildEslintCommand],
-  '**/*.{css,sass,scss}': "npm run lint:styles",
+  '**/*.{css,sass,scss}': "stylelint",
 }
