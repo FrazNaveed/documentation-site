@@ -6,6 +6,7 @@ export const News: CollectionConfig = {
     // for seeding purposes; review for production
     read: () => true,
     create: () => true,
+    update: () => true,
   },
   admin: {
     useAsTitle: 'title',
