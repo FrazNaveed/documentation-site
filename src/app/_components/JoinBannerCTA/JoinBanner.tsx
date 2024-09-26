@@ -6,7 +6,6 @@ import styles from './JoinBanner.module.scss'
 export type CTAProps = {
   header: string
   text?: string | null
-  link: string
   className?: string
   button: ButtonProps
 }
