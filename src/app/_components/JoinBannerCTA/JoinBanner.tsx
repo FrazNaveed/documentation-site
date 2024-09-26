@@ -13,8 +13,8 @@ export type CTAProps = {
 export default function JoinBannerCTA({ header, text, button, className }: CTAProps) {
   return (
     <section className={cx(styles.joinBanner, className)}>
-      <h1 className={cx(styles.header)}>{header}</h1>
-      <p className={cx(styles.text)}>{text}</p>
+      <h1 className={styles.header}>{header}</h1>
+      <p className={styles.text}>{text}</p>
       <Button
         text={button.text}
         link={button.link}
