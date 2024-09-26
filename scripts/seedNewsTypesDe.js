@@ -6,11 +6,11 @@ import { faker } from '@faker-js/faker'
 // Define the base URL of your Payload CMS
 const API_URL = 'http://localhost:3000/api' // Change this to your Payload CMS API URL
 
-export const newsTypesIDs = await axios.get(`${API_URL}/news-types`)
+export const newsTypesIds = await axios.get(`${API_URL}/news-types`)
   .then((response) => {
     const newsTypesDocs = response.data.docs
     const mappedNewsTypesProp = newsTypesDocs.map((newsType) => +newsType.id)
-    // console.log('News Type IDs: ', mappedNewsTypesProp)
+    // console.log('News Type Ids: ', mappedNewsTypesProp)
 
     return mappedNewsTypesProp
   })
@@ -31,7 +31,7 @@ export const seedNewsTypesDataForTranslations = async (newsTypes, locale) => {
 
     const restUrl = `${API_URL}/news-types/${newsTypeId}?locale=${locale}`
 
-    if (newsTypesIDs) {
+    if (newsTypesIds) {
       try {
         // eslint-disable-next-line no-await-in-loop
         const respsonse = await axios.patch(
@@ -69,4 +69,4 @@ export const seedNewsTypesDataForTranslations = async (newsTypes, locale) => {
 }
 
 // Seed translations
-seedNewsTypesDataForTranslations(newsTypesIDs, 'de')
+seedNewsTypesDataForTranslations(newsTypesIds, 'de')
