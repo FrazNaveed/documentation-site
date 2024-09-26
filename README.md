@@ -18,7 +18,7 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
     DATABASE_URI=postgres://postgres:postgres@127.0.0.1:5432/postgres
     PAYLOAD_SECRET=payload
     ```
-1. In a new terminal window, run `docker:init` from this project's root directory. This will bootstrap a Postgres Database, 
+1. In a new terminal window, run `npm run docker:init` from this project's root directory. This will bootstrap a Postgres Database, 
    seed it with the necessary data for Payload, and start a Postgres container.
 1. Run the development server with `npm run dev`.
 
