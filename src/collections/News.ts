@@ -62,6 +62,24 @@ export const News: CollectionConfig = {
       localized: true,
     },
     {
+      name: 'logos',
+      type: 'array',
+      minRows: 0,
+      maxRows: 3,
+      labels: {
+        singular: 'Logo',
+        plural: 'Logos',
+      },
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+      ],
+    },
+    {
       name: 'pin',
       type: 'checkbox',
       defaultValue: false,

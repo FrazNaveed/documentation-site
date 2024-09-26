@@ -1,5 +1,7 @@
+import Hero from '../_components/Hero'
 import getNewsData from '../_lib/payload/newsQueries'
 import NewsFilter from '../_components/NewsFilter'
+import type { Media, NewsType } from 'src/payload-types'
 
 export default async function Page() {
   const news = await getNewsData()
@@ -15,9 +17,25 @@ export default async function Page() {
     {text: 'Research', link: 'research', id: 5}
   ]
 
+  const featuredPost = news[0] || {}
+  const {
+    excerpt: featuredPostExcerpt,
+    publishDate: featuredPostDate,
+    type: featuredPostType = {},
+    logos: featuredPostLogos,
+  } = featuredPost
+  const { heroBackgroundImage: featuredPostHeroBgImage, name: featuredPostTypeName } = featuredPostType as NewsType
+
   return (
     <>
-      <p>Header component here</p>
+      <Hero
+        style='featuredNews'
+        backgroundImage={featuredPostHeroBgImage as Media}
+        header={featuredPostExcerpt}
+        timestamp={featuredPostDate}
+        pill={{ text: featuredPostTypeName }}
+        {...(featuredPostLogos ? {logos: featuredPostLogos.map((logo) => logo.image as Media)} : {})}
+      />
       <h1>Flare News</h1>
       <NewsFilter navLinks={latestNewsNav} />
       <h2>Default News query</h2>

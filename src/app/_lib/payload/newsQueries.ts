@@ -1,5 +1,6 @@
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import config from '@payload-config'
+import type { News } from 'src/payload-types'
 
 const payload = await getPayloadHMR({ config })
 
@@ -13,7 +14,7 @@ const getNewsData = async (...types: ('Flare Updates' | 'AMA & Interviews' | 'Pa
     }
   })
 
-  const news = newsData.docs
+  const news: News[] = newsData.docs
 
   return news
 }

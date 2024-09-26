@@ -28,6 +28,12 @@ export const NewsTypes: CollectionConfig = {
       required: true,
       unique: true,
       localized: true,
-    }
+    },
+    {
+      name: 'heroBackgroundImage',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+    },
   ],
 }

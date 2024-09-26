@@ -63,7 +63,7 @@
   row-gap: to-rem($spacing-x-small);
 
   &_Item {
-    @include paragraphXSmFont;
+    @include paragraphXSmFont(md);
 
     line-height: 1;
 
@@ -122,7 +122,7 @@
   columns: 2;
 
   &_Item {
-    @include paragraphXSmFont;
+    @include paragraphXSmFont(md);
 
     &:not(:last-child) {
       margin-bottom: to-rem($spacing-small);

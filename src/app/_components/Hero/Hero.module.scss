@@ -1,0 +1,133 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.container {
+  @include container;
+}
+
+.wrap {
+  @include grid;
+
+  align-items: center;
+  border-radius: 20px;
+  background-color: $gray-100;
+  overflow: hidden;
+
+  @include media-breakpoint-up(md) {
+    min-height: 536px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    min-height: 594px;
+  }
+}
+
+.content,
+.decoration {
+  grid-row: 1;
+}
+
+.content {
+  padding: $spacing-x-large;
+  z-index: 1;
+
+  @include media-breakpoint-down(lg) {
+    padding: $spacing-standard;
+  }
+
+  &__standard {
+    @include columns(1, 7);
+
+    @include media-breakpoint-up(md) {
+      padding-right: 0;
+    }
+  }
+
+  &__featuredNews {
+    @include columns(7, 12);
+
+    display: flex;
+    flex-direction: column;
+    gap: to-rem($spacing-small);
+
+    @include media-breakpoint-up(md) {
+      padding-left: 0;
+    }
+
+    @include media-breakpoint-down(lg) {
+      @include columns(5, -1);
+    }
+
+    @include media-breakpoint-down(md) {
+      padding-bottom: $spacing-large;
+    }
+  }
+}
+
+.header {
+  @include headerH3(lg);
+
+  margin-bottom: 0;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: to-rem($spacing-small);
+}
+
+.date {
+  @include label;
+
+  margin-bottom: 0;
+  color: $black;
+}
+
+.decoration {
+  height: 100%;
+
+  &__standard {
+    @include columns(7, -1);
+
+    @include media-breakpoint-down(lg) {
+      @include columns(6, -1);
+    }
+  }
+
+  &__featuredNews {
+    @include columns(1, 7);
+
+    @include media-breakpoint-down(lg) {
+      @include columns(1, 5);
+    }
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+}
+
+.bgImgWrap {
+  position: relative;
+  height: 100%;
+}
+
+.bgImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  max-width: none;
+  height: 100%;
+  transform: translate(-50%, -50%);
+
+  @include media-breakpoint-down(lg) {
+    right: 0;
+    left: unset;
+    transform: translateY(-50%);
+  }
+}

@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import type { StaticImageData } from 'next/image'
 import cx from 'classnames'
-import { Media } from 'src/payload-types'
+import type { StaticImageData } from 'next/image'
+import type { Media } from 'src/payload-types'
 import styles from './PartnerLogos.module.scss'
 
 interface PartnerLogoMedia extends Omit<Media, 'url'> {
@@ -29,7 +29,7 @@ export default function PartnerLogos({ logos, stacked }: PartnerLogosProps) {
           imageHeight = imageHeight / 2
         }
         return (
-          <div key={id} className={styles.imgWrap}>
+          <div key={id} className={cx(styles.imgWrap, { [styles.imgWrap__row]: !stacked })}>
             <Image
               className={styles.img}
               src={url}

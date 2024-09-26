@@ -97,6 +97,12 @@ export interface News {
   publishDate: string;
   author: number | User;
   type: number | NewsType;
+  logos?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
   pin?: boolean | null;
   pinPriority?: ('0' | '1' | '2' | '3') | null;
   updatedAt: string;
@@ -110,6 +116,7 @@ export interface NewsType {
   id: number;
   name: string;
   slug: string;
+  heroBackgroundImage: number | Media;
   updatedAt: string;
   createdAt: string;
 }
