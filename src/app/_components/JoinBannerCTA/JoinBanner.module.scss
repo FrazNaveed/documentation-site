@@ -11,7 +11,8 @@
   gap: $grid-column-gap-flare;
 
   @include media-breakpoint-down(md) {
-    padding: to-rem($spacing-x-large) to-rem($spacing-large) to-rem($spacing-large);
+    padding: to-rem($spacing-x-large) to-rem($spacing-large)
+      to-rem($spacing-large);
   }
 
   @include media-breakpoint-down(sm) {
