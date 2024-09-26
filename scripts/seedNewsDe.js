@@ -23,11 +23,11 @@ const newsTypesIds = await axios.get(`${API_URL}/news-types`)
   .catch((error) => console.error(error))
 
 // Function to generate random test data for the news collection
-function createNewsFieldsEs() {
+function createNewsFieldsDe() {
   const title = faker.lorem.sentence()
-  const titleTagged = `ES ${title}`
+  const titleTagged = `DE ${title}`
   const excerpt = faker.lorem.sentences(3)
-  const excerptTagged = `ES ${excerpt}`
+  const excerptTagged = `DE ${excerpt}`
 
   // Randomly assign a type from the list of available types
   const type = faker.helpers.shuffle(newsTypesIds)[0]
@@ -43,7 +43,7 @@ function createNewsFieldsEs() {
 const seedNewsData = async (newsIdsList, locale) => {
   for (let i = 0; i < newsIdsList.length; i++) {
     const newsId = newsIdsList[i]
-    const newsItem = createNewsFieldsEs()
+    const newsItem = createNewsFieldsDe()
     const restUrl = `${API_URL}/news/${newsId}?locale=${locale}`
 
     try {
