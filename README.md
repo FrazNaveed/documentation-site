@@ -37,6 +37,10 @@ and change `POSTGRES_URL`.
 ## Seeding Data
 After the above set up, you will have random users and data seeded into your local Payload instance. If you'd like to add more, you can simply run `npm run seed:news` to add more users and news, as long as the stack is running. 
 
+There are helper functions to seed localized data as well:
+- `npm run seed:news-types-de` and then `npm run seed:news-de` for German
+- `npm run seed:news-types-es` and then `npm run seed:news-es` for Spanish
+
 ## Docker Notes
 While we will be doing most of our local development in Node with HMR and such, the production build of the NextJS/Payload stack
 will run in a Docker container. If there are issues with any of the cloud deployments you should be able to replicate them by
