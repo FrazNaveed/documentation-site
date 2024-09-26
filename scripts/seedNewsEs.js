@@ -29,8 +29,7 @@ function createNewsFieldsEs() {
   const excerpt = faker.lorem.sentences(3)
   const excerptTagged = `ES ${excerpt}`
 
-  // Randomly assign a type from a set of predefined types
-  // const types = ['Flare Updates', 'AMA & Interviews', 'Past Events', 'Ecosystem', 'Research']
+  // Randomly assign a type from the list of available types
   const type = faker.helpers.shuffle(newsTypesIds)[0]
 
   return {
