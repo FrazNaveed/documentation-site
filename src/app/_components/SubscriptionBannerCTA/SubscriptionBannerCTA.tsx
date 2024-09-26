@@ -34,6 +34,7 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
               text={buttonText}
               size='medium'
               buttonStyle='black'
+              className={styles.button}
               // onClick={(e) => {
               //   e.preventDefault(); // prevent default form submission behavior
               //   // add email subscription logic here (e.g. API call, local storage update, etc.)
