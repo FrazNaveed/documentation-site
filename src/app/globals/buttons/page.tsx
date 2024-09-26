@@ -1,9 +1,11 @@
 import Button from '../../_components/Button'
 import Pill from '../../_components/Pill'
+import SubscriptionBannerCTA from '../../_components/SubscriptionBannerCTA'
 
 export default function Page() {
   return (
     <>
+      <SubscriptionBannerCTA />
       <h2>Buttons</h2>
       <Button text='Default' />
       &nbsp;
