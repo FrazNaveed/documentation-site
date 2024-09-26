@@ -12,38 +12,44 @@ export type CTAProps = {
 }
 
 export default function SubscriptionBannerCTA({ header, text, placeholder, buttonText, className }: CTAProps) {
-  const url = ''
+  const url ='/fw5_join_bg.png'
   const alt = 'background image'
+  let imageWidth = 1728 / 2
+  let imageHeight = 858 / 2
 
   return (
     <section className={cx(styles.subscriptionBanner, className)}>
-      <Image
-        className={styles.img}
-        src={url}
-        // width={imageWidth}
-        // height={imageHeight}
-        alt={alt}
-      />
-      <div className={styles.subscriptionBanner_FormWrap}>
-        <h2>{header}</h2>
-        <p>{text}</p>
-        <form className={styles.subscriptionBanner_Form}>
-          <input
-            type="email"
-            placeholder={placeholder}
-            required
-            className={styles.subscriptionBanner_FormInput}
+      <div className={styles.container}>
+        <div className={styles.formWrap}>
+          <h2>{header}</h2>
+          <p>{text}</p>
+          <form className={styles.subscriptionBanner_Form}>
+            <input
+              type="email"
+              placeholder={placeholder}
+              required
+              className={styles.subscriptionBanner_FormInput}
+            />
+            <Button
+              text={buttonText}
+              size='medium'
+              buttonStyle='black'
+              // onClick={(e) => {
+              //   e.preventDefault(); // prevent default form submission behavior
+              //   // add email subscription logic here (e.g. API call, local storage update, etc.)
+              // }}
+            />
+          </form>
+        </div>
+        <div className={styles.imageWrap}>
+          <Image
+            className={styles.img}
+            src={url}
+            width={imageWidth}
+            height={imageHeight}
+            alt={alt}
           />
-          <Button
-            text={buttonText}
-            size='medium'
-            buttonStyle='black'
-            // onClick={(e) => {
-            //   e.preventDefault(); // prevent default form submission behavior
-            //   // add email subscription logic here (e.g. API call, local storage update, etc.)
-            // }}
-          />
-        </form>
+        </div>
       </div>
     </section>
   )
