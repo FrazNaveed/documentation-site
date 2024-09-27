@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import type { ButtonProps } from '../Button/Button'
 import Button from '../Button'
-import styles from './JoinBanner.module.scss'
+import styles from './BannerCTA.module.scss'
 
 export type CTAProps = {
   header: string
@@ -10,7 +10,7 @@ export type CTAProps = {
   button: ButtonProps
 }
 
-export default function JoinBannerCTA({ header, text, button, className }: CTAProps) {
+export default function BannerCTA({ header, text, button, className }: CTAProps) {
   return (
     <section className={cx(styles.joinBanner, className)}>
       <h1 className={styles.header}>{header}</h1>
