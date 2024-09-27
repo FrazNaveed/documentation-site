@@ -99,6 +99,7 @@ export interface News {
   author: number | User;
   type: number | NewsType;
   subtype?: (number | null) | NewsSubType;
+  teaserThumbnail?: (number | null) | Media;
   logos?:
     | {
         image: number | Media;

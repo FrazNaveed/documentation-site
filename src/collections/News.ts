@@ -71,6 +71,11 @@ export const News: CollectionConfig = {
       localized: true,
     },
     {
+      name: 'teaserThumbnail',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
       name: 'logos',
       type: 'array',
       minRows: 0,

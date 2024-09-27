@@ -26,6 +26,7 @@ export default async function Page() {
     type: featuredPostType = {},
     subtype: featuredPostSubType,
     logos: featuredPostLogos,
+    teaserThumbnail: featuredPostTeaserThumbnail,
   } = featuredPost
   const { heroBackgroundImage: featuredPostTypeHeroBgImage, name: featuredPostTypeName } = featuredPostType as NewsType
   const { heroBackgroundImage: featuredPostSubTypeHeroBgImage } = featuredPostSubType as NewsSubType | null || {}
@@ -40,6 +41,7 @@ export default async function Page() {
         timestamp={featuredPostDate}
         pill={{ text: featuredPostTypeName }}
         {...(featuredPostLogos ? {logos: featuredPostLogos.map((logo) => logo.image as Media)} : {})}
+        thumbnail={featuredPostTeaserThumbnail as Media | null | undefined}
       />
       <h1>Flare News</h1>
       <NewsFilter navLinks={latestNewsNav} />

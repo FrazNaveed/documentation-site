@@ -13,7 +13,7 @@ export type HeroProps = {
   link?: string
   backgroundImage?: Media
   logos?: Media[]
-  thumbnailImage?: Media
+  thumbnail?: Media | null
   header?: string | null
   subheader?: string | null
   timestamp?: string | null
@@ -34,7 +34,7 @@ export default function Hero({
   link,
   backgroundImage,
   logos,
-  thumbnailImage,
+  thumbnail,
   header,
   subheader,
   timestamp,
@@ -63,6 +63,18 @@ export default function Hero({
               width={backgroundImage.width ?? 0}
               height={backgroundImage.height ?? 0}
               alt={backgroundImage.alt}
+              priority
+            />
+          </div>
+        )}
+        {thumbnail?.url && (
+          <div className={styles.thumbnailWrap}>
+            <Image
+              className={styles.thumbnail}
+              src={thumbnail.url}
+              width={thumbnail.width ?? 0}
+              height={thumbnail.height ?? 0}
+              alt={thumbnail.alt}
               priority
             />
           </div>
