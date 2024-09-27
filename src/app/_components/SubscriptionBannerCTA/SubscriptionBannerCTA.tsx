@@ -14,37 +14,37 @@ export type CTAProps = {
   className?: string
 }
 
-function handleSubmit(e:FormEvent<HTMLFormElement>) {
-  e.preventDefault()
+// function handleSubmit(e:FormEvent<HTMLFormElement>) {
+//   e.preventDefault()
 
-  const form = e.currentTarget
-  const emailInput = form.elements.namedItem('email') as HTMLInputElement | null
-  // console.log("Email input:", emailInput)
+//   const form = e.currentTarget
+//   const emailInput = form.elements.namedItem('email') as HTMLInputElement | null
+//   // console.log("Email input:", emailInput)
 
-  if (!emailInput) {
-    console.error('email is required')
-    // add state change to set showError to true
-    return
-  }
+//   if (!emailInput) {
+//     console.error('email is required')
+//     // add state change to set showError to true
+//     return
+//   }
 
-  const emailValue = emailInput.value.trim()
+//   const emailValue = emailInput.value.trim()
 
-  if (emailInput?.validity.valueMissing) {
-    console.error('email is required')
-  } else if (emailInput?.validity.typeMismatch || !isValidEmailFormat(emailValue)) {
-    console.error('please enter a valid email address')
-  } else {
-    console.info(emailValue, 'passes basic email format check')
-    submitToSurveyMonkey(emailValue)
-    console.log(emailValue, 'submitted')
-  }
-}
+//   if (emailInput?.validity.valueMissing) {
+//     console.error('email is required')
+//   } else if (emailInput?.validity.typeMismatch || !isValidEmailFormat(emailValue)) {
+//     console.error('please enter a valid email address')
+//   } else {
+//     console.info(emailValue, 'passes basic email format check')
+//     submitToSurveyMonkey(emailValue)
+//     console.log(emailValue, 'submitted')
+//   }
+// }
 
-function submitToSurveyMonkey(email: string): void {
-  // This function would typically make a POST request to SurveyMonkey API with the email address
-  // For now, we just log it to the console
-  console.log('Submitting', email, 'to SurveyMonkey')
-}
+// function submitToSurveyMonkey(email: string): void {
+//   // This function would typically make a POST request to SurveyMonkey API with the email address
+//   // For now, we just log it to the console
+//   console.log('Submitting', email, 'to SurveyMonkey')
+// }
 
 export default function SubscriptionBannerCTA({ header, text, placeholder, buttonText, className }: CTAProps) {
   const url ='/fw5_join_bg.png'
@@ -52,8 +52,41 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
   let imageWidth = 1728 / 2
   let imageHeight = 858 / 2
   // testing
-  let isError = true
+  let isError = false
 
+  // to refactor
+  function handleSubmit(e:FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+  
+    const form = e.currentTarget
+    const emailInput = form.elements.namedItem('email') as HTMLInputElement | null
+    // console.log("Email input:", emailInput)
+  
+    if (!emailInput) {
+      console.error('email is required')
+      // add state change to set showError to true
+      return
+    }
+  
+    const emailValue = emailInput.value.trim()
+  
+    if (emailInput?.validity.valueMissing) {
+      console.error('email is required')
+    } else if (emailInput?.validity.typeMismatch || !isValidEmailFormat(emailValue)) {
+      console.error('please enter a valid email address')
+    } else {
+      console.info(emailValue, 'passes basic email format check')
+      submitToSurveyMonkey(emailValue)
+      console.log(emailValue, 'submitted')
+    }
+  }
+  
+  function submitToSurveyMonkey(email: string): void {
+    // This function would typically make a POST request to SurveyMonkey API with the email address
+    // For now, we just log it to the console
+    console.log('Submitting', email, 'to SurveyMonkey')
+  }
+  // to refactor
   return (
     <section className={cx(styles.subscriptionBanner, className)}>
       <div className={styles.container}>
