@@ -1,4 +1,6 @@
+'use client'
 import cx from 'classnames'
+import { FormEvent } from 'react'
 import Image from 'next/image'
 import Button from '../Button'
 import styles from './SubscriptionBannerCTA.module.scss'
@@ -9,6 +11,44 @@ export type CTAProps = {
   placeholder: string | ''
   buttonText: string
   className?: string
+}
+
+function handleSubmit(e:FormEvent<HTMLFormElement>) {
+  e.preventDefault()
+
+  const form = e.currentTarget
+  const emailInput = form.elements.namedItem('email') as HTMLInputElement | null
+  // console.log("Email input:", emailInput)
+
+  if (!emailInput) {
+    console.error('email is required')
+    return
+  }
+
+  const emailValue = emailInput.value.trim()
+
+  if (emailInput?.validity.valueMissing) {
+    console.error('email is required')
+  } else if (emailInput?.validity.typeMismatch || !isValidEmailFormat(emailValue)) {
+    console.error('please enter a valid email address')
+  } else {
+    console.info(emailValue, 'passes basic email format check')
+    submitToSurveyMonkey(emailValue)
+    console.log(emailValue, 'submitted')
+  }
+}
+
+function isValidEmailFormat(email: string): boolean {
+  // This regex checks for at least one character before @, 
+  // at least one character after @, and at least one character after a dot
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+function submitToSurveyMonkey(email: string): void {
+  // This function would typically make a POST request to SurveyMonkey API with the email address
+  // For now, we just log it to the console
+  console.log('Submitting', email, 'to SurveyMonkey')
 }
 
 export default function SubscriptionBannerCTA({ header, text, placeholder, buttonText, className }: CTAProps) {
@@ -23,9 +63,10 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
         <div className={styles.formWrap}>
           <h2 className={styles.header}>{header}</h2>
           <p className={styles.text}>{text}</p>
-          <form className={styles.subscriptionBanner_Form} noValidate>
+          <form className={styles.subscriptionBanner_Form} noValidate onSubmit={(e) => handleSubmit(e)}>
             <input
-              type="email"
+              type='email'
+              name='email'
               placeholder={placeholder}
               required
               className={styles.subscriptionBanner_FormInput}
@@ -35,10 +76,6 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
               size='medium'
               buttonStyle='black'
               className={styles.button}
-              // onClick={(e) => {
-              //   e.preventDefault(); // prevent default form submission behavior
-              //   // add email subscription logic here (e.g. API call, local storage update, etc.)
-              // }}
             />
           </form>
         </div>
