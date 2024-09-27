@@ -23,7 +23,7 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
         <div className={styles.formWrap}>
           <h2 className={styles.header}>{header}</h2>
           <p className={styles.text}>{text}</p>
-          <form className={styles.subscriptionBanner_Form}>
+          <form className={styles.subscriptionBanner_Form} noValidate>
             <input
               type="email"
               placeholder={placeholder}
