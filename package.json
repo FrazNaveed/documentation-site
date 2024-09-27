@@ -36,6 +36,7 @@
     "@payloadcms/next": "beta",
     "@payloadcms/plugin-cloud": "beta",
     "@payloadcms/richtext-lexical": "beta",
+    "@payloadcms/storage-vercel-blob": "^3.0.0-beta.29",
     "axios": "^1.7.7",
     "classnames": "^2.5.1",
     "cross-env": "^7.0.3",
