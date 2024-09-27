@@ -1,3 +1,90 @@
+@use "@aleph/nought-sass-mixins/sass/utils";
+@use "../../_styles/colors" as *;
+@use "../../_styles/mixins" as *;
+@use "../../_styles/spacing" as *;
+@use "../../_styles/typography" as *;
+
+.container {
+  @include containerGrid;
+}
+
+.formWrap {
+  @include columns(1, 7);
+
+  padding: to-rem(98px) to-rem($spacing-x-large) to-rem(88px)
+    to-rem($spacing-large);
+
+  @include media-breakpoint-down(lg) {
+    @include columns(1, 6);
+
+    padding: to-rem($spacing-xxx-large) 0 to-rem($spacing-xxxx-large);
+  }
+
+  @include media-breakpoint-down(md) {
+    padding: to-rem($spacing-large) 0 to-rem(44px);
+  }
+}
+
+.imageWrap {
+  @include columns(8, -1);
+
+  img {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+}
+
 .subscriptionBanner {
-  // styles
+  background-color: $gray-50;
+
+  &_Form {
+    display: flex;
+    justify-content: space-between;
+    padding: to-rem($spacing-small) to-rem($spacing-small)
+      to-rem($spacing-small) to-rem($spacing-standard);
+    border: 1px solid $gray-200;
+    border-radius: 6px;
+    background-color: $white;
+    gap: to-rem($spacing-medium);
+
+    @include media-breakpoint-down(lg) {
+      padding: to-rem($spacing-x-small) to-rem(12px) to-rem($spacing-x-small)
+        to-rem(20px);
+    }
+
+    @include media-breakpoint-down(md) {
+      padding: to-rem($spacing-x-small) to-rem($spacing-x-small)
+        to-rem($spacing-x-small) to-rem(20px);
+    }
+  }
+
+  &_FormInput {
+    width: 60%;
+    border: none;
+  }
+}
+
+.header {
+  @include headerDesktopH4;
+
+  margin-bottom: to-rem(20px);
+}
+
+.text {
+  margin-bottom: to-rem(20px);
+  padding-right: to-rem($spacing-large);
+
+  @include media-breakpoint-down(lg) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.button {
+  margin-bottom: 0;
 }
