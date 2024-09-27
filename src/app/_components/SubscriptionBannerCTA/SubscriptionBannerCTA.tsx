@@ -3,6 +3,7 @@ import cx from 'classnames'
 import { FormEvent } from 'react'
 import Image from 'next/image'
 import Button from '../Button'
+import isValidEmailFormat from '../../../../scripts/validateEmailFormat'
 import styles from './SubscriptionBannerCTA.module.scss'
 
 export type CTAProps = {
@@ -36,13 +37,6 @@ function handleSubmit(e:FormEvent<HTMLFormElement>) {
     submitToSurveyMonkey(emailValue)
     console.log(emailValue, 'submitted')
   }
-}
-
-function isValidEmailFormat(email: string): boolean {
-  // This regex checks for at least one character before @, 
-  // at least one character after @, and at least one character after a dot
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
 }
 
 function submitToSurveyMonkey(email: string): void {
