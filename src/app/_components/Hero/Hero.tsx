@@ -48,9 +48,12 @@ export default function Hero({
       <div className={cx(styles.decoration, styles[`decoration__${style}`])}>
         {backgroundImage?.url && (
           <div className={cx(styles.bgImgWrap, styles[`bgImgWrap__${style}`])}>
-            <img
-               className={cx(styles.bgImg, styles[`bgImg__${style}`])}
+            <Image
+              className={cx(styles.bgImg, styles[`bgImg__${style}`])}
               src={backgroundImage.url}
+              width={backgroundImage.width ?? 0}
+              height={backgroundImage.height ?? 0}
+              alt={backgroundImage.alt}
             />
           </div>
         )}
