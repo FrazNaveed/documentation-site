@@ -23,6 +23,7 @@ function handleSubmit(e:FormEvent<HTMLFormElement>) {
 
   if (!emailInput) {
     console.error('email is required')
+    // add state change to set showError to true
     return
   }
 
@@ -72,6 +73,7 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
               className={styles.button}
             />
           </form>
+          <p className={styles.subscriptionBanner_ErrorMessage} id='errorMessage'>please input a valid email to subscribe</p>
         </div>
         <div className={styles.imageWrap}>
           <Image
