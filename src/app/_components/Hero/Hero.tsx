@@ -44,7 +44,16 @@ export default function Hero({
   cta,
 }: HeroProps) {
   const innerMarkup = (
-    <>
+    <div
+      className={cx(
+        styles.grid,
+        styles[`grid__${style}`],
+        {
+          [styles.bg]: style === 'featuredNews',
+          [styles.container]: style !== 'featuredNews',
+        },
+      )}
+    >
       <div className={cx(styles.decoration, styles[`decoration__${style}`])}>
         {backgroundImage?.url && (
           <div className={cx(styles.bgImgWrap, styles[`bgImgWrap__${style}`])}>
@@ -59,7 +68,7 @@ export default function Hero({
         )}
       </div>
       <header className={cx(styles.content, styles[`content__${style}`])}>
-        {logos && <PartnerLogos logos={logos} />}
+        {logos && <PartnerLogos logos={logos} stacked={style === 'standard'} />}
         {header && <h2 className={styles.header}>{header}</h2>}
         {(pill || timestamp) && (
           <div className={styles.meta}>
@@ -68,19 +77,22 @@ export default function Hero({
           </div>
         )}
       </header>
-    </>
+    </div>
   )
   return (
-    <article className={styles.container}>
+    <article
+      className={cx(
+        {
+          [styles.container]: style === 'featuredNews',
+          [styles.bg]: style !== 'featuredNews',
+        },
+      )}
+    >
       {link ? (
-        <Link href={link} className={styles.wrap}>
+        <Link href={link}>
           {innerMarkup}
         </Link>
-      ) : (
-        <div className={styles.wrap}>
-          {innerMarkup}
-        </div>
-      )}
+      ) : innerMarkup}
     </article>
   )
 }
