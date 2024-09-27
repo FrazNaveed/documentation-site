@@ -19,6 +19,7 @@ export default async function Page() {
 
   const featuredPost = news[0] || {}
   const {
+    slug: featuredPostSlug,
     excerpt: featuredPostExcerpt,
     publishDate: featuredPostDate,
     type: featuredPostType = {},
@@ -29,6 +30,7 @@ export default async function Page() {
   return (
     <>
       <Hero
+        link={`/news/${featuredPostSlug}`}
         style='featuredNews'
         backgroundImage={featuredPostHeroBgImage as Media}
         header={featuredPostExcerpt}
