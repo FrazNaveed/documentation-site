@@ -127,7 +127,7 @@
 
   @include media-breakpoint-down(lg) {
     right: 0;
-    left: unset;
+    left: auto;
     transform: translateY(-50%);
   }
 }

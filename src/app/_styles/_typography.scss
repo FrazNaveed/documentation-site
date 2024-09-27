@@ -126,7 +126,7 @@ $font-family-sathoshi: var(--satoshi);
 @mixin headerH1($breakpoint: lg) {
   @include headerDesktopH1;
 
-  @include media-breakpoint-down(breakpoint) {
+  @include media-breakpoint-down($breakpoint) {
     @include headerMobileH1;
   }
 }
