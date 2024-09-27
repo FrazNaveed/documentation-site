@@ -62,6 +62,8 @@ We use husky to check for eslint, TypeScript, and stylelint errors before commit
 
 Sometimes when removing directories they are still cached in the `.next` build directory and you will get an error that the module cannot be found when trying to commit. To fix, delete the `.next` directory.
 
+Many Payload types and files are automatically generated. When modifying Payload fields or the database you may run into typescript errors when trying to commit. To fix, restart the development server (`control + c` then `npm run dev`).
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
