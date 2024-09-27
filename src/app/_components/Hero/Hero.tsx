@@ -63,6 +63,7 @@ export default function Hero({
               width={backgroundImage.width ?? 0}
               height={backgroundImage.height ?? 0}
               alt={backgroundImage.alt}
+              priority
             />
           </div>
         )}

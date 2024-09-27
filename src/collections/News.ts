@@ -63,6 +63,14 @@ export const News: CollectionConfig = {
       localized: true,
     },
     {
+      name: 'subtype',
+      type: 'relationship',
+      relationTo: 'news-sub-types',
+      hasMany: false,
+      required: false,
+      localized: true,
+    },
+    {
       name: 'logos',
       type: 'array',
       minRows: 0,

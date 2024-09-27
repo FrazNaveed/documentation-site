@@ -1,26 +1,24 @@
 import Hero from 'src/app/_components/Hero'
 import getNewsData from 'src/app/_lib/payload/newsQueries'
-import type { Media, NewsType } from 'src/payload-types'
+import type { Media, NewsSubType, NewsType } from 'src/payload-types'
 
 export default async function Page() {
   const news = await getNewsData()
 
   const featuredPost = news[0] || {}
   const {
-    slug: featuredPostSlug,
-    excerpt: featuredPostExcerpt,
-    title: featuredPostTitle,
-    publishDate: featuredPostDate,
-    type: featuredPostType = {},
+    type = {},
+    subtype,
     logos: featuredPostLogos,
   } = featuredPost
-  const { heroBackgroundImage: featuredPostHeroBgImage, name: featuredPostTypeName } = featuredPostType as NewsType
+  const { heroBackgroundImage: typeHeroBgImage, name: featuredPostTypeName } = type as NewsType
+  const { heroBackgroundImage: subTypeHeroBgImage } = subtype as NewsSubType || {}
 
   return (
     <>
       <Hero
         style='standard'
-        backgroundImage={featuredPostHeroBgImage as Media}
+        backgroundImage={subTypeHeroBgImage as Media || typeHeroBgImage as Media}
         {...(featuredPostLogos ? {logos: featuredPostLogos.map((logo) => logo.image as Media)} : {})}
       />
     </>
