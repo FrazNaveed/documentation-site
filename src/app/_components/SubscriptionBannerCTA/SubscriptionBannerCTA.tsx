@@ -51,6 +51,8 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
   const alt = 'background image'
   let imageWidth = 1728 / 2
   let imageHeight = 858 / 2
+  // testing
+  let isError = true
 
   return (
     <section className={cx(styles.subscriptionBanner, className)}>
@@ -69,8 +71,9 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
             <Button
               text={buttonText}
               size='medium'
-              buttonStyle='black'
+              buttonStyle='black' // disabled state is 'secondary' but active state is 'black'
               className={styles.button}
+              disabled={isError ? true : false}
             />
           </form>
           <p className={styles.subscriptionBanner_ErrorMessage} id='errorMessage'>please input a valid email to subscribe</p>
