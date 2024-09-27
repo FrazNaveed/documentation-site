@@ -3,7 +3,7 @@
 @use "../../_styles/colors" as *;
 @use "../../_styles/spacing" as *;
 
-.joinBanner {
+.banner {
   display: flex;
   justify-content: space-between;
   padding: to-rem($spacing-x-large) to-rem($spacing-large);
