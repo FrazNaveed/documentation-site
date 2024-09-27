@@ -21,6 +21,7 @@ export default async function Page() {
   const {
     slug: featuredPostSlug,
     excerpt: featuredPostExcerpt,
+    title: featuredPostTitle,
     publishDate: featuredPostDate,
     type: featuredPostType = {},
     logos: featuredPostLogos,
@@ -33,7 +34,7 @@ export default async function Page() {
         link={`/news/${featuredPostSlug}`}
         style='featuredNews'
         backgroundImage={featuredPostHeroBgImage as Media}
-        header={featuredPostExcerpt}
+        header={featuredPostExcerpt || featuredPostTitle}
         timestamp={featuredPostDate}
         pill={{ text: featuredPostTypeName }}
         {...(featuredPostLogos ? {logos: featuredPostLogos.map((logo) => logo.image as Media)} : {})}
