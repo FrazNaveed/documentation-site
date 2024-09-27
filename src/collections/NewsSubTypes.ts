@@ -3,10 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const NewsSubTypes: CollectionConfig = {
   slug: 'news-sub-types',
   access: {
-    // for seeding purposes; review for production
     read: () => true,
-    create: () => true,
-    update: () => true,
   },
   labels: {
     singular: 'News Sub Type',
