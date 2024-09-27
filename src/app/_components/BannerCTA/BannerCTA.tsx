@@ -14,13 +14,15 @@ export default function BannerCTA({ header, text, button, className }: CTAProps)
   return (
     <section className={cx(styles.joinBanner, className)}>
       <h1 className={styles.header}>{header}</h1>
-      <p className={styles.text}>{text}</p>
-      <Button
-        text={button.text}
-        link={button.link}
-        className={styles.button}
-        buttonStyle='secondary'
-      />
+      <div className={styles.rightColumn}>
+        <p className={styles.text}>{text}</p>
+        <Button
+          text={button.text}
+          link={button.link}
+          className={styles.button}
+          buttonStyle='secondary'
+        />
+      </div>
     </section>
   )
 }
