@@ -1,8 +1,8 @@
 'use client'
 import cx from 'classnames'
-import { FormEvent } from 'react'
 import Image from 'next/image'
 import Button from '../Button'
+import CheckCircle from '../svgs/CheckCircle'
 import useSubscriptionForm from '../../_hooks/useSubscriptionForm'
 import styles from './SubscriptionBannerCTA.module.scss'
 
@@ -19,10 +19,9 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
   const alt = 'background image'
   let imageWidth = 1728 / 2
   let imageHeight = 858 / 2
-  // testing
-  let isError = false
 
-  const { handleSubmit, errorMessage } = useSubscriptionForm()
+  const { handleSubmit, successMessage, errorMessage } = useSubscriptionForm()
+  let disabled = false
 
   return (
     <section className={cx(styles.subscriptionBanner, className)}>
@@ -42,9 +41,15 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
               text={buttonText}
               size='medium'
               buttonStyle='black' // disabled state is 'secondary' but active state is 'black'
-              className={styles.button}
-              disabled={isError ? true : false}
+              className={cx(styles.button, { [styles.hide]: successMessage })}
+              disabled={disabled}
             />
+            {successMessage &&
+              <span className={styles.subscriptionBanner_SuccessMessageWrap}>
+                <p className={cx(styles.subscriptionBanner_SuccessMessage)}>{successMessage}</p>
+                <CheckCircle className={styles.checkCircle}/>
+              </span>
+            }
           </form>
           {errorMessage &&
             <p className={styles.subscriptionBanner_ErrorMessage} id='errorMessage'>
@@ -62,6 +67,8 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
           />
         </div>
       </div>
+      {/* {successMessage && <p>successMessage is true</p>}
+      {!successMessage && <p>successMessage is false</p>} */}
     </section>
   )
 }
