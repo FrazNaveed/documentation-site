@@ -63,6 +63,37 @@ export const News: CollectionConfig = {
       localized: true,
     },
     {
+      name: 'subtype',
+      type: 'relationship',
+      relationTo: 'news-sub-types',
+      hasMany: false,
+      required: false,
+      localized: true,
+    },
+    {
+      name: 'teaserThumbnail',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
+      name: 'logos',
+      type: 'array',
+      minRows: 0,
+      maxRows: 3,
+      labels: {
+        singular: 'Logo',
+        plural: 'Logos',
+      },
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+      ],
+    },
+    {
       name: 'pin',
       type: 'checkbox',
       defaultValue: false,

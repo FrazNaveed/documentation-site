@@ -1,5 +1,7 @@
-import getNewsData from '../_lib/payload/newsQueries'
+import Hero from '../_components/Hero'
+import { getNewsData } from '../_lib/payload/newsQueries'
 import NewsFilter from '../_components/NewsFilter'
+import type { Media, NewsSubType, NewsType } from 'src/payload-types'
 
 export default async function Page() {
   const news = await getNewsData()
@@ -15,9 +17,32 @@ export default async function Page() {
     {text: 'Research', link: 'research', id: 5}
   ]
 
+  const featuredPost = news[0] || {}
+  const {
+    slug: featuredPostSlug,
+    excerpt: featuredPostExcerpt,
+    title: featuredPostTitle,
+    publishDate: featuredPostDate,
+    type: featuredPostType = {},
+    subtype: featuredPostSubType,
+    logos: featuredPostLogos,
+    teaserThumbnail: featuredPostTeaserThumbnail,
+  } = featuredPost
+  const { heroBackgroundImage: featuredPostTypeHeroBgImage, name: featuredPostTypeName } = featuredPostType as NewsType
+  const { heroBackgroundImage: featuredPostSubTypeHeroBgImage } = featuredPostSubType as NewsSubType | null || {}
+
   return (
     <>
-      <p>Header component here</p>
+      <Hero
+        link={`/news/${featuredPostSlug}`}
+        style='featuredNews'
+        backgroundImage={featuredPostSubTypeHeroBgImage as Media || featuredPostTypeHeroBgImage as Media}
+        header={featuredPostTitle}
+        timestamp={featuredPostDate}
+        pill={{ text: featuredPostTypeName }}
+        {...(featuredPostLogos ? {logos: featuredPostLogos.map((logo) => logo.image as Media)} : {})}
+        thumbnail={featuredPostTeaserThumbnail as Media | null | undefined}
+      />
       <h1>Flare News</h1>
       <NewsFilter navLinks={latestNewsNav} />
       <h2>Default News query</h2>

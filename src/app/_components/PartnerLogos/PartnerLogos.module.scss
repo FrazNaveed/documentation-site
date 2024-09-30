@@ -5,9 +5,11 @@
 @use "../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
+$wrap-gap: to-rem($spacing-standard);
+
 .wrap {
   display: flex;
-  gap: to-rem($spacing-standard);
+  gap: $wrap-gap;
 
   &__column {
     flex-direction: column;
@@ -24,6 +26,14 @@
 
 .imgWrap {
   min-height: 0;
+
+  &__row {
+    max-width: calc(50% - (#{$wrap-gap} / 2));
+
+    @include media-breakpoint-only(md) {
+      max-width: calc(40% - (#{$wrap-gap} / 2));
+    }
+  }
 }
 
 .img {

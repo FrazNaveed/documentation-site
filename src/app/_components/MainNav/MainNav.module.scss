@@ -137,7 +137,7 @@
 
   &_TopLevelMenuItem {
     @include utils.buttonReset;
-    @include paragraphXSmFont;
+    @include paragraphXSmFont(md);
 
     display: block;
     position: relative;
@@ -350,7 +350,7 @@ $mobile-link-margin-bottom: to-rem($spacing-standard);
 }
 
 .linkGroupHeader {
-  @include label;
+  @include label(md);
 
   margin-bottom: to-rem($spacing-small);
   color: $gray;
