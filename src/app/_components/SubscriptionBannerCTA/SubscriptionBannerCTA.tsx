@@ -4,6 +4,8 @@ import Image from 'next/image'
 import Button from '../Button'
 import CheckCircle from '../svgs/CheckCircle'
 import useSubscriptionForm from '../../_hooks/useSubscriptionForm'
+import { useState } from 'react'
+import isValidEmailFormat from '../../_utils/isValidEmailFormat'
 import styles from './SubscriptionBannerCTA.module.scss'
 
 export type CTAProps = {
@@ -15,13 +17,26 @@ export type CTAProps = {
 }
 
 export default function SubscriptionBannerCTA({ header, text, placeholder, buttonText, className }: CTAProps) {
+  const [prevEmail, setPrevEmail] = useState('')
+  const [disabled, setDisabled] = useState(true)
   const url ='/fw5_join_bg.png'
   const alt = 'background image'
-  let imageWidth = 1728 / 2
-  let imageHeight = 858 / 2
-
+  const imageWidth = 1728 / 2
+  const imageHeight = 858 / 2
   const { handleSubmit, successMessage, errorMessage } = useSubscriptionForm()
-  let disabled = false
+  let focusTest = false
+
+  const handleChange = (e:any) => {
+    const emailInput = e.target.value
+    console.log(emailInput)
+    if (emailInput !== prevEmail && !isValidEmailFormat(emailInput)) {
+      setDisabled(true)
+    } else {
+      setDisabled(false)
+    }
+
+    setPrevEmail(emailInput)
+  }
 
   return (
     <section className={cx(styles.subscriptionBanner, className)}>
@@ -29,13 +44,14 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
         <div className={styles.formWrap}>
           <h2 className={styles.header}>{header}</h2>
           <p className={styles.text}>{text}</p>
-          <form className={styles.subscriptionBanner_Form} noValidate onSubmit={(e) => handleSubmit(e)}>
+          <form className={cx(styles.subscriptionBanner_Form, { [styles.subscriptionBanner_Form__focus]: focusTest } )} noValidate onSubmit={(e) => handleSubmit(e)}>
             <input
               type='email'
               name='email'
               placeholder={placeholder}
               required
               className={styles.subscriptionBanner_FormInput}
+              onChange={(e) => handleChange(e)}
             />
             <Button
               text={buttonText}
@@ -69,6 +85,8 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
       </div>
       {/* {successMessage && <p>successMessage is true</p>}
       {!successMessage && <p>successMessage is false</p>} */}
+      {/* {disabled && <p>disabled is true</p>}
+      {!disabled && <p>disable is false</p>} */}
     </section>
   )
 }
