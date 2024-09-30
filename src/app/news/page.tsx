@@ -37,7 +37,7 @@ export default async function Page() {
         link={`/news/${featuredPostSlug}`}
         style='featuredNews'
         backgroundImage={featuredPostSubTypeHeroBgImage as Media || featuredPostTypeHeroBgImage as Media}
-        header={featuredPostExcerpt || featuredPostTitle}
+        header={featuredPostTitle}
         timestamp={featuredPostDate}
         pill={{ text: featuredPostTypeName }}
         {...(featuredPostLogos ? {logos: featuredPostLogos.map((logo) => logo.image as Media)} : {})}
