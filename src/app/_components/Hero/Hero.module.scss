@@ -184,3 +184,9 @@
   display: block;
   border-radius: 14px;
 }
+
+.hideOnMobile {
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+}

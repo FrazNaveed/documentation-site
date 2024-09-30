@@ -98,6 +98,7 @@ export default function Hero({
         {
           [styles.container]: style === 'featuredNews',
           [styles.bg]: style !== 'featuredNews',
+          [styles.hideOnMobile]: style === 'standard' && (!logos || logos.length === 0), // If hero is standard style and no partner/event logo exists, do not display on mobile
         },
       )}
     >

@@ -1,5 +1,5 @@
 import Hero from '../_components/Hero'
-import getNewsData from '../_lib/payload/newsQueries'
+import { getNewsData } from '../_lib/payload/newsQueries'
 import NewsFilter from '../_components/NewsFilter'
 import type { Media, NewsSubType, NewsType } from 'src/payload-types'
 
@@ -37,7 +37,7 @@ export default async function Page() {
         link={`/news/${featuredPostSlug}`}
         style='featuredNews'
         backgroundImage={featuredPostSubTypeHeroBgImage as Media || featuredPostTypeHeroBgImage as Media}
-        header={featuredPostExcerpt || featuredPostTitle}
+        header={featuredPostTitle}
         timestamp={featuredPostDate}
         pill={{ text: featuredPostTypeName }}
         {...(featuredPostLogos ? {logos: featuredPostLogos.map((logo) => logo.image as Media)} : {})}
