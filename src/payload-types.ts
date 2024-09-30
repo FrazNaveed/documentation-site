@@ -15,6 +15,7 @@ export interface Config {
     media: Media;
     news: News;
     'news-types': NewsType;
+    'news-sub-types': NewsSubType;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -97,6 +98,14 @@ export interface News {
   publishDate: string;
   author: number | User;
   type: number | NewsType;
+  subtype?: (number | null) | NewsSubType;
+  teaserThumbnail?: (number | null) | Media;
+  logos?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
   pin?: boolean | null;
   pinPriority?: ('0' | '1' | '2' | '3') | null;
   updatedAt: string;
@@ -110,6 +119,19 @@ export interface NewsType {
   id: number;
   name: string;
   slug: string;
+  heroBackgroundImage: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-sub-types".
+ */
+export interface NewsSubType {
+  id: number;
+  name: string;
+  slug: string;
+  heroBackgroundImage: number | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -135,6 +157,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'news-types';
         value: number | NewsType;
+      } | null)
+    | ({
+        relationTo: 'news-sub-types';
+        value: number | NewsSubType;
       } | null);
   globalSlug?: string | null;
   user: {

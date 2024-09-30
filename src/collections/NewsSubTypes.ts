@@ -1,16 +1,13 @@
 import type { CollectionConfig } from 'payload'
 
-export const NewsTypes: CollectionConfig = {
-  slug: 'news-types',
+export const NewsSubTypes: CollectionConfig = {
+  slug: 'news-sub-types',
   access: {
-    // for seeding purposes; review for production
     read: () => true,
-    create: () => true,
-    update: () => true,
   },
   labels: {
-    singular: 'News Type',
-    plural: 'News Types',
+    singular: 'News Sub Type',
+    plural: 'News Sub Types',
   },
   admin: {
     useAsTitle: 'name',

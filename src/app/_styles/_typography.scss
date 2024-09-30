@@ -123,58 +123,58 @@ $font-family-sathoshi: var(--satoshi);
   letter-spacing: unset;
 }
 
-@mixin headerH1() {
+@mixin headerH1($breakpoint: lg) {
   @include headerDesktopH1;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down($breakpoint) {
     @include headerMobileH1;
   }
 }
 
-@mixin headerH2() {
+@mixin headerH2($breakpoint: lg) {
   @include headerDesktopH2;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down($breakpoint) {
     @include headerMobileH2;
   }
 }
 
-@mixin headerH3() {
+@mixin headerH3($breakpoint: lg) {
   @include headerDesktopH3;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down($breakpoint) {
     @include headerMobileH3;
   }
 }
 
-@mixin headerH4() {
+@mixin headerH4($breakpoint: lg) {
   @include headerDesktopH4;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down($breakpoint) {
     @include headerMobileH4;
   }
 }
 
-@mixin headerH5() {
+@mixin headerH5($breakpoint: lg) {
   @include headerDesktopH5;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down($breakpoint) {
     @include headerMobileH5;
   }
 }
 
-@mixin headerH6() {
+@mixin headerH6($breakpoint: lg) {
   @include headerDesktopH6;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down($breakpoint) {
     @include headerMobileH6;
   }
 }
 
-@mixin headerH7() {
+@mixin headerH7($breakpoint: lg) {
   @include headerDesktopH7;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down($breakpoint) {
     @include headerMobileH7;
   }
 }
@@ -227,51 +227,51 @@ $font-family-sathoshi: var(--satoshi);
   color: $black;
 }
 
-@mixin paragraphSmFont() {
+@mixin paragraphSmFont($breakpoint: lg) {
   @include fontStyle(16, 24);
 
   font-family: $font-family-sathoshi;
   font-weight: 500;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down($breakpoint) {
     @include fontStyle(14, 20);
   }
 }
 
-@mixin paragraphSm() {
+@mixin paragraphSm($breakpoint: lg) {
   @include paragraphSmFont;
 
   margin-top: 0;
   margin-bottom: to-rem(24px);
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down($breakpoint) {
     margin-bottom: to-rem(20px);
   }
 }
 
-@mixin paragraphXSmFont() {
+@mixin paragraphXSmFont($breakpoint: lg) {
   @include fontStyle(14, 20);
 
   font-family: $font-family-sathoshi;
   font-weight: 500;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down($breakpoint) {
     @include fontStyle(12, 16);
   }
 }
 
-@mixin paragraphXSm() {
+@mixin paragraphXSm($breakpoint: lg) {
   @include paragraphXSmFont;
 
   margin-top: 0;
   margin-bottom: to-rem(20px);
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down($breakpoint) {
     margin-bottom: to-rem(16px);
   }
 }
 
-@mixin labelL() {
+@mixin labelL($breakpoint: lg) {
   @include fontStyle(20, 27);
 
   margin-top: 0;
@@ -281,12 +281,12 @@ $font-family-sathoshi: var(--satoshi);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down($breakpoint) {
     @include fontStyle(16, 21.6);
   }
 }
 
-@mixin label() {
+@mixin label($breakpoint: lg) {
   @include fontStyle(14, 18.9);
 
   margin-top: 0;
@@ -296,7 +296,7 @@ $font-family-sathoshi: var(--satoshi);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down($breakpoint) {
     @include fontStyle(12, 16.2);
   }
 }
