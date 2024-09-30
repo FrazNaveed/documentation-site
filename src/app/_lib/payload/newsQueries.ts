@@ -4,9 +4,10 @@ import type { News } from 'src/payload-types'
 
 const payload = await getPayloadHMR({ config })
 
-const getNewsData = async (...types: ('Flare Updates' | 'AMA & Interviews' | 'Past Events' | 'Ecosystem' | 'Research' | null)[]) => {
+export const getNewsData = async (...types: ('Flare Updates' | 'AMA & Interviews' | 'Past Events' | 'Ecosystem' | 'Research' | null)[]) => {
   const newsData = await payload.find({
     collection: 'news',
+    sort: '-publishDate',
     where: {
       'type.name': { 
         in: types.filter((type) => type !== null)
@@ -19,4 +20,18 @@ const getNewsData = async (...types: ('Flare Updates' | 'AMA & Interviews' | 'Pa
   return news
 }
 
-export default getNewsData
+export const getNewsBySlug = async (slug: string) => {
+  const newsData = await payload.find({
+    collection: 'news',
+    limit: 1,
+    where: {
+      slug: {
+        equals: slug
+      }
+    }
+  })
+
+  const news: News[] = newsData.docs
+
+  return news
+}

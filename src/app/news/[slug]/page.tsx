@@ -1,9 +1,16 @@
 import Hero from 'src/app/_components/Hero'
-import getNewsData from 'src/app/_lib/payload/newsQueries'
+import { getNewsBySlug } from 'src/app/_lib/payload/newsQueries'
 import type { Media, NewsSubType, NewsType } from 'src/payload-types'
 
-export default async function Page() {
-  const news = await getNewsData()
+type PageProps = {
+  params: {
+    slug: string
+  }
+}
+
+export default async function Page({ params }: PageProps) {
+  const news = await getNewsBySlug(params.slug)
+  console.log('news: ', news)
 
   const featuredPost = news[0] || {}
   const {
