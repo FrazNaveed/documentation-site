@@ -28,10 +28,17 @@
 .imageWrap {
   @include columns(8, -1);
 
+  position: relative;
+
   img {
-    width: auto;
-    height: 100%;
-    object-fit: cover;
+    position: absolute;
+    top: -10%;
+    left: 0;
+    max-width: none;
+
+    @include media-breakpoint-down(lg) {
+      transform: translateX(-96px);
+    }
   }
 
   @include media-breakpoint-down(md) {
@@ -41,10 +48,12 @@
 
 .subscriptionBanner {
   background-color: $gray-50;
+  overflow: hidden;
 
   &_Form {
     display: flex;
     justify-content: space-between;
+    margin-bottom: to-rem(12px);
     padding: to-rem($spacing-small) to-rem($spacing-small)
       to-rem($spacing-small) to-rem($spacing-standard);
     border: 1px solid $gray-200;
@@ -67,6 +76,41 @@
     width: 60%;
     border: none;
   }
+
+  &_ErrorMessage {
+    @include paragraphSmFont;
+
+    position: absolute;
+    margin-bottom: 0;
+    margin-left: to-rem(4px);
+    color: $pink-950;
+  }
+
+  &_SuccessMessageWrap {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    padding-top: to-rem(10px);
+    padding-bottom: to-rem(10px);
+  }
+
+  &_SuccessMessage {
+    @include paragraphSmFont;
+
+    margin-right: to-rem(12px);
+    margin-bottom: 0;
+    color: $gray;
+  }
+
+  input {
+    @include paragraphSmFont;
+
+    color: $black;
+
+    &::-webkit-input-placeholder {
+      color: $gray;
+    }
+  }
 }
 
 .header {
@@ -87,4 +131,8 @@
 
 .button {
   margin-bottom: 0;
+}
+
+.hide {
+  display: none;
 }

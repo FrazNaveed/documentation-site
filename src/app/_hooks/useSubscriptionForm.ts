@@ -12,32 +12,35 @@ export default function useSubscriptionForm() {
     const form = e.currentTarget
     const emailInput = form.elements.namedItem('email') as HTMLInputElement | null
     // console.log("Email input:", emailInput)
-  
-    if (!emailInput) {
-      console.error('email is required')
-      setErrorMessage('please input a valid email to subscribe')
-      return
+
+    const handleClick = () => {
+      if (emailInput) {
+        // emailInput.value = ''
+        document.addEventListener('click', () => {
+          emailInput.value = ''
+          setErrorMessage(null)
+          setSuccessMessage(null)
+        }, { once: true })
+      }
     }
-  
-    const emailValue = emailInput.value.trim()
+
+    const emailValue = emailInput ? emailInput.value.trim() : ''
   
     if (emailInput?.validity.valueMissing) {
       console.error('email is required')
       setErrorMessage('please input a valid email to subscribe')
+      handleClick()
     } else if (emailInput?.validity.typeMismatch || !isValidEmailFormat(emailValue)) {
       console.error('please enter a valid email address')
       setErrorMessage('please input a valid email to subscribe')
+      handleClick()
     } else {
       console.info(emailValue, 'passes basic email format check')
       setErrorMessage(null)
       setSuccessMessage('signup complete')
       submitToSurveyMonkey(emailValue)
       console.log(emailValue, 'submitted')
-
-      // clean up
-      // emailInput.value = ''
-      // setErrorMessage(null)
-      // setButtonState(false)
+      handleClick()
     }
   }
 
