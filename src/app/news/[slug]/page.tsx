@@ -10,7 +10,6 @@ type PageProps = {
 
 export default async function Page({ params }: PageProps) {
   const news = await getNewsBySlug(params.slug)
-  console.log('news: ', news)
 
   const featuredPost = news[0] || {}
   const {
