@@ -85,9 +85,19 @@
     @include paragraphSmFont;
 
     position: absolute;
+    width: 40%;
     margin-bottom: 0;
     margin-left: to-rem(4px);
     color: $pink-950;
+    z-index: 1;
+
+    @include media-breakpoint-down(lg) {
+      width: 50%;
+    }
+
+    @include media-breakpoint-down(md) {
+      width: 90%;
+    }
   }
 
   &_SuccessMessageWrap {
