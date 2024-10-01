@@ -20,7 +20,7 @@
     "lint": "cross-env next lint",
     "lint:styles": "stylelint \"**/*.{css,sass,scss}\"",
     "migrate:create": "npm run payload migrate:create",
-    "payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload",
+    "payload": "cross-env PAYLOAD_CONFIG_PATH=./payload.config.ts payload",
     "start": "cross-env next start",
     "prepare": "husky",
     "seed:news": "node 'scripts/seedNews.js'",
