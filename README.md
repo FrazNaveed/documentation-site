@@ -34,12 +34,59 @@ and change `POSTGRES_URL`.
 
 **NB!** If your local environment is pointing at a remote database, **all operations, including seeding data, will happen on that database.**  This is useful for seeding remote staging Payload instances, but bad if you're doing it to the production site! We will try and make this impossible in a future release.
 
-## Seeding Data
-After the above set up, you will have random users and data seeded into your local Payload instance. If you'd like to add more, you can simply run `npm run seed:news` to add more users and news, as long as the stack is running. 
+## CMS Fields + Migrations
+We're using Postgres as our backing database for this project. PayloadCMS ships with the Drizzle ORM package and manages this
+connection transparently for us. One of the more important core concepts here is that any changes to fields in your schema (adding a new field, changing a field's type, etc.) should be done via migrations. Migrations can be managed with Payload native tooling but we must follow a fairly strict workflow around migrations and field changes to properly utilize it and minimize the risk of data loss or corruption.
 
-There are helper functions to seed localized data as well:
-- `npm run seed:news-types-de` and then `npm run seed:news-de` for German
-- `npm run seed:news-types-es` and then `npm run seed:news-es` for Spanish
+### Why we use migrations
+Migrations are the only way to safely modify your database schema. They allow PayloadCMS to track changes made to your schema and apply them in a safe and consistent manner. This is important because it ensures that all developers working on your project have access to the same version of the database schema, which can prevent data loss or corruption.
+
+Payload allows you to create pretty much any type of field in your database, which is powerful but also brittle. It means that
+if you add a field to Payload/Postgres locally, your application won't run, or even deploy, if the exact same field is not 
+present in the database you are deploying to. The tools that Payload/Postgres ships with are pretty smart and make this relatively easy by automatically tracking any changes you make to your local schema and creating a migration file that you can run in production. It also keeps track of the migrations you've run, and everything remains idempotent.
+
+### Order of operations
+1. Build a feature that requires changes to the PayloadCMS schema. (see below)
+2. Pay close attention to the console where Payload is running. It may need confirmation before certain types of schema
+   changes. 
+3. When your changes are stable and ready to be deployed, run `npm run migrate:create`, and Payload will track all of your
+   the changes that need to be made to the remote database, writing a new migration script (with a timestamp) to the 
+   `/migrations` folder. 
+4. Commit your migration file(s) to version control along with the feature you're pushing. Before the build, we will run
+   the `npm run payload migrate` command in a CI/CD pipeline. This will apply all unapplied migrations in order to the 
+   destination database during the deployment process.
+
+If all goes well, your database will be compatible with the new schema, and the deployment will run just fine. 
+
+### When to create a migration
+In general, you will need to create a new migration (manually, on your dev environment) when:
+- Adding or removing a field from your schema
+- Changing the type of a field (for example, changing a string to an integer)
+- Changing the default value for a field
+- Changing the options for a field (for example, changing a select field's options)
+- Changing the relationship between two collections (for example, changing a one-to-many relationship to a many-to-many)
+
+...and so on. Pretty much anything that changes your schema in Postgres.
+
+### Making Schema Changes the Right Way
+Payload closely aligns itself with the requirements of Postgres, so it's important to understand how any schema changes
+will affect your database, **especially when it comes to non-nullable fields**. These fields are automatically set as 
+**non-nullable** in Postgres if they are marked as required in your schema, and Postgres will not allow you to create
+a required field without providing a default value unless you wipe the entire collection. 
+
+In general, there are a few types of schema changes that we do. Here's how we handle each:
+- **Adding non-required fields** is pretty straightforward. Just add the field to your schema and it will 
+  automatically be created as nullable in Postgres locally and should appear immediately on the Payload admin.
+- **Adding required fields** to an existing collection is tricky if you already have items in your collection. Since 
+  these fields are non-nullable, you will need to specify the `defaultValue` for the field. Payload will then immediately
+  create the field (on your local Postgres) and fill it with default values for all existing items. **NB!** if you are
+  creating a new collection or have nothing in the collection yet, you don't need to set a default value!
+- **Removing any type of field** is pretty easy to do, but you will likely need to confirm the chance of data loss
+  in the terminal where Next/Payload is running, since removing the field will completely remove the whole column in
+  Postgres.
+
+Once you've made these changes, the migration you create will duplicate these exact decisions on the destination database,
+and all will be right in the world.
 
 ## Docker Notes
 While we will be doing most of our local development in Node with HMR and such, the production build of the NextJS/Payload stack

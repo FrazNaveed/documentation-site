@@ -1,7 +1,7 @@
 import Hero from '../_components/Hero'
 import { getNewsData } from '../_lib/payload/newsQueries'
 import NewsFilter from '../_components/NewsFilter'
-import type { Media, NewsSubType, NewsType } from 'src/payload-types'
+import type { Media, NewsSubType, NewsType } from '@/payload-types'
 
 export default async function Page() {
   const news = await getNewsData()

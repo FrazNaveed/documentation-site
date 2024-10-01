@@ -4,7 +4,7 @@ import cx from 'classnames'
 import PartnerLogos from '../PartnerLogos'
 import Pill from '../Pill'
 import convertToDate from '../../utils/convertToDate'
-import type { Media } from 'src/payload-types'
+import type { Media } from '@/payload-types'
 import type { TDateFormat } from '../../utils/convertToDate'
 import styles from './Hero.module.scss'
 

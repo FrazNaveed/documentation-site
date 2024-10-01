@@ -1,6 +1,6 @@
-import Hero from 'src/app/_components/Hero'
-import { getNewsBySlug } from 'src/app/_lib/payload/newsQueries'
-import type { Media, NewsSubType, NewsType } from 'src/payload-types'
+import Hero from 'src/app/(frontend)/_components/Hero'
+import { getNewsBySlug } from 'src/app/(frontend)/_lib/payload/newsQueries'
+import type { Media, NewsSubType, NewsType } from '@/payload-types'
 
 type PageProps = {
   params: {

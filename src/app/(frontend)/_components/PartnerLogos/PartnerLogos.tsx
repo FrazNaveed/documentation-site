@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import cx from 'classnames'
 import type { StaticImageData } from 'next/image'
-import type { Media } from 'src/payload-types'
+import type { Media } from '@/payload-types'
 import styles from './PartnerLogos.module.scss'
 
 interface PartnerLogoMedia extends Omit<Media, 'url'> {
