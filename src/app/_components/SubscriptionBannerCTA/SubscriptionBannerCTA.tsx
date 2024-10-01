@@ -30,7 +30,7 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
     setIsFocused(false)
   }
 
-  const handleChange = (e:any) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const emailInput = e.target.value
     console.log(emailInput)
     if (emailInput !== prevEmail && !isValidEmailFormat(emailInput)) {
