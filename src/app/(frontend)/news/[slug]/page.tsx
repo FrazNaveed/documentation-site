@@ -12,15 +12,15 @@ type PageProps = {
 export default async function Page({ params }: PageProps) {
   const news = await getNewsBySlug(params.slug)
 
-  const featuredPost = news[0]
-  if (!featuredPost) {
+  const newsPost = news[0]
+  if (!newsPost) {
     notFound()
   }
   const {
     type,
     subtype,
     logos: featuredPostLogos,
-  } = featuredPost
+  } = newsPost
   let typeHeroBgImage, featuredPostTypeName
   if (typeof type === 'object') {
     typeHeroBgImage = type.image
