@@ -1,4 +1,4 @@
-import BannerCTA from '../../_components/BannerCTA'
+import BannerCTA from 'src/app/(frontend)/_components/BannerCTA'
 
 export default function Page() {
   const linkUrl = 'https://flare.network'
