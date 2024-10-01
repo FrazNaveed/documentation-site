@@ -1,0 +1,7 @@
+{
+  "server-component": {
+    "hello": "Hallo",
+    "and": "und",
+    "welcome": "Willkommen"
+  }
+}
