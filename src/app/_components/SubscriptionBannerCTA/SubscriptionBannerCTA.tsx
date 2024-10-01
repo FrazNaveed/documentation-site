@@ -52,8 +52,10 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
         <div className={styles.formWrap}>
           <h2 className={styles.header}>{header}</h2>
           <p className={styles.text}>{text}</p>
-          <form className={cx(styles.subscriptionBanner_Form, { [styles.subscriptionBanner_Form__focus]: isFocused } )} noValidate onSubmit={(e) => handleSubmit(e)}>
+          <form className={cx(styles.subscriptionBanner_Form, { [styles.subscriptionBanner_Form__focus]: isFocused } )} noValidate onSubmit={(e) => handleSubmit(e)} aria-label="Newsletter Subscription">
+            <label htmlFor='email' className='visuallyHidden'>Email Address</label>
             <input
+              id='email'
               type='email'
               name='email'
               placeholder={placeholder}
@@ -62,6 +64,8 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
               onChange={(e) => handleChange(e)}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              // aria-invalid={disabled}
+              // aria-describedby={errorMessage ? 'errorMessage' : undefined}
             />
             <Button
               text={buttonText}
@@ -74,7 +78,7 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
             />
             {successMessage &&
               <span className={styles.subscriptionBanner_SuccessMessageWrap}>
-                <p className={cx(styles.subscriptionBanner_SuccessMessage)}>{successMessage}</p>
+                <p className={cx(styles.subscriptionBanner_SuccessMessage)} id='successMessage'>{successMessage}</p>
                 <CheckCircle className={styles.checkCircle}/>
               </span>
             }
