@@ -6,7 +6,7 @@ export default function useSubscriptionForm() {
   const [errorMessage, setErrorMessage ] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
 
-  const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault()
   
     const form = e.currentTarget
@@ -77,10 +77,17 @@ export default function useSubscriptionForm() {
       setErrorMessage('please input a valid email to subscribe')
       setupClearListeners()
     } else {
-      console.info(emailValue, 'passes basic email format check')
-      setSuccessMessage('signup complete')
-      submitToMailChimp(emailValue)
-      console.log(emailValue, 'submitted')
+      console.info(emailValue, 'passes basic email format check, enabling submit button')
+      try {
+        const message = await submitToMailChimp(emailValue)
+        setSuccessMessage('signup complete')
+        setErrorMessage(null)
+        console.log(emailValue, 'submitted')
+      } catch (error) {
+        // console.error(error instanceof Error ? error.message : 'Failed to subscribe')
+        setErrorMessage(error instanceof Error ? error.message : 'Failed to subscribe')
+      }
+      //
       setupClearListeners()
     }
   }
