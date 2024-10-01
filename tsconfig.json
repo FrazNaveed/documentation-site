@@ -27,7 +27,7 @@
         "./*"
       ],
       "@payload-config": [
-        "./src/payload.config.ts"
+        "payload.config.ts"
       ]
     },
     "target": "ES2017"
@@ -40,6 +40,7 @@
     "scripts/seedNews.js"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "migrations"
   ]
 }
