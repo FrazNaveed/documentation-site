@@ -27,6 +27,7 @@ export default async function Page() {
     publishDate: featuredPostDate,
     type: featuredPostType,
     subtype: featuredPostSubType,
+    contentType,
     logos: featuredPostLogos,
     teaserThumbnail: featuredPostTeaserThumbnail,
   } = featuredPost
@@ -45,6 +46,7 @@ export default async function Page() {
         backgroundImage={featuredPostSubTypeHeroBgImage as Media || featuredPostTypeHeroBgImage as Media}
         header={featuredPostTitle}
         timestamp={featuredPostDate}
+        contentType={contentType}
         {...(featuredPostTypeName ? {pill: { text: featuredPostTypeName }} : {})}
         {...(featuredPostLogos ? {logos: featuredPostLogos.map((logo) => logo.image as Media)} : {})}
         {...(typeof featuredPostTeaserThumbnail === 'object' ? {thumbnail: featuredPostTeaserThumbnail} : {})}

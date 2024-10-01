@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import cx from 'classnames'
+import ContentTypeIcon from '../ContentTypeIcon'
 import PartnerLogos from '../PartnerLogos'
 import Pill from '../Pill'
 import PlayButton from '../svgs/PlayButton'
@@ -12,11 +13,6 @@ import styles from './TeaserGrid.module.scss'
 export type TeaserGridProps = {
   style?: '3-up' | 'wide'
   teasers: News[]
-}
-
-const thumbnailIcons = {
-  'video': <PlayButton />,
-  'podcast': null,
 }
 
 export default function TeaserGrid({
@@ -72,7 +68,7 @@ export default function TeaserGrid({
                           alt={teaserThumbnail.alt}
                           priority
                         />
-                        {contentType && <div className={styles.thumbnailIcon}>{thumbnailIcons[contentType]}</div>}
+                        <ContentTypeIcon className={styles.thumbnailIcon} contentType={contentType} />
                       </div>
                     )}
                   </div>
