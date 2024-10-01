@@ -17,8 +17,8 @@ export default async function Page({ params }: PageProps) {
     subtype,
     logos: featuredPostLogos,
   } = featuredPost
-  const { heroBackgroundImage: typeHeroBgImage, name: featuredPostTypeName } = type as NewsType
-  const { heroBackgroundImage: subTypeHeroBgImage } = subtype as NewsSubType || {}
+  const { image: typeHeroBgImage, name: featuredPostTypeName } = type as NewsType
+  const { image: subTypeHeroBgImage } = subtype as NewsSubType || {}
 
   return (
     <>

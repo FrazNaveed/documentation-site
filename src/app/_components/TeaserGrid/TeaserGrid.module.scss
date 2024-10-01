@@ -1,0 +1,141 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.container {
+  @include container;
+}
+
+.grid {
+  @include grid;
+
+  row-gap: to-rem($spacing-7x-large);
+
+  @include media-breakpoint-down(lg) {
+    row-gap: to-rem($spacing-xxx-large);
+  }
+
+  @include media-breakpoint-down(md) {
+    row-gap: to-rem($spacing-xx-large);
+  }
+}
+
+.teaser {
+  @include spanColumns(4);
+}
+
+.titleLink {
+  &,
+  &:visited {
+    color: $black;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $link-hover-color;
+  }
+}
+
+.visualsWrap {
+  display: block;
+  position: relative;
+  margin-bottom: to-rem($spacing-small);
+  background-color: $gray-100;
+  overflow: hidden;
+  aspect-ratio: 1.5;
+
+  &:hover,
+  &:focus,
+  &:active {
+    + .text .titleLink {
+      color: $link-hover-color;
+    }
+  }
+}
+
+.visuals {
+  display: flex;
+  position: relative;
+  align-items: center;
+  height: 100%;
+  padding: $spacing-standard;
+  z-index: 1;
+  gap: $spacing-standard;
+}
+
+.content,
+.decoration {
+  width: calc(50% - $spacing-standard / 2);
+}
+
+.title {
+  @include headerH6;
+
+  margin-bottom: to-rem($spacing-x-small);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: to-rem($spacing-small);
+}
+
+.date {
+  @include label;
+
+  margin-bottom: 0;
+  color: $gray;
+}
+
+.bgImgWrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+}
+
+.bgImg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: auto;
+  max-width: none;
+  height: 100%;
+  transform: translateY(-50%);
+}
+
+.thumbnailWrap {
+  position: relative;
+  max-width: 180px;
+  height: auto;
+  margin-left: auto;
+
+  &__wide {
+    max-width: 192px;
+  }
+}
+
+.thumbnail {
+  display: block;
+  border-radius: 14px;
+}
+
+.thumbnailIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 50%;
+  transform: translate(-50%, -50%);
+
+  svg {
+    display: block;
+    width: 71px;
+    max-width: 100%;
+    height: auto;
+  }
+}

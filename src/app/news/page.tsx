@@ -1,7 +1,9 @@
 import Hero from '../_components/Hero'
+import TeaserGrid from '../_components/TeaserGrid'
 import { getNewsData } from '../_lib/payload/newsQueries'
 import NewsFilter from '../_components/NewsFilter'
 import type { Media, NewsSubType, NewsType } from 'src/payload-types'
+import styles from './page.module.scss'
 
 export default async function Page() {
   const news = await getNewsData()
@@ -28,11 +30,11 @@ export default async function Page() {
     logos: featuredPostLogos,
     teaserThumbnail: featuredPostTeaserThumbnail,
   } = featuredPost
-  const { heroBackgroundImage: featuredPostTypeHeroBgImage, name: featuredPostTypeName } = featuredPostType as NewsType
-  const { heroBackgroundImage: featuredPostSubTypeHeroBgImage } = featuredPostSubType as NewsSubType | null || {}
+  const { image: featuredPostTypeHeroBgImage, name: featuredPostTypeName } = featuredPostType as NewsType
+  const { image: featuredPostSubTypeHeroBgImage } = featuredPostSubType as NewsSubType | null || {}
 
   return (
-    <>
+    <div className={styles.wrap}>
       <Hero
         link={`/news/${featuredPostSlug}`}
         style='featuredNews'
@@ -43,23 +45,11 @@ export default async function Page() {
         {...(featuredPostLogos ? {logos: featuredPostLogos.map((logo) => logo.image as Media)} : {})}
         thumbnail={featuredPostTeaserThumbnail as Media | null | undefined}
       />
-      <h1>Flare News</h1>
+      <h1 className={styles.pageTitle}>Flare News</h1>
       <NewsFilter navLinks={latestNewsNav} />
-      <h2>Default News query</h2>
-      {news.map((item, index) => (
-        <p key={item.id}>Title: {item.title}</p>
-        )
-      )}
-      <h2>Query News by One Type 'Past Events'</h2>
-      {pastEvents?.map((item, index) => (
-        <p key={item.id}>Title: {item.title}</p>
-        )
-      )}
-      <h2>Query News by Two Types 'Past Events' and 'Ecosystem'</h2>
-      {twoTypesOfNews?.map((item, index) => (
-        <p key={item.id}>Title: {item.title}</p>
-        )
-      )}
-    </>
+      <div className={styles.teaserGrid}>
+        <TeaserGrid teasers={news} />
+      </div>
+    </div>
   )
 }
