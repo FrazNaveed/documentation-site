@@ -64,8 +64,7 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
               onChange={(e) => handleChange(e)}
               onFocus={handleFocus}
               onBlur={handleBlur}
-              // aria-invalid={disabled}
-              // aria-describedby={errorMessage ? 'errorMessage' : undefined}
+              aria-describedby={errorMessage ? 'errorMessage' : successMessage ? 'successMessage' : undefined}
             />
             <Button
               text={buttonText}
@@ -73,18 +72,19 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
               buttonStyle='black' // disabled state is 'secondary' but active state is 'black'
               className={cx(styles.button, { [styles.hide]: successMessage })}
               disabled={disabled}
+              aria-invalid={disabled}
               onFocus={handleFocus}
               onBlur={handleBlur}
             />
             {successMessage &&
               <span className={styles.subscriptionBanner_SuccessMessageWrap}>
-                <p className={cx(styles.subscriptionBanner_SuccessMessage)} id='successMessage'>{successMessage}</p>
+                <p className={cx(styles.subscriptionBanner_SuccessMessage)} id='successMessage' aria-live='polite'>{successMessage}</p>
                 <CheckCircle className={styles.checkCircle}/>
               </span>
             }
           </form>
           {errorMessage &&
-            <p className={styles.subscriptionBanner_ErrorMessage} id='errorMessage'>
+            <p className={styles.subscriptionBanner_ErrorMessage} id='errorMessage' aria-live='assertive'>
               {errorMessage}
             </p>
           }
