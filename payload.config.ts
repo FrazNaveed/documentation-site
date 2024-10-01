@@ -7,11 +7,11 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
-import { Users } from './collections/Users'
-import { Media } from './collections/Media'
-import { News } from './collections/News'
-import { NewsSubTypes } from './collections/NewsSubTypes'
-import { NewsTypes } from './collections/NewsTypes'
+import { Users } from './src/app/(payload)/_collections/Users'
+import { Media } from './src/app/(payload)/_collections/Media'
+import { News } from './src/app/(payload)/_collections/News'
+import { NewsSubTypes } from './src/app/(payload)/_collections/NewsSubTypes'
+import { NewsTypes } from './src/app/(payload)/_collections/NewsTypes'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -42,7 +42,7 @@ export default buildConfig({
           de: 'Spanisch',
         },
         code: 'es',
-       }, 
+      },
       {
         label: {
           en: 'German',

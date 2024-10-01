@@ -1,6 +1,6 @@
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import config from '@payload-config'
-import type { News } from 'src/payload-types'
+import type { News } from '@/payload-types'
 
 const payload = await getPayloadHMR({ config })
 

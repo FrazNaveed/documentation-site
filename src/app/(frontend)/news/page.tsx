@@ -2,7 +2,7 @@ import Hero from '../_components/Hero'
 import TeaserGrid from '../_components/TeaserGrid'
 import { getNewsData } from '../_lib/payload/newsQueries'
 import NewsFilter from '../_components/NewsFilter'
-import type { Media, NewsSubType, NewsType } from 'src/payload-types'
+import type { Media, NewsSubType, NewsType } from '@/payload-types'
 import styles from './page.module.scss'
 
 export default async function Page() {

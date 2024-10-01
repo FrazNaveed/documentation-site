@@ -1,5 +1,5 @@
 import PlayButton from '../svgs/PlayButton'
-import type { News } from 'src/payload-types'
+import type { News } from '@/payload-types'
 
 export type ContentTypeIconProps = {
   contentType?: News['contentType']

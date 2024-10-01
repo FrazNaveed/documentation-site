@@ -5,7 +5,7 @@ import ContentTypeIcon from '../ContentTypeIcon'
 import PartnerLogos from '../PartnerLogos'
 import Pill from '../Pill'
 import convertToDate from '../../utils/convertToDate'
-import type { News, Media } from 'src/payload-types'
+import type { News, Media } from '@/payload-types'
 import type { TDateFormat } from '../../utils/convertToDate'
 import styles from './Hero.module.scss'
 

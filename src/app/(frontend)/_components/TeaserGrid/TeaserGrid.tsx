@@ -6,7 +6,7 @@ import PartnerLogos from '../PartnerLogos'
 import Pill from '../Pill'
 import PlayButton from '../svgs/PlayButton'
 import convertToDate from '../../utils/convertToDate'
-import type { Media, News, NewsSubType, NewsType } from 'src/payload-types'
+import type { Media, News, NewsSubType, NewsType } from '@/payload-types'
 import type { TDateFormat } from '../../utils/convertToDate'
 import styles from './TeaserGrid.module.scss'
 
