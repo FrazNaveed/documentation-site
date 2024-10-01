@@ -13,12 +13,16 @@ export default async function Page({ params }: PageProps) {
 
   const featuredPost = news[0] || {}
   const {
-    type = {},
+    type,
     subtype,
     logos: featuredPostLogos,
   } = featuredPost
-  const { image: typeHeroBgImage, name: featuredPostTypeName } = type as NewsType
-  const { image: subTypeHeroBgImage } = subtype as NewsSubType || {}
+  let typeHeroBgImage, featuredPostTypeName
+  if (typeof type === 'object') {
+    typeHeroBgImage = type.image
+    featuredPostTypeName = type.name
+  }
+  const subTypeHeroBgImage = subtype && typeof subtype === 'object' ? subtype.image : undefined;
 
   return (
     <>

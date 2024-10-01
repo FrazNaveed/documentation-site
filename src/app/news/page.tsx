@@ -25,13 +25,17 @@ export default async function Page() {
     excerpt: featuredPostExcerpt,
     title: featuredPostTitle,
     publishDate: featuredPostDate,
-    type: featuredPostType = {},
+    type: featuredPostType,
     subtype: featuredPostSubType,
     logos: featuredPostLogos,
     teaserThumbnail: featuredPostTeaserThumbnail,
   } = featuredPost
-  const { image: featuredPostTypeHeroBgImage, name: featuredPostTypeName } = featuredPostType as NewsType
-  const { image: featuredPostSubTypeHeroBgImage } = featuredPostSubType as NewsSubType | null || {}
+  let featuredPostTypeHeroBgImage, featuredPostTypeName
+  if (typeof featuredPostType === 'object') {
+    featuredPostTypeHeroBgImage = featuredPostType.image
+    featuredPostTypeName = featuredPostType.name
+  }
+  const featuredPostSubTypeHeroBgImage = featuredPostSubType && typeof featuredPostSubType === 'object' ? featuredPostSubType.image : undefined;
 
   return (
     <div className={styles.wrap}>
@@ -41,9 +45,9 @@ export default async function Page() {
         backgroundImage={featuredPostSubTypeHeroBgImage as Media || featuredPostTypeHeroBgImage as Media}
         header={featuredPostTitle}
         timestamp={featuredPostDate}
-        pill={{ text: featuredPostTypeName }}
+        {...(featuredPostTypeName ? {pill: { text: featuredPostTypeName }} : {})}
         {...(featuredPostLogos ? {logos: featuredPostLogos.map((logo) => logo.image as Media)} : {})}
-        thumbnail={featuredPostTeaserThumbnail as Media | null | undefined}
+        {...(typeof featuredPostTeaserThumbnail === 'object' ? {thumbnail: featuredPostTeaserThumbnail} : {})}
       />
       <h1 className={styles.pageTitle}>Flare News</h1>
       <NewsFilter navLinks={latestNewsNav} />

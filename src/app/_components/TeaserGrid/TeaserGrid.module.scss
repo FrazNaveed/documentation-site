@@ -62,7 +62,7 @@
 .text__wide {
   @include media-breakpoint-up(md) {
     flex-shrink: 0;
-    width: calc(50% - $grid-column-gap / 2);
+    width: calc(50% - ($grid-column-gap / 2));
   }
 }
 
@@ -96,7 +96,7 @@
 
 .content,
 .decoration {
-  width: calc(50% - $spacing-standard / 2);
+  width: calc(50% - ($spacing-standard / 2));
 }
 
 .title {

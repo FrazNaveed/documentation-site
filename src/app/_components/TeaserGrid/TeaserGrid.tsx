@@ -14,6 +14,11 @@ export type TeaserGridProps = {
   teasers: News[]
 }
 
+const thumbnailIcons = {
+  'video': <PlayButton />,
+  'podcast': null,
+}
+
 export default function TeaserGrid({
   style = '3-up',
   teasers,
@@ -34,17 +39,13 @@ export default function TeaserGrid({
           title,
         }) => {
           const link = `/news/${slug}`
-          const { image: typeHeroBgImage } = type as NewsType
-          const { image: subTypeHeroBgImage } = subtype as NewsSubType || {}
-          const backgroundImage = subTypeHeroBgImage as Media || typeHeroBgImage as Media
-          const thumbnailIcons = {
-            'video': <PlayButton />,
-            'podcast': null,
-          }
+          const typeHeroBgImage = typeof type === 'object' ? type.image : undefined;
+          const subTypeHeroBgImage = subtype && typeof subtype === 'object' ? subtype.image : undefined;
+          const backgroundImage = subTypeHeroBgImage || typeHeroBgImage
           return (
             <article key={id} className={cx(styles.teaser, styles[`teaser__${style}`])}>
               <Link href={link} className={cx(styles.visualsWrap, styles[`visualsWrap__${style}`])} tabIndex={-1}>
-                {backgroundImage?.url && (
+                {typeof backgroundImage === 'object' && backgroundImage?.url && (
                   <div className={styles.bgImgWrap}>
                     <Image
                       className={styles.bgImg}
