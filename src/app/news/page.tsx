@@ -47,6 +47,9 @@ export default async function Page() {
       />
       <h1 className={styles.pageTitle}>Flare News</h1>
       <NewsFilter navLinks={latestNewsNav} />
+      <div className={styles.featuredTeaserGrid}>
+        <TeaserGrid teasers={news.slice(1,4)} style='wide' />
+      </div>
       <div className={styles.teaserGrid}>
         <TeaserGrid teasers={news} />
       </div>
