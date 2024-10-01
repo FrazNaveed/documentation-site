@@ -49,7 +49,7 @@ present in the database you are deploying to. The tools that Payload/Postgres sh
 1. Build a feature that requires changes to the PayloadCMS schema. (see below)
 2. Pay close attention to the console where Payload is running. It may need confirmation before certain types of schema
    changes. 
-3. When your changes are stable and ready to be deployed, run `npm run migrate:create`, and Payload will track all of your
+3. When your changes are stable and ready to be deployed, run `npm run migrate:create`, and Payload will track all of
    the changes that need to be made to the remote database, writing a new migration script (with a timestamp) to the 
    `/migrations` folder. 
 4. Commit your migration file(s) to version control along with the feature you're pushing. Before the build, we will run
@@ -71,7 +71,7 @@ In general, you will need to create a new migration (manually, on your dev envir
 ### Making Schema Changes the Right Way
 Payload closely aligns itself with the requirements of Postgres, so it's important to understand how any schema changes
 will affect your database, **especially when it comes to non-nullable fields**. These fields are automatically set as 
-**non-nullable** in Postgres if they are marked as required in your schema, and Postgres will not allow you to create
+**non-nullable** in Postgres if they are marked as `required` in your schema, and Postgres will not allow you to create
 a required field without providing a default value unless you wipe the entire collection. 
 
 In general, there are a few types of schema changes that we do. Here's how we handle each:
