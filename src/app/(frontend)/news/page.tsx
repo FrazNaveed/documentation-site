@@ -19,10 +19,10 @@ export default async function Page() {
     {text: 'Research', link: 'research', id: 5}
   ]
 
-  const featuredPost = news[0]
-  if (!featuredPost) {
+  if (!news || news.length === 0) {
     return <h1 className={styles.pageTitle}>No news posts found</h1>
   }
+  const featuredPost = news[0]
   const {
     slug: featuredPostSlug,
     excerpt: featuredPostExcerpt,
