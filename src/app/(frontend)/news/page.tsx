@@ -1,7 +1,9 @@
 import Hero from '../_components/Hero'
+import TeaserGrid from '../_components/TeaserGrid'
 import { getNewsData } from '../_lib/payload/newsQueries'
 import NewsFilter from '../_components/NewsFilter'
 import type { Media, NewsSubType, NewsType } from '@/payload-types'
+import styles from './page.module.scss'
 
 export default async function Page() {
   const news = await getNewsData()
@@ -23,43 +25,40 @@ export default async function Page() {
     excerpt: featuredPostExcerpt,
     title: featuredPostTitle,
     publishDate: featuredPostDate,
-    type: featuredPostType = {},
+    type: featuredPostType,
     subtype: featuredPostSubType,
+    contentType,
     logos: featuredPostLogos,
     teaserThumbnail: featuredPostTeaserThumbnail,
   } = featuredPost
-  const { heroBackgroundImage: featuredPostTypeHeroBgImage, name: featuredPostTypeName } = featuredPostType as NewsType
-  const { heroBackgroundImage: featuredPostSubTypeHeroBgImage } = featuredPostSubType as NewsSubType | null || {}
+  let featuredPostTypeHeroBgImage, featuredPostTypeName
+  if (typeof featuredPostType === 'object') {
+    featuredPostTypeHeroBgImage = featuredPostType.image
+    featuredPostTypeName = featuredPostType.name
+  }
+  const featuredPostSubTypeHeroBgImage = featuredPostSubType && typeof featuredPostSubType === 'object' ? featuredPostSubType.image : undefined;
 
   return (
-    <>
+    <div className={styles.wrap}>
       <Hero
         link={`/news/${featuredPostSlug}`}
         style='featuredNews'
         backgroundImage={featuredPostSubTypeHeroBgImage as Media || featuredPostTypeHeroBgImage as Media}
         header={featuredPostTitle}
         timestamp={featuredPostDate}
-        pill={{ text: featuredPostTypeName }}
+        contentType={contentType}
+        {...(featuredPostTypeName ? {pill: { text: featuredPostTypeName }} : {})}
         {...(featuredPostLogos ? {logos: featuredPostLogos.map((logo) => logo.image as Media)} : {})}
-        thumbnail={featuredPostTeaserThumbnail as Media | null | undefined}
+        {...(typeof featuredPostTeaserThumbnail === 'object' ? {thumbnail: featuredPostTeaserThumbnail} : {})}
       />
-      <h1>Flare News</h1>
+      <h1 className={styles.pageTitle}>Flare News</h1>
       <NewsFilter navLinks={latestNewsNav} />
-      <h2>Default News query</h2>
-      {news.map((item, index) => (
-        <p key={item.id}>Title: {item.title}</p>
-        )
-      )}
-      <h2>Query News by One Type 'Past Events'</h2>
-      {pastEvents?.map((item, index) => (
-        <p key={item.id}>Title: {item.title}</p>
-        )
-      )}
-      <h2>Query News by Two Types 'Past Events' and 'Ecosystem'</h2>
-      {twoTypesOfNews?.map((item, index) => (
-        <p key={item.id}>Title: {item.title}</p>
-        )
-      )}
-    </>
+      <div className={styles.featuredTeaserGrid}>
+        <TeaserGrid teasers={news.slice(1,4)} style='wide' />
+      </div>
+      <div className={styles.teaserGrid}>
+        <TeaserGrid teasers={news} />
+      </div>
+    </div>
   )
 }

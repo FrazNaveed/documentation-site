@@ -71,6 +71,21 @@ export const News: CollectionConfig = {
       localized: true,
     },
     {
+      name: 'contentType',
+      type: 'select',
+      options: [
+        {
+          label: 'Video',
+          value: 'video',
+        },
+        {
+          label: 'Podcast',
+          value: 'podcast',
+        },
+      ],
+      localized: true,
+    },
+    {
       name: 'teaserThumbnail',
       type: 'upload',
       relationTo: 'media',

@@ -31,7 +31,7 @@ export const NewsTypes: CollectionConfig = {
       localized: true,
     },
     {
-      name: 'heroBackgroundImage',
+      name: 'image',
       type: 'upload',
       relationTo: 'media',
       required: true,

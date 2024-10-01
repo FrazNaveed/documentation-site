@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import cx from 'classnames'
+import ContentTypeIcon from '../ContentTypeIcon'
 import PartnerLogos from '../PartnerLogos'
 import Pill from '../Pill'
 import convertToDate from '../../utils/convertToDate'
-import type { Media } from '@/payload-types'
+import type { News, Media } from '@/payload-types'
 import type { TDateFormat } from '../../utils/convertToDate'
 import styles from './Hero.module.scss'
 
@@ -12,6 +13,7 @@ export type HeroProps = {
   style?: 'standard' | 'featuredNews' | 'featuredEvent' | 'protocol'
   link?: string
   backgroundImage?: Media
+  contentType?: News['contentType']
   logos?: Media[]
   thumbnail?: Media | null
   header?: string | null
@@ -33,6 +35,7 @@ export default function Hero({
   style = 'standard',
   link,
   backgroundImage,
+  contentType,
   logos,
   thumbnail,
   header,
@@ -77,6 +80,7 @@ export default function Hero({
               alt={thumbnail.alt}
               priority
             />
+            <ContentTypeIcon className={styles.thumbnailIcon} contentType={contentType} />
           </div>
         )}
       </div>
