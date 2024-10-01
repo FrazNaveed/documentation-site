@@ -9,10 +9,12 @@ export type ButtonProps = {
   buttonStyle?: 'pink' | 'black' | 'secondary',
   size?: 'large' | 'medium' | 'small',
   disabled?: boolean
+  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void,
+  onFocus?: (event: React.FocusEvent<HTMLElement>) => void,
 }
 
 export default function Button({
-  text, link, className, buttonStyle = 'pink', size = 'medium', disabled,
+  text, link, className, buttonStyle = 'pink', size = 'medium', disabled, onBlur, onFocus
 }: ButtonProps) {
   const linkClasses = cx(
     styles.Button,
@@ -26,6 +28,6 @@ export default function Button({
       <Link href={link} className={linkClasses}>
         <span className={styles.text}>{text}</span>
       </Link>
-    ) : <button type='submit' className={cx(linkClasses, styles.text)} disabled={disabled}>{text}</button>
+    ) : <button type='submit' className={cx(linkClasses, styles.text)} disabled={disabled} onBlur={onBlur} onFocus={onFocus}>{text}</button>
   )
 }
