@@ -94,7 +94,7 @@
 }
 
 .header {
-  @include headerH3(lg);
+  @include headerH3;
 
   margin-bottom: 0;
 }
@@ -124,7 +124,7 @@
     }
 
     @include media-breakpoint-down(md) {
-      grid-column-start: 3;
+      grid-column-start: 4;
     }
   }
 
@@ -169,6 +169,12 @@
       transform: translateY(-50%);
     }
   }
+
+  @include media-breakpoint-down(sm) {
+    &__standard {
+      left: -50%;
+    }
+  }
 }
 
 .thumbnailWrap {
@@ -183,6 +189,21 @@
 .thumbnail {
   display: block;
   border-radius: 14px;
+}
+
+.thumbnailIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 50%;
+  transform: translate(-50%, -50%);
+
+  svg {
+    display: block;
+    width: 71px;
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 .hideOnMobile {

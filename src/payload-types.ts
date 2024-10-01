@@ -99,6 +99,7 @@ export interface News {
   author: number | User;
   type: number | NewsType;
   subtype?: (number | null) | NewsSubType;
+  contentType?: ('video' | 'podcast') | null;
   teaserThumbnail?: (number | null) | Media;
   logos?:
     | {
@@ -119,7 +120,7 @@ export interface NewsType {
   id: number;
   name: string;
   slug: string;
-  heroBackgroundImage: number | Media;
+  image: number | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -131,7 +132,7 @@ export interface NewsSubType {
   id: number;
   name: string;
   slug: string;
-  heroBackgroundImage: number | Media;
+  image: number | Media;
   updatedAt: string;
   createdAt: string;
 }

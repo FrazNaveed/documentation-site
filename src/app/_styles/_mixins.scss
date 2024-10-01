@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "./spacing" as *;
 
 $container-width-flare: 1400px;
 $container-padding-flare: 24px;
@@ -21,8 +22,8 @@ $breakpoint-xl: 1401px;
     md: $container-padding-md,
   ),
   $grid-responsive-column-counts: (
-    lg: 9,
-    md: 3,
+    lg: 8,
+    md: 4,
   ),
   $grid-breakpoints: (
     xs: $breakpoint-xs,
@@ -42,4 +43,8 @@ $root-font-size: $root-font-size-number * 1px;
   $remSize: math.div($pixelSize, $root-font-size);
 
   @return $remSize * 1rem;
+}
+
+@mixin pageWrap() {
+  padding-bottom: $spacing-7x-large;
 }

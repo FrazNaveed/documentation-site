@@ -5,6 +5,7 @@ import type { News } from 'src/payload-types'
 const payload = await getPayloadHMR({ config })
 
 export const getNewsData = async (...types: ('Flare Updates' | 'AMA & Interviews' | 'Past Events' | 'Ecosystem' | 'Research' | null)[]) => {
+  console.log('types: ', types)
   const newsData = await payload.find({
     collection: 'news',
     sort: '-publishDate',
