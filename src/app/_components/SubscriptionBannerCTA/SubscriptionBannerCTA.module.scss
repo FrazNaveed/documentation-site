@@ -121,6 +121,10 @@
 
     color: $black;
 
+    &:focus {
+      outline: none;
+    }
+
     &::-webkit-input-placeholder {
       color: $gray;
     }

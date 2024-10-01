@@ -19,12 +19,16 @@ export type CTAProps = {
 export default function SubscriptionBannerCTA({ header, text, placeholder, buttonText, className }: CTAProps) {
   const [prevEmail, setPrevEmail] = useState('')
   const [disabled, setDisabled] = useState(true)
+  const [isFocused, setIsFocused] = useState(false)
+  const { handleSubmit, successMessage, errorMessage } = useSubscriptionForm()
   const url ='/fw5_join_bg.png'
   const alt = 'background image'
   const imageWidth = 1728 / 2
   const imageHeight = 858 / 2
-  const { handleSubmit, successMessage, errorMessage } = useSubscriptionForm()
-  let focusTest = false
+
+  const handleBlur = () => {
+    setIsFocused(false)
+  }
 
   const handleChange = (e:any) => {
     const emailInput = e.target.value
@@ -38,13 +42,17 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
     setPrevEmail(emailInput)
   }
 
+  const handleFocus = () => {
+    setIsFocused(true)
+  }
+
   return (
     <section className={cx(styles.subscriptionBanner, className)}>
       <div className={styles.container}>
         <div className={styles.formWrap}>
           <h2 className={styles.header}>{header}</h2>
           <p className={styles.text}>{text}</p>
-          <form className={cx(styles.subscriptionBanner_Form, { [styles.subscriptionBanner_Form__focus]: focusTest } )} noValidate onSubmit={(e) => handleSubmit(e)}>
+          <form className={cx(styles.subscriptionBanner_Form, { [styles.subscriptionBanner_Form__focus]: isFocused } )} noValidate onSubmit={(e) => handleSubmit(e)}>
             <input
               type='email'
               name='email'
@@ -52,6 +60,8 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
               required
               className={styles.subscriptionBanner_FormInput}
               onChange={(e) => handleChange(e)}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
             />
             <Button
               text={buttonText}
@@ -59,6 +69,8 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
               buttonStyle='black' // disabled state is 'secondary' but active state is 'black'
               className={cx(styles.button, { [styles.hide]: successMessage })}
               disabled={disabled}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
             />
             {successMessage &&
               <span className={styles.subscriptionBanner_SuccessMessageWrap}>
