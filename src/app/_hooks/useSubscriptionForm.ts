@@ -33,39 +33,7 @@ export default function useSubscriptionForm() {
     const emailInput = form.elements.namedItem('email') as HTMLInputElement | null
     // console.log("Email input:", emailInput)
     const emailValue = emailInput ? emailInput.value.trim() : ''
-    console.log('email value: ', emailValue)
-
-    // original handleClick
-    // const handleClick = () => {
-    //   if (emailInput) {
-    //     // emailInput.value = ''
-    //     document.addEventListener('click', () => {
-    //       emailInput.value = ''
-    //       setErrorMessage(null)
-    //       setSuccessMessage(null)
-    //     }, { once: true })
-    //   }
-    // }
-
-    // separate actions per function
-    // const clearInput = () => {
-    //   if (emailInput) {
-    //     console.log('email value in clearInput', emailInput.value)
-    //     emailInput.value = ''
-    //   }
-    // }
-
-    // const handleClearAll = () => {
-    //   clearInput()
-    //   clearMessages()
-    // }
-
-    // const handleClick = () => {
-    //   if (emailInput) {
-    //     setupClearListeners()
-    //   }
-    // }
-    // test adding multiple listeners
+    // console.log('email value: ', emailValue)
 
     if (emailInput?.validity.valueMissing) {
       console.error('email is required')
