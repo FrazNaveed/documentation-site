@@ -1,6 +1,6 @@
 import { useState, useEffect, FormEvent } from 'react'
 import isValidEmailFormat from 'src/app/(frontend)/_utils/isValidEmailFormat'
-import { submitToMailChimp } from '../_lib/api'
+import { submitToMailChimp } from 'src/app/(frontend)/_lib/api'
 
 export default function useSubscriptionForm() {
   const [errorMessage, setErrorMessage ] = useState<string | null>(null)
