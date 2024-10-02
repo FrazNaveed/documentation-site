@@ -21,7 +21,7 @@ export const ColumnsBlock: Block = {
               relationTo: 'media',
             }
           ],
-          imageURL: '',
+          imageURL: '/icons/image.svg',
           imageAltText: 'Left Column image block icon',
         },
         {
@@ -33,7 +33,7 @@ export const ColumnsBlock: Block = {
               localized: true,
             },
           ],
-          imageURL: '',
+          imageURL: '/icons/align-left.svg',
           imageAltText: 'Left Column text block icon',
         },
       ],
@@ -55,7 +55,7 @@ export const ColumnsBlock: Block = {
               relationTo: 'media',
             }
           ],
-          imageURL: '',
+          imageURL: '/icons/image.svg',
           imageAltText: 'Right Column image block icon',
         },
         {
@@ -67,7 +67,7 @@ export const ColumnsBlock: Block = {
               localized: true,
             },
           ],
-          imageURL: '',
+          imageURL: '/icons/align-left.svg',
           imageAltText: 'Right Column text block icon',
         },
       ],
@@ -82,6 +82,6 @@ export const ColumnsBlock: Block = {
       defaultValue: false,
     },
   ],
-  imageURL: '',
+  imageURL: '/icons/columns.svg',
   imageAltText: 'Columns block icon',
 }

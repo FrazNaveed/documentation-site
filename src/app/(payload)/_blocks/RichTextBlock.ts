@@ -15,4 +15,6 @@ export const RichTextBlock: Block = {
       defaultValue: false,
     },
   ],
+  imageURL: '/icons/align-left.svg',
+  imageAltText: 'Rich text block icon',
 }
