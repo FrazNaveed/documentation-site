@@ -1,10 +1,30 @@
-import { useState, FormEvent } from 'react'
+import { useState, useEffect, FormEvent } from 'react'
 import isValidEmailFormat from '../_utils/isValidEmailFormat'
 import { submitToMailChimp } from '../_lib/api'
 
 export default function useSubscriptionForm() {
   const [errorMessage, setErrorMessage ] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
+
+  const clearMessages = () => {
+    setErrorMessage(null)
+    setSuccessMessage(null)
+  }
+
+  useEffect(() => {
+    const handleEvent = (event: KeyboardEvent | MouseEvent) => {
+      if ('key' in event && event.type === 'keydown' && event.key === 'Enter') return
+      clearMessages()
+    }
+
+    document.addEventListener('click', handleEvent)
+    document.addEventListener('keydown', handleEvent)
+
+    return () => {
+      document.removeEventListener('click', handleEvent)
+      document.removeEventListener('keydown', handleEvent)
+    }
+  }, [])
 
   const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -28,38 +48,17 @@ export default function useSubscriptionForm() {
     // }
 
     // separate actions per function
-    const clearInput = () => {
-      if (emailInput) {
-        console.log('email value in clearInput', emailInput.value)
-        emailInput.value = ''
-      }
-    }
+    // const clearInput = () => {
+    //   if (emailInput) {
+    //     console.log('email value in clearInput', emailInput.value)
+    //     emailInput.value = ''
+    //   }
+    // }
 
-    const clearMessages = () => {
-      setErrorMessage(null)
-      setSuccessMessage(null)
-    }
-
-    const handleClearAll = () => {
-      clearInput()
-      clearMessages()
-    }
-
-    const setupClearListeners = () => {
-      const clearEvents = ['click', 'keydown']
-
-      clearEvents.forEach((eventType) => {
-        if (eventType === 'keydown') {
-          document.addEventListener(eventType, (event) => {
-            if (event.key !== 'Enter') {
-              handleClearAll()
-            }
-          }, { once: true })
-        } else {
-          document.addEventListener(eventType, handleClearAll, { once: true })
-        }
-      })
-    }
+    // const handleClearAll = () => {
+    //   clearInput()
+    //   clearMessages()
+    // }
 
     // const handleClick = () => {
     //   if (emailInput) {
@@ -71,17 +70,18 @@ export default function useSubscriptionForm() {
     if (emailInput?.validity.valueMissing) {
       console.error('email is required')
       setErrorMessage('please input a valid email to subscribe')
-      setupClearListeners()
     } else if (emailInput?.validity.typeMismatch || !isValidEmailFormat(emailValue)) {
       console.error('please enter a valid email address')
       setErrorMessage('please input a valid email to subscribe')
-      setupClearListeners()
     } else {
       console.info(emailValue, 'passes basic email format check')
       setSuccessMessage('signup complete')
       submitToMailChimp(emailValue)
       console.log(emailValue, 'submitted')
-      setupClearListeners()
+    }
+
+    if (emailInput) {
+      emailInput.value = ''
     }
   }
 
