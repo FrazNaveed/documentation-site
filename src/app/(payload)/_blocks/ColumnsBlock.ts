@@ -30,12 +30,16 @@ export const ColumnsBlock: Block = {
             {
               name: 'text',
               type: 'richText',
+              localized: true,
             },
           ],
           imageURL: '',
           imageAltText: 'Left Column text block icon',
         },
       ],
+      admin: {
+        description: 'Add image or text to this column',
+      },
       maxRows: 1,
     },
     {
@@ -60,12 +64,16 @@ export const ColumnsBlock: Block = {
             {
               name: 'text',
               type: 'richText',
+              localized: true,
             },
           ],
           imageURL: '',
           imageAltText: 'Right Column text block icon',
         },
       ],
+      admin: {
+        description: 'Add image or text to this column',
+      },
       maxRows: 1,
     },
     {

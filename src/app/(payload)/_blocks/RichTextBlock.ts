@@ -7,6 +7,7 @@ export const RichTextBlock: Block = {
     {
       name: 'richText',
       type: 'richText',
+      localized: true,
     },
     {
       name: 'createSideNavLink',
