@@ -93,56 +93,70 @@ export interface Media {
  * via the `definition` "Columns".
  */
 export interface Columns {
-  leftColumn?: LeftColumn;
-  rightColumn?: RightColumn;
+  leftColumnBlock?:
+    | (
+        | {
+            image?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'leftColumnImage';
+          }
+        | {
+            text?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'leftColumnText';
+          }
+      )[]
+    | null;
+  rightColumnBlock?:
+    | (
+        | {
+            image?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'rightColumnImage';
+          }
+        | {
+            text?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'rightColumnText';
+          }
+      )[]
+    | null;
   createSideNavLink?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'columns';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Left Column".
- */
-export interface LeftColumn {
-  text?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  image?: (number | null) | Media;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Right Column".
- */
-export interface RightColumn {
-  text?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  image?: (number | null) | Media;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
