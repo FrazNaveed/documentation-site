@@ -1,0 +1,15 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.gridWrap {
+  margin-top: to-rem($spacing-x-large);
+}
+
+.btnWrap {
+  margin-top: to-rem($spacing-x-large);
+  text-align: center;
+}

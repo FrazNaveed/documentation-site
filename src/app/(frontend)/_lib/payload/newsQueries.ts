@@ -1,25 +1,10 @@
+'use server'
+
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import config from '@payload-config'
 import type { News } from '@/payload-types'
 
 const payload = await getPayloadHMR({ config })
-
-export const getNewsData = async (...types: ('Flare Updates' | 'AMA & Interviews' | 'Past Events' | 'Ecosystem' | 'Research' | null)[]) => {
-  console.log('types: ', types)
-  const newsData = await payload.find({
-    collection: 'news',
-    sort: '-publishDate',
-    where: {
-      'type.name': { 
-        in: types.filter((type) => type !== null)
-      }
-    }
-  })
-
-  const news: News[] = newsData.docs
-
-  return news
-}
 
 export const getNewsArchive = async (
   limit = 10,
@@ -27,7 +12,6 @@ export const getNewsArchive = async (
   excludedIds: number[] = [],
   type: 'Flare Updates' | 'AMA & Interviews' | 'Past Events' | 'Ecosystem' | 'Research' | null = null,
 ) => {
-  console.log('type: ', type)
   const whereType = type ? { 'type.name': { equals: type } } : undefined
   const newsData = await payload.find({
     collection: 'news',
@@ -41,10 +25,7 @@ export const getNewsArchive = async (
       },
     }
   })
-
-  const news: News[] = newsData.docs
-
-  return news
+  return newsData
 }
 
 export const getNewsPinned = async (

@@ -4,10 +4,14 @@ import { getNewsArchive, getNewsPinned } from '../_lib/payload/newsQueries'
 import NewsFilter from '../_components/NewsFilter'
 import type { Media, NewsSubType, NewsType } from '@/payload-types'
 import styles from './page.module.scss'
+import LoadMoreGrid from '../_components/LoadMoreGrid'
 
 export default async function Page() {
   const pinnedNews = await getNewsPinned()
-  const news = await getNewsArchive(12, 0, pinnedNews.map(pinnedNewsItem => pinnedNewsItem.id))
+  const pinnedNewsIds = pinnedNews.map(pinnedNewsItem => pinnedNewsItem.id)
+  const news = await getNewsArchive(12, 0, pinnedNewsIds)
+  const allFetchedIds = pinnedNewsIds.concat(news.docs.map(newsItem => newsItem.id))
+  const hasNextPage = news.hasNextPage
   const latestNewsNav = [
     {text: 'All News', link: '/', id: 0},
     {text: 'Flare Updates', link: 'updates', id: 1},
@@ -55,8 +59,9 @@ export default async function Page() {
         <TeaserGrid teasers={pinnedNews.slice(1,4)} style='wide' />
       </div>
       <div className={styles.teaserGrid}>
-        <TeaserGrid teasers={news} />
+        <TeaserGrid teasers={news.docs} />
       </div>
+      {hasNextPage && <LoadMoreGrid fetchFn={getNewsArchive} excludeIds={allFetchedIds} />}
     </div>
   )
 }
