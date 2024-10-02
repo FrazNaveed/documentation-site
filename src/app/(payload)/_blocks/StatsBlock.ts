@@ -1,4 +1,5 @@
 import { Block } from 'payload'
+import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
 
 export const StatsBlock: Block = {
   slug: 'stats',
@@ -43,6 +44,7 @@ export const StatsBlock: Block = {
       type: 'richText',
       localized: true,
     },
+    ...CreateSideNavLinkFields,
   ],
   imageURL: '/icons/percent.svg',
   imageAltText: 'Stats block icon',

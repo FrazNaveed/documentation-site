@@ -227,6 +227,7 @@ export interface Stats {
     };
     [k: string]: unknown;
   } | null;
+  createSideNavLink?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'stats';

@@ -1,4 +1,5 @@
 import { Block } from 'payload'
+import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
 
 export const ColumnsBlock: Block = {
   slug: 'columns',
@@ -76,11 +77,7 @@ export const ColumnsBlock: Block = {
       },
       maxRows: 1,
     },
-    {
-      name: 'createSideNavLink',
-      type: 'checkbox',
-      defaultValue: false,
-    },
+    ...CreateSideNavLinkFields,
   ],
   imageURL: '/icons/columns.svg',
   imageAltText: 'Columns block icon',

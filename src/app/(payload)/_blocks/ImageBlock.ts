@@ -1,4 +1,5 @@
 import { Block } from 'payload'
+import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
 
 export const ImageBlock: Block = {
   slug: 'image',
@@ -9,11 +10,7 @@ export const ImageBlock: Block = {
       type: 'upload',
       relationTo: 'media',
     },
-    {
-      name: 'createSideNavLink',
-      type: 'checkbox',
-      defaultValue: false,
-    },
+    ...CreateSideNavLinkFields,
   ],
   imageURL: '/icons/image.svg',
   imageAltText: 'Image block icon',

@@ -1,4 +1,5 @@
 import { Block } from 'payload'
+import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
 
 export const RichTextBlock: Block = {
   slug: 'richText',
@@ -9,11 +10,7 @@ export const RichTextBlock: Block = {
       type: 'richText',
       localized: true,
     },
-    {
-      name: 'createSideNavLink',
-      type: 'checkbox',
-      defaultValue: false,
-    },
+  ...CreateSideNavLinkFields,
   ],
   imageURL: '/icons/align-left.svg',
   imageAltText: 'Rich text block icon',
