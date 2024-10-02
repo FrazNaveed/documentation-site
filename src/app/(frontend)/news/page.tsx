@@ -1,15 +1,19 @@
 import Hero from '../_components/Hero'
 import TeaserGrid from '../_components/TeaserGrid'
-import { getNewsData } from '../_lib/payload/newsQueries'
+import { getNewsArchive, getNewsPinned } from '../_lib/payload/newsQueries'
 import NewsFilter from '../_components/NewsFilter'
 import type { Media, NewsSubType, NewsType } from '@/payload-types'
 import styles from './page.module.scss'
+import LoadMoreGrid from '../_components/LoadMoreGrid'
+
+export const dynamic = 'force-dynamic'
 
 export default async function Page() {
-  const news = await getNewsData()
-  const pastEvents = await getNewsData('Past Events')
-  const twoTypesOfNews = await getNewsData('Past Events', 'Ecosystem')
-
+  const pinnedNews = await getNewsPinned()
+  const pinnedNewsIds = pinnedNews.map(pinnedNewsItem => pinnedNewsItem.id)
+  const news = await getNewsArchive(12, 0, pinnedNewsIds)
+  const allFetchedIds = pinnedNewsIds.concat(news.docs.map(newsItem => newsItem.id))
+  const hasNextPage = news.hasNextPage
   const latestNewsNav = [
     {text: 'All News', link: '/', id: 0},
     {text: 'Flare Updates', link: 'updates', id: 1},
@@ -19,10 +23,10 @@ export default async function Page() {
     {text: 'Research', link: 'research', id: 5}
   ]
 
-  if (!news || news.length === 0) {
+  const featuredPost = pinnedNews[0] || news.docs[0]
+  if (!news || news.docs.length === 0) {
     return <h1 className={styles.pageTitle}>No news posts found</h1>
   }
-  const featuredPost = news[0]
   const {
     slug: featuredPostSlug,
     excerpt: featuredPostExcerpt,
@@ -57,11 +61,12 @@ export default async function Page() {
       <h1 className={styles.pageTitle}>Flare News</h1>
       <NewsFilter navLinks={latestNewsNav} />
       <div className={styles.featuredTeaserGrid}>
-        <TeaserGrid teasers={news.slice(1,4)} style='wide' />
+        <TeaserGrid teasers={pinnedNews.slice(1,4)} style='wide' />
       </div>
       <div className={styles.teaserGrid}>
-        <TeaserGrid teasers={news} />
+        <TeaserGrid teasers={news.docs} />
       </div>
+      {hasNextPage && <LoadMoreGrid fetchFn={getNewsArchive} excludeIds={allFetchedIds} />}
     </div>
   )
 }
