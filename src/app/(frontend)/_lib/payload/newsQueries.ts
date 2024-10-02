@@ -47,12 +47,19 @@ export const getNewsPinned = async (
 
   // Backfill with latest news items if there are fewer than 4 returned from this query
   if (newsData.docs.length < limit) {
+    const excludedIds = newsData.docs.map(doc => doc.id)
     const latestNewsData = await payload.find({
       collection: 'news',
       limit: limit - newsData.docs.length,
       sort: '-publishDate',
       where: {
         ...whereType,
+        id: {
+          not_in: excludedIds,
+        },
+        pin: {
+          not_equals: true,
+        },
       }
     })
     newsData.docs.push(...latestNewsData.docs)
