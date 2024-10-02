@@ -1,15 +1,13 @@
 import Hero from '../_components/Hero'
 import TeaserGrid from '../_components/TeaserGrid'
-import { getNewsData } from '../_lib/payload/newsQueries'
+import { getNewsArchive, getNewsPinned } from '../_lib/payload/newsQueries'
 import NewsFilter from '../_components/NewsFilter'
 import type { Media, NewsSubType, NewsType } from '@/payload-types'
 import styles from './page.module.scss'
 
 export default async function Page() {
-  const news = await getNewsData()
-  const pastEvents = await getNewsData('Past Events')
-  const twoTypesOfNews = await getNewsData('Past Events', 'Ecosystem')
-
+  const pinnedNews = await getNewsPinned()
+  const news = await getNewsArchive(12, 0, pinnedNews.map(pinnedNewsItem => pinnedNewsItem.id))
   const latestNewsNav = [
     {text: 'All News', link: '/', id: 0},
     {text: 'Flare Updates', link: 'updates', id: 1},
@@ -19,7 +17,7 @@ export default async function Page() {
     {text: 'Research', link: 'research', id: 5}
   ]
 
-  const featuredPost = news[0] || {}
+  const featuredPost = pinnedNews[0] || {}
   const {
     slug: featuredPostSlug,
     excerpt: featuredPostExcerpt,
@@ -54,7 +52,7 @@ export default async function Page() {
       <h1 className={styles.pageTitle}>Flare News</h1>
       <NewsFilter navLinks={latestNewsNav} />
       <div className={styles.featuredTeaserGrid}>
-        <TeaserGrid teasers={news.slice(1,4)} style='wide' />
+        <TeaserGrid teasers={pinnedNews.slice(1,4)} style='wide' />
       </div>
       <div className={styles.teaserGrid}>
         <TeaserGrid teasers={news} />
