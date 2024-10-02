@@ -1,4 +1,5 @@
 import BannerCTA from '../../_components/BannerCTA'
+import Stats from '../../_components/Stats'
 
 export default function Page() {
   const linkUrl = 'https://flare.network'
@@ -14,6 +15,8 @@ export default function Page() {
           size: 'small',
         }}
       />
+      <h2>Stats</h2>
+      <Stats />
     </>
   )
 }
