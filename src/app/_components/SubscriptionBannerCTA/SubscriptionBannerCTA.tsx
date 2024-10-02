@@ -33,11 +33,7 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const emailInput = e.target.value
     // console.log(emailInput)
-    if (emailInput !== prevEmail && !isValidEmailFormat(emailInput)) {
-      setDisabled(true)
-    } else {
-      setDisabled(false)
-    }
+    setDisabled(!isValidEmailFormat(emailInput))
 
     setPrevEmail(emailInput)
   }
