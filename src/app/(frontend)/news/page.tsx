@@ -6,6 +6,8 @@ import type { Media, NewsSubType, NewsType } from '@/payload-types'
 import styles from './page.module.scss'
 import LoadMoreGrid from '../_components/LoadMoreGrid'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Page() {
   const pinnedNews = await getNewsPinned()
   const pinnedNewsIds = pinnedNews.map(pinnedNewsItem => pinnedNewsItem.id)
