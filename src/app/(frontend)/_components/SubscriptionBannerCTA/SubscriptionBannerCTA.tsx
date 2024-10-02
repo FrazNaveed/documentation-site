@@ -95,10 +95,6 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
           />
         </div>
       </div>
-      {/* {successMessage && <p>successMessage is true</p>}
-      {!successMessage && <p>successMessage is false</p>} */}
-      {/* {disabled && <p>disabled is true</p>}
-      {!disabled && <p>disable is false</p>} */}
     </section>
   )
 }
