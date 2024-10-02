@@ -1,0 +1,11 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/spacing" as *;
+
+.gridWrap {
+  margin-top: to-rem($spacing-x-large);
+}
+
+.btnWrap {
+  margin-top: to-rem($spacing-x-large);
+  text-align: center;
+}
