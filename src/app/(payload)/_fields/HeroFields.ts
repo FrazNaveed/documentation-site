@@ -25,7 +25,7 @@ export const HeroFields: Field[] = [
         name: 'eyebrow',
         type: 'text',
         admin: {
-          description: 'Defaults to Headline if empty.'
+          description: 'Defaults to Page Title if empty.'
         },
         localized: true,
       },
