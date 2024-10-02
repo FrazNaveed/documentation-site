@@ -1,6 +1,5 @@
 @use "../../_styles/mixins" as *;
 @use "../../_styles/spacing" as *;
-@use "@aleph/nought-sass-mixins/sass/utils";
 
 .gridWrap {
   margin-top: to-rem($spacing-x-large);
