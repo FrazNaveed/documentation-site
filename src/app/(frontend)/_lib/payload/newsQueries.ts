@@ -6,11 +6,21 @@ import type { News } from '@/payload-types'
 
 const payload = await getPayloadHMR({ config })
 
+type NewsTypeTypes = 'Flare Updates' | 'AMA & Interviews' | 'Past Events' | 'Ecosystem' | 'Research' | null
+
+const buildWhereClause = (
+  type: 'Flare Updates' | 'AMA & Interviews' | 'Past Events' | 'Ecosystem' | 'Research' | null,
+  additionalConditions: object = {}
+) => {
+  const typeCondition = type ? { 'type.name': { equals: type } } : {};
+  return { ...typeCondition, ...additionalConditions };
+};
+
 export const getNewsArchive = async (
   limit = 10,
   page = 1,
   excludedIds: number[] = [],
-  type: 'Flare Updates' | 'AMA & Interviews' | 'Past Events' | 'Ecosystem' | 'Research' | null = null,
+  type: NewsTypeTypes = null
 ) => {
   const whereType = type ? { 'type.name': { equals: type } } : undefined
   const newsData = await payload.find({
@@ -30,7 +40,7 @@ export const getNewsArchive = async (
 
 export const getNewsPinned = async (
   limit = 4,
-  type: 'Flare Updates' | 'AMA & Interviews' | 'Past Events' | 'Ecosystem' | 'Research' | null = null,
+  type: NewsTypeTypes = null
 ) => {
   const whereType = type ? { 'type.name': { equals: type } } : undefined
   const newsData = await payload.find({

@@ -1,20 +1,22 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Button from '../Button'
 import styles from './LoadMoreGrid.module.scss'
-import { News, NewsSubType } from '@/payload-types'
+import { News } from '@/payload-types'
 import TeaserGrid from '../TeaserGrid'
+import { PaginatedDocs } from 'payload'
 
 export type LoadMoreGridProps = {
   limit?: number,
   excludeIds?: number[]
-  fetchFn: (limit: number, pageNumber: number, onPageIds: number[]) => Promise<any>
+  fetchFn: (limit: number, pageNumber: number, onPageIds: number[]) => Promise<PaginatedDocs<News>>
+  buttonText?: string
 }
 
 
 
-export default function LoadMoreGrid({ limit = 12, excludeIds = [], fetchFn}: LoadMoreGridProps) {
+export default function LoadMoreGrid({ limit = 12, excludeIds = [], fetchFn, buttonText = 'Load More'}: LoadMoreGridProps) {
   const [gridItems, setGridItems] = useState<News[]>([])
   const [pageNumber, setPageNumber] = useState<number>(0)
   const [hasNextPage, setHasNextPage ] = useState<boolean>(true)
@@ -22,19 +24,19 @@ export default function LoadMoreGrid({ limit = 12, excludeIds = [], fetchFn}: Lo
 
   const handleClick = async () => {
     setIsLoading(true)
-    const newEntries:
-      {
-        docs: News[],
-        nextPage?: number,
-        hasNextPage: boolean,
-      } = await fetchFn(limit, pageNumber, excludeIds)
-    setIsLoading(false)
-    setHasNextPage(newEntries.hasNextPage)
-    if (newEntries.docs.length > 0) {
-      setGridItems([...gridItems, ...newEntries.docs])
-      if (newEntries.nextPage) {
-        setPageNumber(newEntries.nextPage)
+    try {
+      const newEntries = await fetchFn(limit, pageNumber, excludeIds);
+      setHasNextPage(newEntries.hasNextPage);
+      if (newEntries.docs.length > 0) {
+        setGridItems(prevItems => [...prevItems, ...newEntries.docs]);
+        if (newEntries.nextPage) {
+          setPageNumber(prevPage => newEntries.nextPage || prevPage);
+        }
       }
+    } catch (error) {
+      console.error('Error fetching more items:', error);
+    } finally {
+      setIsLoading(false)
     }
   }
   
@@ -45,7 +47,7 @@ export default function LoadMoreGrid({ limit = 12, excludeIds = [], fetchFn}: Lo
         <TeaserGrid teasers={gridItems} />
       </div>}
       {hasNextPage && <div className={styles.btnWrap}>
-        <Button text='Load More' disabled={isLoading} size='large' onClick={handleClick} />
+        <Button text={buttonText} disabled={isLoading} size='large' onClick={handleClick} />
       </div>}
     </>
   )
