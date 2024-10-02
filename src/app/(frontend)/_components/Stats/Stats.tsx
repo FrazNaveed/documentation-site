@@ -1,23 +1,29 @@
 import cx from 'classnames'
+import styles from './StatsBlock.module.scss'
+import { RichText } from '@/payload-types'
 
 export type StatsProps = {
+  stats: Array<{ label: string; stat: string }>
+  caption: string // RichText
   className?: string
 }
 
-export default function Stats({
-  className
-}: StatsProps) {
+export default function Stats({ stats, caption, className }: StatsProps) {
   return (
-    <section>
-      <div>
-        <div>
-          <p>stats list</p>
+    <section className={styles.StatsBlock}>
+      <div className={styles.statsWrap}>
+        <div className={styles.stats}>
+          {stats?.map((stat, index) => (
+            <div key={index} className={cx(styles.stats_Stat)}>
+              <h3 className={styles.StatLabel}>{stat.label}</h3>
+              <p className={styles.StatNumber}>{stat.stat}</p>
+            </div>
+          ))}
         </div>
-        <div>
-          <p>caption</p>
+        <div className={styles.captionWrap}>
+          <p className={styles.caption}>{caption}</p>
         </div>
       </div>
-
     </section>
   )
 }
