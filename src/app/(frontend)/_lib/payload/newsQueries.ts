@@ -32,7 +32,6 @@ export const getNewsPinned = async (
   limit = 4,
   type: 'Flare Updates' | 'AMA & Interviews' | 'Past Events' | 'Ecosystem' | 'Research' | null = null,
 ) => {
-  console.log('type: ', type)
   const whereType = type ? { 'type.name': { equals: type } } : undefined
   const newsData = await payload.find({
     collection: 'news',
