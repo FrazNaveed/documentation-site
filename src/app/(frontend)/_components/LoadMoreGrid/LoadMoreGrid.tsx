@@ -18,15 +18,17 @@ export default function LoadMoreGrid({ limit = 12, excludeIds = [], fetchFn}: Lo
   const [gridItems, setGridItems] = useState<News[]>([])
   const [pageNumber, setPageNumber] = useState<number>(0)
   const [hasNextPage, setHasNextPage ] = useState<boolean>(true)
+  const [isLoading, setIsLoading ] = useState<boolean>(false)
 
   const handleClick = async () => {
+    setIsLoading(true)
     const newEntries:
       {
         docs: News[],
         nextPage?: number,
         hasNextPage: boolean,
       } = await fetchFn(limit, pageNumber, excludeIds)
-      console.log('newEntries', newEntries)
+    setIsLoading(false)
     setHasNextPage(newEntries.hasNextPage)
     if (newEntries.docs.length > 0) {
       setGridItems([...gridItems, ...newEntries.docs])
@@ -43,7 +45,7 @@ export default function LoadMoreGrid({ limit = 12, excludeIds = [], fetchFn}: Lo
         <TeaserGrid teasers={gridItems} />
       </div>}
       {hasNextPage && <div className={styles.btnWrap}>
-        <Button text='Load More' size='large' onClick={handleClick} />
+        <Button text='Load More' disabled={isLoading} size='large' onClick={handleClick} />
       </div>}
     </>
   )
