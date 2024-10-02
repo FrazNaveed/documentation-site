@@ -1,6 +1,6 @@
 import { useState, FormEvent } from 'react'
 import isValidEmailFormat from '../_utils/isValidEmailFormat'
-import { submitToSurveyMonkey } from '../_lib/api'
+import { submitToMailChimp } from '../_lib/api'
 
 export default function useSubscriptionForm() {
   const [errorMessage, setErrorMessage ] = useState<string | null>(null)
@@ -79,7 +79,7 @@ export default function useSubscriptionForm() {
     } else {
       console.info(emailValue, 'passes basic email format check')
       setSuccessMessage('signup complete')
-      submitToSurveyMonkey(emailValue)
+      submitToMailChimp(emailValue)
       console.log(emailValue, 'submitted')
       setupClearListeners()
     }
