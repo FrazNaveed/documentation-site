@@ -1,5 +1,11 @@
 import type { CollectionConfig } from 'payload'
-import { HTMLConverterFeature, UploadFeature, LinkFeature, lexicalEditor, lexicalHTML } from '@payloadcms/richtext-lexical'
+import {
+  BlocksFeature,
+  LinkFeature,
+  UploadFeature,
+  lexicalEditor,
+} from '@payloadcms/richtext-lexical'
+import { Video } from '../_blocks/Video'
 
 export const News: CollectionConfig = {
   slug: 'news',
@@ -141,10 +147,11 @@ export const News: CollectionConfig = {
               },
             },
           }),
-          HTMLConverterFeature({}),
+          BlocksFeature({
+            blocks: [Video],
+          }),
         ],
       }),
     },
-    lexicalHTML('content', { name: 'content_html' }),
   ]
 }

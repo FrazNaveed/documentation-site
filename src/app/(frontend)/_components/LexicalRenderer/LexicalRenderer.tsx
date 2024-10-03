@@ -2,6 +2,7 @@
 // Modified from https://www.npmjs.com/package/@atelier-disko/payload-lexical-react-renderer
 import React, { CSSProperties } from 'react'
 import type { News } from '@/payload-types'
+import VideoEmbed from '../../_components/VideoEmbed'
 import getCollectionPath from '../../_utils/getCollectionPath'
 import type { CollectionPathContentTypes } from '../../_utils/getCollectionPath'
 import styles from './LexicalRenderer.module.scss'
@@ -140,6 +141,10 @@ export type UploadNode<
     value: MediaType;
 } & AbstractElementNode<'upload'>;
 
+export type VideoNode = {
+  url: string
+} & AbstractNode<'video'>
+
 export type Node =
     | HeadingNode
     | ParagraphNode
@@ -154,6 +159,10 @@ export type Node =
     | LinkNode
     | UnknownBlockNode
     | AutoLinkNode;
+
+  export type BlockRenderers<Blocks extends { [key: string]: any }> = {
+    [BlockName in Extract<keyof Blocks, string>]?: (props: BlockNode<Blocks[BlockName], BlockName>) => React.ReactNode;
+  }
 
 export type ElementRenderers = {
     heading: (
@@ -229,6 +238,14 @@ function getElementStyle<Type extends string>({
   return style
 }
 
+export const defaultBlockRenderers: BlockRenderers<{ video: VideoNode }> = {
+  video: (element) => {
+    return (
+      <VideoEmbed url={element.fields.url} />
+    )
+  },
+}
+
 export const defaultElementRenderers: ElementRenderers = {
   heading: (element) => React.createElement(
     element.tag,
@@ -281,7 +298,6 @@ export const defaultElementRenderers: ElementRenderers = {
   linebreak: () => <br />,
   tab: () => <br />,
   upload: (element) => {
-    console.log(element)
     if (element.value.mimeType?.includes('image')) {
       return (
         <figure className={styles.figure}>
@@ -341,7 +357,7 @@ export default function PayloadLexicalReactRenderer<
   content,
   elementRenderers = defaultElementRenderers,
   renderMark = defaultRenderMark,
-  blockRenderers = {},
+  blockRenderers = defaultBlockRenderers,
 }: PayloadLexicalReactRendererProps<Blocks>) {
   const renderElement = React.useCallback(
     (node: Node, children?: React.ReactNode) => {

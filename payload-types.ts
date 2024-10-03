@@ -123,7 +123,6 @@ export interface News {
     };
     [k: string]: unknown;
   } | null;
-  content_html?: string | null;
   updatedAt: string;
   createdAt: string;
 }
