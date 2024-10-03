@@ -56,13 +56,6 @@ const createRandomNewsItem = (userIds, newsTypesIds) => {
   // Randomly assign a type from news types collection
   const type = faker.helpers.shuffle(newsTypesIds)[0]
 
-  // Randomly set pin boolean to true or false
-  const pin = faker.datatype.boolean()
-
-  // Randomly set pinPriority to a number between 0 and 3
-  const priorities = ['0', '1', '2', '3']
-  const pinPriority = pin ? faker.helpers.shuffle(priorities)[0] : '0'
-
   return {
     title,
     slug,
@@ -70,8 +63,6 @@ const createRandomNewsItem = (userIds, newsTypesIds) => {
     excerpt,
     publishDate,
     type,
-    pin,
-    pinPriority,
   }
 }
 
