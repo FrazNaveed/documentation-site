@@ -87,18 +87,30 @@
 
   &Months {
     display: flex;
+    gap: 5px;
+
+    @include media-breakpoint-down(md) {
+      gap: 2px;
+    }
   }
 
   &Month {
     position: relative;
     flex: 1;
     height: $spacing-large;
-    margin: 0 3px;
     border-radius: 2px;
     background-color: $pink-600;
 
     &.past {
       background-color: $gray-100;
+    }
+
+    @include media-breakpoint-down(lg) {
+      height: $spacing-standard;
+    }
+
+    @include media-breakpoint-down(md) {
+      height: $spacing-small;
     }
   }
 
@@ -148,5 +160,13 @@
 
   .past {
     text-decoration: line-through;
+  }
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
