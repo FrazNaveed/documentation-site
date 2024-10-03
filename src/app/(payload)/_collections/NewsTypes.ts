@@ -14,6 +14,7 @@ export const NewsTypes: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
+    enableRichTextLink: false,
   },
   fields: [
     {

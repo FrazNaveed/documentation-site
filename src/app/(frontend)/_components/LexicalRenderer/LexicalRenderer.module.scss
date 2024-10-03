@@ -1,0 +1,33 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.content {
+  h2 {
+    @include h6;
+
+    letter-spacing: 0;
+  }
+
+  hr {
+    margin: to-rem($p-margin-bottom) auto;
+  }
+}
+
+.figure {
+  margin: to-rem($p-margin-bottom) 0;
+
+  img {
+    display: block;
+  }
+}
+
+.figcaption {
+  @include label;
+
+  margin-top: to-rem(12px);
+  text-align: center;
+}

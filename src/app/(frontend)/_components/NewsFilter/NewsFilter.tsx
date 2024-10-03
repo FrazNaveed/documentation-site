@@ -1,6 +1,7 @@
 'use client'
 import React, {useState, useEffect } from 'react'
 import Link from 'next/link'
+import getCollectionPath from '../../_utils/getCollectionPath'
 import cx from 'classnames'
 import styles from './NewsFilter.module.scss'
 
@@ -32,7 +33,7 @@ export default function Links({
               key={navLink.id}
             >
             <Link
-              href={index !== 0 ? `/news/type/${navLink.link}` : `/news/`}
+              href={index !== 0 ? `${getCollectionPath('news-types')}/${navLink.link}` : getCollectionPath('news')}
               className={styles.text}
               onClick={() => handleClick(index)}
               title={navLink.text}

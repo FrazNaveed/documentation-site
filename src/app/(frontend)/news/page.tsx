@@ -2,6 +2,7 @@ import Hero from '../_components/Hero'
 import TeaserGrid from '../_components/TeaserGrid'
 import { getNewsArchive, getNewsPinned } from '../_lib/payload/newsQueries'
 import NewsFilter from '../_components/NewsFilter'
+import getCollectionPath from '../_utils/getCollectionPath'
 import type { Media, NewsSubType, NewsType } from '@/payload-types'
 import styles from './page.module.scss'
 import LoadMoreGrid from '../_components/LoadMoreGrid'
@@ -48,7 +49,7 @@ export default async function Page() {
   return (
     <div className={styles.wrap}>
       <Hero
-        link={`/news/${featuredPostSlug}`}
+        link={`${getCollectionPath('news')}/${featuredPostSlug}`}
         style='featuredNews'
         backgroundImage={featuredPostSubTypeHeroBgImage as Media || featuredPostTypeHeroBgImage as Media}
         header={featuredPostTitle}

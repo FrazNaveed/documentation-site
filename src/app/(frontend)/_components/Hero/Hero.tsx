@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import cx from 'classnames'
+import type { News, Media } from '@/payload-types'
 import ContentTypeIcon from '../ContentTypeIcon'
 import PartnerLogos from '../PartnerLogos'
 import Pill from '../Pill'
-import convertToDate from '../../utils/convertToDate'
-import type { News, Media } from '@/payload-types'
-import type { TDateFormat } from '../../utils/convertToDate'
+import convertToDate from '../../_utils/convertToDate'
+import type { TDateFormat } from '../../_utils/convertToDate'
 import styles from './Hero.module.scss'
 
 export type HeroProps = {
@@ -17,18 +17,18 @@ export type HeroProps = {
   logos?: Media[]
   thumbnail?: Media | null
   header?: string | null
-  subheader?: string | null
+  // subheader?: string | null
   timestamp?: string | null
   dateFormat?: TDateFormat
-  eyebrow?: string | null
+  // eyebrow?: string | null
   pill?: {
     text: string
     link?: string
   }
-  cta?: {
-    text: string
-    link: string
-  }
+  // cta?: {
+  //   text: string
+  //   link: string
+  // }
 }
 
 export default function Hero({
@@ -39,12 +39,12 @@ export default function Hero({
   logos,
   thumbnail,
   header,
-  subheader,
+  // subheader,
   timestamp,
   dateFormat,
-  eyebrow,
+  // eyebrow,
   pill,
-  cta,
+  // cta,
 }: HeroProps) {
   const innerMarkup = (
     <div
@@ -90,7 +90,11 @@ export default function Hero({
         {(pill || timestamp) && (
           <div className={styles.meta}>
             {pill && <Pill text={pill.text} link={pill.link} />}
-            {timestamp && <time className={styles.date} dateTime={timestamp}>{convertToDate(timestamp, dateFormat)}</time>}
+            {timestamp && (
+              <time className={styles.date} dateTime={timestamp}>
+                {convertToDate(timestamp, dateFormat)}
+              </time>
+            )}
           </div>
         )}
       </header>

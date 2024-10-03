@@ -1,7 +1,21 @@
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Hero from 'src/app/(frontend)/_components/Hero'
+import Calendar from 'src/app/(frontend)/_components/svgs/Calendar'
+import HorizontalArrow from 'src/app/(frontend)/_components/svgs/HorizontalArrow'
+import Discord from 'src/app/(frontend)/_components/svgs/Discord'
+import TelegramCircle from 'src/app/(frontend)/_components/svgs/TelegramCircle'
+import XSocial from 'src/app/(frontend)/_components/svgs/XSocial'
+import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
+import Pill from 'src/app/(frontend)/_components/Pill'
 import { getNewsBySlug } from 'src/app/(frontend)/_lib/payload/newsQueries'
+import convertToDate from 'src/app/(frontend)/_utils/convertToDate'
+import getCollectionPath from '../../_utils/getCollectionPath'
 import type { Media, NewsSubType, NewsType } from '@/payload-types'
+import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
+import styles from './page.module.scss'
+
+export const dynamic = 'force-dynamic'
 
 type PageProps = {
   params: {
@@ -17,9 +31,13 @@ export default async function Page({ params }: PageProps) {
     notFound()
   }
   const {
+    title,
+    publishDate,
     type,
     subtype,
     logos: featuredPostLogos,
+    content,
+    content_html,
   } = newsPost
   let typeHeroBgImage, featuredPostTypeName
   if (typeof type === 'object') {
@@ -29,12 +47,36 @@ export default async function Page({ params }: PageProps) {
   const subTypeHeroBgImage = subtype && typeof subtype === 'object' ? subtype.image : undefined;
 
   return (
-    <>
+    <article>
       <Hero
         style='standard'
         backgroundImage={subTypeHeroBgImage as Media || typeHeroBgImage as Media}
         {...(featuredPostLogos ? {logos: featuredPostLogos.map((logo) => logo.image as Media)} : {})}
       />
-    </>
+      <div className={styles.wrap}>
+        <div className={styles.grid}>
+          <header className={styles.header}>
+            <Link href={getCollectionPath('news')} className={styles.backLink}>
+              <HorizontalArrow />Back to All News
+            </Link>
+            {title && <h1 className={styles.title}>{title}</h1>}
+            <div className={styles.meta}>
+              {type && typeof type === 'object' && <Pill text={type.name} size='small' />}
+              {publishDate && <time className={styles.date} dateTime={publishDate}><Calendar />{convertToDate(publishDate)}</time>}
+            </div>
+          </header>
+          <div className={styles.social}>
+            <div className={styles.socialInner}>
+              <XSocial />
+              <Discord />
+              <TelegramCircle />
+            </div>
+          </div>
+          <div className={styles.contentCol}>
+            {content && <LexicalRenderer content={content as PayloadLexicalReactRendererContent} />}
+          </div>
+        </div>
+      </div>
+    </article>
   )
 }
