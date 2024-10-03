@@ -2,7 +2,7 @@ import { getDictionary } from 'src/app/get-dictionary'
 import { Locale } from 'src/app/i18n-config'
 
 export default async function Page({
-  params: { lang }
+  params: { lang },
 }: {
   params: { lang: Locale }
 }) {
@@ -10,10 +10,19 @@ export default async function Page({
 
   return (
     <div>
-      <h1>{dictionary['server-component'].hello}, Next.js!</h1>
-      <h2>lang locale = {lang}</h2>
+      <h1>
+        {dictionary['server-component'].hello}
+        , Next.js!
+      </h1>
+      <h2>
+        lang locale =
+        {
+          lang
+        }
+      </h2>
       <h3>
-        This text is rendered on the server:{' '}
+        This text is rendered on the server:
+        {' '}
         {dictionary['server-component'].hello}
         {' '}
         {dictionary['server-component'].and}
