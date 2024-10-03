@@ -9,8 +9,7 @@ interface DropDate {
   }
 
   const formatDropDate = (dropDateStr: string): string => {
-    const [month, day, year] = dropDateStr.split('/')
-    const dateObj = new Date(Date.UTC(+year, +month - 1, +day))
+    const dateObj = parseDropDate(dropDateStr)
     return new Intl.DateTimeFormat('en-US', {
       month: 'short',
       day: 'numeric',
@@ -21,10 +20,10 @@ interface DropDate {
   const getNextDropDate = (datesArray: DropDate[]): string => {
     const currentDate = new Date()
     const futureDates = datesArray
-      .map(item => ({
-        ...item,
-        dropDateObj: new Date(Date.UTC(+item.dropDate.split('/')[2], +item.dropDate.split('/')[0] - 1, +item.dropDate.split('/')[1]))
-      }))
+      .map(item => {
+        const dropDateObj = parseDropDate(item.dropDate)
+        return { ...item, dropDateObj }
+     })
       .filter(item => item.dropDateObj > currentDate)
       .sort((a, b) => a.dropDateObj.getTime() - b.dropDateObj.getTime())
   
@@ -57,7 +56,7 @@ interface DropDate {
     
     const { awarded, toAward } = datesArray.reduce((acc, item) => {
       const dropDateObj = parseDropDate(item.dropDate)
-      if (dropDateObj < currentDate) {
+      if (dropDateObj.getTime() < currentDate.getTime()) {
         acc.awarded += item.flr
       } else {
         acc.toAward += item.flr
