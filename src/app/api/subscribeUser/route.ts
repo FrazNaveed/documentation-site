@@ -12,6 +12,13 @@ export async function POST(req: NextRequest) {
     const AUDIENCE_ID = process.env.MAILCHIMP_AUDIENCE_ID
     const DATACENTER = process.env.MAILCHIMP_SERVER_PREFIX
 
+    if (!API_KEY || !AUDIENCE_ID || !DATACENTER) {
+      return NextResponse.json(
+        { error: 'Server configuration error. Check environment variables.' },
+        { status: 500 }
+      )
+    }
+
     const data = {
       email_address: email,
       status: 'subscribed',
