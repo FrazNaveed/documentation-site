@@ -17,7 +17,7 @@
   @include media-breakpoint-down(lg) {
     @include columns(1, 6);
 
-    padding: to-rem($spacing-xxx-large) 0 to-rem($spacing-xxxx-large);
+    padding: to-rem($spacing-xxx-large) 0 to-rem($spacing-4x-large);
   }
 
   @include media-breakpoint-down(md) {
