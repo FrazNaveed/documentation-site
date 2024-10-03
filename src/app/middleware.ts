@@ -38,7 +38,7 @@ export function middleware(request: NextRequest) {
 
   const pathnameIsMissingLocale = i18n.locales.every(
     (locale) => {
-      !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+      return !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
     })
 
   if (pathnameIsMissingLocale) {
@@ -46,7 +46,7 @@ export function middleware(request: NextRequest) {
 
     return NextResponse.redirect(
       new URL(
-        `/${locale}${pathname.startsWith('/') ? '' : '/'}{pathname}`,
+        `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
         request.url,
       )
     )
