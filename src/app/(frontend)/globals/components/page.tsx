@@ -1,4 +1,3 @@
-import BannerCTA from '../../_components/BannerCTA'
 import Stats from '../../_components/Stats'
 
 export default function Page() {
