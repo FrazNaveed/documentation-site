@@ -125,7 +125,7 @@
       outline: none;
     }
 
-    &::-webkit-input-placeholder {
+    &::placeholder {
       color: $gray;
     }
   }
