@@ -1,6 +1,5 @@
 import cx from 'classnames'
 import styles from './StatsBlock.module.scss'
-import { RichText } from '@/payload-types'
 
 export type StatsProps = {
   stats: Array<{ label: string; stat: string }>
