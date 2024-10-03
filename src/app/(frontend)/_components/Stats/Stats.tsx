@@ -10,11 +10,11 @@ export type StatsProps = {
 
 export default function Stats({ stats, caption, className }: StatsProps) {
   return (
-    <section className={styles.StatsBlock}>
-      <div className={styles.statsWrap}>
+    <section className={styles.statsBlock}>
+      <div className={styles.statsBlockWrap}>
         <div className={styles.stats}>
           {stats?.map((stat, index) => (
-            <div key={index} className={cx(styles.stats_Stat)}>
+            <div key={index} className={cx(styles.Stat)}>
               <h3 className={styles.StatLabel}>{stat.label}</h3>
               <p className={styles.StatNumber}>{stat.stat}</p>
             </div>
