@@ -3,6 +3,11 @@ interface DropDate {
     flr: number
   }
   
+  const parseDropDate = (dropDateStr: string): Date => {
+    const [month, day, year] = dropDateStr.split('/')
+    return new Date(Date.UTC(+year, +month - 1, +day))
+  }
+
   const formatDropDate = (dropDateStr: string): string => {
     const [month, day, year] = dropDateStr.split('/')
     const dateObj = new Date(Date.UTC(+year, +month - 1, +day))
