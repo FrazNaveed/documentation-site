@@ -1,5 +1,6 @@
 @use "sass:math";
 @use "./spacing" as *;
+@use "./colors" as *;
 
 $container-width-flare: 1400px;
 $container-padding-flare: 24px;
@@ -47,4 +48,10 @@ $root-font-size: $root-font-size-number * 1px;
 
 @mixin pageWrap() {
   padding-bottom: $spacing-7x-large;
+}
+
+@mixin lightGrayCard() {
+  border: 1px solid $gray-100;
+  border-radius: 10px;
+  background-color: $gray-50;
 }

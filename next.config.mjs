@@ -8,6 +8,9 @@ const bundleAnalyzer = withBundleAnalyzer({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
+  sassOptions: {
+    silenceDeprecations: ['mixed-decls', 'legacy-js-api'],
+  },
 }
 
 export default bundleAnalyzer(withPayload(nextConfig))

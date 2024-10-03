@@ -1,0 +1,172 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.wrap {
+  @include container;
+}
+
+.title {
+  @include h6;
+}
+
+.legend {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $spacing-small;
+
+  &Card {
+    padding: $spacing-small;
+    @include lightGrayCard;
+
+    &Header {
+      margin-bottom: $spacing-x-small;
+      color: $black;
+      @include paragraphXSmFont;
+
+      line-height: 1em;
+    }
+
+    &Stat {
+      margin: 0;
+      @include headerH7;
+
+      line-height: 1em;
+    }
+  }
+}
+
+.nextDrop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.grayKey::before {
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  width: 1em;
+  height: 1em;
+  margin-right: $spacing-x-small;
+  border-radius: 2px;
+  background-color: $gray-100;
+  content: "";
+}
+
+.pinkKey::before {
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  width: 1em;
+  height: 1em;
+  margin-right: 4px;
+  border-radius: 2px;
+  background-color: $pink-600;
+  content: "";
+}
+
+.flrToken::before {
+  display: inline-block;
+  position: relative;
+  top: 4px;
+  width: $spacing-standard;
+  height: $spacing-standard;
+  margin-right: 4px;
+  content: url($svg-flr-token);
+}
+
+.timeline {
+  margin-bottom: $spacing-xx-large;
+  padding: 5px;
+  background-color: $gray-50;
+
+  &Months {
+    display: flex;
+    gap: 5px;
+
+    @include media-breakpoint-down(md) {
+      gap: 2px;
+    }
+  }
+
+  &Month {
+    position: relative;
+    flex: 1;
+    height: $spacing-large;
+    border-radius: 2px;
+    background-color: $pink-600;
+
+    &.past {
+      background-color: $gray-100;
+    }
+
+    @include media-breakpoint-down(lg) {
+      height: $spacing-standard;
+    }
+
+    @include media-breakpoint-down(md) {
+      height: $spacing-small;
+    }
+  }
+
+  &Year {
+    position: absolute;
+    bottom: -$spacing-standard;
+    color: $black;
+    @include paragraphXSmFont;
+
+    line-height: 1em;
+
+    &.last {
+      right: 0;
+    }
+  }
+}
+
+.infoText {
+  @include paragraphSm;
+}
+
+.dropGrid {
+  display: grid;
+  margin-bottom: $spacing-4x-large;
+  grid-template-columns: repeat(6, 1fr);
+  gap: $spacing-small;
+
+  @include paragraphXSmFont;
+
+  &Date {
+    color: $black;
+  }
+
+  &Amount::before {
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    width: $spacing-small;
+    height: $spacing-small;
+    margin-right: 4px;
+    content: url($svg-flr-token);
+
+    .past & {
+      content: url($svg-flr-token-gray);
+    }
+  }
+
+  .past {
+    text-decoration: line-through;
+  }
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
