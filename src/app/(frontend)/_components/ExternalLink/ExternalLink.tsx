@@ -9,7 +9,9 @@ type ExternalLinkProps = {
   iconClassName?: string
 }
 
-export default function ExternalLink({ href, className, iconClassName, children }: React.PropsWithChildren<ExternalLinkProps>) {
+export default function ExternalLink({
+  href, className, iconClassName, children,
+}: React.PropsWithChildren<ExternalLinkProps>) {
   return (
     <Link href={href} className={cx(styles.linkWrap, className)}>
       <span className={styles.wrap}>
