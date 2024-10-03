@@ -49,19 +49,16 @@ interface DropDate {
   
   const calculateAwardTotals = (datesArray: DropDate[]): AggregateResult => {
     const currentDate = new Date()
-    let awarded = 0
-    let toAward = 0
-  
-    datesArray.forEach(item => {
-      const [month, day, year] = item.dropDate.split('/')
-      const dropDateObj = new Date(Date.UTC(+year, +month - 1, +day))
-  
+    
+    const { awarded, toAward } = datesArray.reduce((acc, item) => {
+      const dropDateObj = parseDropDate(item.dropDate)
       if (dropDateObj < currentDate) {
-        awarded += item.flr
+        acc.awarded += item.flr
       } else {
-        toAward += item.flr
+        acc.toAward += item.flr
       }
-    })
+      return acc
+    }, { awarded: 0, toAward: 0 })
   
     return { awarded, toAward }
   }
