@@ -20,7 +20,7 @@ export default function Pill({
     {
       [styles.active]: active,
       [styles.isLink]: link && !active,
-    }
+    },
   )
 
   return (

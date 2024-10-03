@@ -11,19 +11,6 @@ import Medium from '../svgs/Medium'
 import Telegram from '../svgs/Telegram'
 import styles from './SiteFooter.module.scss'
 
-type FooterNavigation = {
-  _key: string
-  title: string
-  url: string
-}[]
-
-type secondaryNavigationData = {
-  _key: string
-  title: string
-  url: string
-  isExternal?: boolean
-}[]
-
 export default async function SiteFooter() {
   const socialLinks = [
     { href: 'https://github.com/flare-foundation', label: 'GitHub', Icon: GitHub },
@@ -53,7 +40,9 @@ export default async function SiteFooter() {
                   </li>
                 ))}
                 <li className={styles.footerNav_Item}>
-                  Copyright Flare {(new Date().getFullYear())}
+                  Copyright Flare
+                  {' '}
+                  {(new Date().getFullYear())}
                 </li>
               </ul>
             </nav>
@@ -82,7 +71,7 @@ export default async function SiteFooter() {
                       <LinkComponent
                         href={link.url}
                         className={styles.secondaryNav_Link}
-                        {...(link.isExternal ? {iconClassName: styles.secondaryNav_LinkExternalIcon} : {})}
+                        {...(link.isExternal ? { iconClassName: styles.secondaryNav_LinkExternalIcon } : {})}
                       >
                         {link.title}
                       </LinkComponent>

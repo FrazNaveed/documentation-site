@@ -1,25 +1,18 @@
 import cx from 'classnames'
 import styles from './FlareDropDates.module.scss'
-import { toShortBillion } from '../../utils/numberFormats'
+import { toShortBillion } from '../../_utils/numberFormats'
 import dropDateData from './dropDateData.json'
-import { formatDropDate, getNextDropDate, isDropDateInThePast, getNewYear, calculateAwardTotals } from './flareDropDateUtils'
+import {
+  formatDropDate, getNextDropDate, isDropDateInThePast, getNewYear, calculateAwardTotals,
+} from './flareDropDateUtils'
 
 export type FlareDropDatesProps = {
   title?: string,
-}
-const data = {
-  totalAward: 12300000000,
-}
-
-interface DropDate {
-  dropDate: string;
-  flr: number;
 }
 
 export default function FlareDropDates({
   title = 'FlareDrop Dates',
 }: FlareDropDatesProps) {
-
   const awarded = calculateAwardTotals(dropDateData).awarded * 1000000
   const toBeAwarded = calculateAwardTotals(dropDateData).toAward * 1000000
 
@@ -43,40 +36,53 @@ export default function FlareDropDates({
       <div className={styles.timeline}>
         <div className={styles.timelineMonths}>
           {dropDateData.map((item, index) => (
-            <div key={item.dropDate} className={cx(
-              styles.timelineMonth,
-              {
-                [styles.past]: isDropDateInThePast(item.dropDate)
-              }
-              )}>
-                {getNewYear(dropDateData, index) && (
-                  <span className={cx(
-                    styles.timelineYear,
-                    {
-                      [styles.last]: index === dropDateData.length - 1
-                    }
-                  )}>{getNewYear(dropDateData, index)}</span>
-                )}
-              </div>))}
-        </div>  
-      </div> 
+            <div
+              key={item.dropDate}
+              className={cx(
+                styles.timelineMonth,
+                {
+                  [styles.past]: isDropDateInThePast(item.dropDate),
+                },
+              )}
+            >
+              {getNewYear(dropDateData, index) && (
+              <span className={cx(
+                styles.timelineYear,
+                {
+                  [styles.last]: index === dropDateData.length - 1,
+                },
+              )}
+              >
+                {getNewYear(dropDateData, index)}
+              </span>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
       <div className={styles.infoText}>
         <p>Claimable every 30 days UTC. Unclaimed tokens burned after 67 days.</p>
       </div>
       <div className={styles.dropGrid}>
-        {dropDateData.map((item, index) => (
-          <div key={item.dropDate} className={cx(
-            styles.dropGridItem,
-            {
-              [styles.past]: isDropDateInThePast(item.dropDate)
-            }
-          )}>
+        {dropDateData.map((item) => (
+          <div
+            key={item.dropDate}
+            className={cx(
+              styles.dropGridItem,
+              {
+                [styles.past]: isDropDateInThePast(item.dropDate),
+              },
+            )}
+          >
             <span className={styles.dropGridDate}>{formatDropDate(item.dropDate)}</span>
             <br />
-            <span className={styles.dropGridAmount}>{item.flr}m</span>
+            <span className={styles.dropGridAmount}>
+              {item.flr}
+              m
+            </span>
           </div>
         ))}
-    </div>
+      </div>
     </section>
   )
 }

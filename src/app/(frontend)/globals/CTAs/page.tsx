@@ -7,7 +7,9 @@ export default function Page() {
   return (
     <>
       <h2>Banner CTA</h2>
-      <BannerCTA header='[dev.sessions]' text='Q+A  / Every Wednesday / 3pm UTC'
+      <BannerCTA
+        header='[dev.sessions]'
+        text='Q+A  / Every Wednesday / 3pm UTC'
         button={{
           text: 'Join our Discord',
           link: linkUrl,
