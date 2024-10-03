@@ -40,7 +40,9 @@ export async function POST(req: NextRequest) {
 
     if (response.status >= 400) {
       return NextResponse.json(
-        { error: `There was an error subscribing the email: ${responseData.detail || response.statusText}` },
+        // To see MailChimp error message
+        // { error: `There was an error subscribing the email: ${responseData.detail || response.statusText}` },
+        { error: 'There was an error subscribing the email.' },
         { status: response.status }
       )
     }
@@ -48,7 +50,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: 'Successfully subscribed!' }, { status: 201 })
   } catch (error) {
     return NextResponse.json(
-      // See MailChimp error message
+      // To see MailChimp error message
       // { error instanceof Error ? error.message : 'An internal server error occurred' },
       { error: 'An internal server error occurred' },
       { status: 500 }
