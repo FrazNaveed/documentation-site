@@ -1,9 +1,9 @@
 import { useState, useEffect, FormEvent } from 'react'
 import isValidEmailFormat from 'src/app/(frontend)/_utils/isValidEmailFormat'
-import { submitToMailChimp } from 'src/app/(frontend)/_lib/api'
+import submitToMailChimp from 'src/app/(frontend)/_lib/api'
 
 export default function useSubscriptionForm() {
-  const [errorMessage, setErrorMessage ] = useState<string | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
 
   const clearMessages = () => {
@@ -28,7 +28,7 @@ export default function useSubscriptionForm() {
 
   const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-  
+
     const form = e.currentTarget
     const emailInput = form.elements.namedItem('email') as HTMLInputElement | null
     // console.log("Email input:", emailInput)
@@ -36,18 +36,19 @@ export default function useSubscriptionForm() {
     // console.log('email value: ', emailValue)
 
     if (emailInput?.validity.valueMissing) {
-      console.error('email is required')
+      // console.error('email is required')
       setErrorMessage('please input a valid email to subscribe')
     } else if (emailInput?.validity.typeMismatch || !isValidEmailFormat(emailValue)) {
-      console.error('please enter a valid email address')
+      // console.error('please enter a valid email address')
       setErrorMessage('please input a valid email to subscribe')
     } else {
-      console.info(emailValue, 'passes basic email format check, enabling submit button')
+      // console.info(emailValue, 'passes basic email format check, enabling submit button')
       try {
+        // eslint-disable-next-line no-unused-vars
         const message = await submitToMailChimp(emailValue)
         setSuccessMessage('signup complete')
         setErrorMessage(null)
-        console.log(emailValue, 'submitted')
+        // console.log(emailValue, 'submitted')
       } catch (error) {
         // console.error(error instanceof Error ? error.message : 'Failed to subscribe')
         setErrorMessage(error instanceof Error ? error.message : 'Failed to subscribe')

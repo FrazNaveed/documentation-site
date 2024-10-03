@@ -18,6 +18,7 @@
     "generate:importmap": "cross-env payload generate:importmap",
     "generate:types": "cross-env payload generate:types",
     "lint": "cross-env next lint",
+    "lint:fix": "cross-env next lint --fix",
     "lint:styles": "stylelint \"**/*.{css,sass,scss}\"",
     "migrate:create": "npm run payload migrate:create",
     "payload": "cross-env PAYLOAD_CONFIG_PATH=./payload.config.ts payload",

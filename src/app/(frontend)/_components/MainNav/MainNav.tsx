@@ -287,7 +287,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
                                             [styles.submenuLink__standout]: linkGroup.standout,
                                           },
                                         )}
-                                        {...(isExternal ? {iconClassName: styles.submenuLink_ExternalIcon} : {})}
+                                        {...(isExternal ? { iconClassName: styles.submenuLink_ExternalIcon } : {})}
                                       >
                                         {icon && (
                                           <span

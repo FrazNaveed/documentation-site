@@ -1,4 +1,5 @@
 'use client'
+
 import cx from 'classnames'
 import Image from 'next/image'
 import Button from 'src/app/(frontend)/_components/Button'
@@ -16,11 +17,13 @@ export type CTAProps = {
   className?: string
 }
 
-export default function SubscriptionBannerCTA({ header, text, placeholder, buttonText, className }: CTAProps) {
+export default function SubscriptionBannerCTA({
+  header, text, placeholder, buttonText, className,
+}: CTAProps) {
   const [disabled, setDisabled] = useState(true)
   const [isFocused, setIsFocused] = useState(false)
   const { handleSubmit, successMessage, errorMessage } = useSubscriptionForm()
-  const url ='/fw5_join_bg.png'
+  const url = '/fw5_join_bg.png'
   const alt = 'background image'
   const imageWidth = 1728 / 2
   const imageHeight = 858 / 2
@@ -45,8 +48,14 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
         <div className={styles.formWrap}>
           <h2 className={styles.header}>{header}</h2>
           <p className={styles.text}>{text}</p>
-          <form className={cx(styles.subscriptionBanner_Form, { [styles.subscriptionBanner_Form__focus]: isFocused } )} noValidate onSubmit={(e) => handleSubmit(e)} aria-label="Newsletter Subscription">
-            <label htmlFor='email' className='visuallyHidden'>Email Address</label>
+          <form className={cx(styles.subscriptionBanner_Form, { [styles.subscriptionBanner_Form__focus]: isFocused })} noValidate onSubmit={(e) => handleSubmit(e)} aria-label='Newsletter Subscription'>
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */ }
+            <label
+              htmlFor='email'
+              className='visuallyHidden'
+            >
+              Email Address
+            </label>
             <input
               id='email'
               type='email'
@@ -57,6 +66,7 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
               onChange={(e) => handleChange(e)}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              // eslint-disable-next-line no-nested-ternary
               aria-describedby={errorMessage ? 'errorMessage' : successMessage ? 'successMessage' : undefined}
             />
             <Button
@@ -69,18 +79,20 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
               onFocus={handleFocus}
               onBlur={handleBlur}
             />
-            {successMessage &&
+            {successMessage
+              && (
               <span className={styles.subscriptionBanner_SuccessMessageWrap}>
                 <p className={cx(styles.subscriptionBanner_SuccessMessage)} id='successMessage' aria-live='polite'>{successMessage}</p>
-                <CheckCircle className={styles.checkCircle}/>
+                <CheckCircle className={styles.checkCircle} />
               </span>
-            }
+              )}
           </form>
-          {errorMessage &&
+          {errorMessage
+            && (
             <p className={styles.subscriptionBanner_ErrorMessage} id='errorMessage' aria-live='assertive'>
               {errorMessage}
             </p>
-          }
+            )}
         </div>
         <div className={styles.imageWrap}>
           <Image

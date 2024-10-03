@@ -1,4 +1,4 @@
-export async function submitToMailChimp(emailValue: string) {
+export default async function submitToMailChimp(emailValue: string) {
   try {
     const response = await fetch('/api/subscribeUser', {
       method: 'POST',
