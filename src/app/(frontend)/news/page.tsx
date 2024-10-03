@@ -1,7 +1,7 @@
 import type { Media } from '@/payload-types'
 import Hero from '../_components/Hero'
 import TeaserGrid from '../_components/TeaserGrid'
-import { getNewsArchive, getNewsPinned } from '../_lib/payload/newsQueries'
+import { getNewsArchive, getNewsFeatured } from '../_lib/payload/newsQueries'
 import NewsFilter from '../_components/NewsFilter'
 import styles from './page.module.scss'
 import LoadMoreGrid from '../_components/LoadMoreGrid'
@@ -9,10 +9,10 @@ import LoadMoreGrid from '../_components/LoadMoreGrid'
 export const dynamic = 'force-dynamic'
 
 export default async function Page() {
-  const pinnedNews = await getNewsPinned()
-  const pinnedNewsIds = pinnedNews.map((pinnedNewsItem) => pinnedNewsItem.id)
-  const news = await getNewsArchive(12, 0, pinnedNewsIds)
-  const allFetchedIds = pinnedNewsIds.concat(news.docs.map((newsItem) => newsItem.id))
+  const featuredNews = await getNewsFeatured()
+  const featuredNewsIds = featuredNews.map((featuredNewsItem) => featuredNewsItem.id)
+  const news = await getNewsArchive(12, 0, featuredNewsIds)
+  const allFetchedIds = featuredNewsIds.concat(news.docs.map((newsItem) => newsItem.id))
   const { hasNextPage } = news
   const latestNewsNav = [
     { text: 'All News', link: '/', id: 0 },
@@ -23,7 +23,7 @@ export default async function Page() {
     { text: 'Research', link: 'research', id: 5 },
   ]
 
-  const featuredPost = pinnedNews[0] || news.docs[0]
+  const featuredPost = featuredNews[0] || news.docs[0]
   if (!news || news.docs.length === 0) {
     return <h1 className={styles.pageTitle}>No news posts found</h1>
   }
@@ -62,7 +62,7 @@ export default async function Page() {
       <h1 className={styles.pageTitle}>Flare News</h1>
       <NewsFilter navLinks={latestNewsNav} />
       <div className={styles.featuredTeaserGrid}>
-        <TeaserGrid teasers={pinnedNews.slice(1, 4)} gridStyle='wide' />
+        <TeaserGrid teasers={featuredNews.slice(1, 4)} gridStyle='wide' />
       </div>
       <div className={styles.teaserGrid}>
         <TeaserGrid teasers={news.docs} />
