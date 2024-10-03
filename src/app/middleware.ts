@@ -32,9 +32,9 @@ export function middleware(request: NextRequest) {
     [
       '/favicon.ico',
     ].includes(pathname)
-  )
-
-  return
+  ) {
+    return
+  }
 
   const pathnameIsMissingLocale = i18n.locales.every(
     (locale) => {
