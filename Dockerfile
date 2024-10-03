@@ -21,6 +21,7 @@ ARG PAYLOAD_SECRET
 ENV PAYLOAD_SECRET=${PAYLOAD_SECRET}
 ENV NEXT_TELEMETRY_DISABLED 1
 
+RUN npm run payload migrate
 RUN npm run build
 
 # Production image

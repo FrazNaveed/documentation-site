@@ -1,0 +1,24 @@
+@use "../_styles/mixins" as *;
+@use "../_styles/typography" as *;
+@use "../_styles/spacing" as *;
+
+.wrap {
+  @include pageWrap;
+}
+
+.pageTitle {
+  @include container;
+  @include h6;
+
+  margin-top: to-rem($spacing-4x-large);
+  margin-bottom: to-rem($spacing-standard);
+  text-align: center;
+}
+
+.featuredTeaserGrid {
+  margin-top: to-rem($spacing-x-large);
+}
+
+.teaserGrid {
+  margin-top: to-rem($spacing-x-large);
+}
