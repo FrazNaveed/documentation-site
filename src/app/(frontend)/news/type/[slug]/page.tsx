@@ -1,7 +1,5 @@
 export default function Page() {
   return (
-    <>
-      <h1>Hello, I'm a category page</h1>
-    </>
+    <h1>Hello, I&apos;m a category page</h1>
   )
 }

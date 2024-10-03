@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { mainNavData, secondaryNavData } from './siteHeaderData'
 import BrandLogo from '../svgs/BrandLogo'
 import MainNav from '../MainNav'
-import type { MainNavigation, SecondaryNavigation } from '../MainNav/MainNav'
 import styles from './SiteHeader.module.scss'
 
 export default function SiteHeader() {

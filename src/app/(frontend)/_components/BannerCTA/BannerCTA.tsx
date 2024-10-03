@@ -10,7 +10,9 @@ export type CTAProps = {
   button: ButtonProps
 }
 
-export default function BannerCTA({ header, text, button, className }: CTAProps) {
+export default function BannerCTA({
+  header, text, button, className,
+}: CTAProps) {
   return (
     <section className={cx(styles.banner, className)}>
       <h1 className={styles.header}>{header}</h1>
