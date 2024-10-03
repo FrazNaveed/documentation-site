@@ -9,7 +9,7 @@ export type StatsProps = {
 
 export default function Stats({ stats, caption, className }: StatsProps) {
   return (
-    <section className={styles.statsBlock}>
+    <section className={cx(styles.statsBlock, className)}>
       <div className={styles.statsBlockWrap}>
         <div className={styles.stats}>
           {stats?.map((stat, index) => (
