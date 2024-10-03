@@ -45,7 +45,7 @@ export const getNewsFeatured = async (
     limit,
     sort: '-publishDate',
     where: buildWhereClause(type, {
-      featuured: {
+      featured: {
         equals: true,
       },
     }),
