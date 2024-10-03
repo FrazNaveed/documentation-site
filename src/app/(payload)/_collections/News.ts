@@ -16,8 +16,7 @@ export const News: CollectionConfig = {
       'author',
       'publishDate',
       'type',
-      'pin',
-      'pinPriority',
+      'featured',
     ],
   },
   fields: [
@@ -109,29 +108,13 @@ export const News: CollectionConfig = {
       ],
     },
     {
-      name: 'pin',
+      name: 'featured',
+      label: 'Featured?',
+      admin : {
+        description: "When checked, this news item will appear at or near the top of the news page, superseded by other featured news with a more recent publish date."
+      },
       type: 'checkbox',
       defaultValue: false,
-    },
-    {
-      name: 'pinPriority',
-      type: 'radio',
-      options: [
-        '0',
-        '1',
-        '2',
-        '3',
-      ],
-      defaultValue: '0',
-      admin: {
-        condition: (data, { user }) => {
-          if (data.pin) {
-            return true
-          } else {
-            return false
-          }
-        },
-      },
     },
   ]
 }

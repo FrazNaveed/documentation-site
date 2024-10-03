@@ -38,7 +38,7 @@ export const getNewsArchive = async (
   return newsData
 }
 
-export const getNewsPinned = async (
+export const getNewsFeatured = async (
   limit = 4,
   type: NewsTypeTypes = null
 ) => {
@@ -46,10 +46,10 @@ export const getNewsPinned = async (
   const newsData = await payload.find({
     collection: 'news',
     limit,
-    sort: 'pinPriority',
+    sort: '-publishDate',
     where: {
       ...whereType,
-      pin: {
+      featured: {
         equals: true,
       }
     }
@@ -67,7 +67,7 @@ export const getNewsPinned = async (
         id: {
           not_in: excludedIds,
         },
-        pin: {
+        featured: {
           not_equals: true,
         },
       }
