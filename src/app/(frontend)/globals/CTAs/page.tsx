@@ -1,4 +1,5 @@
 import BannerCTA from '../../_components/BannerCTA'
+import SubscriptionBannerCTA from '../../_components/SubscriptionBannerCTA'
 
 export default function Page() {
   const linkUrl = 'https://flare.network'
@@ -13,6 +14,14 @@ export default function Page() {
           className: undefined,
           size: 'small',
         }}
+      />
+      <br />
+      <h2>Subscription CTA</h2>
+      <SubscriptionBannerCTA
+        header='Subscribe to the Flare Newsletter'
+        text='Join over 20,000 fellow blockchain enthusiasts. Sign up to our newsletter today to receive our exclusive web3 insights and be informed of our latest product releases.'
+        buttonText='Subscribe'
+        placeholder='Type your email here|'
       />
     </>
   )
