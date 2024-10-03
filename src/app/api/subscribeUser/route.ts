@@ -48,7 +48,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: 'Successfully subscribed!' }, { status: 201 })
   } catch (error) {
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'An unknown error occurred' },
+      // See MailChimp error message
+      // { error instanceof Error ? error.message : 'An internal server error occurred' },
+      { error: 'An internal server error occurred' },
       { status: 500 }
     )
   }
