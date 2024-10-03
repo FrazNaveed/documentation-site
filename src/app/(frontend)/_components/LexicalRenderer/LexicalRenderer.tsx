@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Modified from https://www.npmjs.com/package/@atelier-disko/payload-lexical-react-renderer
 import React, { CSSProperties } from 'react'
 import type { News } from '@/payload-types'
