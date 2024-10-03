@@ -33,16 +33,16 @@ interface DropDate {
   }
   
   const isDropDateInThePast = (dropDateStr: string): boolean => {
-    const [month, day, year] = dropDateStr.split('/')
-    const dropDate = new Date(Date.UTC(+year, +month - 1, +day, 23, 59, 59))
+    const dropDate = parseDropDate(dropDateStr)
+    dropDate.setUTCHours(23, 59, 59)
     return dropDate < new Date()
   }
   
   const getNewYear = (datesArray: DropDate[], index: number): string | false => {
-    const currentYear = datesArray[index].dropDate.split('/')[2]
+    const currentYear = parseDropDate(datesArray[index].dropDate).getUTCFullYear().toString()
     if (index === 0) return currentYear
   
-    const previousYear = datesArray[index - 1].dropDate.split('/')[2]
+    const previousYear = parseDropDate(datesArray[index - 1].dropDate).getUTCFullYear().toString()
     return currentYear !== previousYear ? currentYear : false
   }
 
