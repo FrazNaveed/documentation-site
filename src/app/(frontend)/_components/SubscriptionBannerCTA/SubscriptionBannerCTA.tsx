@@ -17,7 +17,6 @@ export type CTAProps = {
 }
 
 export default function SubscriptionBannerCTA({ header, text, placeholder, buttonText, className }: CTAProps) {
-  const [prevEmail, setPrevEmail] = useState('')
   const [disabled, setDisabled] = useState(true)
   const [isFocused, setIsFocused] = useState(false)
   const { handleSubmit, successMessage, errorMessage } = useSubscriptionForm()
@@ -34,8 +33,6 @@ export default function SubscriptionBannerCTA({ header, text, placeholder, butto
     const emailInput = e.target.value
     // console.log(emailInput)
     setDisabled(!isValidEmailFormat(emailInput))
-
-    setPrevEmail(emailInput)
   }
 
   const handleFocus = () => {
