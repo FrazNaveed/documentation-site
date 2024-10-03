@@ -1,5 +1,5 @@
-import PlayButton from '../svgs/PlayButton'
 import type { News } from '@/payload-types'
+import PlayButton from '../svgs/PlayButton'
 
 export type ContentTypeIconProps = {
   contentType?: News['contentType']
@@ -7,8 +7,8 @@ export type ContentTypeIconProps = {
 }
 
 const thumbnailIcons = {
-  'video': <PlayButton />,
-  'podcast': null,
+  video: <PlayButton />,
+  podcast: null,
 }
 
 export default function ContentTypeIcon({ contentType, className }: ContentTypeIconProps) {

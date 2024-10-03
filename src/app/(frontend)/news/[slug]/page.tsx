@@ -10,8 +10,8 @@ import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import Pill from 'src/app/(frontend)/_components/Pill'
 import { getNewsBySlug } from 'src/app/(frontend)/_lib/payload/newsQueries'
 import convertToDate from 'src/app/(frontend)/_utils/convertToDate'
-import getCollectionPath from '../../_utils/getCollectionPath'
-import type { Media, NewsSubType, NewsType } from '@/payload-types'
+import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
+import type { Media } from '@/payload-types'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import styles from './page.module.scss'
 
@@ -37,32 +37,36 @@ export default async function Page({ params }: PageProps) {
     subtype,
     logos: featuredPostLogos,
     content,
-    content_html,
   } = newsPost
-  let typeHeroBgImage, featuredPostTypeName
+  let typeHeroBgImage
   if (typeof type === 'object') {
     typeHeroBgImage = type.image
-    featuredPostTypeName = type.name
   }
-  const subTypeHeroBgImage = subtype && typeof subtype === 'object' ? subtype.image : undefined;
+  const subTypeHeroBgImage = subtype && typeof subtype === 'object' ? subtype.image : undefined
 
   return (
     <article>
       <Hero
-        style='standard'
+        heroStyle='standard'
         backgroundImage={subTypeHeroBgImage as Media || typeHeroBgImage as Media}
-        {...(featuredPostLogos ? {logos: featuredPostLogos.map((logo) => logo.image as Media)} : {})}
+        {...(featuredPostLogos ? { logos: featuredPostLogos.map((logo) => logo.image as Media) } : {})}
       />
       <div className={styles.wrap}>
         <div className={styles.grid}>
           <header className={styles.header}>
             <Link href={getCollectionPath('news')} className={styles.backLink}>
-              <HorizontalArrow />Back to All News
+              <HorizontalArrow />
+              Back to All News
             </Link>
             {title && <h1 className={styles.title}>{title}</h1>}
             <div className={styles.meta}>
               {type && typeof type === 'object' && <Pill text={type.name} size='small' />}
-              {publishDate && <time className={styles.date} dateTime={publishDate}><Calendar />{convertToDate(publishDate)}</time>}
+              {publishDate && (
+                <time className={styles.date} dateTime={publishDate}>
+                  <Calendar />
+                  {convertToDate(publishDate)}
+                </time>
+              )}
             </div>
           </header>
           <div className={styles.social}>

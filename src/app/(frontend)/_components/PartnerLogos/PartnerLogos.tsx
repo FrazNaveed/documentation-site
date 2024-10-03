@@ -18,15 +18,17 @@ export default function PartnerLogos({ logos, stacked }: PartnerLogosProps) {
   }
   return (
     <div className={cx(styles.wrap, { [styles.wrap__column]: stacked, [styles.wrap__row]: !stacked })}>
-      {logos.map(({ id, url, width, height, alt, mimeType }) => {
+      {logos.map(({
+        id, url, width, height, alt, mimeType,
+      }) => {
         if (!url) {
           return null
         }
         let imageWidth = width ?? 0
         let imageHeight = height ?? 0
         if (mimeType !== 'image/svg+xml') {
-          imageWidth =  imageWidth / 2
-          imageHeight = imageHeight / 2
+          imageWidth /= 2
+          imageHeight /= 2
         }
         return (
           <div key={id} className={cx(styles.imgWrap, { [styles.imgWrap__row]: !stacked })}>

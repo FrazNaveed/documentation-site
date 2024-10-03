@@ -1,28 +1,28 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import cx from 'classnames'
+import type {
+  Media, News, NewsType,
+} from '@/payload-types'
 import ContentTypeIcon from '../ContentTypeIcon'
 import PartnerLogos from '../PartnerLogos'
 import Pill from '../Pill'
-import PlayButton from '../svgs/PlayButton'
 import convertToDate from '../../_utils/convertToDate'
 import getCollectionPath from '../../_utils/getCollectionPath'
-import type { Media, News, NewsSubType, NewsType } from '@/payload-types'
-import type { TDateFormat } from '../../_utils/convertToDate'
 import styles from './TeaserGrid.module.scss'
 
 export type TeaserGridProps = {
-  style?: '3-up' | 'wide'
+  gridStyle?: '3-up' | 'wide'
   teasers: News[]
 }
 
 export default function TeaserGrid({
-  style = '3-up',
+  gridStyle = '3-up',
   teasers,
 }: TeaserGridProps) {
   return (
     <div className={styles.container}>
-      <div className={cx(styles.grid, styles[`grid__${style}`])}>
+      <div className={cx(styles.grid, styles[`grid__${gridStyle}`])}>
         {teasers.map(({
           id,
           contentType,
@@ -36,12 +36,12 @@ export default function TeaserGrid({
           title,
         }) => {
           const link = `${getCollectionPath('news')}/${slug}`
-          const typeHeroBgImage = typeof type === 'object' ? type.image : undefined;
-          const subTypeHeroBgImage = subtype && typeof subtype === 'object' ? subtype.image : undefined;
+          const typeHeroBgImage = typeof type === 'object' ? type.image : undefined
+          const subTypeHeroBgImage = subtype && typeof subtype === 'object' ? subtype.image : undefined
           const backgroundImage = subTypeHeroBgImage || typeHeroBgImage
           return (
-            <article key={id} className={cx(styles.teaser, styles[`teaser__${style}`])}>
-              <Link href={link} className={cx(styles.visualsWrap, styles[`visualsWrap__${style}`])} tabIndex={-1}>
+            <article key={id} className={cx(styles.teaser, styles[`teaser__${gridStyle}`])}>
+              <Link href={link} className={cx(styles.visualsWrap, styles[`visualsWrap__${gridStyle}`])} tabIndex={-1}>
                 {typeof backgroundImage === 'object' && backgroundImage?.url && (
                   <div className={styles.bgImgWrap}>
                     <Image
@@ -60,7 +60,7 @@ export default function TeaserGrid({
                   </div>
                   <div className={styles.decoration}>
                     {typeof teaserThumbnail === 'object' && teaserThumbnail?.url && (
-                      <div className={cx(styles.thumbnailWrap, styles[`thumbnailWrap__${style}`])}>
+                      <div className={cx(styles.thumbnailWrap, styles[`thumbnailWrap__${gridStyle}`])}>
                         <Image
                           className={styles.thumbnail}
                           src={teaserThumbnail.url}
@@ -75,15 +75,15 @@ export default function TeaserGrid({
                   </div>
                 </div>
               </Link>
-              <header className={cx(styles.text, styles[`text__${style}`])}>
+              <header className={cx(styles.text, styles[`text__${gridStyle}`])}>
                 {title && (
-                  <h2 className={cx(styles.title, styles[`title__${style}`])}>
+                  <h2 className={cx(styles.title, styles[`title__${gridStyle}`])}>
                     <Link href={link} className={styles.titleLink}>
                       {title}
                     </Link>
                   </h2>
                 )}
-                {style === 'wide' && excerpt && (
+                {gridStyle === 'wide' && excerpt && (
                   <p className={styles.excerpt}>
                     {excerpt}
                   </p>

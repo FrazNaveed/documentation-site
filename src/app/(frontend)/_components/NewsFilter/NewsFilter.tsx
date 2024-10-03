@@ -1,8 +1,9 @@
 'use client'
-import React, {useState, useEffect } from 'react'
+
+import React, { useState } from 'react'
 import Link from 'next/link'
-import getCollectionPath from '../../_utils/getCollectionPath'
 import cx from 'classnames'
+import getCollectionPath from '../../_utils/getCollectionPath'
 import styles from './NewsFilter.module.scss'
 
 export type LinksProps = {
@@ -10,8 +11,7 @@ export type LinksProps = {
   className?: string
 }
 
-export default function Links({
-  navLinks, className }: LinksProps) {
+export default function Links({ navLinks, className }: LinksProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [hasClicked, setHasClicked] = useState(false)
 
@@ -28,18 +28,18 @@ export default function Links({
             <li
               className={cx(
                 styles.filter,
-                {[styles.active]: !hasClicked && index === 0 || activeIndex === index},
+                { [styles.active]: (!hasClicked && index === 0) || (activeIndex === index) },
               )}
               key={navLink.id}
             >
-            <Link
-              href={index !== 0 ? `${getCollectionPath('news-types')}/${navLink.link}` : getCollectionPath('news')}
-              className={styles.text}
-              onClick={() => handleClick(index)}
-              title={navLink.text}
-            >
-              {navLink.text}
-            </Link>
+              <Link
+                href={index !== 0 ? `${getCollectionPath('news-types')}/${navLink.link}` : getCollectionPath('news')}
+                className={styles.text}
+                onClick={() => handleClick(index)}
+                title={navLink.text}
+              >
+                {navLink.text}
+              </Link>
             </li>
           ))}
         </ul>

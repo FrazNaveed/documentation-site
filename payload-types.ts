@@ -107,8 +107,7 @@ export interface News {
         id?: string | null;
       }[]
     | null;
-  pin?: boolean | null;
-  pinPriority?: ('0' | '1' | '2' | '3') | null;
+  featured?: boolean | null;
   content?: {
     root: {
       type: string;

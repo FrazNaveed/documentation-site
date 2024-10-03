@@ -10,7 +10,7 @@ import type { TDateFormat } from '../../_utils/convertToDate'
 import styles from './Hero.module.scss'
 
 export type HeroProps = {
-  style?: 'standard' | 'featuredNews' | 'featuredEvent' | 'protocol'
+  heroStyle?: 'standard' | 'featuredNews' | 'featuredEvent' | 'protocol'
   link?: string
   backgroundImage?: Media
   contentType?: News['contentType']
@@ -32,7 +32,7 @@ export type HeroProps = {
 }
 
 export default function Hero({
-  style = 'standard',
+  heroStyle = 'standard',
   link,
   backgroundImage,
   contentType,
@@ -50,18 +50,18 @@ export default function Hero({
     <div
       className={cx(
         styles.grid,
-        styles[`grid__${style}`],
+        styles[`grid__${heroStyle}`],
         {
-          [styles.bg]: style === 'featuredNews',
-          [styles.container]: style !== 'featuredNews',
+          [styles.bg]: heroStyle === 'featuredNews',
+          [styles.container]: heroStyle !== 'featuredNews',
         },
       )}
     >
-      <div className={cx(styles.decoration, styles[`decoration__${style}`])}>
+      <div className={cx(styles.decoration, styles[`decoration__${heroStyle}`])}>
         {backgroundImage?.url && (
-          <div className={cx(styles.bgImgWrap, styles[`bgImgWrap__${style}`])}>
+          <div className={cx(styles.bgImgWrap, styles[`bgImgWrap__${heroStyle}`])}>
             <Image
-              className={cx(styles.bgImg, styles[`bgImg__${style}`])}
+              className={cx(styles.bgImg, styles[`bgImg__${heroStyle}`])}
               src={backgroundImage.url}
               width={backgroundImage.width ?? 0}
               height={backgroundImage.height ?? 0}
@@ -84,8 +84,8 @@ export default function Hero({
           </div>
         )}
       </div>
-      <header className={cx(styles.content, styles[`content__${style}`])}>
-        {logos && <PartnerLogos logos={logos} stacked={style === 'standard'} />}
+      <header className={cx(styles.content, styles[`content__${heroStyle}`])}>
+        {logos && <PartnerLogos logos={logos} stacked={heroStyle === 'standard'} />}
         {header && <h2 className={styles.header}>{header}</h2>}
         {(pill || timestamp) && (
           <div className={styles.meta}>
@@ -104,9 +104,9 @@ export default function Hero({
     <article
       className={cx(
         {
-          [styles.container]: style === 'featuredNews',
-          [styles.bg]: style !== 'featuredNews',
-          [styles.hideOnMobile]: style === 'standard' && (!logos || logos.length === 0), // If hero is standard style and no partner/event logo exists, do not display on mobile
+          [styles.container]: heroStyle === 'featuredNews',
+          [styles.bg]: heroStyle !== 'featuredNews',
+          [styles.hideOnMobile]: heroStyle === 'standard' && (!logos || logos.length === 0), // If hero is standard style and no partner/event logo exists, do not display on mobile
         },
       )}
     >
