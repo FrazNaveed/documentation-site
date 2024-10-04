@@ -241,7 +241,9 @@ function getElementStyle<Type extends string>({
 export const defaultBlockRenderers: BlockRenderers<{ video: VideoNode }> = {
   video: (element) => {
     return (
-      <VideoEmbed url={element.fields.url} />
+      <div className={styles.video}>
+        <VideoEmbed url={element.fields.url} />
+      </div>
     )
   },
 }
