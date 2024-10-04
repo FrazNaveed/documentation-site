@@ -302,7 +302,6 @@ export const defaultElementRenderers: ElementRenderers = {
   linebreak: () => <br />,
   tab: () => <br />,
   upload: (element) => {
-    console.log(element)
     if (element.value.mimeType?.includes('image')) {
       return (
         <figure className={cx(styles.figure, styles[`figure__${element.fields?.float}`])}>
