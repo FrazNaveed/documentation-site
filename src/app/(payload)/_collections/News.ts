@@ -65,7 +65,8 @@ export const News: CollectionConfig = {
       admin: {
         date: {
           pickerAppearance: 'dayAndTime',
-        }
+        },
+        position: 'sidebar',
       },
       required: true,
     },
@@ -75,6 +76,9 @@ export const News: CollectionConfig = {
       relationTo: 'users',
       hasMany: false,
       required: true,
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'type',
@@ -83,6 +87,9 @@ export const News: CollectionConfig = {
       hasMany: false,
       required: true,
       localized: true,
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'subtype',
@@ -91,6 +98,9 @@ export const News: CollectionConfig = {
       hasMany: false,
       required: false,
       localized: true,
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'contentType',
@@ -106,6 +116,9 @@ export const News: CollectionConfig = {
         },
       ],
       localized: true,
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'teaserThumbnail',
@@ -134,7 +147,8 @@ export const News: CollectionConfig = {
       name: 'featured',
       label: 'Featured?',
       admin : {
-        description: "When checked, this news item will appear at or near the top of the news page, superseded by other featured news with a more recent publish date."
+        description: "When checked, this news item will appear at or near the top of the news page, superseded by other featured news with a more recent publish date.",
+        position: 'sidebar',
       },
       type: 'checkbox',
       defaultValue: false,
@@ -173,6 +187,7 @@ export const News: CollectionConfig = {
                   {
                     name: 'caption',
                     type: 'text',
+                    localized: true,
                   },
                   {
                     name: 'float',
