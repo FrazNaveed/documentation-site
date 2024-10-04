@@ -1,4 +1,9 @@
 import Stats from 'src/app/(frontend)/_components/Stats'
+// import getStatsBlockFromPage from '../../../_lib/payload/statsQueries'
+
+// const testStats = await getStatsBlockFromPage('fooz')
+
+// console.log('testStats: ', testStats.components[1].stats) // gets the 'stats' array from the block
 
 export default function Page() {
   const stats = [
