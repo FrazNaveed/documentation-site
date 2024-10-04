@@ -11,6 +11,7 @@ export interface Config {
     users: UserAuthOperations;
   };
   collections: {
+    events: Event;
     pages: Page;
     users: User;
     media: Media;
@@ -47,6 +48,28 @@ export interface UserAuthOperations {
     email: string;
     password: string;
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: number;
+  title: string;
+  startDate: string;
+  startTime?: string | null;
+  endDate?: string | null;
+  endTime?: string | null;
+  country: string;
+  location: string;
+  flareInvolvement: string;
+  button?: {
+    buttonType?: ('announcement' | 'rsvp') | null;
+    link?: string | null;
+  };
+  featured?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -285,6 +308,10 @@ export interface NewsSubType {
 export interface PayloadLockedDocument {
   id: number;
   document?:
+    | ({
+        relationTo: 'events';
+        value: number | Event;
+      } | null)
     | ({
         relationTo: 'pages';
         value: number | Page;
