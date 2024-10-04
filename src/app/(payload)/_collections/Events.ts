@@ -46,17 +46,6 @@ export const Events: CollectionConfig = {
             width: '25%',
           }
         },
-        { 
-          name: 'endTime',
-          type: 'date',
-          required: false,
-          admin: {
-            date: {
-              pickerAppearance: 'timeOnly',
-            },
-            width: '15%',
-          },
-        },
       ],
     },
     {
