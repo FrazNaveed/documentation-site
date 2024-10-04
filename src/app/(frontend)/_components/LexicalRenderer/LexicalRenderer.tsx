@@ -1,6 +1,7 @@
 /* eslint-disable */
 // Modified from https://www.npmjs.com/package/@atelier-disko/payload-lexical-react-renderer
 import React, { CSSProperties } from 'react'
+import cx from 'classnames'
 import type { News } from '@/payload-types'
 import VideoEmbed from '../../_components/VideoEmbed'
 import getCollectionPath from '../../_utils/getCollectionPath'
@@ -136,6 +137,7 @@ export type UploadNode<
 > = {
     fields: {
       caption?: string | null
+      float?: ('left' | 'right') | null
     } | null;
     relationTo: 'media';
     value: MediaType;
@@ -300,9 +302,10 @@ export const defaultElementRenderers: ElementRenderers = {
   linebreak: () => <br />,
   tab: () => <br />,
   upload: (element) => {
+    console.log(element)
     if (element.value.mimeType?.includes('image')) {
       return (
-        <figure className={styles.figure}>
+        <figure className={cx(styles.figure, styles[`figure__${element.fields?.float}`])}>
           <img className={styles.figureImg} src={element.value.url} alt={element.value.alt} />
           {element.fields?.caption && <figcaption className={styles.figcaption}>{element.fields.caption}</figcaption>}
         </figure>

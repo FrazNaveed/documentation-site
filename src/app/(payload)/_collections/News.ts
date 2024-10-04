@@ -174,6 +174,20 @@ export const News: CollectionConfig = {
                     name: 'caption',
                     type: 'text',
                   },
+                  {
+                    name: 'float',
+                    type: 'select',
+                    options: [
+                      {
+                        label: 'Left',
+                        value: 'left',
+                      },
+                      {
+                        label: 'Right',
+                        value: 'right',
+                      },
+                    ]
+                  },
                 ],
               },
             },

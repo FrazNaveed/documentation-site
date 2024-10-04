@@ -28,6 +28,26 @@
 .figure {
   display: block;
   margin: to-rem($p-margin-bottom) auto;
+
+  @include media-breakpoint-up(lg) {
+    &__left,
+    &__right {
+      max-width: calc(
+        ((100% - ($grid-column-gap * 6)) / 7 * 3) + ($grid-column-gap * 2)
+      );
+      margin-top: 0;
+    }
+
+    &__left {
+      margin-right: $grid-column-gap;
+      float: left;
+    }
+
+    &__right {
+      margin-left: $grid-column-gap;
+      float: right;
+    }
+  }
 }
 
 .figureImg {
