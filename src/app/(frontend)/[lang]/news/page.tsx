@@ -1,11 +1,11 @@
 import type { Media } from '@/payload-types'
-import Hero from '../_components/Hero'
-import TeaserGrid from '../_components/TeaserGrid'
-import { getNewsArchive, getNewsFeatured } from '../_lib/payload/newsQueries'
-import NewsFilter from '../_components/NewsFilter'
-import getCollectionPath from '../_utils/getCollectionPath'
+import Hero from '../../_components/Hero'
+import TeaserGrid from '../../_components/TeaserGrid'
+import { getNewsArchive, getNewsFeatured } from '../../_lib/payload/newsQueries'
+import NewsFilter from '../../_components/NewsFilter'
+import getCollectionPath from '../../_utils/getCollectionPath'
 import styles from './page.module.scss'
-import LoadMoreGrid from '../_components/LoadMoreGrid'
+import LoadMoreGrid from '../../_components/LoadMoreGrid'
 
 export const dynamic = 'force-dynamic'
 
