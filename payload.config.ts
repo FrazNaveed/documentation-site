@@ -7,6 +7,7 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
+import { Pages } from 'src/app/(payload)/_collections/Pages'
 import { Users } from './src/app/(payload)/_collections/Users'
 import { Media } from './src/app/(payload)/_collections/Media'
 import { News } from './src/app/(payload)/_collections/News'
@@ -23,7 +24,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, News, NewsTypes, NewsSubTypes],
+  collections: [Pages, Users, Media, News, NewsTypes, NewsSubTypes],
   editor: lexicalEditor(),
   localization: {
     locales: [
