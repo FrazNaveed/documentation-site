@@ -21,13 +21,6 @@ function getLocale(request: NextRequest): string {
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
-  // Allow direct access to the Payload admin panel and its assets
-  if (pathname.startsWith('/admin') || pathname.startsWith('/_payload')) {
-    const pathWithoutDefaultLocale = pathname.replace(new RegExp(`^/${i18n.defaultLocale}(/|$)`), '/')
-
-    return NextResponse.rewrite(new URL(pathWithoutDefaultLocale, request.url))
-  }
-
   if (['/favicon.ico'].includes(pathname)) {
     return
   }
@@ -61,5 +54,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|admin).*)"],
 }
