@@ -44,7 +44,7 @@
 }
 
 .large {
-  @include bodyBase;
+  @include bodyBaseDesktop;
 
   max-width: 100%;
   padding: to-rem(10px) to-rem(24px);

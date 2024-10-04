@@ -9,8 +9,8 @@ export type ButtonProps = {
   buttonStyle?: 'pink' | 'black' | 'secondary',
   size?: 'large' | 'medium' | 'small',
   disabled?: boolean
-  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void,
-  onFocus?: (event: React.FocusEvent<HTMLElement>) => void,
+  onBlur?: () => void,
+  onFocus?: () => void,
   onClick?: () => void
 }
 
