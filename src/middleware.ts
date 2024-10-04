@@ -5,7 +5,6 @@ import { i18n } from './app/i18n-config'
 
 import { match as matchLocale } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
-import { url } from 'inspector'
 
 function getLocale(request: NextRequest): string | undefined {
   const negotiatorHeaders: Record<string, string | string[]> = {}
@@ -58,15 +57,19 @@ export function middleware(request: NextRequest) {
   }
 
 
-  // if (pathname.startsWith('/' + i18n.defaultLocale)) {
-  //   console.warn('contains default locale --> remove the locale from the pathname')
-  //   console.log('Rewriting URL without locale...')
-  //   const urlWithoutLocale = pathname.replace(/^\/en/, '')
-  //   console.log('cropped: ', urlWithoutLocale)
-  //   const foo = NextResponse.rewrite(new URL(urlWithoutLocale, request.url))
-  //   console.log('rewritten url: ', foo)
-  //   return NextResponse.rewrite(new URL(urlWithoutLocale, request.url))
-  // }
+  if (pathname.startsWith('/' + i18n.defaultLocale)) {
+    const urlWithoutLocale = pathname.replace(/^\/en/, '')
+
+    console.warn('contains default locale --> remove the locale from the pathname')
+    console.log('Rewriting URL without locale...')
+    console.log('URL without locale ', urlWithoutLocale)
+    // const rewrittenUrl = `${request.nextUrl.origin}${urlWithoutLocale}`
+    const rewrittenUrl = new URL(urlWithoutLocale, request.url)
+    console.log('rewritten url: ', rewrittenUrl.href)
+    return NextResponse.rewrite(rewrittenUrl)
+  }
+
+  return NextResponse.next()
 }
 
 export const config = {
