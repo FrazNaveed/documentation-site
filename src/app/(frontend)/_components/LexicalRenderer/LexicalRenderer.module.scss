@@ -7,8 +7,16 @@
 
 .content {
   h2 {
+    @include h5;
+
+    margin-bottom: to-rem(16px);
+    letter-spacing: 0;
+  }
+
+  h3 {
     @include h6;
 
+    margin-bottom: to-rem(16px);
     letter-spacing: 0;
   }
 
@@ -18,7 +26,8 @@
 }
 
 .figure {
-  margin: to-rem($p-margin-bottom) 0;
+  display: inline-block;
+  margin: to-rem($p-margin-bottom) auto;
 
   img {
     display: block;

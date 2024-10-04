@@ -12,11 +12,26 @@ $font-family-sathoshi: var(--satoshi);
   line-height: math.div($lineHeight, $root-font-size-number) * 1rem;
 }
 
-@mixin bodyBase() {
+@mixin bodyBaseDesktop() {
   @include fontStyle(20, 32);
 
   font-family: $font-family-sathoshi;
   font-weight: 500;
+}
+
+@mixin bodyBaseMobile() {
+  @include fontStyle(16, 24);
+
+  font-family: $font-family-sathoshi;
+  font-weight: 500;
+}
+
+@mixin bodyBase($breakpoint: lg) {
+  @include bodyBaseDesktop;
+
+  @include media-breakpoint-down($breakpoint) {
+    @include bodyBaseMobile;
+  }
 }
 
 @mixin headerDesktopH1() {
