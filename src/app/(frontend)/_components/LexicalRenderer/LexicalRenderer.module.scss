@@ -26,21 +26,29 @@
 }
 
 .figure {
-  display: inline-block;
+  display: block;
   margin: to-rem($p-margin-bottom) auto;
+}
 
-  img {
-    display: block;
-  }
+.figureImg {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .figcaption {
   @include label;
 
   margin-top: to-rem(12px);
+  margin-bottom: 0;
   text-align: center;
 }
 
 .video {
   margin: to-rem($spacing-large) auto;
+
+  @include media-breakpoint-down(lg) {
+    margin-top: to-rem($spacing-standard);
+    margin-bottom: to-rem($spacing-standard);
+  }
 }

@@ -303,7 +303,7 @@ export const defaultElementRenderers: ElementRenderers = {
     if (element.value.mimeType?.includes('image')) {
       return (
         <figure className={styles.figure}>
-          <img src={element.value.url} alt={element.value.alt} />
+          <img className={styles.figureImg} src={element.value.url} alt={element.value.alt} />
           {element.fields?.caption && <figcaption className={styles.figcaption}>{element.fields.caption}</figcaption>}
         </figure>
       )
