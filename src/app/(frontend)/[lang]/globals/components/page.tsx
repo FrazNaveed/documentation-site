@@ -1,4 +1,4 @@
-import Stats from '../../_components/Stats'
+import Stats from 'src/app/(frontend)/_components/Stats'
 
 export default function Page() {
   const stats = [
