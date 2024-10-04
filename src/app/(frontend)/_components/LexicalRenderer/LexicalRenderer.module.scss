@@ -17,7 +17,12 @@
     @include h6;
 
     margin-bottom: to-rem(16px);
-    letter-spacing: 0;
+  }
+
+  h4 {
+    @include headerH7;
+
+    margin-bottom: to-rem(16px);
   }
 
   hr {
