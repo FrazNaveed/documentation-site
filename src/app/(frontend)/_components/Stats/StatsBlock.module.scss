@@ -112,8 +112,8 @@
   @include media-breakpoint-down(lg) {
     @include columns(2, -1);
   }
-}
 
-.caption {
-  @include paragraphXSmFont;
+  p {
+    @include paragraphXSmFont;
+  }
 }
