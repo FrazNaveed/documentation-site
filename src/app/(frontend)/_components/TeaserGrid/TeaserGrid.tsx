@@ -7,9 +7,8 @@ import type {
 import ContentTypeIcon from '../ContentTypeIcon'
 import PartnerLogos from '../PartnerLogos'
 import Pill from '../Pill'
-// import PlayButton from '../svgs/PlayButton'
 import convertToDate from '../../_utils/convertToDate'
-// import type { TDateFormat } from '../../_utils/convertToDate'
+import getCollectionPath from '../../_utils/getCollectionPath'
 import styles from './TeaserGrid.module.scss'
 
 export type TeaserGridProps = {
@@ -36,7 +35,7 @@ export default function TeaserGrid({
           teaserThumbnail,
           title,
         }) => {
-          const link = `/news/${slug}`
+          const link = `${getCollectionPath('news')}/${slug}`
           const typeHeroBgImage = typeof type === 'object' ? type.image : undefined
           const subTypeHeroBgImage = subtype && typeof subtype === 'object' ? subtype.image : undefined
           const backgroundImage = subTypeHeroBgImage || typeHeroBgImage

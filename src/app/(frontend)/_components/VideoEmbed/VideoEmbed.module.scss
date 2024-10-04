@@ -1,0 +1,11 @@
+@use "../../_styles/mixins" as *;
+
+.videoWrap {
+  @include videoWrap;
+}
+
+.videoPlayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

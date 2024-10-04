@@ -91,7 +91,9 @@ export default function Hero({
           <div className={styles.meta}>
             {pill && <Pill text={pill.text} link={pill.link} />}
             {timestamp && (
-              <time className={styles.date} dateTime={timestamp}>{convertToDate(timestamp, dateFormat)}</time>
+              <time className={styles.date} dateTime={timestamp}>
+                {convertToDate(timestamp, dateFormat)}
+              </time>
             )}
           </div>
         )}

@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import cx from 'classnames'
+import getCollectionPath from '../../_utils/getCollectionPath'
 import styles from './NewsFilter.module.scss'
 
 export type LinksProps = {
@@ -32,7 +33,7 @@ export default function Links({ navLinks, className }: LinksProps) {
               key={navLink.id}
             >
               <Link
-                href={index !== 0 ? `/news/type/${navLink.link}` : '/news/'}
+                href={index !== 0 ? `${getCollectionPath('news-types')}/${navLink.link}` : getCollectionPath('news')}
                 className={styles.text}
                 onClick={() => handleClick(index)}
                 title={navLink.text}
