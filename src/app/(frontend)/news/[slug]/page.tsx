@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Hero from 'src/app/(frontend)/_components/Hero'
 import Calendar from 'src/app/(frontend)/_components/svgs/Calendar'
-import HorizontalArrow from 'src/app/(frontend)/_components/svgs/HorizontalArrow'
+import LeftArrow from 'src/app/(frontend)/_components/svgs/LeftArrow'
 import Discord from 'src/app/(frontend)/_components/svgs/Discord'
 import TelegramCircle from 'src/app/(frontend)/_components/svgs/TelegramCircle'
 import XSocial from 'src/app/(frontend)/_components/svgs/XSocial'
@@ -55,7 +55,7 @@ export default async function Page({ params }: PageProps) {
         <div className={styles.grid}>
           <header className={styles.header}>
             <Link href={getCollectionPath('news')} className={styles.backLink}>
-              <HorizontalArrow />
+              <LeftArrow />
               Back to All News
             </Link>
             {title && <h1 className={styles.title}>{title}</h1>}
