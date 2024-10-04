@@ -166,6 +166,7 @@ export interface Columns {
       )[]
     | null;
   createSideNavLink?: boolean | null;
+  linkText?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'columns';
@@ -177,6 +178,7 @@ export interface Columns {
 export interface Image {
   image?: (number | null) | Media;
   createSideNavLink?: boolean | null;
+  linkText?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'image';
@@ -202,6 +204,7 @@ export interface RichText {
     [k: string]: unknown;
   } | null;
   createSideNavLink?: boolean | null;
+  linkText?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'richText';
@@ -228,6 +231,7 @@ export interface Stats {
     [k: string]: unknown;
   } | null;
   createSideNavLink?: boolean | null;
+  linkText?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'stats';
