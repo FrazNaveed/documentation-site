@@ -1,8 +1,24 @@
 import type { CollectionConfig } from 'payload'
 import {
+  AlignFeature,
+  IndentFeature,
   BlocksFeature,
+  BlockquoteFeature,
+  BoldFeature,
+  HeadingFeature,
+  HorizontalRuleFeature,
+  InlineCodeFeature,
+  InlineToolbarFeature,
+  ItalicFeature,
   LinkFeature,
+  OrderedListFeature,
+  ParagraphFeature,
+  StrikethroughFeature,
+  SubscriptFeature,
+  SuperscriptFeature,
   UploadFeature,
+  UnderlineFeature,
+  UnorderedListFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 import { Video } from '../_blocks/Video'
@@ -128,7 +144,22 @@ export const News: CollectionConfig = {
       type: 'richText',
       editor: lexicalEditor({
         features: ({ defaultFeatures }) => [
-          ...defaultFeatures,
+          AlignFeature(),
+          IndentFeature(),
+          BlockquoteFeature(),
+          BoldFeature(),
+          HorizontalRuleFeature(),
+          InlineCodeFeature(),
+          InlineToolbarFeature(),
+          ItalicFeature(),
+          OrderedListFeature(),
+          ParagraphFeature(),
+          StrikethroughFeature(),
+          SubscriptFeature(),
+          SuperscriptFeature(),
+          UnderlineFeature(),
+          UnorderedListFeature(),
+          HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
           LinkFeature({
             enabledCollections: ['news'],
             fields: ({ defaultFields }) => [
