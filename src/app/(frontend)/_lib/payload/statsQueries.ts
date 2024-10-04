@@ -5,7 +5,7 @@ import config from '@payload-config'
 
 const payload = await getPayloadHMR({ config })
 
-export default async function getStatsBlockFromPage(slug: string): Promise<any> {
+export default async function getStatsBlockFromPage(slug: string) {
   try {
     const result = await payload.find({
       collection: 'pages',
