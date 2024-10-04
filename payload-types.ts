@@ -59,7 +59,6 @@ export interface Event {
   startDate: string;
   startTime?: string | null;
   endDate?: string | null;
-  endTime?: string | null;
   country: string;
   location: string;
   flareInvolvement: string;
