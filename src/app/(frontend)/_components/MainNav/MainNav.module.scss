@@ -501,7 +501,7 @@ $mobile-link-margin-bottom: to-rem($spacing-standard);
   }
 
   &_Description {
-    @include bodyBase;
+    @include bodyBaseDesktop;
 
     color: $gray;
 

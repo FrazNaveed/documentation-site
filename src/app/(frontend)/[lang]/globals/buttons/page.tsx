@@ -1,5 +1,5 @@
-import Button from '../../_components/Button'
-import Pill from '../../_components/Pill'
+import Button from 'src/app/(frontend)/_components/Button'
+import Pill from 'src/app/(frontend)/_components/Pill'
 
 export default function Page() {
   return (

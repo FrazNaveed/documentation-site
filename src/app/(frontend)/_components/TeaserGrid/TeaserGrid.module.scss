@@ -12,14 +12,14 @@
 .grid {
   @include grid;
 
-  row-gap: to-rem($spacing-7x-large);
+  row-gap: to-rem($teaser-grid-row-gap);
 
   @include media-breakpoint-down(lg) {
-    row-gap: to-rem($spacing-xxx-large);
+    row-gap: to-rem($teaser-grid-row-gap-lg);
   }
 
   @include media-breakpoint-down(md) {
-    row-gap: to-rem($spacing-xx-large);
+    row-gap: to-rem($teaser-grid-row-gap-md);
   }
 
   &__wide {

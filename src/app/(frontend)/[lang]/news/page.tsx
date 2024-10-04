@@ -1,10 +1,11 @@
 import type { Media } from '@/payload-types'
-import Hero from '../_components/Hero'
-import TeaserGrid from '../_components/TeaserGrid'
-import { getNewsArchive, getNewsFeatured } from '../_lib/payload/newsQueries'
-import NewsFilter from '../_components/NewsFilter'
+import Hero from '../../_components/Hero'
+import TeaserGrid from '../../_components/TeaserGrid'
+import { getNewsArchive, getNewsFeatured } from '../../_lib/payload/newsQueries'
+import NewsFilter from '../../_components/NewsFilter'
+import getCollectionPath from '../../_utils/getCollectionPath'
 import styles from './page.module.scss'
-import LoadMoreGrid from '../_components/LoadMoreGrid'
+import LoadMoreGrid from '../../_components/LoadMoreGrid'
 
 export const dynamic = 'force-dynamic'
 
@@ -49,7 +50,7 @@ export default async function Page() {
   return (
     <div className={styles.wrap}>
       <Hero
-        link={`/news/${featuredPostSlug}`}
+        link={`${getCollectionPath('news')}/${featuredPostSlug}`}
         heroStyle='featuredNews'
         backgroundImage={featuredPostSubTypeHeroBgImage as Media || featuredPostTypeHeroBgImage as Media}
         header={featuredPostTitle}

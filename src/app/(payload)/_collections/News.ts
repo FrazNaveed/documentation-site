@@ -1,4 +1,27 @@
 import type { CollectionConfig } from 'payload'
+import {
+  AlignFeature,
+  IndentFeature,
+  BlocksFeature,
+  BlockquoteFeature,
+  BoldFeature,
+  HeadingFeature,
+  HorizontalRuleFeature,
+  InlineCodeFeature,
+  InlineToolbarFeature,
+  ItalicFeature,
+  LinkFeature,
+  OrderedListFeature,
+  ParagraphFeature,
+  StrikethroughFeature,
+  SubscriptFeature,
+  SuperscriptFeature,
+  UploadFeature,
+  UnderlineFeature,
+  UnorderedListFeature,
+  lexicalEditor,
+} from '@payloadcms/richtext-lexical'
+import { Video } from '../_blocks/Video'
 
 export const News: CollectionConfig = {
   slug: 'news',
@@ -42,7 +65,8 @@ export const News: CollectionConfig = {
       admin: {
         date: {
           pickerAppearance: 'dayAndTime',
-        }
+        },
+        position: 'sidebar',
       },
       required: true,
     },
@@ -52,6 +76,9 @@ export const News: CollectionConfig = {
       relationTo: 'users',
       hasMany: false,
       required: true,
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'type',
@@ -60,6 +87,9 @@ export const News: CollectionConfig = {
       hasMany: false,
       required: true,
       localized: true,
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'subtype',
@@ -68,6 +98,9 @@ export const News: CollectionConfig = {
       hasMany: false,
       required: false,
       localized: true,
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'contentType',
@@ -83,6 +116,9 @@ export const News: CollectionConfig = {
         },
       ],
       localized: true,
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'teaserThumbnail',
@@ -111,10 +147,71 @@ export const News: CollectionConfig = {
       name: 'featured',
       label: 'Featured?',
       admin : {
-        description: "When checked, this news item will appear at or near the top of the news page, superseded by other featured news with a more recent publish date."
+        description: "When checked, this news item will appear at or near the top of the news page, superseded by other featured news with a more recent publish date.",
+        position: 'sidebar',
       },
       type: 'checkbox',
       defaultValue: false,
+    },
+    {
+      name: 'content',
+      type: 'richText',
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          AlignFeature(),
+          IndentFeature(),
+          BlockquoteFeature(),
+          BoldFeature(),
+          HorizontalRuleFeature(),
+          InlineCodeFeature(),
+          InlineToolbarFeature(),
+          ItalicFeature(),
+          OrderedListFeature(),
+          ParagraphFeature(),
+          StrikethroughFeature(),
+          SubscriptFeature(),
+          SuperscriptFeature(),
+          UnderlineFeature(),
+          UnorderedListFeature(),
+          HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
+          LinkFeature({
+            enabledCollections: ['news'],
+            fields: ({ defaultFields }) => [
+              ...defaultFields,
+            ],
+          }),
+          UploadFeature({
+            collections: {
+              media: {
+                fields: [
+                  {
+                    name: 'caption',
+                    type: 'text',
+                    localized: true,
+                  },
+                  {
+                    name: 'float',
+                    type: 'select',
+                    options: [
+                      {
+                        label: 'Left',
+                        value: 'left',
+                      },
+                      {
+                        label: 'Right',
+                        value: 'right',
+                      },
+                    ]
+                  },
+                ],
+              },
+            },
+          }),
+          BlocksFeature({
+            blocks: [Video],
+          }),
+        ],
+      }),
     },
   ]
 }

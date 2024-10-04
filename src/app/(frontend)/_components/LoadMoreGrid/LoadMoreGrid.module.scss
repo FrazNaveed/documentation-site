@@ -2,7 +2,15 @@
 @use "../../_styles/spacing" as *;
 
 .gridWrap {
-  margin-top: to-rem($spacing-x-large);
+  margin-top: to-rem($teaser-grid-row-gap);
+
+  @include media-breakpoint-down(lg) {
+    margin-top: to-rem($teaser-grid-row-gap-lg);
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-top: to-rem($teaser-grid-row-gap-md);
+  }
 }
 
 .btnWrap {

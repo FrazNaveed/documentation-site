@@ -9,6 +9,7 @@ export const Users: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'email',
+    enableRichTextLink: false,
   },
   auth: {
     useAPIKey: true,

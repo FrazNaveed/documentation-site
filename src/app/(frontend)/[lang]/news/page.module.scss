@@ -1,6 +1,6 @@
-@use "../_styles/mixins" as *;
-@use "../_styles/typography" as *;
-@use "../_styles/spacing" as *;
+@use "src/app/(frontend)/_styles/mixins" as *;
+@use "src/app/(frontend)/_styles/typography" as *;
+@use "src/app/(frontend)/_styles/spacing" as *;
 
 .wrap {
   @include pageWrap;

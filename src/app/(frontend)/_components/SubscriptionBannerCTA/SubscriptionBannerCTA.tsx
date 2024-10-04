@@ -7,6 +7,7 @@ import CheckCircle from 'src/app/(frontend)/_components/svgs/CheckCircle'
 import useSubscriptionForm from 'src/app/(frontend)/_hooks/useSubscriptionForm'
 import { useState } from 'react'
 import isValidEmailFormat from 'src/app/(frontend)/_utils/isValidEmailFormat'
+import { i18n } from '@/src/app/i18n-config'
 import styles from './SubscriptionBannerCTA.module.scss'
 
 export type CTAProps = {
@@ -23,7 +24,7 @@ export default function SubscriptionBannerCTA({
   const [disabled, setDisabled] = useState(true)
   const [isFocused, setIsFocused] = useState(false)
   const { handleSubmit, successMessage, errorMessage } = useSubscriptionForm()
-  const url = '/fw5_join_bg.png'
+  const url = `/${i18n.defaultLocale}/fw5_join_bg.png`
   const alt = 'background image'
   const imageWidth = 1728 / 2
   const imageHeight = 858 / 2

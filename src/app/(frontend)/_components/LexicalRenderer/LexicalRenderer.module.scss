@@ -1,0 +1,80 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.content {
+  h2 {
+    @include h5;
+
+    margin-bottom: to-rem(16px);
+    letter-spacing: 0;
+  }
+
+  h3 {
+    @include h6;
+
+    margin-bottom: to-rem(16px);
+  }
+
+  h4 {
+    @include headerH7;
+
+    margin-bottom: to-rem(16px);
+  }
+
+  hr {
+    margin: to-rem($p-margin-bottom) auto;
+  }
+}
+
+.figure {
+  display: block;
+  margin: to-rem($p-margin-bottom) auto;
+
+  @include media-breakpoint-up(lg) {
+    &__left,
+    &__right {
+      max-width: calc(
+        ((100% - ($grid-column-gap * 6)) / 7 * 3) + ($grid-column-gap * 2)
+      );
+      margin-top: 0;
+    }
+
+    &__left {
+      margin-right: $grid-column-gap;
+      float: left;
+    }
+
+    &__right {
+      margin-left: $grid-column-gap;
+      float: right;
+    }
+  }
+}
+
+.figureImg {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 8px;
+}
+
+.figcaption {
+  @include label;
+
+  margin-top: to-rem(12px);
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.video {
+  margin: to-rem($spacing-large) auto;
+
+  @include media-breakpoint-down(lg) {
+    margin-top: to-rem($spacing-standard);
+    margin-bottom: to-rem($spacing-standard);
+  }
+}

@@ -1,5 +1,5 @@
-import BannerCTA from '../../_components/BannerCTA'
-import SubscriptionBannerCTA from '../../_components/SubscriptionBannerCTA'
+import BannerCTA from 'src/app/(frontend)/_components/BannerCTA'
+import SubscriptionBannerCTA from 'src/app/(frontend)/_components/SubscriptionBannerCTA'
 
 export default function Page() {
   const linkUrl = 'https://flare.network'
