@@ -161,7 +161,7 @@ export const News: CollectionConfig = {
           AlignFeature(),
           IndentFeature(),
           BlockquoteFeature(),
-          // BoldFeature(),
+          BoldFeature(),
           HorizontalRuleFeature(),
           InlineCodeFeature(),
           InlineToolbarFeature(),
