@@ -1,6 +1,6 @@
 import StatsBlock from 'src/app/(frontend)/_components/Stats'
-import getStatsBlockFromPage from '../../../_lib/payload/statsQueries'
-import { PayloadLexicalReactRendererContent } from '../../../_components/LexicalRenderer/LexicalRenderer'
+import getStatsBlockFromPage from 'src/app/(frontend)/_lib/payload/statsQueries'
+import { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 
 const testStats = await getStatsBlockFromPage('fooz')
 // console.log('testStats: ', testStats)
