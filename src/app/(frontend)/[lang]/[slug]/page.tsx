@@ -28,13 +28,15 @@ export default async function Page({
       buttonLink,
       backgroundImage,
     } = hero
+    const heroCtaProps = (buttonText && buttonLink) ? { cta: { text: buttonText, link: buttonLink } } : {}
+    const heroBackgroundImageProps = (backgroundImage && typeof backgroundImage === 'object') ? { backgroundImage } : {}
     heroComponent = (
       <PageHero
         heroStyle={style}
         header={headline}
         eyebrow={eyebrow}
-        {...((buttonText && buttonLink) ? { cta: { text: buttonText, link: buttonLink } } : {})}
-        {...(backgroundImage && typeof backgroundImage === 'object' ? { backgroundImage } : {})}
+        {...heroCtaProps}
+        {...heroBackgroundImageProps}
       />
     )
   }
