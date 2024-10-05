@@ -1,5 +1,3 @@
-import { count } from "console"
-
 const countryArray = [
   { label: 'Afghanistan', value: 'AF' },
   { label: 'Åland Islands', value: 'AX' },
