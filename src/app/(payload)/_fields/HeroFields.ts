@@ -16,7 +16,7 @@ export const HeroFields: Field[] = [
           },
         ],
         required: true,
-        defaultValue: 'Standard',
+        defaultValue: 'standard',
       },
       {
         name: 'headline',
