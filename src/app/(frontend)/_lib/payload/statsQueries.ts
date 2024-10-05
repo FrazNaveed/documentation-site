@@ -2,10 +2,11 @@
 
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import config from '@payload-config'
+import { Stats } from '@/payload-types'
 
 const payload = await getPayloadHMR({ config })
 
-export default async function getStatsBlockFromPage(slug: string) {
+export default async function getStatsBlockFromPage(slug: string): Promise<Stats | null> {
   try {
     const result = await payload.find({
       collection: 'pages',
