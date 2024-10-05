@@ -1,0 +1,18 @@
+@use "../../_styles/colors" as *;
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/spacing" as *;
+
+.pageBanner {
+  @include containerGrid;
+
+  &Content {
+    @include columns(1, -1);
+
+    padding: to-rem($spacing-small) 0;
+
+    @include media-breakpoint-up(lg) {
+      @include columns(3, 11);
+    }
+  }
+}
