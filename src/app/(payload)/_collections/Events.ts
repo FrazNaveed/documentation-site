@@ -58,6 +58,7 @@ export const Events: CollectionConfig = {
           options: countryArray,
           required: true,
           localized: true,
+          defaultValue: 'US',
         },
         {
           name: 'location',
