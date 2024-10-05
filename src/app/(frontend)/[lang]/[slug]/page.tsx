@@ -1,15 +1,47 @@
+import { notFound } from 'next/navigation'
 import { getDictionary } from 'src/app/get-dictionary'
-import { Locale } from 'src/app/i18n-config'
+import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
+import type { Locale } from 'src/app/i18n-config'
+import PageHero from 'src/app/(frontend)/_components/PageHero'
 
 export default async function Page({
-  params: { lang },
+  params: { slug, lang },
 }: {
-  params: { lang: Locale }
+  params: { slug: string, lang: Locale }
 }) {
+  const page = await getPageBySlug(slug, lang)
   const dictionary = await getDictionary(lang)
+
+  const pageData = page[0]
+  if (!pageData) {
+    notFound()
+  }
+
+  const { hero } = pageData
+  let heroComponent
+  if (hero) {
+    const {
+      style,
+      headline,
+      eyebrow,
+      buttonText,
+      buttonLink,
+      backgroundImage,
+    } = hero
+    heroComponent = (
+      <PageHero
+        heroStyle={style}
+        header={headline}
+        eyebrow={eyebrow}
+        {...((buttonText && buttonLink) ? { cta: { text: buttonText, link: buttonLink } } : {})}
+        {...(backgroundImage && typeof backgroundImage === 'object' ? { backgroundImage } : {})}
+      />
+    )
+  }
 
   return (
     <div>
+      {heroComponent}
       <h1>
         {dictionary['server-component'].hello}
         , Next.js!

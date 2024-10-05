@@ -57,7 +57,7 @@ export interface Page {
   title?: string | null;
   slug: string;
   hero?: {
-    style: 'Standard';
+    style: 'standard';
     headline: string;
     eyebrow?: string | null;
     buttonText?: string | null;
