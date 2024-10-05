@@ -9,18 +9,23 @@ const payload = await getPayloadHMR({ config })
 
 // eslint-disable-next-line import/prefer-default-export
 export const getPageBySlug = async (slug: string, locale: Locale = 'en') => {
-  const pageData = await payload.find({
-    collection: 'pages',
-    limit: 1,
-    locale,
-    where: {
-      slug: {
-        equals: slug,
+  try {
+    const pageData = await payload.find({
+      collection: 'pages',
+      limit: 1,
+      locale,
+      where: {
+        slug: {
+          equals: slug,
+        },
       },
-    },
-  })
+    })
 
-  const page: Page[] = pageData.docs
+    const page: Page[] = pageData.docs
 
-  return page
+    return page
+  } catch (error) {
+    console.error('Error fetching page data:', error)
+  }
+  return []
 }
