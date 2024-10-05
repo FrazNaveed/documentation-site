@@ -8,7 +8,6 @@ export default async function PageBanner() {
   return (
     <div className={styles.pageBanner}>
       <div className={styles.pageBannerContent}>
-        foo
         {content && <LexicalRenderer content={content as PayloadLexicalReactRendererContent} />}
       </div>
     </div>
