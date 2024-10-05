@@ -14,5 +14,11 @@
     @include media-breakpoint-up(lg) {
       @include columns(3, 11);
     }
+
+    p {
+      @include paragraphXSmFont;
+
+      color: $black;
+    }
   }
 }
