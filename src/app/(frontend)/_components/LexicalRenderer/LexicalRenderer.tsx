@@ -1,6 +1,7 @@
 /* eslint-disable */
 // Modified from https://www.npmjs.com/package/@atelier-disko/payload-lexical-react-renderer
 import React, { CSSProperties } from 'react'
+import Image from 'next/image'
 import cx from 'classnames'
 import type { News } from '@/payload-types'
 import VideoEmbed from '../../_components/VideoEmbed'
@@ -302,10 +303,17 @@ export const defaultElementRenderers: ElementRenderers = {
   linebreak: () => <br />,
   tab: () => <br />,
   upload: (element) => {
-    if (element.value.mimeType?.includes('image')) {
+    if (element.value.mimeType?.includes('image') && element.value.url) {
       return (
         <figure className={cx(styles.figure, styles[`figure__${element.fields?.float}`])}>
-          <img className={styles.figureImg} src={element.value.url} alt={element.value.alt} />
+          <Image
+            className={styles.figureImg}
+            src={element.value.url}
+            width={element.value.width ?? 0}
+            height={element.value.height ?? 0}
+            alt={element.value.alt}
+            priority
+          />
           {element.fields?.caption && <figcaption className={styles.figcaption}>{element.fields.caption}</figcaption>}
         </figure>
       )
