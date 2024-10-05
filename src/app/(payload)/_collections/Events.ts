@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import countryArray from '../_utils/countryArray'
 
 export const Events: CollectionConfig = {
   slug: 'events',
@@ -53,17 +54,16 @@ export const Events: CollectionConfig = {
       fields: [
         {
           name: 'country',
-          type: 'text', // select or custom component
+          type: 'select',
+          options: countryArray,
           required: true,
           localized: true,
-          admin: {
-            width: '50%',
-          },
         },
         {
           name: 'location',
           type: 'text',
           required: true,
+          hasMany: false,
           localized: true,
           admin: {
             width: '50%',
