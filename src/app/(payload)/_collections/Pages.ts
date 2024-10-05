@@ -4,6 +4,28 @@ import { ColumnsBlock } from '../_blocks/ColumnsBlock'
 import { ImageBlock } from '../_blocks/ImageBlock'
 import { RichTextBlock } from 'src/app/(payload)/_blocks/RichTextBlock'
 import { getSiblingData } from 'payload/shared'
+import {
+  AlignFeature,
+  IndentFeature,
+  BlocksFeature,
+  BlockquoteFeature,
+  BoldFeature,
+  HeadingFeature,
+  HorizontalRuleFeature,
+  InlineCodeFeature,
+  InlineToolbarFeature,
+  ItalicFeature,
+  LinkFeature,
+  OrderedListFeature,
+  ParagraphFeature,
+  StrikethroughFeature,
+  SubscriptFeature,
+  SuperscriptFeature,
+  UploadFeature,
+  UnderlineFeature,
+  UnorderedListFeature,
+  lexicalEditor,
+} from '@payloadcms/richtext-lexical'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -50,6 +72,22 @@ export const Pages: CollectionConfig = {
           name: 'bannerText',
           type: 'richText',
           localized: true,
+          editor: lexicalEditor({
+            features: ({ defaultFeatures }) => [
+              BoldFeature(),
+              InlineToolbarFeature(),
+              ItalicFeature(),
+              ParagraphFeature(),
+              SubscriptFeature(),
+              SuperscriptFeature(),
+              LinkFeature({
+                enabledCollections: ['news', 'pages'], // addd to a config?
+                fields: ({ defaultFields }) => [
+                  ...defaultFields,
+                ],
+              }),
+            ],
+          }),
           admin: {
             condition: (data, siblingData, { user }) => {
               if (siblingData.togglePageBanner) {
