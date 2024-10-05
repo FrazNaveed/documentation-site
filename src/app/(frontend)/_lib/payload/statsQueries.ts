@@ -20,7 +20,7 @@ export default async function getStatsBlockFromPage(slug: string) {
       throw new Error('No page found with that slug')
     }
 
-    const pageData = result?.docs[0]
+    const pageData = result.docs[0]
     const statsBlock = pageData.components?.find((block) => block.blockType === 'stats')
 
     if (!statsBlock) {
