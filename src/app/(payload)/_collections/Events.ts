@@ -89,7 +89,7 @@ export const Events: CollectionConfig = {
               name: 'buttonType',
               type: 'select',
               options: [
-                { label: 'Annoucement', value: 'announcement' },
+                { label: 'Announcement', value: 'announcement' },
                 { label: 'RSVP', value: 'rsvp' },
               ],
               admin: {
