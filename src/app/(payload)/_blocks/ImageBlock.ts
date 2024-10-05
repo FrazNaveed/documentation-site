@@ -15,6 +15,6 @@ export const ImageBlock: Block = {
       defaultValue: false,
     },
   ],
-  imageURL: '/icons/image.svg',
+  imageURL: '/en/icons/image.svg',
   imageAltText: 'Image block icon',
 }
