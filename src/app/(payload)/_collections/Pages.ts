@@ -3,6 +3,7 @@ import { HeroFields } from '../_fields/HeroFields'
 import { ColumnsBlock } from '../_blocks/ColumnsBlock'
 import { ImageBlock } from '../_blocks/ImageBlock'
 import { RichTextBlock } from 'src/app/(payload)/_blocks/RichTextBlock'
+import { TalkingPoints } from '../_blocks/TalkingPoints'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -40,6 +41,7 @@ export const Pages: CollectionConfig = {
         ColumnsBlock,
         ImageBlock,
         RichTextBlock,
+        TalkingPoints,
       ],
     },
   ],
