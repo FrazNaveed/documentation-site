@@ -65,7 +65,41 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
   };
   hideHero?: boolean | null;
-  components?: (Columns | Image | RichText)[] | null;
+  components?:
+    | (
+        | Columns
+        | Image
+        | RichText
+        | {
+            points?:
+              | {
+                  icon?: (number | null) | Media;
+                  header?: string | null;
+                  textTest?: string | null;
+                  text?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'talkingPoints';
+          }
+      )[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
