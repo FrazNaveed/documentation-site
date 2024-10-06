@@ -19,18 +19,25 @@ export default function TalkingPoints({ className }: any) {
   ]
 
   return (
-    <section className={cx(styles.talkingPoints, className)}>
+    <section className={cx(styles.Wrap, className)}>
       <div className={styles.PointsWrap}>
-        {points && points.map((point) => (
-          <div className={styles.Point} key={point.id}>
+        {points && points.map((point, index) => (
+          <div
+            key={point.id}
+            className={cx(
+              styles.Point,
+              index % 2 !== 0 ? styles.Point__right : styles.Point__left,
+            )}
+          >
             <div className={styles.PointHeaderWrap}>
               <Image
                 src='/foo'
                 width={20}
                 height={20}
                 alt=''
+                className={styles.PointImage}
               />
-              <div>{point.header}</div>
+              <div className={styles.PointHeader}>{point.header}</div>
             </div>
             <p>{point.text}</p>
           </div>
