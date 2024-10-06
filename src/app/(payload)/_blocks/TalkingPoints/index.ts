@@ -78,5 +78,10 @@ export const TalkingPoints: Block = {
         isSortable: true,
       },
     },
+    {
+      name: 'createSideNavLink',
+      type: 'checkbox',
+      defaultValue: false,
+    },
   ],
 }

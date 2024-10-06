@@ -94,6 +94,7 @@ export interface Page {
                   id?: string | null;
                 }[]
               | null;
+            createSideNavLink?: boolean | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'talkingPoints';
