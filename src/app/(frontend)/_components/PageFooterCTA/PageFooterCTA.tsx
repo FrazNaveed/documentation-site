@@ -21,7 +21,7 @@ export default function PageFooterCTA({ className, buttonText, buttonLink }: Pag
               text={buttonText}
               link={buttonLink}
               size='large'
-              className={styles.PageFooterCTA_Button}
+              className={styles.Button}
             />
           )}
         <div>
