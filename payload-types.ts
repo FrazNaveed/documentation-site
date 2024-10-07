@@ -6,6 +6,18 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsList".
+ */
+export type StatsList =
+  | {
+      label: string;
+      stat: string;
+      id?: string | null;
+    }[]
+  | null;
+
 export interface Config {
   auth: {
     users: UserAuthOperations;
@@ -83,7 +95,7 @@ export interface Page {
       [k: string]: unknown;
     } | null;
   };
-  components?: (Columns | Image | RichText)[] | null;
+  components?: (Columns | Image | RichText | Stats)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -172,6 +184,7 @@ export interface Columns {
       )[]
     | null;
   createSideNavLink?: boolean | null;
+  linkText?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'columns';
@@ -183,6 +196,7 @@ export interface Columns {
 export interface Image {
   image?: (number | null) | Media;
   createSideNavLink?: boolean | null;
+  linkText?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'image';
@@ -208,9 +222,37 @@ export interface RichText {
     [k: string]: unknown;
   } | null;
   createSideNavLink?: boolean | null;
+  linkText?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'richText';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Stats".
+ */
+export interface Stats {
+  stats?: StatsList;
+  caption?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'stats';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

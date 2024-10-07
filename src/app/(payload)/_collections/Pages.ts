@@ -26,6 +26,7 @@ import {
   UnorderedListFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
+import { StatsBlock } from '../_blocks/StatsBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -110,6 +111,7 @@ export const Pages: CollectionConfig = {
         ColumnsBlock,
         ImageBlock,
         RichTextBlock,
+        StatsBlock,
       ],
     },
   ],
