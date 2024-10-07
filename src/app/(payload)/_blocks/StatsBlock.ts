@@ -1,5 +1,6 @@
 import { Block } from 'payload'
 import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
+import { i18n } from '../../i18n-config'
 
 export const StatsBlock: Block = {
   slug: 'stats',
@@ -46,6 +47,6 @@ export const StatsBlock: Block = {
     },
     ...CreateSideNavLinkFields,
   ],
-  imageURL: '/icons/percent.svg',
+  imageURL: `/${i18n.defaultLocale}/icons/percent.svg`,
   imageAltText: 'Stats block icon',
 }
