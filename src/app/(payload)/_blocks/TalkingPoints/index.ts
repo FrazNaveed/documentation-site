@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { i18n } from '@/src/app/i18n-config'
 import {
   AlignFeature,
   IndentFeature,
@@ -17,6 +18,10 @@ import {
 
 export const TalkingPoints: Block = {
   slug: 'talkingPoints',
+  labels: {
+    singular: 'Talking Points',
+    plural: 'Talking Points',
+  },
   fields: [
     {
       name: 'points',
@@ -74,6 +79,8 @@ export const TalkingPoints: Block = {
         },
       ],
       localized: true,
+      minRows: 1,
+      required: true,
       admin: {
         isSortable: true,
       },
@@ -84,4 +91,6 @@ export const TalkingPoints: Block = {
       defaultValue: false,
     },
   ],
+  imageURL: `/${i18n.defaultLocale}/icons/grid.svg`,
+  imageAltText: 'Talking Points block icon',
 }
