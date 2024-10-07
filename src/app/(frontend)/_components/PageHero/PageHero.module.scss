@@ -1,0 +1,153 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.container {
+  @include container;
+}
+
+.bg {
+  background-color: $gray-100;
+}
+
+.grid {
+  @include grid;
+
+  align-items: center;
+  overflow: hidden;
+
+  &__standard {
+    min-height: 140px;
+
+    @include media-breakpoint-up(md) {
+      min-height: 280px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      min-height: 360px;
+    }
+  }
+}
+
+.content,
+.decoration {
+  @include media-breakpoint-up(sm) {
+    grid-row: 1;
+  }
+}
+
+.content {
+  padding: $spacing-x-large;
+  z-index: 1;
+
+  @include media-breakpoint-down(lg) {
+    padding: $spacing-standard;
+  }
+
+  &__standard {
+    @include columns(2, 7);
+
+    padding-right: 0;
+    padding-left: 0;
+
+    @include media-breakpoint-down(lg) {
+      @include columns(2, 6);
+    }
+
+    @include media-breakpoint-down(md) {
+      grid-column-end: 3;
+    }
+
+    @include media-breakpoint-down(sm) {
+      grid-column-end: -1;
+    }
+  }
+
+  &__standardWImage {
+    @include media-breakpoint-down(sm) {
+      padding-top: 0;
+    }
+  }
+}
+
+.eyebrow {
+  @include h6;
+
+  margin-bottom: to-rem($spacing-x-small);
+
+  &__dt {
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+  }
+
+  &__mobile {
+    margin-top: to-rem($spacing-x-small);
+
+    @include media-breakpoint-up(sm) {
+      display: none;
+    }
+  }
+}
+
+.header {
+  @include h3;
+
+  margin-bottom: 0;
+}
+
+.meta {
+  margin-top: to-rem($spacing-standard);
+}
+
+.decoration {
+  position: relative;
+  height: 100%;
+
+  &__standard {
+    @include columns(9, -1);
+
+    @include media-breakpoint-down(lg) {
+      @include columns(6, -1);
+    }
+
+    @include media-breakpoint-down(md) {
+      grid-column-start: 3;
+    }
+
+    @include media-breakpoint-down(sm) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: $spacing-small;
+      @include columns(1, -1);
+    }
+  }
+}
+
+.bgImgWrap {
+  @include media-breakpoint-up(sm) {
+    position: relative;
+    height: 100%;
+  }
+
+  @include media-breakpoint-down(sm) {
+    max-width: 25%;
+    margin-left: auto;
+  }
+}
+
+.bgImg {
+  @include media-breakpoint-up(sm) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    max-width: none;
+    height: auto;
+    max-height: 100%;
+    transform: translate(-50%, -50%);
+  }
+}
