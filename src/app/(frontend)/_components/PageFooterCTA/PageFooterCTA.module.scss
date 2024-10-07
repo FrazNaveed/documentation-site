@@ -5,12 +5,6 @@
 @use "../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
-.PageFooterCTA {
-  &_Button {
-    margin-bottom: 0;
-  }
-}
-
 .Wrap {
   @include container;
 
@@ -19,5 +13,39 @@
 
 .content {
   display: flex;
-  place-content: center space-between;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Button {
+  margin-bottom: 0;
+}
+
+.ImageWrap {
+  @include media-breakpoint-down(md) {
+    &:first-child {
+      display: none;
+    }
+  }
+}
+
+.bgImg {
+  &__left,
+  &__right {
+    display: block;
+
+    @include media-breakpoint-down(lg) {
+      width: to-rem(200px);
+    }
+  }
+
+  &__left {
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+
+  &__right {
+    transform: rotate(180deg);
+  }
 }
