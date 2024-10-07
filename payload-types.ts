@@ -66,6 +66,11 @@ export interface Page {
   };
   hideHero?: boolean | null;
   components?: (Columns | Image | RichText)[] | null;
+  pageFooterCTA?: boolean | null;
+  pageFooterCTAButton?: {
+    buttonText?: string | null;
+    buttonLink?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
