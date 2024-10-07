@@ -1,4 +1,5 @@
 import { Block } from 'payload'
+import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
 import { i18n } from '../../i18n-config'
 
 export const RichTextBlock: Block = {
@@ -10,11 +11,7 @@ export const RichTextBlock: Block = {
       type: 'richText',
       localized: true,
     },
-    {
-      name: 'createSideNavLink',
-      type: 'checkbox',
-      defaultValue: false,
-    },
+  ...CreateSideNavLinkFields,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/align-left.svg`,
   imageAltText: 'Rich text block icon',

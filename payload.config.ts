@@ -25,7 +25,7 @@ export default buildConfig({
     },
   },
   collections: [Pages, Users, Media, News, NewsTypes, NewsSubTypes],
-  editor: lexicalEditor(),
+  editor: lexicalEditor({}),
   localization: {
     locales: [
       {

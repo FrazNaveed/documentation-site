@@ -1,4 +1,5 @@
 import { Block } from 'payload'
+import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
 import { i18n } from '../../i18n-config'
 
 export const ColumnsBlock: Block = {
@@ -77,11 +78,7 @@ export const ColumnsBlock: Block = {
       },
       maxRows: 1,
     },
-    {
-      name: 'createSideNavLink',
-      type: 'checkbox',
-      defaultValue: false,
-    },
+    ...CreateSideNavLinkFields,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/columns.svg`,
   imageAltText: 'Columns block icon',
