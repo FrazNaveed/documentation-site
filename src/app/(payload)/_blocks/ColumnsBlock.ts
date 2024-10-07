@@ -1,4 +1,5 @@
 import { Block } from 'payload'
+import { i18n } from '../../i18n-config'
 
 export const ColumnsBlock: Block = {
   slug: 'columns',
@@ -21,7 +22,7 @@ export const ColumnsBlock: Block = {
               relationTo: 'media',
             }
           ],
-          imageURL: '/icons/image.svg',
+          imageURL: `/${i18n.defaultLocale}/icons/image.svg`,
           imageAltText: 'Left Column image block icon',
         },
         {
@@ -33,7 +34,7 @@ export const ColumnsBlock: Block = {
               localized: true,
             },
           ],
-          imageURL: '/icons/align-left.svg',
+          imageURL: `/${i18n.defaultLocale}/icons/align-left.svg`,
           imageAltText: 'Left Column text block icon',
         },
       ],
@@ -55,7 +56,7 @@ export const ColumnsBlock: Block = {
               relationTo: 'media',
             }
           ],
-          imageURL: '/icons/image.svg',
+          imageURL: `/${i18n.defaultLocale}/icons/image.svg`,
           imageAltText: 'Right Column image block icon',
         },
         {
@@ -67,7 +68,7 @@ export const ColumnsBlock: Block = {
               localized: true,
             },
           ],
-          imageURL: '/icons/align-left.svg',
+          imageURL: `/${i18n.defaultLocale}/icons/align-left.svg`,
           imageAltText: 'Right Column text block icon',
         },
       ],
@@ -82,6 +83,6 @@ export const ColumnsBlock: Block = {
       defaultValue: false,
     },
   ],
-  imageURL: '/icons/columns.svg',
+  imageURL: `/${i18n.defaultLocale}/icons/columns.svg`,
   imageAltText: 'Columns block icon',
 }
