@@ -27,6 +27,10 @@ export default function TalkingPoints({ className }: any) {
             className={cx(
               styles.Point,
               index % 2 !== 0 ? styles.Point__right : styles.Point__left,
+              (index === 0 && points.length === 1) && styles.Point__noBorderRight,
+              index === points.length - 1 && styles.Point__noBorderBottom,
+              index === points.length - 1 && styles.Point__borderRight,
+              (index % 2 === 0 && index === points.length - 2) && styles.Point__noBorderBottom,
             )}
           >
             <div className={styles.PointHeaderWrap}>
