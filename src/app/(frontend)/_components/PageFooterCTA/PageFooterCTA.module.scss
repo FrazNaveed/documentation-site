@@ -1,0 +1,23 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.PageFooterCTA {
+  &_Button {
+    margin-bottom: 0;
+  }
+}
+
+.Wrap {
+  @include container;
+
+  margin-bottom: to-rem($spacing-medium);
+}
+
+.content {
+  display: flex;
+  place-content: center space-between;
+}
