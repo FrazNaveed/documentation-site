@@ -71,29 +71,27 @@ export interface Page {
         | Image
         | RichText
         | {
-            points?:
-              | {
-                  icon?: (number | null) | Media;
-                  header?: string | null;
-                  textTest?: string | null;
-                  text?: {
-                    root: {
-                      type: string;
-                      children: {
-                        type: string;
-                        version: number;
-                        [k: string]: unknown;
-                      }[];
-                      direction: ('ltr' | 'rtl') | null;
-                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                      indent: number;
-                      version: number;
-                    };
+            points: {
+              icon?: (number | null) | Media;
+              header?: string | null;
+              textTest?: string | null;
+              text?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: string;
+                    version: number;
                     [k: string]: unknown;
-                  } | null;
-                  id?: string | null;
-                }[]
-              | null;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
+              id?: string | null;
+            }[];
             createSideNavLink?: boolean | null;
             id?: string | null;
             blockName?: string | null;
