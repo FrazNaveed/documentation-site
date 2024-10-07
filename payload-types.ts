@@ -105,13 +105,14 @@ export interface Media {
  * via the `definition` "Columns".
  */
 export interface Columns {
+  layout?: ('equal' | 'wideLeft' | 'wideRight') | null;
   leftColumnBlock?:
     | (
         | {
             image?: (number | null) | Media;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'leftColumnImage';
+            blockType: 'colImage';
           }
         | {
             text?: {
@@ -131,7 +132,7 @@ export interface Columns {
             } | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'leftColumnText';
+            blockType: 'colText';
           }
       )[]
     | null;
@@ -141,7 +142,7 @@ export interface Columns {
             image?: (number | null) | Media;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'rightColumnImage';
+            blockType: 'colImage';
           }
         | {
             text?: {
@@ -161,7 +162,7 @@ export interface Columns {
             } | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'rightColumnText';
+            blockType: 'colText';
           }
       )[]
     | null;

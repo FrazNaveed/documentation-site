@@ -3,6 +3,8 @@ import { getDictionary } from 'src/app/get-dictionary'
 import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import type { Locale } from 'src/app/i18n-config'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
+import Columns from 'src/app/(frontend)/_components/Columns'
+import styles from './page.module.scss'
 
 export default async function Page({
   params: { slug, lang },
@@ -17,7 +19,7 @@ export default async function Page({
     notFound()
   }
 
-  const { hero } = pageData
+  const { hero, components } = pageData
   let heroComponent
   if (hero) {
     const {
@@ -64,6 +66,24 @@ export default async function Page({
         {dictionary['server-component'].welcome}
       </h3>
       <p>Switch between en, es, and de in the URL to see different languages. Other languages will default to en.</p>
+      {(components && components.length > 0) && (
+        <div className={styles.grid}>
+          <div className={styles.sideNav}>
+            Side Nav
+          </div>
+          <div className={styles.mainContent}>
+            {components.map((component) => {
+              switch (component?.blockType) {
+                case 'columns':
+                  return <Columns key={component.id} {...component} />
+
+                default:
+                  return null
+              }
+            })}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
