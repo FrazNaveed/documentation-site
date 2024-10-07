@@ -9,6 +9,7 @@
   @include container;
 
   margin-bottom: to-rem($spacing-medium);
+  background-color: $gray-50;
 }
 
 .content {
@@ -23,14 +24,23 @@
 
 .ImageWrap {
   @include media-breakpoint-down(md) {
-    &:first-child {
-      display: none;
+    display: none;
+  }
+
+  &Mobile {
+    display: none;
+
+    @include media-breakpoint-down(md) {
+      display: block;
+      flex-basis: 33.33%;
+      padding: to-rem($spacing-small) 0;
     }
   }
 }
 
 .bgImg {
   &__left,
+  &__mobile,
   &__right {
     display: block;
 
