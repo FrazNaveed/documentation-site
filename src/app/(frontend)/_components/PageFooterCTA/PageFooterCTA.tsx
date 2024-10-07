@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import Image from 'next/image'
 import Button from '../Button'
 import styles from './PageFooterCTA.module.scss'
 
@@ -12,8 +13,14 @@ export default function PageFooterCTA({ className, buttonText, buttonLink }: Pag
   return (
     <section className={cx(styles.Wrap, className)}>
       <div className={styles.content}>
-        <div>
-          foo
+        <div className={styles.ImageWrap}>
+          <Image
+            src='/en/vote_bg.png'
+            width={276}
+            height={276}
+            alt='background image of two cylinders'
+            className={styles.bgImg__left}
+          />
         </div>
         {buttonText && buttonLink
           && (
@@ -24,8 +31,14 @@ export default function PageFooterCTA({ className, buttonText, buttonLink }: Pag
               className={styles.Button}
             />
           )}
-        <div>
-          bar
+        <div className={styles.ImageWrap}>
+          <Image
+            src='/en/vote_bg.png'
+            width={276}
+            height={276}
+            alt='background image of two cylinders'
+            className={styles.bgImg__right}
+          />
         </div>
       </div>
     </section>
