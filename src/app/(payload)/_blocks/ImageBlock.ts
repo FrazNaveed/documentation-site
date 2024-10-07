@@ -1,4 +1,5 @@
 import { Block } from 'payload'
+import { i18n } from '../../i18n-config'
 
 export const ImageBlock: Block = {
   slug: 'image',
@@ -15,6 +16,6 @@ export const ImageBlock: Block = {
       defaultValue: false,
     },
   ],
-  imageURL: '/en/icons/image.svg',
+  imageURL: `${i18n.defaultLocale}/icons/image.svg`,
   imageAltText: 'Image block icon',
 }
