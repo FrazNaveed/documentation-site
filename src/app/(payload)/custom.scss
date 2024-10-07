@@ -3,3 +3,13 @@
 .thumbnail-card__thumbnail {
   padding-top: 15px;
 }
+
+[data-theme="dark"] {
+  .blocks-drawer__block {
+    .thumbnail-card__thumbnail {
+      img {
+        filter: invert(70%);
+      }
+    }
+  }
+}
