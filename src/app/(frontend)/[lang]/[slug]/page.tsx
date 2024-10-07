@@ -19,7 +19,7 @@ export default async function Page({
     notFound()
   }
 
-  const { hero, components } = pageData
+  const { title, hero, components } = pageData
   let heroComponent
   if (hero) {
     const {
@@ -36,7 +36,7 @@ export default async function Page({
       <PageHero
         heroStyle={style}
         header={headline}
-        eyebrow={eyebrow}
+        eyebrow={eyebrow || title}
         {...heroCtaProps}
         {...heroBackgroundImageProps}
       />
