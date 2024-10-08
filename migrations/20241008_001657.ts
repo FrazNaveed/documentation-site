@@ -51,7 +51,6 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   DROP TABLE "pages_blocks_right_column_text" CASCADE;
   DROP TABLE "pages_blocks_right_column_text_locales" CASCADE;
   ALTER TABLE "pages_blocks_columns" ADD COLUMN "layout" "enum_pages_blocks_columns_layout" DEFAULT 'equal';
-  // ALTER TABLE "pages_blocks_columns" ADD COLUMN "link_text" varchar;
   ALTER TABLE "pages_blocks_image" ADD COLUMN "link_text" varchar;
   ALTER TABLE "pages_blocks_rich_text" ADD COLUMN "link_text" varchar;
   DO $$ BEGIN
