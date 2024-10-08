@@ -28,6 +28,10 @@
   hr {
     margin: to-rem($p-margin-bottom) auto;
   }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 .figure {

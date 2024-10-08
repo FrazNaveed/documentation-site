@@ -1,5 +1,24 @@
 import { Block } from 'payload'
+  import {
+  HeadingFeature,
+  lexicalEditor,
+} from '@payloadcms/richtext-lexical'
+import { RichTextBlock } from '../_blocks/RichTextBlock'
+import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
 import { i18n } from '../../i18n-config'
+
+const imageBlock: Block = {
+  slug: 'colImage',
+  fields: [
+    {
+      name: 'image',
+      type: 'relationship',
+      relationTo: 'media',
+    }
+  ],
+  imageURL: `/${i18n.defaultLocale}/icons/image.svg`,
+  imageAltText: 'Left Column image block icon',
+}
 
 export const ColumnsBlock: Block = {
   slug: 'columns',
@@ -10,33 +29,30 @@ export const ColumnsBlock: Block = {
   },
   fields: [
     {
+      name: 'layout',
+      type: 'select',
+      options: [
+        {
+          label: 'Equal Width',
+          value: 'equal',
+        },
+        {
+          label: 'Wide Left',
+          value: 'wideLeft',
+        },
+        {
+          label: 'Wide Right',
+          value: 'wideRight',
+        },
+      ],
+      defaultValue: 'equal',
+    },
+    {
       name: 'leftColumnBlock',
       type: 'blocks',
       blocks: [
-        {
-          slug: 'leftColumnImage',
-          fields: [
-            {
-              name: 'image',
-              type: 'relationship',
-              relationTo: 'media',
-            }
-          ],
-          imageURL: `/${i18n.defaultLocale}/icons/image.svg`,
-          imageAltText: 'Left Column image block icon',
-        },
-        {
-          slug: 'leftColumnText',
-          fields: [
-            {
-              name: 'text',
-              type: 'richText',
-              localized: true,
-            },
-          ],
-          imageURL: `/${i18n.defaultLocale}/icons/align-left.svg`,
-          imageAltText: 'Left Column text block icon',
-        },
+        imageBlock,
+        RichTextBlock,
       ],
       admin: {
         description: 'Add image or text to this column',
@@ -47,41 +63,15 @@ export const ColumnsBlock: Block = {
       name: 'rightColumnBlock',
       type: 'blocks',
       blocks: [
-        {
-          slug: 'rightColumnImage',
-          fields: [
-            {
-              name: 'image',
-              type: 'relationship',
-              relationTo: 'media',
-            }
-          ],
-          imageURL: `/${i18n.defaultLocale}/icons/image.svg`,
-          imageAltText: 'Right Column image block icon',
-        },
-        {
-          slug: 'rightColumnText',
-          fields: [
-            {
-              name: 'text',
-              type: 'richText',
-              localized: true,
-            },
-          ],
-          imageURL: `/${i18n.defaultLocale}/icons/align-left.svg`,
-          imageAltText: 'Right Column text block icon',
-        },
+        imageBlock,
+        RichTextBlock,
       ],
       admin: {
         description: 'Add image or text to this column',
       },
       maxRows: 1,
     },
-    {
-      name: 'createSideNavLink',
-      type: 'checkbox',
-      defaultValue: false,
-    },
+    ...CreateSideNavLinkFields,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/columns.svg`,
   imageAltText: 'Columns block icon',

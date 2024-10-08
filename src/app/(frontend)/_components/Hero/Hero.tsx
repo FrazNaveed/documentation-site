@@ -10,25 +10,19 @@ import type { TDateFormat } from '../../_utils/convertToDate'
 import styles from './Hero.module.scss'
 
 export type HeroProps = {
-  heroStyle?: 'standard' | 'featuredNews' | 'featuredEvent' | 'protocol'
+  heroStyle?: 'standard' | 'featuredNews'
   link?: string
   backgroundImage?: Media
   contentType?: News['contentType']
   logos?: Media[]
   thumbnail?: Media | null
   header?: string | null
-  // subheader?: string | null
   timestamp?: string | null
   dateFormat?: TDateFormat
-  // eyebrow?: string | null
   pill?: {
     text: string
     link?: string
   }
-  // cta?: {
-  //   text: string
-  //   link: string
-  // }
 }
 
 export default function Hero({
@@ -39,12 +33,9 @@ export default function Hero({
   logos,
   thumbnail,
   header,
-  // subheader,
   timestamp,
   dateFormat,
-  // eyebrow,
   pill,
-  // cta,
 }: HeroProps) {
   const innerMarkup = (
     <div
@@ -84,7 +75,7 @@ export default function Hero({
           </div>
         )}
       </div>
-      <header className={cx(styles.content, styles[`content__${heroStyle}`])}>
+      <div className={cx(styles.content, styles[`content__${heroStyle}`])}>
         {logos && <PartnerLogos logos={logos} stacked={heroStyle === 'standard'} />}
         {header && <h2 className={styles.header}>{header}</h2>}
         {(pill || timestamp) && (
@@ -97,16 +88,16 @@ export default function Hero({
             )}
           </div>
         )}
-      </header>
+      </div>
     </div>
   )
   return (
-    <article
+    <div
       className={cx(
         {
           [styles.container]: heroStyle === 'featuredNews',
           [styles.bg]: heroStyle !== 'featuredNews',
-          [styles.hideOnMobile]: heroStyle === 'standard' && (!logos || logos.length === 0), // If hero is standard style and no partner/event logo exists, do not display on mobile
+          [styles.hideOnMobile]: heroStyle === 'standard' && (!logos || logos.length === 0), // If hero is standard style and no partner logo exists, do not display on mobile
         },
       )}
     >
@@ -115,6 +106,6 @@ export default function Hero({
           {innerMarkup}
         </Link>
       ) : innerMarkup}
-    </article>
+    </div>
   )
 }
