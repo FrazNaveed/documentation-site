@@ -4,6 +4,7 @@ import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import type { Locale } from 'src/app/i18n-config'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
 import Columns from 'src/app/(frontend)/_components/Columns'
+import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import styles from './page.module.scss'
 
 export default async function Page({
@@ -76,6 +77,9 @@ export default async function Page({
               switch (component?.blockType) {
                 case 'columns':
                   return <Columns key={component.id} {...component} />
+
+                case 'talkingPoints':
+                  return <TalkingPoints key={component.id} {...component} />
 
                 default:
                   return null
