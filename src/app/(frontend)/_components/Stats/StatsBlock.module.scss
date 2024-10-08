@@ -6,7 +6,7 @@
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .statsBlock {
-  @include container;
+  @include grid(10);
 
   margin-bottom: to-rem($spacing-xx-large);
 
@@ -15,14 +15,14 @@
   }
 }
 
-.statsBlockWrap {
-  @include grid;
+// .statsBlockWrap {
+//   @include columns(1, 9);
 
-  align-items: baseline;
-}
+//   align-items: baseline;
+// }
 
 .stats {
-  @include columns(3, 10);
+  @include columns(1, 8);
 
   display: flex;
   padding: to-rem($spacing-medium) to-rem($spacing-small);
@@ -31,7 +31,7 @@
   background-color: $gray-50;
 
   @include media-breakpoint-down(lg) {
-    @include columns(2, -1);
+    @include columns(1, -1);
 
     margin-right: to-rem($spacing-small);
     margin-bottom: to-rem($spacing-x-small);
@@ -103,14 +103,20 @@
 }
 
 .captionWrap {
-  @include columns(10, 12);
+  @include columns(8, -1);
 
   @include media-breakpoint-up(lg) {
     padding-top: to-rem($spacing-medium);
   }
 
   @include media-breakpoint-down(lg) {
-    @include columns(2, -1);
+    @include columns(1, -1);
+
+    padding-left: to-rem(6px);
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-left: 0;
   }
 
   p {
