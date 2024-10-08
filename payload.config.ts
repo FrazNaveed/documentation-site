@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
 import { Pages } from 'src/app/(payload)/_collections/Pages'
+import { Events } from './src/app/(payload)/_collections/Events'
 import { Users } from './src/app/(payload)/_collections/Users'
 import { Media } from './src/app/(payload)/_collections/Media'
 import { News } from './src/app/(payload)/_collections/News'
@@ -24,8 +25,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Pages, Users, Media, News, NewsTypes, NewsSubTypes],
-  editor: lexicalEditor({}),
+  collections: [Events, Pages, Users, Media, News, NewsTypes, NewsSubTypes],
+  editor: lexicalEditor(),
   localization: {
     locales: [
       {
