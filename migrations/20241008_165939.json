@@ -1,5 +1,5 @@
 {
-  "id": "66f0783e-e59f-49aa-86e1-356e643fe873",
+  "id": "86c58f39-1764-48d3-9ddd-6184a9629fd0",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -2138,6 +2138,310 @@
         }
       }
     },
+    "public.wallets_tags": {
+      "name": "wallets_tags",
+      "schema": "",
+      "columns": {
+        "order": {
+          "name": "order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "parent_id": {
+          "name": "parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "value": {
+          "name": "value",
+          "type": "enum_wallets_tags",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "wallets_tags_order_idx": {
+          "name": "wallets_tags_order_idx",
+          "columns": [
+            {
+              "expression": "order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "wallets_tags_parent_idx": {
+          "name": "wallets_tags_parent_idx",
+          "columns": [
+            {
+              "expression": "parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "wallets_tags_parent_fk": {
+          "name": "wallets_tags_parent_fk",
+          "tableFrom": "wallets_tags",
+          "tableTo": "wallets",
+          "columnsFrom": [
+            "parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.wallets_platforms": {
+      "name": "wallets_platforms",
+      "schema": "",
+      "columns": {
+        "order": {
+          "name": "order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "parent_id": {
+          "name": "parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "value": {
+          "name": "value",
+          "type": "enum_wallets_platforms",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "wallets_platforms_order_idx": {
+          "name": "wallets_platforms_order_idx",
+          "columns": [
+            {
+              "expression": "order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "wallets_platforms_parent_idx": {
+          "name": "wallets_platforms_parent_idx",
+          "columns": [
+            {
+              "expression": "parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "wallets_platforms_parent_fk": {
+          "name": "wallets_platforms_parent_fk",
+          "tableFrom": "wallets_platforms",
+          "tableTo": "wallets",
+          "columnsFrom": [
+            "parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.wallets": {
+      "name": "wallets",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "logo_id": {
+          "name": "logo_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wallet_link": {
+          "name": "wallet_link",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "flr_functionality": {
+          "name": "flr_functionality",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "wallet_connect": {
+          "name": "wallet_connect",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "wallets_created_at_idx": {
+          "name": "wallets_created_at_idx",
+          "columns": [
+            {
+              "expression": "created_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "wallets_logo_id_media_id_fk": {
+          "name": "wallets_logo_id_media_id_fk",
+          "tableFrom": "wallets",
+          "tableTo": "media",
+          "columnsFrom": [
+            "logo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.wallets_locales": {
+      "name": "wallets_locales",
+      "schema": "",
+      "columns": {
+        "name": {
+          "name": "name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "_locale": {
+          "name": "_locale",
+          "type": "_locales",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "wallets_locales_parent_id_fk": {
+          "name": "wallets_locales_parent_id_fk",
+          "tableFrom": "wallets_locales",
+          "tableTo": "wallets",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "wallets_locales_locale_parent_id_unique": {
+          "name": "wallets_locales_locale_parent_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "_locale",
+            "_parent_id"
+          ]
+        }
+      }
+    },
     "public.payload_locked_documents": {
       "name": "payload_locked_documents",
       "schema": "",
@@ -2271,6 +2575,12 @@
         },
         "news_sub_types_id": {
           "name": "news_sub_types_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wallets_id": {
+          "name": "wallets_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": false
@@ -2421,6 +2731,19 @@
           "tableTo": "news_sub_types",
           "columnsFrom": [
             "news_sub_types_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "payload_locked_documents_rels_wallets_fk": {
+          "name": "payload_locked_documents_rels_wallets_fk",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "wallets",
+          "columnsFrom": [
+            "wallets_id"
           ],
           "columnsTo": [
             "id"
@@ -2968,6 +3291,27 @@
       "values": [
         "video",
         "podcast"
+      ]
+    },
+    "public.enum_wallets_tags": {
+      "name": "enum_wallets_tags",
+      "schema": "public",
+      "values": [
+        "wrap",
+        "delegate",
+        "stake",
+        "autoclaim",
+        "claim",
+        "voting"
+      ]
+    },
+    "public.enum_wallets_platforms": {
+      "name": "enum_wallets_platforms",
+      "schema": "public",
+      "values": [
+        "ios",
+        "android",
+        "hardware"
       ]
     }
   },
