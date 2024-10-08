@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import {
   AlignFeature,
   IndentFeature,
@@ -53,6 +54,9 @@ export const News: CollectionConfig = {
       type:'text',
       required: true,
       unique: true,
+      hooks: {
+        beforeValidate: [setSlugFromTitle],
+      },
     },
     {
       name: 'excerpt',

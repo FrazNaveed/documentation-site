@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import setSlugFromTitle from '../_utils/setSlugFromTitle'
 
 export const NewsTypes: CollectionConfig = {
   slug: 'news-types',
@@ -30,6 +31,9 @@ export const NewsTypes: CollectionConfig = {
       required: true,
       unique: true,
       localized: true,
+      hooks: {
+        beforeValidate: [setSlugFromTitle],
+      },
     },
     {
       name: 'image',
