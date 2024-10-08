@@ -1,11 +1,11 @@
 import cx from 'classnames'
-import type { StatsList } from 'payload-types'
+import type { StatsList } from '@/payload-types'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import styles from './StatsBlock.module.scss'
 
 export type StatsProps = {
-  stats: StatsList
+  stats?: StatsList
   caption: PayloadLexicalReactRendererContent
   className?: string
 }
