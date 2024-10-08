@@ -44,7 +44,7 @@ export default async function Page({
   }
 
   return (
-    <div>
+    <div className={styles.wrap}>
       {heroComponent}
       <h1>
         {dictionary['server-component'].hello}

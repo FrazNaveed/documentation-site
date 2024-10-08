@@ -1,6 +1,10 @@
 @use "../../_styles/mixins" as *;
 @use "../../_styles/spacing" as *;
 
+.wrap {
+  @include pageWrap;
+}
+
 .grid {
   @include containerGrid;
 
@@ -17,5 +21,13 @@
   > * {
     margin-top: to-rem($spacing-4x-large);
     margin-bottom: to-rem($spacing-4x-large);
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
