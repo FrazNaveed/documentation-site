@@ -18,11 +18,16 @@
 .mainContent {
   @include columns(3, -1);
 
-  > *:not(:first-child) {
+  > * {
     margin-top: to-rem($spacing-4x-large);
-  }
-
-  > *:not(:last-child) {
     margin-bottom: to-rem($spacing-4x-large);
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
