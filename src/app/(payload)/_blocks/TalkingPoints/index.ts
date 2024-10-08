@@ -22,7 +22,7 @@ export const TalkingPoints: Block = {
     singular: 'Talking Points',
     plural: 'Talking Points',
   },
-  interfaceName: 'TalkingPoints',
+  interfaceName: 'ITalkingPoints',
   fields: [
     {
       name: 'points',
