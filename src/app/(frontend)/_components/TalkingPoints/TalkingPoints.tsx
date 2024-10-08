@@ -1,23 +1,19 @@
 import cx from 'classnames'
 import Image from 'next/image'
+import type { Media, PointsList, ITalkingPoints } from '@/payload-types'
+import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
+import LexicalRenderer from '../LexicalRenderer'
 import styles from './TalkingPoints.module.scss'
 
-export default function TalkingPoints({ className }: any) {
-  const points:{ header: 'header', text: 'text', icon: 'icon here', id: '123' }[] = [
-    {
-      header: 'header', text: 'text', icon: 'icon here', id: '123',
-    },
-    {
-      header: 'header', text: 'text', icon: 'icon here', id: '123',
-    },
-    {
-      header: 'header', text: 'text', icon: 'icon here', id: '123',
-    },
-    {
-      header: 'header', text: 'text', icon: 'icon here', id: '123',
-    },
-  ]
+export type TalkingPointsProps = ITalkingPoints & {
+  points: PointsList
+  className?: string
+}
 
+export default function TalkingPoints({
+  points,
+  className,
+}: TalkingPointsProps) {
   return (
     <section className={cx(styles.Wrap, className)}>
       <div className={styles.PointsWrap}>
@@ -27,15 +23,13 @@ export default function TalkingPoints({ className }: any) {
             className={cx(
               styles.Point,
               index % 2 !== 0 ? styles.Point__right : styles.Point__left,
-              (index === 0 && points.length === 1) && styles.Point__noBorderRight,
               index === points.length - 1 && styles.Point__noBorderBottom,
-              index === points.length - 1 && styles.Point__borderRight,
               (index % 2 === 0 && index === points.length - 2) && styles.Point__noBorderBottom,
             )}
           >
             <div className={styles.PointHeaderWrap}>
               <Image
-                src='/foo'
+                src={(point.icon as Media).url || ''}
                 width={20}
                 height={20}
                 alt=''
@@ -43,7 +37,7 @@ export default function TalkingPoints({ className }: any) {
               />
               <div className={styles.PointHeader}>{point.header}</div>
             </div>
-            <p>{point.text}</p>
+            {point.text && <LexicalRenderer content={point.text as PayloadLexicalReactRendererContent} />}
           </div>
         ))}
       </div>
