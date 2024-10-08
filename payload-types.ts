@@ -336,7 +336,7 @@ export interface Page {
   title?: string | null;
   slug: string;
   hero?: {
-    style: 'Standard';
+    style: 'standard';
     headline: string;
     eyebrow?: string | null;
     buttonText?: string | null;
@@ -372,34 +372,16 @@ export interface Media {
  * via the `definition` "Columns".
  */
 export interface Columns {
+  layout?: ('equal' | 'wideLeft' | 'wideRight') | null;
   leftColumnBlock?:
     | (
         | {
             image?: (number | null) | Media;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'leftColumnImage';
+            blockType: 'colImage';
           }
-        | {
-            text?: {
-              root: {
-                type: string;
-                children: {
-                  type: string;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'leftColumnText';
-          }
+        | RichText
       )[]
     | null;
   rightColumnBlock?:
@@ -408,28 +390,9 @@ export interface Columns {
             image?: (number | null) | Media;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'rightColumnImage';
+            blockType: 'colImage';
           }
-        | {
-            text?: {
-              root: {
-                type: string;
-                children: {
-                  type: string;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'rightColumnText';
-          }
+        | RichText
       )[]
     | null;
   createSideNavLink?: boolean | null;
@@ -437,18 +400,6 @@ export interface Columns {
   id?: string | null;
   blockName?: string | null;
   blockType: 'columns';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Image".
- */
-export interface Image {
-  image?: (number | null) | Media;
-  createSideNavLink?: boolean | null;
-  linkText?: string | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'image';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -475,6 +426,18 @@ export interface RichText {
   id?: string | null;
   blockName?: string | null;
   blockType: 'richText';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Image".
+ */
+export interface Image {
+  image?: (number | null) | Media;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -9,7 +9,6 @@
   @include utils.buttonReset;
 
   display: inline-block;
-  margin-bottom: $p-margin-bottom;
   padding: to-rem(10px) to-rem(20px);
   transition: all $transition-snappy;
   border-radius: 10px;
