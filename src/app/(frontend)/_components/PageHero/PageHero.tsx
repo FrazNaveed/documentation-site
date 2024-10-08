@@ -47,8 +47,8 @@ export default function PageHero({
           )}
         </div>
         <div className={cx(styles.content, styles[`content__${heroStyle}`], { [styles.content__standardWImage]: heroStyle === 'standard' && backgroundImage?.url })}>
-          {eyebrow && <h1 className={cx(styles.eyebrow, { [styles.eyebrow__dt]: heroStyle === 'standard' && backgroundImage?.url })}>{eyebrow}</h1>}
-          {header && <p className={styles.header}>{header}</p>}
+          {eyebrow && <h2 className={cx(styles.eyebrow, { [styles.eyebrow__dt]: heroStyle === 'standard' && backgroundImage?.url })}>{eyebrow}</h2>}
+          {header && <h1 className={styles.header}>{header}</h1>}
           {cta && (
             <div className={styles.meta}>
               <Button text={cta.text} link={cta.link} />

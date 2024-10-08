@@ -1,0 +1,45 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.columns {
+  @include grid(10);
+
+  align-items: center;
+}
+
+.colLeft {
+  &__equal {
+    @include columns(1, 5, lg);
+  }
+
+  &__wideLeft {
+    @include columns(1, 7, lg);
+  }
+
+  &__wideRight {
+    @include columns(1, 4, lg);
+  }
+}
+
+.colRight {
+  &__equal {
+    @include columns(6, -1, lg);
+  }
+
+  &__wideLeft {
+    @include columns(8, -1, lg);
+  }
+
+  &__wideRight {
+    @include columns(5, -1, lg);
+  }
+
+  @include media-breakpoint-down(lg) {
+    margin-top: to-rem($spacing-medium);
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-top: to-rem($spacing-standard);
+  }
+}

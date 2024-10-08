@@ -76,6 +76,7 @@
   @include h6;
 
   margin-bottom: to-rem($spacing-x-small);
+  letter-spacing: 0;
 
   &__dt {
     @include media-breakpoint-down(sm) {
