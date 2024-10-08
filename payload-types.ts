@@ -114,26 +114,7 @@ export interface Columns {
             blockName?: string | null;
             blockType: 'colImage';
           }
-        | {
-            text?: {
-              root: {
-                type: string;
-                children: {
-                  type: string;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'colText';
-          }
+        | RichText
       )[]
     | null;
   rightColumnBlock?:
@@ -144,26 +125,7 @@ export interface Columns {
             blockName?: string | null;
             blockType: 'colImage';
           }
-        | {
-            text?: {
-              root: {
-                type: string;
-                children: {
-                  type: string;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'colText';
-          }
+        | RichText
       )[]
     | null;
   createSideNavLink?: boolean | null;
@@ -171,18 +133,6 @@ export interface Columns {
   id?: string | null;
   blockName?: string | null;
   blockType: 'columns';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Image".
- */
-export interface Image {
-  image?: (number | null) | Media;
-  createSideNavLink?: boolean | null;
-  linkText?: string | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'image';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -209,6 +159,18 @@ export interface RichText {
   id?: string | null;
   blockName?: string | null;
   blockType: 'richText';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Image".
+ */
+export interface Image {
+  image?: (number | null) | Media;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

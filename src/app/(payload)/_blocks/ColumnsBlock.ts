@@ -1,4 +1,9 @@
 import { Block } from 'payload'
+  import {
+  HeadingFeature,
+  lexicalEditor,
+} from '@payloadcms/richtext-lexical'
+import { RichTextBlock } from '../_blocks/RichTextBlock'
 import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
 import { i18n } from '../../i18n-config'
 
@@ -13,19 +18,6 @@ const imageBlock: Block = {
   ],
   imageURL: `/${i18n.defaultLocale}/icons/image.svg`,
   imageAltText: 'Left Column image block icon',
-}
-
-const textBlock: Block = {
-  slug: 'colText',
-  fields: [
-    {
-      name: 'text',
-      type: 'richText',
-      localized: true,
-    },
-  ],
-  imageURL: `/${i18n.defaultLocale}/icons/align-left.svg`,
-  imageAltText: 'Left Column text block icon',
 }
 
 export const ColumnsBlock: Block = {
@@ -60,7 +52,7 @@ export const ColumnsBlock: Block = {
       type: 'blocks',
       blocks: [
         imageBlock,
-        textBlock,
+        RichTextBlock,
       ],
       admin: {
         description: 'Add image or text to this column',
@@ -72,7 +64,7 @@ export const ColumnsBlock: Block = {
       type: 'blocks',
       blocks: [
         imageBlock,
-        textBlock,
+        RichTextBlock,
       ],
       admin: {
         description: 'Add image or text to this column',

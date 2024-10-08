@@ -32,8 +32,8 @@ export default function Columns({
           break
         }
 
-        case 'colText':
-          return block.text && <LexicalRenderer content={block.text as PayloadLexicalReactRendererContent} />
+        case 'richText':
+          return block.richText && <LexicalRenderer content={block.richText as PayloadLexicalReactRendererContent} />
 
         default:
           return null
