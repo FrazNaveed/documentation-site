@@ -3,6 +3,7 @@ import { getDictionary } from 'src/app/get-dictionary'
 import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import type { Locale } from 'src/app/i18n-config'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
+import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
 import Columns from 'src/app/(frontend)/_components/Columns'
 import styles from './page.module.scss'
 
@@ -19,7 +20,13 @@ export default async function Page({
     notFound()
   }
 
-  const { title, hero, components } = pageData
+  const {
+    title,
+    hero,
+    components,
+    pageFooterCTA,
+    pageFooterCTAButton,
+  } = pageData
   let heroComponent
   if (hero) {
     const {
@@ -84,6 +91,8 @@ export default async function Page({
           </div>
         </div>
       )}
+      {(pageFooterCTA && pageFooterCTAButton?.buttonLink && pageFooterCTAButton?.buttonText)
+        && <PageFooterCTA buttonText={pageFooterCTAButton?.buttonText} buttonLink={pageFooterCTAButton?.buttonLink} />}
     </div>
   )
 }
