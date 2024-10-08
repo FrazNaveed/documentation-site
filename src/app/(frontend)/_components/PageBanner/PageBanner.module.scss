@@ -12,8 +12,7 @@
     padding: to-rem($spacing-small) 0;
 
     @include media-breakpoint-up(lg) {
-      /* stylelint-disable-next-line prettier/prettier */
-      @include columns(3, 11); // or is this unnecessary and just text-align: center?
+      @include columns(1, -1);
     }
 
     p {
