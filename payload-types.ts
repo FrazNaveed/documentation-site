@@ -30,6 +30,7 @@ export interface Config {
     news: News;
     'news-types': NewsType;
     'news-sub-types': NewsSubType;
+    wallets: Wallet;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -552,6 +553,22 @@ export interface NewsSubType {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wallets".
+ */
+export interface Wallet {
+  id: number;
+  name: string;
+  logo?: (number | null) | Media;
+  walletLink: string;
+  flrFunctionality?: boolean | null;
+  walletConnect?: boolean | null;
+  tags?: ('wrap' | 'delegate' | 'stake' | 'autoclaim' | 'claim' | 'voting')[] | null;
+  platforms?: ('ios' | 'android' | 'hardware')[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -584,6 +601,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'news-sub-types';
         value: number | NewsSubType;
+      } | null)
+    | ({
+        relationTo: 'wallets';
+        value: number | Wallet;
       } | null);
   globalSlug?: string | null;
   user: {
