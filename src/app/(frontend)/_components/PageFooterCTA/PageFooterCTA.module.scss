@@ -8,6 +8,7 @@
 .Wrap {
   @include container;
 
+  max-width: none;
   margin-bottom: to-rem($spacing-medium);
   background-color: $gray-50;
 }
