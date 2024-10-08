@@ -6,7 +6,7 @@
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .Wrap {
-  @include containerGrid;
+  @include container;
 }
 
 .PointsWrap {
