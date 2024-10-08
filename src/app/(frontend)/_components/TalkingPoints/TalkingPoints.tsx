@@ -34,8 +34,8 @@ export default function TalkingPoints({
               <div className={styles.PointHeaderWrap}>
                 <Image
                   {...IconProps}
-                  width={20}
-                  height={20}
+                  width={50}
+                  height={50}
                   className={styles.PointImage}
                 />
                 <div className={styles.PointHeader}>{point.header}</div>
