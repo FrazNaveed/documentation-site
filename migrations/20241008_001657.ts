@@ -45,11 +45,11 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   );
   
   DROP TABLE "pages_blocks_left_column_image";
-  DROP ... CASCADE TABLE "pages_blocks_left_column_text";
-  DROP ... CASCADE TABLE "pages_blocks_left_column_text_locales";
+  DROP TABLE "pages_blocks_left_column_text" CASCADE;
+  DROP TABLE "pages_blocks_left_column_text_locales" CASCADE;
   DROP TABLE "pages_blocks_right_column_image";
-  DROP ... CASCADE TABLE "pages_blocks_right_column_text";
-  DROP ... CASCADE TABLE "pages_blocks_right_column_text_locales";
+  DROP TABLE "pages_blocks_right_column_text" CASCADE;
+  DROP TABLE "pages_blocks_right_column_text_locales" CASCADE;
   ALTER TABLE "pages_blocks_columns" ADD COLUMN "layout" "enum_pages_blocks_columns_layout" DEFAULT 'equal';
   ALTER TABLE "pages_blocks_columns" ADD COLUMN "link_text" varchar;
   ALTER TABLE "pages_blocks_image" ADD COLUMN "link_text" varchar;
