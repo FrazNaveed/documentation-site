@@ -28,6 +28,7 @@ export const TalkingPoints: Block = {
       name: 'points',
       type: 'array',
       label: 'Point',
+      interfaceName: 'PointsList',
       fields: [
         {
           type: 'row',
@@ -49,10 +50,6 @@ export const TalkingPoints: Block = {
             },
           ],
         },
-        // {
-        //   name: 'textTest',
-        //   type: 'text',
-        // },
         {
           name: 'text',
           type: 'richText',
@@ -80,7 +77,7 @@ export const TalkingPoints: Block = {
         },
       ],
       localized: true,
-      minRows: 1,
+      minRows: 2,
       required: true,
       admin: {
         isSortable: true,
