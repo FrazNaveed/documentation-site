@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { getDictionary } from 'src/app/get-dictionary'
 import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import type { Locale } from 'src/app/i18n-config'
+import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
 import Columns from 'src/app/(frontend)/_components/Columns'
 import styles from './page.module.scss'
@@ -19,7 +20,12 @@ export default async function Page({
     notFound()
   }
 
-  const { title, hero, components } = pageData
+  const {
+    title,
+    hero,
+    pageBanner,
+    components,
+  } = pageData
   let heroComponent
   if (hero) {
     const {
@@ -43,8 +49,17 @@ export default async function Page({
     )
   }
 
+  let pageBannerComponent
+  if (pageBanner) {
+    const { bannerText } = pageBanner
+    pageBannerComponent = (
+      <PageBanner content={bannerText} />
+    )
+  }
+
   return (
     <div className={styles.wrap}>
+      {pageBanner?.togglePageBanner && pageBannerComponent}
       {heroComponent}
       <h1>
         {dictionary['server-component'].hello}
