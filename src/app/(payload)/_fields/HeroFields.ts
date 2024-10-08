@@ -10,10 +10,13 @@ export const HeroFields: Field[] = [
         name: 'style',
         type: 'select',
         options: [
-          'Standard',
+          {
+            label: 'Standard',
+            value: 'standard',
+          },
         ],
         required: true,
-        defaultValue: 'Standard',
+        defaultValue: 'standard',
       },
       {
         name: 'headline',

@@ -1,0 +1,119 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.statsBlock {
+  @include container;
+
+  margin-bottom: to-rem($spacing-xx-large);
+
+  @include media-breakpoint-down(lg) {
+    margin-bottom: to-rem($spacing-large);
+  }
+}
+
+.statsBlockWrap {
+  @include grid;
+
+  align-items: baseline;
+}
+
+.stats {
+  @include columns(3, 10);
+
+  display: flex;
+  padding: to-rem($spacing-medium) to-rem($spacing-small);
+  border: 1px solid $gray-100;
+  border-radius: 10px;
+  background-color: $gray-50;
+
+  @include media-breakpoint-down(lg) {
+    @include columns(2, -1);
+
+    margin-right: to-rem($spacing-small);
+    margin-bottom: to-rem($spacing-x-small);
+  }
+
+  @include media-breakpoint-down(md) {
+    flex-wrap: wrap;
+    margin-right: 0;
+    margin-bottom: to-rem($spacing-small);
+    padding: to-rem($spacing-medium) 0 0;
+    row-gap: to-rem($spacing-standard);
+  }
+}
+
+.Stat {
+  display: flex;
+  flex: 1 1 33.34%;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include media-breakpoint-up(md) {
+    &:not(:first-child) {
+      padding-left: to-rem($spacing-standard);
+    }
+
+    &:not(:last-child) {
+      border-right: 1px solid $gray-100;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    padding: 0 to-rem($spacing-small);
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $gray-100;
+    }
+  }
+
+  &Label {
+    @include label;
+
+    margin-bottom: to-rem($spacing-standard);
+    padding-right: to-rem($spacing-large);
+    color: $gray;
+
+    @include media-breakpoint-down(lg) {
+      margin-bottom: to-rem($spacing-small);
+    }
+
+    @include media-breakpoint-down(lg) {
+      margin-bottom: to-rem($spacing-x-small);
+      padding-right: to-rem($spacing-large);
+    }
+
+    @include media-breakpoint-down(md) {
+      padding-right: to-rem($spacing-standard);
+    }
+  }
+
+  &Number {
+    @include headerH3;
+
+    color: $black;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.captionWrap {
+  @include columns(10, 12);
+
+  @include media-breakpoint-up(lg) {
+    padding-top: to-rem($spacing-medium);
+  }
+
+  @include media-breakpoint-down(lg) {
+    @include columns(2, -1);
+  }
+
+  p {
+    @include paragraphXSmFont;
+  }
+}

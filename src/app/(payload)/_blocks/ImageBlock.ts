@@ -1,4 +1,5 @@
 import { Block } from 'payload'
+import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
 import { i18n } from '../../i18n-config'
 
 export const ImageBlock: Block = {
@@ -10,11 +11,7 @@ export const ImageBlock: Block = {
       type: 'upload',
       relationTo: 'media',
     },
-    {
-      name: 'createSideNavLink',
-      type: 'checkbox',
-      defaultValue: false,
-    },
+    ...CreateSideNavLinkFields,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/image.svg`,
   imageAltText: 'Image block icon',
