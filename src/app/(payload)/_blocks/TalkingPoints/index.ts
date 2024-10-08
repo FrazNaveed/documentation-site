@@ -22,6 +22,7 @@ export const TalkingPoints: Block = {
     singular: 'Talking Points',
     plural: 'Talking Points',
   },
+  interfaceName: 'TalkingPoints',
   fields: [
     {
       name: 'points',
@@ -48,10 +49,10 @@ export const TalkingPoints: Block = {
             },
           ],
         },
-        {
-          name: 'textTest',
-          type: 'text',
-        },
+        // {
+        //   name: 'textTest',
+        //   type: 'text',
+        // },
         {
           name: 'text',
           type: 'richText',
