@@ -105,9 +105,8 @@
 .captionWrap {
   @include columns(8, -1);
 
-  @include media-breakpoint-up(lg) {
-    padding-top: to-rem($spacing-medium);
-  }
+  display: flex;
+  align-items: center;
 
   @include media-breakpoint-down(lg) {
     @include columns(1, -1);
