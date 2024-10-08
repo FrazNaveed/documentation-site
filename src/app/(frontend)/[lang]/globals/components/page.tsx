@@ -1,7 +1,6 @@
 import StatsBlock from 'src/app/(frontend)/_components/Stats'
 import getStatsBlockFromPage from 'src/app/(frontend)/_lib/payload/statsQueries'
 import { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
-import TalkingPoints from '../../../_components/TalkingPoints'
 
 const testStats = await getStatsBlockFromPage('fooz')
 // console.log('testStats: ', testStats)
@@ -28,8 +27,6 @@ export default function Page() {
         />
         )}
       <br />
-      <h2>Talking Points</h2>
-      <TalkingPoints />
     </>
   )
 }
