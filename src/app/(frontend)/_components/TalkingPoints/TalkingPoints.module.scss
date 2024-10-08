@@ -57,9 +57,11 @@
   }
 
   &__left {
+    padding-right: to-rem($spacing-xxx-large);
     border-right: 1px solid $gray-100;
 
     @include media-breakpoint-down(lg) {
+      padding-right: 0;
       border-right: none;
     }
   }
@@ -94,6 +96,8 @@
   &Header {
     @include headerDesktopH7;
 
+    color: $black;
+
     @include media-breakpoint-down(lg) {
       @include headerMobileH7;
     }
@@ -104,7 +108,8 @@
   }
 
   p {
-    // replace after lexical component is in
+    @include fontStyle(16, 24);
+
     margin-bottom: 0;
   }
 }
