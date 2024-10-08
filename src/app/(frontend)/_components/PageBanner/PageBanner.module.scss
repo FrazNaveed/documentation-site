@@ -11,10 +11,6 @@
 
     padding: to-rem($spacing-small) 0;
 
-    @include media-breakpoint-up(lg) {
-      @include columns(1, -1);
-    }
-
     p {
       @include paragraphXSmFont;
 
