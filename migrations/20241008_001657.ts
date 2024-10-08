@@ -50,7 +50,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   DROP TABLE "pages_blocks_right_column_image";
   DROP TABLE "pages_blocks_right_column_text" CASCADE;
   DROP TABLE "pages_blocks_right_column_text_locales" CASCADE;
-  ALTER TABLE "pages_blocks_columns" ADD COLUMN "layout" "enum_pages_blocks_columns_layout" DEFAULT 'equal';
+  ALTER TABLE "pages_blocks_columns" ADD COLUMN IF NOT EXISTS "layout" "enum_pages_blocks_columns_layout" DEFAULT 'equal';
   DO $$ BEGIN
    ALTER TABLE "pages_blocks_col_image" ADD CONSTRAINT "pages_blocks_col_image_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
