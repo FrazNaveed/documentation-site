@@ -24,26 +24,17 @@
 }
 
 .ImageWrap {
+  overflow: hidden;
+
   @include media-breakpoint-down(md) {
     &:first-child {
       display: none;
     }
   }
-
-  // &Mobile {
-  //   display: none;
-
-  //   @include media-breakpoint-down(md) {
-  //     display: block;
-  //     flex-basis: 33.33%;
-  //     padding: to-rem($spacing-small) 0;
-  //   }
-  // }
 }
 
 .bgImg {
   &__left,
-  &__mobile,
   &__right {
     display: block;
 
@@ -53,12 +44,19 @@
   }
 
   &__left {
+    transform: translateY(25%) scale(1.5); // to modifier?
+
     @include media-breakpoint-down(md) {
       display: none;
     }
   }
 
   &__right {
-    transform: rotate(180deg);
+    // transform: rotate(180deg);
+    transform: rotate(180deg) translateY(25%) scale(1.5); // to modifier?
+
+    @include media-breakpoint-down(md) {
+      transform: rotate(0);
+    }
   }
 }
