@@ -37,7 +37,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	CONSTRAINT "events_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
   );
   
-  ALTER TABLE "payload_locked_documents_rels" ADD COLUMN "events_id" integer;
+  ALTER TABLE "payload_locked_documents_rels" ADD COLUMN IF NOT EXISTS "events_id" integer;
   DO $$ BEGIN
    ALTER TABLE "events_locales" ADD CONSTRAINT "events_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."events"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
