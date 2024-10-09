@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { HeroFields } from '../_fields/HeroFields'
+import { PageFooterCTA } from '../_fields/PageFooterCTA'
 import { ColumnsBlock } from '../_blocks/ColumnsBlock'
 import { ImageBlock } from '../_blocks/ImageBlock'
 import { RichTextBlock } from 'src/app/(payload)/_blocks/RichTextBlock'
@@ -46,5 +47,6 @@ export const Pages: CollectionConfig = {
         TalkingPoints,
       ],
     },
+    ...PageFooterCTA,
   ],
 }
