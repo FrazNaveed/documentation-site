@@ -18,12 +18,18 @@ export default function TalkingPoints({
     <section className={cx(styles.Wrap, className)}>
       <div className={styles.PointsWrap}>
         {points && points.map((point, index) => {
-          const IconProps = (point.icon && typeof point.icon === 'object' && point.icon.url)
-            ? { src: point.icon.url, alt: point.icon.alt } : { src: '', alt: 'icon' }
-
+          const {
+            id,
+            icon,
+            header,
+            text,
+          } = point
+          if (!icon && !header && !text) {
+            return null
+          }
           return (
             <div
-              key={point.id}
+              key={id}
               className={cx(
                 styles.Point,
                 index % 2 !== 0 ? styles.Point__right : styles.Point__left,
@@ -32,15 +38,18 @@ export default function TalkingPoints({
               )}
             >
               <div className={styles.PointHeaderWrap}>
-                <Image
-                  {...IconProps}
-                  width={50}
-                  height={50}
-                  className={styles.PointImage}
-                />
-                <div className={styles.PointHeader}>{point.header}</div>
+                {(icon && typeof icon === 'object' && icon.url) && (
+                  <Image
+                    src={icon.url}
+                    alt={icon.alt}
+                    width={50}
+                    height={50}
+                    className={styles.PointImage}
+                  />
+                )}
+                <div className={styles.PointHeader}>{header}</div>
               </div>
-              {point.text && <LexicalRenderer content={point.text as PayloadLexicalReactRendererContent} />}
+              {text && <LexicalRenderer content={text as PayloadLexicalReactRendererContent} />}
             </div>
           )
         })}
