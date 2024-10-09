@@ -8,18 +8,13 @@
 .statsBlock {
   @include grid(10);
 
+  align-items: center;
   margin-bottom: to-rem($spacing-xx-large);
 
   @include media-breakpoint-down(lg) {
     margin-bottom: to-rem($spacing-large);
   }
 }
-
-// .statsBlockWrap {
-//   @include columns(1, 9);
-
-//   align-items: baseline;
-// }
 
 .stats {
   @include columns(1, 8);
@@ -105,16 +100,15 @@
 .captionWrap {
   @include columns(8, -1);
 
-  display: flex;
-  align-items: center;
-
   @include media-breakpoint-down(lg) {
-    @include columns(1, -1);
+    @include columns(1, 8);
 
     padding-left: to-rem(6px);
   }
 
   @include media-breakpoint-down(md) {
+    @include columns(1, -1);
+
     padding-left: 0;
   }
 
