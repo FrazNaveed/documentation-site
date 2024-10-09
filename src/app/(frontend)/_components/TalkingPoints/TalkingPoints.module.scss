@@ -76,16 +76,15 @@
 
   &__right {
     padding-left: to-rem($spacing-medium + 4px);
-    // border-left: 1px solid $gray-100;
 
     @include media-breakpoint-down(lg) {
       padding-left: 0;
-      // border-left: none;
     }
   }
 
   &HeaderWrap {
     display: flex;
+    align-items: center;
     margin-bottom: to-rem($spacing-small);
 
     @include media-breakpoint-down(lg) {
