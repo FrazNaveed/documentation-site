@@ -27,7 +27,7 @@ export default function Page() {
         placeholder='Type your email here|'
       />
       <br />
-      <PageFooterCTA buttonText='Vote on Flare Portal' buttonLink='https://flare.network' />
+      <PageFooterCTA buttonText='Vote on Flare Portal' buttonLink='https://flare.network' backgroundImageStyle='flipped' />
     </>
   )
 }
