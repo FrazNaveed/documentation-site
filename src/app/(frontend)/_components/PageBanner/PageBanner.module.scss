@@ -4,11 +4,9 @@
 @use "../../_styles/spacing" as *;
 
 .pageBanner {
-  @include containerGrid;
+  @include container;
 
   &Content {
-    @include columns(1, -1);
-
     padding: to-rem($spacing-small) 0;
 
     p {
