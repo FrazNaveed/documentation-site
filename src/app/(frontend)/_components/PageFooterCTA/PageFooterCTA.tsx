@@ -40,15 +40,6 @@ export default function PageFooterCTA({ className, buttonText, buttonLink }: Pag
             className={styles.bgImg__right}
           />
         </div>
-        {/* <div className={styles.ImageWrapMobile}>
-          <Image
-            src='/en/vote_mobile_bg.png'
-            width={106}
-            height={106}
-            alt='background image of two cylinders'
-            className={styles.bgImg__mobile}
-          />
-        </div> */}
       </div>
     </section>
   )
