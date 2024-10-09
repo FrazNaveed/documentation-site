@@ -1,5 +1,4 @@
 import BannerCTA from 'src/app/(frontend)/_components/BannerCTA'
-import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import SubscriptionBannerCTA from 'src/app/(frontend)/_components/SubscriptionBannerCTA'
 
 export default function Page() {
@@ -18,9 +17,6 @@ export default function Page() {
           size: 'small',
         }}
       />
-      <br />
-      <h2>Page Banner</h2>
-      <PageBanner />
       <br />
       <h2>Subscription CTA</h2>
       <SubscriptionBannerCTA
