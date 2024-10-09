@@ -23,8 +23,8 @@ export type StatsList =
  */
 export type PointsList = {
   icon?: (number | null) | Media;
-  header?: string | null;
-  text?: {
+  header: string;
+  text: {
     root: {
       type: string;
       children: {
@@ -38,7 +38,7 @@ export type PointsList = {
       version: number;
     };
     [k: string]: unknown;
-  } | null;
+  };
   id?: string | null;
 }[];
 

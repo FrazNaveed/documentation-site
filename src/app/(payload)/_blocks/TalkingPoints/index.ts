@@ -44,6 +44,8 @@ export const TalkingPoints: Block = {
             {
               name: 'header',
               type: 'text',
+              localized: true,
+              required: true,
               admin: {
                 width: '60%',
               },
@@ -74,6 +76,8 @@ export const TalkingPoints: Block = {
               }),
             ],
           }),
+          localized: true,
+          required: true,
         },
       ],
       localized: true,
