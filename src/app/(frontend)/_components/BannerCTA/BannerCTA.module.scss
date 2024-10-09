@@ -63,6 +63,7 @@
   flex: 0 0 33.32%;
   font-family: $font-family-sathoshi;
   font-weight: 500;
+  letter-spacing: 0;
 
   @include media-breakpoint-down(md) {
     flex: 0 0 50%;
