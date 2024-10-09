@@ -25,18 +25,20 @@
 
 .ImageWrap {
   @include media-breakpoint-down(md) {
-    display: none;
-  }
-
-  &Mobile {
-    display: none;
-
-    @include media-breakpoint-down(md) {
-      display: block;
-      flex-basis: 33.33%;
-      padding: to-rem($spacing-small) 0;
+    &:first-child {
+      display: none;
     }
   }
+
+  // &Mobile {
+  //   display: none;
+
+  //   @include media-breakpoint-down(md) {
+  //     display: block;
+  //     flex-basis: 33.33%;
+  //     padding: to-rem($spacing-small) 0;
+  //   }
+  // }
 }
 
 .bgImg {
