@@ -25,6 +25,10 @@
     margin-bottom: to-rem(16px);
   }
 
+  h5 {
+    @include label;
+  }
+
   hr {
     margin: to-rem($p-margin-bottom) auto;
   }
