@@ -4,6 +4,7 @@ import { ColumnsBlock } from '../_blocks/ColumnsBlock'
 import { ImageBlock } from '../_blocks/ImageBlock'
 import { RichTextBlock } from 'src/app/(payload)/_blocks/RichTextBlock'
 import { StatsBlock } from '../_blocks/StatsBlock'
+import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -42,6 +43,7 @@ export const Pages: CollectionConfig = {
         ImageBlock,
         RichTextBlock,
         StatsBlock,
+        TableDrawersBlock
       ],
     },
   ],
