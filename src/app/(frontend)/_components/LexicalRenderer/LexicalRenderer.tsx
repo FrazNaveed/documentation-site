@@ -3,7 +3,7 @@
 import React, { CSSProperties } from 'react'
 import Image from 'next/image'
 import cx from 'classnames'
-import type { News } from '@/payload-types'
+import type { News, Page } from '@/payload-types'
 import VideoEmbed from '../../_components/VideoEmbed'
 import getCollectionPath from '../../_utils/getCollectionPath'
 import type { CollectionPathContentTypes } from '../../_utils/getCollectionPath'
@@ -80,7 +80,7 @@ export type LinkNode = {
         | {
         doc: {
             relationTo: string;
-            value: | News;
+            value: | News | Page;
         };
         linkType: 'internal';
         newTab: boolean;
@@ -275,7 +275,7 @@ export const defaultElementRenderers: ElementRenderers = {
   link: (element) => (
     <a
       href={element.fields.linkType === 'internal'
-        ? `${getCollectionPath(element.fields.doc.relationTo as CollectionPathContentTypes)}/${element.fields.doc.value.slug}`
+        ? `${getCollectionPath(element.fields.doc.relationTo as CollectionPathContentTypes)}${element.fields.doc.value.slug}`
         : element.fields.url}
       target={element.fields.newTab ? '_blank' : '_self'}
       style={getElementStyle<'link'>(element)}
