@@ -387,7 +387,24 @@ export interface Page {
       [k: string]: unknown;
     } | null;
   };
-  components?: (Columns | Image | RichTextBlock | Stats | ITalkingPoints)[] | null;
+  components?:
+    | (
+        | Columns
+        | Image
+        | RichTextBlock
+        | Stats
+        | ITalkingPoints
+        | {
+            title?: string | null;
+            url?: string | null;
+            createSideNavLink?: boolean | null;
+            linkText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoBlock';
+          }
+      )[]
+    | null;
   pageFooterCTA?: boolean | null;
   pageFooterCTAButton?: {
     buttonText?: string | null;
