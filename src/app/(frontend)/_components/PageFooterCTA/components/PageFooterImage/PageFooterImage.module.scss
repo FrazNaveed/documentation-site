@@ -1,29 +1,10 @@
-@use "../../_styles/mixins" as *;
-@use "../../_styles/typography" as *;
-@use "../../_styles/colors" as *;
-@use "../../_styles/transitions" as *;
-@use "../../_styles/spacing" as *;
+@use "../../../../_styles/mixins" as *;
+@use "../../../../_styles/typography" as *;
+@use "../../../../_styles/colors" as *;
+@use "../../../../_styles/transitions" as *;
+@use "../../../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
-.Wrap {
-  @include container;
-
-  max-width: none;
-  margin-bottom: to-rem($spacing-medium);
-  background-color: $gray-50;
-}
-
-.content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.Button {
-  margin-bottom: 0;
-}
-
-// moved to component
 .ImageWrap {
   overflow: hidden;
 
@@ -99,9 +80,7 @@
   //   transform: translateY(35%);
 
   //   @include media-breakpoint-down(md) {
-  /* stylelint-disable-next-line prettier/prettier */
   //     transform: rotate(0);
   //   }
   // }
 }
-// moved

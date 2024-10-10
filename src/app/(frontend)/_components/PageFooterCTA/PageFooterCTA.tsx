@@ -1,6 +1,6 @@
 import cx from 'classnames'
-import Image from 'next/image'
 import { Media } from '@/payload-types'
+import PageFooterImage from './components/PageFooterImage'
 import Button from '../Button'
 import styles from './PageFooterCTA.module.scss'
 
@@ -22,20 +22,7 @@ export default function PageFooterCTA({
   return (
     <section className={cx(styles.Wrap, className)}>
       <div className={styles.content}>
-        <div className={styles.ImageWrap}>
-          {backgroundImage && typeof backgroundImage === 'object' && typeof backgroundImage.url === 'string' && (
-            <Image
-              src={backgroundImage.url}
-              width={276}
-              height={276}
-              alt={backgroundImage.alt}
-              className={cx(
-                styles.bgImg__left,
-                styles[`bgImg__${backgroundImageStyle}`],
-              )}
-            />
-          )}
-        </div>
+        <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='left' />
         {buttonText && buttonLink
           && (
             <Button
@@ -45,20 +32,7 @@ export default function PageFooterCTA({
               className={styles.Button}
             />
           )}
-        <div className={styles.ImageWrap}>
-          {backgroundImage && typeof backgroundImage === 'object' && typeof backgroundImage.url === 'string' && (
-            <Image
-              src={backgroundImage.url}
-              width={276}
-              height={276}
-              alt={backgroundImage.alt}
-              className={cx(
-                styles.bgImg__right,
-                styles[`bgImg__${backgroundImageStyle}`],
-              )}
-            />
-          )}
-        </div>
+        <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='right' />
       </div>
     </section>
   )
