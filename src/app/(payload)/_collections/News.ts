@@ -111,6 +111,7 @@ export const News: CollectionConfig = {
         }
       },
       hasMany: true,
+      maxRows: 3,
       localized: true,
       admin: {
         position: 'sidebar',
