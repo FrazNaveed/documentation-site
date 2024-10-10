@@ -42,7 +42,7 @@ export default async function Page({ params }: PageProps) {
     relatedPosts,
   } = newsPost
 
-  const relatedBackfill = (relatedPosts?.length && 3 - relatedPosts.length)
+  const relatedBackfill = relatedPosts?.length ? 3 - relatedPosts.length : 3
   const relatedNews = relatedPosts as News[] | null | undefined
 
   if (relatedBackfill && relatedBackfill > 0) {
