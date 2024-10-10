@@ -60,7 +60,7 @@ export default async function Page({ params }: PageProps) {
             </Link>
             {title && <h1 className={styles.title}>{title}</h1>}
             <div className={styles.meta}>
-              {type && typeof type === 'object' && <Pill text={type.name} size='small' />}
+              {type && typeof type === 'object' && <Pill text={type.title} size='small' />}
               {publishDate && (
                 <time className={styles.date} dateTime={publishDate}>
                   <Calendar />

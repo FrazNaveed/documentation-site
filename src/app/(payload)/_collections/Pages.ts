@@ -1,10 +1,11 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, FieldHook } from 'payload'
 import { HeroFields } from '../_fields/HeroFields'
 import { PageFooterCTA } from '../_fields/PageFooterCTA'
 import { ColumnsBlock } from '../_blocks/ColumnsBlock'
 import { ImageBlock } from '../_blocks/ImageBlock'
 import { RichTextBlockWithSideNavLink } from 'src/app/(payload)/_blocks/RichTextBlockWithSideNavLink'
 import { getSiblingData } from 'payload/shared'
+import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
 import {
   AlignFeature,
   IndentFeature,
@@ -28,6 +29,7 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 import { StatsBlock } from '../_blocks/StatsBlock'
+import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
 import { TalkingPoints } from '../_blocks/TalkingPoints'
 
@@ -53,6 +55,12 @@ export const Pages: CollectionConfig = {
       type: 'text',
       required: true,
       unique: true,
+      admin: {
+        description: slugAdminConfig.description,
+      },
+      hooks: {
+        beforeValidate: [setSlugFromTitle],
+      },
     },
     ...HeroFields,
     {

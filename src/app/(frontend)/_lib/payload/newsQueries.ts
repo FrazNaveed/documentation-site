@@ -12,7 +12,7 @@ const buildWhereClause = (
   type: NewsTypeTypes,
   additionalConditions: object = {},
 ) => {
-  const typeCondition = type ? { 'type.name': { equals: type } } : undefined
+  const typeCondition = type ? { 'type.title': { equals: type } } : undefined
   return { ...typeCondition, ...additionalConditions }
 }
 
