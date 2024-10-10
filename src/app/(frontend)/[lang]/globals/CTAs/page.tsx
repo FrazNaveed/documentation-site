@@ -1,5 +1,6 @@
 import BannerCTA from 'src/app/(frontend)/_components/BannerCTA'
 import SubscriptionBannerCTA from 'src/app/(frontend)/_components/SubscriptionBannerCTA'
+import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
 
 export default function Page() {
   const linkUrl = 'https://flare.network'
@@ -25,6 +26,8 @@ export default function Page() {
         buttonText='Subscribe'
         placeholder='Type your email here|'
       />
+      <br />
+      <PageFooterCTA buttonText='Vote on Flare Portal' buttonLink='https://flare.network' />
     </>
   )
 }

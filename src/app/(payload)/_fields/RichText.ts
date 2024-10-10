@@ -15,9 +15,9 @@ export const RichTextField: Field = {
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures,
-      HeadingFeature({ enabledHeadingSizes: ['h3', 'h4', 'h5'] }),
+      HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4', 'h5'] }),
       LinkFeature({
-        enabledCollections: ['news'],
+        enabledCollections: ['news', 'pages'],
         fields: ({ defaultFields }) => [
           ...defaultFields,
         ],

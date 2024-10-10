@@ -179,7 +179,7 @@ export const News: CollectionConfig = {
           UnorderedListFeature(),
           HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
           LinkFeature({
-            enabledCollections: ['news'],
+            enabledCollections: ['news', 'pages'],
             fields: ({ defaultFields }) => [
               ...defaultFields,
             ],
