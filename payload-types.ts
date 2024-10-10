@@ -387,7 +387,7 @@ export interface Page {
       [k: string]: unknown;
     } | null;
   };
-  components?: (Columns | Image | RichText | Stats | ITalkingPoints)[] | null;
+  components?: (Columns | Image | RichTextBlock | Stats | ITalkingPoints)[] | null;
   pageFooterCTA?: boolean | null;
   pageFooterCTAButton?: {
     buttonText?: string | null;
@@ -469,8 +469,6 @@ export interface RichText {
     };
     [k: string]: unknown;
   } | null;
-  createSideNavLink?: boolean | null;
-  linkText?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'richText';
@@ -486,6 +484,32 @@ export interface Image {
   id?: string | null;
   blockName?: string | null;
   blockType: 'image';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RichTextBlock".
+ */
+export interface RichTextBlock {
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'richTextBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -521,6 +545,7 @@ export interface Stats {
 export interface ITalkingPoints {
   points: PointsList;
   createSideNavLink?: boolean | null;
+  linkText?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'talkingPoints';

@@ -17,6 +17,7 @@ export const CreateSideNavLinkFields: Field[] = [
         name: 'linkText',
         type: 'text',
         required: true,
+        localized: true,
         admin: {
           condition: ( data, getSiblingData, { user }) => {
             if (getSiblingData.createSideNavLink) {

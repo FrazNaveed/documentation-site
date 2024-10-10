@@ -1,0 +1,80 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.sideNav {
+  @include columns(1, 3);
+
+  @include media-breakpoint-down(md) {
+    position: sticky;
+    top: $spacing-standard;
+  }
+}
+
+.wrap {
+  @include media-breakpoint-up(md) {
+    position: sticky;
+    top: $spacing-standard;
+    top: 150px;
+  }
+}
+
+.header {
+  @include labelS;
+
+  margin-bottom: to-rem($spacing-small);
+}
+
+.list {
+  @include utils.listReset;
+}
+
+.listItem {
+  @include paragraphSmFont;
+
+  position: relative;
+  padding-left: 6px;
+  line-height: 1;
+
+  &:not(:last-child) {
+    margin-bottom: to-rem($spacing-standard);
+  }
+}
+
+.link {
+  &,
+  &:visited,
+  &:active {
+    color: $body-text-color;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: $link-hover-color;
+  }
+}
+
+:global(.active) {
+  &.listItem::before {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    transform: translateY(-50%);
+    border-radius: 4px;
+    background-color: $pink-700;
+    content: "";
+  }
+
+  .link {
+    &,
+    &:visited,
+    &:active {
+      color: $black;
+    }
+  }
+}

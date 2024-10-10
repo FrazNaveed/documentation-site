@@ -8,7 +8,8 @@ export const Events: CollectionConfig = {
     plural: 'Events'
   },
   admin: {
-    useAsTitle: 'title'
+    useAsTitle: 'title',
+    enableRichTextLink: false,
   },
   fields: [
     {

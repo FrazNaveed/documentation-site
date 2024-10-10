@@ -3,7 +3,7 @@ import { HeroFields } from '../_fields/HeroFields'
 import { PageFooterCTA } from '../_fields/PageFooterCTA'
 import { ColumnsBlock } from '../_blocks/ColumnsBlock'
 import { ImageBlock } from '../_blocks/ImageBlock'
-import { RichTextBlock } from 'src/app/(payload)/_blocks/RichTextBlock'
+import { RichTextBlockWithSideNavLink } from 'src/app/(payload)/_blocks/RichTextBlockWithSideNavLink'
 import { getSiblingData } from 'payload/shared'
 import {
   AlignFeature,
@@ -83,12 +83,7 @@ export const Pages: CollectionConfig = {
               ParagraphFeature(),
               SubscriptFeature(),
               SuperscriptFeature(),
-              LinkFeature({
-                enabledCollections: ['news', 'pages'], // addd to a config?
-                fields: ({ defaultFields }) => [
-                  ...defaultFields,
-                ],
-              }),
+              LinkFeature(),
             ],
           }),
           admin: {
@@ -112,7 +107,7 @@ export const Pages: CollectionConfig = {
       blocks: [
         ColumnsBlock,
         ImageBlock,
-        RichTextBlock,
+        RichTextBlockWithSideNavLink,
         StatsBlock,
         TalkingPoints,
       ],
