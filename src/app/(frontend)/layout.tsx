@@ -15,8 +15,9 @@ export default function RootLayout({
           Skip to content
         </a>
         <SiteHeader />
-        <div id='mainContent' />
-        {children}
+        <div id='mainContent'>
+          {children}
+        </div>
         <SiteFooter />
       </body>
     </html>

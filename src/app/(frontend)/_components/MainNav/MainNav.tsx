@@ -64,6 +64,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
   const [windowWidth, setWindowWidth] = useState<number | null>(null)
   const [siteHeaderHidden, setSiteHeaderHidden] = useState(false)
   const headerHiddenClassName = 'siteHeader__flownAway'
+  const bodyHiddenClassName = 'siteHeaderHidden'
   const siteHeaderId = 'siteHeader'
   const mainNavId = 'mainNav'
 
@@ -147,12 +148,14 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
         if (siteHeaderHidden) {
           // Showing site header
           siteHeader?.classList.remove(headerHiddenClassName)
+          document.body.classList.remove(bodyHiddenClassName)
           setSiteHeaderHidden(false)
         }
       } else if (prevScroll < window.scrollY) {
         if (!siteHeaderHidden) {
           // Hiding site header
           siteHeader?.classList.add(headerHiddenClassName)
+          document.body.classList.add(bodyHiddenClassName)
           setSiteHeaderHidden(true)
         }
       }
