@@ -45,7 +45,7 @@ export const RichTextField: Field = {
       SuperscriptFeature(),
       UnderlineFeature(),
       UnorderedListFeature(),
-      HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
+      HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4', 'h5'] }),
       LinkFeature({
         enabledCollections: ['news', 'pages'],
         fields: ({ defaultFields }) => [
