@@ -35,6 +35,7 @@ export default async function Page({
     components,
     pageFooterCTA,
     pageFooterCTAButton,
+    pageTemplate,
   } = pageData
   let heroComponent
   if (hero) {
@@ -64,6 +65,18 @@ export default async function Page({
     const { bannerText } = pageBanner
     pageBannerComponent = (
       <PageBanner content={bannerText} />
+    )
+  }
+
+  if (pageTemplate === 'wallets') {
+    return (
+      <div className={styles.wrap}>
+        {pageBanner?.togglePageBanner && pageBannerComponent}
+        {heroComponent}
+        <div className={styles.grid}>
+          wallets grid here
+        </div>
+      </div>
     )
   }
 
