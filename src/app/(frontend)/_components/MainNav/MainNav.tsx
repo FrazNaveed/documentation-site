@@ -147,16 +147,16 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
       if (prevScroll > window.scrollY || window.scrollY === 0) {
         if (siteHeaderHidden) {
           // Showing site header
+          setSiteHeaderHidden(false)
           siteHeader?.classList.remove(headerHiddenClassName)
           document.body.classList.remove(bodyHiddenClassName)
-          setSiteHeaderHidden(false)
         }
       } else if (prevScroll < window.scrollY) {
         if (!siteHeaderHidden) {
           // Hiding site header
+          setSiteHeaderHidden(true)
           siteHeader?.classList.add(headerHiddenClassName)
           document.body.classList.add(bodyHiddenClassName)
-          setSiteHeaderHidden(true)
         }
       }
       prevScroll = window.scrollY
