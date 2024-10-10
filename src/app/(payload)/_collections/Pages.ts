@@ -5,6 +5,7 @@ import { ColumnsBlock } from '../_blocks/ColumnsBlock'
 import { ImageBlock } from '../_blocks/ImageBlock'
 import { RichTextBlock } from 'src/app/(payload)/_blocks/RichTextBlock'
 import { getSiblingData } from 'payload/shared'
+import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
 import {
   AlignFeature,
   IndentFeature,
@@ -53,6 +54,9 @@ export const Pages: CollectionConfig = {
       type: 'text',
       required: true,
       unique: true,
+      admin: {
+        description: slugAdminConfig.description,
+      },
       hooks: {
         beforeValidate: [setSlugFromTitle],
       },

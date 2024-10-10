@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
+import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
 import {
   AlignFeature,
   IndentFeature,
@@ -54,6 +55,9 @@ export const News: CollectionConfig = {
       type:'text',
       required: true,
       unique: true,
+      admin: {
+        description: slugAdminConfig.description,
+      },
       hooks: {
         beforeValidate: [setSlugFromTitle],
       },

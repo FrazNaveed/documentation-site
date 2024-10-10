@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
+import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
 
 export const NewsTypes: CollectionConfig = {
   slug: 'news-types',
@@ -32,6 +33,9 @@ export const NewsTypes: CollectionConfig = {
       required: true,
       unique: true,
       localized: true,
+      admin: {
+        description: slugAdminConfig.description,
+      },
       hooks: {
         beforeValidate: [setSlugFromTitle],
       },
