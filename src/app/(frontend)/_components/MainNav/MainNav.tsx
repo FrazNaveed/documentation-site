@@ -64,6 +64,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
   const [windowWidth, setWindowWidth] = useState<number | null>(null)
   const [siteHeaderHidden, setSiteHeaderHidden] = useState(false)
   const headerHiddenClassName = 'siteHeader__flownAway'
+  const bodyHiddenClassName = 'siteHeaderHidden'
   const siteHeaderId = 'siteHeader'
   const mainNavId = 'mainNav'
 
@@ -146,14 +147,16 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
       if (prevScroll > window.scrollY || window.scrollY === 0) {
         if (siteHeaderHidden) {
           // Showing site header
-          siteHeader?.classList.remove(headerHiddenClassName)
           setSiteHeaderHidden(false)
+          siteHeader?.classList.remove(headerHiddenClassName)
+          document.body.classList.remove(bodyHiddenClassName)
         }
       } else if (prevScroll < window.scrollY) {
         if (!siteHeaderHidden) {
           // Hiding site header
-          siteHeader?.classList.add(headerHiddenClassName)
           setSiteHeaderHidden(true)
+          siteHeader?.classList.add(headerHiddenClassName)
+          document.body.classList.add(bodyHiddenClassName)
         }
       }
       prevScroll = window.scrollY

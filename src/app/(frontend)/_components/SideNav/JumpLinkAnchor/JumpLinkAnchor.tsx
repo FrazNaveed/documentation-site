@@ -56,11 +56,11 @@ export default function JumpLinkAnchor({ linkText, className, jumpAnchorGlobalCl
     const link = document.getElementById(`jump-link-${linkId}`)
     const linkParent = link?.parentElement
     const linkPrevSibling = link?.previousSibling
-    let previousY = 0
+    let previousY = link?.getBoundingClientRect().y || 0
     const anchorCurrent = anchor.current
     const observer = new IntersectionObserver(([entry]) => {
       const currentY = entry.boundingClientRect.y
-      if (currentY < previousY) { // scrolling down
+      if (currentY < previousY && entry.isIntersecting) { // scrolling down
         link?.classList.add(activeLinkClass)
         if (linkParent) {
           Array.from(linkParent.children).forEach((child) => {
@@ -69,7 +69,7 @@ export default function JumpLinkAnchor({ linkText, className, jumpAnchorGlobalCl
             }
           })
         }
-      } else if (currentY > previousY) { // scrolling up
+      } else if (currentY > previousY && !entry.isIntersecting) { // scrolling up
         if (linkPrevSibling && linkPrevSibling instanceof HTMLElement) {
           link.classList.remove(activeLinkClass)
           linkPrevSibling.classList.add(activeLinkClass)
