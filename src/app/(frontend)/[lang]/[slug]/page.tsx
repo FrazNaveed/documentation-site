@@ -2,10 +2,12 @@ import { notFound } from 'next/navigation'
 import { getDictionary } from 'src/app/get-dictionary'
 import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import type { Locale } from 'src/app/i18n-config'
+import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
 import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
 import Columns from 'src/app/(frontend)/_components/Columns'
 import Stats from 'src/app/(frontend)/_components/Stats'
+import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import styles from './page.module.scss'
 
 export default async function Page({
@@ -24,6 +26,7 @@ export default async function Page({
   const {
     title,
     hero,
+    pageBanner,
     components,
     pageFooterCTA,
     pageFooterCTAButton,
@@ -51,8 +54,17 @@ export default async function Page({
     )
   }
 
+  let pageBannerComponent
+  if (pageBanner) {
+    const { bannerText } = pageBanner
+    pageBannerComponent = (
+      <PageBanner content={bannerText} />
+    )
+  }
+
   return (
     <div className={styles.wrap}>
+      {pageBanner?.togglePageBanner && pageBannerComponent}
       {heroComponent}
       <h1>
         {dictionary['server-component'].hello}
@@ -87,6 +99,9 @@ export default async function Page({
 
                 case 'stats':
                   return <Stats key={component.id} {...component} />
+
+                case 'talkingPoints':
+                  return <TalkingPoints key={component.id} {...component} />
 
                 default:
                   return null

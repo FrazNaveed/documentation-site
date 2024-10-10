@@ -1,0 +1,114 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.Wrap {
+  @include container;
+}
+
+.PointsWrap {
+  @include columns(3, 12);
+
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: to-rem($spacing-xxx-large);
+
+  @include media-breakpoint-down(lg) {
+    @include columns(3, 8);
+
+    padding-bottom: to-rem($spacing-x-large);
+  }
+
+  @include media-breakpoint-down(md) {
+    @include columns(1, -1);
+
+    padding-bottom: to-rem($spacing-large);
+  }
+}
+
+.Point {
+  flex-basis: 50%;
+  padding-bottom: to-rem($spacing-standard);
+  border-bottom: 1px solid $gray-100;
+  box-sizing: border-box;
+
+  @include media-breakpoint-up(lg) {
+    &:nth-child(n + 3) {
+      padding-top: to-rem($spacing-large);
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    flex-basis: 100%;
+    margin-bottom: to-rem($spacing-large);
+    padding-bottom: 0;
+    border-bottom: none;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__borderRight {
+    border-right: 1px solid $gray-100;
+  }
+
+  &__left {
+    padding-right: to-rem($spacing-xxx-large);
+    border-right: 1px solid $gray-100;
+
+    @include media-breakpoint-down(lg) {
+      padding-right: 0;
+      border-right: none;
+    }
+  }
+
+  &__noBorderRight {
+    border-right: none;
+  }
+
+  &__noBorderBottom {
+    border-bottom: none;
+  }
+
+  &__right {
+    padding-left: to-rem($spacing-medium + 4px);
+
+    @include media-breakpoint-down(lg) {
+      padding-left: 0;
+    }
+  }
+
+  &HeaderWrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: to-rem($spacing-small);
+
+    @include media-breakpoint-down(lg) {
+      margin-bottom: to-rem($spacing-x-small);
+    }
+  }
+
+  &Header {
+    @include headerDesktopH7;
+
+    color: $black;
+
+    @include media-breakpoint-down(lg) {
+      @include headerMobileH7;
+    }
+  }
+
+  &Image {
+    margin-right: to-rem($spacing-standard);
+  }
+
+  p {
+    @include fontStyle(16, 24);
+
+    margin-bottom: 0;
+  }
+}
