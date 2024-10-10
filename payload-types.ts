@@ -444,6 +444,7 @@ export interface Page {
     buttonText?: string | null;
     buttonLink?: string | null;
   };
+  pageTemplate: 'default' | 'wallets';
   updatedAt: string;
   createdAt: string;
 }
