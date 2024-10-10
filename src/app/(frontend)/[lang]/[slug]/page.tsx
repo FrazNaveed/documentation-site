@@ -13,6 +13,7 @@ import Columns from 'src/app/(frontend)/_components/Columns'
 import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
+import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
 import styles from './page.module.scss'
 
 export default async function Page({
@@ -74,7 +75,7 @@ export default async function Page({
         {pageBanner?.togglePageBanner && pageBannerComponent}
         {heroComponent}
         <div className={styles.grid}>
-          wallets grid here
+          <WalletsGridBlock />
         </div>
       </div>
     )
