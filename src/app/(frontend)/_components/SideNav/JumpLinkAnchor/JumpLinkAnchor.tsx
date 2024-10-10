@@ -77,7 +77,7 @@ export default function JumpLinkAnchor({ linkText, className, jumpAnchorGlobalCl
       }
       previousY = currentY
     }, {
-      rootMargin: '-40% 0% -60%',
+      rootMargin: '-30% 0% -70%',
     })
 
     if (anchorCurrent) {
