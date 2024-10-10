@@ -2,6 +2,7 @@
 @use "../../_styles/typography" as *;
 @use "../../_styles/colors" as *;
 @use "../../_styles/spacing" as *;
+@use "../../_styles/transitions" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .sideNav {
@@ -9,15 +10,36 @@
 
   @include media-breakpoint-down(md) {
     position: sticky;
-    top: $spacing-standard;
+    top: $header-height-mobile - 1px;
+    margin-right: -$container-padding-md;
+    margin-left: -$container-padding-md;
+    padding-top: $spacing-small;
+    padding-bottom: $spacing-small;
+    transition: top $transition-default;
+    background-color: $white;
+    z-index: 99;
+
+    :global(.siteHeaderHidden) & {
+      top: 0;
+    }
   }
 }
 
 .wrap {
+  $side-nav-top-margin: $spacing-standard;
   @include media-breakpoint-up(md) {
     position: sticky;
-    top: $spacing-standard;
-    top: 150px;
+    top: $header-height + $side-nav-top-margin;
+    transition: top $transition-default;
+
+    :global(.siteHeaderHidden) & {
+      top: $side-nav-top-margin;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-right: $container-padding-md;
+    padding-left: $container-padding-md;
   }
 }
 
@@ -40,6 +62,10 @@
 
   &:not(:last-child) {
     margin-bottom: to-rem($spacing-standard);
+
+    @include media-breakpoint-down(md) {
+      margin-bottom: to-rem($spacing-small);
+    }
   }
 }
 

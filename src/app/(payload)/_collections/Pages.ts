@@ -28,6 +28,7 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 import { StatsBlock } from '../_blocks/StatsBlock'
+import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
 import { TalkingPoints } from '../_blocks/TalkingPoints'
 import { VideoBlock } from '../_blocks/VideoBlock'
 
@@ -110,6 +111,7 @@ export const Pages: CollectionConfig = {
         ImageBlock,
         RichTextBlockWithSideNavLink,
         StatsBlock,
+        TableDrawersBlock,
         TalkingPoints,
         VideoBlock,
       ],

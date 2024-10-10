@@ -19,6 +19,57 @@ export type StatsList =
   | null;
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Sections".
+ */
+export type Sections =
+  | {
+      name: string;
+      rows?: Rows;
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Rows".
+ */
+export type Rows =
+  | {
+      rowLabel?: string | null;
+      column1Data: {
+        root: {
+          type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
+        [k: string]: unknown;
+      };
+      column2Data: {
+        root: {
+          type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
+        [k: string]: unknown;
+      };
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "PointsList".
  */
 export type PointsList = {
@@ -387,7 +438,7 @@ export interface Page {
       [k: string]: unknown;
     } | null;
   };
-  components?: (Columns | Image | RichTextBlock | Stats | ITalkingPoints | VideoBlock)[] | null;
+  components?: (Columns | Image | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints | VideoBlock)[] | null;
   pageFooterCTA?: boolean | null;
   pageFooterCTAButton?: {
     buttonText?: string | null;
@@ -537,6 +588,20 @@ export interface Stats {
   id?: string | null;
   blockName?: string | null;
   blockType: 'stats';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Table with Drawers".
+ */
+export interface TableWithDrawers {
+  column1Header: string;
+  column2Header: string;
+  sections?: Sections;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'tableDrawers';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
