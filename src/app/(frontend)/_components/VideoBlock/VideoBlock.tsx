@@ -15,7 +15,7 @@ export type VideoBlockProps = {
 export default function VideoBlock({ title, url }: VideoBlockProps) {
   return (
     <section className={styles.videoBlockWrap}>
-      {title && <h2 className={styles.title}>{title}</h2>}
+      {title && <h2 className={styles.videoBlockTitle}>{title}</h2>}
       {url && (
         <div className={styles.videoPlayerWrap}>
           <ReactPlayer
