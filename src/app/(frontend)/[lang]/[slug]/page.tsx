@@ -13,6 +13,7 @@ import Columns from 'src/app/(frontend)/_components/Columns'
 import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
+import VideoBlock from '../../_components/VideoBlock'
 import styles from './page.module.scss'
 
 export default async function Page({
@@ -97,6 +98,12 @@ export default async function Page({
           <div className={styles.mainContent}>
             {components.map((component) => {
               let componentToRender
+              let componentTitle
+              let url
+
+              if (component?.blockType === 'videoBlock') {
+                ({ title: componentTitle, url } = component)
+              }
               switch (component?.blockType) {
                 case 'columns':
                   componentToRender = <Columns {...component} />
@@ -112,6 +119,10 @@ export default async function Page({
 
                 case 'talkingPoints':
                   return <TalkingPoints key={component.id} {...component} />
+
+                case 'videoBlock':
+                  componentToRender = (componentTitle && url) && <VideoBlock title={componentTitle} url={url} />
+                  break
 
                 default:
                   componentToRender = null
