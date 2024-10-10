@@ -29,6 +29,7 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { StatsBlock } from '../_blocks/StatsBlock'
 import { TalkingPoints } from '../_blocks/TalkingPoints'
+import { VideoBlock } from '../_blocks/VideoBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -110,6 +111,7 @@ export const Pages: CollectionConfig = {
         RichTextBlockWithSideNavLink,
         StatsBlock,
         TalkingPoints,
+        VideoBlock,
       ],
     },
     ...PageFooterCTA,
