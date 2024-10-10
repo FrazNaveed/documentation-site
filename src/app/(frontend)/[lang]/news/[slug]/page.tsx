@@ -97,6 +97,7 @@ export default async function Page({ params }: PageProps) {
         {relatedNews && relatedNews.length > 0 && (
           <div className={styles.relatedNews}>
             <h5 className={styles.relatedNewsHeader}>Related News</h5>
+            {/* BUG: Depth doesn't seem to fetch any curated posts featured thumbnails, filing separate issue */}
             <TeaserGrid teasers={relatedNews} />
           </div>
         )}
