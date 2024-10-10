@@ -4,6 +4,7 @@ import { i18n } from '@/src/app/i18n-config'
 
 export const VideoBlock: Block = {
   slug: 'videoBlock',
+  interfaceName: 'videoBlock',
   fields: [
     {
       name: 'title',
