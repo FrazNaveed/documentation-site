@@ -3,7 +3,7 @@ import { HeroFields } from '../_fields/HeroFields'
 import { PageFooterCTA } from '../_fields/PageFooterCTA'
 import { ColumnsBlock } from '../_blocks/ColumnsBlock'
 import { ImageBlock } from '../_blocks/ImageBlock'
-import { RichTextBlock } from 'src/app/(payload)/_blocks/RichTextBlock'
+import { RichTextBlockWithSideNavLink } from 'src/app/(payload)/_blocks/RichTextBlockWithSideNavLink'
 import { getSiblingData } from 'payload/shared'
 import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
 import {
@@ -30,6 +30,7 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { StatsBlock } from '../_blocks/StatsBlock'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
+import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
 import { TalkingPoints } from '../_blocks/TalkingPoints'
 
 export const Pages: CollectionConfig = {
@@ -91,12 +92,7 @@ export const Pages: CollectionConfig = {
               ParagraphFeature(),
               SubscriptFeature(),
               SuperscriptFeature(),
-              LinkFeature({
-                enabledCollections: ['news', 'pages'], // addd to a config?
-                fields: ({ defaultFields }) => [
-                  ...defaultFields,
-                ],
-              }),
+              LinkFeature(),
             ],
           }),
           admin: {
@@ -120,8 +116,9 @@ export const Pages: CollectionConfig = {
       blocks: [
         ColumnsBlock,
         ImageBlock,
-        RichTextBlock,
+        RichTextBlockWithSideNavLink,
         StatsBlock,
+        TableDrawersBlock,
         TalkingPoints,
       ],
     },

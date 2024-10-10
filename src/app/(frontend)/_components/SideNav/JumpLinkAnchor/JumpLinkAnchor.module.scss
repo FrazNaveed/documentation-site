@@ -1,0 +1,10 @@
+@use "../../../_styles/mixins" as *;
+@use "../../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.jumpLinkAnchor {
+  position: absolute;
+  width: 1px;
+  height: 60px;
+  scroll-margin-top: $spacing-x-large;
+}

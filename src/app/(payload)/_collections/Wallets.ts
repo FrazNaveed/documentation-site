@@ -7,7 +7,8 @@ export const Wallets: CollectionConfig = {
     plural: 'Wallets'
   },
   admin: {
-    useAsTitle: 'name'
+    useAsTitle: 'name',
+    enableRichTextLink: false,
   },
   fields: [
     {

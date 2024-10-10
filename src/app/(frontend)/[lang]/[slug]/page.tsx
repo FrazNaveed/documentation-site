@@ -1,11 +1,16 @@
+import { Fragment } from 'react'
 import { notFound } from 'next/navigation'
+import cx from 'classnames'
 import { getDictionary } from 'src/app/get-dictionary'
 import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import type { Locale } from 'src/app/i18n-config'
 import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
+import SideNav from 'src/app/(frontend)/_components/SideNav'
+import JumpLinkAnchor from 'src/app/(frontend)/_components/SideNav/JumpLinkAnchor'
 import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
 import Columns from 'src/app/(frontend)/_components/Columns'
+import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import styles from './page.module.scss'
@@ -88,24 +93,46 @@ export default async function Page({
       <p>Switch between en, es, and de in the URL to see different languages. Other languages will default to en.</p>
       {(components && components.length > 0) && (
         <div className={styles.grid}>
-          <div className={styles.sideNav}>
-            Side Nav
-          </div>
+          <SideNav components={components} />
           <div className={styles.mainContent}>
             {components.map((component) => {
+              let componentToRender
               switch (component?.blockType) {
                 case 'columns':
-                  return <Columns key={component.id} {...component} />
+                  componentToRender = <Columns {...component} />
+                  break
+
+                case 'richTextBlock':
+                  componentToRender = <RichTextBlock richText={component.richText} />
+                  break
 
                 case 'stats':
-                  return <Stats key={component.id} {...component} />
+                  componentToRender = <Stats {...component} />
+                  break
 
                 case 'talkingPoints':
                   return <TalkingPoints key={component.id} {...component} />
 
                 default:
-                  return null
+                  componentToRender = null
               }
+              let jumpLinkAnchor
+              if (component.createSideNavLink && component.linkText) {
+                const jumpAnchorGlobalClass = 'sideNavAnchor'
+                jumpLinkAnchor = (
+                  <JumpLinkAnchor
+                    linkText={component.linkText}
+                    className={cx(styles.jumpLinkAnchor, jumpAnchorGlobalClass)}
+                    jumpAnchorGlobalClass={jumpAnchorGlobalClass}
+                  />
+                )
+              }
+              return (
+                <Fragment key={component.id}>
+                  {jumpLinkAnchor}
+                  {componentToRender}
+                </Fragment>
+              )
             })}
           </div>
         </div>
