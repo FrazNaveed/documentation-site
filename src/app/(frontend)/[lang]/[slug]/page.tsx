@@ -102,7 +102,7 @@ export default async function Page({
                   componentToRender = <Columns {...component} />
                   break
 
-                case 'richText':
+                case 'richTextBlock':
                   componentToRender = <RichTextBlock richText={component.richText} />
                   break
 
