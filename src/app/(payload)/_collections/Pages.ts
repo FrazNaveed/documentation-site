@@ -83,12 +83,7 @@ export const Pages: CollectionConfig = {
               ParagraphFeature(),
               SubscriptFeature(),
               SuperscriptFeature(),
-              LinkFeature({
-                enabledCollections: ['news', 'pages'], // addd to a config?
-                fields: ({ defaultFields }) => [
-                  ...defaultFields,
-                ],
-              }),
+              LinkFeature(),
             ],
           }),
           admin: {

@@ -69,12 +69,7 @@ export const TalkingPoints: Block = {
               SuperscriptFeature(),
               UnderlineFeature(),
               HeadingFeature({ enabledHeadingSizes: [] }),
-              LinkFeature({
-                enabledCollections: ['news', 'pages'], // extract to const
-                fields: ({ defaultFields }) => [
-                  ...defaultFields,
-                ],
-              }),
+              LinkFeature(),
             ],
           }),
           localized: true,
