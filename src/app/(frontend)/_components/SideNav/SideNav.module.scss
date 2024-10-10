@@ -11,10 +11,13 @@
   @include media-breakpoint-down(md) {
     position: sticky;
     top: $header-height-mobile - 1px;
+    margin-right: -$container-padding-md;
+    margin-left: -$container-padding-md;
     padding-top: $spacing-small;
     padding-bottom: $spacing-small;
     transition: top $transition-default;
     background-color: $white;
+    z-index: 99;
 
     :global(.siteHeaderHidden) & {
       top: 0;
@@ -32,6 +35,11 @@
     :global(.siteHeaderHidden) & {
       top: $side-nav-top-margin;
     }
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-right: $container-padding-md;
+    padding-left: $container-padding-md;
   }
 }
 
