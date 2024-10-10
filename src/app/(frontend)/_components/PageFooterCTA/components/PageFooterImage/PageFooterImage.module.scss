@@ -30,8 +30,6 @@
   }
 
   &__left {
-    // transform: translateY(25%) scale(1.5); // to modifier?
-
     @include media-breakpoint-down(md) {
       display: none;
     }
@@ -46,17 +44,10 @@
   }
 
   &__right {
-    // transform: rotate(180deg);
-    // transform: rotate(180deg) translateY(25%) scale(1.5); // to modifier?
-
-    // @include media-breakpoint-down(md) {
-    //   transform: rotate(0);
-    // }
-
     &.bgImg__flipped {
       /* stylelint-disable-next-line prettier/prettier */
       transform: rotate(180deg) translateY(25%) scale(1.5);
-  
+
       @include media-breakpoint-down(md) {
         transform: rotate(0);
       }
@@ -65,7 +56,7 @@
     &.bgImg__offset {
       /* stylelint-disable-next-line prettier/prettier */
       transform: translateY(35%);
-  
+
       @include media-breakpoint-down(md) {
         transform: rotate(0);
       }
