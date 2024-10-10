@@ -2,6 +2,7 @@
 @use "../../_styles/typography" as *;
 @use "../../_styles/colors" as *;
 @use "../../_styles/spacing" as *;
+@use "../../_styles/transitions" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .container {
@@ -33,7 +34,9 @@
 }
 
 .cell {
+  position: relative;
   padding: $spacing-small;
+  transition: border-radius $transition-snappy;
   box-shadow:
     1px 0 0 0 $gray-200,
     0 1px 0 0 $gray-200,
@@ -46,6 +49,12 @@
 
   &.label {
     @include spanColumns(2);
+
+    .sectionHeader {
+      @include media-breakpoint-down(md) {
+        margin-bottom: 0;
+      }
+    }
   }
 
   .headerRow & {
@@ -81,5 +90,32 @@
 .hideOnTable {
   @include media-breakpoint-up(md) {
     display: none;
+  }
+}
+
+.showHideBtn {
+  position: absolute;
+  top: 50%;
+  right: $spacing-small;
+  transform: translateY(-50%);
+}
+
+@include media-breakpoint-down(md) {
+  .row {
+    max-height: 10000px;
+    transition: opacity $transition-snappy;
+
+    &.collapsed {
+      max-height: 0;
+      transition:
+        opacity $transition-snappy,
+        max-height 0s $transition-speed-default;
+      opacity: 0;
+    }
+  }
+
+  .roundBottom {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
 }
