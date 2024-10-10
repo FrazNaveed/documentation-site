@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { HeroFields } from '../_fields/HeroFields'
+import { PageFooterCTA } from '../_fields/PageFooterCTA'
 import { ColumnsBlock } from '../_blocks/ColumnsBlock'
 import { ImageBlock } from '../_blocks/ImageBlock'
 import { RichTextBlock } from 'src/app/(payload)/_blocks/RichTextBlock'
@@ -27,6 +28,7 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 import { StatsBlock } from '../_blocks/StatsBlock'
+import { TalkingPoints } from '../_blocks/TalkingPoints'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -112,7 +114,9 @@ export const Pages: CollectionConfig = {
         ImageBlock,
         RichTextBlock,
         StatsBlock,
+        TalkingPoints,
       ],
     },
+    ...PageFooterCTA,
   ],
 }

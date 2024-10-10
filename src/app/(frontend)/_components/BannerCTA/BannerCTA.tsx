@@ -15,7 +15,7 @@ export default function BannerCTA({
 }: CTAProps) {
   return (
     <section className={cx(styles.banner, className)}>
-      <h1 className={styles.header}>{header}</h1>
+      <h2 className={styles.header}>{header}</h2>
       <div className={styles.rightColumn}>
         {text && <p className={styles.text}>{text}</p>}
         <Button

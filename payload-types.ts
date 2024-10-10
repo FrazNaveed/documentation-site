@@ -17,6 +17,30 @@ export type StatsList =
       id?: string | null;
     }[]
   | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PointsList".
+ */
+export type PointsList = {
+  icon?: (number | null) | Media;
+  header: string;
+  text: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+}[];
 
 export interface Config {
   auth: {
@@ -30,6 +54,7 @@ export interface Config {
     news: News;
     'news-types': NewsType;
     'news-sub-types': NewsSubType;
+    wallets: Wallet;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -362,7 +387,12 @@ export interface Page {
       [k: string]: unknown;
     } | null;
   };
-  components?: (Columns | Image | RichText | Stats)[] | null;
+  components?: (Columns | Image | RichText | Stats | ITalkingPoints)[] | null;
+  pageFooterCTA?: boolean | null;
+  pageFooterCTAButton?: {
+    buttonText?: string | null;
+    buttonLink?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -486,6 +516,17 @@ export interface Stats {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ITalkingPoints".
+ */
+export interface ITalkingPoints {
+  points: PointsList;
+  createSideNavLink?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'talkingPoints';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -570,6 +611,22 @@ export interface NewsSubType {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wallets".
+ */
+export interface Wallet {
+  id: number;
+  name: string;
+  logo?: (number | null) | Media;
+  walletLink: string;
+  flrFunctionality?: boolean | null;
+  walletConnect?: boolean | null;
+  tags?: ('wrap' | 'delegate' | 'stake' | 'autoclaim' | 'claim' | 'voting')[] | null;
+  platforms?: ('ios' | 'android' | 'hardware')[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -602,6 +659,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'news-sub-types';
         value: number | NewsSubType;
+      } | null)
+    | ({
+        relationTo: 'wallets';
+        value: number | Wallet;
       } | null);
   globalSlug?: string | null;
   user: {
