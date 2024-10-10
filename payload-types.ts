@@ -649,6 +649,7 @@ export interface News {
   type: number | NewsType;
   subtype?: (number | null) | NewsSubType;
   contentType?: ('video' | 'podcast') | null;
+  relatedPosts?: (number | News)[] | null;
   teaserThumbnail?: (number | null) | Media;
   logos?:
     | {

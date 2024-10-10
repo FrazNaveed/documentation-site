@@ -100,6 +100,23 @@ export const News: CollectionConfig = {
       },
     },
     {
+      name: 'relatedPosts',
+      type: 'relationship',
+      relationTo: 'news',
+      filterOptions: ({ id }) => {
+        return {
+          id: {
+            not_in: [id],
+          },
+        }
+      },
+      hasMany: true,
+      localized: true,
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'teaserThumbnail',
       type: 'upload',
       relationTo: 'media',

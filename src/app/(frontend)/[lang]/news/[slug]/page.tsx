@@ -8,12 +8,13 @@ import TelegramCircle from 'src/app/(frontend)/_components/svgs/TelegramCircle'
 import XSocial from 'src/app/(frontend)/_components/svgs/XSocial'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import Pill from 'src/app/(frontend)/_components/Pill'
-import { getNewsBySlug } from 'src/app/(frontend)/_lib/payload/newsQueries'
+import { getNewsArchive, getNewsBySlug } from 'src/app/(frontend)/_lib/payload/newsQueries'
 import convertToDate from 'src/app/(frontend)/_utils/convertToDate'
 import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
 import type { Media } from '@/payload-types'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import styles from './page.module.scss'
+import TeaserGrid from '../../../_components/TeaserGrid'
 
 export const dynamic = 'force-dynamic'
 
@@ -31,6 +32,7 @@ export default async function Page({ params }: PageProps) {
     notFound()
   }
   const {
+    id,
     title,
     publishDate,
     type,
@@ -38,6 +40,11 @@ export default async function Page({ params }: PageProps) {
     logos: featuredPostLogos,
     content,
   } = newsPost
+
+  const related = await getNewsArchive(3, 1, [id], typeof type === 'object' ? type?.name : undefined)
+
+  const relatedNews = related?.docs
+
   let typeHeroBgImage
   if (typeof type === 'object') {
     typeHeroBgImage = type.image
@@ -81,6 +88,14 @@ export default async function Page({ params }: PageProps) {
           </div>
         </div>
       </div>
+      <footer>
+        {relatedNews && (
+          <div className={styles.relatedNews}>
+            <h5 className={styles.relatedNewsHeader}>Related News</h5>
+            <TeaserGrid teasers={relatedNews} />
+          </div>
+        )}
+      </footer>
     </article>
   )
 }

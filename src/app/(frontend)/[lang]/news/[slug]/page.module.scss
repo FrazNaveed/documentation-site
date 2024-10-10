@@ -110,3 +110,11 @@ $social-padding-inline: 20px;
     @include columns(3, 8);
   }
 }
+
+.relatedNews {
+  margin-bottom: $spacing-7x-large;
+
+  &Header {
+    @include container;
+  }
+}
