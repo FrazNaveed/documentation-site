@@ -46,7 +46,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	CONSTRAINT "wallets_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
   );
   
-  ALTER TABLE "payload_locked_documents_rels" ADD COLUMN "wallets_id" integer;
+  ALTER TABLE "payload_locked_documents_rels" ADD COLUMN IF NOT EXISTS "wallets_id" integer;
   
   DO $$ BEGIN
    ALTER TABLE "wallets_tags" ADD CONSTRAINT "wallets_tags_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."wallets"("id") ON DELETE cascade ON UPDATE no action;
