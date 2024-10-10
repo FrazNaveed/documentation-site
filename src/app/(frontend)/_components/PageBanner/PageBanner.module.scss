@@ -1,0 +1,19 @@
+@use "../../_styles/colors" as *;
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/spacing" as *;
+
+.pageBanner {
+  @include container;
+
+  &Content {
+    padding: to-rem($spacing-small) 0;
+
+    p {
+      @include paragraphXSmFont;
+
+      color: $black;
+      text-align: center;
+    }
+  }
+}

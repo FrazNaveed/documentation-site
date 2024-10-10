@@ -1,26 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import {
-  AlignFeature,
-  IndentFeature,
-  BlocksFeature,
-  BlockquoteFeature,
-  BoldFeature,
-  HeadingFeature,
-  HorizontalRuleFeature,
-  InlineCodeFeature,
-  InlineToolbarFeature,
-  ItalicFeature,
-  LinkFeature,
-  OrderedListFeature,
-  ParagraphFeature,
-  StrikethroughFeature,
-  SubscriptFeature,
-  SuperscriptFeature,
-  UploadFeature,
-  UnderlineFeature,
-  UnorderedListFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+import { richTextFieldCustomized } from '../_fields/RichText'
 import { Video } from '../_blocks/Video'
 
 export const News: CollectionConfig = {
@@ -153,65 +132,6 @@ export const News: CollectionConfig = {
       type: 'checkbox',
       defaultValue: false,
     },
-    {
-      name: 'content',
-      type: 'richText',
-      editor: lexicalEditor({
-        features: ({ defaultFeatures }) => [
-          AlignFeature(),
-          IndentFeature(),
-          BlockquoteFeature(),
-          BoldFeature(),
-          HorizontalRuleFeature(),
-          InlineCodeFeature(),
-          InlineToolbarFeature(),
-          ItalicFeature(),
-          OrderedListFeature(),
-          ParagraphFeature(),
-          StrikethroughFeature(),
-          SubscriptFeature(),
-          SuperscriptFeature(),
-          UnderlineFeature(),
-          UnorderedListFeature(),
-          HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
-          LinkFeature({
-            enabledCollections: ['news'],
-            fields: ({ defaultFields }) => [
-              ...defaultFields,
-            ],
-          }),
-          UploadFeature({
-            collections: {
-              media: {
-                fields: [
-                  {
-                    name: 'caption',
-                    type: 'text',
-                    localized: true,
-                  },
-                  {
-                    name: 'float',
-                    type: 'select',
-                    options: [
-                      {
-                        label: 'Left',
-                        value: 'left',
-                      },
-                      {
-                        label: 'Right',
-                        value: 'right',
-                      },
-                    ]
-                  },
-                ],
-              },
-            },
-          }),
-          BlocksFeature({
-            blocks: [Video],
-          }),
-        ],
-      }),
-    },
+    richTextFieldCustomized('content'),
   ]
 }

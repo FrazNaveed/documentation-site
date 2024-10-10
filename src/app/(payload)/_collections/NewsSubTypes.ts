@@ -12,6 +12,7 @@ export const NewsSubTypes: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     enableRichTextLink: false,
+    group: 'News Types',
   },
   fields: [
     {
