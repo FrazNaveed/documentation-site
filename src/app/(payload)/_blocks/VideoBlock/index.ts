@@ -1,7 +1,9 @@
 import type { Block } from 'payload'
+import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
+import { i18n } from '@/src/app/i18n-config'
 
-export const VideoEmbed: Block = {
-  slug: 'videoEmbed',
+export const VideoBlock: Block = {
+  slug: 'videoBlock',
   fields: [
     {
       name: 'title',
@@ -12,5 +14,8 @@ export const VideoEmbed: Block = {
       name: 'url',
       type: 'text',
     },
+    ...CreateSideNavLinkFields,
   ],
+  imageURL: `/${i18n.defaultLocale}/icons/video.svg`,
+  imageAltText: 'Video block icon',
 }
