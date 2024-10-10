@@ -369,6 +369,24 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
   };
   hideHero?: boolean | null;
+  pageBanner?: {
+    togglePageBanner?: boolean | null;
+    bannerText?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+  };
   components?: (Columns | Image | RichText | Stats | ITalkingPoints)[] | null;
   pageFooterCTA?: boolean | null;
   pageFooterCTAButton?: {

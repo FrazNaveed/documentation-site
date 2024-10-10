@@ -17,7 +17,7 @@ export const RichTextField: Field = {
       ...defaultFeatures,
       HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4', 'h5'] }),
       LinkFeature({
-        enabledCollections: ['news'],
+        enabledCollections: ['news', 'pages'],
         fields: ({ defaultFields }) => [
           ...defaultFields,
         ],
