@@ -29,7 +29,10 @@ export default function PageFooterCTA({
               width={276}
               height={276}
               alt={backgroundImage.alt}
-              className={styles.bgImg__left}
+              className={cx(
+                styles.bgImg__left,
+                styles[`bgImg__${backgroundImageStyle}`],
+              )}
             />
           )}
         </div>
