@@ -99,5 +99,5 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   ALTER TABLE "pages_blocks_image" ADD COLUMN IF NOT EXISTS "link_text" varchar;
   ALTER TABLE "pages_blocks_stats" ADD COLUMN IF NOT EXISTS "link_text" varchar;
   ALTER TABLE "pages_blocks_talking_points" ADD COLUMN IF NOT EXISTS "link_text" varchar;
-  ALTER TABLE "pages_blocks_stats_locales" DROP COLUMN IF NOT EXISTS IF EXISTS "link_text";`)
+  ALTER TABLE "pages_blocks_stats_locales" DROP COLUMN IF EXISTS "link_text";`)
 }

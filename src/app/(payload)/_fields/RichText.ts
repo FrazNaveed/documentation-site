@@ -81,7 +81,7 @@ export const RichTextField: Field = {
   }),
 }
 
-export const richTextFieldCustomized = (name = 'richText') => {
+export const richTextFieldCustomized = (name = 'richText'): Field => {
   return {
     ...RichTextField,
     name,

@@ -70,9 +70,9 @@ export default function JumpLinkAnchor({ linkText, className, jumpAnchorGlobalCl
           })
         }
       } else if (currentY > previousY) { // scrolling up
-        if (linkPrevSibling) {
-          link.classList.remove(activeLinkClass);
-          (linkPrevSibling as HTMLElement).classList.add(activeLinkClass)
+        if (linkPrevSibling && linkPrevSibling instanceof HTMLElement) {
+          link.classList.remove(activeLinkClass)
+          linkPrevSibling.classList.add(activeLinkClass)
         }
       }
       previousY = currentY
