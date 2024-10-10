@@ -23,8 +23,8 @@ export const PageFooterCTA: Field[] = [
         name: 'backgroundImageStyle',
         type: 'select',
         options: [
-          { label: 'Flipped', value: 'flipped' },
-          { label: 'Offset',value: 'offset'},
+          { label: 'Flipped - right image is inverted', value: 'flipped' },
+          { label: 'Offset - images are vertically offset',value: 'offset'},
         ],
         defaultValue: 'flipped',
         hasMany: false,
