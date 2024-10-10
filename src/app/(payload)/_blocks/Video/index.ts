@@ -7,5 +7,9 @@ export const Video: Block = {
       name: 'url',
       type: 'text',
     },
-  ]
+    {
+      name: 'foo',
+      type: 'text',
+    },
+  ],
 }
