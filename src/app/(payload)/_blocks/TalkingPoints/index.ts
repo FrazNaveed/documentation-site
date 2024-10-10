@@ -15,6 +15,7 @@ import {
   UnderlineFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
+import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
 
 export const TalkingPoints: Block = {
   slug: 'talkingPoints',
@@ -68,12 +69,7 @@ export const TalkingPoints: Block = {
               SuperscriptFeature(),
               UnderlineFeature(),
               HeadingFeature({ enabledHeadingSizes: [] }),
-              LinkFeature({
-                enabledCollections: ['news', 'pages'], // extract to const
-                fields: ({ defaultFields }) => [
-                  ...defaultFields,
-                ],
-              }),
+              LinkFeature(),
             ],
           }),
           localized: true,
@@ -87,11 +83,7 @@ export const TalkingPoints: Block = {
         isSortable: true,
       },
     },
-    {
-      name: 'createSideNavLink',
-      type: 'checkbox',
-      defaultValue: false,
-    },
+    ...CreateSideNavLinkFields,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/grid.svg`,
   imageAltText: 'Talking Points block icon',
