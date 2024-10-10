@@ -1,12 +1,28 @@
 import { Field } from 'payload'
-  import {
+import {
+  AlignFeature,
+  IndentFeature,
   BlocksFeature,
+  BlockquoteFeature,
+  BoldFeature,
   HeadingFeature,
+  HorizontalRuleFeature,
+  InlineCodeFeature,
+  InlineToolbarFeature,
+  ItalicFeature,
   LinkFeature,
+  OrderedListFeature,
+  ParagraphFeature,
+  StrikethroughFeature,
+  SubscriptFeature,
+  SuperscriptFeature,
   UploadFeature,
+  UnderlineFeature,
+  UnorderedListFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 import { Video } from '../_blocks/Video'
+import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
 
 export const RichTextField: Field = {
   name: 'richText',
@@ -14,8 +30,22 @@ export const RichTextField: Field = {
   localized: true,
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
-      ...defaultFeatures,
-      HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4', 'h5'] }),
+      AlignFeature(),
+      IndentFeature(),
+      BlockquoteFeature(),
+      BoldFeature(),
+      HorizontalRuleFeature(),
+      InlineCodeFeature(),
+      InlineToolbarFeature(),
+      ItalicFeature(),
+      OrderedListFeature(),
+      ParagraphFeature(),
+      StrikethroughFeature(),
+      SubscriptFeature(),
+      SuperscriptFeature(),
+      UnderlineFeature(),
+      UnorderedListFeature(),
+      HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
       LinkFeature({
         enabledCollections: ['news', 'pages'],
         fields: ({ defaultFields }) => [
@@ -54,4 +84,11 @@ export const RichTextField: Field = {
       }),
     ],
   }),
+}
+
+export const richTextFieldCustomized = (name = 'richText') => {
+  return {
+    ...RichTextField,
+    name,
+  }
 }

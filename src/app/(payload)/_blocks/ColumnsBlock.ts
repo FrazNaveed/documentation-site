@@ -1,8 +1,4 @@
 import { Block } from 'payload'
-  import {
-  HeadingFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
 import { RichTextBlock } from '../_blocks/RichTextBlock'
 import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
 import { i18n } from '../../i18n-config'
