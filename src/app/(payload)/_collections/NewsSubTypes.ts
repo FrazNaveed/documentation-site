@@ -11,13 +11,13 @@ export const NewsSubTypes: CollectionConfig = {
     plural: 'News Sub Types',
   },
   admin: {
-    useAsTitle: 'name',
+    useAsTitle: 'title',
     enableRichTextLink: false,
     group: 'News Types',
   },
   fields: [
     {
-      name: 'name',
+      name: 'title',
       type: 'text',
       required: true,
       unique: true,
