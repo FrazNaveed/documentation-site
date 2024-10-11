@@ -77,6 +77,7 @@ export const getNewsBySlug = async (slug: string) => {
   const newsData = await payload.find({
     collection: 'news',
     limit: 1,
+    depth: 3,
     where: {
       slug: {
         equals: slug,
