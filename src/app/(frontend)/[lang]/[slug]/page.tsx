@@ -148,7 +148,7 @@ export default async function Page({
       {(pageFooterCTA && pageFooterCTAButton?.buttonLink && pageFooterCTAButton?.buttonText)
         && <PageFooterCTA buttonText={pageFooterCTAButton?.buttonText} buttonLink={pageFooterCTAButton?.buttonLink} />}
 
-      {relatedNewsPosts && relatedNewsPosts.docs.length > 0 && <RelatedPosts posts={relatedNewsPosts.docs} />}
+      {relatedNewsPosts?.docs?.length > 0 && <RelatedPosts posts={relatedNewsPosts.docs} />}
     </div>
   )
 }
