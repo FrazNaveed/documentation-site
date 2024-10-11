@@ -1,8 +1,8 @@
 import cx from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
-import DiagonalArrow from '../svgs/DiagonalArrow'
-import Flare from '../svgs/Flare'
+import DiagonalArrowSquare from '../svgs/DiagonalArrowSquare'
+import FlareLogo from '../svgs/FlareLogo'
 import Platform from '../svgs/Platform'
 import WalletConnect from '../svgs/WalletConnect'
 import styles from './WalletsGridBlock.module.scss'
@@ -40,12 +40,12 @@ export default function WalletsGridBlock({ intro, wallets }: any) {
                 <Link
                   href={walletLink}
                 >
-                  <DiagonalArrow className={styles.walletLinkArrow} />
+                  <DiagonalArrowSquare />
                 </Link>
               </div>
               {flrFunctionality && (
                 <span className={styles.walletFlrFunctionalityWrap}>
-                  <Flare />
+                  <FlareLogo />
                   <p>FLR Functionality</p>
                 </span>
               )}
@@ -65,19 +65,8 @@ export default function WalletsGridBlock({ intro, wallets }: any) {
                     ))}
                   </div>
                 )}
-                {/* {walletConnect ? (
-                  <span className={cx(styles.walletConnect, styles.walletConnect__on)}>
-                    <WalletConnect className={styles.walletConnect_on}/>
-                    <p>Yes</p>
-                  </span>
-                ) : (
-                  <span className={styles.walletConnect}>
-                    <WalletConnect />
-                    <p>No</p>
-                  </span>
-                )} */}
-                <span className={styles.walletConnectWrap}>
-                  <WalletConnect className={cx({ [styles.walletConnect__on]: walletConnect })} />
+                <span className={cx(styles.walletConnectWrap, { [styles.walletConnect__on]: walletConnect })}>
+                  <WalletConnect />
                   <p className={styles.walletConnectText}>
                     {walletConnect ? 'Yes' : 'No'}
                   </p>
