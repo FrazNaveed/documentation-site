@@ -114,7 +114,7 @@ export const Pages: CollectionConfig = {
       localized: true,
       admin: {
         position: 'sidebar',
-        description: 'Select a page and it will be linked to as the previous page in the footer.',
+        description: 'Select a page to be linked as the next page in the footer.',
       }
     },
     {
