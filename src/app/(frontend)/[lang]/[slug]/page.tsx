@@ -71,7 +71,7 @@ export default async function Page({
   }
 
   let relatedNewsPosts
-  if (relatedNewsType && typeof relatedNewsType === 'object' && relatedNewsType.title) {
+  if (relatedNewsType && typeof relatedNewsType === 'object') {
     relatedNewsPosts = await getNewsArchive(3, 1, [], relatedNewsType.title)
   }
 
@@ -148,7 +148,7 @@ export default async function Page({
       {(pageFooterCTA && pageFooterCTAButton?.buttonLink && pageFooterCTAButton?.buttonText)
         && <PageFooterCTA buttonText={pageFooterCTAButton?.buttonText} buttonLink={pageFooterCTAButton?.buttonLink} />}
 
-      {relatedNewsPosts?.docs?.length > 0 && <RelatedPosts posts={relatedNewsPosts.docs} />}
+      {relatedNewsPosts && relatedNewsPosts.docs.length > 0 && <RelatedPosts posts={relatedNewsPosts.docs} />}
     </div>
   )
 }
