@@ -27,7 +27,7 @@ export default function WalletsGridBlock({ intro, wallets }: any) {
           } = wallet
           return (
             <li key={wallet.id} className={styles.wallet}>
-              <div className={styles.walletHeaderWrap}>
+              <div className={styles.walletHeader}>
                 <p className='visuallyHidden'>{name}</p>
                 <div>
                   <Image
@@ -46,7 +46,7 @@ export default function WalletsGridBlock({ intro, wallets }: any) {
               {flrFunctionality && (
                 <span className={styles.walletFlrFunctionalityWrap}>
                   <Flare />
-                  FLR Functionality
+                  <p>FLR Functionality</p>
                 </span>
               )}
               {tags && (
@@ -76,7 +76,7 @@ export default function WalletsGridBlock({ intro, wallets }: any) {
                     <p>No</p>
                   </span>
                 )} */}
-                <span className={styles.wallectConnectWrap}>
+                <span className={styles.walletConnectWrap}>
                   <WalletConnect className={cx({ [styles.walletConnect__on]: walletConnect })} />
                   <p className={styles.walletConnectText}>
                     {walletConnect ? 'Yes' : 'No'}
