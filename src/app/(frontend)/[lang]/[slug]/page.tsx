@@ -16,6 +16,7 @@ import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
 import styles from './page.module.scss'
 import RelatedPosts from '../../_components/RelatedPosts'
+import PrevNextLinks from '../../_components/PrevNextLinks'
 
 export default async function Page({
   params: { slug, lang },
@@ -38,6 +39,9 @@ export default async function Page({
     pageFooterCTA,
     pageFooterCTAButton,
     relatedNewsType,
+    previousPage,
+    nextPage,
+    linkType,
   } = pageData
   let heroComponent
   if (hero) {
@@ -149,6 +153,8 @@ export default async function Page({
         && <PageFooterCTA buttonText={pageFooterCTAButton?.buttonText} buttonLink={pageFooterCTAButton?.buttonLink} />}
 
       {relatedNewsPosts && relatedNewsPosts.docs.length > 0 && <RelatedPosts posts={relatedNewsPosts.docs} />}
+
+      <PrevNextLinks prevLink={previousPage} nextLink={nextPage} linkType={linkType} />
     </div>
   )
 }
