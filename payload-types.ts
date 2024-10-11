@@ -421,6 +421,9 @@ export interface Page {
   };
   hideHero?: boolean | null;
   relatedNewsType?: (number | null) | NewsType;
+  previousPage?: (number | null) | Page;
+  nextPage?: (number | null) | Page;
+  linkType?: string | null;
   pageBanner?: {
     togglePageBanner?: boolean | null;
     bannerText?: {

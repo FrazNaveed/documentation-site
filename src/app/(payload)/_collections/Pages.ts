@@ -82,6 +82,51 @@ export const Pages: CollectionConfig = {
       }
     },
     {
+      name: 'previousPage',
+      type: 'relationship',
+      relationTo: 'pages',
+      filterOptions: ({ id }) => {
+        return {
+          id: {
+            not_in: [id],
+          },
+        }
+      },
+      hasMany: false,
+      localized: true,
+      admin: {
+        position: 'sidebar',
+        description: 'Select a page and it will be linked to as the previous page in the footer.',
+      }
+    },
+    {
+      name: 'nextPage',
+      type: 'relationship',
+      relationTo: 'pages',
+      filterOptions: ({ id }) => {
+        return {
+          id: {
+            not_in: [id],
+          },
+        }
+      },
+      hasMany: false,
+      localized: true,
+      admin: {
+        position: 'sidebar',
+        description: 'Select a page to be linked as the next page in the footer.',
+      }
+    },
+    {
+      name: 'linkType',
+      type: 'text',
+      localized: true,
+      admin: {
+        position: 'sidebar',
+        description: 'Optionally specify what type of next or previous link this is. Defaults to "Guide" but could be something like "Page", "Article", etc.',
+      }
+    },
+    {
       name: 'pageBanner',
       type: 'group',
       fields: [

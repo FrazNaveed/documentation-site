@@ -10,7 +10,6 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
   return (
     <div className={styles.relatedNews}>
       <h5 className={styles.relatedNewsHeader}>Related News</h5>
-      {/* BUG: Depth doesn't seem to fetch any curated posts featured thumbnails, filing separate issue */}
       <TeaserGrid teasers={posts} />
     </div>
   )
