@@ -72,7 +72,7 @@ export const Pages: CollectionConfig = {
       },
     },
     {
-      name: 'relatedNews',
+      name: 'relatedNewsType',
       type: 'relationship',
       relationTo: 'news-types',
       hasMany: false,

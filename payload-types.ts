@@ -420,7 +420,7 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
   };
   hideHero?: boolean | null;
-  relatedNews?: (number | null) | NewsType;
+  relatedNewsType?: (number | null) | NewsType;
   pageBanner?: {
     togglePageBanner?: boolean | null;
     bannerText?: {
