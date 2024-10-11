@@ -1,0 +1,63 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/spacing" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+
+.wrap {
+  @include container;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.link {
+  display: block;
+  padding: $spacing-standard;
+  border-radius: 10px;
+  background-color: $pink-100;
+
+  .label {
+    @include labelS;
+
+    margin-bottom: $spacing-x-small;
+  }
+
+  .title {
+    margin: 0;
+
+    &::before,
+    &::after {
+      display: inline-block;
+      width: $spacing-small;
+    }
+  }
+
+  &.prev .title::before {
+    margin-right: 4px;
+    content: url($svg-left-arrow-pink-700);
+  }
+
+  &.next {
+    text-align: right;
+
+    .title::after {
+      margin-left: 4px;
+      content: url($svg-right-arrow-pink-700);
+    }
+  }
+
+  &:hover,
+  &:focus {
+    &.prev {
+      .title::before {
+        content: url($svg-left-arrow-pink-900);
+      }
+    }
+
+    &.next {
+      .title::after {
+        content: url($svg-right-arrow-pink-900);
+      }
+    }
+  }
+}

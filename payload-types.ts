@@ -420,6 +420,10 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
   };
   hideHero?: boolean | null;
+  relatedNewsType?: (number | null) | NewsType;
+  previousPage?: (number | null) | Page;
+  nextPage?: (number | null) | Page;
+  linkType?: string | null;
   pageBanner?: {
     togglePageBanner?: boolean | null;
     bannerText?: {
@@ -444,6 +448,8 @@ export interface Page {
   pageFooterCTAButton?: {
     buttonText?: string | null;
     buttonLink?: string | null;
+    backgroundImage?: (number | null) | Media;
+    backgroundImageStyle?: ('flipped' | 'offset') | null;
   };
   pageTemplate: 'default' | 'wallets';
   updatedAt: string;
@@ -467,6 +473,18 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-types".
+ */
+export interface NewsType {
+  id: number;
+  title: string;
+  slug: string;
+  image: number | Media;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -689,6 +707,7 @@ export interface News {
   type: number | NewsType;
   subtype?: (number | null) | NewsSubType;
   contentType?: ('video' | 'podcast') | null;
+  relatedPosts?: (number | News)[] | null;
   teaserThumbnail?: (number | null) | Media;
   logos?:
     | {
@@ -712,18 +731,6 @@ export interface News {
     };
     [k: string]: unknown;
   } | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "news-types".
- */
-export interface NewsType {
-  id: number;
-  title: string;
-  slug: string;
-  image: number | Media;
   updatedAt: string;
   createdAt: string;
 }

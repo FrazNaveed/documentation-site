@@ -7,4 +7,8 @@
   width: 1px;
   height: 60px;
   scroll-margin-top: $spacing-x-large;
+
+  @include media-breakpoint-down(md) {
+    scroll-margin-top: $side-nav-height-mobile + $spacing-x-large;
+  }
 }
