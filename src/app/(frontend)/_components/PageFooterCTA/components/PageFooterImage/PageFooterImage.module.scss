@@ -1,0 +1,81 @@
+@use "../../../../_styles/mixins" as *;
+@use "../../../../_styles/typography" as *;
+@use "../../../../_styles/colors" as *;
+@use "../../../../_styles/transitions" as *;
+@use "../../../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.ImageWrap {
+  overflow: hidden;
+
+  @include media-breakpoint-down(md) {
+    &:first-child {
+      display: none;
+    }
+  }
+
+  &.bgImg__offset {
+    transform: translateY(-35%);
+  }
+}
+
+.bgImg {
+  &__left,
+  &__right {
+    display: block;
+
+    @include media-breakpoint-down(lg) {
+      width: to-rem(200px);
+    }
+  }
+
+  &__left {
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+
+    &.bgImg__flipped {
+      transform: translateY(25%) scale(1.5);
+    }
+
+    &.bgImg__offset {
+      transform: translateY(-35%);
+    }
+  }
+
+  &__right {
+    &.bgImg__flipped {
+      /* stylelint-disable-next-line prettier/prettier */
+      transform: rotate(180deg) translateY(25%) scale(1.5);
+
+      @include media-breakpoint-down(md) {
+        transform: rotate(0);
+      }
+    }
+
+    &.bgImg__offset {
+      /* stylelint-disable-next-line prettier/prettier */
+      transform: translateY(35%);
+
+      @include media-breakpoint-down(md) {
+        transform: rotate(0);
+      }
+    }
+  }
+
+  // &__flipped {
+  //   transform: rotate(180deg) translateY(25%) scale(1.5);
+
+  //   @include media-breakpoint-down(md) {
+  //     transform: rotate(0);
+  //   }
+  // }
+
+  // &__offset {
+  //   transform: translateY(35%);
+
+  //   @include media-breakpoint-down(md) {
+  //     transform: rotate(0);
+  //   }
+  // }
+}

@@ -14,6 +14,25 @@ export const PageFooterCTA: Field[] = [
     label: 'Page Footer CTA Button',
     fields: [
       ...ButtonFields,
+      {
+        name: 'backgroundImage',
+        type: 'relationship',
+        relationTo: 'media',
+      },
+      {
+        name: 'backgroundImageStyle',
+        type: 'select',
+        options: [
+          { label: 'Flipped - right image is inverted', value: 'flipped' },
+          { label: 'Offset - images are vertically offset',value: 'offset'},
+        ],
+        defaultValue: 'flipped',
+        hasMany: false,
+        localized: true,
+        admin: {
+          description: 'Choose how the background image is displayed',
+        },
+      },
     ],
     admin: {
       condition: (data, siblingData, { user }) => {
