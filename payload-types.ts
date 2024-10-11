@@ -438,6 +438,7 @@ export interface Page {
       [k: string]: unknown;
     } | null;
   };
+  walletsGrid?: WalletsGrid;
   components?: (Columns | Image | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints)[] | null;
   pageFooterCTA?: boolean | null;
   pageFooterCTAButton?: {
@@ -466,6 +467,44 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WalletsGrid".
+ */
+export interface WalletsGrid {
+  walletsGridIntro?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  wallets?: (number | Wallet)[] | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wallets".
+ */
+export interface Wallet {
+  id: number;
+  name: string;
+  logo?: (number | null) | Media;
+  walletLink: string;
+  flrFunctionality?: boolean | null;
+  walletConnect?: boolean | null;
+  tags?: ('wrap' | 'delegate' | 'stake' | 'autoclaim' | 'claim' | 'voting')[] | null;
+  platforms?: ('ios' | 'android' | 'hardware')[] | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -697,22 +736,6 @@ export interface NewsSubType {
   title: string;
   slug: string;
   image: number | Media;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "wallets".
- */
-export interface Wallet {
-  id: number;
-  name: string;
-  logo?: (number | null) | Media;
-  walletLink: string;
-  flrFunctionality?: boolean | null;
-  walletConnect?: boolean | null;
-  tags?: ('wrap' | 'delegate' | 'stake' | 'autoclaim' | 'claim' | 'voting')[] | null;
-  platforms?: ('ios' | 'android' | 'hardware')[] | null;
   updatedAt: string;
   createdAt: string;
 }
