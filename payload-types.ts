@@ -420,6 +420,7 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
   };
   hideHero?: boolean | null;
+  relatedNews?: (number | null) | NewsType;
   pageBanner?: {
     togglePageBanner?: boolean | null;
     bannerText?: {
@@ -465,6 +466,18 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-types".
+ */
+export interface NewsType {
+  id: number;
+  name: string;
+  slug: string;
+  image: number | Media;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -673,18 +686,6 @@ export interface News {
     };
     [k: string]: unknown;
   } | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "news-types".
- */
-export interface NewsType {
-  id: number;
-  name: string;
-  slug: string;
-  image: number | Media;
   updatedAt: string;
   createdAt: string;
 }

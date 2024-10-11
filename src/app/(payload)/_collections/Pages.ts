@@ -64,6 +64,16 @@ export const Pages: CollectionConfig = {
       },
     },
     {
+      name: 'relatedNews',
+      type: 'relationship',
+      relationTo: 'news-types',
+      hasMany: false,
+      localized: true,
+      admin: {
+        description: 'Select a news type to display related posts on this page.',
+      }
+    },
+    {
       name: 'pageBanner',
       type: 'group',
       fields: [
