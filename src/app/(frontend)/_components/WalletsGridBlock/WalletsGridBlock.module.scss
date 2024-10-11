@@ -40,6 +40,10 @@
     p {
       @include paragraphSmFont;
     }
+
+    // a {
+    //   color: $pink-600;
+    // }
   }
 
   &Wrap {
