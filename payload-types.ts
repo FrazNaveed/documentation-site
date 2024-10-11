@@ -502,7 +502,7 @@ export interface Wallet {
   flrFunctionality?: boolean | null;
   walletConnect?: boolean | null;
   tags?: ('wrap' | 'delegate' | 'stake' | 'autoclaim' | 'claim' | 'voting')[] | null;
-  platforms?: ('ios' | 'android' | 'hardware')[] | null;
+  platforms?: ('iOS' | 'Android' | 'Hardware')[] | null;
   updatedAt: string;
   createdAt: string;
 }
