@@ -5,6 +5,7 @@ import DiagonalArrowSquare from '../svgs/DiagonalArrowSquare'
 import FlareLogo from '../svgs/FlareLogo'
 import Platform from '../svgs/Platform'
 import WalletConnect from '../svgs/WalletConnect'
+import WalletConnectBlue from '../svgs/WalletConnectBlue'
 import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import styles from './WalletsGridBlock.module.scss'
 import LexicalRenderer from '../LexicalRenderer'
@@ -67,7 +68,7 @@ export default function WalletsGridBlock({ intro, wallets }: any) {
                   </div>
                 )}
                 <span className={cx(styles.walletConnectWrap, { [styles.walletConnect__on]: walletConnect })}>
-                  <WalletConnect />
+                  {walletConnect ? <WalletConnectBlue /> : <WalletConnect />}
                   <p className={styles.walletConnectText}>
                     {walletConnect ? 'Yes' : 'No'}
                   </p>
