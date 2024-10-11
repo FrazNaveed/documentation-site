@@ -5,14 +5,16 @@ import DiagonalArrowSquare from '../svgs/DiagonalArrowSquare'
 import FlareLogo from '../svgs/FlareLogo'
 import Platform from '../svgs/Platform'
 import WalletConnect from '../svgs/WalletConnect'
+import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import styles from './WalletsGridBlock.module.scss'
+import LexicalRenderer from '../LexicalRenderer'
 
 export default function WalletsGridBlock({ intro, wallets }: any) {
   console.log('intro ', intro)
   return (
     <div className={styles.walletsGridBlock}>
       <div className={styles.walletsGridIntro}>
-        lexical it up
+        {intro && <LexicalRenderer content={intro as PayloadLexicalReactRendererContent} />}
       </div>
       <ul className={styles.walletsGridWrap}>
         {wallets.map((wallet: any) => {
