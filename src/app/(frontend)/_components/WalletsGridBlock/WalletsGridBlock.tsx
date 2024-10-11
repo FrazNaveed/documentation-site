@@ -10,7 +10,6 @@ import styles from './WalletsGridBlock.module.scss'
 import LexicalRenderer from '../LexicalRenderer'
 
 export default function WalletsGridBlock({ intro, wallets }: any) {
-  console.log('intro ', intro)
   return (
     <div className={styles.walletsGridBlock}>
       <div className={styles.walletsGridIntro}>
