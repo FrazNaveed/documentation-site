@@ -8,13 +8,13 @@ import TelegramCircle from 'src/app/(frontend)/_components/svgs/TelegramCircle'
 import XSocial from 'src/app/(frontend)/_components/svgs/XSocial'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import Pill from 'src/app/(frontend)/_components/Pill'
+import RelatedPosts from 'src/app/(frontend)/_components/RelatedPosts'
 import { getNewsArchive, getNewsBySlug } from 'src/app/(frontend)/_lib/payload/newsQueries'
 import convertToDate from 'src/app/(frontend)/_utils/convertToDate'
 import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
 import type { Media, News } from '@/payload-types'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import styles from './page.module.scss'
-import TeaserGrid from '../../../_components/TeaserGrid'
 
 export const dynamic = 'force-dynamic'
 
@@ -95,11 +95,7 @@ export default async function Page({ params }: PageProps) {
       </div>
       <footer>
         {relatedNews && relatedNews.length > 0 && (
-          <div className={styles.relatedNews}>
-            <h5 className={styles.relatedNewsHeader}>Related News</h5>
-            {/* BUG: Depth doesn't seem to fetch any curated posts featured thumbnails, filing separate issue */}
-            <TeaserGrid teasers={relatedNews} />
-          </div>
+          <RelatedPosts posts={relatedNews} />
         )}
       </footer>
     </article>
