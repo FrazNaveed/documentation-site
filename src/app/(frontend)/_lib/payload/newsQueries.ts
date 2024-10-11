@@ -10,7 +10,7 @@ const buildWhereClause = (
   type: string | null,
   additionalConditions: object = {},
 ) => {
-  const typeCondition = type ? { 'type.name': { equals: type } } : undefined
+  const typeCondition = type ? { 'type.title': { equals: type } } : undefined
   return { ...typeCondition, ...additionalConditions }
 }
 

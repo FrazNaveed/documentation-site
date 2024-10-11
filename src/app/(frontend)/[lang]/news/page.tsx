@@ -43,7 +43,7 @@ export default async function Page() {
     featuredPostTypeName
   if (typeof featuredPostType === 'object') {
     featuredPostTypeHeroBgImage = featuredPostType.image
-    featuredPostTypeName = featuredPostType.name
+    featuredPostTypeName = featuredPostType.title
   }
   const featuredPostSubTypeHeroBgImage = featuredPostSubType && typeof featuredPostSubType === 'object' ? featuredPostSubType.image : undefined
 

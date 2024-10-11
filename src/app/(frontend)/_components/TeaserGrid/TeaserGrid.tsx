@@ -90,7 +90,7 @@ export default function TeaserGrid({
                 )}
                 {(type || timestamp) && (
                   <div className={styles.meta}>
-                    {type && <Pill text={(type as NewsType).name} size='small' />}
+                    {type && <Pill text={(type as NewsType).title} size='small' />}
                     {timestamp && <time className={styles.date} dateTime={timestamp}>{convertToDate(timestamp)}</time>}
                   </div>
                 )}

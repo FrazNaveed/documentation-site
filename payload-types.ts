@@ -473,7 +473,7 @@ export interface Media {
  */
 export interface NewsType {
   id: number;
-  name: string;
+  title: string;
   slug: string;
   image: number | Media;
   updatedAt: string;
@@ -695,7 +695,7 @@ export interface News {
  */
 export interface NewsSubType {
   id: number;
-  name: string;
+  title: string;
   slug: string;
   image: number | Media;
   updatedAt: string;
