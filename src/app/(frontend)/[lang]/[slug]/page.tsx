@@ -37,6 +37,7 @@ export default async function Page({
     pageFooterCTA,
     pageFooterCTAButton,
     pageTemplate,
+    walletsGrid,
   } = pageData
   let heroComponent
   if (hero) {
@@ -70,12 +71,27 @@ export default async function Page({
   }
 
   if (pageTemplate === 'wallets') {
+    // console.log(pageData.walletsGrid)
+    let walletsGridComponent
+    if (walletsGrid) {
+      const {
+        walletsGridIntro,
+        wallets,
+      } = walletsGrid
+      const walletsGridProps = { intro: walletsGridIntro, wallets }
+      walletsGridComponent = (
+        <WalletsGridBlock
+          {...walletsGridProps}
+        />
+      )
+    }
+    // console.log(walletsGrid)
     return (
       <div className={styles.wrap}>
         {pageBanner?.togglePageBanner && pageBannerComponent}
         {heroComponent}
         <div className={styles.grid}>
-          <WalletsGridBlock />
+          {walletsGridComponent}
         </div>
       </div>
     )
