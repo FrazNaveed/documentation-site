@@ -1,10 +1,11 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, FieldHook } from 'payload'
 import { HeroFields } from '../_fields/HeroFields'
 import { PageFooterCTA } from '../_fields/PageFooterCTA'
 import { ColumnsBlock } from '../_blocks/ColumnsBlock'
 import { ImageBlock } from '../_blocks/ImageBlock'
-import { RichTextBlock } from 'src/app/(payload)/_blocks/RichTextBlock'
+import { RichTextBlockWithSideNavLink } from 'src/app/(payload)/_blocks/RichTextBlockWithSideNavLink'
 import { getSiblingData } from 'payload/shared'
+import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
 import {
   AlignFeature,
   IndentFeature,
@@ -28,6 +29,8 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 import { StatsBlock } from '../_blocks/StatsBlock'
+import setSlugFromTitle from '../_utils/setSlugFromTitle'
+import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
 import { TalkingPoints } from '../_blocks/TalkingPoints'
 
 export const Pages: CollectionConfig = {
@@ -52,6 +55,12 @@ export const Pages: CollectionConfig = {
       type: 'text',
       required: true,
       unique: true,
+      admin: {
+        description: slugAdminConfig.description,
+      },
+      hooks: {
+        beforeValidate: [setSlugFromTitle],
+      },
     },
     ...HeroFields,
     {
@@ -61,6 +70,61 @@ export const Pages: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
+    },
+    {
+      name: 'relatedNewsType',
+      type: 'relationship',
+      relationTo: 'news-types',
+      hasMany: false,
+      localized: true,
+      admin: {
+        description: 'Select a news type to display related posts on this page.',
+      }
+    },
+    {
+      name: 'previousPage',
+      type: 'relationship',
+      relationTo: 'pages',
+      filterOptions: ({ id }) => {
+        return {
+          id: {
+            not_in: [id],
+          },
+        }
+      },
+      hasMany: false,
+      localized: true,
+      admin: {
+        position: 'sidebar',
+        description: 'Select a page and it will be linked to as the previous page in the footer.',
+      }
+    },
+    {
+      name: 'nextPage',
+      type: 'relationship',
+      relationTo: 'pages',
+      filterOptions: ({ id }) => {
+        return {
+          id: {
+            not_in: [id],
+          },
+        }
+      },
+      hasMany: false,
+      localized: true,
+      admin: {
+        position: 'sidebar',
+        description: 'Select a page to be linked as the next page in the footer.',
+      }
+    },
+    {
+      name: 'linkType',
+      type: 'text',
+      localized: true,
+      admin: {
+        position: 'sidebar',
+        description: 'Optionally specify what type of next or previous link this is. Defaults to "Guide" but could be something like "Page", "Article", etc.',
+      }
     },
     {
       name: 'pageBanner',
@@ -83,12 +147,7 @@ export const Pages: CollectionConfig = {
               ParagraphFeature(),
               SubscriptFeature(),
               SuperscriptFeature(),
-              LinkFeature({
-                enabledCollections: ['news', 'pages'], // addd to a config?
-                fields: ({ defaultFields }) => [
-                  ...defaultFields,
-                ],
-              }),
+              LinkFeature(),
             ],
           }),
           admin: {
@@ -112,8 +171,9 @@ export const Pages: CollectionConfig = {
       blocks: [
         ColumnsBlock,
         ImageBlock,
-        RichTextBlock,
+        RichTextBlockWithSideNavLink,
         StatsBlock,
+        TableDrawersBlock,
         TalkingPoints,
       ],
     },

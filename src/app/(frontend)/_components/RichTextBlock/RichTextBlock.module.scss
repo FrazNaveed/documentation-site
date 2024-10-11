@@ -1,0 +1,10 @@
+@use "../../_styles/mixins" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.wrap {
+  @include grid(10);
+}
+
+.cols {
+  @include columns(1, 9, lg);
+}

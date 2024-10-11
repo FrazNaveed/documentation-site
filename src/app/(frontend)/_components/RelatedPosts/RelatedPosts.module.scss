@@ -1,0 +1,10 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/spacing" as *;
+
+.relatedNews {
+  margin-bottom: $spacing-7x-large;
+
+  &Header {
+    @include container;
+  }
+}

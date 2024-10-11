@@ -1,26 +1,7 @@
 import type { CollectionConfig } from 'payload'
-import {
-  AlignFeature,
-  IndentFeature,
-  BlocksFeature,
-  BlockquoteFeature,
-  BoldFeature,
-  HeadingFeature,
-  HorizontalRuleFeature,
-  InlineCodeFeature,
-  InlineToolbarFeature,
-  ItalicFeature,
-  LinkFeature,
-  OrderedListFeature,
-  ParagraphFeature,
-  StrikethroughFeature,
-  SubscriptFeature,
-  SuperscriptFeature,
-  UploadFeature,
-  UnderlineFeature,
-  UnorderedListFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+import setSlugFromTitle from '../_utils/setSlugFromTitle'
+import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
+import { richTextFieldCustomized } from '../_fields/RichText'
 import { Video } from '../_blocks/Video'
 
 export const News: CollectionConfig = {
@@ -53,6 +34,12 @@ export const News: CollectionConfig = {
       type:'text',
       required: true,
       unique: true,
+      admin: {
+        description: slugAdminConfig.description,
+      },
+      hooks: {
+        beforeValidate: [setSlugFromTitle],
+      },
     },
     {
       name: 'excerpt',
@@ -121,6 +108,24 @@ export const News: CollectionConfig = {
       },
     },
     {
+      name: 'relatedPosts',
+      type: 'relationship',
+      relationTo: 'news',
+      filterOptions: ({ id }) => {
+        return {
+          id: {
+            not_in: [id],
+          },
+        }
+      },
+      hasMany: true,
+      maxRows: 3,
+      localized: true,
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'teaserThumbnail',
       type: 'upload',
       relationTo: 'media',
@@ -153,65 +158,6 @@ export const News: CollectionConfig = {
       type: 'checkbox',
       defaultValue: false,
     },
-    {
-      name: 'content',
-      type: 'richText',
-      editor: lexicalEditor({
-        features: ({ defaultFeatures }) => [
-          AlignFeature(),
-          IndentFeature(),
-          BlockquoteFeature(),
-          BoldFeature(),
-          HorizontalRuleFeature(),
-          InlineCodeFeature(),
-          InlineToolbarFeature(),
-          ItalicFeature(),
-          OrderedListFeature(),
-          ParagraphFeature(),
-          StrikethroughFeature(),
-          SubscriptFeature(),
-          SuperscriptFeature(),
-          UnderlineFeature(),
-          UnorderedListFeature(),
-          HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
-          LinkFeature({
-            enabledCollections: ['news', 'pages'],
-            fields: ({ defaultFields }) => [
-              ...defaultFields,
-            ],
-          }),
-          UploadFeature({
-            collections: {
-              media: {
-                fields: [
-                  {
-                    name: 'caption',
-                    type: 'text',
-                    localized: true,
-                  },
-                  {
-                    name: 'float',
-                    type: 'select',
-                    options: [
-                      {
-                        label: 'Left',
-                        value: 'left',
-                      },
-                      {
-                        label: 'Right',
-                        value: 'right',
-                      },
-                    ]
-                  },
-                ],
-              },
-            },
-          }),
-          BlocksFeature({
-            blocks: [Video],
-          }),
-        ],
-      }),
-    },
+    richTextFieldCustomized('content'),
   ]
 }
