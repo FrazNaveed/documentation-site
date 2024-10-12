@@ -23,7 +23,7 @@ export default function WalletsGridBlock({ intro, wallets }: WalletsGridBlockPro
         {intro && <LexicalRenderer content={intro as PayloadLexicalReactRendererContent} />}
       </div>
       <ul className={styles.walletsGridWrap}>
-        {wallets && wallets.map((wallet: Wallet) => {
+        {wallets?.map((wallet: Wallet) => {
           const {
             name,
             logo,
