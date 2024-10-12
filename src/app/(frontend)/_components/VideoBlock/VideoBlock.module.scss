@@ -20,13 +20,11 @@
 }
 
 .videoBlockTitle {
-  @include headerDesktopH6;
+  @include headerH5;
 
   margin-bottom: to-rem($spacing-standard);
 
   @include media-breakpoint-down(lg) {
-    @include headerMobileH6;
-
     margin-bottom: to-rem($spacing-small);
   }
 }
