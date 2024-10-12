@@ -9,20 +9,20 @@
   h2 {
     @include h5;
 
-    margin-bottom: to-rem(16px);
+    margin-bottom: to-rem($spacing-standard);
     letter-spacing: 0;
   }
 
   h3 {
     @include h6;
 
-    margin-bottom: to-rem(16px);
+    margin-bottom: to-rem($spacing-small);
   }
 
   h4 {
     @include headerH7;
 
-    margin-bottom: to-rem(16px);
+    margin-bottom: to-rem($spacing-small);
   }
 
   h5 {

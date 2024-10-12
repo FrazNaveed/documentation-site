@@ -1,4 +1,6 @@
 import type { CollectionConfig } from 'payload'
+import setSlugFromTitle from '../_utils/setSlugFromTitle'
+import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
 import { richTextFieldCustomized } from '../_fields/RichText'
 import { Video } from '../_blocks/Video'
 
@@ -32,6 +34,12 @@ export const News: CollectionConfig = {
       type:'text',
       required: true,
       unique: true,
+      admin: {
+        description: slugAdminConfig.description,
+      },
+      hooks: {
+        beforeValidate: [setSlugFromTitle],
+      },
     },
     {
       name: 'excerpt',
@@ -94,6 +102,24 @@ export const News: CollectionConfig = {
           value: 'podcast',
         },
       ],
+      localized: true,
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'relatedPosts',
+      type: 'relationship',
+      relationTo: 'news',
+      filterOptions: ({ id }) => {
+        return {
+          id: {
+            not_in: [id],
+          },
+        }
+      },
+      hasMany: true,
+      maxRows: 3,
       localized: true,
       admin: {
         position: 'sidebar',

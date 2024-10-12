@@ -13,8 +13,11 @@ import Columns from 'src/app/(frontend)/_components/Columns'
 import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
+import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
 import VideoBlock from '../../_components/VideoBlock'
 import styles from './page.module.scss'
+import RelatedPosts from '../../_components/RelatedPosts'
+import PrevNextLinks from '../../_components/PrevNextLinks'
 
 export default async function Page({
   params: { slug, lang },
@@ -36,6 +39,10 @@ export default async function Page({
     components,
     pageFooterCTA,
     pageFooterCTAButton,
+    relatedNewsType,
+    previousPage,
+    nextPage,
+    linkType,
   } = pageData
   let heroComponent
   if (hero) {
@@ -66,6 +73,11 @@ export default async function Page({
     pageBannerComponent = (
       <PageBanner content={bannerText} />
     )
+  }
+
+  let relatedNewsPosts
+  if (relatedNewsType && typeof relatedNewsType === 'object') {
+    relatedNewsPosts = await getNewsArchive(3, 1, [], relatedNewsType.title)
   }
 
   return (
@@ -148,8 +160,22 @@ export default async function Page({
           </div>
         </div>
       )}
-      {(pageFooterCTA && pageFooterCTAButton?.buttonLink && pageFooterCTAButton?.buttonText)
-        && <PageFooterCTA buttonText={pageFooterCTAButton?.buttonText} buttonLink={pageFooterCTAButton?.buttonLink} />}
+      {(pageFooterCTA
+      && pageFooterCTAButton?.buttonLink
+      && pageFooterCTAButton?.buttonText
+      && pageFooterCTAButton?.backgroundImageStyle)
+      && (
+        <PageFooterCTA
+          buttonText={pageFooterCTAButton?.buttonText}
+          buttonLink={pageFooterCTAButton?.buttonLink}
+          backgroundImage={pageFooterCTAButton?.backgroundImage}
+          backgroundImageStyle={pageFooterCTAButton?.backgroundImageStyle}
+        />
+      )}
+
+      {relatedNewsPosts && relatedNewsPosts.docs.length > 0 && <RelatedPosts posts={relatedNewsPosts.docs} />}
+
+      <PrevNextLinks prevLink={previousPage} nextLink={nextPage} linkType={linkType} />
     </div>
   )
 }

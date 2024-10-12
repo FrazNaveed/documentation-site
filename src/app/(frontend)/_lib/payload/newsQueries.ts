@@ -6,13 +6,11 @@ import type { News } from '@/payload-types'
 
 const payload = await getPayloadHMR({ config })
 
-type NewsTypeTypes = 'Flare Updates' | 'AMA & Interviews' | 'Past Events' | 'Ecosystem' | 'Research' | null
-
 const buildWhereClause = (
-  type: NewsTypeTypes,
+  type: string | null,
   additionalConditions: object = {},
 ) => {
-  const typeCondition = type ? { 'type.name': { equals: type } } : undefined
+  const typeCondition = type ? { 'type.title': { equals: type } } : undefined
   return { ...typeCondition, ...additionalConditions }
 }
 
@@ -20,7 +18,7 @@ export const getNewsArchive = async (
   limit = 10,
   page = 1,
   excludedIds: number[] = [],
-  type: NewsTypeTypes = null,
+  type: string | null = null,
 ) => {
   const newsData = await payload.find({
     collection: 'news',
@@ -38,7 +36,7 @@ export const getNewsArchive = async (
 
 export const getNewsFeatured = async (
   limit = 4,
-  type: NewsTypeTypes = null,
+  type = null,
 ) => {
   const newsData = await payload.find({
     collection: 'news',
@@ -79,6 +77,7 @@ export const getNewsBySlug = async (slug: string) => {
   const newsData = await payload.find({
     collection: 'news',
     limit: 1,
+    depth: 3,
     where: {
       slug: {
         equals: slug,

@@ -1,4 +1,6 @@
 import type { CollectionConfig } from 'payload'
+import setSlugFromTitle from '../_utils/setSlugFromTitle'
+import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
 
 export const NewsTypes: CollectionConfig = {
   slug: 'news-types',
@@ -13,13 +15,13 @@ export const NewsTypes: CollectionConfig = {
     plural: 'News Types',
   },
   admin: {
-    useAsTitle: 'name',
+    useAsTitle: 'title',
     enableRichTextLink: false,
     group: 'News Types',
   },
   fields: [
     {
-      name: 'name',
+      name: 'title',
       type: 'text',
       required: true,
       unique: true,
@@ -31,6 +33,12 @@ export const NewsTypes: CollectionConfig = {
       required: true,
       unique: true,
       localized: true,
+      admin: {
+        description: slugAdminConfig.description,
+      },
+      hooks: {
+        beforeValidate: [setSlugFromTitle],
+      },
     },
     {
       name: 'image',
