@@ -4,10 +4,6 @@
 
 .videoBlockWrap {
   @include grid(10);
-
-  @include media-breakpoint-down(lg) {
-    @include grid(8);
-  }
 }
 
 .videoPlayerWrap {
