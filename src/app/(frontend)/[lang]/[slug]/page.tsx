@@ -121,7 +121,7 @@ export default async function Page({
                   return <TalkingPoints key={component.id} {...component} />
 
                 case 'videoBlock':
-                  componentToRender = (componentTitle && url) && <VideoBlock title={componentTitle} url={url} />
+                  componentToRender = url && <VideoBlock title={componentTitle || undefined} url={url} />
                   break
 
                 default:
