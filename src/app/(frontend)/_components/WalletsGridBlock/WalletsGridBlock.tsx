@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
+import type { Wallet } from '@/payload-types'
 import DiagonalArrowSquare from '../svgs/DiagonalArrowSquare'
 import FlareLogo from '../svgs/FlareLogo'
 import Platform from '../svgs/Platform'
@@ -10,14 +11,19 @@ import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/Lexi
 import styles from './WalletsGridBlock.module.scss'
 import LexicalRenderer from '../LexicalRenderer'
 
-export default function WalletsGridBlock({ intro, wallets }: any) {
+export type WalletsGridBlockProps = {
+  intro?: PayloadLexicalReactRendererContent | null
+  wallets?: Wallet[] | null
+}
+
+export default function WalletsGridBlock({ intro, wallets }: WalletsGridBlockProps) {
   return (
     <div className={styles.walletsGridBlock}>
       <div className={styles.walletsGridIntro}>
         {intro && <LexicalRenderer content={intro as PayloadLexicalReactRendererContent} />}
       </div>
       <ul className={styles.walletsGridWrap}>
-        {wallets.map((wallet: any) => {
+        {wallets && wallets.map((wallet: Wallet) => {
           const {
             name,
             logo,
@@ -31,14 +37,17 @@ export default function WalletsGridBlock({ intro, wallets }: any) {
             <li key={wallet.id} className={styles.wallet}>
               <div className={styles.walletHeader}>
                 <p className='visuallyHidden'>{name}</p>
-                <div>
-                  <Image
-                    src={logo.url}
-                    alt={logo.alt}
-                    width={50}
-                    height={50}
-                  />
-                </div>
+                {logo && typeof logo === 'object' && logo.url
+                  && (
+                  <div>
+                    <Image
+                      src={logo.url}
+                      alt={logo.alt}
+                      width={110}
+                      height={60}
+                    />
+                  </div>
+                  )}
                 <Link
                   href={walletLink}
                 >
