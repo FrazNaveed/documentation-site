@@ -157,12 +157,4 @@
   &Platform {
     @include paragraphSmFont;
   }
-
-  &Connect {
-    &__on {
-      svg {
-        fill: blue;
-      }
-    }
-  }
 }

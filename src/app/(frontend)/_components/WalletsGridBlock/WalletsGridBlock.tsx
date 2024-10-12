@@ -76,7 +76,7 @@ export default function WalletsGridBlock({ intro, wallets }: WalletsGridBlockPro
                     ))}
                   </div>
                 )}
-                <span className={cx(styles.walletConnectWrap, { [styles.walletConnect__on]: walletConnect })}>
+                <span className={cx(styles.walletConnectWrap)}>
                   {walletConnect ? <WalletConnectBlue /> : <WalletConnect />}
                   <p className={styles.walletConnectText}>
                     {walletConnect ? 'Yes' : 'No'}
