@@ -14,7 +14,6 @@ import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
-import VideoBlock from '../../_components/VideoBlock'
 import styles from './page.module.scss'
 import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
@@ -110,12 +109,7 @@ export default async function Page({
           <div className={styles.mainContent}>
             {components.map((component) => {
               let componentToRender
-              let componentTitle
-              let url
 
-              if (component?.blockType === 'videoBlock') {
-                ({ title: componentTitle, url } = component)
-              }
               switch (component?.blockType) {
                 case 'columns':
                   componentToRender = <Columns {...component} />
@@ -131,10 +125,6 @@ export default async function Page({
 
                 case 'talkingPoints':
                   return <TalkingPoints key={component.id} {...component} />
-
-                case 'videoBlock':
-                  componentToRender = url && <VideoBlock title={componentTitle || undefined} url={url} />
-                  break
 
                 default:
                   componentToRender = null

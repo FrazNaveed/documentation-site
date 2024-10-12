@@ -32,7 +32,6 @@ import { StatsBlock } from '../_blocks/StatsBlock'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
 import { TalkingPoints } from '../_blocks/TalkingPoints'
-import { VideoBlock } from '../_blocks/VideoBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -176,7 +175,6 @@ export const Pages: CollectionConfig = {
         StatsBlock,
         TableDrawersBlock,
         TalkingPoints,
-        VideoBlock,
       ],
     },
     ...PageFooterCTA,

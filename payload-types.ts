@@ -442,7 +442,7 @@ export interface Page {
       [k: string]: unknown;
     } | null;
   };
-  components?: (Columns | Image | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints | VideoBlock)[] | null;
+  components?: (Columns | Image | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints)[] | null;
   pageFooterCTA?: boolean | null;
   pageFooterCTAButton?: {
     buttonText?: string | null;
@@ -632,19 +632,6 @@ export interface ITalkingPoints {
   id?: string | null;
   blockName?: string | null;
   blockType: 'talkingPoints';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "videoBlock".
- */
-export interface VideoBlock {
-  title?: string | null;
-  url?: string | null;
-  createSideNavLink?: boolean | null;
-  linkText?: string | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'videoBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
