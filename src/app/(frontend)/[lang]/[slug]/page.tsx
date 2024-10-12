@@ -80,7 +80,6 @@ export default async function Page({
   }
 
   if (pageTemplate === 'wallets') {
-    // console.log(pageData.walletsGrid)
     let walletsGridComponent
     if (walletsGrid) {
       const {
@@ -97,7 +96,7 @@ export default async function Page({
         />
       )
     }
-    // console.log(walletsGrid)
+
     return (
       <div className={styles.wrap}>
         {pageBanner?.togglePageBanner && pageBannerComponent}
