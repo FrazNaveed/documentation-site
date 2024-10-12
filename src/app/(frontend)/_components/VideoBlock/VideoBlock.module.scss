@@ -5,16 +5,8 @@
 .videoBlockWrap {
   @include grid(10);
 
-  margin-bottom: to-rem($spacing-6x-large) !important;
-
   @include media-breakpoint-down(lg) {
     @include grid(8);
-
-    margin-bottom: to-rem($spacing-5x-large) !important;
-  }
-
-  @include media-breakpoint-down(md) {
-    margin-bottom: to-rem($spacing-x-large) !important;
   }
 }
 
