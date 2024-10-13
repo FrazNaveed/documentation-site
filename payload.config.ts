@@ -15,6 +15,7 @@ import { News } from './src/app/(payload)/_collections/News'
 import { NewsSubTypes } from './src/app/(payload)/_collections/NewsSubTypes'
 import { NewsTypes } from './src/app/(payload)/_collections/NewsTypes'
 import { Wallets } from './src/app/(payload)/_collections/Wallets'
+import { People } from './src/app/(payload)/_collections/People'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -26,7 +27,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Events, Pages, Users, Media, News, NewsTypes, NewsSubTypes, Wallets],
+  collections: [Events, Pages, Users, Media, News, NewsTypes, NewsSubTypes, People, Wallets],
   editor: lexicalEditor(),
   localization: {
     locales: [
