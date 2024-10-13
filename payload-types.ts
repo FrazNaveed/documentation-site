@@ -443,6 +443,7 @@ export interface Page {
       [k: string]: unknown;
     } | null;
   };
+  teamGrid?: TeamGrid;
   components?: (Columns | Image | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints)[] | null;
   pageFooterCTA?: boolean | null;
   pageFooterCTAButton?: {
@@ -482,6 +483,26 @@ export interface NewsType {
   title: string;
   slug: string;
   image: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamGrid".
+ */
+export interface TeamGrid {
+  title?: string | null;
+  teamGrid?: (number | Person)[] | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "people".
+ */
+export interface Person {
+  id: number;
+  fullName?: string | null;
+  title?: string | null;
+  headshot?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -704,18 +725,6 @@ export interface NewsSubType {
   title: string;
   slug: string;
   image: number | Media;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "people".
- */
-export interface Person {
-  id: number;
-  fullName?: string | null;
-  title?: string | null;
-  headshot?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
