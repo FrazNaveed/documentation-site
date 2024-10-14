@@ -196,6 +196,7 @@ export const Pages: CollectionConfig = {
       localized: true,
       options: [
         { label: 'Default', value: 'default', },
+        { label: 'Team', value: 'team' },
         { label: 'Wallets', value: 'wallets', },
       ],
       admin: {

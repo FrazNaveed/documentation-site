@@ -453,7 +453,7 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
   };
-  pageTemplate: 'default' | 'wallets';
+  pageTemplate: 'default' | 'team' | 'wallets';
   updatedAt: string;
   createdAt: string;
 }
