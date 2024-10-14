@@ -1,6 +1,6 @@
 import { Block } from 'payload'
-import { RichTextField } from '../_fields/RichText'
-import { i18n } from '../../i18n-config'
+import { RichTextField } from '../../_fields/RichText'
+import { i18n } from '../../../i18n-config'
 
 export const RichTextBlock: Block = {
   slug: 'richText',
