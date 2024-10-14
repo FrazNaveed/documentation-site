@@ -503,7 +503,7 @@ export interface TeamGrid {
 export interface Person {
   id: number;
   fullName?: string | null;
-  title?: string | null;
+  jobTitle?: string | null;
   headshot?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
