@@ -182,7 +182,11 @@ export const Pages: CollectionConfig = {
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
-          return siblingData.pageTemplate !== 'wallets'
+          if (siblingData.pageTemplate === 'wallets' || siblingData.pageTemplate === 'team') {
+            return false
+          } else {
+            return true
+          }
          }
       }
     },
