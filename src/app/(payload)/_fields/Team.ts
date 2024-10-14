@@ -13,7 +13,7 @@ export const TeamGrid: Field[] = [
         localized: true,
       },
       {
-        name: 'teamGrid',
+        name: 'team',
         type: 'relationship',
         relationTo: 'people',
         hasMany: true,
