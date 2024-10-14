@@ -38,7 +38,7 @@
   &:hover,
   &:focus,
   &:active {
-    .buttonIcon path {
+    svg.buttonIcon path {
       fill: $white;
     }
   }
@@ -115,7 +115,7 @@
   &:focus,
   &:active {
     /* stylelint-disable-next-line no-descending-specificity */
-    .buttonIcon path {
+    svg.buttonIcon path {
       fill: $black;
     }
   }
