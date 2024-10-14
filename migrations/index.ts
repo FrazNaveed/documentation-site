@@ -143,6 +143,11 @@ export const migrations = [
     name: '20241010_222642',
   },
   {
+    up: migration_20241010_023421.up,
+    down: migration_20241010_023421.down,
+    name: '20241010_023421',
+  },
+  {
     up: migration_20241010_233612.up,
     down: migration_20241010_233612.down,
     name: '20241010_233612',
@@ -155,12 +160,6 @@ export const migrations = [
   {
     up: migration_20241011_070402.up,
     down: migration_20241011_070402.down,
-    name: '20241011_070402'
-  },
-  {
-    up: migration_20241010_023421.up,
-    down: migration_20241010_023421.down,
-    name: '20241010_023421'
->>>>>>> a8c21c23cfd83500e22ddf84eebe761a33da911b
+    name: '20241011_070402',
   },
 ];
