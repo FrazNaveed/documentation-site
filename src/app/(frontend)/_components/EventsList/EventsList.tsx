@@ -90,7 +90,7 @@ export default async function EventsList() {
               const locationMarkup = (
                 <p className={styles.location}>
                   <span className={styles.flag}>
-                    <FlagComponent title={country} className={styles.flag_Icon} />
+                    {FlagComponent && <FlagComponent title={country} className={styles.flag_Icon} />}
                   </span>
                   {location}
                 </p>
