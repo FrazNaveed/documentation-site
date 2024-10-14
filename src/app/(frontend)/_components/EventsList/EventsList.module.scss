@@ -33,12 +33,18 @@ $event-col-gap: $grid-column-gap;
 
 .event,
 .colHeaders {
+  display: flex;
   padding: $spacing-small;
 
   @include media-breakpoint-up(lg) {
-    display: flex;
     align-items: center;
     gap: $event-col-gap;
+  }
+
+  @include media-breakpoint-down(lg) {
+    flex-direction: column;
+    justify-content: space-between;
+    gap: $spacing-x-small;
   }
 }
 
@@ -50,6 +56,18 @@ $event-col-gap: $grid-column-gap;
 
   @include media-breakpoint-down(lg) {
     @include spanColumns(4);
+  }
+
+  &__desktop {
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
+  }
+
+  &__mobile {
+    @include media-breakpoint-up(lg) {
+      display: none;
+    }
   }
 }
 
@@ -63,25 +81,31 @@ $event-col-gap: $grid-column-gap;
   }
 }
 
+$button-col-width: 177px;
+
 .colHeader {
   @include label;
 
+  flex-shrink: 0;
+  width: calc((100% - $button-col-width - ($event-col-gap * 4)) / 4);
+  margin-bottom: 0;
   color: $gray;
+  overflow-wrap: break-word;
 }
 
-$button-col-width: 177px;
-
-.colHeader,
-.title,
-.dates,
-.location,
-.involvement {
-  overflow-wrap: break-word;
+.eventInfo {
+  display: flex;
+  flex-shrink: 1;
+  width: 100%;
+  gap: $event-col-gap;
 
   @include media-breakpoint-up(lg) {
-    flex-shrink: 0;
-    width: calc((100% - $button-col-width - ($event-col-gap * 4)) / 4);
-    margin-bottom: 0;
+    align-items: center;
+  }
+
+  @include media-breakpoint-down(lg) {
+    flex-direction: column;
+    gap: $spacing-x-small;
   }
 }
 
@@ -91,11 +115,20 @@ $button-col-width: 177px;
 .involvement {
   @include paragraphSmFont;
 
+  margin-bottom: 0;
   color: $black;
+  overflow-wrap: break-word;
+
+  @include media-breakpoint-up(lg) {
+    flex-shrink: 0;
+    width: calc((100% - ($event-col-gap * 3)) / 4);
+  }
 }
 
 .title {
   @include media-breakpoint-down(lg) {
+    @include bodyBase;
+
     color: $pink-700;
   }
 }
@@ -108,8 +141,15 @@ $button-col-width: 177px;
 
 .buttonWrap {
   flex-shrink: 0;
-  width: $button-col-width;
   text-align: right;
+
+  @include media-breakpoint-up(lg) {
+    width: $button-col-width;
+  }
+
+  @include media-breakpoint-down(lg) {
+    align-self: flex-end;
+  }
 }
 
 .flag {
@@ -132,5 +172,27 @@ $button-col-width: 177px;
     min-width: 100%;
     min-height: 100%;
     transform: translate(-50%, -50%);
+  }
+}
+
+.mobileHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: $event-col-gap;
+
+  @include media-breakpoint-up(lg) {
+    display: none;
+  }
+}
+
+.arrow {
+  flex-shrink: 0;
+}
+
+.eventInner {
+  @include media-breakpoint-down(lg) {
+    display: flex;
+    align-items: center;
+    gap: $event-col-gap;
   }
 }

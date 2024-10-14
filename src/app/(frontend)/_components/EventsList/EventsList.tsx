@@ -1,9 +1,11 @@
+import { Fragment } from 'react'
 import cx from 'classnames'
 import * as flags from 'country-flag-icons/react/3x2'
 import Button from 'src/app/(frontend)/_components/Button'
 import { getEventsArchive } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import getDateTimeLocale from 'src/app/(frontend)/_utils/getDateTimeLocale'
 import type { TLocales } from 'src/app/(frontend)/_utils/getDateTimeLocale'
+import RightArrow from 'src/app/(frontend)/_components/svgs/RightArrow'
 import styles from './EventsList.module.scss'
 
 function convertTimestampToMilitaryTime(timestamp: string) {
@@ -72,36 +74,69 @@ export default async function EventsList() {
               } = event
               const { buttonType, link } = button || {}
               const FlagComponent = flags[country]
-              return (
-                <div key={`${title}-${startDate}-${location}`} className={styles.event}>
-                  <h3 className={styles.title}>
-                    {title}
-                  </h3>
-                  <p className={styles.dates}>
-                    {displayDateRange(startDate, endDate)}
-                    {startTime && `, ${convertTimestampToMilitaryTime(startTime)}`}
-                  </p>
-                  <p className={styles.location}>
-                    <span className={styles.flag}>
-                      <FlagComponent title={country} className={styles.flag_Icon} />
-                    </span>
-                    {location}
-                  </p>
-                  <p className={styles.involvement}>
-                    {flareInvolvement}
-                  </p>
-                  <div className={styles.buttonWrap}>
-                    {(buttonType && link) && (
-                      <Button
-                        className={cx(styles.button, styles[`button__${buttonType}`])}
-                        link={link}
-                        linkExternal
-                        text={buttonType === 'rsvp' ? 'RSVP' : 'Announcement'}
-                        buttonStyle={buttonType === 'rsvp' ? 'pink' : 'secondary'}
-                      />
-                    )}
-                  </div>
+              const titleMarkup = (
+                <h3 className={styles.title}>
+                  {title}
+                </h3>
+              )
+              const dateMarkup = (
+                <p className={styles.dates}>
+                  {displayDateRange(startDate, endDate)}
+                  {startTime && `, ${convertTimestampToMilitaryTime(startTime)}`}
+                </p>
+              )
+              const locationMarkup = (
+                <p className={styles.location}>
+                  <span className={styles.flag}>
+                    <FlagComponent title={country} className={styles.flag_Icon} />
+                  </span>
+                  {location}
+                </p>
+              )
+              const involvementMarkup = (
+                <p className={styles.involvement}>
+                  {flareInvolvement}
+                </p>
+              )
+              const buttonMarkup = (
+                <div className={styles.buttonWrap}>
+                  {(buttonType && link) && (
+                    <Button
+                      className={cx(styles.button, styles[`button__${buttonType}`])}
+                      link={link}
+                      linkExternal
+                      text={buttonType === 'rsvp' ? 'RSVP' : 'Announcement'}
+                      buttonStyle={buttonType === 'rsvp' ? 'pink' : 'secondary'}
+                    />
+                  )}
                 </div>
+              )
+              return (
+                <Fragment key={`${title}-${startDate}-${location}`}>
+                  <div className={cx(styles.event, styles.event__desktop)}>
+                    <div className={styles.eventInfo}>
+                      {titleMarkup}
+                      {dateMarkup}
+                      {locationMarkup}
+                      {involvementMarkup}
+                    </div>
+                    {buttonMarkup}
+                  </div>
+                  <div className={cx(styles.event, styles.event__mobile)}>
+                    <div className={styles.mobileHeader}>
+                      {titleMarkup}
+                      <RightArrow className={styles.arrow} />
+                    </div>
+                    <div className={styles.eventInner}>
+                      <div className={styles.eventInfo}>
+                        {dateMarkup}
+                        {locationMarkup}
+                        {involvementMarkup}
+                      </div>
+                      {buttonMarkup}
+                    </div>
+                  </div>
+                </Fragment>
               )
             })}
           </div>
