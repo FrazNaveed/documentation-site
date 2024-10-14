@@ -5,6 +5,8 @@
 @use "../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
+$mobile-text-row-gap: $spacing-x-small;
+
 .container {
   @include container;
 }
@@ -44,7 +46,7 @@ $event-col-gap: $grid-column-gap;
   @include media-breakpoint-down(lg) {
     flex-direction: column;
     justify-content: space-between;
-    gap: $spacing-x-small;
+    gap: $mobile-text-row-gap;
   }
 }
 
@@ -105,7 +107,7 @@ $button-col-width: 177px;
 
   @include media-breakpoint-down(lg) {
     flex-direction: column;
-    gap: $spacing-x-small;
+    gap: $mobile-text-row-gap;
   }
 }
 
@@ -182,6 +184,35 @@ $button-col-width: 177px;
 
   @include media-breakpoint-up(lg) {
     display: none;
+  }
+}
+
+.mobileHeaderText {
+  display: flex;
+  flex-direction: column;
+  gap: $mobile-text-row-gap;
+}
+
+.featured {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-x-small;
+  gap: $mobile-text-row-gap;
+
+  &_Label {
+    @include paragraphSmFont;
+
+    color: $pink-700;
+  }
+
+  &_Logo {
+    flex-shrink: 0;
+    width: 16px;
+    height: auto;
+
+    path {
+      fill: $pink-600;
+    }
   }
 }
 

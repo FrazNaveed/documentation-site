@@ -5,6 +5,7 @@ import Button from 'src/app/(frontend)/_components/Button'
 import { getEventsArchive } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import getDateTimeLocale from 'src/app/(frontend)/_utils/getDateTimeLocale'
 import type { TLocales } from 'src/app/(frontend)/_utils/getDateTimeLocale'
+import Flare from 'src/app/(frontend)/_components/svgs/Flare'
 import RightArrow from 'src/app/(frontend)/_components/svgs/RightArrow'
 import styles from './EventsList.module.scss'
 
@@ -71,6 +72,7 @@ export default async function EventsList() {
                 location,
                 flareInvolvement,
                 button,
+                featured,
               } = event
               const { buttonType, link } = button || {}
               const FlagComponent = flags[country]
@@ -124,12 +126,20 @@ export default async function EventsList() {
                   </div>
                   <div className={cx(styles.event, styles.event__mobile)}>
                     <div className={styles.mobileHeader}>
-                      {titleMarkup}
+                      <div className={styles.mobileHeaderText}>
+                        {featured && (
+                          <div className={styles.featured}>
+                            <Flare className={styles.featured_Logo} />
+                            <span className={styles.featured_Label}>Featured Event</span>
+                          </div>
+                        )}
+                        {titleMarkup}
+                        {dateMarkup}
+                      </div>
                       <RightArrow className={styles.arrow} />
                     </div>
                     <div className={styles.eventInner}>
                       <div className={styles.eventInfo}>
-                        {dateMarkup}
                         {locationMarkup}
                         {involvementMarkup}
                       </div>
