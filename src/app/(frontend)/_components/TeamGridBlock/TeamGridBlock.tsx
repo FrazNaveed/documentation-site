@@ -16,7 +16,7 @@ export default function TeamGridBlock({ title, team }: any) {
             jobTitle,
           } = teamMember
           return (
-            <li key={id}>
+            <li key={id} className={styles.teamGridMember}>
               <div className={styles.imgWrap}>
                 <Image
                   src={headshot.url}
