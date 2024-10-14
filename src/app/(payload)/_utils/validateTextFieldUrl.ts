@@ -5,6 +5,10 @@ const validateTextFieldUrl = (value: string | null | undefined) => {
 
   const isValidRelativePath = value.startsWith('/')
 
+  if (isValidRelativePath) {
+    return true
+  }
+
   try {
     const url = new URL(value)
   
