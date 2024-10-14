@@ -494,7 +494,7 @@ export interface NewsType {
  */
 export interface TeamGrid {
   title?: string | null;
-  teamGrid?: (number | Person)[] | null;
+  team?: (number | Person)[] | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
