@@ -448,6 +448,7 @@ export interface Page {
     buttonText?: string | null;
     buttonLink?: string | null;
   };
+  pageTemplate: 'default' | 'wallets' | 'events';
   updatedAt: string;
   createdAt: string;
 }

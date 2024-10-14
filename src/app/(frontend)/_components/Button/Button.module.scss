@@ -32,6 +32,16 @@
     color: $pink-400;
     cursor: not-allowed;
   }
+
+  &,
+  &:visited,
+  &:hover,
+  &:focus,
+  &:active {
+    .buttonIcon path {
+      fill: $white;
+    }
+  }
 }
 
 .text {
@@ -97,5 +107,16 @@
     border: 1px solid $gray-50;
     background-color: $white;
     color: $gray-200;
+  }
+
+  &,
+  &:visited,
+  &:hover,
+  &:focus,
+  &:active {
+    /* stylelint-disable-next-line no-descending-specificity */
+    .buttonIcon path {
+      fill: $black;
+    }
   }
 }
