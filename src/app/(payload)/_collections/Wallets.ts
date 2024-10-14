@@ -99,15 +99,15 @@ export const Wallets: CollectionConfig = {
       },
       options: [
         {
-          value: 'ios',
+          value: 'iOS',
           label: 'iOS',
         },
         {
-          value: 'android',
+          value: 'Android',
           label: 'Android',
         },
         {
-          value: 'hardware',
+          value: 'Hardware',
           label: 'Hardware',
         },
       ]

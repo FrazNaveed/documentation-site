@@ -33,6 +33,7 @@ import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
 import { TalkingPoints } from '../_blocks/TalkingPoints'
 import { TeamGrid } from '../_fields/Team'
+import { WalletsGrid } from '../_fields/WalletsGrid'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -167,6 +168,7 @@ export const Pages: CollectionConfig = {
       },
     },
     ...TeamGrid,
+    ...WalletsGrid,
     {
       name: 'components',
       type: 'blocks',
@@ -178,7 +180,27 @@ export const Pages: CollectionConfig = {
         TableDrawersBlock,
         TalkingPoints,
       ],
+      admin: {
+        condition: (data, siblingData, { user }) => {
+          return siblingData.pageTemplate !== 'wallets'
+         }
+      }
     },
     ...PageFooterCTA,
+    {
+      name: 'pageTemplate',
+      type: 'select',
+      label: 'Page Template',
+      required: true,
+      defaultValue: 'default',
+      localized: true,
+      options: [
+        { label: 'Default', value: 'default', },
+        { label: 'Wallets', value: 'wallets', },
+      ],
+      admin: {
+        position: 'sidebar',
+      },
+    },
   ],
 }

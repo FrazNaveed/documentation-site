@@ -1,0 +1,160 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.walletsGrid {
+  &Block {
+    @include columns(1, 13);
+
+    display: grid;
+    margin-top: to-rem($spacing-x-small);
+    grid-template-columns: subgrid;
+
+    @include media-breakpoint-down(lg) {
+      @include columns(1, -1);
+    }
+  }
+
+  &Intro,
+  &Wrap {
+    @include columns(2, 12);
+
+    @include media-breakpoint-down(lg) {
+      @include columns(1, -1);
+    }
+  }
+
+  &Intro {
+    margin-bottom: to-rem($spacing-standard);
+
+    @include media-breakpoint-down(lg) {
+      margin-bottom: to-rem($spacing-small);
+    }
+
+    @include media-breakpoint-down(md) {
+      margin-bottom: to-rem($spacing-x-small);
+    }
+
+    p {
+      @include paragraphSmFont;
+    }
+
+    // a {
+    //   color: $pink-600;
+    // }
+  }
+
+  &Wrap {
+    @include utils.listReset;
+
+    display: grid;
+    padding-left: 0;
+    grid-template-columns: subgrid;
+    row-gap: $grid-column-gap-flare;
+  }
+}
+
+.wallet {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: to-rem($spacing-standard);
+  border-radius: 6px;
+  background-color: $pink-50;
+  grid-column: span 5;
+
+  @include media-breakpoint-down(lg) {
+    grid-column: span 4;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  &TagsWrap,
+  &ConnectWrap {
+    display: flex;
+    align-items: baseline;
+  }
+
+  &Header {
+    display: flex;
+    align-items: normal;
+    justify-content: space-between;
+    margin-bottom: to-rem($spacing-standard);
+  }
+
+  &FlrFunctionalityWrap {
+    display: flex;
+    align-items: normal;
+    gap: to-rem($spacing-x-small);
+
+    p {
+      @include labelS;
+
+      margin-bottom: to-rem(12px);
+      color: $black;
+    }
+  }
+
+  &TagsWrap {
+    flex-wrap: wrap;
+    margin-bottom: to-rem($spacing-xxx-large);
+    gap: to-rem($spacing-x-small);
+
+    @include media-breakpoint-down(lg) {
+      margin-bottom: to-rem(28px);
+      padding-right: to-rem($spacing-xxx-large);
+    }
+
+    @include media-breakpoint-down(md) {
+      padding-right: 0;
+    }
+  }
+
+  &Tag {
+    @include label;
+
+    padding: to-rem(4px) to-rem(6px) to-rem(3px);
+    border: 1px solid $gray;
+    border-radius: 6px;
+    color: $gray;
+  }
+
+  &Footer {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+  }
+
+  &ConnectWrap {
+    column-gap: to-rem($spacing-x-small);
+  }
+
+  &PlatformsWrap {
+    display: flex;
+    align-items: center;
+    margin-right: to-rem($spacing-x-large);
+
+    svg {
+      margin-right: to-rem($spacing-x-small);
+    }
+  }
+
+  &Platform {
+    &:not(:last-child) {
+      &::after {
+        margin-right: to-rem(4px);
+        margin-left: to-rem(4px);
+        content: "\00B7";
+      }
+    }
+  }
+
+  &ConnectText,
+  &Platform {
+    @include paragraphSmFont;
+  }
+}
