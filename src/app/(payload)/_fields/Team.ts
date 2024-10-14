@@ -19,5 +19,11 @@ export const TeamGrid: Field[] = [
         hasMany: true,
       },
     ],
+    admin: {
+      description: 'Add title text above the Team Grid. Manage Team members using the People Collection.',
+      condition: (data, siblingData, { user }) => {
+        return siblingData.pageTemplate === 'team'
+       },
+    },
   }
 ]
