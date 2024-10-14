@@ -109,7 +109,6 @@ export default async function Page({
           <div className={styles.mainContent}>
             {components.map((component) => {
               let componentToRender
-
               switch (component?.blockType) {
                 case 'columns':
                   componentToRender = <Columns {...component} />
