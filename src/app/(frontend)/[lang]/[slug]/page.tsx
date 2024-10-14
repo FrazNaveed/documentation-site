@@ -16,7 +16,7 @@ import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
 import type { Wallet } from '@/payload-types'
 import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
-import TeamGrid from '../../_components/TeamGrid'
+import TeamGridBlock from '../../_components/TeamGridBlock'
 import styles from './page.module.scss'
 import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
@@ -50,6 +50,7 @@ export default async function Page({
     linkType,
     teamGrid,
   } = pageData
+  console.log(pageData)
   let heroComponent
   if (hero) {
     const {
@@ -85,7 +86,7 @@ export default async function Page({
     let teamGridComponent
     if (teamGrid) {
       teamGridComponent = (
-        <TeamGrid />
+        <TeamGridBlock title={teamGrid?.title} team={teamGrid?.team} />
       )
     }
 
