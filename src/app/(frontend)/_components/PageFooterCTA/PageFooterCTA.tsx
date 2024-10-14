@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import Image from 'next/image'
+import { Media } from '@/payload-types'
+import PageFooterImage from './components/PageFooterImage'
 import Button from '../Button'
 import styles from './PageFooterCTA.module.scss'
 
@@ -7,21 +8,21 @@ export type PageFooterCTAProps = {
   className?: string,
   buttonText?: string,
   buttonLink?: string
+  backgroundImage?: (number | null) | Media
+  backgroundImageStyle: ('flipped' | 'offset') | null
 }
 
-export default function PageFooterCTA({ className, buttonText, buttonLink }: PageFooterCTAProps) {
+export default function PageFooterCTA({
+  className,
+  buttonText,
+  buttonLink,
+  backgroundImage,
+  backgroundImageStyle,
+}: PageFooterCTAProps) {
   return (
     <section className={cx(styles.Wrap, className)}>
       <div className={styles.content}>
-        <div className={styles.ImageWrap}>
-          <Image
-            src='/en/vote_bg.png'
-            width={276}
-            height={276}
-            alt='background image of two cylinders'
-            className={styles.bgImg__left}
-          />
-        </div>
+        <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='left' />
         {buttonText && buttonLink
           && (
             <Button
@@ -31,24 +32,7 @@ export default function PageFooterCTA({ className, buttonText, buttonLink }: Pag
               className={styles.Button}
             />
           )}
-        <div className={styles.ImageWrap}>
-          <Image
-            src='/en/vote_bg.png'
-            width={276}
-            height={276}
-            alt='background image of two cylinders'
-            className={styles.bgImg__right}
-          />
-        </div>
-        <div className={styles.ImageWrapMobile}>
-          <Image
-            src='/en/vote_mobile_bg.png'
-            width={106}
-            height={106}
-            alt='background image of two cylinders'
-            className={styles.bgImg__mobile}
-          />
-        </div>
+        <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='right' />
       </div>
     </section>
   )

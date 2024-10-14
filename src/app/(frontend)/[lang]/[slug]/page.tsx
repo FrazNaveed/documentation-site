@@ -152,8 +152,18 @@ export default async function Page({
           </div>
         </div>
       )}
-      {(pageFooterCTA && pageFooterCTAButton?.buttonLink && pageFooterCTAButton?.buttonText)
-        && <PageFooterCTA buttonText={pageFooterCTAButton?.buttonText} buttonLink={pageFooterCTAButton?.buttonLink} />}
+      {(pageFooterCTA
+      && pageFooterCTAButton?.buttonLink
+      && pageFooterCTAButton?.buttonText
+      && pageFooterCTAButton?.backgroundImageStyle)
+      && (
+        <PageFooterCTA
+          buttonText={pageFooterCTAButton?.buttonText}
+          buttonLink={pageFooterCTAButton?.buttonLink}
+          backgroundImage={pageFooterCTAButton?.backgroundImage}
+          backgroundImageStyle={pageFooterCTAButton?.backgroundImageStyle}
+        />
+      )}
 
       {relatedNewsPosts && relatedNewsPosts.docs.length > 0 && <RelatedPosts posts={relatedNewsPosts.docs} />}
 

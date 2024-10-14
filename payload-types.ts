@@ -447,6 +447,8 @@ export interface Page {
   pageFooterCTAButton?: {
     buttonText?: string | null;
     buttonLink?: string | null;
+    backgroundImage?: (number | null) | Media;
+    backgroundImageStyle?: ('flipped' | 'offset') | null;
   };
   pageTemplate: 'default' | 'wallets' | 'events';
   updatedAt: string;
