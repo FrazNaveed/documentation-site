@@ -2,9 +2,9 @@ import type { Block } from 'payload'
 import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
 import { i18n } from '@/src/app/i18n-config'
 
-export const VideoBlock: Block = {
-  slug: 'videoBlock',
-  interfaceName: 'videoBlock',
+export const VideoEmbedBlock: Block = {
+  slug: 'videoEmbedBlock',
+  interfaceName: 'videoEmbedBlock',
   fields: [
     {
       name: 'title',
