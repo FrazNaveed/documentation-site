@@ -52,6 +52,17 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
       ALTER TABLE "pages_locales" ADD COLUMN "wallets_grid_wallets_grid_intro" jsonb;
     END IF;
   END $$;
+  DO $$
+   BEGIN
+     IF NOT EXISTS (
+       SELECT 1 
+       FROM information_schema.columns 
+       WHERE table_name = 'payload_locked_documents_rels' 
+       AND column_name = 'people_id'
+     ) THEN
+       ALTER TABLE "payload_locked_documents_rels" ADD COLUMN "people_id" integer;
+     END IF;
+  END $$;
   ALTER TABLE "payload_locked_documents_rels" ADD COLUMN "people_id" integer;
   DO $$ BEGIN
    ALTER TABLE "pages_rels" ADD CONSTRAINT "pages_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
