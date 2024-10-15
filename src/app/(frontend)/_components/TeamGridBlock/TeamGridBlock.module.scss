@@ -66,6 +66,12 @@
 
 .imgWrap {
   margin-bottom: to-rem($spacing-x-small);
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 }
 
 .name,
