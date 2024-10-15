@@ -68,10 +68,10 @@ export default function WalletsGridBlock({ intro, wallets }: WalletsGridBlockPro
                 </div>
               )}
               <div className={styles.walletFooter}>
-                {platforms && (
+                {!!platforms?.length && (
                   <div className={styles.walletPlatformsWrap}>
                     <Platform />
-                    {platforms.map((platform: string) => (
+                    {platforms?.map((platform: string) => (
                       <p key={platform} className={styles.walletPlatform}>{platform}</p>
                     ))}
                   </div>
