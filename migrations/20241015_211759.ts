@@ -3,9 +3,9 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
    ALTER TYPE "enum_pages_page_template" ADD VALUE 'team';
-  ALTER TYPE "enum_wallets_platforms" ADD VALUE 'iOS';
-  ALTER TYPE "enum_wallets_platforms" ADD VALUE 'Android';
-  ALTER TYPE "enum_wallets_platforms" ADD VALUE 'Hardware';
+  ALTER TYPE "enum_wallets_platforms" ADD VALUE IF NOT EXISTS 'iOS';
+  ALTER TYPE "enum_wallets_platforms" ADD VALUE IF NOT EXISTS 'Android';
+  ALTER TYPE "enum_wallets_platforms" ADD VALUE IF NOT EXISTS 'Hardware';
   CREATE TABLE IF NOT EXISTS "pages_rels" (
   	"id" serial PRIMARY KEY NOT NULL,
   	"order" integer,
