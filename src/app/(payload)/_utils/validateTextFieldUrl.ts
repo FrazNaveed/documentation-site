@@ -11,8 +11,9 @@ const validateTextFieldUrl = (value: string | null | undefined) => {
 
   try {
     const url = new URL(value)
-  
-    if (!isValidRelativePath && !url.hostname.includes('.')) {
+    const isValidDomain = /^(?!-)([a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\.)+[a-zA-Z]{2,}(?<!-)$/.test(url.hostname)
+
+    if (!isValidRelativePath && !isValidDomain) {
         return 'Please enter a valid URL with a valid domain.'
       }
 
