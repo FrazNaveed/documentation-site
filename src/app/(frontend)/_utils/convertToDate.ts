@@ -1,15 +1,13 @@
+import getDateTimeLocale from './getDateTimeLocale'
+import type { TLocales } from './getDateTimeLocale'
+
 export type TDateFormat = 'short'
 
 const convertToDate = (
   timestamp: string,
   format: TDateFormat = 'short',
-  locale: 'en' | 'es' | 'de' = 'en',
+  locale: TLocales = 'en',
 ): string => {
-  const locales = {
-    en: 'en-US',
-    es: 'es-ES',
-    de: 'de-DE',
-  }
   const dateFormat: { [key: string]: Intl.DateTimeFormatOptions } = {
     short: {
       month: 'short',
@@ -17,7 +15,7 @@ const convertToDate = (
     },
   }
   const formattedDate = new Date(timestamp).toLocaleDateString(
-    locales[locale],
+    getDateTimeLocale(locale),
     dateFormat[format],
   )
 

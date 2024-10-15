@@ -450,6 +450,7 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
   };
+  pageTemplate: 'default' | 'wallets' | 'events';
   updatedAt: string;
   createdAt: string;
 }
