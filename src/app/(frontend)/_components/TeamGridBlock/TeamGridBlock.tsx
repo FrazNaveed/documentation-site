@@ -21,8 +21,8 @@ export default function TeamGridBlock({ title, team }: any) {
                 <Image
                   src={headshot.url}
                   alt={headshot.alt}
-                  width={100}
-                  height={100}
+                  width={184}
+                  height={245}
                 />
               </div>
               <h3 className={styles.name}>{fullName}</h3>

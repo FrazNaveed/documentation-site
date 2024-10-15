@@ -4,3 +4,39 @@
 @use "../../_styles/transitions" as *;
 @use "../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
+
+.teamGrid {
+  &Block {
+    @include columns(1, -1);
+
+    display: grid;
+
+    @include media-breakpoint-down(lg) {
+      grid-template-columns: subgrid;
+    }
+  }
+
+  &Wrap {
+    @include utils.listReset;
+
+    display: grid;
+
+    @include media-breakpoint-up(lg) {
+      @include grid(5);
+
+      gap: to-rem($spacing-xx-large) to-rem($spacing-small);
+    }
+
+    @include media-breakpoint-down(lg) {
+      @include columns(1, -1);
+
+      grid-template-columns: subgrid;
+    }
+  }
+
+  &Member {
+    @include media-breakpoint-down(lg) {
+      grid-column: span 2;
+    }
+  }
+}
