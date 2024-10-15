@@ -63,7 +63,6 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
        ALTER TABLE "payload_locked_documents_rels" ADD COLUMN "people_id" integer;
      END IF;
   END $$;
-  ALTER TABLE "payload_locked_documents_rels" ADD COLUMN "people_id" integer;
   DO $$ BEGIN
    ALTER TABLE "pages_rels" ADD CONSTRAINT "pages_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
