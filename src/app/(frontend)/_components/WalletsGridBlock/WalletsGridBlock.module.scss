@@ -56,7 +56,6 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: to-rem($spacing-standard);
   border-radius: 6px;
   background-color: $pink-50;
   grid-column: span 5;
@@ -73,6 +72,10 @@
   &ConnectWrap {
     display: flex;
     align-items: baseline;
+  }
+
+  &Link {
+    padding: to-rem($spacing-standard);
   }
 
   &Header {
