@@ -8,7 +8,7 @@ export const People: CollectionConfig = {
       type: 'text',
     },
     {
-      name: 'title',
+      name: 'jobTitle',
       type: 'text',
       localized: true,
     },

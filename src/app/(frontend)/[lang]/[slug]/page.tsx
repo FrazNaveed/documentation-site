@@ -17,6 +17,7 @@ import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
 import type { Wallet } from '@/payload-types'
 import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
+import TeamGridBlock from '../../_components/TeamGridBlock'
 import styles from './page.module.scss'
 import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
@@ -48,7 +49,9 @@ export default async function Page({
     previousPage,
     nextPage,
     linkType,
+    teamGrid,
   } = pageData
+  console.log(pageData)
   let heroComponent
   if (hero) {
     const {
@@ -80,6 +83,25 @@ export default async function Page({
     )
   }
 
+  if (pageTemplate === 'team') {
+    let teamGridComponent
+    if (teamGrid) {
+      teamGridComponent = (
+        <TeamGridBlock title={teamGrid?.title} team={teamGrid?.team} />
+      )
+    }
+
+    return (
+      <div className={styles.wrap}>
+        {pageBanner?.togglePageBanner && pageBannerComponent}
+        {heroComponent}
+        <div className={styles.grid}>
+          {teamGridComponent}
+        </div>
+      </div>
+    )
+  }
+
   if (pageTemplate === 'wallets') {
     let walletsGridComponent
     if (walletsGrid) {
@@ -108,6 +130,7 @@ export default async function Page({
       </div>
     )
   }
+
   let relatedNewsPosts
   if (relatedNewsType && typeof relatedNewsType === 'object') {
     relatedNewsPosts = await getNewsArchive(3, 1, [], relatedNewsType.title)

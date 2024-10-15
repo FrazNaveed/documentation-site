@@ -443,6 +443,7 @@ export interface Page {
       [k: string]: unknown;
     } | null;
   };
+  teamGrid?: TeamGrid;
   walletsGrid?: WalletsGrid;
   components?: (Columns | Image | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints)[] | null;
   pageFooterCTA?: boolean | null;
@@ -452,7 +453,7 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
   };
-  pageTemplate: 'default' | 'wallets' | 'events';
+  pageTemplate: 'default' | 'team' | 'wallets' | 'events';
   updatedAt: string;
   createdAt: string;
 }
@@ -484,6 +485,26 @@ export interface NewsType {
   title: string;
   slug: string;
   image: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamGrid".
+ */
+export interface TeamGrid {
+  title?: string | null;
+  team?: (number | Person)[] | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "people".
+ */
+export interface Person {
+  id: number;
+  fullName?: string | null;
+  jobTitle?: string | null;
+  headshot?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -744,18 +765,6 @@ export interface NewsSubType {
   title: string;
   slug: string;
   image: number | Media;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "people".
- */
-export interface Person {
-  id: number;
-  fullName?: string | null;
-  title?: string | null;
-  headshot?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
