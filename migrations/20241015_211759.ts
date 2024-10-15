@@ -41,16 +41,6 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "pages_blocks_talking_points_points" ALTER COLUMN "header" DROP NOT NULL;
   ALTER TABLE "pages_blocks_talking_points_points" ALTER COLUMN "text" DROP NOT NULL;
   ALTER TABLE "pages_locales" ADD COLUMN "team_grid_title" varchar;
-  DO $$ BEGIN
-    IF NOT EXISTS (
-      SELECT 1 
-      FROM information_schema.columns 
-      WHERE table_name = 'pages_locales' 
-      AND column_name = 'wallets_grid_wallets_grid_intro'
-    ) THEN
-      ALTER TABLE "pages_locales" ADD COLUMN "wallets_grid_wallets_grid_intro" jsonb;
-    END IF;
-  END $$;
 
   DO $$ BEGIN
     IF NOT EXISTS (
@@ -60,6 +50,17 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
       AND column_name = 'people_id'
     ) THEN
       ALTER TABLE "payload_locked_documents_rels" ADD COLUMN "people_id" integer;
+    END IF;
+  END $$;
+
+  DO $$ BEGIN
+    IF NOT EXISTS (
+      SELECT 1 
+      FROM information_schema.columns 
+      WHERE table_name = 'pages_locales'
+      AND column_name = 'wallets_grid_wallets_grid_intro'
+    ) THEN
+      ALTER TABLE "pages_locales" ADD COLUMN "wallets_grid_wallets_grid_intro" jsonb;
     END IF;
   END $$;
 
