@@ -1,7 +1,7 @@
 import { Block } from 'payload'
-import { RichTextBlock } from '../_blocks/RichTextBlock'
-import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
-import { i18n } from '../../i18n-config'
+import { RichTextBlock } from '../RichTextBlock'
+import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
+import { i18n } from '../../../i18n-config'
 
 const imageBlock: Block = {
   slug: 'colImage',

@@ -31,7 +31,7 @@ import {
 import { StatsBlock } from '../_blocks/StatsBlock'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
-import { TalkingPoints } from '../_blocks/TalkingPoints'
+import { TalkingPoints } from '../_blocks/TalkingPointsBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',

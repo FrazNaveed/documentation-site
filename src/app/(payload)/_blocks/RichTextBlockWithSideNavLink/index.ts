@@ -1,7 +1,7 @@
 import { Block } from 'payload'
-import { RichTextField } from '../_fields/RichText'
-import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
-import { i18n } from '../../i18n-config'
+import { RichTextField } from '../../_fields/RichText'
+import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
+import { i18n } from '../../../i18n-config'
 
 export const RichTextBlockWithSideNavLink: Block = {
   slug: 'richTextBlock',
