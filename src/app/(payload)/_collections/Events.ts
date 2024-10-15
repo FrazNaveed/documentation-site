@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import countryArray from '../_utils/countryArray'
+import validateTextFieldUrl from '../_utils/validateTextFieldUrl'
 
 export const Events: CollectionConfig = {
   slug: 'events',
@@ -100,6 +101,7 @@ export const Events: CollectionConfig = {
             {
               name: 'link',
               type: 'text',
+              validate: validateTextFieldUrl,
             },
           ]
         },

@@ -1,4 +1,5 @@
 import type { Field } from 'payload'
+import validateTextFieldUrl from '../_utils/validateTextFieldUrl'
 
 export const ButtonFields: Field[] = [
   {
@@ -15,6 +16,7 @@ export const ButtonFields: Field[] = [
       {
         name: 'buttonLink',
         type: 'text',
+        validate: validateTextFieldUrl,
         admin: {
           width: '75%',
         }

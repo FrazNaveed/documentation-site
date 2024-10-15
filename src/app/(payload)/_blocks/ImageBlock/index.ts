@@ -1,6 +1,6 @@
 import { Block } from 'payload'
-import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
-import { i18n } from '../../i18n-config'
+import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
+import { i18n } from '../../../i18n-config'
 
 export const ImageBlock: Block = {
   slug: 'image',

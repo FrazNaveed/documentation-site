@@ -21,7 +21,7 @@ import {
   UnorderedListFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
-import { Video } from '../_blocks/Video'
+import { Video } from '../_blocks/VideoBlock'
 import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
 
 export const RichTextField: Field = {

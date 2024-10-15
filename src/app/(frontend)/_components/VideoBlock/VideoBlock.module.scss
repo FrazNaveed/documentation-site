@@ -1,0 +1,36 @@
+@use "../../_styles/spacing" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/mixins" as *;
+
+.videoBlockWrap {
+  @include grid(10);
+}
+
+.videoPlayerWrap {
+  @include videoWrap;
+}
+
+.videoBlockTitle,
+.videoPlayerWrap {
+  @include columns(1, 9);
+
+  @include media-breakpoint-down(lg) {
+    @include columns(1, -1);
+  }
+}
+
+.videoBlockTitle {
+  @include headerH5;
+
+  margin-bottom: to-rem($spacing-standard);
+
+  @include media-breakpoint-down(lg) {
+    margin-bottom: to-rem($spacing-small);
+  }
+}
+
+.videoPlayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
