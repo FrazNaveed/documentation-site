@@ -8,7 +8,8 @@ export const TeamGrid: Field[] = [
     interfaceName: 'TeamGrid',
     fields: [
       {
-        name: 'title',
+        name: 'gridTitle',
+        label: 'Title',
         type: 'text',
         localized: true,
       },
