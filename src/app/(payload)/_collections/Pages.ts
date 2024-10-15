@@ -31,8 +31,8 @@ import {
 import { StatsBlock } from '../_blocks/StatsBlock'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
-import { TalkingPoints } from '../_blocks/TalkingPoints'
 import { WalletsGrid } from '../_fields/WalletsGrid'
+import { TalkingPoints } from '../_blocks/TalkingPointsBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -195,6 +195,7 @@ export const Pages: CollectionConfig = {
       options: [
         { label: 'Default', value: 'default', },
         { label: 'Wallets', value: 'wallets', },
+        { label: 'Events ', value: 'events', },
       ],
       admin: {
         position: 'sidebar',

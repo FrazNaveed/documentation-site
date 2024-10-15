@@ -2,7 +2,7 @@ import type { CollectionConfig } from 'payload'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
 import { richTextFieldCustomized } from '../_fields/RichText'
-import { Video } from '../_blocks/Video'
+import { Video } from '../_blocks/VideoBlock'
 
 export const News: CollectionConfig = {
   slug: 'news',

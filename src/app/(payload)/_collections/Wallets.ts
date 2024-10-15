@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import validateTextFieldUrl from '../_utils/validateTextFieldUrl'
 
 export const Wallets: CollectionConfig = {
   slug: 'wallets',
@@ -32,6 +33,7 @@ export const Wallets: CollectionConfig = {
           name: 'walletLink',
           type: 'text',
           required: true,
+          validate: validateTextFieldUrl,
           admin: {
             width: '50%',
           }

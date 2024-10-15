@@ -9,6 +9,7 @@ import PageHero from 'src/app/(frontend)/_components/PageHero'
 import SideNav from 'src/app/(frontend)/_components/SideNav'
 import JumpLinkAnchor from 'src/app/(frontend)/_components/SideNav/JumpLinkAnchor'
 import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
+import EventsList from 'src/app/(frontend)/_components/EventsList'
 import Columns from 'src/app/(frontend)/_components/Columns'
 import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import Stats from 'src/app/(frontend)/_components/Stats'
@@ -136,6 +137,7 @@ export default async function Page({
         {dictionary['server-component'].welcome}
       </h3>
       <p>Switch between en, es, and de in the URL to see different languages. Other languages will default to en.</p>
+      {pageTemplate === 'events' && <EventsList />}
       {(components && components.length > 0) && (
         <div className={styles.grid}>
           <SideNav components={components} />

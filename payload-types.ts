@@ -105,6 +105,7 @@ export interface Config {
     news: News;
     'news-types': NewsType;
     'news-sub-types': NewsSubType;
+    people: Person;
     wallets: Wallet;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -451,7 +452,7 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
   };
-  pageTemplate: 'default' | 'wallets';
+  pageTemplate: 'default' | 'wallets' | 'events';
   updatedAt: string;
   createdAt: string;
 }
@@ -748,6 +749,18 @@ export interface NewsSubType {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "people".
+ */
+export interface Person {
+  id: number;
+  fullName?: string | null;
+  title?: string | null;
+  headshot?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -780,6 +793,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'news-sub-types';
         value: number | NewsSubType;
+      } | null)
+    | ({
+        relationTo: 'people';
+        value: number | Person;
       } | null)
     | ({
         relationTo: 'wallets';
