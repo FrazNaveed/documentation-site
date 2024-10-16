@@ -6,6 +6,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TYPE "enum_wallets_platforms" ADD VALUE IF NOT EXISTS 'iOS';
   ALTER TYPE "enum_wallets_platforms" ADD VALUE IF NOT EXISTS 'Android';
   ALTER TYPE "enum_wallets_platforms" ADD VALUE IF NOT EXISTS 'Hardware';
+  ALTER TABLE pages_rels ADD COLUMN if not exists "people_id" integer;
   CREATE TABLE IF NOT EXISTS "pages_rels" (
   	"id" serial PRIMARY KEY NOT NULL,
   	"order" integer,
