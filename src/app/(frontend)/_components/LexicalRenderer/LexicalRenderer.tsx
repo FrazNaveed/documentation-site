@@ -4,6 +4,7 @@ import React, { CSSProperties } from 'react'
 import Image from 'next/image'
 import cx from 'classnames'
 import type { News, Page } from '@/payload-types'
+import Link from '../../_components/Link'
 import VideoEmbed from '../../_components/VideoEmbed'
 import getCollectionPath from '../../_utils/getCollectionPath'
 import type { CollectionPathContentTypes } from '../../_utils/getCollectionPath'
@@ -273,7 +274,7 @@ export const defaultElementRenderers: ElementRenderers = {
     <p style={getElementStyle<'paragraph'>(element)}>{element.children}</p>
   ),
   link: (element) => (
-    <a
+    <Link
       href={element.fields.linkType === 'internal'
         ? `${getCollectionPath(element.fields.doc.relationTo as CollectionPathContentTypes)}${element.fields.doc.value.slug}`
         : element.fields.url}
@@ -282,17 +283,17 @@ export const defaultElementRenderers: ElementRenderers = {
       rel='noreferrer'
     >
       {element.children}
-    </a>
+    </Link>
   ),
   autolink: (element) => (
-    <a
+    <Link
       href={element.fields.url}
       target={element.fields.newTab ? '_blank' : '_self'}
       style={getElementStyle<'autolink'>(element)}
       rel='noreferrer'
     >
       {element.children}
-    </a>
+    </Link>
   ),
   quote: (element) => (
     <blockquote style={getElementStyle<'quote'>(element)}>
