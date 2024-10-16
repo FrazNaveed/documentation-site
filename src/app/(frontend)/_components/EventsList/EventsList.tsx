@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import Link from 'next/link'
 import cx from 'classnames'
 import * as flags from 'country-flag-icons/react/3x2'
 import Button from 'src/app/(frontend)/_components/Button'
@@ -70,9 +71,11 @@ export default async function EventsList() {
                 startDate,
                 startTime,
                 endDate,
+                endTime,
                 country,
                 location,
                 flareInvolvement,
+                eventLink,
                 button,
                 featured,
               } = event
@@ -87,6 +90,7 @@ export default async function EventsList() {
                 <p className={styles.dates}>
                   {displayDateRange(startDate, endDate)}
                   {startTime && `, ${convertTimestampToMilitaryTime(startTime)}`}
+                  {(startTime && endTime) && ` - ${convertTimestampToMilitaryTime(endTime)}`}
                 </p>
               )
               const locationMarkup = (
@@ -102,21 +106,26 @@ export default async function EventsList() {
                   {flareInvolvement}
                 </p>
               )
-              const linkIsExternal = isUrlExternal(link)
-              const buttonMarkup = (
+              const ArrowComponet = isUrlExternal(eventLink) ? DiagonalArrowThick : RightArrow
+              const linkArrowComponent = eventLink && (
+                <Link href={eventLink} aria-label='Event link'>
+                  <ArrowComponet className={styles.arrow} />
+                </Link>
+              )
+              const buttonMarkup = (showArrow = false) => (
                 <div className={styles.buttonWrap}>
                   {(buttonType && link) && (
                     <Button
                       className={cx(styles.button, styles[`button__${buttonType}`])}
                       link={link}
-                      linkExternal={linkIsExternal}
+                      linkExternal={isUrlExternal(link)}
                       text={buttonType === 'rsvp' ? 'RSVP' : 'Announcement'}
                       buttonStyle={buttonType === 'rsvp' ? 'pink' : 'secondary'}
                     />
                   )}
+                  {showArrow && linkArrowComponent}
                 </div>
               )
-              const ArrowComponet = linkIsExternal ? DiagonalArrowThick : RightArrow
               return (
                 <Fragment key={`${title}-${startDate}-${location}`}>
                   <div className={cx(styles.event, styles.event__desktop)}>
@@ -126,7 +135,7 @@ export default async function EventsList() {
                       {locationMarkup}
                       {involvementMarkup}
                     </div>
-                    {buttonMarkup}
+                    {buttonMarkup(true)}
                   </div>
                   <div className={cx(styles.event, styles.event__mobile)}>
                     <div className={styles.mobileHeader}>
@@ -140,14 +149,14 @@ export default async function EventsList() {
                         {titleMarkup}
                         {dateMarkup}
                       </div>
-                      {link && <ArrowComponet className={styles.arrow} />}
+                      {linkArrowComponent}
                     </div>
                     <div className={styles.eventInner}>
                       <div className={styles.eventInfo}>
                         {locationMarkup}
                         {involvementMarkup}
                       </div>
-                      {buttonMarkup}
+                      {buttonMarkup()}
                     </div>
                   </div>
                 </Fragment>

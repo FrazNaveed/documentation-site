@@ -148,6 +148,7 @@ export interface Event {
   startDate: string;
   startTime?: string | null;
   endDate?: string | null;
+  endTime?: string | null;
   country:
     | 'AF'
     | 'AX'
@@ -396,6 +397,7 @@ export interface Event {
     | 'ZW';
   location: string;
   flareInvolvement: string;
+  eventLink?: string | null;
   button?: {
     buttonType?: ('announcement' | 'rsvp') | null;
     link?: string | null;

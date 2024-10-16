@@ -83,7 +83,7 @@ $event-col-gap: $grid-column-gap;
   }
 }
 
-$button-col-width: 177px;
+$button-col-width: 205px;
 
 .colHeader {
   @include label;
@@ -133,25 +133,6 @@ $button-col-width: 177px;
   }
 }
 
-.location {
-  display: flex;
-  align-items: center;
-  gap: to-rem($spacing-x-small);
-}
-
-.buttonWrap {
-  flex-shrink: 0;
-  text-align: right;
-
-  @include media-breakpoint-up(lg) {
-    width: $button-col-width;
-  }
-
-  @include media-breakpoint-down(lg) {
-    align-self: flex-end;
-  }
-}
-
 .flag {
   position: relative;
   flex-shrink: 0;
@@ -173,6 +154,32 @@ $button-col-width: 177px;
     min-height: 100%;
     transform: translate(-50%, -50%);
   }
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: to-rem($spacing-x-small);
+}
+
+.buttonWrap {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: $spacing-x-small;
+
+  @include media-breakpoint-up(lg) {
+    width: $button-col-width;
+  }
+
+  @include media-breakpoint-down(lg) {
+    align-self: flex-end;
+  }
+}
+
+.button {
+  flex-shrink: 0;
 }
 
 .mobileHeader {
@@ -215,6 +222,7 @@ $button-col-width: 177px;
 }
 
 .arrow {
+  display: block;
   flex-shrink: 0;
 }
 
