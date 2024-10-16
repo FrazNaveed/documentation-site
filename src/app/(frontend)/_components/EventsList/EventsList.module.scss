@@ -54,7 +54,7 @@ $event-col-gap: $grid-column-gap;
   @include spanColumns(12);
 
   border-radius: 6px;
-  background-color: $pink-50;
+  background-color: $gray-50;
 
   @include media-breakpoint-down(lg) {
     @include spanColumns(4);
@@ -130,8 +130,6 @@ $button-col-width: 177px;
 .title {
   @include media-breakpoint-down(lg) {
     @include bodyBase;
-
-    color: $pink-700;
   }
 }
 

@@ -5,7 +5,9 @@ import Button from 'src/app/(frontend)/_components/Button'
 import { getEventsArchive } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import getDateTimeLocale from 'src/app/(frontend)/_utils/getDateTimeLocale'
 import type { TLocales } from 'src/app/(frontend)/_utils/getDateTimeLocale'
+import isUrlExternal from 'src/app/(frontend)/_utils/isUrlExternal'
 import Flare from 'src/app/(frontend)/_components/svgs/Flare'
+import DiagonalArrowThick from 'src/app/(frontend)/_components/svgs/DiagonalArrowThick'
 import RightArrow from 'src/app/(frontend)/_components/svgs/RightArrow'
 import styles from './EventsList.module.scss'
 
@@ -100,19 +102,21 @@ export default async function EventsList() {
                   {flareInvolvement}
                 </p>
               )
+              const linkIsExternal = isUrlExternal(link)
               const buttonMarkup = (
                 <div className={styles.buttonWrap}>
                   {(buttonType && link) && (
                     <Button
                       className={cx(styles.button, styles[`button__${buttonType}`])}
                       link={link}
-                      linkExternal
+                      linkExternal={linkIsExternal}
                       text={buttonType === 'rsvp' ? 'RSVP' : 'Announcement'}
                       buttonStyle={buttonType === 'rsvp' ? 'pink' : 'secondary'}
                     />
                   )}
                 </div>
               )
+              const ArrowComponet = linkIsExternal ? DiagonalArrowThick : RightArrow
               return (
                 <Fragment key={`${title}-${startDate}-${location}`}>
                   <div className={cx(styles.event, styles.event__desktop)}>
@@ -136,7 +140,7 @@ export default async function EventsList() {
                         {titleMarkup}
                         {dateMarkup}
                       </div>
-                      <RightArrow className={styles.arrow} />
+                      {link && <ArrowComponet className={styles.arrow} />}
                     </div>
                     <div className={styles.eventInner}>
                       <div className={styles.eventInfo}>
