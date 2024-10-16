@@ -1,1 +1,75 @@
-// styles
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.productGrid {
+  margin-bottom: to-rem($spacing-5x-large);
+
+  @include media-breakpoint-down(lg) {
+    margin-bottom: to-rem($spacing-large);
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: to-rem($spacing-medium);
+  }
+
+  &Wrap {
+    @include grid(12); // for testing. to replace with subgrid.
+
+    grid-auto-rows: 1fr;
+    gap: to-rem($spacing-small) to-rem($grid-column-gap-flare);
+  }
+
+  &Title {
+    @include headerH5;
+
+    margin-bottom: to-rem($spacing-medium);
+
+    @include media-breakpoint-down(lg) {
+      margin-bottom: to-rem($spacing-small);
+    }
+  }
+}
+
+.product {
+  height: 100%;
+  padding: to-rem($spacing-standard);
+  border-radius: 10px;
+  background-color: $pink-50;
+
+  &Wrap {
+    grid-column: span 3;
+
+    @include media-breakpoint-down(lg) {
+      grid-column: span 4;
+    }
+  }
+
+  &Header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  &Info {
+    display: flex;
+    align-items: center;
+    column-gap: to-rem($spacing-x-small);
+  }
+
+  &Title {
+    @include headerH6;
+
+    margin-bottom: to-rem($spacing-standard);
+    color: $pink-700;
+  }
+
+  &Description {
+    @include paragraphXSmFont;
+
+    margin-bottom: 0;
+    color: $black;
+  }
+}
