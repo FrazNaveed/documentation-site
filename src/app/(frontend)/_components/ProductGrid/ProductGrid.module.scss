@@ -2,6 +2,7 @@
 @use "../../_styles/typography" as *;
 @use "../../_styles/colors" as *;
 @use "../../_styles/spacing" as *;
+@use "../../_styles/transitions" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .productGrid {
@@ -40,10 +41,15 @@
   background-color: $pink-50;
 
   &Wrap {
+    transition: all $transition-snappy;
     grid-column: span 3;
 
     @include media-breakpoint-down(lg) {
       grid-column: span 4;
+    }
+
+    &:hover {
+      transform: translateY(-10px);
     }
   }
 
