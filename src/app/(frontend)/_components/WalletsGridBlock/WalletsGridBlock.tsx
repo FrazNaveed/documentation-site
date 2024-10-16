@@ -35,9 +35,13 @@ export default function WalletsGridBlock({ intro, wallets }: WalletsGridBlockPro
           } = wallet
           return (
             <li key={wallet.id} className={styles.wallet}>
-              <div className={styles.walletHeader}>
-                <p className='visuallyHidden'>{name}</p>
-                {logo && typeof logo === 'object' && logo.url
+              <Link
+                href={walletLink}
+                className={styles.walletLink}
+              >
+                <div className={styles.walletHeader}>
+                  <p className='visuallyHidden'>{name}</p>
+                  {logo && typeof logo === 'object' && logo.url
                   && (
                   <div>
                     <Image
@@ -48,41 +52,38 @@ export default function WalletsGridBlock({ intro, wallets }: WalletsGridBlockPro
                     />
                   </div>
                   )}
-                <Link
-                  href={walletLink}
-                >
                   <DiagonalArrowSquare />
-                </Link>
-              </div>
-              {flrFunctionality && (
+                </div>
+                {flrFunctionality && (
                 <span className={styles.walletFlrFunctionalityWrap}>
                   <FlareLogo />
                   <p>FLR Functionality</p>
                 </span>
-              )}
-              {tags && (
+                )}
+                {tags && (
                 <div className={styles.walletTagsWrap}>
                   {tags.map((tag: string) => (
                     <p key={tag} className={styles.walletTag}>{tag}</p>
                   ))}
                 </div>
-              )}
-              <div className={styles.walletFooter}>
-                {platforms && (
+                )}
+                <div className={styles.walletFooter}>
+                  {!!platforms?.length && (
                   <div className={styles.walletPlatformsWrap}>
                     <Platform />
-                    {platforms.map((platform: string) => (
+                    {platforms?.map((platform: string) => (
                       <p key={platform} className={styles.walletPlatform}>{platform}</p>
                     ))}
                   </div>
-                )}
-                <span className={cx(styles.walletConnectWrap)}>
-                  {walletConnect ? <WalletConnectBlue /> : <WalletConnect />}
-                  <p className={styles.walletConnectText}>
-                    {walletConnect ? 'Yes' : 'No'}
-                  </p>
-                </span>
-              </div>
+                  )}
+                  <span className={cx(styles.walletConnectWrap)}>
+                    {walletConnect ? <WalletConnectBlue /> : <WalletConnect />}
+                    <p className={styles.walletConnectText}>
+                      {walletConnect ? 'Yes' : 'No'}
+                    </p>
+                  </span>
+                </div>
+              </Link>
             </li>
           )
         })}

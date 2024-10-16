@@ -1,11 +1,14 @@
 import { Fragment } from 'react'
+import Link from 'next/link'
 import cx from 'classnames'
 import * as flags from 'country-flag-icons/react/3x2'
 import Button from 'src/app/(frontend)/_components/Button'
 import { getEventsArchive } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import getDateTimeLocale from 'src/app/(frontend)/_utils/getDateTimeLocale'
 import type { TLocales } from 'src/app/(frontend)/_utils/getDateTimeLocale'
+import isUrlExternal from 'src/app/(frontend)/_utils/isUrlExternal'
 import Flare from 'src/app/(frontend)/_components/svgs/Flare'
+import DiagonalArrowThick from 'src/app/(frontend)/_components/svgs/DiagonalArrowThick'
 import RightArrow from 'src/app/(frontend)/_components/svgs/RightArrow'
 import styles from './EventsList.module.scss'
 
@@ -68,9 +71,11 @@ export default async function EventsList() {
                 startDate,
                 startTime,
                 endDate,
+                endTime,
                 country,
                 location,
                 flareInvolvement,
+                eventLink,
                 button,
                 featured,
               } = event
@@ -85,6 +90,7 @@ export default async function EventsList() {
                 <p className={styles.dates}>
                   {displayDateRange(startDate, endDate)}
                   {startTime && `, ${convertTimestampToMilitaryTime(startTime)}`}
+                  {(startTime && endTime) && ` - ${convertTimestampToMilitaryTime(endTime)}`}
                 </p>
               )
               const locationMarkup = (
@@ -100,17 +106,24 @@ export default async function EventsList() {
                   {flareInvolvement}
                 </p>
               )
-              const buttonMarkup = (
+              const ArrowComponent = isUrlExternal(eventLink) ? DiagonalArrowThick : RightArrow
+              const linkArrowComponent = eventLink && (
+                <Link href={eventLink} aria-label='Event link'>
+                  <ArrowComponent className={styles.arrow} />
+                </Link>
+              )
+              const buttonMarkup = (showArrow = false) => (
                 <div className={styles.buttonWrap}>
                   {(buttonType && link) && (
                     <Button
                       className={cx(styles.button, styles[`button__${buttonType}`])}
                       link={link}
-                      linkExternal
+                      linkExternal={isUrlExternal(link)}
                       text={buttonType === 'rsvp' ? 'RSVP' : 'Announcement'}
                       buttonStyle={buttonType === 'rsvp' ? 'pink' : 'secondary'}
                     />
                   )}
+                  {showArrow && linkArrowComponent}
                 </div>
               )
               return (
@@ -122,7 +135,7 @@ export default async function EventsList() {
                       {locationMarkup}
                       {involvementMarkup}
                     </div>
-                    {buttonMarkup}
+                    {buttonMarkup(true)}
                   </div>
                   <div className={cx(styles.event, styles.event__mobile)}>
                     <div className={styles.mobileHeader}>
@@ -136,14 +149,14 @@ export default async function EventsList() {
                         {titleMarkup}
                         {dateMarkup}
                       </div>
-                      <RightArrow className={styles.arrow} />
+                      {linkArrowComponent}
                     </div>
                     <div className={styles.eventInner}>
                       <div className={styles.eventInfo}>
                         {locationMarkup}
                         {involvementMarkup}
                       </div>
-                      {buttonMarkup}
+                      {buttonMarkup()}
                     </div>
                   </div>
                 </Fragment>

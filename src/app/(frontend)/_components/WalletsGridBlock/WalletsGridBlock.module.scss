@@ -40,10 +40,6 @@
     p {
       @include paragraphSmFont;
     }
-
-    // a {
-    //   color: $pink-600;
-    // }
   }
 
   &Wrap {
@@ -60,7 +56,6 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: to-rem($spacing-standard);
   border-radius: 6px;
   background-color: $pink-50;
   grid-column: span 5;
@@ -73,10 +68,18 @@
     margin-bottom: 0;
   }
 
+  a {
+    color: $gray;
+  }
+
   &TagsWrap,
   &ConnectWrap {
     display: flex;
     align-items: baseline;
+  }
+
+  &Link {
+    padding: to-rem($spacing-standard);
   }
 
   &Header {
