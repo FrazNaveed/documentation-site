@@ -22,6 +22,7 @@ import styles from './page.module.scss'
 import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
 import { PayloadLexicalReactRendererContent } from '../../_components/LexicalRenderer/LexicalRenderer'
+import LinkBand from '../../_components/LinkBand'
 
 export default async function Page({
   params: { slug, lang },
@@ -207,6 +208,7 @@ export default async function Page({
           </div>
         </div>
       )}
+      <LinkBand />
       {(pageFooterCTA
       && pageFooterCTAButton?.buttonLink
       && pageFooterCTAButton?.buttonText
