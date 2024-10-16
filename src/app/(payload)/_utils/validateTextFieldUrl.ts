@@ -1,4 +1,7 @@
 const validateTextFieldUrl = (value: string | null | undefined) => {
+  if (value === null || undefined) {
+    return true
+  }
   if (typeof value !== 'string') {
     return 'Invalid value type. Please enter a valid URL.';
   }
