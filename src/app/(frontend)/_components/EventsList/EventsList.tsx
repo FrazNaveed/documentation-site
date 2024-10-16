@@ -106,10 +106,10 @@ export default async function EventsList() {
                   {flareInvolvement}
                 </p>
               )
-              const ArrowComponet = isUrlExternal(eventLink) ? DiagonalArrowThick : RightArrow
+              const ArrowComponent = isUrlExternal(eventLink) ? DiagonalArrowThick : RightArrow
               const linkArrowComponent = eventLink && (
                 <Link href={eventLink} aria-label='Event link'>
-                  <ArrowComponet className={styles.arrow} />
+                  <ArrowComponent className={styles.arrow} />
                 </Link>
               )
               const buttonMarkup = (showArrow = false) => (
