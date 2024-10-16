@@ -14,10 +14,14 @@ import Columns from 'src/app/(frontend)/_components/Columns'
 import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
+import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
+import type { Wallet } from '@/payload-types'
 import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
+import TeamGridBlock from '../../_components/TeamGridBlock'
 import styles from './page.module.scss'
 import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
+import { PayloadLexicalReactRendererContent } from '../../_components/LexicalRenderer/LexicalRenderer'
 
 export default async function Page({
   params: { slug, lang },
@@ -40,11 +44,14 @@ export default async function Page({
     pageFooterCTA,
     pageFooterCTAButton,
     pageTemplate,
+    walletsGrid,
     relatedNewsType,
     previousPage,
     nextPage,
     linkType,
+    teamGrid,
   } = pageData
+  console.log(pageData)
   let heroComponent
   if (hero) {
     const {
@@ -73,6 +80,54 @@ export default async function Page({
     const { bannerText } = pageBanner
     pageBannerComponent = (
       <PageBanner content={bannerText} />
+    )
+  }
+
+  if (pageTemplate === 'team') {
+    let teamGridComponent
+    if (teamGrid) {
+      teamGridComponent = (
+        <TeamGridBlock title={teamGrid?.title} team={teamGrid?.team} />
+      )
+    }
+
+    return (
+      <div className={styles.wrap}>
+        {pageBanner?.togglePageBanner && pageBannerComponent}
+        {heroComponent}
+        <div className={styles.grid}>
+          {teamGridComponent}
+        </div>
+      </div>
+    )
+  }
+
+  if (pageTemplate === 'wallets') {
+    let walletsGridComponent
+    if (walletsGrid) {
+      const {
+        walletsGridIntro,
+        wallets,
+      } = walletsGrid
+      const walletsGridProps = {
+        intro: walletsGridIntro as PayloadLexicalReactRendererContent,
+        wallets: (wallets || []).filter((wallet): wallet is Wallet => typeof wallet === 'object'),
+      }
+      walletsGridComponent = (
+        <WalletsGridBlock
+          {...walletsGridProps}
+        />
+      )
+    }
+
+    return (
+      <div className={styles.wrap}>
+        {pageBanner?.togglePageBanner && pageBannerComponent}
+        {heroComponent}
+        <div className={styles.grid}>
+          {walletsGridComponent}
+        </div>
+      </div>
     )
   }
 

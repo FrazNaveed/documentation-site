@@ -31,6 +31,8 @@ import {
 import { StatsBlock } from '../_blocks/StatsBlock'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
+import { TeamGrid } from '../_fields/Team'
+import { WalletsGrid } from '../_fields/WalletsGrid'
 import { TalkingPoints } from '../_blocks/TalkingPointsBlock'
 
 export const Pages: CollectionConfig = {
@@ -165,6 +167,8 @@ export const Pages: CollectionConfig = {
         position: 'sidebar',
       },
     },
+    ...TeamGrid,
+    ...WalletsGrid,
     {
       name: 'components',
       type: 'blocks',
@@ -176,6 +180,15 @@ export const Pages: CollectionConfig = {
         TableDrawersBlock,
         TalkingPoints,
       ],
+      admin: {
+        condition: (data, siblingData, { user }) => {
+          if (siblingData.pageTemplate === 'wallets' || siblingData.pageTemplate === 'team') {
+            return false
+          } else {
+            return true
+          }
+         }
+      }
     },
     ...PageFooterCTA,
     {
@@ -187,6 +200,7 @@ export const Pages: CollectionConfig = {
       localized: true,
       options: [
         { label: 'Default', value: 'default', },
+        { label: 'Team', value: 'team' },
         { label: 'Wallets', value: 'wallets', },
         { label: 'Events ', value: 'events', },
       ],
