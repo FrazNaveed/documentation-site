@@ -49,6 +49,24 @@ export const Events: CollectionConfig = {
             width: '25%',
           }
         },
+        {
+          name: 'endTime',
+          type: 'date',
+          required: false,
+          admin: {
+            date: {
+              pickerAppearance: 'timeOnly',
+            },
+            width: '15%',
+            condition: (data, siblingData, { user }) => {
+              if (siblingData.startTime) {
+                return true
+              } else {
+                return false
+              }
+            },
+          },
+        },
       ],
     },
     {
@@ -79,6 +97,11 @@ export const Events: CollectionConfig = {
       type: 'text',
       required: true,
       localized: true,
+    },
+    {
+      name: 'eventLink',
+      type: 'text',
+      validate: validateTextFieldUrl,
     },
     {
       name: 'button',
