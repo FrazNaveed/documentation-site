@@ -2,10 +2,10 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 
 export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
-   ALTER TYPE "enum_pages_page_template" ADD VALUE 'team';
-  ALTER TYPE "enum_wallets_platforms" ADD VALUE 'iOS';
-  ALTER TYPE "enum_wallets_platforms" ADD VALUE 'Android';
-  ALTER TYPE "enum_wallets_platforms" ADD VALUE 'Hardware';
+   ALTER TYPE "enum_pages_page_template" ADD VALUE IF NOT EXISTS 'team';
+  ALTER TYPE "enum_wallets_platforms" ADD VALUE IF NOT EXISTS 'iOS';
+  ALTER TYPE "enum_wallets_platforms" ADD VALUE IF NOT EXISTS 'Android';
+  ALTER TYPE "enum_wallets_platforms" ADD VALUE IF NOT EXISTS 'Hardware';
   CREATE TABLE IF NOT EXISTS "pages_rels" (
   	"id" serial PRIMARY KEY NOT NULL,
   	"order" integer,
@@ -25,8 +25,8 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "pages_blocks_table_drawers_locales" ALTER COLUMN "column2_header" DROP NOT NULL;
   ALTER TABLE "pages_blocks_talking_points_points" ALTER COLUMN "header" DROP NOT NULL;
   ALTER TABLE "pages_blocks_talking_points_points" ALTER COLUMN "text" DROP NOT NULL;
-  ALTER TABLE "pages_locales" ADD COLUMN "team_grid_grid_title" varchar;
-  ALTER TABLE "pages_locales" ADD COLUMN "wallets_grid_wallets_grid_intro" jsonb;
+  ALTER TABLE "pages_locales" ADD COLUMN IF NOT EXISTS "team_grid_grid_title" varchar;
+  ALTER TABLE "pages_locales" ADD COLUMN IF NOT EXISTS "wallets_grid_wallets_grid_intro" jsonb;
   DO $$ BEGIN
    ALTER TABLE "pages_rels" ADD CONSTRAINT "pages_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
