@@ -1,12 +1,21 @@
 import BannerCTA from 'src/app/(frontend)/_components/BannerCTA'
 import SubscriptionBannerCTA from 'src/app/(frontend)/_components/SubscriptionBannerCTA'
 import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
+import TallCta from '../../../_components/TallCTA'
 
 export default function Page() {
   const linkUrl = 'https://flare.network'
 
   return (
     <>
+      <h2>Tall CTA</h2>
+      <TallCta
+        title='Bug Bounty'
+        content='Flare has an active Bug Bounty Program on Immunefi.'
+        buttonText='Immunefi'
+        buttonLink='foo.com'
+      />
+      <br />
       <h2>Banner CTA</h2>
       <BannerCTA
         header='[dev.sessions]'
