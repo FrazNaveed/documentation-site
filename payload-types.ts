@@ -495,7 +495,7 @@ export interface NewsType {
  * via the `definition` "TeamGrid".
  */
 export interface TeamGrid {
-  title?: string | null;
+  gridTitle?: string | null;
   team?: (number | Person)[] | null;
 }
 /**
