@@ -8,7 +8,7 @@ import getDateTimeLocale from 'src/app/(frontend)/_utils/getDateTimeLocale'
 import type { TLocales } from 'src/app/(frontend)/_utils/getDateTimeLocale'
 import isUrlExternal from 'src/app/(frontend)/_utils/isUrlExternal'
 import Flare from 'src/app/(frontend)/_components/svgs/Flare'
-import DiagonalArrowThick from 'src/app/(frontend)/_components/svgs/DiagonalArrowThick'
+import DiagonalArrowSquare from 'src/app/(frontend)/_components/svgs/DiagonalArrowSquare'
 import RightArrow from 'src/app/(frontend)/_components/svgs/RightArrow'
 import styles from './EventsList.module.scss'
 
@@ -106,7 +106,7 @@ export default async function EventsList() {
                   {flareInvolvement}
                 </p>
               )
-              const ArrowComponent = isUrlExternal(eventLink) ? DiagonalArrowThick : RightArrow
+              const ArrowComponent = isUrlExternal(eventLink) ? DiagonalArrowSquare : RightArrow
               const linkArrowComponent = eventLink && (
                 <Link href={eventLink} aria-label='Event link'>
                   <ArrowComponent className={styles.arrow} />
