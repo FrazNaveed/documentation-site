@@ -2,12 +2,6 @@
 @use "../../_styles/mixins" as *;
 @use "../../_styles/spacing" as *;
 
-.wrap {
-  display: inline-flex;
-  align-items: center;
-  column-gap: to-rem($spacing-x-small);
-}
-
 .linkWrap {
   &,
   &:visited {
@@ -29,4 +23,6 @@
   flex-shrink: 0;
   width: 0.6em;
   height: auto;
+  margin-right: to-rem(2px);
+  margin-left: to-rem($spacing-x-small);
 }

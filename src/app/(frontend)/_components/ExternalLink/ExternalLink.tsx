@@ -14,10 +14,8 @@ export default function ExternalLink({
 }: React.PropsWithChildren<ExternalLinkProps>) {
   return (
     <Link href={href} className={cx(styles.linkWrap, className)} {...rest}>
-      <span className={styles.wrap}>
-        {children}
-        <DiagonalArrowSquare className={cx(styles.arrow, iconClassName)} />
-      </span>
+      {children}
+      <DiagonalArrowSquare className={cx(styles.arrow, iconClassName)} />
     </Link>
   )
 }
