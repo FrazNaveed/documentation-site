@@ -1,6 +1,6 @@
 // import cx from 'classnames'
 import Link from 'next/link'
-import ForwardArrow from '../svgs/ForwardArrow'
+import RightArrow from '../svgs/RightArrow'
 import styles from './ProductGrid.module.scss'
 
 export type ProductGridProps = {
@@ -21,7 +21,7 @@ export default function ProductGrid({ title, products }: ProductGridProps) {
                   <p>uploaded icon</p>
                   <h3 className={styles.productTitle}>{product.title}</h3>
                 </div>
-                <ForwardArrow />
+                <RightArrow />
               </div>
               <p className={styles.productDescription}>{product.description}</p>
             </div>
