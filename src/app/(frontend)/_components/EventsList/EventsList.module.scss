@@ -49,7 +49,6 @@ $event-col-gap: $grid-column-gap;
 
   @include container-breakpoint-down(lg) {
     flex-direction: column;
-    justify-content: space-between;
     gap: $mobile-text-row-gap;
   }
 }
@@ -164,6 +163,12 @@ $button-col-width: 205px;
   display: flex;
   align-items: center;
   gap: to-rem($spacing-x-small);
+}
+
+.involvement {
+  @include container-breakpoint-down(lg) {
+    display: none;
+  }
 }
 
 .buttonWrap {

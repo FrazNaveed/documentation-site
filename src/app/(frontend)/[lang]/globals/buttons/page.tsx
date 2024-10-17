@@ -9,7 +9,7 @@ export default function Page() {
       &nbsp;
       <Button text='Default Link' link='/hello' />
       &nbsp;
-      <Button text='Default Link' link='/hello' linkExternal />
+      <Button text='Default Link' link='https://dev.flare.network/' />
       &nbsp;
       <Button text='Default disabled' disabled />
       <br />
@@ -17,7 +17,7 @@ export default function Page() {
       &nbsp;
       <Button text='Black link' buttonStyle='black' link='/hello' />
       &nbsp;
-      <Button text='Black link' buttonStyle='black' link='/hello' linkExternal />
+      <Button text='Black link' buttonStyle='black' link='https://dev.flare.network/' />
       &nbsp;
       <Button text='Black disabled' buttonStyle='black' disabled />
       <br />
@@ -25,7 +25,7 @@ export default function Page() {
       &nbsp;
       <Button text='Secondary link' buttonStyle='secondary' link='/hello' />
       &nbsp;
-      <Button text='Secondary link' buttonStyle='secondary' link='/hello' linkExternal />
+      <Button text='Secondary link' buttonStyle='secondary' link='https://dev.flare.network/' />
       &nbsp;
       <Button text='Secondary disabled' buttonStyle='secondary' disabled />
       <br />
@@ -51,7 +51,7 @@ export default function Page() {
       &nbsp;
       <Button text='Small link' link='/hello' size='small' />
       &nbsp;
-      <Button text='Small link' link='/hello' size='small' linkExternal />
+      <Button text='Small link' link='https://dev.flare.network/' size='small' />
       &nbsp;
       <Button text='Small disabled' size='small' disabled />
       <br />
@@ -59,7 +59,7 @@ export default function Page() {
       &nbsp;
       <Button text='Small black link' buttonStyle='black' link='/hello' size='small' />
       &nbsp;
-      <Button text='Small black link' buttonStyle='black' link='/hello' size='small' linkExternal />
+      <Button text='Small black link' buttonStyle='black' link='https://dev.flare.network/' size='small' />
       &nbsp;
       <Button text='Small black disabled' buttonStyle='black' size='small' disabled />
       <br />
@@ -67,7 +67,7 @@ export default function Page() {
       &nbsp;
       <Button text='Small secondary link' buttonStyle='secondary' link='/hello' size='small' />
       &nbsp;
-      <Button text='Small secondary link' buttonStyle='secondary' link='/hello' size='small' linkExternal />
+      <Button text='Small secondary link' buttonStyle='secondary' link='https://dev.flare.network/' size='small' />
       &nbsp;
       <Button text='Small secondary disabled' buttonStyle='secondary' size='small' disabled />
       <br />

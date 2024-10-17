@@ -119,7 +119,6 @@ export default async function EventsList() {
                       <Button
                         className={cx(styles.button, styles[`button__${buttonType}`])}
                         link={link}
-                        linkExternal={isUrlExternal(link)}
                         text={buttonType === 'rsvp' ? 'RSVP' : 'Announcement'}
                         buttonStyle={buttonType === 'rsvp' ? 'pink' : 'secondary'}
                       />
