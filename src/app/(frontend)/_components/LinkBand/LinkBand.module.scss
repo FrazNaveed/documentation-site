@@ -7,4 +7,69 @@
 
 .linkBand {
   background-color: $pink-900;
+
+  &Title,
+  a {
+    color: $white;
+  }
+
+  &Header {
+    padding-top: to-rem($spacing-xx-large);
+    border-bottom: 1px solid $white;
+  }
+
+  &Title {
+    @include headerH5;
+
+    margin-bottom: to-rem($spacing-standard);
+  }
+
+  &Links {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &Link {
+    @include headerH7;
+
+    display: flex;
+    flex: 1 1 50%;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: to-rem($spacing-medium);
+    padding-bottom: to-rem($spacing-medium);
+    border-bottom: 1px solid $white;
+
+    @include media-breakpoint-down(sm) {
+      flex: 1 1 100%;
+    }
+
+    &__noBorderBottom {
+      border-bottom: none;
+
+      @include media-breakpoint-down(sm) {
+        border-bottom: 1px solid $white;
+      }
+    }
+
+    &:nth-child(odd) {
+      border-right: 1px solid $white;
+
+      @include media-breakpoint-down(sm) {
+        border-right: none;
+      }
+    }
+
+    &:last-child {
+      @include media-breakpoint-down(sm) {
+        border-bottom: none;
+      }
+    }
+
+    svg {
+      path {
+        fill: $white;
+      }
+    }
+  }
 }
