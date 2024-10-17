@@ -15,7 +15,7 @@ import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
-import type { Wallet } from '@/payload-types'
+import type { Person, Wallet } from '@/payload-types'
 import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
 import TeamGridBlock from '../../_components/TeamGridBlock'
 import styles from './page.module.scss'
@@ -86,8 +86,16 @@ export default async function Page({
   if (pageTemplate === 'team') {
     let teamGridComponent
     if (teamGrid) {
+      const {
+        gridTitle,
+        team,
+      } = teamGrid
+      const teamGridProps = {
+        gridTitle,
+        team: (team || []).filter((teamMember): teamMember is Person => typeof teamMember === 'object'),
+      }
       teamGridComponent = (
-        <TeamGridBlock title={teamGrid?.title} team={teamGrid?.team} />
+        <TeamGridBlock {...teamGridProps} />
       )
     }
 
