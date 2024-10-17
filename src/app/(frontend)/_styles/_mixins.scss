@@ -37,11 +37,15 @@ $breakpoint-xl: 1401px;
 
 @use "@aleph/nought-sass-mixins" as *;
 
-@mixin container-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+@mixin container-breakpoint-up(
+  $name,
+  $container-name: "",
+  $breakpoints: $grid-breakpoints
+) {
   $min: breakpoint-min($name, $breakpoints);
 
   @if $min {
-    @container (width >= #{$min}) {
+    @container #{$container-name} (width >= #{$min}) {
       @content;
     }
   } @else {
@@ -49,11 +53,15 @@ $breakpoint-xl: 1401px;
   }
 }
 
-@mixin container-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+@mixin container-breakpoint-down(
+  $name,
+  $container-name: "",
+  $breakpoints: $grid-breakpoints
+) {
   $max: breakpoint-max($name, $breakpoints);
 
   @if $max {
-    @container (width <= #{$max}) {
+    @container #{$container-name} (width <= #{$max}) {
       @content;
     }
   } @else {
