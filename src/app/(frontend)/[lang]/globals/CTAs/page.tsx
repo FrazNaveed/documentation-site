@@ -14,6 +14,7 @@ export default function Page() {
         content='Flare has an active Bug Bounty Program on Immunefi.'
         buttonText='Immunefi'
         buttonLink='foo.com'
+        option
       />
       <br />
       <h2>Banner CTA</h2>
