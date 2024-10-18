@@ -7,6 +7,7 @@
   "scripts": {
     "build": "cross-env next build",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "dev:init": "rm -rf .next && npm run docker:up:pg -- -d && npm run payload migrate && npm run dev",
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "docker:down": "docker-compose -f docker-compose-postgres.dev.yml down && docker-compose -f docker-compose-next.dev.yml down",
     "docker:down:next": "docker-compose -f docker-compose-next.dev.yml down",
@@ -23,7 +24,6 @@
     "lint": "cross-env next lint",
     "lint:fix": "cross-env next lint --fix",
     "lint:styles": "stylelint \"**/*.{css,sass,scss}\"",
-    "migrate:create": "npm run payload migrate:create",
     "payload": "cross-env PAYLOAD_CONFIG_PATH=./payload.config.ts payload",
     "start": "cross-env next start",
     "prepare": "husky"
