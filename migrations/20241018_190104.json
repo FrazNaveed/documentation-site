@@ -1,5 +1,5 @@
 {
-  "id": "ee9425d7-506c-49e5-8049-87d4984c4527",
+  "id": "03e4edd5-a8ab-4e1c-87da-ba34cdcba864",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -4812,9 +4812,10 @@
       "schema": "public",
       "values": [
         "default",
+        "devHub",
+        "events",
         "team",
-        "wallets",
-        "events"
+        "wallets"
       ]
     },
     "public.enum_news_content_type": {

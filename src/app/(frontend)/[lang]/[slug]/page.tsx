@@ -3,9 +3,11 @@ import { notFound } from 'next/navigation'
 import cx from 'classnames'
 import { getDictionary } from 'src/app/get-dictionary'
 import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
+import { getFeaturedEvent } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import type { Locale } from 'src/app/i18n-config'
 import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
+import EventsHero from 'src/app/(frontend)/_components/EventsHero'
 import SideNav from 'src/app/(frontend)/_components/SideNav'
 import JumpLinkAnchor from 'src/app/(frontend)/_components/SideNav/JumpLinkAnchor'
 import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
@@ -53,7 +55,10 @@ export default async function Page({
     linkType,
     teamGrid,
   } = pageData
-  console.log(pageData)
+  let featuredEvent
+  if (pageTemplate === 'events') {
+    featuredEvent = await getFeaturedEvent()
+  }
   let heroComponent
   if (hero) {
     const {
@@ -66,7 +71,12 @@ export default async function Page({
     } = hero
     const heroCtaProps = (buttonText && buttonLink) ? { cta: { text: buttonText, link: buttonLink } } : {}
     const heroBackgroundImageProps = (backgroundImage && typeof backgroundImage === 'object') ? { backgroundImage } : {}
-    heroComponent = (
+    heroComponent = featuredEvent ? (
+      <EventsHero
+        event={featuredEvent}
+        {...heroBackgroundImageProps}
+      />
+    ) : (
       <PageHero
         heroStyle={style}
         header={headline}

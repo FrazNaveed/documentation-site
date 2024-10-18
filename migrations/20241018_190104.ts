@@ -39,7 +39,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
-   CREATE TYPE "public"."enum_pages_page_template" AS ENUM('default', 'team', 'wallets', 'events');
+   CREATE TYPE "public"."enum_pages_page_template" AS ENUM('default', 'devHub', 'events', 'team', 'wallets');
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;

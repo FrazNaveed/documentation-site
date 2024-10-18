@@ -200,9 +200,10 @@ export const Pages: CollectionConfig = {
       localized: true,
       options: [
         { label: 'Default', value: 'default', },
+        { label: 'Dev Hub ', value: 'devHub', },
+        { label: 'Events ', value: 'events', },
         { label: 'Team', value: 'team' },
         { label: 'Wallets', value: 'wallets', },
-        { label: 'Events ', value: 'events', },
       ],
       admin: {
         position: 'sidebar',
