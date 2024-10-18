@@ -10,13 +10,13 @@
 
 .bg {
   background-color: $gray-100;
+  overflow: hidden;
 }
 
 .grid {
   @include grid;
 
   align-items: center;
-  overflow: hidden;
 
   &__standard {
     min-height: 140px;

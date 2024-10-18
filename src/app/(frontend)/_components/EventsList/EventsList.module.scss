@@ -136,35 +136,6 @@ $button-col-width: 205px;
   }
 }
 
-.flag {
-  position: relative;
-  flex-shrink: 0;
-  width: to-rem(30px);
-  height: to-rem(30px);
-  border-radius: 50%;
-  overflow: hidden;
-
-  @include container-breakpoint-down(lg) {
-    width: to-rem(24px);
-    height: to-rem(24px);
-  }
-
-  &_Icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    transform: translate(-50%, -50%);
-  }
-}
-
-.location {
-  display: flex;
-  align-items: center;
-  gap: to-rem($spacing-x-small);
-}
-
 .involvement {
   @include container-breakpoint-down(lg) {
     display: none;
@@ -205,29 +176,6 @@ $button-col-width: 205px;
   display: flex;
   flex-direction: column;
   gap: $mobile-text-row-gap;
-}
-
-.featured {
-  display: flex;
-  align-items: center;
-  margin-bottom: $spacing-x-small;
-  gap: $mobile-text-row-gap;
-
-  &_Label {
-    @include paragraphSmFont;
-
-    color: $pink-700;
-  }
-
-  &_Logo {
-    flex-shrink: 0;
-    width: 16px;
-    height: auto;
-
-    path {
-      fill: $pink-600;
-    }
-  }
 }
 
 .arrow {
