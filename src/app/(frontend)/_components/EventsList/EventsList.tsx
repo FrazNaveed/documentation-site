@@ -4,7 +4,7 @@ import cx from 'classnames'
 import EventsButton from 'src/app/(frontend)/_components/EventsButton'
 import EventsFeaturedLabel from 'src/app/(frontend)/_components/EventsFeaturedLabel'
 import EventsLocation from 'src/app/(frontend)/_components/EventsLocation'
-import { getEventsArchive } from 'src/app/(frontend)/_lib/payload/eventsQueries'
+import { getUpcomingEvents } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import convertTimestampToMilitaryTime from 'src/app/(frontend)/_utils/convertTimestampToMilitaryTime'
 import getDateTimeLocale from 'src/app/(frontend)/_utils/getDateTimeLocale'
 import type { TLocales } from 'src/app/(frontend)/_utils/getDateTimeLocale'
@@ -42,9 +42,9 @@ function displayDateRange(startDate: string, endDate: string | null | undefined 
 }
 
 export default async function EventsList() {
-  const eventsData = await getEventsArchive()
-  const events = eventsData.docs
-  const upcomingEventsExist = events.length > 0
+  const eventsData = await getUpcomingEvents()
+  const events = eventsData?.docs
+  const upcomingEventsExist = events && events.length > 0
   return (
     <div className={styles.wrap}>
       <div className={styles.container}>

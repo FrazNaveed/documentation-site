@@ -63,7 +63,7 @@ export default function EventsHero({ event, backgroundImage }: EventsHeroProps) 
             {endYear && ` - ${endYear}`}
           </p>
           <EventsLocation location={location} country={country} className={styles.location} iconSmall />
-          {button && button.link && (
+          {button?.link && (
             <div className={styles.meta}>
               <EventsButton button={button} className={styles.button} />
             </div>
