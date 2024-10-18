@@ -17,13 +17,15 @@ import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
-import type { Wallet } from '@/payload-types'
+import type { Person, Wallet } from '@/payload-types'
 import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
 import TeamGridBlock from '../../_components/TeamGridBlock'
 import styles from './page.module.scss'
 import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
 import { PayloadLexicalReactRendererContent } from '../../_components/LexicalRenderer/LexicalRenderer'
+
+export const dynamic = 'force-dynamic'
 
 export default async function Page({
   params: { slug, lang },
@@ -96,8 +98,16 @@ export default async function Page({
   if (pageTemplate === 'team') {
     let teamGridComponent
     if (teamGrid) {
+      const {
+        gridTitle,
+        team,
+      } = teamGrid
+      const teamGridProps = {
+        gridTitle,
+        team: (team || []).filter((teamMember): teamMember is Person => typeof teamMember === 'object'),
+      }
       teamGridComponent = (
-        <TeamGridBlock title={teamGrid?.title} team={teamGrid?.team} />
+        <TeamGridBlock {...teamGridProps} />
       )
     }
 
