@@ -403,6 +403,7 @@ export interface Event {
     link?: string | null;
   };
   featured?: boolean | null;
+  featuredHeroEyebrow?: string | null;
   updatedAt: string;
   createdAt: string;
 }
