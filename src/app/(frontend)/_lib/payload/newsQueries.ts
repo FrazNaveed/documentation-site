@@ -74,18 +74,23 @@ export const getNewsFeatured = async (
 }
 
 export const getNewsBySlug = async (slug: string) => {
-  const newsData = await payload.find({
-    collection: 'news',
-    limit: 1,
-    depth: 3,
-    where: {
-      slug: {
-        equals: slug,
+  try {
+    const newsData = await payload.find({
+      collection: 'news',
+      limit: 1,
+      depth: 3,
+      where: {
+        slug: {
+          equals: slug,
+        },
       },
-    },
-  })
+    })
 
-  const news: News[] = newsData.docs
+    const news: News[] = newsData.docs
 
-  return news
+    return news
+  } catch (error) {
+    console.error('Error fetching getNewsBySlug:', error)
+  }
+  return []
 }
