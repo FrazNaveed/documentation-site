@@ -116,7 +116,7 @@ arguments and at runtime as env vars**:
 
 (These are extremely sensitive credentials that should not be exposed publicly or committed to version control.)
 
-Assuming these variables are present, you can build the production Docker image anywhere with `docker build --build-arg PAYLOAD_SECRET=somerandomstring --build-arg POSTGRES_URL=postgres://username:password@so.me.ip.address:5432/dbname .`  (The database must be accessible to the buildtime environment to run migrations.)
+Assuming these variables are present, you can build the production Docker image anywhere with `docker build --build-arg PAYLOAD_SECRET=somerandomstring --build-arg POSTGRES_URL=postgres://username:password@so.me.ip.add:5432/dbname .`  (The database must be accessible to the buildtime environment to run migrations.)
 
 ## Linting
 You will not be able to run a build with eslint or TypeScript errors in the `src/app/(app)` directory. To see all the eslint errors and warnings from the terminal run `npm run lint` from the project root. You can run `npm run lint --fix` to fix errors that can be automatically fixed. To see all the TypeScript errors in the terminal run `npx tsc --noEmit` from the project root.
