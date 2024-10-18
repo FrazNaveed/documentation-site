@@ -74,6 +74,7 @@
     @include headerH4;
 
     margin-bottom: to-rem($spacing-small);
+    letter-spacing: initial;
   }
 
   &Content {
