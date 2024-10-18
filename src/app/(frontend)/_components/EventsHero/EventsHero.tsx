@@ -44,9 +44,11 @@ export default function EventsHero({ event, backgroundImage }: EventsHeroProps) 
     endDate,
     country,
     location,
-    flareInvolvement: eyebrow,
+    flareInvolvement: eyebrowDefault,
+    featuredHeroEyebrow: eyebrowOverride,
     button,
   } = event
+  const eyebrow = eyebrowOverride || eyebrowDefault
   const startYear = startDate && new Date(startDate).getFullYear()
   const endYear = endDate && new Date(endDate).getFullYear()
   return (
