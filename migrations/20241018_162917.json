@@ -1,5 +1,5 @@
 {
-  "id": "20ffbefd-b96c-4a03-8cad-7265c31db8aa",
+  "id": "ee9425d7-506c-49e5-8049-87d4984c4527",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -29,6 +29,18 @@
         "end_date": {
           "name": "end_date",
           "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "end_time": {
+          "name": "end_time",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "event_link": {
+          "name": "event_link",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
@@ -2136,6 +2148,12 @@
           "primaryKey": false,
           "notNull": false
         },
+        "team_grid_grid_title": {
+          "name": "team_grid_grid_title",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
         "wallets_grid_wallets_grid_intro": {
           "name": "wallets_grid_wallets_grid_intro",
           "type": "jsonb",
@@ -2279,6 +2297,12 @@
           "primaryKey": false,
           "notNull": true
         },
+        "people_id": {
+          "name": "people_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
         "wallets_id": {
           "name": "wallets_id",
           "type": "integer",
@@ -2340,6 +2364,19 @@
           "tableTo": "pages",
           "columnsFrom": [
             "parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "pages_rels_people_fk": {
+          "name": "pages_rels_people_fk",
+          "tableFrom": "pages_rels",
+          "tableTo": "people",
+          "columnsFrom": [
+            "people_id"
           ],
           "columnsTo": [
             "id"
@@ -3466,6 +3503,136 @@
         }
       }
     },
+    "public.people": {
+      "name": "people",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "full_name": {
+          "name": "full_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "headshot_id": {
+          "name": "headshot_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "people_created_at_idx": {
+          "name": "people_created_at_idx",
+          "columns": [
+            {
+              "expression": "created_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "people_headshot_id_media_id_fk": {
+          "name": "people_headshot_id_media_id_fk",
+          "tableFrom": "people",
+          "tableTo": "media",
+          "columnsFrom": [
+            "headshot_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.people_locales": {
+      "name": "people_locales",
+      "schema": "",
+      "columns": {
+        "job_title": {
+          "name": "job_title",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "_locale": {
+          "name": "_locale",
+          "type": "_locales",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "people_locales_parent_id_fk": {
+          "name": "people_locales_parent_id_fk",
+          "tableFrom": "people_locales",
+          "tableTo": "people",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "people_locales_locale_parent_id_unique": {
+          "name": "people_locales_locale_parent_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "_locale",
+            "_parent_id"
+          ]
+        }
+      }
+    },
     "public.wallets_tags": {
       "name": "wallets_tags",
       "schema": "",
@@ -3907,6 +4074,12 @@
           "primaryKey": false,
           "notNull": false
         },
+        "people_id": {
+          "name": "people_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
         "wallets_id": {
           "name": "wallets_id",
           "type": "integer",
@@ -4059,6 +4232,19 @@
           "tableTo": "news_sub_types",
           "columnsFrom": [
             "news_sub_types_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "payload_locked_documents_rels_people_fk": {
+          "name": "payload_locked_documents_rels_people_fk",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "people",
+          "columnsFrom": [
+            "people_id"
           ],
           "columnsTo": [
             "id"
@@ -4626,7 +4812,9 @@
       "schema": "public",
       "values": [
         "default",
-        "wallets"
+        "team",
+        "wallets",
+        "events"
       ]
     },
     "public.enum_news_content_type": {

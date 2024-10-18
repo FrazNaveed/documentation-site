@@ -8,31 +8,45 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
 - **Database**: postgres
 - **Storage Adapter**: localDisk
 
-## Getting Started
+## Getting Started Locally
 1. Run `nvm i` to install the node version specified in `.nvmrc` (you must have [nvm](https://github.com/nvm-sh/nvm) installed for this).
-
 1. Have a Docker runtime on your machine and make sure you can run `docker compose` commands for local dev.
-2. Install dependencies with `npm i --legacy-peer-deps`.
-3. Create a `.env` file in the root of this project and add the following environment variables and respective values:
+1. Install dependencies with `npm i --legacy-peer-deps`.
+1. Create a `.env` file in the root of this project and add the following environment variables and respective values:
     ```
     POSTGRES_URL=postgres://postgres:postgres@127.0.0.1:5432/postgres
     PAYLOAD_SECRET=payload
     ```
-4. In a new terminal window, run `npm run docker:init` from this project's root directory. This will bootstrap a Postgres Database, 
-   seed it with the necessary data for Payload, and start a Postgres container.
-5. Run the development server with `npm run dev`.
+1. In a new terminal window, run `npm run dev:init` from this project's root directory. This will bootstrap a Postgres Database in Docker
+   (running in the background on your machine), run any migrations that need to run, and then start NextJS in dev mode.
 
-You will see the local dev build at [http://localhost:3000](http://localhost:3000). You can log into Payload at [http://localhost:3000/admin](http://localhost:3000/admin) using the default Payload admin user (username: `test@alephsf.com`, password: `password`).
+You will see the local dev build at [http://localhost:3000](http://localhost:3000). You can log into Payload at [http://localhost:3000/admin](http://localhost:3000/admin), create your first user, and start using Payload immediately. 
+
+### Full Local Docker Stack
+1. If you'd like to run the whole stack in a Docker-based production build, you can do steps 1-4 above and instead run `npm run docker:init` 
+   **NB!** This will remove any and all Docker containers and volumes for this project and start fresh. Don't run it if you have local content you want to keep!
+2. This command will stop, clean and remove the Postgres and NextJS/Payload Docker containers if they exist. It then starts from scratch with a new Postgres
+   container in the background, and then runs a production Docker build, starting your NextJS/Payload instance in a Docker container at [http://localhost:3000](http://localhost:3000). 
+
+### Helper Commands
+While the above workflow will get you up and running very quickly, once you're in development you may want to stop and start certain aspects
+of the environment individually. Here's a list of the commands we've created to help manage this (all found in the `package.json` `scripts` object.)
+To use them, prefix with `npm run`:
+- `dev`: Runs NextJS/Payload in development mode. Requires a Postgres DB running somewhere
+- `docker:up`: Starts Postgres and Next/Payload in separate Docker containers on the same network locally. Will build the project if it's not already built.
+- `docker:down`: Stops all Docker containers for this project.
+- `docker:up:pg` or `docker:up:next`: Starts Postgres or NextJS/Payload in a Docker container respectively.
+- `docker:clean`: Removes any Docker containers or images for this project. Starts all data from scratch.
+- `build`: Builds the NextJS/Payload app in production mode. Requires a Postgres DB running somewhere.
+- `start`: Runs the built NextJS/Payload app in production mode. Requires a Postgres DB running somewhere.
 
 ## Environments + Options
 After following the steps above, your local dev environment is entirely self-contained, and will run the following:
-- A Postgres database container (for Payload) running on `localhost` on port `5432` with password, username and db name all set to `postgres`.
+- A Postgres database Docker container (for Payload) running on `localhost` on port `5432` with password, username and db name all set to `postgres`.
 - NextJS and Payload running side-by-side at [https://localhost:3000](https://localhost:3000) and [https://localhost:3000/admin](https://localhost:3000/admin) respectively. This part of the stack can be run in NodeJS for development (with `npm run dev`) or in Docker Compose (with `npm run docker:up`).
 
 To change the database your local instance of Payload (and NextJS) is pointing at, you simply modify your local `.env` file
 and change `POSTGRES_URL`. 
-
-**NB!** If your local environment is pointing at a remote database, **all operations, including seeding data, will happen on that database.**  This is useful for seeding remote staging Payload instances, but bad if you're doing it to the production site! We will try and make this impossible in a future release.
 
 ## CMS Fields + Migrations
 We're using Postgres as our backing database for this project. PayloadCMS ships with the Drizzle ORM package and manages this
@@ -49,7 +63,7 @@ present in the database you are deploying to. The tools that Payload/Postgres sh
 1. Build a feature that requires changes to the PayloadCMS schema. (see below)
 2. Pay close attention to the console where Payload is running. It may need confirmation before certain types of schema
    changes. 
-3. When your changes are stable and ready to be deployed, run `npm run migrate:create`, and Payload will track all of
+3. When your changes are stable and ready to be deployed, run `npm run payload migrate:create`, and Payload will track all of
    the changes that need to be made to the remote database, writing a new migration script (with a timestamp) to the 
    `/migrations` folder. 
 4. Commit your migration file(s) to version control along with the feature you're pushing. Before the build, we will run
@@ -101,6 +115,8 @@ arguments and at runtime as env vars**:
 - `POSTGRES_URL`: The URL to your Postgres database instance. This is in the format `postgres://username:password@hostname/dbname`.
 
 (These are extremely sensitive credentials that should not be exposed publicly or committed to version control.)
+
+Assuming these variables are present, you can build the production Docker image anywhere with `docker build --build-arg PAYLOAD_SECRET=somerandomstring --build-arg POSTGRES_URL=postgres://username:password@so.me.ip.add:5432/dbname .`  (The database must be accessible to the buildtime environment to run migrations.)
 
 ## Linting
 You will not be able to run a build with eslint or TypeScript errors in the `src/app/(app)` directory. To see all the eslint errors and warnings from the terminal run `npm run lint` from the project root. You can run `npm run lint --fix` to fix errors that can be automatically fixed. To see all the TypeScript errors in the terminal run `npx tsc --noEmit` from the project root.
