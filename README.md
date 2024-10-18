@@ -63,7 +63,7 @@ present in the database you are deploying to. The tools that Payload/Postgres sh
 1. Build a feature that requires changes to the PayloadCMS schema. (see below)
 2. Pay close attention to the console where Payload is running. It may need confirmation before certain types of schema
    changes. 
-3. When your changes are stable and ready to be deployed, run `npm run migrate:create`, and Payload will track all of
+3. When your changes are stable and ready to be deployed, run `npm run payload migrate:create`, and Payload will track all of
    the changes that need to be made to the remote database, writing a new migration script (with a timestamp) to the 
    `/migrations` folder. 
 4. Commit your migration file(s) to version control along with the feature you're pushing. Before the build, we will run
@@ -115,6 +115,8 @@ arguments and at runtime as env vars**:
 - `POSTGRES_URL`: The URL to your Postgres database instance. This is in the format `postgres://username:password@hostname/dbname`.
 
 (These are extremely sensitive credentials that should not be exposed publicly or committed to version control.)
+
+Assuming these variables are present, you can build the production Docker image anywhere with `docker build --build-arg PAYLOAD_SECRET=somerandomstring --build-arg POSTGRES_URL=postgres://username:password@so.me.ip.address:5432/dbname .`  (The database must be accessible to the buildtime environment to run migrations.)
 
 ## Linting
 You will not be able to run a build with eslint or TypeScript errors in the `src/app/(app)` directory. To see all the eslint errors and warnings from the terminal run `npm run lint` from the project root. You can run `npm run lint --fix` to fix errors that can be automatically fixed. To see all the TypeScript errors in the terminal run `npx tsc --noEmit` from the project root.
