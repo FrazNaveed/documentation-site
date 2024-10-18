@@ -29,6 +29,11 @@
     // top: 0;
     // left: 0;
 
+    @include media-breakpoint-down(md) {
+      width: 400px;
+      height: auto;
+    }
+
     @include media-breakpoint-down(sm) {
       position: absolute;
       top: 0;
@@ -45,7 +50,9 @@
     left: 0;
 
     @include media-breakpoint-down(lg) {
-      width: 120px;
+      bottom: 0;
+      left: 10%;
+      width: 175px;
       height: auto;
     }
 
