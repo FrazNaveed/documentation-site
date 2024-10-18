@@ -11,7 +11,10 @@
     "docker:down": "docker-compose -f docker-compose-postgres.dev.yml down && docker-compose -f docker-compose-next.dev.yml down",
     "docker:down:next": "docker-compose -f docker-compose-next.dev.yml down",
     "docker:down:pg": "docker-compose -f docker-compose-postgres.dev.yml down",
-    "docker:init": "./scripts/dockerInit.sh",
+    "docker:init": "npm run docker:down && npm run docker:clean && npm run docker:up:pg -- -d && npm run docker:up:next",
+    "docker:clean": "npm run docker:clean:pg && npm run docker:clean:next",
+    "docker:clean:next": "docker-compose -f docker-compose-next.dev.yml down --rmi all -v",
+    "docker:clean:pg": "docker-compose -f docker-compose-postgres.dev.yml down --rmi all -v",
     "docker:up": "npm run docker:down && docker-compose -f docker-compose-postgres.dev.yml up -d && docker-compose -f docker-compose-next.dev.yml up",
     "docker:up:next": "docker-compose -f docker-compose-next.dev.yml up",
     "docker:up:pg": "docker-compose -f docker-compose-postgres.dev.yml up",
@@ -23,13 +26,7 @@
     "migrate:create": "npm run payload migrate:create",
     "payload": "cross-env PAYLOAD_CONFIG_PATH=./payload.config.ts payload",
     "start": "cross-env next start",
-    "prepare": "husky",
-    "seed:news": "node 'scripts/seedNews.js'",
-    "seed:news-de": "node 'scripts/seedNewsDe.js'",
-    "seed:news-es": "node 'scripts/seedNewsEs.js'",
-    "seed:news-types": "node 'scripts/seedNewsTypes.js'",
-    "seed:news-types-de": "node 'scripts/seedNewsTypesDe.js'",
-    "seed:news-types-es": "node 'scripts/seedNewsTypesEs.js'"
+    "prepare": "husky"
   },
   "dependencies": {
     "@faker-js/faker": "^9.0.1",

@@ -23,6 +23,8 @@ import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
 import { PayloadLexicalReactRendererContent } from '../../_components/LexicalRenderer/LexicalRenderer'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Page({
   params: { slug, lang },
 }: {
