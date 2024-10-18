@@ -27,9 +27,9 @@ export default function TallCta({
             />
           )}
         </div>
-        <div className={styles.tallCtaContent}>
-          <h2>{title}</h2>
-          <p>{content}</p>
+        <div className={styles.tallCtaText}>
+          <h2 className={styles.tallCtaTitle}>{title}</h2>
+          <p className={styles.tallCtaContent}>{content}</p>
           <Button
             text={buttonText}
             link={buttonLink}
