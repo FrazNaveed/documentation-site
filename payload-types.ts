@@ -455,7 +455,7 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
   };
-  pageTemplate: 'default' | 'team' | 'wallets' | 'events';
+  pageTemplate: 'default' | 'devHub' | 'events' | 'team' | 'wallets';
   updatedAt: string;
   createdAt: string;
 }
