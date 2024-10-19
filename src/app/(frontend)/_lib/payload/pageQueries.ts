@@ -25,7 +25,7 @@ export const getPageBySlug = async (slug: string, locale: Locale = 'en') => {
 
     return page
   } catch (error) {
-    console.error('Error fetching page data:', error)
+    console.error(`Error fetching getPageBySlug for ${slug}:`, error)
   }
   return []
 }

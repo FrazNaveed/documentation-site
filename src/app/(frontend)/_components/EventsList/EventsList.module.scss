@@ -7,6 +7,10 @@
 
 $mobile-text-row-gap: $spacing-x-small;
 
+.wrap {
+  container-type: inline-size;
+}
+
 .container {
   @include container;
 }
@@ -22,11 +26,11 @@ $mobile-text-row-gap: $spacing-x-small;
 
   row-gap: to-rem($spacing-x-small);
 
-  @include media-breakpoint-down(lg) {
+  @include container-breakpoint-down(lg) {
     row-gap: to-rem($spacing-medium);
   }
 
-  @include media-breakpoint-down(md) {
+  @include container-breakpoint-down(md) {
     row-gap: to-rem($spacing-standard);
   }
 }
@@ -38,14 +42,13 @@ $event-col-gap: $grid-column-gap;
   display: flex;
   padding: $spacing-small;
 
-  @include media-breakpoint-up(lg) {
+  @include container-breakpoint-up(lg) {
     align-items: center;
     gap: $event-col-gap;
   }
 
-  @include media-breakpoint-down(lg) {
+  @include container-breakpoint-down(lg) {
     flex-direction: column;
-    justify-content: space-between;
     gap: $mobile-text-row-gap;
   }
 }
@@ -56,18 +59,18 @@ $event-col-gap: $grid-column-gap;
   border-radius: 6px;
   background-color: $gray-50;
 
-  @include media-breakpoint-down(lg) {
+  @include container-breakpoint-down(lg) {
     @include spanColumns(4);
   }
 
   &__desktop {
-    @include media-breakpoint-down(lg) {
+    @include container-breakpoint-down(lg) {
       display: none;
     }
   }
 
   &__mobile {
-    @include media-breakpoint-up(lg) {
+    @include container-breakpoint-up(lg) {
       display: none;
     }
   }
@@ -78,7 +81,7 @@ $event-col-gap: $grid-column-gap;
   padding-bottom: to-rem(12px);
   border-top: 1px solid $gray-200;
 
-  @include media-breakpoint-down(lg) {
+  @include container-breakpoint-down(lg) {
     display: none;
   }
 }
@@ -101,11 +104,11 @@ $button-col-width: 205px;
   width: 100%;
   gap: $event-col-gap;
 
-  @include media-breakpoint-up(lg) {
+  @include container-breakpoint-up(lg) {
     align-items: center;
   }
 
-  @include media-breakpoint-down(lg) {
+  @include container-breakpoint-down(lg) {
     flex-direction: column;
     gap: $mobile-text-row-gap;
   }
@@ -121,45 +124,22 @@ $button-col-width: 205px;
   color: $black;
   overflow-wrap: break-word;
 
-  @include media-breakpoint-up(lg) {
+  @include container-breakpoint-up(lg) {
     flex-shrink: 0;
     width: calc((100% - ($event-col-gap * 3)) / 4);
   }
 }
 
 .title {
-  @include media-breakpoint-down(lg) {
+  @include container-breakpoint-down(lg) {
     @include bodyBase;
   }
 }
 
-.flag {
-  position: relative;
-  flex-shrink: 0;
-  width: to-rem(30px);
-  height: to-rem(30px);
-  border-radius: 50%;
-  overflow: hidden;
-
-  @include media-breakpoint-down(lg) {
-    width: to-rem(24px);
-    height: to-rem(24px);
+.involvement {
+  @include container-breakpoint-down(lg) {
+    display: none;
   }
-
-  &_Icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    transform: translate(-50%, -50%);
-  }
-}
-
-.location {
-  display: flex;
-  align-items: center;
-  gap: to-rem($spacing-x-small);
 }
 
 .buttonWrap {
@@ -169,11 +149,11 @@ $button-col-width: 205px;
   justify-content: flex-end;
   gap: $spacing-x-small;
 
-  @include media-breakpoint-up(lg) {
+  @include container-breakpoint-up(lg) {
     width: $button-col-width;
   }
 
-  @include media-breakpoint-down(lg) {
+  @include container-breakpoint-down(lg) {
     align-self: flex-end;
   }
 }
@@ -187,7 +167,7 @@ $button-col-width: 205px;
   justify-content: space-between;
   gap: $event-col-gap;
 
-  @include media-breakpoint-up(lg) {
+  @include container-breakpoint-up(lg) {
     display: none;
   }
 }
@@ -198,36 +178,13 @@ $button-col-width: 205px;
   gap: $mobile-text-row-gap;
 }
 
-.featured {
-  display: flex;
-  align-items: center;
-  margin-bottom: $spacing-x-small;
-  gap: $mobile-text-row-gap;
-
-  &_Label {
-    @include paragraphSmFont;
-
-    color: $pink-700;
-  }
-
-  &_Logo {
-    flex-shrink: 0;
-    width: 16px;
-    height: auto;
-
-    path {
-      fill: $pink-600;
-    }
-  }
-}
-
 .arrow {
   display: block;
   flex-shrink: 0;
 }
 
 .eventInner {
-  @include media-breakpoint-down(lg) {
+  @include container-breakpoint-down(lg) {
     display: flex;
     align-items: center;
     gap: $event-col-gap;

@@ -106,6 +106,9 @@ export interface Config {
     'news-types': NewsType;
     'news-sub-types': NewsSubType;
     people: Person;
+    developerGuides: DeveloperGuide;
+    developerGuideTags: DeveloperGuideTag;
+    products: Product;
     wallets: Wallet;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -403,6 +406,7 @@ export interface Event {
     link?: string | null;
   };
   featured?: boolean | null;
+  featuredHeroEyebrow?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -445,6 +449,8 @@ export interface Page {
       [k: string]: unknown;
     } | null;
   };
+  teamGrid?: TeamGrid;
+  walletsGrid?: WalletsGrid;
   components?: (Columns | Image | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints)[] | null;
   pageFooterCTA?: boolean | null;
   pageFooterCTAButton?: {
@@ -453,7 +459,7 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
   };
-  pageTemplate: 'default' | 'wallets' | 'events';
+  pageTemplate: 'default' | 'devHub' | 'events' | 'team' | 'wallets';
   updatedAt: string;
   createdAt: string;
 }
@@ -485,6 +491,64 @@ export interface NewsType {
   title: string;
   slug: string;
   image: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamGrid".
+ */
+export interface TeamGrid {
+  gridTitle?: string | null;
+  team?: (number | Person)[] | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "people".
+ */
+export interface Person {
+  id: number;
+  fullName?: string | null;
+  jobTitle?: string | null;
+  headshot?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WalletsGrid".
+ */
+export interface WalletsGrid {
+  walletsGridIntro?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  wallets?: (number | Wallet)[] | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wallets".
+ */
+export interface Wallet {
+  id: number;
+  name: string;
+  logo?: (number | null) | Media;
+  walletLink: string;
+  flrFunctionality?: boolean | null;
+  walletConnect?: boolean | null;
+  tags?: ('wrap' | 'delegate' | 'stake' | 'autoclaim' | 'claim' | 'voting')[] | null;
+  platforms?: ('iOS' | 'Android' | 'Hardware')[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -712,29 +776,38 @@ export interface NewsSubType {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "people".
+ * via the `definition` "developerGuides".
  */
-export interface Person {
+export interface DeveloperGuide {
   id: number;
-  fullName?: string | null;
-  title?: string | null;
-  headshot?: (number | null) | Media;
+  title: string;
+  shortDescription?: string | null;
+  tags?: (number | DeveloperGuideTag)[] | null;
+  product?: (number | null) | Product;
   updatedAt: string;
   createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "wallets".
+ * via the `definition` "developerGuideTags".
  */
-export interface Wallet {
+export interface DeveloperGuideTag {
   id: number;
-  name: string;
-  logo?: (number | null) | Media;
-  walletLink: string;
-  flrFunctionality?: boolean | null;
-  walletConnect?: boolean | null;
-  tags?: ('wrap' | 'delegate' | 'stake' | 'autoclaim' | 'claim' | 'voting')[] | null;
-  platforms?: ('ios' | 'android' | 'hardware')[] | null;
+  title: string;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: number;
+  title: string;
+  slug: string;
+  icon?: (number | null) | Media;
+  shortDescription?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -776,6 +849,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'people';
         value: number | Person;
+      } | null)
+    | ({
+        relationTo: 'developerGuides';
+        value: number | DeveloperGuide;
+      } | null)
+    | ({
+        relationTo: 'developerGuideTags';
+        value: number | DeveloperGuideTag;
+      } | null)
+    | ({
+        relationTo: 'products';
+        value: number | Product;
       } | null)
     | ({
         relationTo: 'wallets';
