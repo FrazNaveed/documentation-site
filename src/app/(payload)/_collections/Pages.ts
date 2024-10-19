@@ -182,7 +182,8 @@ export const Pages: CollectionConfig = {
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
-          if (siblingData.pageTemplate === 'wallets' || siblingData.pageTemplate === 'team') {
+          const pageTemplatesWithNoComponents = [ 'devHub', 'events', 'team', 'wallets', ]
+          if (pageTemplatesWithNoComponents.includes(siblingData.pageTemplate)) {
             return false
           } else {
             return true
