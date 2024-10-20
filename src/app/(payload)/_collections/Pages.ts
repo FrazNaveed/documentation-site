@@ -100,7 +100,7 @@ export const Pages: CollectionConfig = {
       admin: {
         position: 'sidebar',
         description: 'Select a page and it will be linked to as the previous page in the footer.',
-      }
+      },
     },
     {
       name: 'nextPage',
