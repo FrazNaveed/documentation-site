@@ -1,4 +1,5 @@
 // import cx from 'classnames'
+import Image from 'next/image'
 import Link from 'next/link'
 import type { Product } from '@/payload-types'
 import RightArrow from '../svgs/RightArrow'
@@ -19,7 +20,14 @@ export default function ProductGrid({ title, products }: ProductGridProps) {
             <div className={styles.product}>
               <div className={styles.productHeader}>
                 <div className={styles.productInfo}>
-                  <p>uploaded icon</p>
+                  {product.icon && (
+                    <Image
+                      src={product.icon.url}
+                      alt={product.icon.alt}
+                      width={48}
+                      height={48}
+                    />
+                  )}
                   <h3 className={styles.productTitle}>{product.title}</h3>
                 </div>
                 <RightArrow />
