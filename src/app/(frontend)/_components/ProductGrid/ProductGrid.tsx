@@ -1,11 +1,12 @@
 // import cx from 'classnames'
 import Link from 'next/link'
+import type { Product } from '@/payload-types'
 import RightArrow from '../svgs/RightArrow'
 import styles from './ProductGrid.module.scss'
 
 export type ProductGridProps = {
   title?: string
-  products: any
+  products: Product[]
 }
 
 export default function ProductGrid({ title, products }: ProductGridProps) {
