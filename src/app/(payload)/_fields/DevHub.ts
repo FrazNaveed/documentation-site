@@ -1,5 +1,4 @@
 import type { Field } from  'payload'
-import { relationship } from 'payload/shared'
 
 export const DevHub: Field[] = [
   {
