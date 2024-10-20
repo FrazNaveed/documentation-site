@@ -57,7 +57,6 @@ export default async function Page({
     teamGrid,
     devHub,
   } = pageData
-  console.log(devHub)
   let featuredEvent
   if (pageTemplate === 'events') {
     featuredEvent = await getFeaturedEvent()
