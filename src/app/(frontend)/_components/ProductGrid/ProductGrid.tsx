@@ -23,7 +23,7 @@ export default function ProductGrid({ title, products }: ProductGridProps) {
                 </div>
                 <RightArrow />
               </div>
-              <p className={styles.productDescription}>{product.description}</p>
+              <p className={styles.productDescription}>{product.shortDescription}</p>
             </div>
           </Link>
         ))}
