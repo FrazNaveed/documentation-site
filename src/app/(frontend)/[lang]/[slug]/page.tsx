@@ -17,13 +17,14 @@ import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
-import type { Person, Wallet } from '@/payload-types'
+import type { Person, Product, Wallet } from '@/payload-types'
 import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
 import TeamGridBlock from '../../_components/TeamGridBlock'
 import styles from './page.module.scss'
 import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
 import { PayloadLexicalReactRendererContent } from '../../_components/LexicalRenderer/LexicalRenderer'
+import ProductGrid from '../../_components/ProductGrid'
 
 export const dynamic = 'force-dynamic'
 
@@ -54,7 +55,9 @@ export default async function Page({
     nextPage,
     linkType,
     teamGrid,
+    devHub,
   } = pageData
+  console.log(devHub)
   let featuredEvent
   if (pageTemplate === 'events') {
     featuredEvent = await getFeaturedEvent()
@@ -92,6 +95,31 @@ export default async function Page({
     const { bannerText } = pageBanner
     pageBannerComponent = (
       <PageBanner content={bannerText} />
+    )
+  }
+
+  if (pageTemplate === 'devHub') {
+    let productsGridComponent
+    if (devHub) {
+      const {
+        productsGrid,
+      } = devHub
+      const productsGridProps = {
+        title: 'Explore the Developer Hub',
+        products: (productsGrid || []).filter((product): product is Product => typeof product === 'object'),
+      }
+      productsGridComponent = (
+        <ProductGrid {...productsGridProps} />
+      )
+    }
+    return (
+      <div className={styles.wrap}>
+        {pageBanner?.togglePageBanner && pageBannerComponent}
+        {heroComponent}
+        <div className={styles.grid}>
+          {productsGridComponent}
+        </div>
+      </div>
     )
   }
 
