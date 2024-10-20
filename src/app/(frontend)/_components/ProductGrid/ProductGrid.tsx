@@ -15,13 +15,13 @@ export default function ProductGrid({ title, products }: ProductGridProps) {
     <section className={styles.productGrid}>
       <h2 className={styles.productGridTitle}>{title}</h2>
       <div className={styles.productGridWrap}>
-        {products?.map((product: any) => (
+        {products?.map((product: Product) => (
           <Link href={product.slug} key={product.id} className={styles.productWrap}>
             <div className={styles.product}>
               <div className={styles.productHeader}>
                 <div className={styles.productInfo}>
                   <div className={styles.productIconWrap}>
-                    {product.icon && (
+                    {product.icon && typeof product.icon === 'object' && product.icon?.url && product.icon?.alt && (
                       <Image
                         src={product.icon.url}
                         alt={product.icon.alt}
