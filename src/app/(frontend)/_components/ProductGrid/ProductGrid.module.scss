@@ -51,19 +51,24 @@
     transition: all $transition-snappy;
     grid-column: span 3;
 
-    @include media-breakpoint-down(lg) {
-      grid-column: span 4;
-    }
-
     &:hover {
       transform: translateY(-10px);
+    }
+
+    @include media-breakpoint-down(lg) {
+      grid-column: span 4;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
     }
   }
 
   &Header {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
+    margin-bottom: to-rem($spacing-standard);
 
     svg {
       width: 15px;
@@ -80,7 +85,7 @@
   &Title {
     @include headerH6;
 
-    margin-bottom: to-rem($spacing-standard);
+    margin-bottom: 0;
     color: $pink-700;
   }
 
