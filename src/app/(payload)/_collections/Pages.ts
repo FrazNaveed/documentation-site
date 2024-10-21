@@ -31,6 +31,7 @@ import {
 import { StatsBlock } from '../_blocks/StatsBlock'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
+import { DevHub } from '../_fields/DevHub'
 import { TeamGrid } from '../_fields/Team'
 import { WalletsGrid } from '../_fields/WalletsGrid'
 import { TalkingPoints } from '../_blocks/TalkingPointsBlock'
@@ -99,7 +100,7 @@ export const Pages: CollectionConfig = {
       admin: {
         position: 'sidebar',
         description: 'Select a page and it will be linked to as the previous page in the footer.',
-      }
+      },
     },
     {
       name: 'nextPage',
@@ -167,6 +168,7 @@ export const Pages: CollectionConfig = {
         position: 'sidebar',
       },
     },
+    ...DevHub,
     ...TeamGrid,
     ...WalletsGrid,
     {
