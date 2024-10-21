@@ -1,9 +1,6 @@
 const validateTextFieldUrl = (value: string | null | undefined) => {
-  if (value === null || undefined) {
+  if (value === null || value === undefined || value === '') {
     return true
-  }
-  if (typeof value !== 'string') {
-    return 'Invalid value type. Please enter a valid URL.';
   }
 
   const isValidRelativePath = value.startsWith('/')

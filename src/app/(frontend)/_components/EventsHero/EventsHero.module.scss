@@ -1,0 +1,122 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.bg {
+  background-color: $gray-100;
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.container {
+  @include container;
+}
+
+.grid {
+  @include container-breakpoint-up(lg) {
+    @include grid;
+
+    align-items: center;
+  }
+
+  @include container-breakpoint-down(lg) {
+    display: flex;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  padding-top: $spacing-large;
+  padding-bottom: $spacing-large;
+  z-index: 1;
+  gap: to-rem($spacing-small);
+
+  @include container-breakpoint-up(sm) {
+    width: 56%;
+    padding-top: $spacing-xxx-large;
+    padding-bottom: $spacing-xxx-large;
+  }
+
+  @include container-breakpoint-up(lg) {
+    @include columns(2, 8);
+
+    width: 100%;
+    padding-top: 130px;
+    padding-bottom: 130px;
+  }
+}
+
+.featuredText {
+  @include bodyBaseDesktop;
+}
+
+.eyebrow {
+  @include labelL;
+
+  margin-bottom: 0;
+}
+
+.header {
+  @include headerH2;
+
+  margin-bottom: 0;
+  overflow-wrap: break-word;
+}
+
+.date {
+  @include headerH5;
+
+  margin-bottom: 0;
+  color: $black;
+}
+
+.location {
+  @include headerH6;
+}
+
+.meta {
+  margin-top: to-rem($spacing-x-small);
+}
+
+.decoration {
+  position: relative;
+
+  @include container-breakpoint-up(lg) {
+    @include columns(8, -1);
+
+    height: 100%;
+  }
+
+  @include container-breakpoint-down(lg) {
+    width: 44%;
+  }
+
+  @include container-breakpoint-down(sm) {
+    display: none;
+  }
+}
+
+.bgImgWrap {
+  position: relative;
+  height: 100%;
+}
+
+.bgImg {
+  position: absolute;
+  top: 50%;
+  left: 59%;
+  width: auto;
+  max-width: 130%;
+  height: auto;
+  max-height: 130%;
+  transform: translate(-50%, -50%);
+
+  @include container-breakpoint-down(lg) {
+    max-width: 120%;
+    max-height: 120%;
+  }
+}

@@ -3,9 +3,11 @@ import { notFound } from 'next/navigation'
 import cx from 'classnames'
 import { getDictionary } from 'src/app/get-dictionary'
 import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
+import { getFeaturedEvent } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import type { Locale } from 'src/app/i18n-config'
 import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
+import EventsHero from 'src/app/(frontend)/_components/EventsHero'
 import SideNav from 'src/app/(frontend)/_components/SideNav'
 import JumpLinkAnchor from 'src/app/(frontend)/_components/SideNav/JumpLinkAnchor'
 import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
@@ -15,7 +17,7 @@ import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
-import type { Wallet } from '@/payload-types'
+import type { Person, Wallet } from '@/payload-types'
 import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
 import TeamGridBlock from '../../_components/TeamGridBlock'
 import styles from './page.module.scss'
@@ -23,6 +25,8 @@ import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
 import { PayloadLexicalReactRendererContent } from '../../_components/LexicalRenderer/LexicalRenderer'
 import LinkBand from '../../_components/LinkBand'
+
+export const dynamic = 'force-dynamic'
 
 export default async function Page({
   params: { slug, lang },
@@ -52,7 +56,10 @@ export default async function Page({
     linkType,
     teamGrid,
   } = pageData
-  console.log(pageData)
+  let featuredEvent
+  if (pageTemplate === 'events') {
+    featuredEvent = await getFeaturedEvent()
+  }
   let heroComponent
   if (hero) {
     const {
@@ -65,7 +72,12 @@ export default async function Page({
     } = hero
     const heroCtaProps = (buttonText && buttonLink) ? { cta: { text: buttonText, link: buttonLink } } : {}
     const heroBackgroundImageProps = (backgroundImage && typeof backgroundImage === 'object') ? { backgroundImage } : {}
-    heroComponent = (
+    heroComponent = featuredEvent ? (
+      <EventsHero
+        event={featuredEvent}
+        {...heroBackgroundImageProps}
+      />
+    ) : (
       <PageHero
         heroStyle={style}
         header={headline}
@@ -87,8 +99,16 @@ export default async function Page({
   if (pageTemplate === 'team') {
     let teamGridComponent
     if (teamGrid) {
+      const {
+        gridTitle,
+        team,
+      } = teamGrid
+      const teamGridProps = {
+        gridTitle,
+        team: (team || []).filter((teamMember): teamMember is Person => typeof teamMember === 'object'),
+      }
       teamGridComponent = (
-        <TeamGridBlock title={teamGrid?.title} team={teamGrid?.team} />
+        <TeamGridBlock {...teamGridProps} />
       )
     }
 
