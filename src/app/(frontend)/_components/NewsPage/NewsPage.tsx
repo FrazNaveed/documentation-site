@@ -17,10 +17,7 @@ export default async function NewsPage({ type }: NewsPageProps) {
   const news = await getNewsArchive(12, 0, featuredNewsIds, type)
   const newsDocs = news?.docs || []
   const allFetchedIds = featuredNewsIds.concat(newsDocs.map((newsItem) => newsItem.id))
-  let hasNextPage
-  if (news) {
-    hasNextPage = news.hasNextPage
-  }
+  const hasNextPage = news?.hasNextPage
   const latestNewsNav = [
     { text: 'All News', link: '/', id: 0 },
     { text: 'Flare Updates', link: 'updates', id: 1 },
@@ -45,8 +42,8 @@ export default async function NewsPage({ type }: NewsPageProps) {
     logos: featuredPostLogos,
     teaserThumbnail: featuredPostTeaserThumbnail,
   } = featuredPost
-  let featuredPostTypeHeroBgImage; let
-    featuredPostTypeName
+  let featuredPostTypeHeroBgImage
+  let featuredPostTypeName
   if (typeof featuredPostType === 'object') {
     featuredPostTypeHeroBgImage = featuredPostType.image
     featuredPostTypeName = featuredPostType.title
