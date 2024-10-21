@@ -24,8 +24,8 @@ import styles from './page.module.scss'
 import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
 import { PayloadLexicalReactRendererContent } from '../../_components/LexicalRenderer/LexicalRenderer'
-import LinkBand from '../../_components/LinkBand'
 import ProductGrid from '../../_components/ProductGrid'
+import LinkBand from '../../_components/LinkBand'
 
 export const dynamic = 'force-dynamic'
 
@@ -58,6 +58,7 @@ export default async function Page({
     teamGrid,
     devHub,
   } = pageData
+  console.log(pageData)
   let featuredEvent
   if (pageTemplate === 'events') {
     featuredEvent = await getFeaturedEvent()
@@ -150,6 +151,13 @@ export default async function Page({
     }
   }
 
+  let linkBandComponent
+  if (pageTemplate === 'devHub') {
+    linkBandComponent = (
+      <LinkBand />
+    )
+  }
+
   let relatedNewsPosts
   if (relatedNewsType && typeof relatedNewsType === 'object') {
     relatedNewsPosts = await getNewsArchive(3, 1, [], relatedNewsType.slug)
@@ -179,7 +187,12 @@ export default async function Page({
         {dictionary['server-component'].welcome}
       </h3>
       <p>Switch between en, es, and de in the URL to see different languages. Other languages will default to en.</p>
-      {pageTemplate === 'devHub' && productsGridComponent}
+      {pageTemplate === 'devHub' && (
+        <>
+          {productsGridComponent}
+          {linkBandComponent}
+        </>
+      )}
       {pageTemplate === 'events' && <EventsList />}
       {pageTemplate === 'team' && teamGridComponent}
       {pageTemplate === 'wallets' && walletsGridComponent}
@@ -229,7 +242,6 @@ export default async function Page({
           </div>
         </div>
       )}
-      <LinkBand />
       {(pageFooterCTA
       && pageFooterCTAButton?.buttonLink
       && pageFooterCTAButton?.buttonText

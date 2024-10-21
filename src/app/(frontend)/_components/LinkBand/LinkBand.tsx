@@ -12,7 +12,7 @@ export default function LinkBand({ title, links }: any) {
         </div>
       </div>
       <div className={styles.linkBandLinks}>
-        {links.map((link: any, index: number) => (
+        {links?.map((link: any, index: number) => (
           <Link
             key={link.id}
             href={link.linkUrl}
