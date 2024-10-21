@@ -1,0 +1,89 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "../../_styles/transitions" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.productGrid {
+  @include container;
+  @include pageComponentSpacing;
+
+  &Wrap {
+    @include grid;
+
+    grid-auto-rows: 1fr;
+    gap: to-rem($spacing-small) to-rem($grid-column-gap-flare);
+  }
+
+  &Title {
+    @include headerH5;
+
+    margin-bottom: to-rem($spacing-medium);
+
+    @include media-breakpoint-down(lg) {
+      margin-bottom: to-rem($spacing-small);
+    }
+  }
+}
+
+.product {
+  height: 100%;
+  padding: to-rem($spacing-standard);
+  border-radius: 10px;
+  background-color: $pink-50;
+
+  &Wrap {
+    transition: all $transition-snappy;
+    grid-column: span 3;
+
+    &:hover {
+      transform: translateY(-10px);
+    }
+
+    @include media-breakpoint-down(lg) {
+      grid-column: span 4;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+    }
+  }
+
+  &Header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: to-rem($spacing-standard);
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  &Info {
+    display: flex;
+    align-items: center;
+    column-gap: to-rem($spacing-x-small);
+  }
+
+  &IconWrap {
+    width: to-rem(48px);
+    height: to-rem(48px);
+  }
+
+  &Title {
+    @include headerH6;
+
+    margin-bottom: 0;
+    color: $pink-700;
+  }
+
+  &Description {
+    @include paragraphXSmFont;
+
+    margin-bottom: 0;
+    color: $black;
+  }
+}

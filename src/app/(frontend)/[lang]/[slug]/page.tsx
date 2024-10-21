@@ -17,7 +17,7 @@ import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
-import type { Person, Wallet } from '@/payload-types'
+import type { Person, Product, Wallet } from '@/payload-types'
 import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
 import TeamGridBlock from '../../_components/TeamGridBlock'
 import styles from './page.module.scss'
@@ -25,6 +25,7 @@ import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
 import { PayloadLexicalReactRendererContent } from '../../_components/LexicalRenderer/LexicalRenderer'
 import LinkBand from '../../_components/LinkBand'
+import ProductGrid from '../../_components/ProductGrid'
 
 export const dynamic = 'force-dynamic'
 
@@ -55,6 +56,7 @@ export default async function Page({
     nextPage,
     linkType,
     teamGrid,
+    devHub,
   } = pageData
   let featuredEvent
   if (pageTemplate === 'events') {
@@ -96,8 +98,24 @@ export default async function Page({
     )
   }
 
+  let productsGridComponent
+  if (pageTemplate === 'devHub') {
+    if (devHub) {
+      const {
+        productsGrid,
+      } = devHub
+      const productsGridProps = {
+        title: 'Explore the Developer Hub',
+        products: (productsGrid || []).filter((product): product is Product => typeof product === 'object'),
+      }
+      productsGridComponent = (
+        <ProductGrid {...productsGridProps} />
+      )
+    }
+  }
+
+  let teamGridComponent
   if (pageTemplate === 'team') {
-    let teamGridComponent
     if (teamGrid) {
       const {
         gridTitle,
@@ -111,20 +129,10 @@ export default async function Page({
         <TeamGridBlock {...teamGridProps} />
       )
     }
-
-    return (
-      <div className={styles.wrap}>
-        {pageBanner?.togglePageBanner && pageBannerComponent}
-        {heroComponent}
-        <div className={styles.grid}>
-          {teamGridComponent}
-        </div>
-      </div>
-    )
   }
 
+  let walletsGridComponent
   if (pageTemplate === 'wallets') {
-    let walletsGridComponent
     if (walletsGrid) {
       const {
         walletsGridIntro,
@@ -140,21 +148,11 @@ export default async function Page({
         />
       )
     }
-
-    return (
-      <div className={styles.wrap}>
-        {pageBanner?.togglePageBanner && pageBannerComponent}
-        {heroComponent}
-        <div className={styles.grid}>
-          {walletsGridComponent}
-        </div>
-      </div>
-    )
   }
 
   let relatedNewsPosts
   if (relatedNewsType && typeof relatedNewsType === 'object') {
-    relatedNewsPosts = await getNewsArchive(3, 1, [], relatedNewsType.title)
+    relatedNewsPosts = await getNewsArchive(3, 1, [], relatedNewsType.slug)
   }
 
   return (
@@ -181,7 +179,10 @@ export default async function Page({
         {dictionary['server-component'].welcome}
       </h3>
       <p>Switch between en, es, and de in the URL to see different languages. Other languages will default to en.</p>
+      {pageTemplate === 'devHub' && productsGridComponent}
       {pageTemplate === 'events' && <EventsList />}
+      {pageTemplate === 'team' && teamGridComponent}
+      {pageTemplate === 'wallets' && walletsGridComponent}
       {(components && components.length > 0) && (
         <div className={styles.grid}>
           <SideNav components={components} />

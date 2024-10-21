@@ -10,7 +10,7 @@ const buildWhereClause = (
   type: string | null,
   additionalConditions: object = {},
 ) => {
-  const typeCondition = type ? { 'type.title': { equals: type } } : undefined
+  const typeCondition = type ? { 'type.slug': { equals: type } } : undefined
   return { ...typeCondition, ...additionalConditions }
 }
 
@@ -20,23 +20,28 @@ export const getNewsArchive = async (
   excludedIds: number[] = [],
   type: string | null = null,
 ) => {
-  const newsData = await payload.find({
-    collection: 'news',
-    limit,
-    page,
-    sort: '-publishDate',
-    where: buildWhereClause(type, {
-      id: {
-        not_in: excludedIds,
-      },
-    }),
-  })
-  return newsData
+  try {
+    const newsData = await payload.find({
+      collection: 'news',
+      limit,
+      page,
+      sort: '-publishDate',
+      where: buildWhereClause(type, {
+        id: {
+          not_in: excludedIds,
+        },
+      }),
+    })
+    return newsData
+  } catch (error) {
+    console.error('Error fetching getNewsArchive:', error)
+  }
+  return null
 }
 
 export const getNewsFeatured = async (
   limit = 4,
-  type = null,
+  type: string | null | undefined = null,
 ) => {
   try {
     const newsData = await payload.find({

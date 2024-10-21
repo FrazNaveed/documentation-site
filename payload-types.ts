@@ -449,6 +449,7 @@ export interface Page {
       [k: string]: unknown;
     } | null;
   };
+  devHub?: DevHub;
   teamGrid?: TeamGrid;
   walletsGrid?: WalletsGrid;
   components?: (Columns | Image | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints)[] | null;
@@ -491,6 +492,26 @@ export interface NewsType {
   title: string;
   slug: string;
   image: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DevHub".
+ */
+export interface DevHub {
+  productsGrid?: (number | Product)[] | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: number;
+  title: string;
+  slug: string;
+  icon?: (number | null) | Media;
+  shortDescription?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -795,19 +816,6 @@ export interface DeveloperGuideTag {
   id: number;
   title: string;
   slug: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "products".
- */
-export interface Product {
-  id: number;
-  title: string;
-  slug: string;
-  icon?: (number | null) | Media;
-  shortDescription?: string | null;
   updatedAt: string;
   createdAt: string;
 }
