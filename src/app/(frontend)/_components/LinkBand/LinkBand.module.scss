@@ -13,9 +13,29 @@
     color: $white;
   }
 
+  &Header,
+  &Links {
+    @include container;
+  }
+
+  &HeaderWrap {
+    position: relative;
+    box-sizing: border-box;
+
+    &::after {
+      position: absolute;
+      right: 0;
+      bottom: to-rem(-$spacing-standard);
+      left: 0;
+      width: 100vw;
+      height: 1px;
+      background-color: $white;
+      content: "";
+    }
+  }
+
   &Header {
     padding-top: to-rem($spacing-xx-large);
-    border-bottom: 1px solid $white;
   }
 
   &Title {

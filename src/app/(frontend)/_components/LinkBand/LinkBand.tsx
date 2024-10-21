@@ -6,8 +6,10 @@ import styles from './LinkBand.module.scss'
 export default function LinkBand({ title, links }: any) {
   return (
     <section className={styles.linkBand}>
-      <div className={styles.linkBandHeader}>
-        <h2 className={styles.linkBandTitle}>{title}</h2>
+      <div className={styles.linkBandHeaderWrap}>
+        <div className={styles.linkBandHeader}>
+          <h2 className={styles.linkBandTitle}>{title}</h2>
+        </div>
       </div>
       <div className={styles.linkBandLinks}>
         {links.map((link: any, index: number) => (
