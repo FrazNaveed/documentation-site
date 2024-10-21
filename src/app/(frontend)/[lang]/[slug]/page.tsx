@@ -97,8 +97,8 @@ export default async function Page({
     )
   }
 
+  let productsGridComponent
   if (pageTemplate === 'devHub') {
-    let productsGridComponent
     if (devHub) {
       const {
         productsGrid,
@@ -111,15 +111,6 @@ export default async function Page({
         <ProductGrid {...productsGridProps} />
       )
     }
-    return (
-      <div className={styles.wrap}>
-        {pageBanner?.togglePageBanner && pageBannerComponent}
-        {heroComponent}
-        <div className={styles.grid}>
-          {productsGridComponent}
-        </div>
-      </div>
-    )
   }
 
   if (pageTemplate === 'team') {
@@ -207,6 +198,7 @@ export default async function Page({
         {dictionary['server-component'].welcome}
       </h3>
       <p>Switch between en, es, and de in the URL to see different languages. Other languages will default to en.</p>
+      {pageTemplate === 'devHub' && productsGridComponent}
       {pageTemplate === 'events' && <EventsList />}
       {(components && components.length > 0) && (
         <div className={styles.grid}>
