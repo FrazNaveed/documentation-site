@@ -8,6 +8,8 @@
 $mobile-text-row-gap: $spacing-x-small;
 
 .wrap {
+  @include pageComponentSpacing;
+
   container-type: inline-size;
 }
 
