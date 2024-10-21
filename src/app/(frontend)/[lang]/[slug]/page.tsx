@@ -130,8 +130,8 @@ export default async function Page({
     }
   }
 
+  let walletsGridComponent
   if (pageTemplate === 'wallets') {
-    let walletsGridComponent
     if (walletsGrid) {
       const {
         walletsGridIntro,
@@ -147,16 +147,6 @@ export default async function Page({
         />
       )
     }
-
-    return (
-      <div className={styles.wrap}>
-        {pageBanner?.togglePageBanner && pageBannerComponent}
-        {heroComponent}
-        <div className={styles.grid}>
-          {walletsGridComponent}
-        </div>
-      </div>
-    )
   }
 
   let relatedNewsPosts
@@ -191,6 +181,7 @@ export default async function Page({
       {pageTemplate === 'devHub' && productsGridComponent}
       {pageTemplate === 'events' && <EventsList />}
       {pageTemplate === 'team' && teamGridComponent}
+      {pageTemplate === 'wallets' && walletsGridComponent}
       {(components && components.length > 0) && (
         <div className={styles.grid}>
           <SideNav components={components} />
