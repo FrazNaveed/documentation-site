@@ -10,7 +10,7 @@ const buildWhereClause = (
   type: string | null,
   additionalConditions: object = {},
 ) => {
-  const typeCondition = type ? { 'type.title': { equals: type } } : undefined
+  const typeCondition = type ? { 'type.slug': { equals: type } } : undefined
   return { ...typeCondition, ...additionalConditions }
 }
 
@@ -41,7 +41,7 @@ export const getNewsArchive = async (
 
 export const getNewsFeatured = async (
   limit = 4,
-  type = null,
+  type: string | null | undefined = null,
 ) => {
   try {
     const newsData = await payload.find({

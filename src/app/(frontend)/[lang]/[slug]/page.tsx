@@ -151,7 +151,7 @@ export default async function Page({
 
   let relatedNewsPosts
   if (relatedNewsType && typeof relatedNewsType === 'object') {
-    relatedNewsPosts = await getNewsArchive(3, 1, [], relatedNewsType.title)
+    relatedNewsPosts = await getNewsArchive(3, 1, [], relatedNewsType.slug)
   }
 
   return (

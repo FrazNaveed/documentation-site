@@ -86,7 +86,11 @@ a.text {
   background-color: $pink-900;
 
   .text {
-    color: $white;
+    &,
+    &:visited {
+      color: $white;
+    }
+
     font-size: $active-font-size;
 
     @include media-breakpoint-down(lg) {
