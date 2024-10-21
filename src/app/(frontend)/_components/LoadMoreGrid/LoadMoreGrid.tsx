@@ -11,7 +11,7 @@ export type LoadMoreGridProps = {
   limit?: number,
   excludeIds?: number[]
   // eslint-disable-next-line no-unused-vars
-  fetchFn: (limit: number, pageNumber: number, onPageIds: number[]) => Promise<PaginatedDocs<News>>
+  fetchFn: (limit: number, pageNumber: number, onPageIds: number[]) => Promise<PaginatedDocs<News> | null>
   buttonText?: string
 }
 
@@ -27,6 +27,9 @@ export default function LoadMoreGrid({
     setIsLoading(true)
     try {
       const newEntries = await fetchFn(limit, pageNumber, excludeIds)
+      if (newEntries === null) {
+        throw new Error('Error loading more news posts')
+      }
       setHasNextPage(newEntries.hasNextPage)
       if (newEntries.docs.length > 0) {
         setGridItems((prevItems) => [...prevItems, ...newEntries.docs])

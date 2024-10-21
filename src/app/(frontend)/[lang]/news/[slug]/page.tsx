@@ -47,7 +47,9 @@ export default async function Page({ params }: PageProps) {
 
   if (relatedBackfill && relatedBackfill > 0) {
     const related = await getNewsArchive(relatedBackfill, 1, [id], typeof type === 'object' ? type?.title : undefined)
-    relatedNews?.push(...related.docs)
+    if (related) {
+      relatedNews?.push(...related.docs)
+    }
   }
 
   let typeHeroBgImage
