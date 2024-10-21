@@ -82,6 +82,11 @@
     column-gap: to-rem($spacing-x-small);
   }
 
+  &IconWrap {
+    width: to-rem(48px);
+    height: to-rem(48px);
+  }
+
   &Title {
     @include headerH6;
 
