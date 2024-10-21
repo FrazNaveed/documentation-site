@@ -13,6 +13,9 @@ export default async function Page() {
   const featuredNews = await getNewsFeatured()
   const featuredNewsIds = featuredNews.map((featuredNewsItem) => featuredNewsItem.id)
   const news = await getNewsArchive(12, 0, featuredNewsIds)
+  if (!news || news.docs.length === 0) {
+    return <h1 className={styles.pageTitle}>No news posts found</h1>
+  }
   const allFetchedIds = featuredNewsIds.concat(news.docs.map((newsItem) => newsItem.id))
   const { hasNextPage } = news
   const latestNewsNav = [
@@ -25,9 +28,6 @@ export default async function Page() {
   ]
 
   const featuredPost = featuredNews[0] || news.docs[0]
-  if (!news || news.docs.length === 0) {
-    return <h1 className={styles.pageTitle}>No news posts found</h1>
-  }
   const {
     slug: featuredPostSlug,
     // excerpt: featuredPostExcerpt,

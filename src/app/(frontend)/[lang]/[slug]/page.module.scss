@@ -7,8 +7,11 @@
 
 .grid {
   @include containerGrid;
+  @include pageComponentSpacing;
 
-  padding-top: to-rem($spacing-standard);
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .mainContent {

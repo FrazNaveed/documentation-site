@@ -20,18 +20,23 @@ export const getNewsArchive = async (
   excludedIds: number[] = [],
   type: string | null = null,
 ) => {
-  const newsData = await payload.find({
-    collection: 'news',
-    limit,
-    page,
-    sort: '-publishDate',
-    where: buildWhereClause(type, {
-      id: {
-        not_in: excludedIds,
-      },
-    }),
-  })
-  return newsData
+  try {
+    const newsData = await payload.find({
+      collection: 'news',
+      limit,
+      page,
+      sort: '-publishDate',
+      where: buildWhereClause(type, {
+        id: {
+          not_in: excludedIds,
+        },
+      }),
+    })
+    return newsData
+  } catch (error) {
+    console.error('Error fetching getNewsArchive:', error)
+  }
+  return null
 }
 
 export const getNewsFeatured = async (
