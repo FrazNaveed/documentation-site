@@ -113,8 +113,8 @@ export default async function Page({
     }
   }
 
+  let teamGridComponent
   if (pageTemplate === 'team') {
-    let teamGridComponent
     if (teamGrid) {
       const {
         gridTitle,
@@ -128,16 +128,6 @@ export default async function Page({
         <TeamGridBlock {...teamGridProps} />
       )
     }
-
-    return (
-      <div className={styles.wrap}>
-        {pageBanner?.togglePageBanner && pageBannerComponent}
-        {heroComponent}
-        <div className={styles.grid}>
-          {teamGridComponent}
-        </div>
-      </div>
-    )
   }
 
   if (pageTemplate === 'wallets') {
@@ -200,6 +190,7 @@ export default async function Page({
       <p>Switch between en, es, and de in the URL to see different languages. Other languages will default to en.</p>
       {pageTemplate === 'devHub' && productsGridComponent}
       {pageTemplate === 'events' && <EventsList />}
+      {pageTemplate === 'team' && teamGridComponent}
       {(components && components.length > 0) && (
         <div className={styles.grid}>
           <SideNav components={components} />
