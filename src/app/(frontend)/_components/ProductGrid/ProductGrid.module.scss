@@ -10,7 +10,7 @@
   @include pageComponentSpacing;
 
   &Wrap {
-    @include grid(12);
+    @include grid;
 
     grid-auto-rows: 1fr;
     gap: to-rem($spacing-small) to-rem($grid-column-gap-flare);
