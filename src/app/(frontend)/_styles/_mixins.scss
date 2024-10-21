@@ -107,4 +107,8 @@ $root-font-size: $root-font-size-number * 1px;
     margin-top: to-rem($spacing-medium);
     margin-bottom: to-rem($spacing-medium);
   }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }

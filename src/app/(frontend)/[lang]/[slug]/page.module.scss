@@ -8,10 +8,6 @@
 .grid {
   @include containerGrid;
   @include pageComponentSpacing;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 }
 
 .mainContent {
