@@ -6,6 +6,8 @@
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .productGrid {
+  @include container;
+
   margin-bottom: to-rem($spacing-5x-large);
 
   @include media-breakpoint-down(lg) {
@@ -17,7 +19,7 @@
   }
 
   &Wrap {
-    @include grid(12); // for testing. to replace with subgrid.
+    @include grid(12);
 
     grid-auto-rows: 1fr;
     gap: to-rem($spacing-small) to-rem($grid-column-gap-flare);
