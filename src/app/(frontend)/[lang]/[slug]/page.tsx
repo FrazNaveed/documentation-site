@@ -216,8 +216,8 @@ export default async function Page({
         <>
           {productsGridComponent}
           {linkBandComponent}
-          <EventsWidget />
           {bugBountyCtaComponent}
+          <EventsWidget />
         </>
       )}
       {pageTemplate === 'events' && <EventsList />}
