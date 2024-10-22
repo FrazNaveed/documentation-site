@@ -107,11 +107,11 @@ $breakpoint-xl: 1401px;
       @content;
     }
   } @else if $max == null {
-    @include container-breakpoint-up($lower, $breakpoints) {
+    @include container-breakpoint-up($lower, $container-name, $breakpoints) {
       @content;
     }
   } @else if $min == null {
-    @include container-breakpoint-down($upper, $breakpoints) {
+    @include container-breakpoint-down($upper, $container-name, $breakpoints) {
       @content;
     }
   }
