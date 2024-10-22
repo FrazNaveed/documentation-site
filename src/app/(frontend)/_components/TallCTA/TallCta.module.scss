@@ -37,7 +37,7 @@
 
   &Image {
     @include media-breakpoint-down(md) {
-      width: 400px;
+      width: to-rem(400px);
       height: auto;
     }
 
@@ -45,7 +45,7 @@
       position: absolute;
       top: 0;
       left: 50%;
-      width: 160px;
+      width: to-rem(160px);
       height: auto;
       transform: translateX(-50%);
     }
