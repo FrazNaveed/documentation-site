@@ -25,6 +25,7 @@ import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
 import { PayloadLexicalReactRendererContent } from '../../_components/LexicalRenderer/LexicalRenderer'
 import ProductGrid from '../../_components/ProductGrid'
+import TallCta from '../../_components/TallCTA/TallCta'
 
 export const dynamic = 'force-dynamic'
 
@@ -113,6 +114,19 @@ export default async function Page({
     }
   }
 
+  let bugBountyCtaComponent
+  if (pageTemplate === 'devHub') {
+    bugBountyCtaComponent = (
+      <TallCta
+        title='Bug Bounty'
+        content='Flare has an active Bug Bounty Program on Immunefi.'
+        buttonText='Immunefi'
+        buttonLink='foo.com'
+        option
+      />
+    )
+  }
+
   let teamGridComponent
   if (pageTemplate === 'team') {
     if (teamGrid) {
@@ -178,7 +192,12 @@ export default async function Page({
         {dictionary['server-component'].welcome}
       </h3>
       <p>Switch between en, es, and de in the URL to see different languages. Other languages will default to en.</p>
-      {pageTemplate === 'devHub' && productsGridComponent}
+      {pageTemplate === 'devHub' && (
+        <>
+          {productsGridComponent}
+          {bugBountyCtaComponent}
+        </>
+      )}
       {pageTemplate === 'events' && <EventsList />}
       {pageTemplate === 'team' && teamGridComponent}
       {pageTemplate === 'wallets' && walletsGridComponent}
