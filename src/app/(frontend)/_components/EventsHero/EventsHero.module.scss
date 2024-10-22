@@ -5,13 +5,20 @@
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .bg {
-  background-color: $gray-100;
+  background-color: $events-hero-bg-color;
   overflow: hidden;
   container-type: inline-size;
 }
 
 .container {
   @include container;
+
+  &__noDtContainerPadding {
+    @include media-breakpoint-up(lg) {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
 }
 
 .grid {

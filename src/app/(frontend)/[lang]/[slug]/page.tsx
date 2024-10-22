@@ -8,6 +8,7 @@ import type { Locale } from 'src/app/i18n-config'
 import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
 import EventsHero from 'src/app/(frontend)/_components/EventsHero'
+import EventsWidget from 'src/app/(frontend)/_components/EventsWidget'
 import SideNav from 'src/app/(frontend)/_components/SideNav'
 import JumpLinkAnchor from 'src/app/(frontend)/_components/SideNav/JumpLinkAnchor'
 import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
@@ -184,7 +185,12 @@ export default async function Page({
         {dictionary['server-component'].welcome}
       </h3>
       <p>Switch between en, es, and de in the URL to see different languages. Other languages will default to en.</p>
-      {pageTemplate === 'devHub' && productsGridComponent}
+      {pageTemplate === 'devHub' && (
+        <>
+          {productsGridComponent}
+          <EventsWidget />
+        </>
+      )}
       {pageTemplate === 'events' && <EventsList />}
       {pageTemplate === 'team' && teamGridComponent}
       {pageTemplate === 'wallets' && walletsGridComponent}
