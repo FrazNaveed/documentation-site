@@ -1,6 +1,8 @@
 @use "../../_styles/mixins" as *;
+@use "../../_styles/colors" as *;
 @use "../../_styles/typography" as *;
 @use "../../_styles/spacing" as *;
+@use "../../_styles/transitions" as *;
 
 .relatedNews {
   margin-bottom: $spacing-7x-large;
@@ -27,6 +29,16 @@
     svg {
       width: 15px;
       height: 15px;
+    }
+
+    &:active,
+    &:hover,
+    &:focus {
+      svg {
+        path {
+          fill: $pink-900;
+        }
+      }
     }
   }
 }
