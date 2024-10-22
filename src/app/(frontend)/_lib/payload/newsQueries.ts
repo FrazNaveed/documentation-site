@@ -10,7 +10,7 @@ const buildWhereClause = (
   type: string | null,
   additionalConditions: object = {},
 ) => {
-  const typeCondition = type ? { 'type.title': { equals: type } } : undefined
+  const typeCondition = type ? { 'type.slug': { equals: type } } : undefined
   return { ...typeCondition, ...additionalConditions }
 }
 
@@ -20,57 +20,67 @@ export const getNewsArchive = async (
   excludedIds: number[] = [],
   type: string | null = null,
 ) => {
-  const newsData = await payload.find({
-    collection: 'news',
-    limit,
-    page,
-    sort: '-publishDate',
-    where: buildWhereClause(type, {
-      id: {
-        not_in: excludedIds,
-      },
-    }),
-  })
-  return newsData
-}
-
-export const getNewsFeatured = async (
-  limit = 4,
-  type = null,
-) => {
-  const newsData = await payload.find({
-    collection: 'news',
-    limit,
-    sort: '-publishDate',
-    where: buildWhereClause(type, {
-      featured: {
-        equals: true,
-      },
-    }),
-  })
-
-  // Backfill with latest news items if there are fewer than 4 returned from this query
-  if (newsData.docs.length < limit) {
-    const excludedIds = newsData.docs.map((doc) => doc.id)
-    const latestNewsData = await payload.find({
+  try {
+    const newsData = await payload.find({
       collection: 'news',
-      limit: limit - newsData.docs.length,
+      limit,
+      page,
       sort: '-publishDate',
       where: buildWhereClause(type, {
         id: {
           not_in: excludedIds,
         },
+      }),
+    })
+    return newsData
+  } catch (error) {
+    console.error('Error fetching getNewsArchive:', error)
+  }
+  return null
+}
+
+export const getNewsFeatured = async (
+  limit = 4,
+  type: string | null | undefined = null,
+) => {
+  try {
+    const newsData = await payload.find({
+      collection: 'news',
+      limit,
+      sort: '-publishDate',
+      where: buildWhereClause(type, {
         featured: {
-          not_equals: true,
+          equals: true,
         },
       }),
     })
-    newsData.docs.push(...latestNewsData.docs)
+
+    // Backfill with latest news items if there are fewer than 4 returned from this query
+    if (newsData.docs.length < limit) {
+      const excludedIds = newsData.docs.map((doc) => doc.id)
+      const latestNewsData = await payload.find({
+        collection: 'news',
+        limit: limit - newsData.docs.length,
+        sort: '-publishDate',
+        where: buildWhereClause(type, {
+          id: {
+            not_in: excludedIds,
+          },
+          featured: {
+            not_equals: true,
+          },
+        }),
+      })
+      newsData.docs.push(...latestNewsData.docs)
+    }
+
+    const news: News[] = newsData.docs
+
+    return news
+  } catch (error) {
+    console.error('Error fetching getNewsFeatured:', error)
   }
-
-  const news: News[] = newsData.docs
-
-  return news
+  return []
 }
 
 export const getNewsBySlug = async (slug: string) => {
@@ -90,7 +100,7 @@ export const getNewsBySlug = async (slug: string) => {
 
     return news
   } catch (error) {
-    console.error('Error fetching getNewsBySlug:', error)
+    console.error(`Error fetching getNewsBySlug for ${slug}:`, error)
   }
   return []
 }

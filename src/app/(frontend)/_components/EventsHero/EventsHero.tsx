@@ -12,6 +12,7 @@ import styles from './EventsHero.module.scss'
 export type EventsHeroProps = {
   event: Event
   backgroundImage?: Media
+  noDesktopContainerPadding?: boolean
 }
 
 function displayDayRange(startDate: string, endDate: string | null | undefined = startDate, locale: TLocales = 'en') {
@@ -36,7 +37,7 @@ function displayDayRange(startDate: string, endDate: string | null | undefined =
   return output
 }
 
-export default function EventsHero({ event, backgroundImage }: EventsHeroProps) {
+export default function EventsHero({ event, backgroundImage, noDesktopContainerPadding }: EventsHeroProps) {
   const {
     title: header,
     startDate,
@@ -44,14 +45,22 @@ export default function EventsHero({ event, backgroundImage }: EventsHeroProps) 
     endDate,
     country,
     location,
-    flareInvolvement: eyebrow,
+    flareInvolvement: eyebrowDefault,
+    featuredHeroEyebrow: eyebrowOverride,
     button,
   } = event
+  const eyebrow = eyebrowOverride || eyebrowDefault
   const startYear = startDate && new Date(startDate).getFullYear()
   const endYear = endDate && new Date(endDate).getFullYear()
   return (
     <div className={styles.bg}>
-      <div className={cx(styles.container, styles.grid)}>
+      <div
+        className={cx(
+          styles.container,
+          styles.grid,
+          { [styles.container__noDtContainerPadding]: noDesktopContainerPadding },
+        )}
+      >
         <div className={styles.content}>
           <EventsFeaturedLabel textClassName={styles.featuredText} />
           {eyebrow && <h2 className={styles.eyebrow}>{eyebrow}</h2>}

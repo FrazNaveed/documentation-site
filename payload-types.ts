@@ -8,6 +8,17 @@
 
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LinkBandLinks".
+ */
+export type LinkBandLinks =
+  | {
+      linkText?: string | null;
+      linkUrl?: string | null;
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "StatsList".
  */
 export type StatsList =
@@ -106,6 +117,9 @@ export interface Config {
     'news-types': NewsType;
     'news-sub-types': NewsSubType;
     people: Person;
+    developerGuides: DeveloperGuide;
+    developerGuideTags: DeveloperGuideTag;
+    products: Product;
     wallets: Wallet;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -421,6 +435,8 @@ export interface Page {
     eyebrow?: string | null;
     buttonText?: string | null;
     buttonLink?: string | null;
+    buttonSecondaryText?: string | null;
+    buttonSecondaryLink?: string | null;
     backgroundImage?: (number | null) | Media;
   };
   hideHero?: boolean | null;
@@ -446,6 +462,7 @@ export interface Page {
       [k: string]: unknown;
     } | null;
   };
+  devHub?: DevHub;
   teamGrid?: TeamGrid;
   walletsGrid?: WalletsGrid;
   components?: (Columns | Image | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints)[] | null;
@@ -488,6 +505,30 @@ export interface NewsType {
   title: string;
   slug: string;
   image: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DevHub".
+ */
+export interface DevHub {
+  productsGrid?: (number | Product)[] | null;
+  linkBand?: {
+    linkBandTitle?: string | null;
+    links?: LinkBandLinks;
+  };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: number;
+  title: string;
+  slug: string;
+  icon?: (number | null) | Media;
+  shortDescription?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -773,6 +814,30 @@ export interface NewsSubType {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "developerGuides".
+ */
+export interface DeveloperGuide {
+  id: number;
+  title: string;
+  shortDescription?: string | null;
+  tags?: (number | DeveloperGuideTag)[] | null;
+  product?: (number | null) | Product;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "developerGuideTags".
+ */
+export interface DeveloperGuideTag {
+  id: number;
+  title: string;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -809,6 +874,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'people';
         value: number | Person;
+      } | null)
+    | ({
+        relationTo: 'developerGuides';
+        value: number | DeveloperGuide;
+      } | null)
+    | ({
+        relationTo: 'developerGuideTags';
+        value: number | DeveloperGuideTag;
+      } | null)
+    | ({
+        relationTo: 'products';
+        value: number | Product;
       } | null)
     | ({
         relationTo: 'wallets';
