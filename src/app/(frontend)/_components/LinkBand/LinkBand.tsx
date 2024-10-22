@@ -8,7 +8,7 @@ export default function LinkBand({ title, links }: any) {
     <section className={styles.linkBand}>
       <div className={styles.linkBandHeaderWrap}>
         <div className={styles.linkBandHeader}>
-          <h2 className={styles.linkBandTitle}>{title}</h2>
+          <h2 className={styles.linkBandTitle}>{title || 'Explorers & Resources'}</h2>
         </div>
       </div>
       <div className={styles.linkBandLinks}>
