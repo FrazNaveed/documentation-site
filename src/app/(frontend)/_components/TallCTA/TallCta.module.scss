@@ -9,25 +9,36 @@
   @include container;
 
   &Wrap {
-    display: flex;
+    // display: flex;
+    @include grid;
 
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(md) {
+      display: flex;
       flex-direction: row-reverse;
       min-height: to-rem(360px);
       column-gap: $grid-column-gap-flare;
     }
   }
 
-  &ImageWrap,
-  &Text {
-    flex: 1 0 50%;
-  }
+  // &ImageWrap,
+  // &Text {
+  //   flex: 1 0 50%;
+  // }
 
   &ImageWrap {
+    @include columns(2, 7);
+
     position: relative;
 
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(lg) {
+      @include columns(1, 6);
+    }
+
+    @include media-breakpoint-down(md) {
       flex: 1 0 25%;
+      // @include columns(4, -1);
+
+      border: 3px magenta dotted;
     }
   }
 
@@ -55,15 +66,17 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    margin-left: -20%;
 
     @include media-breakpoint-down(lg) {
       bottom: 0;
       left: 10%;
       width: 175px;
       height: auto;
+      margin-left: 0;
     }
 
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(md) {
       top: 50%;
       left: 50%;
       width: 70px;
@@ -73,11 +86,19 @@
   }
 
   &Text {
+    @include columns(8, -1);
+
     margin-top: auto;
     margin-bottom: auto;
 
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(lg) {
+      @include columns(6, -1);
+    }
+
+    @include media-breakpoint-down(md) {
       flex: 0 1 75%;
+      // @include columns(1, 3);
+
       margin-top: to-rem($spacing-medium);
     }
   }
@@ -96,7 +117,7 @@
     max-width: 66.66%;
     margin-bottom: to-rem($spacing-standard);
 
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(md) {
       max-width: 100%;
     }
   }
