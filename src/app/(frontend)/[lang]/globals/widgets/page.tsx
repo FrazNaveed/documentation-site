@@ -7,7 +7,7 @@ import RelatedPosts from '../../../_components/RelatedPosts'
 const posts: News[] = []
 const header = 'Past Events'
 const linkText = 'View all past events'
-const linkUrl = '/news'
+const linkUrl = '/news/category/past-events'
 
 export default function Page() {
   return (
