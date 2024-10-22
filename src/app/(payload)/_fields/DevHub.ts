@@ -23,10 +23,14 @@ export const DevHub: Field[] = [
           {
             name: 'linkBandTitle',
             type: 'text',
+            admin: {
+              description: 'Fill in to override default title "Explorers & Resources"',
+            },
           },
           {
             name: 'links',
             type: 'array',
+            interfaceName: 'LinkBandLinks',
             fields: [
               {
                 name: 'linkText',
@@ -39,9 +43,6 @@ export const DevHub: Field[] = [
             ],
           },
         ],
-        admin: {
-          description: 'Fill in Link Band Title to override default title "Explorers & Resources"',
-        },
       }
     ],
     admin: {
