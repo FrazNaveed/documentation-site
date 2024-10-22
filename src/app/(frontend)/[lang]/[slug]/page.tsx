@@ -149,7 +149,9 @@ export default async function Page({
 
   let pastEventsComponent
   if (pageTemplate === 'devHub') {
-    const pastEventsPosts = await getNewsArchive(3, 1, [], 'past-events')
+    const pastEventsLimit = 3
+    const newsType = 'past-events'
+    const pastEventsPosts = await getNewsArchive(pastEventsLimit, 1, [], newsType)
     pastEventsComponent = (
       pastEventsPosts && pastEventsPosts.docs.length > 0 && (
         <RelatedPosts
