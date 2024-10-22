@@ -13,8 +13,6 @@
     @include grid;
 
     @include media-breakpoint-down(md) {
-      // display: flex;
-      // flex-direction: row-reverse;
       min-height: to-rem(360px);
       column-gap: $grid-column-gap-flare;
     }
