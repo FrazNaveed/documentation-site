@@ -1,0 +1,138 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.linkBand {
+  background-color: $pink-900;
+
+  a {
+    color: $white;
+
+    &:active,
+    &:focus,
+    &:hover,
+    &:visited {
+      color: $white;
+    }
+  }
+
+  &Header,
+  &Links {
+    @include container;
+  }
+
+  &HeaderWrap {
+    position: relative;
+    box-sizing: border-box;
+
+    &::after {
+      position: absolute;
+      right: 0;
+      bottom: to-rem(-$spacing-standard);
+      left: 0;
+      width: 100vw;
+      height: 1px;
+      background-color: $white;
+      content: "";
+    }
+  }
+
+  &Header {
+    padding-top: to-rem($spacing-xx-large);
+  }
+
+  &Title {
+    @include headerH5;
+
+    margin-bottom: to-rem($spacing-standard);
+    color: $white;
+  }
+
+  &Links {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &Link {
+    @include headerH7;
+
+    display: flex;
+    position: relative;
+    flex: 0 1 50%;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: to-rem($spacing-medium);
+    padding-bottom: to-rem($spacing-medium);
+    box-sizing: border-box;
+
+    @include media-breakpoint-down(sm) {
+      flex: 1 1 100%;
+    }
+
+    &::after {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      height: 1px;
+      transform: translateX(-50%);
+      background-color: $white;
+      content: "";
+
+      @include media-breakpoint-down(sm) {
+        transform: translateX(to-rem(-$spacing-small));
+        background-color: $white;
+      }
+    }
+
+    &:nth-child(even) {
+      padding-left: to-rem($spacing-standard);
+
+      @include media-breakpoint-down(sm) {
+        padding-left: 0;
+      }
+    }
+
+    &:nth-child(odd) {
+      padding-right: to-rem($spacing-standard);
+      border-right: 1px solid $white;
+
+      @include media-breakpoint-down(sm) {
+        padding-right: 0;
+        border-right: none;
+      }
+    }
+
+    &:last-child {
+      @include media-breakpoint-down(sm) {
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    &__noBorderBottom {
+      &::after {
+        display: none;
+      }
+
+      @include media-breakpoint-down(sm) {
+        &::after {
+          display: block;
+          transform: translateX(to-rem(-$spacing-small));
+          background-color: $white;
+        }
+      }
+    }
+
+    svg {
+      path {
+        fill: $white;
+      }
+    }
+  }
+}

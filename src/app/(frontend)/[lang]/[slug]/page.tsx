@@ -26,6 +26,7 @@ import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
 import { PayloadLexicalReactRendererContent } from '../../_components/LexicalRenderer/LexicalRenderer'
 import ProductGrid from '../../_components/ProductGrid'
+import LinkBand from '../../_components/LinkBand'
 
 export const dynamic = 'force-dynamic'
 
@@ -120,6 +121,18 @@ export default async function Page({
     }
   }
 
+  let linkBandComponent
+  if (pageTemplate === 'devHub' && devHub) {
+    const { linkBand } = devHub
+    const linkBandProps = {
+      title: linkBand?.linkBandTitle,
+      links: linkBand?.links,
+    }
+    linkBandComponent = (
+      <LinkBand {...linkBandProps} />
+    )
+  }
+
   let teamGridComponent
   if (pageTemplate === 'team') {
     if (teamGrid) {
@@ -188,6 +201,7 @@ export default async function Page({
       {pageTemplate === 'devHub' && (
         <>
           {productsGridComponent}
+          {linkBandComponent}
           <EventsWidget />
         </>
       )}

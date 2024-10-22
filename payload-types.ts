@@ -8,6 +8,17 @@
 
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LinkBandLinks".
+ */
+export type LinkBandLinks =
+  | {
+      linkText?: string | null;
+      linkUrl?: string | null;
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "StatsList".
  */
 export type StatsList =
@@ -503,6 +514,10 @@ export interface NewsType {
  */
 export interface DevHub {
   productsGrid?: (number | Product)[] | null;
+  linkBand?: {
+    linkBandTitle?: string | null;
+    links?: LinkBandLinks;
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
