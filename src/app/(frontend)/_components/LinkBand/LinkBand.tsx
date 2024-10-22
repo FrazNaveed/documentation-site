@@ -19,9 +19,10 @@ export default function LinkBand({ title, links }: LinkBandProps) {
       </div>
       <div className={styles.linkBandLinks}>
         {links?.map((link, index: number) => (
+          link?.linkText && link?.linkUrl && (
           <Link
             key={link.id}
-            href={link?.linkUrl || '#'}
+            href={link.linkUrl}
             className={cx(
               styles.linkBandLink,
               index === links.length - 1 && styles.linkBandLink__noBorderBottom,
@@ -31,7 +32,7 @@ export default function LinkBand({ title, links }: LinkBandProps) {
             {link.linkText}
             <DiagonalArrowSquare />
           </Link>
-        ))}
+          )))}
       </div>
     </section>
   )
