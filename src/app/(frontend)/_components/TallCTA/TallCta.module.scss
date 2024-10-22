@@ -7,6 +7,7 @@
 
 .tallCta {
   @include container;
+  @include pageComponentSpacing;
 
   &Wrap {
     @include grid;
