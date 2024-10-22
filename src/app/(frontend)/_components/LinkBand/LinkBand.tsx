@@ -1,9 +1,15 @@
 import cx from 'classnames'
 import Link from 'next/link'
+import type { LinkBandLinks } from 'payload-types'
 import DiagonalArrowSquare from '../svgs/DiagonalArrowSquare'
 import styles from './LinkBand.module.scss'
 
-export default function LinkBand({ title, links }: any) {
+export type LinkBandProps = {
+  title?: string | null,
+  links?: LinkBandLinks
+}
+
+export default function LinkBand({ title, links }: LinkBandProps) {
   return (
     <section className={styles.linkBand}>
       <div className={styles.linkBandHeaderWrap}>
