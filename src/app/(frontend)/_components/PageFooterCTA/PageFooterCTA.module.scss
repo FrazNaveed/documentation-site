@@ -19,6 +19,13 @@
   justify-content: space-between;
 }
 
+.buttonWrap {
+  display: flex;
+  column-gap: to-rem($spacing-small);
+  z-index: 3;
+}
+
 .Button {
+  flex-shrink: 0;
   margin-bottom: 0;
 }
