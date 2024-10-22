@@ -12,7 +12,7 @@ export default function TallCta({
         <div className={styles.tallCtaImageWrap}>
           <Image
             src={`/${i18n.defaultLocale}/bug.png`}
-            alt='bg image'
+            alt='Image of a bug for the Bug Bounty program'
             width={592}
             height={592}
             className={styles.tallCtaImage}
@@ -20,7 +20,7 @@ export default function TallCta({
           {option && (
             <Image
               src={`/${i18n.defaultLocale}/bug.png`}
-              alt='bg image'
+              alt='Image of a smaller bug for the Bug Bounty program'
               width={230}
               height={230}
               className={styles.tallCtaOptionalImage}
@@ -28,12 +28,14 @@ export default function TallCta({
           )}
         </div>
         <div className={styles.tallCtaText}>
-          <h2 className={styles.tallCtaTitle}>{title}</h2>
-          <p className={styles.tallCtaContent}>{content}</p>
-          <Button
-            text={buttonText}
-            link={buttonLink}
-          />
+          {title && <h2 className={styles.tallCtaTitle}>{title}</h2>}
+          {content && <p className={styles.tallCtaContent}>{content}</p>}
+          {buttonText && buttonLink && (
+            <Button
+              text={buttonText}
+              link={buttonLink}
+            />
+          )}
         </div>
       </div>
     </section>
