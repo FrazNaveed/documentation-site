@@ -7,8 +7,7 @@
 
 .grid {
   @include containerGrid;
-
-  padding-top: to-rem($spacing-standard);
+  @include pageComponentSpacing;
 }
 
 .mainContent {

@@ -77,7 +77,10 @@ $active-font-size-lg: to-rem(14px);
 a.text {
   @include paragraphXSmFont;
 
-  color: $pink-900;
+  &,
+  &:visited {
+    color: $pink-900;
+  }
 }
 
 .active {
@@ -86,7 +89,11 @@ a.text {
   background-color: $pink-900;
 
   .text {
-    color: $white;
+    &,
+    &:visited {
+      color: $white;
+    }
+
     font-size: $active-font-size;
 
     @include media-breakpoint-down(lg) {

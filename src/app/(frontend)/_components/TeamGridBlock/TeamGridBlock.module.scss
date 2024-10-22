@@ -7,21 +7,12 @@
 
 .teamGrid {
   &Block {
-    @include columns(1, -1);
-
-    display: grid;
-    padding-top: to-rem($spacing-medium);
-
-    @include media-breakpoint-down(lg) {
-      padding-top: to-rem($spacing-x-small);
-      grid-template-columns: subgrid;
-    }
+    @include container;
+    @include pageComponentSpacing;
   }
 
   &Wrap {
     @include utils.listReset;
-
-    display: grid;
 
     @include media-breakpoint-up(lg) {
       @include grid(5);
@@ -30,9 +21,8 @@
     }
 
     @include media-breakpoint-down(lg) {
-      @include columns(1, -1);
+      @include grid;
 
-      grid-template-columns: subgrid;
       row-gap: to-rem($spacing-medium);
     }
   }
@@ -55,12 +45,6 @@
 
   @include media-breakpoint-down(md) {
     margin-bottom: to-rem($spacing-medium);
-  }
-
-  &Wrap {
-    @include columns(1, -1);
-
-    display: grid;
   }
 }
 

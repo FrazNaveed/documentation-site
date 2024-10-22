@@ -1,6 +1,3 @@
-'use client'
-
-import React, { useState } from 'react'
 import Link from 'next/link'
 import cx from 'classnames'
 import getCollectionPath from '../../_utils/getCollectionPath'
@@ -8,18 +5,11 @@ import styles from './NewsFilter.module.scss'
 
 export type LinksProps = {
   navLinks: { text: string, link: string, id: number }[]
+  currentType?: string | null
   className?: string
 }
 
-export default function Links({ navLinks, className }: LinksProps) {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [hasClicked, setHasClicked] = useState(false)
-
-  const handleClick = (index: number) => {
-    setActiveIndex(index)
-    setHasClicked(true)
-  }
-
+export default function Links({ navLinks, currentType, className }: LinksProps) {
   return (
     <div className={cx(styles.NewsFilter, className)}>
       <nav className={styles.nav}>
@@ -28,14 +18,13 @@ export default function Links({ navLinks, className }: LinksProps) {
             <li
               className={cx(
                 styles.filter,
-                { [styles.active]: (!hasClicked && index === 0) || (activeIndex === index) },
+                { [styles.active]: currentType === navLink.link || (!currentType && index === 0) },
               )}
               key={navLink.id}
             >
               <Link
                 href={index !== 0 ? `${getCollectionPath('news-types')}/${navLink.link}` : getCollectionPath('news')}
                 className={styles.text}
-                onClick={() => handleClick(index)}
                 title={navLink.text}
               >
                 {navLink.text}
