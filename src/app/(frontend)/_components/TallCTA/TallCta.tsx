@@ -3,9 +3,17 @@ import { i18n } from '@/src/app/i18n-config'
 import Button from '../Button'
 import styles from './TallCta.module.scss'
 
+export interface TallCtaProps {
+  title: string,
+  content: string,
+  buttonText: string,
+  buttonLink: string,
+  option?: boolean
+}
+
 export default function TallCta({
   title, content, buttonText, buttonLink, option,
-}: any) {
+}: TallCtaProps) {
   return (
     <section className={styles.tallCta}>
       <div className={styles.tallCtaWrap}>
