@@ -121,7 +121,7 @@ export default async function Page({
         title='Bug Bounty'
         content='Flare has an active Bug Bounty Program on Immunefi.'
         buttonText='Immunefi'
-        buttonLink='foo.com'
+        buttonLink='https://immunefi.com/bug-bounty/flarenetwork/information/'
         option
       />
     )
