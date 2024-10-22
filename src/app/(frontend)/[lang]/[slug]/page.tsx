@@ -27,6 +27,7 @@ import PrevNextLinks from '../../_components/PrevNextLinks'
 import { PayloadLexicalReactRendererContent } from '../../_components/LexicalRenderer/LexicalRenderer'
 import ProductGrid from '../../_components/ProductGrid'
 import LinkBand from '../../_components/LinkBand'
+import TallCta from '../../_components/TallCTA/TallCta'
 
 export const dynamic = 'force-dynamic'
 
@@ -121,6 +122,19 @@ export default async function Page({
     }
   }
 
+  let bugBountyCtaComponent
+  if (pageTemplate === 'devHub') {
+    bugBountyCtaComponent = (
+      <TallCta
+        title='Bug Bounty'
+        content='Flare has an active Bug Bounty Program on Immunefi.'
+        buttonText='Immunefi'
+        buttonLink='https://immunefi.com/bug-bounty/flarenetwork/information/'
+        option
+      />
+    )
+  }
+
   let linkBandComponent
   if (pageTemplate === 'devHub' && devHub) {
     const { linkBand } = devHub
@@ -202,6 +216,7 @@ export default async function Page({
         <>
           {productsGridComponent}
           {linkBandComponent}
+          {bugBountyCtaComponent}
           <EventsWidget />
         </>
       )}
