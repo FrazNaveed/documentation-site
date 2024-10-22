@@ -8,9 +8,11 @@
 $mobile-text-row-gap: $spacing-x-small;
 
 .wrap {
-  @include pageComponentSpacing;
-
   container-type: inline-size;
+
+  &__standard {
+    @include pageComponentSpacing;
+  }
 }
 
 .container {
@@ -23,10 +25,10 @@ $mobile-text-row-gap: $spacing-x-small;
   margin-bottom: to-rem($spacing-standard);
 }
 
-.grid {
-  @include grid;
-
-  row-gap: to-rem($spacing-x-small);
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: to-rem($spacing-x-small) $grid-column-gap;
 
   @include container-breakpoint-down(lg) {
     row-gap: to-rem($spacing-medium);
@@ -56,13 +58,17 @@ $event-col-gap: $grid-column-gap;
 }
 
 .event {
-  @include spanColumns(12);
-
+  flex-shrink: 0;
+  width: 100%;
   border-radius: 6px;
   background-color: $gray-50;
 
   @include container-breakpoint-down(lg) {
-    @include spanColumns(4);
+    width: calc(50% - ($grid-column-gap / 2));
+  }
+
+  @container (width <= 650.98px) {
+    width: 100%;
   }
 
   &__desktop {
@@ -103,11 +109,11 @@ $button-col-width: 205px;
 .eventInfo {
   display: flex;
   flex-shrink: 1;
-  width: 100%;
   gap: $event-col-gap;
 
   @include container-breakpoint-up(lg) {
     align-items: center;
+    width: 100%;
   }
 
   @include container-breakpoint-down(lg) {
@@ -177,7 +183,9 @@ $button-col-width: 205px;
 .mobileHeaderText {
   display: flex;
   flex-direction: column;
+  min-width: 0;
   gap: $mobile-text-row-gap;
+  overflow-wrap: break-word;
 }
 
 .arrow {
@@ -188,7 +196,9 @@ $button-col-width: 205px;
 .eventInner {
   @include container-breakpoint-down(lg) {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: space-between;
     gap: $event-col-gap;
   }
 }

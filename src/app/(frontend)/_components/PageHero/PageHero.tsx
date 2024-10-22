@@ -13,6 +13,10 @@ export type PageHeroProps = {
     text: string
     link: string
   }
+  ctaSecondary?: {
+    text: string
+    link: string
+  }
 }
 
 export default function PageHero({
@@ -21,6 +25,7 @@ export default function PageHero({
   header,
   eyebrow,
   cta,
+  ctaSecondary,
 }: PageHeroProps) {
   return (
     <div className={styles.bg}>
@@ -49,9 +54,10 @@ export default function PageHero({
         <div className={cx(styles.content, styles[`content__${heroStyle}`], { [styles.content__standardWImage]: heroStyle === 'standard' && backgroundImage?.url })}>
           {eyebrow && <h2 className={cx(styles.eyebrow, { [styles.eyebrow__dt]: heroStyle === 'standard' && backgroundImage?.url })}>{eyebrow}</h2>}
           {header && <h1 className={styles.header}>{header}</h1>}
-          {cta && (
+          {(cta || ctaSecondary) && (
             <div className={styles.meta}>
-              <Button text={cta.text} link={cta.link} />
+              {cta && <Button text={cta.text} link={cta.link} />}
+              {ctaSecondary && <Button text={ctaSecondary.text} link={ctaSecondary.link} buttonStyle='secondary' />}
             </div>
           )}
         </div>
