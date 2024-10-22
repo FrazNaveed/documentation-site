@@ -58,7 +58,6 @@ export default async function Page({
     teamGrid,
     devHub,
   } = pageData
-  console.log(pageData)
   let featuredEvent
   if (pageTemplate === 'events') {
     featuredEvent = await getFeaturedEvent()
@@ -115,6 +114,18 @@ export default async function Page({
     }
   }
 
+  let linkBandComponent
+  if (pageTemplate === 'devHub' && devHub) {
+    const { linkBand } = devHub
+    const linkBandProps = {
+      title: linkBand?.linkBandTitle,
+      links: linkBand?.links,
+    }
+    linkBandComponent = (
+      <LinkBand {...linkBandProps} />
+    )
+  }
+
   let teamGridComponent
   if (pageTemplate === 'team') {
     if (teamGrid) {
@@ -149,13 +160,6 @@ export default async function Page({
         />
       )
     }
-  }
-
-  let linkBandComponent
-  if (pageTemplate === 'devHub') {
-    linkBandComponent = (
-      <LinkBand />
-    )
   }
 
   let relatedNewsPosts
