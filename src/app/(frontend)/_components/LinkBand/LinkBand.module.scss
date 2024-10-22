@@ -8,9 +8,15 @@
 .linkBand {
   background-color: $pink-900;
 
-  &Title,
   a {
     color: $white;
+
+    &:active,
+    &:focus,
+    &:hover,
+    &:visited {
+      color: $white;
+    }
   }
 
   &Header,
@@ -42,6 +48,7 @@
     @include headerH5;
 
     margin-bottom: to-rem($spacing-standard);
+    color: $white;
   }
 
   &Links {
