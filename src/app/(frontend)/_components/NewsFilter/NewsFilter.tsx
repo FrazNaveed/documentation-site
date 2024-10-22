@@ -23,7 +23,7 @@ export default function Links({ navLinks, currentType, className }: LinksProps) 
               key={navLink.id}
             >
               <Link
-                href={index !== 0 ? `${getCollectionPath('news-types')}/${navLink.link}` : getCollectionPath('news')}
+                href={index !== 0 ? `${getCollectionPath('news-types')}${navLink.link}` : getCollectionPath('news')}
                 className={styles.text}
                 title={navLink.text}
               >
