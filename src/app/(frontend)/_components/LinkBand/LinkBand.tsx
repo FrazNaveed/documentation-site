@@ -18,10 +18,10 @@ export default function LinkBand({ title, links }: LinkBandProps) {
         </div>
       </div>
       <div className={styles.linkBandLinks}>
-        {links?.map((link: any, index: number) => (
+        {links?.map((link, index: number) => (
           <Link
             key={link.id}
-            href={link.linkUrl}
+            href={link?.linkUrl || '#'}
             className={cx(
               styles.linkBandLink,
               index === links.length - 1 && styles.linkBandLink__noBorderBottom,
