@@ -147,6 +147,21 @@ export default async function Page({
     )
   }
 
+  let pastEventsComponent
+  if (pageTemplate === 'devHub') {
+    const pastEventsPosts = await getNewsArchive(3, 1, [], 'past-events')
+    pastEventsComponent = (
+      pastEventsPosts && pastEventsPosts.docs.length > 0 && (
+        <RelatedPosts
+          header='Past Events'
+          linkText='View all past events'
+          linkUrl='/news/category/past-events'
+          posts={pastEventsPosts.docs}
+        />
+      )
+    )
+  }
+
   let teamGridComponent
   if (pageTemplate === 'team') {
     if (teamGrid) {
@@ -218,6 +233,7 @@ export default async function Page({
           {linkBandComponent}
           {bugBountyCtaComponent}
           <EventsWidget />
+          {pastEventsComponent}
         </>
       )}
       {pageTemplate === 'events' && <EventsList />}
