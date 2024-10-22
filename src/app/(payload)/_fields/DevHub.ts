@@ -1,4 +1,5 @@
 import type { Field } from  'payload'
+import validateTextFieldUrl from '../_utils/validateTextFieldUrl'
 
 export const DevHub: Field[] = [
   {
@@ -39,6 +40,7 @@ export const DevHub: Field[] = [
               {
                 name: 'linkUrl',
                 type: 'text',
+                validate: validateTextFieldUrl,
               },
             ],
           },
