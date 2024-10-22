@@ -53,7 +53,7 @@ export default async function NewsPage({ type }: NewsPageProps) {
   return (
     <div className={styles.wrap}>
       <Hero
-        link={`${getCollectionPath('news')}/${featuredPostSlug}`}
+        link={`${getCollectionPath('news')}${featuredPostSlug}`}
         heroStyle='featuredNews'
         backgroundImage={featuredPostSubTypeHeroBgImage as Media || featuredPostTypeHeroBgImage as Media}
         header={featuredPostTitle}
