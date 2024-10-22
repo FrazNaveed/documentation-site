@@ -157,6 +157,7 @@ export default async function Page({
           linkText='View all past events'
           linkUrl='/news/category/past-events'
           posts={pastEventsPosts.docs}
+          className={styles.devHub_PastEvents}
         />
       )
     )
