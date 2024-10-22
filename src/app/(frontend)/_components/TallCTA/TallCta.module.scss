@@ -6,12 +6,15 @@
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .tallCta {
+  @include container;
+
   &Wrap {
     display: flex;
 
     @include media-breakpoint-down(sm) {
       flex-direction: row-reverse;
       min-height: to-rem(360px);
+      column-gap: $grid-column-gap-flare;
     }
   }
 
@@ -22,6 +25,10 @@
 
   &ImageWrap {
     position: relative;
+
+    @include media-breakpoint-down(sm) {
+      flex: 1 0 25%;
+    }
   }
 
   &Image {
@@ -68,6 +75,11 @@
   &Text {
     margin-top: auto;
     margin-bottom: auto;
+
+    @include media-breakpoint-down(sm) {
+      flex: 0 1 75%;
+      margin-top: to-rem($spacing-medium);
+    }
   }
 
   &Title {
@@ -83,5 +95,9 @@
     width: 100%;
     max-width: 66.66%;
     margin-bottom: to-rem($spacing-standard);
+
+    @include media-breakpoint-down(sm) {
+      max-width: 100%;
+    }
   }
 }
