@@ -32,7 +32,7 @@ export const HeroFields: Field[] = [
         },
         localized: true,
       },
-      ...ButtonFields,
+      ...ButtonFields(true),
       {
         name: 'backgroundImage',
         type: 'relationship',

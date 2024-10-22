@@ -100,7 +100,10 @@
 }
 
 .meta {
+  display: flex;
+  flex-wrap: wrap;
   margin-top: to-rem($spacing-standard);
+  gap: to-rem($spacing-small);
 }
 
 .decoration {

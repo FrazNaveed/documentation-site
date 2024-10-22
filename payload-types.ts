@@ -424,6 +424,8 @@ export interface Page {
     eyebrow?: string | null;
     buttonText?: string | null;
     buttonLink?: string | null;
+    buttonSecondaryText?: string | null;
+    buttonSecondaryLink?: string | null;
     backgroundImage?: (number | null) | Media;
   };
   hideHero?: boolean | null;

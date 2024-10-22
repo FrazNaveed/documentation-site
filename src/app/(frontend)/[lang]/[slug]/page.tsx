@@ -69,9 +69,14 @@ export default async function Page({
       eyebrow,
       buttonText,
       buttonLink,
+      buttonSecondaryText,
+      buttonSecondaryLink,
       backgroundImage,
     } = hero
     const heroCtaProps = (buttonText && buttonLink) ? { cta: { text: buttonText, link: buttonLink } } : {}
+    const heroCtaSecondaryProps = (buttonSecondaryText && buttonSecondaryLink)
+      ? { ctaSecondary: { text: buttonSecondaryText, link: buttonSecondaryLink } }
+      : {}
     const heroBackgroundImageProps = (backgroundImage && typeof backgroundImage === 'object') ? { backgroundImage } : {}
     heroComponent = featuredEvent ? (
       <EventsHero
@@ -84,6 +89,7 @@ export default async function Page({
         header={headline}
         eyebrow={eyebrow || title}
         {...heroCtaProps}
+        {...heroCtaSecondaryProps}
         {...heroBackgroundImageProps}
       />
     )
