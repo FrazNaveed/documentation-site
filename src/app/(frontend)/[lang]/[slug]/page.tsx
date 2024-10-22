@@ -8,6 +8,7 @@ import type { Locale } from 'src/app/i18n-config'
 import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
 import EventsHero from 'src/app/(frontend)/_components/EventsHero'
+import EventsWidget from 'src/app/(frontend)/_components/EventsWidget'
 import SideNav from 'src/app/(frontend)/_components/SideNav'
 import JumpLinkAnchor from 'src/app/(frontend)/_components/SideNav/JumpLinkAnchor'
 import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
@@ -25,6 +26,7 @@ import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
 import { PayloadLexicalReactRendererContent } from '../../_components/LexicalRenderer/LexicalRenderer'
 import ProductGrid from '../../_components/ProductGrid'
+import LinkBand from '../../_components/LinkBand'
 import TallCta from '../../_components/TallCTA/TallCta'
 
 export const dynamic = 'force-dynamic'
@@ -70,9 +72,14 @@ export default async function Page({
       eyebrow,
       buttonText,
       buttonLink,
+      buttonSecondaryText,
+      buttonSecondaryLink,
       backgroundImage,
     } = hero
     const heroCtaProps = (buttonText && buttonLink) ? { cta: { text: buttonText, link: buttonLink } } : {}
+    const heroCtaSecondaryProps = (buttonSecondaryText && buttonSecondaryLink)
+      ? { ctaSecondary: { text: buttonSecondaryText, link: buttonSecondaryLink } }
+      : {}
     const heroBackgroundImageProps = (backgroundImage && typeof backgroundImage === 'object') ? { backgroundImage } : {}
     heroComponent = featuredEvent ? (
       <EventsHero
@@ -85,6 +92,7 @@ export default async function Page({
         header={headline}
         eyebrow={eyebrow || title}
         {...heroCtaProps}
+        {...heroCtaSecondaryProps}
         {...heroBackgroundImageProps}
       />
     )
@@ -124,6 +132,18 @@ export default async function Page({
         buttonLink='https://immunefi.com/bug-bounty/flarenetwork/information/'
         option
       />
+    )
+  }
+
+  let linkBandComponent
+  if (pageTemplate === 'devHub' && devHub) {
+    const { linkBand } = devHub
+    const linkBandProps = {
+      title: linkBand?.linkBandTitle,
+      links: linkBand?.links,
+    }
+    linkBandComponent = (
+      <LinkBand {...linkBandProps} />
     )
   }
 
@@ -195,6 +215,8 @@ export default async function Page({
       {pageTemplate === 'devHub' && (
         <>
           {productsGridComponent}
+          {linkBandComponent}
+          <EventsWidget />
           {bugBountyCtaComponent}
         </>
       )}

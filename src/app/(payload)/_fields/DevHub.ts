@@ -1,4 +1,5 @@
 import type { Field } from  'payload'
+import validateTextFieldUrl from '../_utils/validateTextFieldUrl'
 
 export const DevHub: Field[] = [
   {
@@ -15,6 +16,36 @@ export const DevHub: Field[] = [
         hasMany: true,
         required: false,
       },
+      {
+        name: 'linkBand',
+        type: 'group',
+        label: 'Link Band',
+        fields: [
+          {
+            name: 'linkBandTitle',
+            type: 'text',
+            admin: {
+              description: 'Fill in to override default title "Explorers & Resources"',
+            },
+          },
+          {
+            name: 'links',
+            type: 'array',
+            interfaceName: 'LinkBandLinks',
+            fields: [
+              {
+                name: 'linkText',
+                type: 'text',
+              },
+              {
+                name: 'linkUrl',
+                type: 'text',
+                validate: validateTextFieldUrl,
+              },
+            ],
+          },
+        ],
+      }
     ],
     admin: {
       description: 'Settings for the Dev Hub Page Template. Manage content using the Products Collection.',
