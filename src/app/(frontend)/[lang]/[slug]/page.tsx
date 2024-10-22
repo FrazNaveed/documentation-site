@@ -8,6 +8,7 @@ import type { Locale } from 'src/app/i18n-config'
 import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
 import EventsHero from 'src/app/(frontend)/_components/EventsHero'
+import EventsWidget from 'src/app/(frontend)/_components/EventsWidget'
 import SideNav from 'src/app/(frontend)/_components/SideNav'
 import JumpLinkAnchor from 'src/app/(frontend)/_components/SideNav/JumpLinkAnchor'
 import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
@@ -69,9 +70,14 @@ export default async function Page({
       eyebrow,
       buttonText,
       buttonLink,
+      buttonSecondaryText,
+      buttonSecondaryLink,
       backgroundImage,
     } = hero
     const heroCtaProps = (buttonText && buttonLink) ? { cta: { text: buttonText, link: buttonLink } } : {}
+    const heroCtaSecondaryProps = (buttonSecondaryText && buttonSecondaryLink)
+      ? { ctaSecondary: { text: buttonSecondaryText, link: buttonSecondaryLink } }
+      : {}
     const heroBackgroundImageProps = (backgroundImage && typeof backgroundImage === 'object') ? { backgroundImage } : {}
     heroComponent = featuredEvent ? (
       <EventsHero
@@ -84,6 +90,7 @@ export default async function Page({
         header={headline}
         eyebrow={eyebrow || title}
         {...heroCtaProps}
+        {...heroCtaSecondaryProps}
         {...heroBackgroundImageProps}
       />
     )
@@ -178,7 +185,12 @@ export default async function Page({
         {dictionary['server-component'].welcome}
       </h3>
       <p>Switch between en, es, and de in the URL to see different languages. Other languages will default to en.</p>
-      {pageTemplate === 'devHub' && productsGridComponent}
+      {pageTemplate === 'devHub' && (
+        <>
+          {productsGridComponent}
+          <EventsWidget />
+        </>
+      )}
       {pageTemplate === 'events' && <EventsList />}
       {pageTemplate === 'team' && teamGridComponent}
       {pageTemplate === 'wallets' && walletsGridComponent}
