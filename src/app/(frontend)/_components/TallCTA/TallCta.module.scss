@@ -13,8 +13,8 @@
     @include grid;
 
     @include media-breakpoint-down(md) {
-      display: flex;
-      flex-direction: row-reverse;
+      // display: flex;
+      // flex-direction: row-reverse;
       min-height: to-rem(360px);
       column-gap: $grid-column-gap-flare;
     }
@@ -30,8 +30,9 @@
     }
 
     @include media-breakpoint-down(md) {
-      flex: 1 0 25%;
-      // @include columns(4, -1);
+      @include columns(4, -1, false);
+
+      order: 2;
     }
   }
 
@@ -85,9 +86,9 @@
     }
 
     @include media-breakpoint-down(md) {
-      flex: 0 1 75%;
-      // @include columns(1, 3);
+      @include columns(1, 4, false);
 
+      order: 1;
       margin-top: to-rem($spacing-medium);
     }
   }
