@@ -277,6 +277,8 @@ export default async function Page({
         <PageFooterCTA
           buttonText={pageFooterCTAButton?.buttonText}
           buttonLink={pageFooterCTAButton?.buttonLink}
+          buttonSecondaryText={pageFooterCTAButton?.buttonSecondaryText ?? undefined}
+          buttonSecondaryLink={pageFooterCTAButton?.buttonSecondaryLink ?? undefined}
           backgroundImage={pageFooterCTAButton?.backgroundImage}
           backgroundImageStyle={pageFooterCTAButton?.backgroundImageStyle}
         />
