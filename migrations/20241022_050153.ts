@@ -10,7 +10,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"link_url" varchar
   );
   
-  ALTER TABLE "pages" ADD COLUMN IF NOT EXISTS "dev_hub_link_band_link_band_title" varchar;
+  ALTER TABLE "pages" ADD COLUMN "dev_hub_link_band_link_band_title" varchar;
   DO $$ BEGIN
    ALTER TABLE "pages_dev_hub_link_band_links" ADD CONSTRAINT "pages_dev_hub_link_band_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION

@@ -59,9 +59,9 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	CONSTRAINT "products_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
   );
   
-  ALTER TABLE "payload_locked_documents_rels" ADD COLUMN IF NOT EXISTS "developer_guides_id" integer;
-  ALTER TABLE "payload_locked_documents_rels" ADD COLUMN IF NOT EXISTS "developer_guide_tags_id" integer;
-  ALTER TABLE "payload_locked_documents_rels" ADD COLUMN IF NOT EXISTS "products_id" integer;
+  ALTER TABLE "payload_locked_documents_rels" ADD COLUMN "developer_guides_id" integer;
+  ALTER TABLE "payload_locked_documents_rels" ADD COLUMN "developer_guide_tags_id" integer;
+  ALTER TABLE "payload_locked_documents_rels" ADD COLUMN "products_id" integer;
   DO $$ BEGIN
    ALTER TABLE "developer_guides_locales" ADD CONSTRAINT "developer_guides_locales_product_id_products_id_fk" FOREIGN KEY ("product_id") REFERENCES "public"."products"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
