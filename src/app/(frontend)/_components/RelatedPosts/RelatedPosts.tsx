@@ -1,4 +1,3 @@
-import cx from 'classnames'
 import { News } from '@/payload-types'
 import Link from 'next/link'
 import RightArrow from '../svgs/RightArrow'
@@ -10,7 +9,6 @@ export type RelatedPostsProps = {
   linkText?: string | undefined
   linkUrl?: string | undefined
   posts: News[]
-  className?: string
 }
 
 export default function RelatedPosts({
@@ -18,10 +16,9 @@ export default function RelatedPosts({
   posts,
   linkText,
   linkUrl,
-  className,
 }: RelatedPostsProps) {
   return (
-    <div className={cx(styles.relatedNews, className)}>
+    <div className={styles.relatedNews}>
       <div className={styles.relatedNewsHeaderWrap}>
         <h5 className={styles.relatedNewsHeader}>{header}</h5>
         {linkText && linkUrl && (
