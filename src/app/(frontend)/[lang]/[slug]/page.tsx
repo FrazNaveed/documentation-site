@@ -158,7 +158,7 @@ export default async function Page({
         <RelatedPosts
           header='Past Events'
           linkText='View all past events'
-          linkUrl={`${getCollectionPath('news-types')}/${newsType}}`}
+          linkUrl={`${getCollectionPath('news-types')}${newsType}`}
           posts={pastEventsPosts.docs}
         />
       )
