@@ -35,7 +35,7 @@ export default function TeaserGrid({
           teaserThumbnail,
           title,
         }) => {
-          const link = `${getCollectionPath('news')}/${slug}`
+          const link = `${getCollectionPath('news')}${slug}`
           const typeHeroBgImage = typeof type === 'object' ? type.image : undefined
           const subTypeHeroBgImage = subtype && typeof subtype === 'object' ? subtype.image : undefined
           const backgroundImage = subTypeHeroBgImage || typeHeroBgImage
