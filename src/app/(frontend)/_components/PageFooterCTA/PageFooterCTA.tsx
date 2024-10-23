@@ -28,25 +28,19 @@ export default function PageFooterCTA({
       <div className={cx(styles.content, [buttonSecondaryLink && buttonSecondaryText && styles.content__hasSecondary])}>
         <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='left' />
         <div className={styles.buttonWrap}>
-          {buttonText && buttonLink
-            && (
-              <Button
-                text={buttonText}
-                link={buttonLink}
-                size='large'
-                className={styles.Button}
-              />
-            )}
-          {buttonSecondaryText && buttonSecondaryLink
-            && (
-              <Button
-                text={buttonSecondaryText}
-                link={buttonSecondaryLink}
-                size='large'
-                buttonStyle='secondary'
-                className={styles.Button}
-              />
-            )}
+          {[
+            { text: buttonText, link: buttonLink, buttonStyle: 'pink' },
+            { text: buttonSecondaryText, link: buttonSecondaryLink, buttonStyle: 'secondary' },
+          ].map(({ text, link, buttonStyle }) => text && link && (
+          <Button
+            key={text}
+            text={text}
+            link={link}
+            size='large'
+            buttonStyle={buttonStyle as 'pink' | 'black' | 'secondary'}
+            className={styles.Button}
+          />
+          ))}
         </div>
         <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='right' />
       </div>
