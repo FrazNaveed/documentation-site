@@ -160,7 +160,7 @@ export default async function Page({
           linkText='View all past events'
           linkUrl={`${getCollectionPath('news-types')}/${newsType}}`}
           posts={pastEventsPosts.docs}
-          // className={styles.devHub_PastEvents}
+          className={styles.devHub_PastEvents}
         />
       )
     )
