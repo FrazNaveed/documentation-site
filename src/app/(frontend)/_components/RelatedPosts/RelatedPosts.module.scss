@@ -33,17 +33,17 @@
     display: flex;
     align-items: center;
     column-gap: to-rem($spacing-x-small);
-    transition: all $transition-default;
     text-transform: capitalize;
 
     svg {
       width: 15px;
       height: 15px;
-      transition: all $transition-default;
+    }
 
-      path {
-        transition: all $transition-default;
-      }
+    &,
+    svg,
+    svg path {
+      transition: all $transition-default;
     }
 
     &:active,
