@@ -27,7 +27,6 @@ export default function RelatedPosts({
         {linkText && linkUrl && (
           <Link
             href={linkUrl}
-            aria-label={`${linkText.toLowerCase()}`}
           >
             <span className={styles.relatedNewsLink}>
               {linkText}
