@@ -470,6 +470,8 @@ export interface Page {
   pageFooterCTAButton?: {
     buttonText?: string | null;
     buttonLink?: string | null;
+    buttonSecondaryText?: string | null;
+    buttonSecondaryLink?: string | null;
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
   };

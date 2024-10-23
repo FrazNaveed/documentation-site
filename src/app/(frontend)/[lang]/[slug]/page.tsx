@@ -4,6 +4,8 @@ import cx from 'classnames'
 import { getDictionary } from 'src/app/get-dictionary'
 import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import { getFeaturedEvent } from 'src/app/(frontend)/_lib/payload/eventsQueries'
+import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
+import type { Person, Product, Wallet } from '@/payload-types'
 import type { Locale } from 'src/app/i18n-config'
 import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
@@ -18,8 +20,6 @@ import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
-import type { Person, Product, Wallet } from '@/payload-types'
-import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
 import TeamGridBlock from '../../_components/TeamGridBlock'
 import styles from './page.module.scss'
 import RelatedPosts from '../../_components/RelatedPosts'
@@ -28,6 +28,7 @@ import { PayloadLexicalReactRendererContent } from '../../_components/LexicalRen
 import ProductGrid from '../../_components/ProductGrid'
 import LinkBand from '../../_components/LinkBand'
 import TallCta from '../../_components/TallCTA/TallCta'
+import getCollectionPath from '../../_utils/getCollectionPath'
 
 export const dynamic = 'force-dynamic'
 
@@ -147,6 +148,23 @@ export default async function Page({
     )
   }
 
+  let pastEventsComponent
+  if (pageTemplate === 'devHub') {
+    const pastEventsLimit = 3
+    const newsType = 'past-events'
+    const pastEventsPosts = await getNewsArchive(pastEventsLimit, 1, [], newsType)
+    pastEventsComponent = (
+      pastEventsPosts && pastEventsPosts.docs.length > 0 && (
+        <RelatedPosts
+          header='Past Events'
+          linkText='View all past events'
+          linkUrl={`${getCollectionPath('news-types')}${newsType}`}
+          posts={pastEventsPosts.docs}
+        />
+      )
+    )
+  }
+
   let teamGridComponent
   if (pageTemplate === 'team') {
     if (teamGrid) {
@@ -218,6 +236,7 @@ export default async function Page({
           {linkBandComponent}
           {bugBountyCtaComponent}
           <EventsWidget />
+          {pastEventsComponent}
         </>
       )}
       {pageTemplate === 'events' && <EventsList />}
@@ -277,6 +296,8 @@ export default async function Page({
         <PageFooterCTA
           buttonText={pageFooterCTAButton?.buttonText}
           buttonLink={pageFooterCTAButton?.buttonLink}
+          buttonSecondaryText={pageFooterCTAButton?.buttonSecondaryText ?? undefined}
+          buttonSecondaryLink={pageFooterCTAButton?.buttonSecondaryLink ?? undefined}
           backgroundImage={pageFooterCTAButton?.backgroundImage}
           backgroundImageStyle={pageFooterCTAButton?.backgroundImageStyle}
         />
