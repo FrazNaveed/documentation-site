@@ -2,7 +2,7 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 
 export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
-  ALTER TABLE "pages" ADD COLUMN "page_footer_c_t_a_button_button_secondary_link" IF NOT EXISTS varchar;
+  ALTER TABLE "pages" ADD COLUMN IF NOT EXISTS "page_footer_c_t_a_button_button_secondary_link" varchar;
   ALTER TABLE "pages_locales" ADD COLUMN "page_footer_c_t_a_button_button_secondary_text" varchar;
   ALTER TABLE "news_locales" ADD COLUMN "featured" boolean DEFAULT false;
   ALTER TABLE "news" DROP COLUMN IF EXISTS "featured";`)
