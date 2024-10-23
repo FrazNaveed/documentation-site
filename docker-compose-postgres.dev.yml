@@ -13,7 +13,29 @@ services:
       - DATABASE_URI=postgres://postgres:postgres@127.0.0.1:5432/postgres
     networks:
       - postgres
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+    - 8081:80
+    user: root
+    stop_signal: SIGINT
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dev@flare.network
+      PGADMIN_DEFAULT_PASSWORD: dev
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      MASTER_PASSWORD_REQUIRED: "False"
+    healthcheck:
+      test: ["CMD", "wget", "-O", "-", "http://localhost:80/misc/ping"]
+    volumes:
+    - ./pgadmin-servers.json:/pgadmin4/servers.json:ro
+    - pgadmin_data:/var/lib/pgadmin/
+    networks:
+    - postgres
+
 volumes:
-  data:
+  pgadmin_data:
+
 networks:
   postgres:
