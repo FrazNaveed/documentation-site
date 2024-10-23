@@ -31,8 +31,11 @@
 .buttonWrap {
   display: flex;
   flex-shrink: 0;
-  column-gap: to-rem($spacing-small);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
   z-index: 3;
+  gap: to-rem($spacing-small);
 
   .content__hasSecondary & {
     @include media-breakpoint-down(md) {
