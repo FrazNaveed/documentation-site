@@ -11,6 +11,12 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: flarepayload
       DATABASE_URI: postgres://postgres:postgres@127.0.0.1:5432/flarepayload
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "flarepayload"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 15s
     networks:
       - postgres
 
