@@ -5,12 +5,12 @@ services:
       dockerfile: Dockerfile
       network: host
       args:
-        POSTGRES_URL: postgres://postgres:postgres@127.0.0.1:5432/postgres
+        POSTGRES_URL: postgres://postgres:postgres@127.0.0.1:5432/flarepayload
         PAYLOAD_SECRET: secret
     ports:
       - 3000:3000
     environment:
-      POSTGRES_URL: postgres://postgres:postgres@postgres:5432/postgres
+      POSTGRES_URL: postgres://postgres:postgres@postgres:5432/flarepayload
       PAYLOAD_SECRET: secret
     networks:
       - postgres
