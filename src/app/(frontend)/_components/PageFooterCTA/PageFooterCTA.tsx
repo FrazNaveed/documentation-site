@@ -25,7 +25,7 @@ export default function PageFooterCTA({
 }: PageFooterCTAProps) {
   return (
     <section className={cx(styles.Wrap, className)}>
-      <div className={styles.content}>
+      <div className={cx(styles.content, [buttonSecondaryLink && buttonSecondaryText && styles.content__hasSecondary])}>
         <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='left' />
         <div className={styles.buttonWrap}>
           {buttonText && buttonLink

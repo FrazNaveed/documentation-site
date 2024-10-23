@@ -7,6 +7,7 @@
 
 .Wrap {
   @include container;
+  @include pageComponentSpacing;
 
   max-width: none;
   margin-bottom: to-rem($spacing-medium);
@@ -17,12 +18,27 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  &__hasSecondary {
+    @include media-breakpoint-down(md) {
+      flex-direction: column;
+      padding-top: to-rem($spacing-xx-large);
+      padding-bottom: to-rem($spacing-standard);
+    }
+  }
 }
 
 .buttonWrap {
   display: flex;
+  flex-shrink: 0;
   column-gap: to-rem($spacing-small);
   z-index: 3;
+
+  .content__hasSecondary & {
+    @include media-breakpoint-down(md) {
+      margin-bottom: to-rem($spacing-small);
+    }
+  }
 }
 
 .Button {
