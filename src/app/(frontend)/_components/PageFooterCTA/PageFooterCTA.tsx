@@ -29,15 +29,15 @@ export default function PageFooterCTA({
         <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='left' />
         <div className={styles.buttonWrap}>
           {[
-            { text: buttonText, link: buttonLink, buttonStyle: 'pink' },
-            { text: buttonSecondaryText, link: buttonSecondaryLink, buttonStyle: 'secondary' },
+            { text: buttonText, link: buttonLink, buttonStyle: 'pink' as const },
+            { text: buttonSecondaryText, link: buttonSecondaryLink, buttonStyle: 'secondary' as const },
           ].map(({ text, link, buttonStyle }) => text && link && (
           <Button
             key={text}
             text={text}
             link={link}
             size='large'
-            buttonStyle={buttonStyle as 'pink' | 'black' | 'secondary'}
+            buttonStyle={buttonStyle}
             className={styles.Button}
           />
           ))}
