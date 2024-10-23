@@ -13,6 +13,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: to-rem(36px);
+
+    @include media-breakpoint-down(lg) {
+      margin-bottom: to-rem($spacing-standard);
+    }
+
+    @include media-breakpoint-down(md) {
+      margin-bottom: to-rem($spacing-small);
+    }
   }
 
   &Header {
