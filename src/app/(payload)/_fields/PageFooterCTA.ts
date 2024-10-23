@@ -13,7 +13,7 @@ export const PageFooterCTA: Field[] = [
     type: 'group',
     label: 'Page Footer CTA Button',
     fields: [
-      ...ButtonFields(),
+      ...ButtonFields(true),
       {
         name: 'backgroundImage',
         type: 'relationship',

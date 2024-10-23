@@ -154,6 +154,7 @@ export const News: CollectionConfig = {
       },
       type: 'checkbox',
       defaultValue: false,
+      localized: true,
     },
     richTextFieldCustomized('content'),
   ]
