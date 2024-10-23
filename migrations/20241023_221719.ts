@@ -21,6 +21,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   CREATE TYPE "public"."enum_grants_country" AS ENUM('AF', 'AX', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI', 'AQ', 'AG', 'AR', 'AM', 'AW', 'AU', 'AT', 'AZ', 'BS', 'BH', 'BD', 'BB', 'BY', 'BE', 'BZ', 'BJ', 'BM', 'BT', 'BO', 'BQ', 'BA', 'BW', 'BV', 'BR', 'IO', 'BN', 'BG', 'BF', 'BI', 'CV', 'KH', 'CM', 'CA', 'KY', 'CF', 'TD', 'CL', 'CN', 'CX', 'CC', 'CO', 'KM', 'CG', 'CD', 'CK', 'CR', 'HR', 'CU', 'CW', 'CY', 'CZ', 'CI', 'DK', 'DJ', 'DM', 'DO', 'EC', 'EG', 'SV', 'GQ', 'ER', 'EE', 'SZ', 'ET', 'FK', 'FO', 'FJ', 'FI', 'FR', 'GF', 'PF', 'TF', 'GA', 'GM', 'GE', 'DE', 'GH', 'GI', 'GR', 'GL', 'GD', 'GP', 'GU', 'GT', 'GG', 'GN', 'GW', 'GY', 'HT', 'HM', 'VA', 'HN', 'HK', 'HU', 'IS', 'IN', 'ID', 'IR', 'IQ', 'IE', 'IM', 'IL', 'IT', 'JM', 'JP', 'JE', 'JO', 'KZ', 'KE', 'KI', 'KP', 'KR', 'KW', 'KG', 'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'LI', 'LT', 'LU', 'MO', 'MG', 'MW', 'MY', 'MV', 'ML', 'MT', 'MH', 'MQ', 'MR', 'MU', 'YT', 'MX', 'FM', 'MD', 'MC', 'MN', 'ME', 'MS', 'MA', 'MZ', 'MM', 'NA', 'NR', 'NP', 'NL', 'NC', 'NZ', 'NI', 'NE', 'NG', 'NU', 'NF', 'MK', 'MP', 'NO', 'OM', 'PK', 'PW', 'PS', 'PA', 'PG', 'PY', 'PE', 'PH', 'PN', 'PL', 'PT', 'PR', 'QA', 'RO', 'RU', 'RW', 'RE', 'BL', 'SH', 'KN', 'LC', 'MF', 'PM', 'VC', 'WS', 'SM', 'ST', 'SA', 'SN', 'RS', 'SC', 'SL', 'SG', 'SX', 'SK', 'SI', 'SB', 'SO', 'ZA', 'GS', 'SS', 'ES', 'LK', 'SD', 'SR', 'SJ', 'SE', 'CH', 'SY', 'TW', 'TJ', 'TZ', 'TH', 'TL', 'TG', 'TK', 'TO', 'TT', 'TN', 'TR', 'TM', 'TC', 'TV', 'UG', 'UA', 'AE', 'GB', 'US', 'UY', 'UZ', 'VU', 'VE', 'VN', 'EH', 'YE', 'ZM', 'ZW');
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    CREATE TYPE "public"."enum_pages_hero_style" AS ENUM('standard');
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -72,6 +78,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"button_buttonType" "enum_events_button_button_type",
   	"button_link" varchar,
   	"featured" boolean DEFAULT false,
+  	"featured_hero_eyebrow" varchar DEFAULT false,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
   );
@@ -85,6 +92,56 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"_locale" "_locales" NOT NULL,
   	"_parent_id" integer NOT NULL,
   	CONSTRAINT "events_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
+  );
+  
+  CREATE TABLE IF NOT EXISTS "grants" (
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"logo_id" integer,
+  	"announcement_link" varchar,
+  	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
+  	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "grants_locales" (
+  	"name" varchar NOT NULL,
+  	"description" jsonb,
+  	"country" "enum_grants_country" DEFAULT 'US' NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	CONSTRAINT "grants_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
+  );
+  
+  CREATE TABLE IF NOT EXISTS "grants_rels" (
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"order" integer,
+  	"parent_id" integer NOT NULL,
+  	"path" varchar NOT NULL,
+  	"locale" "_locales",
+  	"grant_types_id" integer
+  );
+  
+  CREATE TABLE IF NOT EXISTS "grant_types" (
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
+  	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "grant_types_locales" (
+  	"title" varchar NOT NULL,
+  	"slug" varchar NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	CONSTRAINT "grant_types_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_dev_hub_link_band_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"link_text" varchar,
+  	"link_url" varchar
   );
   
   CREATE TABLE IF NOT EXISTS "pages_blocks_col_image" (
@@ -262,11 +319,14 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"slug" varchar NOT NULL,
   	"hero_style" "enum_pages_hero_style" DEFAULT 'standard',
   	"hero_button_link" varchar,
+  	"hero_button_secondary_link" varchar,
   	"hero_background_image_id" integer,
   	"hide_hero" boolean DEFAULT false,
   	"page_banner_toggle_page_banner" boolean DEFAULT false,
+  	"dev_hub_link_band_link_band_title" varchar,
   	"page_footer_c_t_a" boolean DEFAULT false,
   	"page_footer_c_t_a_button_button_link" varchar,
+  	"page_footer_c_t_a_button_button_secondary_link" varchar,
   	"page_footer_c_t_a_button_background_image_id" integer,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
@@ -277,6 +337,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"hero_headline" varchar,
   	"hero_eyebrow" varchar,
   	"hero_button_text" varchar,
+  	"hero_button_secondary_text" varchar,
   	"related_news_type_id" integer,
   	"previous_page_id" integer,
   	"next_page_id" integer,
@@ -285,6 +346,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"team_grid_grid_title" varchar,
   	"wallets_grid_wallets_grid_intro" jsonb,
   	"page_footer_c_t_a_button_button_text" varchar,
+  	"page_footer_c_t_a_button_button_secondary_text" varchar,
   	"pageFooterCTAButton_backgroundImageStyle" "enum_pages_page_footer_c_t_a_button_background_image_style" DEFAULT 'flipped',
   	"pageTemplate" "enum_pages_page_template" DEFAULT 'default' NOT NULL,
   	"id" serial PRIMARY KEY NOT NULL,
@@ -298,6 +360,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"order" integer,
   	"parent_id" integer NOT NULL,
   	"path" varchar NOT NULL,
+  	"products_id" integer,
   	"people_id" integer,
   	"wallets_id" integer
   );
@@ -354,7 +417,6 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"publish_date" timestamp(3) with time zone NOT NULL,
   	"author_id" integer NOT NULL,
   	"teaser_thumbnail_id" integer,
-  	"featured" boolean DEFAULT false,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
   );
@@ -365,6 +427,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"type_id" integer NOT NULL,
   	"subtype_id" integer,
   	"contentType" "enum_news_content_type",
+  	"featured" boolean DEFAULT false,
   	"content" jsonb,
   	"id" serial PRIMARY KEY NOT NULL,
   	"_locale" "_locales" NOT NULL,
@@ -429,6 +492,63 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	CONSTRAINT "people_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
   );
   
+  CREATE TABLE IF NOT EXISTS "developer_guides" (
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
+  	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "developer_guides_locales" (
+  	"title" varchar NOT NULL,
+  	"short_description" varchar,
+  	"product_id" integer,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	CONSTRAINT "developer_guides_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
+  );
+  
+  CREATE TABLE IF NOT EXISTS "developer_guides_rels" (
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"order" integer,
+  	"parent_id" integer NOT NULL,
+  	"path" varchar NOT NULL,
+  	"locale" "_locales",
+  	"developer_guide_tags_id" integer
+  );
+  
+  CREATE TABLE IF NOT EXISTS "developer_guide_tags" (
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
+  	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "developer_guide_tags_locales" (
+  	"title" varchar NOT NULL,
+  	"slug" varchar NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	CONSTRAINT "developer_guide_tags_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
+  );
+  
+  CREATE TABLE IF NOT EXISTS "products" (
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"icon_id" integer,
+  	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
+  	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "products_locales" (
+  	"title" varchar NOT NULL,
+  	"slug" varchar NOT NULL,
+  	"short_description" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	CONSTRAINT "products_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
+  );
+  
   CREATE TABLE IF NOT EXISTS "wallets_tags" (
   	"order" integer NOT NULL,
   	"parent_id" integer NOT NULL,
@@ -474,6 +594,8 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"parent_id" integer NOT NULL,
   	"path" varchar NOT NULL,
   	"events_id" integer,
+  	"grants_id" integer,
+  	"grant_types_id" integer,
   	"pages_id" integer,
   	"users_id" integer,
   	"media_id" integer,
@@ -481,6 +603,9 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"news_types_id" integer,
   	"news_sub_types_id" integer,
   	"people_id" integer,
+  	"developer_guides_id" integer,
+  	"developer_guide_tags_id" integer,
+  	"products_id" integer,
   	"wallets_id" integer
   );
   
@@ -510,6 +635,42 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "events_locales" ADD CONSTRAINT "events_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."events"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "grants" ADD CONSTRAINT "grants_logo_id_media_id_fk" FOREIGN KEY ("logo_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "grants_locales" ADD CONSTRAINT "grants_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."grants"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "grants_rels" ADD CONSTRAINT "grants_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."grants"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "grants_rels" ADD CONSTRAINT "grants_rels_grant_types_fk" FOREIGN KEY ("grant_types_id") REFERENCES "public"."grant_types"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "grant_types_locales" ADD CONSTRAINT "grant_types_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."grant_types"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_dev_hub_link_band_links" ADD CONSTRAINT "pages_dev_hub_link_band_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -689,6 +850,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "pages_rels" ADD CONSTRAINT "pages_rels_products_fk" FOREIGN KEY ("products_id") REFERENCES "public"."products"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "pages_rels" ADD CONSTRAINT "pages_rels_people_fk" FOREIGN KEY ("people_id") REFERENCES "public"."people"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -797,6 +964,48 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "developer_guides_locales" ADD CONSTRAINT "developer_guides_locales_product_id_products_id_fk" FOREIGN KEY ("product_id") REFERENCES "public"."products"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "developer_guides_locales" ADD CONSTRAINT "developer_guides_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."developer_guides"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "developer_guides_rels" ADD CONSTRAINT "developer_guides_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."developer_guides"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "developer_guides_rels" ADD CONSTRAINT "developer_guides_rels_developer_guide_tags_fk" FOREIGN KEY ("developer_guide_tags_id") REFERENCES "public"."developer_guide_tags"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "developer_guide_tags_locales" ADD CONSTRAINT "developer_guide_tags_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."developer_guide_tags"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "products" ADD CONSTRAINT "products_icon_id_media_id_fk" FOREIGN KEY ("icon_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "products_locales" ADD CONSTRAINT "products_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."products"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "wallets_tags" ADD CONSTRAINT "wallets_tags_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."wallets"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -828,6 +1037,18 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_events_fk" FOREIGN KEY ("events_id") REFERENCES "public"."events"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_grants_fk" FOREIGN KEY ("grants_id") REFERENCES "public"."grants"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_grant_types_fk" FOREIGN KEY ("grant_types_id") REFERENCES "public"."grant_types"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -875,6 +1096,24 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_developer_guides_fk" FOREIGN KEY ("developer_guides_id") REFERENCES "public"."developer_guides"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_developer_guide_tags_fk" FOREIGN KEY ("developer_guide_tags_id") REFERENCES "public"."developer_guide_tags"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_products_fk" FOREIGN KEY ("products_id") REFERENCES "public"."products"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_wallets_fk" FOREIGN KEY ("wallets_id") REFERENCES "public"."wallets"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -893,6 +1132,16 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   CREATE INDEX IF NOT EXISTS "events_created_at_idx" ON "events" USING btree ("created_at");
+  CREATE INDEX IF NOT EXISTS "grants_created_at_idx" ON "grants" USING btree ("created_at");
+  CREATE INDEX IF NOT EXISTS "grants_rels_order_idx" ON "grants_rels" USING btree ("order");
+  CREATE INDEX IF NOT EXISTS "grants_rels_parent_idx" ON "grants_rels" USING btree ("parent_id");
+  CREATE INDEX IF NOT EXISTS "grants_rels_path_idx" ON "grants_rels" USING btree ("path");
+  CREATE INDEX IF NOT EXISTS "grants_rels_locale_idx" ON "grants_rels" USING btree ("locale");
+  CREATE INDEX IF NOT EXISTS "grant_types_created_at_idx" ON "grant_types" USING btree ("created_at");
+  CREATE UNIQUE INDEX IF NOT EXISTS "grant_types_title_idx" ON "grant_types_locales" USING btree ("title","_locale");
+  CREATE UNIQUE INDEX IF NOT EXISTS "grant_types_slug_idx" ON "grant_types_locales" USING btree ("slug","_locale");
+  CREATE INDEX IF NOT EXISTS "pages_dev_hub_link_band_links_order_idx" ON "pages_dev_hub_link_band_links" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_dev_hub_link_band_links_parent_id_idx" ON "pages_dev_hub_link_band_links" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_col_image_order_idx" ON "pages_blocks_col_image" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "pages_blocks_col_image_parent_id_idx" ON "pages_blocks_col_image" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_col_image_path_idx" ON "pages_blocks_col_image" USING btree ("_path");
@@ -953,6 +1202,17 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE UNIQUE INDEX IF NOT EXISTS "news_sub_types_title_idx" ON "news_sub_types_locales" USING btree ("title","_locale");
   CREATE UNIQUE INDEX IF NOT EXISTS "news_sub_types_slug_idx" ON "news_sub_types_locales" USING btree ("slug","_locale");
   CREATE INDEX IF NOT EXISTS "people_created_at_idx" ON "people" USING btree ("created_at");
+  CREATE INDEX IF NOT EXISTS "developer_guides_created_at_idx" ON "developer_guides" USING btree ("created_at");
+  CREATE INDEX IF NOT EXISTS "developer_guides_rels_order_idx" ON "developer_guides_rels" USING btree ("order");
+  CREATE INDEX IF NOT EXISTS "developer_guides_rels_parent_idx" ON "developer_guides_rels" USING btree ("parent_id");
+  CREATE INDEX IF NOT EXISTS "developer_guides_rels_path_idx" ON "developer_guides_rels" USING btree ("path");
+  CREATE INDEX IF NOT EXISTS "developer_guides_rels_locale_idx" ON "developer_guides_rels" USING btree ("locale");
+  CREATE INDEX IF NOT EXISTS "developer_guide_tags_created_at_idx" ON "developer_guide_tags" USING btree ("created_at");
+  CREATE UNIQUE INDEX IF NOT EXISTS "developer_guide_tags_title_idx" ON "developer_guide_tags_locales" USING btree ("title","_locale");
+  CREATE UNIQUE INDEX IF NOT EXISTS "developer_guide_tags_slug_idx" ON "developer_guide_tags_locales" USING btree ("slug","_locale");
+  CREATE INDEX IF NOT EXISTS "products_created_at_idx" ON "products" USING btree ("created_at");
+  CREATE UNIQUE INDEX IF NOT EXISTS "products_title_idx" ON "products_locales" USING btree ("title","_locale");
+  CREATE UNIQUE INDEX IF NOT EXISTS "products_slug_idx" ON "products_locales" USING btree ("slug","_locale");
   CREATE INDEX IF NOT EXISTS "wallets_tags_order_idx" ON "wallets_tags" USING btree ("order");
   CREATE INDEX IF NOT EXISTS "wallets_tags_parent_idx" ON "wallets_tags" USING btree ("parent_id");
   CREATE INDEX IF NOT EXISTS "wallets_platforms_order_idx" ON "wallets_platforms" USING btree ("order");
@@ -975,6 +1235,12 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
    DROP TABLE "events";
   DROP TABLE "events_locales";
+  DROP TABLE "grants";
+  DROP TABLE "grants_locales";
+  DROP TABLE "grants_rels";
+  DROP TABLE "grant_types";
+  DROP TABLE "grant_types_locales";
+  DROP TABLE "pages_dev_hub_link_band_links";
   DROP TABLE "pages_blocks_col_image";
   DROP TABLE "pages_blocks_rich_text";
   DROP TABLE "pages_blocks_rich_text_locales";
@@ -1010,6 +1276,13 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   DROP TABLE "news_sub_types_locales";
   DROP TABLE "people";
   DROP TABLE "people_locales";
+  DROP TABLE "developer_guides";
+  DROP TABLE "developer_guides_locales";
+  DROP TABLE "developer_guides_rels";
+  DROP TABLE "developer_guide_tags";
+  DROP TABLE "developer_guide_tags_locales";
+  DROP TABLE "products";
+  DROP TABLE "products_locales";
   DROP TABLE "wallets_tags";
   DROP TABLE "wallets_platforms";
   DROP TABLE "wallets";
