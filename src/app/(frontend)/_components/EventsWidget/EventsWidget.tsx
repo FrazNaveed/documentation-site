@@ -34,11 +34,9 @@ export default async function EventsWidget() {
           {eventsLink()}
         </div>
         <div className={styles.content}>
-          {featuredEvent && (
-            <div className={styles.eventHero}>
-              <EventsHero event={featuredEvent} {...heroBackgroundImageProps} noDesktopContainerPadding />
-            </div>
-          )}
+          <div className={cx(styles.eventHero, { [styles.eventHero__artOnly]: !featuredEvent })}>
+            <EventsHero event={featuredEvent} {...heroBackgroundImageProps} noDesktopContainerPadding />
+          </div>
           <div className={styles.eventList}>
             <EventsList eventListStyle='minimal' />
           </div>
