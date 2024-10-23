@@ -12,12 +12,7 @@ RUN npm ci --legacy-peer-deps
 COPY src ./src
 COPY migrations ./migrations
 COPY public ./public
-COPY next.config.mjs .
-COPY payload.config.ts .
-COPY payload-types.ts .
-COPY tsconfig.json .
-COPY .eslintrc.json .
-COPY .stylelintrc .
+COPY next.config.mjs payload.config.ts payload-types.ts tsconfig.json .eslintrc.json .stylelintrc ./
 
 # Environment variables must be present at build time
 ARG POSTGRES_URL
