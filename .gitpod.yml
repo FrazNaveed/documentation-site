@@ -1,0 +1,13 @@
+tasks:
+  - init: npm install --legacy-peer-deps
+  - command: docker compose -f docker-compose-postgres.dev.yml up
+  - command: gp ports await 5432 && docker compose -f docker-compose-next.dev.yml up
+
+
+ports:
+  - name: next
+    port: 3000
+    onOpen: open-preview
+  - name: pgadmin
+    port: 8081
+    onOpen: open-preview
