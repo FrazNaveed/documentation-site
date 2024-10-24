@@ -31,15 +31,15 @@ export const ImageTextGridBlock: Block = {
           type: 'richText',
           localized: true,
         },
-    // {
+      ]
+    },
+        // {
     //   name: 'columns',
     //   type: 'number',
     //   defaultValue: 2,
     //   max: 4,
     // },
-        ...CreateSideNavLinkFields,
-      ]
-    },
+    ...CreateSideNavLinkFields,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/grid.svg`,
   imageAltText: 'Image and Text Grid block icon',
