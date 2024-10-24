@@ -17,9 +17,14 @@ export default function DevGuideGridInner({ developerGuides }: DevGuideGridInner
   const [allShown, setAllShown] = useState(false)
   const devGuides = developerGuides || []
   const initialNumberShown = isBelowBreakpoint ? 3 : 6
-  const visibleGuides = allShown ? devGuides : devGuides.slice(0, initialNumberShown)
-  const devGuidesCount = devGuides.length
+  const filteredGuides = devGuides // Will be used for product type filtering
+  const visibleGuides = allShown ? filteredGuides : filteredGuides.slice(0, initialNumberShown)
+  const devGuidesCount = filteredGuides.length
   const devGuidesExist = visibleGuides.length > 0
+  const displayShowButton = (
+    (allShown && visibleGuides.length > initialNumberShown)
+    || (!allShown && filteredGuides.length > initialNumberShown)
+  )
   const toggleAllShown = () => {
     setAllShown((prev) => !prev)
   }
@@ -77,11 +82,13 @@ export default function DevGuideGridInner({ developerGuides }: DevGuideGridInner
           })}
         </div>
       )}
-      <div className={styles.buttonWrap}>
-        <button type='button' className={styles.button} onClick={toggleAllShown}>
-          {allShown ? '- Show Less' : '+ Show All'}
-        </button>
-      </div>
+      {displayShowButton && (
+        <div className={styles.buttonWrap}>
+          <button type='button' className={styles.button} onClick={toggleAllShown}>
+            {allShown ? '- Show Less' : '+ Show All'}
+          </button>
+        </div>
+      )}
     </>
   )
 }
