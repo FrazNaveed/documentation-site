@@ -10,6 +10,7 @@ export const ImageTextGridBlock: Block = {
       name: 'imageTextGridTitle',
       type: 'text',
       label: 'Title',
+      localized: true,
     },
     {
       name: 'imageTextCardGrid',
