@@ -63,6 +63,7 @@ export default async function Page({
     teamGrid,
     devHub,
   } = pageData
+  // console.log(pageData.components[0].imageTextCardGrid)
   let featuredEvent
   if (pageTemplate === 'events') {
     featuredEvent = await getFeaturedEvent()
@@ -259,7 +260,7 @@ export default async function Page({
                   break
 
                 case 'imageTextGrid':
-                  componentToRender = <ImageTextGridBlock />
+                  componentToRender = <ImageTextGridBlock {...component} />
                   break
 
                 case 'richTextBlock':
