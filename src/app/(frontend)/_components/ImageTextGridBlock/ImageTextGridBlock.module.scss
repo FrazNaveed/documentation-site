@@ -1,1 +1,36 @@
-// foo
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.imageTextGrid {
+  @include utils.listReset;
+  @include grid(10);
+
+  gap: to-rem($spacing-small) $grid-column-gap-flare;
+
+  &Card {
+    @include spanColumns(5);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: to-rem($spacing-5x-large) to-rem($spacing-x-large);
+    border-radius: 10px;
+    background-color: $gray-50;
+
+    @include media-breakpoint-down(lg) {
+      @include spanColumns(6);
+    }
+
+    @include media-breakpoint-down(md) {
+      @include columns(1, -1);
+    }
+  }
+
+  &Title {
+    @include headerH4;
+  }
+}
