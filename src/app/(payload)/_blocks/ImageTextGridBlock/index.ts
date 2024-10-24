@@ -35,7 +35,7 @@ export const ImageTextGridBlock: Block = {
     },
         // {
     //   name: 'columns',
-    //   type: 'number',
+    //   type: 'number', // radio?
     //   defaultValue: 2,
     //   max: 4,
     // },
