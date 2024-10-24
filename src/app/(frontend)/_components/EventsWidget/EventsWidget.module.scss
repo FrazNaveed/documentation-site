@@ -14,16 +14,17 @@
 }
 
 .intro {
+  @include sectionHeaderMargin;
+
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: to-rem($spacing-standard);
   gap: to-rem($spacing-standard);
 }
 
 .header {
-  @include h5;
+  @include sectionHeaderFont;
 
   margin-bottom: 0;
 }

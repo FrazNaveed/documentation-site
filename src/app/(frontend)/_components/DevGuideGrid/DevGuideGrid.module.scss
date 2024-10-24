@@ -1,0 +1,9 @@
+@use "../../_styles/mixins" as *;
+
+.wrap {
+  @include pageComponentSpacing;
+}
+
+.container {
+  @include container;
+}

@@ -531,6 +531,7 @@ export interface Product {
   slug: string;
   icon?: (number | null) | Media;
   shortDescription?: string | null;
+  titleOverride?: string | null;
   updatedAt: string;
   createdAt: string;
 }
