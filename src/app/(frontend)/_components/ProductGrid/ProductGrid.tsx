@@ -30,7 +30,7 @@ export default function ProductGrid({ title, products }: ProductGridProps) {
                       />
                     )}
                   </div>
-                  <h3 className={styles.productTitle}>{product.title}</h3>
+                  <h3 className={styles.productTitle}>{product.titleOverride || product.title}</h3>
                 </div>
                 <RightArrow />
               </div>

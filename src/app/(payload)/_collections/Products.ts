@@ -47,5 +47,13 @@ export const Products: CollectionConfig = {
       type: 'text',
       localized: true,
     },
+    {
+      name: 'titleOverride',
+      type: 'text',
+      localized: true,
+      admin: {
+        description: 'Title override for the Explore section',
+      },
+    },
   ],
 }

@@ -531,6 +531,7 @@ export interface Product {
   slug: string;
   icon?: (number | null) | Media;
   shortDescription?: string | null;
+  titleOverride?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -822,6 +823,7 @@ export interface DeveloperGuide {
   id: number;
   title: string;
   shortDescription?: string | null;
+  guideLink: string;
   tags?: (number | DeveloperGuideTag)[] | null;
   product?: (number | null) | Product;
   updatedAt: string;
