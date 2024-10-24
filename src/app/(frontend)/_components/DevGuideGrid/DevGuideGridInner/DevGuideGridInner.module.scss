@@ -192,6 +192,7 @@
 
 .tags {
   display: flex;
+  flex-wrap: wrap;
   gap: to-rem($spacing-x-small);
 
   @include media-breakpoint-up(md) {
