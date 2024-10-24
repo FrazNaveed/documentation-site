@@ -17,17 +17,17 @@ export const ImageTextGridBlock: Block = {
       label: 'Image and Text Cards',
       fields: [
         {
-          name: 'image',
+          name: 'cardImage',
           type: 'upload',
           relationTo: 'media',
         },
         {
-          name: 'header',
+          name: 'cardHeader',
           type: 'text',
           localized: true,
         },
         {
-          name: 'text',
+          name: 'cardText',
           type: 'richText',
           localized: true,
         },
