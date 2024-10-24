@@ -1,4 +1,4 @@
-import Image from 'next/image'
+// import Image from 'next/image'
 import type { ImageTextCards } from '@/payload-types'
 import LexicalRenderer from '../LexicalRenderer'
 import styles from './ImageTextGridBlock.module.scss'
@@ -17,11 +17,11 @@ export default function ImageTextGridBlock({ imageTextGridTitle, imageTextCardGr
         <ul className={styles.imageTextGrid}>
           {imageTextCardGrid?.map((card) => {
             const {
-              cardHeader, cardImage, cardText, id,
+              cardHeader, cardText, id,
             } = card
             return (
               <li key={id} className={styles.imageTextGridCard}>
-                {cardImage && typeof cardImage === 'object' && cardImage.url && cardImage.alt && (
+                {/* {cardImage && typeof cardImage === 'object' && cardImage.url && cardImage.alt && (
                   <div className={styles.imageWrap}>
                     <Image
                       src={cardImage.url}
@@ -30,7 +30,7 @@ export default function ImageTextGridBlock({ imageTextGridTitle, imageTextCardGr
                       height={254}
                     />
                   </div>
-                )}
+                )} */}
                 <h3 className={styles.imageTextGridCardHeader}>{cardHeader}</h3>
                 {cardText && <LexicalRenderer content={cardText as PayloadLexicalReactRendererContent} />}
               </li>

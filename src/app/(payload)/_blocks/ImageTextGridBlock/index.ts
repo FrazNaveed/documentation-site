@@ -7,23 +7,12 @@ export const ImageTextGridBlock: Block = {
   interfaceName: 'ImageTextGridBlock',
   fields: [
     {
-      name: 'imageTextGridTitle',
-      type: 'text',
-      label: 'Title',
-      localized: true,
-    },
-    {
       name: 'imageTextCardGrid',
       type: 'array',
       label: 'Image and Text Cards',
       localized: true,
       interfaceName: 'ImageTextCards',
       fields: [
-        {
-          name: 'cardImage',
-          type: 'upload',
-          relationTo: 'media',
-        },
         {
           name: 'cardHeader',
           type: 'text',
