@@ -26,7 +26,7 @@ export const DeveloperGuides: CollectionConfig = {
     {
       name: 'guideLink',
       type: 'text',
-      required: false,
+      required: true,
       localized: true,
       validate: validateTextFieldUrl,
     },
