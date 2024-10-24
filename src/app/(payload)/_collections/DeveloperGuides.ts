@@ -7,6 +7,7 @@ export const DeveloperGuides: CollectionConfig = {
     plural: 'Developer Guides'
   },
   admin: {
+    useAsTitle: 'title',
     enableRichTextLink: false,
   },
   fields: [
