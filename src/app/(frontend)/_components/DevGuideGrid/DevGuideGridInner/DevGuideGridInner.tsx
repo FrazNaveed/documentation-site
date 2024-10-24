@@ -21,10 +21,7 @@ export default function DevGuideGridInner({ developerGuides }: DevGuideGridInner
   const visibleGuides = allShown ? filteredGuides : filteredGuides.slice(0, initialNumberShown)
   const devGuidesCount = filteredGuides.length
   const devGuidesExist = visibleGuides.length > 0
-  const displayShowButton = (
-    (allShown && visibleGuides.length > initialNumberShown)
-    || (!allShown && filteredGuides.length > initialNumberShown)
-  )
+  const displayShowButton = filteredGuides.length > initialNumberShown
   const toggleAllShown = () => {
     setAllShown((prev) => !prev)
   }
