@@ -39,7 +39,7 @@ export default function DevGuideGridInner({ developerGuides }: DevGuideGridInner
         </p>
       </div>
       {devGuidesExist && (
-        <div className={styles.content}>
+        <div id='dev-guide-grid' className={styles.content}>
           {visibleGuides.map((devGuide) => {
             const {
               id,
@@ -84,7 +84,13 @@ export default function DevGuideGridInner({ developerGuides }: DevGuideGridInner
       )}
       {displayShowButton && (
         <div className={styles.buttonWrap}>
-          <button type='button' className={styles.button} onClick={toggleAllShown}>
+          <button
+            type='button'
+            className={styles.button}
+            onClick={toggleAllShown}
+            aria-expanded={allShown}
+            aria-controls='dev-guide-grid'
+          >
             {allShown ? '- Show Less' : '+ Show All'}
           </button>
         </div>
