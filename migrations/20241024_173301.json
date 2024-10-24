@@ -3840,7 +3840,7 @@
           "name": "guide_link",
           "type": "varchar",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "product_id": {
           "name": "product_id",
