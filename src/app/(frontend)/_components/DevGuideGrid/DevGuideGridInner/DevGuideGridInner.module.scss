@@ -117,6 +117,11 @@
   > :last-child {
     margin-bottom: 0;
   }
+
+  @include media-breakpoint-up(md) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .product {
@@ -170,6 +175,10 @@
 .tags {
   display: flex;
   gap: to-rem($spacing-x-small);
+
+  @include media-breakpoint-up(md) {
+    margin-top: auto;
+  }
 }
 
 .buttonWrap {
