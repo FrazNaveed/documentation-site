@@ -23,6 +23,7 @@ export type LinkBandLinks =
  */
 export type ImageTextCards =
   | {
+      cardImage?: (number | null) | Media;
       cardHeader?: string | null;
       cardText?: {
         root: {
@@ -695,6 +696,7 @@ export interface Image {
  * via the `definition` "ImageTextGridBlock".
  */
 export interface ImageTextGridBlock {
+  imageTextGridTitle?: string | null;
   imageTextCardGrid?: ImageTextCards;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
