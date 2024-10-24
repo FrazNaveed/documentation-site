@@ -91,8 +91,8 @@
   color: $pink-900;
 
   &:hover,
-  &:active,
   &:focus,
+  &:active,
   &.active {
     background-color: $pink-900;
     color: $white;
@@ -115,6 +115,14 @@
   padding: $spacing-medium $spacing-standard $spacing-standard;
   border: 1px solid $gray-200;
   border-radius: 6px;
+
+  &,
+  &:visited,
+  &:hover,
+  &:focus,
+  &:active {
+    color: inherit;
+  }
 
   > :last-child {
     margin-bottom: 0;

@@ -823,6 +823,7 @@ export interface DeveloperGuide {
   id: number;
   title: string;
   shortDescription?: string | null;
+  guideLink: string;
   tags?: (number | DeveloperGuideTag)[] | null;
   product?: (number | null) | Product;
   updatedAt: string;

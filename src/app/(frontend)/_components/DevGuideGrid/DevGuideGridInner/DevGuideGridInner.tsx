@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
 import cx from 'classnames'
 import Pill from 'src/app/(frontend)/_components/Pill'
@@ -65,13 +66,14 @@ export default function DevGuideGridInner({ developerGuides, devHubProducts = []
           {visibleGuides.map((devGuide) => {
             const {
               id,
+              guideLink,
               title,
               shortDescription,
               tags,
               product,
             } = devGuide
             return (
-              <div key={id} className={cx(styles.devGuide)}>
+              <Link href={guideLink} key={id} className={cx(styles.devGuide)}>
                 {(product && typeof product === 'object') && (
                   <div className={styles.product}>
                     {product.icon && typeof product.icon === 'object' && product.icon.url && product.icon.alt && (
@@ -99,7 +101,7 @@ export default function DevGuideGridInner({ developerGuides, devHubProducts = []
                     ))}
                   </div>
                 )}
-              </div>
+              </Link>
             )
           })}
         </div>
