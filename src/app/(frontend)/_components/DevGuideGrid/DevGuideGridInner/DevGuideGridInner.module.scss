@@ -83,12 +83,16 @@
   @include utils.buttonReset;
   @include paragraphSmFont;
 
+  display: flex;
+  align-items: center;
   padding: to-rem($spacing-x-small) to-rem($spacing-small);
   transition:
     background-color $transition-speed-default,
-    color $transition-speed-default;
+    color $transition-speed-default,
+    filter $transition-speed-default;
   border-radius: 10px;
   color: $pink-900;
+  gap: to-rem(4px);
 
   &:hover,
   &:focus,
@@ -96,6 +100,10 @@
   &.active {
     background-color: $pink-900;
     color: $white;
+
+    .filterIcon {
+      filter: brightness(0) invert(1);
+    }
   }
 }
 
@@ -184,6 +192,7 @@
 
 .tags {
   display: flex;
+  flex-wrap: wrap;
   gap: to-rem($spacing-x-small);
 
   @include media-breakpoint-up(md) {
