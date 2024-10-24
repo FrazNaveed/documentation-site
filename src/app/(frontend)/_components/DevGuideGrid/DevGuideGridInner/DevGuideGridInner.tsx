@@ -66,14 +66,13 @@ export default function DevGuideGridInner({ developerGuides, devHubProducts = []
           {visibleGuides.map((devGuide) => {
             const {
               id,
-              guideLink,
               title,
               shortDescription,
               tags,
               product,
             } = devGuide
             return (
-              <Link href={guideLink || ''} key={id} className={cx(styles.devGuide)}>
+              <Link href='https://flare.network' key={id} className={cx(styles.devGuide)}>
                 {(product && typeof product === 'object') && (
                   <div className={styles.product}>
                     {product.icon && typeof product.icon === 'object' && product.icon.url && product.icon.alt && (

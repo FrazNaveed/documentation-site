@@ -1,5 +1,4 @@
 import type { CollectionConfig } from 'payload'
-import validateTextFieldUrl from '../_utils/validateTextFieldUrl'
 
 export const DeveloperGuides: CollectionConfig = {
   slug: 'developerGuides',
@@ -22,13 +21,6 @@ export const DeveloperGuides: CollectionConfig = {
       name: 'shortDescription',
       type: 'text',
       localized: true,
-    },
-    {
-      name: 'guideLink',
-      type: 'text',
-      required: false,
-      localized: true,
-      validate: validateTextFieldUrl,
     },
     {
       name: 'tags',
