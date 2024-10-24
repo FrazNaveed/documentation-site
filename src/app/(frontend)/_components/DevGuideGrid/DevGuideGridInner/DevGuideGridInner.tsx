@@ -50,7 +50,7 @@ export default function DevGuideGridInner({ developerGuides, devHubProducts = []
           {productFilters.map((product) => (
             <li key={product.id}>
               <button
-                className={cx(styles.filterButton, { [styles.filterButton__active]: activeFilter === product.slug })}
+                className={cx(styles.filterButton, { [styles.active]: activeFilter === product.slug })}
                 type='button'
                 onClick={() => setActiveFilter(product.slug)}
               >

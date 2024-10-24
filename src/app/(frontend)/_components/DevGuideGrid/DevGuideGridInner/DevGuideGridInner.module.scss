@@ -84,14 +84,14 @@
   @include paragraphSmFont;
 
   padding: to-rem($spacing-x-small) to-rem($spacing-small);
+  border-radius: 10px;
   color: $pink-900;
 
   &:hover,
   &:active,
   &:focus,
-  &__active {
+  &.active {
     transition: background-color $transition-speed-default;
-    border-radius: 10px;
     background-color: $pink-900;
     color: $white;
   }
