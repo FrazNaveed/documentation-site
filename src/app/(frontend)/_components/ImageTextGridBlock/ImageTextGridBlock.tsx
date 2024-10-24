@@ -19,21 +19,25 @@ export default function ImageTextGridBlock({ imageTextGridTitle, imageTextCardGr
             const {
               cardHeader, cardImage, cardText, id,
             } = card
+            const hasContent = cardHeader && cardImage && cardText && id
             return (
+              hasContent
+              && (
               <li key={id} className={styles.imageTextGridCard}>
                 {cardImage && typeof cardImage === 'object' && cardImage.url && cardImage.alt && (
-                  <div className={styles.imageWrap}>
-                    <Image
-                      src={cardImage.url}
-                      alt={cardImage.alt}
-                      width={340}
-                      height={254}
-                    />
-                  </div>
+                <div className={styles.imageWrap}>
+                  <Image
+                    src={cardImage.url}
+                    alt={cardImage.alt}
+                    width={340}
+                    height={254}
+                  />
+                </div>
                 )}
                 <h3 className={styles.imageTextGridCardHeader}>{cardHeader}</h3>
                 {cardText && <LexicalRenderer content={cardText as PayloadLexicalReactRendererContent} />}
               </li>
+              )
             )
           })}
         </ul>
