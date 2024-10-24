@@ -109,6 +109,7 @@ export default async function Page({
   }
 
   let productsGridComponent
+  let devHubProducts
   if (pageTemplate === 'devHub') {
     if (devHub) {
       const {
@@ -121,6 +122,7 @@ export default async function Page({
       productsGridComponent = (
         <ProductGrid {...productsGridProps} />
       )
+      devHubProducts = productsGridProps.products
     }
   }
 
@@ -234,7 +236,7 @@ export default async function Page({
       {pageTemplate === 'devHub' && (
         <>
           {productsGridComponent}
-          <DevGuideGrid />
+          <DevGuideGrid devHubProducts={devHubProducts} />
           {linkBandComponent}
           {bugBountyCtaComponent}
           <EventsWidget />

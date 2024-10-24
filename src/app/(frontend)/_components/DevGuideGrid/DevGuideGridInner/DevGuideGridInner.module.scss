@@ -33,6 +33,70 @@
   }
 }
 
+.filters {
+  display: flex;
+  margin-right: -$container-padding;
+  margin-bottom: to-rem($spacing-standard);
+  margin-left: -$container-padding;
+  padding-right: $container-padding;
+  padding-left: $container-padding;
+  overflow: auto hidden;
+  scroll-padding: 0 $container-padding;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include media-breakpoint-down(lg) {
+    margin-right: -$container-padding-lg;
+    margin-left: -$container-padding-lg;
+    padding-right: $container-padding-lg;
+    padding-left: $container-padding-lg;
+    scroll-padding: 0 $container-padding-lg;
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-right: -$container-padding-md;
+    margin-left: -$container-padding-md;
+    padding-right: $container-padding-md;
+    padding-left: $container-padding-md;
+    scroll-padding: 0 $container-padding-md;
+  }
+}
+
+.filterList {
+  @include utils.listReset;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: to-rem(5px);
+  border-radius: 14px;
+  background-color: $pink-50;
+  gap: to-rem($spacing-small) to-rem(5px);
+}
+
+.filterButton {
+  @include utils.buttonReset;
+  @include paragraphSmFont;
+
+  padding: to-rem($spacing-x-small) to-rem($spacing-small);
+  color: $pink-900;
+
+  &:hover,
+  &:active,
+  &:focus,
+  &__active {
+    transition: background-color $transition-speed-default;
+    border-radius: 10px;
+    background-color: $pink-900;
+    color: $white;
+  }
+}
+
 .content {
   @include grid;
 

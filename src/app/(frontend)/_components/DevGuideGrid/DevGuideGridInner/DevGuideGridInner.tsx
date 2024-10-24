@@ -5,23 +5,33 @@ import Image from 'next/image'
 import cx from 'classnames'
 import Pill from 'src/app/(frontend)/_components/Pill'
 import useIsBelowBreakpoint from 'src/app/(frontend)/_hooks/useIsBelowBreakpoint'
-import { DeveloperGuide } from 'payload-types'
+import { DeveloperGuide, Product } from 'payload-types'
 import styles from './DevGuideGridInner.module.scss'
 
 type DevGuideGridInnerProps = {
   developerGuides?: DeveloperGuide[]
+  devHubProducts?: Product[]
 }
 
-export default function DevGuideGridInner({ developerGuides }: DevGuideGridInnerProps) {
+export default function DevGuideGridInner({ developerGuides, devHubProducts = [] }: DevGuideGridInnerProps) {
+  const allProductsFilterSlug = 'all'
   const [isBelowBreakpoint] = useIsBelowBreakpoint()
   const [allShown, setAllShown] = useState(false)
+  const [activeFilter, setActiveFilter] = useState(allProductsFilterSlug)
   const devGuides = developerGuides || []
   const initialNumberShown = isBelowBreakpoint ? 3 : 6
-  const filteredGuides = devGuides // Will be used for product type filtering
+  let filteredGuides = devGuides
+  if (activeFilter !== allProductsFilterSlug) {
+    filteredGuides = devGuides.filter((guide) => guide.product && typeof guide.product === 'object' && guide.product.slug === activeFilter)
+  }
   const visibleGuides = allShown ? filteredGuides : filteredGuides.slice(0, initialNumberShown)
   const devGuidesCount = filteredGuides.length
   const devGuidesExist = visibleGuides.length > 0
   const displayShowButton = filteredGuides.length > initialNumberShown
+  const allProductsFilter = {
+    id: -1, title: 'All Products', slug: allProductsFilterSlug, updatedAt: '', createdAt: '',
+  }
+  const productFilters = [allProductsFilter, ...devHubProducts]
   const toggleAllShown = () => {
     setAllShown((prev) => !prev)
   }
@@ -34,6 +44,21 @@ export default function DevGuideGridInner({ developerGuides }: DevGuideGridInner
         <p className={styles.showCount}>
           {`Showing ${visibleGuides.length} of ${devGuidesCount}`}
         </p>
+      </div>
+      <div className={styles.filters}>
+        <ul className={styles.filterList}>
+          {productFilters.map((product) => (
+            <li key={product.id}>
+              <button
+                className={cx(styles.filterButton, { [styles.filterButton__active]: activeFilter === product.slug })}
+                type='button'
+                onClick={() => setActiveFilter(product.slug)}
+              >
+                {product.title}
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
       {devGuidesExist && (
         <div id='dev-guide-grid' className={styles.content}>
