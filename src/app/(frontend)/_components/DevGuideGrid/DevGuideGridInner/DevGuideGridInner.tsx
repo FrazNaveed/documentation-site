@@ -73,7 +73,7 @@ export default function DevGuideGridInner({ developerGuides, devHubProducts = []
               product,
             } = devGuide
             return (
-              <Link href={guideLink} key={id} className={cx(styles.devGuide)}>
+              <Link href={guideLink || ''} key={id} className={cx(styles.devGuide)}>
                 {(product && typeof product === 'object') && (
                   <div className={styles.product}>
                     {product.icon && typeof product.icon === 'object' && product.icon.url && product.icon.alt && (
