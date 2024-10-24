@@ -11,6 +11,10 @@
 
   gap: to-rem($spacing-small) $grid-column-gap-flare;
 
+  &Block {
+    @include pageComponentSpacing;
+  }
+
   &Card {
     @include spanColumns(5);
 
@@ -23,14 +27,29 @@
 
     @include media-breakpoint-down(lg) {
       @include spanColumns(6);
+
+      padding: to-rem($spacing-standard) to-rem($spacing-medium);
     }
 
     @include media-breakpoint-down(md) {
       @include columns(1, -1);
+
+      padding: to-rem($spacing-medium) to-rem($spacing-small);
     }
   }
 
   &Title {
-    @include headerH4;
+    @include sectionHeaderFont;
+    @include sectionHeaderMargin;
   }
+
+  &CardHeader {
+    @include headerH6;
+
+    margin-bottom: to-rem($spacing-small);
+  }
+}
+
+.imageWrap {
+  margin-bottom: to-rem($spacing-medium);
 }
