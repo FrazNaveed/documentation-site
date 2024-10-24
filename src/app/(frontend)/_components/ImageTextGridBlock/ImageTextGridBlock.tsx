@@ -10,7 +10,6 @@ export type ImageTextGridBlockProps = {
 }
 
 export default function ImageTextGridBlock({ imageTextGridTitle, imageTextCardGrid }: ImageTextGridBlockProps) {
-  console.log('cards: ', imageTextCardGrid)
   return (
     <section className={styles.imageTextGridBlock}>
       <div className={styles.headerWrap}>
