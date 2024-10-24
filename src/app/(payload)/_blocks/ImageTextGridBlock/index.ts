@@ -23,17 +23,14 @@ export const ImageTextGridBlock: Block = {
           name: 'cardImage',
           type: 'upload',
           relationTo: 'media',
-          localized: true,
         },
         {
           name: 'cardHeader',
           type: 'text',
-          localized: true,
         },
         {
           name: 'cardText',
           type: 'richText',
-          localized: true,
         },
       ],
       admin: {
