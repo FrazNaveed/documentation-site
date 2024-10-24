@@ -84,6 +84,9 @@
   @include paragraphSmFont;
 
   padding: to-rem($spacing-x-small) to-rem($spacing-small);
+  transition:
+    background-color $transition-speed-default,
+    color $transition-speed-default;
   border-radius: 10px;
   color: $pink-900;
 
@@ -91,7 +94,6 @@
   &:active,
   &:focus,
   &.active {
-    transition: background-color $transition-speed-default;
     background-color: $pink-900;
     color: $white;
   }
