@@ -30,7 +30,7 @@ export default function DevGuideGridInner({ developerGuides, devHubProducts = []
   const devGuidesExist = visibleGuides.length > 0
   const displayShowButton = filteredGuides.length > initialNumberShown
   const allProductsFilter = {
-    id: -1, title: 'All Products', slug: allProductsFilterSlug, updatedAt: '', createdAt: '',
+    id: -1, title: 'All Products', slug: allProductsFilterSlug, icon: null, updatedAt: '', createdAt: '',
   }
   const productFilters = [allProductsFilter, ...devHubProducts]
   const toggleAllShown = () => {
@@ -55,6 +55,15 @@ export default function DevGuideGridInner({ developerGuides, devHubProducts = []
                 type='button'
                 onClick={() => setActiveFilter(product.slug)}
               >
+                {product.icon && typeof product.icon === 'object' && product.icon.url && product.icon.alt && (
+                  <Image
+                    className={styles.filterIcon}
+                    src={product.icon.url}
+                    alt={product.icon.alt}
+                    width={product.icon.width ?? 0}
+                    height={product.icon.height ?? 0}
+                  />
+                )}
                 {product.title}
               </button>
             </li>
