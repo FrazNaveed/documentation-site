@@ -3,6 +3,7 @@ import { HeroFields } from '../_fields/HeroFields'
 import { PageFooterCTA } from '../_fields/PageFooterCTA'
 import { ColumnsBlock } from '../_blocks/ColumnsBlock'
 import { ImageBlock } from '../_blocks/ImageBlock'
+import { ImageTextGridBlock } from '../_blocks/ImageTextGridBlock'
 import { RichTextBlockWithSideNavLink } from 'src/app/(payload)/_blocks/RichTextBlockWithSideNavLink'
 import { getSiblingData } from 'payload/shared'
 import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
@@ -177,6 +178,7 @@ export const Pages: CollectionConfig = {
       blocks: [
         ColumnsBlock,
         ImageBlock,
+        ImageTextGridBlock,
         RichTextBlockWithSideNavLink,
         StatsBlock,
         TableDrawersBlock,
