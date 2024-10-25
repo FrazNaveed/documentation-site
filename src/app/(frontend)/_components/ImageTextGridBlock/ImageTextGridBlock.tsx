@@ -19,7 +19,7 @@ export default function ImageTextGridBlock({ imageTextGridTitle, imageTextCardGr
             const {
               cardHeader, cardImage, cardText, id,
             } = card
-            const hasContent = cardHeader && cardImage && cardText && id
+            const hasContent = id && (cardHeader || cardImage || cardText)
             return (
               hasContent
               && (
@@ -34,7 +34,7 @@ export default function ImageTextGridBlock({ imageTextGridTitle, imageTextCardGr
                   />
                 </div>
                 )}
-                <h3 className={styles.imageTextGridCardHeader}>{cardHeader}</h3>
+                {cardHeader && <h3 className={styles.imageTextGridCardHeader}>{cardHeader}</h3>}
                 {cardText && <LexicalRenderer content={cardText as PayloadLexicalReactRendererContent} />}
               </li>
               )
