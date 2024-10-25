@@ -33,11 +33,15 @@ import getCollectionPath from '../../_utils/getCollectionPath'
 
 export const dynamic = 'force-dynamic'
 
-export default async function Page({
-  params: { slug, lang },
-}: {
-  params: { slug: string, lang: Locale }
-}) {
+type PageProps = {
+  params: Promise<{
+    slug: string
+    lang: Locale
+  }>
+}
+
+export default async function Page({ params }: PageProps) {
+  const { slug, lang } = await params
   const page = await getPageBySlug(slug, lang)
   const dictionary = await getDictionary(lang)
 
@@ -69,7 +73,6 @@ export default async function Page({
   let heroComponent
   if (hero) {
     const {
-      style,
       headline,
       eyebrow,
       buttonText,
@@ -90,7 +93,6 @@ export default async function Page({
       />
     ) : (
       <PageHero
-        heroStyle={style}
         header={headline}
         eyebrow={eyebrow || title}
         {...heroCtaProps}

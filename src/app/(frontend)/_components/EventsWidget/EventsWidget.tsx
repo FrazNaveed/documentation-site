@@ -11,7 +11,7 @@ export default async function EventsWidget() {
   const eventsPageSlug = 'events'
   const featuredEvent = await getFeaturedEvent()
   const eventsPage = await getPageBySlug(eventsPageSlug)
-  const eventsPageData = eventsPage[0]
+  const eventsPageData = eventsPage[0] || {}
   const { hero } = eventsPageData
   const heroBackgroundImage = hero?.backgroundImage
   const heroBackgroundImageProps = (heroBackgroundImage && typeof heroBackgroundImage === 'object') ? { backgroundImage: heroBackgroundImage } : {}

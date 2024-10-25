@@ -19,13 +19,14 @@ import styles from './page.module.scss'
 export const dynamic = 'force-dynamic'
 
 type PageProps = {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export default async function Page({ params }: PageProps) {
-  const news = await getNewsBySlug(params.slug)
+  const { slug } = await params
+  const news = await getNewsBySlug(slug)
 
   const newsPost = news[0]
   if (!newsPost) {
