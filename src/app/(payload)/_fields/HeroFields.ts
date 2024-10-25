@@ -7,18 +7,6 @@ export const HeroFields: Field[] = [
     type: 'group',
     fields: [
       {
-        name: 'style',
-        type: 'select',
-        options: [
-          {
-            label: 'Standard',
-            value: 'standard',
-          },
-        ],
-        required: true,
-        defaultValue: 'standard',
-      },
-      {
         name: 'headline',
         type: 'text',
         required: true,
