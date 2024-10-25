@@ -10,6 +10,14 @@
 
   gap: to-rem($spacing-small) $grid-column-gap-flare;
 
+  @include media-breakpoint-down(lg) {
+    @include grid(6, false);
+  }
+
+  @include media-breakpoint-down(md) {
+    @include grid(4, false);
+  }
+
   &Block {
     @include pageComponentSpacing;
   }
@@ -25,7 +33,7 @@
     background-color: $gray-50;
 
     @include media-breakpoint-down(lg) {
-      @include spanColumns(6);
+      @include spanColumns(5);
 
       padding: to-rem($spacing-standard) to-rem($spacing-medium);
     }
