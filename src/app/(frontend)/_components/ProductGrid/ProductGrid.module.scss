@@ -17,13 +17,8 @@
   }
 
   &Title {
-    @include headerH5;
-
-    margin-bottom: to-rem($spacing-medium);
-
-    @include media-breakpoint-down(lg) {
-      margin-bottom: to-rem($spacing-small);
-    }
+    @include sectionHeaderFont;
+    @include sectionHeaderMargin;
   }
 }
 
@@ -77,7 +72,7 @@
     @include headerH6;
 
     margin-bottom: 0;
-    color: $pink-700;
+    color: $pink-900;
   }
 
   &Description {

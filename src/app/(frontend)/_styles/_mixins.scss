@@ -160,3 +160,15 @@ $root-font-size: $root-font-size-number * 1px;
     margin-bottom: 0;
   }
 }
+
+@mixin sectionHeaderMargin {
+  margin-bottom: to-rem($spacing-medium);
+
+  @include media-breakpoint-down(lg) {
+    margin-bottom: to-rem($spacing-standard);
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: to-rem($spacing-small);
+  }
+}

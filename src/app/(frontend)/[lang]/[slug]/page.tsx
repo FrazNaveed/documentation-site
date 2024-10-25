@@ -9,6 +9,7 @@ import type { Person, Product, Wallet } from '@/payload-types'
 import type { Locale } from 'src/app/i18n-config'
 import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
+import DevGuideGrid from 'src/app/(frontend)/_components/DevGuideGrid'
 import EventsHero from 'src/app/(frontend)/_components/EventsHero'
 import EventsWidget from 'src/app/(frontend)/_components/EventsWidget'
 import SideNav from 'src/app/(frontend)/_components/SideNav'
@@ -32,11 +33,15 @@ import getCollectionPath from '../../_utils/getCollectionPath'
 
 export const dynamic = 'force-dynamic'
 
-export default async function Page({
-  params: { slug, lang },
-}: {
-  params: { slug: string, lang: Locale }
-}) {
+type PageProps = {
+  params: Promise<{
+    slug: string
+    lang: Locale
+  }>
+}
+
+export default async function Page({ params }: PageProps) {
+  const { slug, lang } = await params
   const page = await getPageBySlug(slug, lang)
   const dictionary = await getDictionary(lang)
 
@@ -68,7 +73,6 @@ export default async function Page({
   let heroComponent
   if (hero) {
     const {
-      style,
       headline,
       eyebrow,
       buttonText,
@@ -89,7 +93,6 @@ export default async function Page({
       />
     ) : (
       <PageHero
-        heroStyle={style}
         header={headline}
         eyebrow={eyebrow || title}
         {...heroCtaProps}
@@ -108,6 +111,7 @@ export default async function Page({
   }
 
   let productsGridComponent
+  let devHubProducts
   if (pageTemplate === 'devHub') {
     if (devHub) {
       const {
@@ -120,6 +124,7 @@ export default async function Page({
       productsGridComponent = (
         <ProductGrid {...productsGridProps} />
       )
+      devHubProducts = productsGridProps.products
     }
   }
 
@@ -233,6 +238,7 @@ export default async function Page({
       {pageTemplate === 'devHub' && (
         <>
           {productsGridComponent}
+          <DevGuideGrid devHubProducts={devHubProducts} />
           {linkBandComponent}
           {bugBountyCtaComponent}
           <EventsWidget />
