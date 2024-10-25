@@ -19,6 +19,8 @@ import { NewsSubTypes } from './src/app/(payload)/_collections/NewsSubTypes'
 import { NewsTypes } from './src/app/(payload)/_collections/NewsTypes'
 import { Wallets } from './src/app/(payload)/_collections/Wallets'
 import { People } from './src/app/(payload)/_collections/People'
+import { Grants } from './src/app/(payload)/_collections/Grants'
+import { GrantTypes } from './src/app/(payload)/_collections/GrantTypes'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -32,6 +34,8 @@ export default buildConfig({
   },
   collections: [
     Events,
+    Grants,
+    GrantTypes,
     Pages,
     Users,
     Media,
