@@ -1,20 +1,20 @@
-// import Image from 'next/image'
-// import type { ImageTextCards } from '@/payload-types'
-// import LexicalRenderer from '../LexicalRenderer'
+import Image from 'next/image'
+import type { ImageTextCards } from '@/payload-types'
+import LexicalRenderer from '../LexicalRenderer'
 import styles from './ImageTextGridBlock.module.scss'
-// import { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
+import { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 
 export type ImageTextGridBlockProps = {
   imageTextGridTitle?: string | null
-  // imageTextCardGrid?: ImageTextCards | []
+  imageTextCardGrid?: ImageTextCards | []
 }
 
-export default function ImageTextGridBlock({ imageTextGridTitle }: ImageTextGridBlockProps) {
+export default function ImageTextGridBlock({ imageTextGridTitle, imageTextCardGrid }: ImageTextGridBlockProps) {
   return (
     <section className={styles.imageTextGridBlock}>
       <h2 className={styles.imageTextGridTitle}>{imageTextGridTitle}</h2>
       <div className={styles.imageTextGridWrap}>
-        {/* <ul className={styles.imageTextGrid}>
+        <ul className={styles.imageTextGrid}>
           {imageTextCardGrid?.map((card) => {
             const {
               cardHeader, cardImage, cardText, id,
@@ -40,7 +40,7 @@ export default function ImageTextGridBlock({ imageTextGridTitle }: ImageTextGrid
               )
             )
           })}
-        </ul> */}
+        </ul>
       </div>
     </section>
   )
