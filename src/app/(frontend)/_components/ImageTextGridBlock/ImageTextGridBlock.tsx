@@ -29,8 +29,8 @@ export default function ImageTextGridBlock({ imageTextGridTitle, imageTextCardGr
                   <Image
                     src={cardImage.url}
                     alt={cardImage.alt}
-                    width={340}
-                    height={254}
+                    width={cardImage.width ?? 0}
+                    height={cardImage.height ?? 0}
                   />
                 </div>
                 )}
