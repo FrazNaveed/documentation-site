@@ -770,7 +770,7 @@ export interface Page {
   devHub?: DevHub;
   teamGrid?: TeamGrid;
   walletsGrid?: WalletsGrid;
-  components?: (Columns | Image | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints)[] | null;
+  components?: (Columns | Image | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints | TwoColumns)[] | null;
   pageFooterCTA?: boolean | null;
   pageFooterCTAButton?: {
     buttonText?: string | null;
@@ -1027,6 +1027,64 @@ export interface ITalkingPoints {
   id?: string | null;
   blockName?: string | null;
   blockType: 'talkingPoints';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "twoColumns".
+ */
+export interface TwoColumns {
+  layout?: ('default' | 'reverse' | 'even') | null;
+  'Column 1'?: {
+    content?: {
+      contentType?: ('image' | 'text') | null;
+      image?: (number | null) | Media;
+      text?: {
+        root: {
+          type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
+        [k: string]: unknown;
+      } | null;
+    };
+    imageAlignment?: ('center' | 'left' | 'right') | null;
+    imageFill?: ('contain' | 'cover') | null;
+  };
+  'Column 2'?: {
+    content?: {
+      contentType?: ('image' | 'text') | null;
+      image?: (number | null) | Media;
+      text?: {
+        root: {
+          type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
+        [k: string]: unknown;
+      } | null;
+    };
+    imageAlignment?: ('center' | 'left' | 'right') | null;
+    imageFill?: ('contain' | 'cover') | null;
+  };
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'twoColumn';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -35,6 +35,7 @@ import { DevHub } from '../_fields/DevHub'
 import { TeamGrid } from '../_fields/Team'
 import { WalletsGrid } from '../_fields/WalletsGrid'
 import { TalkingPoints } from '../_blocks/TalkingPointsBlock'
+import { TwoColumnBlock } from '../_blocks/TwoColumnBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -181,6 +182,7 @@ export const Pages: CollectionConfig = {
         StatsBlock,
         TableDrawersBlock,
         TalkingPoints,
+        TwoColumnBlock,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
