@@ -5,7 +5,7 @@ import Button from '../Button'
 import styles from './PageHero.module.scss'
 
 export type PageHeroProps = {
-  heroStyle?: 'standard' | 'featuredEvent'
+  heroStyle?: 'standard'
   backgroundImage?: Media
   header?: string | null
   eyebrow?: string | null

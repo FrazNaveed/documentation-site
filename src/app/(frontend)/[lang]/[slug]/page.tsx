@@ -73,7 +73,6 @@ export default async function Page({ params }: PageProps) {
   let heroComponent
   if (hero) {
     const {
-      // style,
       headline,
       eyebrow,
       buttonText,
@@ -94,7 +93,6 @@ export default async function Page({ params }: PageProps) {
       />
     ) : (
       <PageHero
-        // heroStyle={style}
         header={headline}
         eyebrow={eyebrow || title}
         {...heroCtaProps}
