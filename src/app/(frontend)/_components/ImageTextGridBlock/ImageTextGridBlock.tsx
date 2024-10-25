@@ -12,7 +12,7 @@ export type ImageTextGridBlockProps = {
 export default function ImageTextGridBlock({ imageTextGridTitle, imageTextCardGrid }: ImageTextGridBlockProps) {
   return (
     <section className={styles.imageTextGridBlock}>
-      <h2 className={styles.imageTextGridTitle}>{imageTextGridTitle}</h2>
+      {imageTextGridTitle && <h2 className={styles.imageTextGridTitle}>{imageTextGridTitle}</h2>}
       <div className={styles.imageTextGridWrap}>
         <ul className={styles.imageTextGrid}>
           {imageTextCardGrid?.map((card) => {
