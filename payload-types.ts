@@ -19,6 +19,32 @@ export type LinkBandLinks =
   | null;
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageTextCards".
+ */
+export type ImageTextCards =
+  | {
+      cardImage?: (number | null) | Media;
+      cardHeader?: string | null;
+      cardText?: {
+        root: {
+          type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
+        [k: string]: unknown;
+      } | null;
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "StatsList".
  */
 export type StatsList =
@@ -670,6 +696,7 @@ export interface Image {
  */
 export interface ImageTextGridBlock {
   imageTextGridTitle?: string | null;
+  imageTextCardGrid?: ImageTextCards;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   id?: string | null;
