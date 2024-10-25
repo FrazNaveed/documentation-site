@@ -37,7 +37,7 @@ export const ImageTextGridBlock: Block = {
         isSortable: true,
       },
     },
-        // {
+    // {
     //   name: 'columns',
     //   type: 'number', // radio?
     //   defaultValue: 2,
