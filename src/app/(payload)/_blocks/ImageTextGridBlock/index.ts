@@ -12,6 +12,31 @@ export const ImageTextGridBlock: Block = {
       label: 'Title',
       localized: true,
     },
+    {
+      name: 'imageTextCardGrid',
+      type: 'array',
+      label: 'Image and Text Cards',
+      localized: true,
+      interfaceName: 'ImageTextCards',
+      fields: [
+        {
+          name: 'cardImage',
+          type: 'upload',
+          relationTo: 'media',
+        },
+        {
+          name: 'cardHeader',
+          type: 'text',
+        },
+        {
+          name: 'cardText',
+          type: 'richText',
+        },
+      ],
+      admin: {
+        isSortable: true,
+      },
+    },
     // {
     //   name: 'columns',
     //   type: 'number', // radio?
