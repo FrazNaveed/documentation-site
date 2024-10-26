@@ -49,6 +49,30 @@
   }
 }
 
+.image {
+  &Wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__center {
+    // center
+  }
+
+  &__contain {
+    img {
+      object-fit: contain;
+    }
+  }
+
+  &__cover {
+    img {
+      object-fit: cover;
+    }
+  }
+}
+
 .showOnMobile {
   @include showOnMobile;
 }
