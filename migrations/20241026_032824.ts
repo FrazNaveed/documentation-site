@@ -63,39 +63,6 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"number" numeric
   );
   
-  ALTER TABLE "pages" ADD COLUMN "grants_featured_grants_grants_awarded" numeric;
-  ALTER TABLE "payload_locked_documents_rels" ADD COLUMN "grants_id" integer;
-  ALTER TABLE "payload_locked_documents_rels" ADD COLUMN "grant_types_id" integer;
-  DO $$ BEGIN
-   ALTER TABLE "grants" ADD CONSTRAINT "grants_logo_id_media_id_fk" FOREIGN KEY ("logo_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "grants_locales" ADD CONSTRAINT "grants_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."grants"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "grants_rels" ADD CONSTRAINT "grants_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."grants"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "grants_rels" ADD CONSTRAINT "grants_rels_grant_types_fk" FOREIGN KEY ("grant_types_id") REFERENCES "public"."grant_types"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "grant_types_locales" ADD CONSTRAINT "grant_types_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."grant_types"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
   DO $$ BEGIN
    ALTER TABLE "pages_grants_featured_grants_countries" ADD CONSTRAINT "pages_grants_featured_grants_countries_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
