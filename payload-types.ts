@@ -1110,6 +1110,7 @@ export interface Product {
  */
 export interface Grants {
   featuredGrants?: {
+    grantsAwarded?: number | null;
     countries?: FeaturedGrantsCountries;
     topCategories?: FeaturedGrantsTopCategories;
   };

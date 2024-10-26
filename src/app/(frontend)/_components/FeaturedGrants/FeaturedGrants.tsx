@@ -11,13 +11,14 @@ export default function FeaturedGrants({ grants }: FeaturedGrantsProps) {
   if (!grants) {
     return null
   }
-  const { countries, topCategories } = grants
+  const { grantsAwarded, countries, topCategories } = grants
   return (
     <div className={styles.grants}>
       <div className={styles.sectionOne}>
         <p className={styles.sectionLabel}>
           Grants Awarded
         </p>
+        <p className={styles.grantsAwarded}>{grantsAwarded}</p>
       </div>
       <div className={styles.sectionTwo}>
         <p className={styles.sectionLabel}>

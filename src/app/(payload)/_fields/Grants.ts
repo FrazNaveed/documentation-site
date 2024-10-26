@@ -17,6 +17,10 @@ export const Grants: Field[] = [
         },
         fields: [
           {
+            name: 'grantsAwarded',
+            type: 'number',
+          },
+          {
             name: 'countries',
             type: 'array',
             interfaceName: 'FeaturedGrantsCountries',
