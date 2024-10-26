@@ -272,7 +272,7 @@ export default async function Page({ params }: PageProps) {
                   return <TalkingPoints key={component.id} {...component} />
 
                 case 'twoColumn':
-                  return <TwoColumnBlock />
+                  return <TwoColumnBlock {...component} />
 
                 default:
                   componentToRender = null

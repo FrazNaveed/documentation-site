@@ -1,0 +1,40 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.twoColumnBlock {
+  @include grid(10);
+}
+
+.column {
+  &__hideOnMobile {
+    @include hideColumnOnMobile;
+  }
+
+  &__default {
+    &:first-child {
+      @include columnNarrow;
+    }
+
+    &:last-child {
+      @include columnWide;
+    }
+  }
+
+  &__even {
+    @include columnEven;
+  }
+
+  &__reverse {
+    &:first-child {
+      @include columnWide;
+    }
+
+    &:last-child {
+      @include columnNarrow;
+    }
+  }
+}

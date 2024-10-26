@@ -172,3 +172,33 @@ $root-font-size: $root-font-size-number * 1px;
     margin-bottom: to-rem($spacing-small);
   }
 }
+
+@mixin columnNarrow {
+  @include spanColumns(4);
+
+  @include media-breakpoint-down(lg) {
+    @include spanColumns(2);
+  }
+
+  @include media-breakpoint-down(md) {
+    @include spanColumns(4);
+  }
+}
+
+@mixin columnWide {
+  @include spanColumns(6);
+
+  @include media-breakpoint-down(lg) {
+    @include spanColumns(4);
+  }
+}
+
+@mixin columnEven {
+  @include spanColumns(5);
+}
+
+@mixin hideColumnOnMobile {
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+}
