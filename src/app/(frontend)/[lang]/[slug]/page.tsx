@@ -29,6 +29,7 @@ import { PayloadLexicalReactRendererContent } from '../../_components/LexicalRen
 import ProductGrid from '../../_components/ProductGrid'
 import LinkBand from '../../_components/LinkBand'
 import TallCta from '../../_components/TallCTA/TallCta'
+import TwoColumnBlock from '../../_components/TwoColumnBlock'
 import getCollectionPath from '../../_utils/getCollectionPath'
 
 export const dynamic = 'force-dynamic'
@@ -269,6 +270,9 @@ export default async function Page({ params }: PageProps) {
 
                 case 'talkingPoints':
                   return <TalkingPoints key={component.id} {...component} />
+
+                case 'twoColumn':
+                  return <TwoColumnBlock />
 
                 default:
                   componentToRender = null
