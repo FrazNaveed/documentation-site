@@ -24,10 +24,6 @@
     align-items: center;
   }
 
-  &__hideOnMobile {
-    @include hideColumnOnMobile;
-  }
-
   &__default {
     &:first-child {
       @include columnNarrow;
@@ -51,4 +47,8 @@
       @include columnNarrow;
     }
   }
+}
+
+.showOnMobile {
+  @include showOnMobile;
 }

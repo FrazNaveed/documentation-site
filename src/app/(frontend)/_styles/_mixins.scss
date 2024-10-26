@@ -197,8 +197,10 @@ $root-font-size: $root-font-size-number * 1px;
   @include spanColumns(5);
 }
 
-@mixin hideColumnOnMobile {
+@mixin showOnMobile {
+  display: none;
+
   @include media-breakpoint-down(md) {
-    display: none;
+    display: block;
   }
 }
