@@ -63,6 +63,8 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"number" numeric
   );
   
+  ALTER TABLE "pages" ADD COLUMN "grants_featured_grants_grants_awarded" numeric;
+
   DO $$ BEGIN
    ALTER TABLE "pages_grants_featured_grants_countries" ADD CONSTRAINT "pages_grants_featured_grants_countries_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
