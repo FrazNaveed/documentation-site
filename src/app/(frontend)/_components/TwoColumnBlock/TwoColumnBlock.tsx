@@ -15,7 +15,7 @@ export default function TwoColumnBlock({
   // console.log('array? ', columns)
   return (
     <section className={cx(styles.twoColumnBlock)}>
-      {columns?.map((column) => {
+      {columns?.map((column, index) => {
         if (!column) return null
 
         const isImage = column && column.content?.contentType === 'image'
@@ -24,7 +24,8 @@ export default function TwoColumnBlock({
         } = column
         return (
           <div
-            key={id}
+            // eslint-disable-next-line react/no-array-index-key
+            key={`${id}-${index}`}
             className={cx(
               styles.column,
               styles[`column__${layout}`],
