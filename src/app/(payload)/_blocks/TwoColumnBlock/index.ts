@@ -28,6 +28,7 @@ export const TwoColumnBlock: Block = {
     {
       name: 'Column 1',
       type: 'group',
+      localized: true,
       fields: [
         {
           name: 'content',
@@ -118,6 +119,7 @@ export const TwoColumnBlock: Block = {
     {
       name: 'Column 2',
       type: 'group',
+      localized: true,
       fields: [
         {
           name: 'content',
