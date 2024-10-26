@@ -29,7 +29,7 @@ export default function TwoColumnBlock({
               styles.column,
               styles[`column__${layout}`],
               !isImage && styles.columnText,
-              isImage && styles.column__hideOnMobile,
+              isImage && styles.column__mobileImage,
               isImage && (column.imageAlignment || 'center') && styles[`image__${column.imageAlignment}`],
               isImage && (column.imageFill || 'contain') && styles[`image__${column.imageFill}`],
             )}
@@ -44,6 +44,13 @@ export default function TwoColumnBlock({
                   alt={content?.image.alt}
                   width={content?.image.width ?? 0}
                   height={content?.image.height ?? 0}
+                />
+                <Image
+                  src={content?.image.url}
+                  alt={content?.image.alt}
+                  width={content?.image.width ?? 0}
+                  height={content?.image.height ?? 0}
+                  className={styles.showOnMobile}
                 />
               </div>
               )}
