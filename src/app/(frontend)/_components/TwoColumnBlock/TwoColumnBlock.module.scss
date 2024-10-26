@@ -57,7 +57,9 @@
   }
 
   &__center {
-    // center
+    img {
+      object-position: 50% 50%;
+    }
   }
 
   &__contain {
@@ -69,6 +71,18 @@
   &__cover {
     img {
       object-fit: cover;
+    }
+  }
+
+  &__left {
+    img {
+      object-position: left center;
+    }
+  }
+
+  &__right {
+    img {
+      object-position: right center;
     }
   }
 }
