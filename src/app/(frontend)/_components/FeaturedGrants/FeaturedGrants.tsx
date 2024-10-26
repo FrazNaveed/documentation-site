@@ -8,7 +8,8 @@ export type FeaturedGrantsProps = {
 }
 
 export default function FeaturedGrants({ grants }: FeaturedGrantsProps) {
-  if (!grants) {
+  console.log('grants: ', grants)
+  if (!grants || (!grants.grantsAwarded && grants.countries?.length === 0 && grants.topCategories?.length === 0)) {
     return null
   }
   const { grantsAwarded, countries, topCategories } = grants

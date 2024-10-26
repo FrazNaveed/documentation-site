@@ -30,6 +30,14 @@ export default function PageHero({
   ctaSecondary,
   grants,
 }: PageHeroProps) {
+  let hasGrantContent
+  if (grants) {
+    hasGrantContent = (
+      grants.grantsAwarded
+      || (grants.countries && grants.countries.length > 0)
+      || (grants.topCategories && grants.topCategories.length > 0)
+    )
+  }
   return (
     <div className={styles.bg}>
       <div
@@ -60,7 +68,7 @@ export default function PageHero({
             styles[`content__${heroStyle}`],
             {
               [styles.content__standardWImage]: heroStyle === 'standard' && backgroundImage?.url,
-              [styles.content__hasGrants]: grants,
+              [styles.content__hasGrants]: hasGrantContent,
             },
           )}
         >
@@ -73,7 +81,7 @@ export default function PageHero({
             </div>
           )}
         </div>
-        {grants && (
+        {hasGrantContent && (
           <div className={styles.grants}>
             <FeaturedGrants grants={grants} />
           </div>
