@@ -30,20 +30,22 @@ export default function TwoColumnBlock({
               styles[`column__${layout}`],
               !isImage && styles.columnText,
               isImage && styles.column__mobileImage,
-              isImage && (column.imageAlignment || 'center') && styles[`image__${column.imageAlignment}`],
-              isImage && (column.imageFill || 'contain') && styles[`image__${column.imageFill}`],
             )}
           >
             {isImage && content && typeof content.image === 'object' && content.image?.url
               && (
-              <div className={styles.imageWrap}>
+              <div className={cx(
+                styles.imageWrap,
+                isImage && (column.imageAlignment || 'center') && styles[`image__${column.imageAlignment}`],
+                isImage && (column.imageFill || 'contain') && styles[`image__${column.imageFill}`],
+              )}
+              >
                 {/* image alignment: {column.imageAlignment}
                 image fill: {column.imageFill} */}
                 <Image
                   src={content?.image.url}
                   alt={content?.image.alt}
-                  width={content?.image.width ?? 0}
-                  height={content?.image.height ?? 0}
+                  layout='fill'
                 />
                 <Image
                   src={content?.image.url}
