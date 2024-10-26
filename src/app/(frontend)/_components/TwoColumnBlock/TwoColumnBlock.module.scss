@@ -1,15 +1,29 @@
 @use "../../_styles/mixins" as *;
-@use "../../_styles/typography" as *;
-@use "../../_styles/colors" as *;
-@use "../../_styles/transitions" as *;
+// @use "../../_styles/typography" as *;
+// @use "../../_styles/colors" as *;
+// @use "../../_styles/transitions" as *;
 @use "../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .twoColumnBlock {
   @include grid(10);
+  @include pageComponentSpacing;
+
+  @include media-breakpoint-down(lg) {
+    @include grid(6, false);
+  }
+
+  @include media-breakpoint-down(md) {
+    @include grid(4, false);
+  }
 }
 
 .column {
+  &Text {
+    display: flex;
+    align-items: center;
+  }
+
   &__hideOnMobile {
     @include hideColumnOnMobile;
   }

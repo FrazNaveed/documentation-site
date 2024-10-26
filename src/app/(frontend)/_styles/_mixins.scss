@@ -186,7 +186,7 @@ $root-font-size: $root-font-size-number * 1px;
 }
 
 @mixin columnWide {
-  @include spanColumns(6);
+  @include spanColumns(5);
 
   @include media-breakpoint-down(lg) {
     @include spanColumns(4);
