@@ -1,0 +1,135 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.grants {
+  display: flex;
+  padding-top: to-rem($spacing-standard);
+  padding-bottom: to-rem($spacing-standard);
+  background-color: $white;
+  gap: $grid-column-gap;
+
+  @include media-breakpoint-up(lg) {
+    padding: to-rem($spacing-standard) $spacing-x-large to-rem($spacing-medium);
+    border-radius: 6px;
+  }
+
+  @include media-breakpoint-down(lg) {
+    padding-right: $container-padding-lg;
+    padding-left: $container-padding-lg;
+  }
+
+  @include media-breakpoint-down(md) {
+    flex-wrap: wrap;
+    padding-right: $container-padding-md;
+    padding-left: $container-padding-md;
+  }
+}
+
+.sectionOne {
+  flex: 0 1 21%;
+
+  @include media-breakpoint-down(md) {
+    flex: 0 0 calc(50% - ($grid-column-gap / 2));
+    width: calc(50% - ($grid-column-gap / 2));
+  }
+}
+
+.sectionTwo {
+  flex: 0 1 41%;
+
+  @include media-breakpoint-down(md) {
+    flex: 0 0 calc(50% - ($grid-column-gap / 2));
+    width: calc(50% - ($grid-column-gap / 2));
+  }
+}
+
+.sectionThree {
+  flex: 0 1 38%;
+
+  @include media-breakpoint-down(md) {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+}
+
+.sectionLabel {
+  @include labelS;
+
+  margin-bottom: to-rem($spacing-x-small);
+}
+
+.grantsAwarded,
+.countryCount {
+  @include headerH6;
+
+  margin-bottom: 0;
+  color: $black;
+}
+
+.countries {
+  display: flex;
+  align-items: center;
+  gap: to-rem($spacing-x-small);
+}
+
+.flags {
+  display: flex;
+  align-items: center;
+}
+
+.flag,
+.extraCountryCount {
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.flag {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+
+  &:not(:first-child) {
+    margin-left: -4px;
+  }
+
+  &_Icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.categories {
+  display: flex;
+  align-items: center;
+  gap: to-rem($spacing-x-small);
+
+  @include media-breakpoint-up(lg) {
+    flex-wrap: wrap;
+  }
+}
+
+.category {
+  flex-shrink: 0;
+}
+
+.extraCountryCount {
+  @include fontStyle(12, 12);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  min-height: 30px;
+  padding: 2px;
+  background-color: $gray-50;
+  color: $black;
+  aspect-ratio: 1;
+}

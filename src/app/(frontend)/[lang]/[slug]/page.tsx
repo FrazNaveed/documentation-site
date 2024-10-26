@@ -66,6 +66,7 @@ export default async function Page({ params }: PageProps) {
     linkType,
     teamGrid,
     devHub,
+    grants,
   } = pageData
   let featuredEvent
   if (pageTemplate === 'events') {
@@ -87,6 +88,10 @@ export default async function Page({ params }: PageProps) {
       ? { ctaSecondary: { text: buttonSecondaryText, link: buttonSecondaryLink } }
       : {}
     const heroBackgroundImageProps = (backgroundImage && typeof backgroundImage === 'object') ? { backgroundImage } : {}
+    let featuredGrants
+    if (pageTemplate === 'grants' && grants) {
+      featuredGrants = grants.featuredGrants
+    }
     heroComponent = featuredEvent ? (
       <EventsHero
         event={featuredEvent}
@@ -99,6 +104,7 @@ export default async function Page({ params }: PageProps) {
         {...heroCtaProps}
         {...heroCtaSecondaryProps}
         {...heroBackgroundImageProps}
+        grants={featuredGrants}
       />
     )
   }

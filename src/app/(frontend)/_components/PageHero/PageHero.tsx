@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import cx from 'classnames'
-import type { Media } from '@/payload-types'
+import type { Grants, Media } from '@/payload-types'
 import Button from '../Button'
+import FeaturedGrants from '../FeaturedGrants'
 import styles from './PageHero.module.scss'
 
 export type PageHeroProps = {
@@ -17,6 +18,7 @@ export type PageHeroProps = {
     text: string
     link: string
   }
+  grants?: Grants['featuredGrants']
 }
 
 export default function PageHero({
@@ -26,6 +28,7 @@ export default function PageHero({
   eyebrow,
   cta,
   ctaSecondary,
+  grants,
 }: PageHeroProps) {
   return (
     <div className={styles.bg}>
@@ -51,7 +54,16 @@ export default function PageHero({
             </div>
           )}
         </div>
-        <div className={cx(styles.content, styles[`content__${heroStyle}`], { [styles.content__standardWImage]: heroStyle === 'standard' && backgroundImage?.url })}>
+        <div
+          className={cx(
+            styles.content,
+            styles[`content__${heroStyle}`],
+            {
+              [styles.content__standardWImage]: heroStyle === 'standard' && backgroundImage?.url,
+              [styles.content__hasGrants]: grants,
+            },
+          )}
+        >
           {eyebrow && <h2 className={cx(styles.eyebrow, { [styles.eyebrow__dt]: heroStyle === 'standard' && backgroundImage?.url })}>{eyebrow}</h2>}
           {header && <h1 className={styles.header}>{header}</h1>}
           {(cta || ctaSecondary) && (
@@ -61,6 +73,11 @@ export default function PageHero({
             </div>
           )}
         </div>
+        {grants && (
+          <div className={styles.grants}>
+            <FeaturedGrants grants={grants} />
+          </div>
+        )}
       </div>
     </div>
   )

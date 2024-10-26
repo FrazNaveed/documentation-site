@@ -33,6 +33,7 @@ import { StatsBlock } from '../_blocks/StatsBlock'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
 import { DevHub } from '../_fields/DevHub'
+import { Grants } from '../_fields/Grants'
 import { TeamGrid } from '../_fields/Team'
 import { WalletsGrid } from '../_fields/WalletsGrid'
 import { TalkingPoints } from '../_blocks/TalkingPointsBlock'
@@ -74,16 +75,6 @@ export const Pages: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
-    },
-    {
-      name: 'relatedNewsType',
-      type: 'relationship',
-      relationTo: 'news-types',
-      hasMany: false,
-      localized: true,
-      admin: {
-        description: 'Select a news type to display related posts on this page.',
-      }
     },
     {
       name: 'previousPage',
@@ -170,6 +161,7 @@ export const Pages: CollectionConfig = {
       },
     },
     ...DevHub,
+    ...Grants,
     ...TeamGrid,
     ...WalletsGrid,
     {
@@ -195,6 +187,16 @@ export const Pages: CollectionConfig = {
          }
       }
     },
+    {
+      name: 'relatedNewsType',
+      type: 'relationship',
+      relationTo: 'news-types',
+      hasMany: false,
+      localized: true,
+      admin: {
+        description: 'Select a news type to display related posts on this page.',
+      }
+    },
     ...PageFooterCTA,
     {
       name: 'pageTemplate',
@@ -209,6 +211,7 @@ export const Pages: CollectionConfig = {
         { label: 'Events ', value: 'events', },
         { label: 'Team', value: 'team' },
         { label: 'Wallets', value: 'wallets', },
+        { label: 'Grants', value: 'grants', },
       ],
       admin: {
         position: 'sidebar',
