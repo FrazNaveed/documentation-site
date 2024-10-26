@@ -72,7 +72,7 @@
 
   @include media-breakpoint-down(md) {
     flex: 0 0 100%;
-    width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -164,6 +164,26 @@ $flag-overlap: 4px;
   display: flex;
   align-items: center;
   gap: to-rem($spacing-x-small);
+
+  @include media-breakpoint-down(lg) {
+    margin-right: -$container-padding-lg;
+    padding-right: $container-padding-lg;
+    overflow: auto hidden;
+    scroll-padding: 0 $container-padding-lg;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-right: -$container-padding-md;
+    padding-right: $container-padding-md;
+    scroll-padding: 0 $container-padding-md;
+  }
 
   @include media-breakpoint-up(lg) {
     flex-wrap: wrap;
