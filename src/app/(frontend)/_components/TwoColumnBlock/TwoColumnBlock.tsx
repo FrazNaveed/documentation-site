@@ -47,12 +47,14 @@ export default function TwoColumnBlock({
                   src={content?.image.url}
                   alt={content?.image.alt}
                   layout='fill'
+                  className={styles.image}
                 />
                 <Image
                   src={content?.image.url}
                   alt={content?.image.alt}
                   width={content?.image.width ?? 0}
                   height={content?.image.height ?? 0}
+                  // layout='fill'
                   className={styles.showOnMobile}
                 />
               </div>
