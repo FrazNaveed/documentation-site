@@ -39,8 +39,6 @@ export default function TwoColumnBlock({
                 styles.imageWrap,
               )}
               >
-                {/* image alignment: {column.imageAlignment}
-                image fill: {column.imageFill} */}
                 <Image
                   src={content?.image.url}
                   alt={content?.image.alt}
