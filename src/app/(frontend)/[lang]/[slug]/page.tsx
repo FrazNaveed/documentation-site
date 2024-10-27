@@ -257,22 +257,22 @@ export default async function Page({ params }: PageProps) {
               let componentToRender
               switch (component?.blockType) {
                 case 'columns':
-                  componentToRender = <Columns {...component} />
+                  componentToRender = <Columns key={component.id} {...component} />
                   break
 
                 case 'richTextBlock':
-                  componentToRender = <RichTextBlock richText={component.richText} />
+                  componentToRender = <RichTextBlock key={component.id} richText={component.richText} />
                   break
 
                 case 'stats':
-                  componentToRender = <Stats {...component} />
+                  componentToRender = <Stats key={component.id} {...component} />
                   break
 
                 case 'talkingPoints':
                   return <TalkingPoints key={component.id} {...component} />
 
                 case 'twoColumn':
-                  return <TwoColumnBlock {...component} />
+                  return <TwoColumnBlock key={component.id} {...component} />
 
                 default:
                   componentToRender = null
