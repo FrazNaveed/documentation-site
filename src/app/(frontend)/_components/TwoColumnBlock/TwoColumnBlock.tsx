@@ -37,8 +37,6 @@ export default function TwoColumnBlock({
               && (
               <div className={cx(
                 styles.imageWrap,
-                isImage && (column.imageAlignment || 'center') && styles[`image__${column.imageAlignment}`],
-                isImage && (column.imageFill || 'contain') && styles[`image__${column.imageFill}`],
               )}
               >
                 {/* image alignment: {column.imageAlignment}
@@ -47,6 +45,8 @@ export default function TwoColumnBlock({
                   src={content?.image.url}
                   alt={content?.image.alt}
                   layout='fill'
+                  object-fit={column.imageFill || 'contain'}
+                  object-position={column.imageAlignment || 'center'}
                   className={styles.image}
                 />
                 <Image
