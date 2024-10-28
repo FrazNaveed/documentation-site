@@ -70,6 +70,12 @@
       padding-top: 0;
     }
   }
+
+  &__hasGrants {
+    @include media-breakpoint-up(lg) {
+      padding-bottom: $spacing-small;
+    }
+  }
 }
 
 .eyebrow {
@@ -153,5 +159,25 @@
     height: auto;
     max-height: 100%;
     transform: translate(-50%, -50%);
+  }
+}
+
+.grants {
+  @include columns(2, 12, lg);
+
+  @include media-breakpoint-down(lg) {
+    margin-right: -$container-padding-lg;
+    margin-left: -$container-padding-lg;
+    border-bottom: 1px solid $gray-100;
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-right: -$container-padding-md;
+    margin-left: -$container-padding-md;
+  }
+
+  @include media-breakpoint-up(lg) {
+    margin-top: $spacing-small;
+    margin-bottom: $spacing-standard;
   }
 }
