@@ -22,6 +22,7 @@ import Stats from 'src/app/(frontend)/_components/Stats'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
 import TeamGridBlock from '../../_components/TeamGridBlock'
+import ImageTextGridBlock from '../../_components/ImageTextGridBlock'
 import styles from './page.module.scss'
 import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
@@ -66,6 +67,7 @@ export default async function Page({ params }: PageProps) {
     linkType,
     teamGrid,
     devHub,
+    grants,
   } = pageData
   let featuredEvent
   if (pageTemplate === 'events') {
@@ -87,6 +89,10 @@ export default async function Page({ params }: PageProps) {
       ? { ctaSecondary: { text: buttonSecondaryText, link: buttonSecondaryLink } }
       : {}
     const heroBackgroundImageProps = (backgroundImage && typeof backgroundImage === 'object') ? { backgroundImage } : {}
+    let featuredGrants
+    if (pageTemplate === 'grants' && grants) {
+      featuredGrants = grants.featuredGrants
+    }
     heroComponent = featuredEvent ? (
       <EventsHero
         event={featuredEvent}
@@ -99,6 +105,7 @@ export default async function Page({ params }: PageProps) {
         {...heroCtaProps}
         {...heroCtaSecondaryProps}
         {...heroBackgroundImageProps}
+        grants={featuredGrants}
       />
     )
   }
@@ -258,6 +265,10 @@ export default async function Page({ params }: PageProps) {
               switch (component?.blockType) {
                 case 'columns':
                   componentToRender = <Columns key={component.id} {...component} />
+                  break
+
+                case 'imageTextGrid':
+                  componentToRender = <ImageTextGridBlock {...component} />
                   break
 
                 case 'richTextBlock':

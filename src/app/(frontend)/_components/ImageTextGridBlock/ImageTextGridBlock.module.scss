@@ -1,0 +1,62 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.imageTextGrid {
+  @include utils.listReset;
+  @include grid(10);
+
+  gap: to-rem($spacing-small) $grid-column-gap-flare;
+
+  @include media-breakpoint-down(lg) {
+    @include grid(6, false);
+  }
+
+  @include media-breakpoint-down(md) {
+    @include grid(4, false);
+  }
+
+  &Block {
+    @include pageComponentSpacing;
+  }
+
+  &Card {
+    @include spanColumns(5);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: to-rem($spacing-5x-large) to-rem($spacing-x-large);
+    border-radius: 10px;
+    background-color: $gray-50;
+
+    @include media-breakpoint-down(lg) {
+      @include spanColumns(5);
+
+      padding: to-rem($spacing-standard) to-rem($spacing-medium);
+    }
+
+    @include media-breakpoint-down(md) {
+      @include columns(1, -1);
+
+      padding: to-rem($spacing-medium) to-rem($spacing-small);
+    }
+  }
+
+  &Title {
+    @include sectionHeaderFont;
+    @include sectionHeaderMargin;
+  }
+
+  &CardHeader {
+    @include headerH6;
+
+    margin-bottom: to-rem($spacing-small);
+  }
+}
+
+.imageWrap {
+  margin-bottom: to-rem($spacing-medium);
+}
