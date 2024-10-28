@@ -56,13 +56,33 @@
 }
 
 .image {
+  @include media-breakpoint-down(md) {
+    position: absolute;
+    top: 0;
+    left: -25vw;
+    transform: translateY(-30%);
+  }
+
   &Wrap {
     position: relative;
     width: 100%;
     height: 100%;
+
+    @include media-breakpoint-down(md) {
+      width: 50%;
+      height: auto;
+    }
   }
 }
 
 .showOnMobile {
   @include showOnMobile;
+
+  @include media-breakpoint-down(md) {
+    position: absolute;
+    top: 0;
+    // left: 50vw;
+    right: 0;
+    transform: translateX(150%) translateY(20%) scaleX(-1);
+  }
 }
