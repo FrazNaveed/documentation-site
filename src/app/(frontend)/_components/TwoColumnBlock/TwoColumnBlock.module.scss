@@ -11,7 +11,7 @@
   margin-left: -$container-padding-md;
   padding-right: $container-padding-md;
   padding-left: $container-padding-md;
-  // overflow: hidden;
+  overflow: hidden;
 
   @include media-breakpoint-down(lg) {
     @include grid(6, false);
