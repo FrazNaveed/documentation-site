@@ -7,6 +7,12 @@
   @include grid(10);
   @include pageComponentSpacing;
 
+  margin-right: -$container-padding-md;
+  margin-left: -$container-padding-md;
+  padding-right: $container-padding-md;
+  padding-left: $container-padding-md;
+  // overflow: hidden;
+
   @include media-breakpoint-down(lg) {
     @include grid(6, false);
   }
@@ -18,7 +24,9 @@
 
 .column {
   &Image {
+    height: 100%;
     z-index: -1;
+    grid-row: 1;
   }
 
   &Text {
@@ -26,6 +34,7 @@
 
     display: flex;
     align-items: center;
+    grid-row: 1;
 
     a {
       svg {
@@ -62,9 +71,9 @@
 .image {
   @include media-breakpoint-down(md) {
     position: absolute;
-    top: 0;
-    left: -25vw;
-    transform: translateY(-30%);
+    top: -75%;
+    left: -25%;
+    width: 50%;
   }
 
   &Wrap {
@@ -72,10 +81,10 @@
     width: 100%;
     height: 100%;
 
-    @include media-breakpoint-down(md) {
-      width: 50%;
-      height: auto;
-    }
+    // @include media-breakpoint-down(md) {
+    //   width: 100%;
+    //   height: 100%;
+    // }
   }
 }
 
@@ -84,9 +93,9 @@
 
   @include media-breakpoint-down(md) {
     position: absolute;
-    top: 0;
-    // left: 50vw;
-    right: 0;
-    transform: translateX(150%) translateY(20%) scaleX(-1);
+    bottom: -30%;
+    left: 75%;
+    width: 50%;
+    transform: scaleX(-1);
   }
 }
