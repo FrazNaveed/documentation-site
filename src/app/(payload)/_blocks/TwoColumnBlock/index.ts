@@ -31,44 +31,38 @@ export const TwoColumnBlock: Block = {
       localized: true,
       fields: [
         {
-          name: 'content',
-          type: 'group',
-          fields: [
+          name: 'contentType',
+          type: 'radio',
+          options: [
             {
-              name: 'contentType',
-              type: 'radio',
-              options: [
-                {
-                  label: 'Image',
-                  value: 'image',
-                },
-                {
-                  label: 'Text',
-                  value: 'text',
-                },
-              ],
-              defaultValue: 'image',
+              label: 'Image',
+              value: 'image',
             },
             {
-              name: 'image',
-              type: 'upload',
-              relationTo: 'media',
-              admin: {
-                condition: (data, siblingData, { user }) => {
-                  return siblingData.contentType === 'image'
-                },
-              },
-            },
-            {
-              name: 'text',
-              type: 'richText',
-              admin: {
-                condition: (data, siblingData, { user }) => {
-                  return siblingData.contentType === 'text'
-                },
-              },
+              label: 'Text',
+              value: 'text',
             },
           ],
+          defaultValue: 'image',
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          admin: {
+            condition: (data, siblingData, { user }) => {
+              return siblingData.contentType === 'image'
+            },
+          },
+        },
+        {
+          name: 'text',
+          type: 'richText',
+          admin: {
+            condition: (data, siblingData, { user }) => {
+              return siblingData.contentType === 'text'
+            },
+          },
         },
         {
           name: 'imageAlignment',
@@ -90,7 +84,7 @@ export const TwoColumnBlock: Block = {
           defaultValue: 'center',
           admin: {
             condition: (data, siblingData, { user }) => {
-              return siblingData.content.contentType === 'image'
+              return siblingData.contentType === 'image'
             },
           },
         },
@@ -110,7 +104,7 @@ export const TwoColumnBlock: Block = {
           defaultValue: 'contain',
           admin: {
             condition: (data, siblingData, { user }) => {
-              return siblingData.content.contentType === 'image'
+              return siblingData.contentType === 'image'
             },
           },
         },
@@ -122,44 +116,38 @@ export const TwoColumnBlock: Block = {
       localized: true,
       fields: [
         {
-          name: 'content',
-          type: 'group',
-          fields: [
+          name: 'contentType',
+          type: 'radio',
+          options: [
             {
-              name: 'contentType',
-              type: 'radio',
-              options: [
-                {
-                  label: 'Image',
-                  value: 'image',
-                },
-                {
-                  label: 'Text',
-                  value: 'text',
-                },
-              ],
-              defaultValue: 'image',
+              label: 'Image',
+              value: 'image',
             },
             {
-              name: 'image',
-              type: 'upload',
-              relationTo: 'media',
-              admin: {
-                condition: (data, siblingData, { user }) => {
-                  return siblingData.contentType === 'image'
-                },
-              },
-            },
-            {
-              name: 'text',
-              type: 'richText',
-              admin: {
-                condition: (data, siblingData, { user }) => {
-                  return siblingData.contentType === 'text'
-                },
-              },
+              label: 'Text',
+              value: 'text',
             },
           ],
+          defaultValue: 'image',
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          admin: {
+            condition: (data, siblingData, { user }) => {
+              return siblingData.contentType === 'image'
+            },
+          },
+        },
+        {
+          name: 'text',
+          type: 'richText',
+          admin: {
+            condition: (data, siblingData, { user }) => {
+              return siblingData.contentType === 'text'
+            },
+          },
         },
         {
           name: 'imageAlignment',
@@ -181,7 +169,7 @@ export const TwoColumnBlock: Block = {
           defaultValue: 'center',
           admin: {
             condition: (data, siblingData, { user }) => {
-              return siblingData.content.contentType === 'image'
+              return siblingData.contentType === 'image'
             },
           },
         },
@@ -201,7 +189,7 @@ export const TwoColumnBlock: Block = {
           defaultValue: 'contain',
           admin: {
             condition: (data, siblingData, { user }) => {
-              return siblingData.content.contentType === 'image'
+              return siblingData.contentType === 'image'
             },
           },
         },
