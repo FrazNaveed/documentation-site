@@ -1,0 +1,195 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "../../_styles/transitions" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.grants {
+  display: flex;
+  padding-top: to-rem($spacing-standard);
+  padding-bottom: to-rem($spacing-standard);
+  background-color: $white;
+  gap: $grid-column-gap;
+
+  @include media-breakpoint-up(lg) {
+    justify-content: space-between;
+    padding: to-rem($spacing-standard) $spacing-large to-rem($spacing-medium);
+    border-radius: 6px;
+  }
+
+  @include media-breakpoint-down(lg) {
+    padding-right: $container-padding-lg;
+    padding-left: $container-padding-lg;
+  }
+
+  @include media-breakpoint-down(md) {
+    flex-wrap: wrap;
+    padding-right: $container-padding-md;
+    padding-left: $container-padding-md;
+  }
+}
+
+.sectionOne {
+  flex: 0 0 20%;
+
+  @include media-breakpoint-only(lg) {
+    max-width: max-content;
+  }
+
+  @include media-breakpoint-down(md) {
+    flex: 0 0 calc(50% - ($grid-column-gap / 2));
+    width: calc(50% - ($grid-column-gap / 2));
+  }
+}
+
+.sectionTwo {
+  flex: 0 1 40%;
+  overflow: hidden;
+
+  @include media-breakpoint-up(md) {
+    min-width: 100px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    min-width: 16%;
+  }
+
+  @include media-breakpoint-down(md) {
+    flex: 0 0 calc(50% - ($grid-column-gap / 2));
+    width: calc(50% - ($grid-column-gap / 2));
+    max-width: 100%;
+  }
+}
+
+.sectionThree {
+  flex: 0 0 max-content;
+  max-width: 60%;
+
+  @include media-breakpoint-down(lg) {
+    flex-basis: 40%;
+  }
+
+  @include media-breakpoint-down(md) {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+.sectionLabel {
+  @include labelS;
+
+  margin-bottom: to-rem($spacing-x-small);
+}
+
+.grantsAwarded,
+.countryCount {
+  @include headerH6;
+
+  margin-bottom: 0;
+  color: $black;
+}
+
+$country-gap: $spacing-x-small;
+$flag-overlap: 4px;
+
+.countries {
+  display: flex;
+  align-items: center;
+  gap: $country-gap;
+}
+
+.countryCount {
+  flex-shrink: 0;
+}
+
+.flags {
+  display: flex;
+  flex-shrink: 1;
+  align-items: center;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.flag,
+.extraCountryCount {
+  flex-shrink: 0;
+  transition: opacity $transition-default;
+  border-radius: 50%;
+  opacity: 0;
+
+  &__visible {
+    opacity: 1;
+  }
+}
+
+.flag {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+
+  &:not(:first-child) {
+    margin-left: -$flag-overlap;
+  }
+
+  &_Icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.extraCountryCount {
+  @include fontStyle(12, 12);
+
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  min-height: 30px;
+  margin-left: -($country-gap + $flag-overlap);
+  padding: 2px;
+  background-color: $gray-50;
+  color: $black;
+  z-index: 1;
+  aspect-ratio: 1;
+}
+
+.categories {
+  display: flex;
+  align-items: center;
+  gap: to-rem($spacing-x-small);
+
+  @include media-breakpoint-down(lg) {
+    margin-right: -$container-padding-lg;
+    padding-right: $container-padding-lg;
+    overflow: auto hidden;
+    scroll-padding: 0 $container-padding-lg;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-right: -$container-padding-md;
+    padding-right: $container-padding-md;
+    scroll-padding: 0 $container-padding-md;
+  }
+
+  @include media-breakpoint-up(lg) {
+    flex-wrap: wrap;
+  }
+}
+
+.category {
+  flex-shrink: 0;
+}

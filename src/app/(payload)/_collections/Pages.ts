@@ -3,6 +3,7 @@ import { HeroFields } from '../_fields/HeroFields'
 import { PageFooterCTA } from '../_fields/PageFooterCTA'
 import { ColumnsBlock } from '../_blocks/ColumnsBlock'
 import { ImageBlock } from '../_blocks/ImageBlock'
+import { ImageTextGridBlock } from '../_blocks/ImageTextGridBlock'
 import { RichTextBlockWithSideNavLink } from 'src/app/(payload)/_blocks/RichTextBlockWithSideNavLink'
 import { getSiblingData } from 'payload/shared'
 import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
@@ -32,6 +33,7 @@ import { StatsBlock } from '../_blocks/StatsBlock'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
 import { DevHub } from '../_fields/DevHub'
+import { Grants } from '../_fields/Grants'
 import { TeamGrid } from '../_fields/Team'
 import { WalletsGrid } from '../_fields/WalletsGrid'
 import { TalkingPoints } from '../_blocks/TalkingPointsBlock'
@@ -74,16 +76,6 @@ export const Pages: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
-    },
-    {
-      name: 'relatedNewsType',
-      type: 'relationship',
-      relationTo: 'news-types',
-      hasMany: false,
-      localized: true,
-      admin: {
-        description: 'Select a news type to display related posts on this page.',
-      }
     },
     {
       name: 'previousPage',
@@ -170,6 +162,7 @@ export const Pages: CollectionConfig = {
       },
     },
     ...DevHub,
+    ...Grants,
     ...TeamGrid,
     ...WalletsGrid,
     {
@@ -178,6 +171,7 @@ export const Pages: CollectionConfig = {
       blocks: [
         ColumnsBlock,
         ImageBlock,
+        ImageTextGridBlock,
         RichTextBlockWithSideNavLink,
         StatsBlock,
         TableDrawersBlock,
@@ -195,6 +189,16 @@ export const Pages: CollectionConfig = {
          }
       }
     },
+    {
+      name: 'relatedNewsType',
+      type: 'relationship',
+      relationTo: 'news-types',
+      hasMany: false,
+      localized: true,
+      admin: {
+        description: 'Select a news type to display related posts on this page.',
+      }
+    },
     ...PageFooterCTA,
     {
       name: 'pageTemplate',
@@ -209,6 +213,7 @@ export const Pages: CollectionConfig = {
         { label: 'Events ', value: 'events', },
         { label: 'Team', value: 'team' },
         { label: 'Wallets', value: 'wallets', },
+        { label: 'Grants', value: 'grants', },
       ],
       admin: {
         position: 'sidebar',
