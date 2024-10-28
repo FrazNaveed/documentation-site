@@ -27,6 +27,7 @@ export default function TwoColumnBlock({
               styles.column,
               styles[`column__${layout}`],
               !isImage && styles.columnText,
+              isImage && styles.columnImage,
               isImage && styles.column__mobileImage,
             )}
           >
