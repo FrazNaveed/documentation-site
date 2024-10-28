@@ -27,6 +27,8 @@ RUN npm run build
 # Production image
 FROM base AS runner
 
+RUN apk add --no-cache bash
+
 WORKDIR /app
 
 # Don't run production as root
@@ -46,6 +48,9 @@ ENV POSTGRES_URL=${POSTGRES_URL}
 ENV PAYLOAD_SECRET=${PAYLOAD_SECRET}
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# Note: Don't expose ports here, Compose will handle that for us
+COPY ./docker/entrypoint.d/ /docker-entrypoint.d
+COPY ./docker/entrypoint.sh /docker-entrypoint.sh
 
+# Note: Don't expose ports here, Compose will handle that for us
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
 CMD ["node", "server.js"]
