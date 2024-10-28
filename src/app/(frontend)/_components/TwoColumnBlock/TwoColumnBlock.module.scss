@@ -17,6 +17,10 @@
 }
 
 .column {
+  &Image {
+    z-index: -1;
+  }
+
   &Text {
     @include bodyBaseMobile;
 
