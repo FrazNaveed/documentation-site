@@ -18,10 +18,7 @@ export default function TwoColumnBlock({
       {columns?.map((column, index) => {
         if (!column) return null
 
-        const isImage = column && column.content?.contentType === 'image'
-        const {
-          content,
-        } = column
+        const isImage = column && column.contentType === 'image'
         return (
           <div
             // eslint-disable-next-line react/no-array-index-key
@@ -33,32 +30,38 @@ export default function TwoColumnBlock({
               isImage && styles.column__mobileImage,
             )}
           >
-            {isImage && content && typeof content.image === 'object' && content.image?.url
+            {isImage && column && typeof column.image === 'object' && column.image?.url
               && (
               <div className={cx(
                 styles.imageWrap,
               )}
               >
                 <Image
-                  src={content?.image.url}
-                  alt={content?.image.alt}
-                  layout='fill'
-                  object-fit={column.imageFill || 'contain'}
-                  object-position={column.imageAlignment || 'center'}
+                  src={column.image.url}
+                  alt={column.image.alt}
+                  width={column.image.width ?? 0}
+                  height={column.image.height ?? 0}
+                  style={{
+                    objectFit: column.imageFill || 'contain',
+                    objectPosition: column.imageAlignment || 'center',
+                  }}
                   className={styles.image}
                 />
                 <Image
-                  src={content?.image.url}
-                  alt={content?.image.alt}
-                  width={content?.image.width ?? 0}
-                  height={content?.image.height ?? 0}
-                  // layout='fill'
+                  src={column.image.url}
+                  alt={column.image.alt}
+                  width={column.image.width ?? 0}
+                  height={column.image.height ?? 0}
+                  style={{
+                    objectFit: column.imageFill || 'contain',
+                    objectPosition: column.imageAlignment || 'center',
+                  }}
                   className={styles.showOnMobile}
                 />
               </div>
               )}
-            {column.content?.contentType === 'text'
-              && <LexicalRenderer content={column.content?.text as PayloadLexicalReactRendererContent} />}
+            {column.contentType === 'text'
+              && <LexicalRenderer content={column.text as PayloadLexicalReactRendererContent} />}
           </div>
         )
       })}
