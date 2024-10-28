@@ -12,7 +12,6 @@ export default function TwoColumnBlock({
   id,
 }: TwoColumns) {
   const columns = [columnOne, columnTwo]
-  // console.log('array? ', columns)
   return (
     <section className={cx(styles.twoColumnBlock)}>
       {columns?.map((column, index) => {
