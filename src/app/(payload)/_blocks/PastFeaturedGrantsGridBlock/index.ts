@@ -17,6 +17,9 @@ export const PastFeaturedGrantsGridBlock: Block = {
       type: 'relationship',
       relationTo: 'grants',
       hasMany: true,
+      admin: {
+        isSortable: true,
+      },
     },
     ...CreateSideNavLinkFields,
   ],
