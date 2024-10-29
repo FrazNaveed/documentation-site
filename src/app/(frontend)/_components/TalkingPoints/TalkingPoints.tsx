@@ -1,23 +1,23 @@
 import cx from 'classnames'
 import Image from 'next/image'
-import type { PointsList, ITalkingPoints } from '@/payload-types'
+import type { ITalkingPoints } from '@/payload-types'
 import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import LexicalRenderer from '../LexicalRenderer'
 import styles from './TalkingPoints.module.scss'
 
 export type TalkingPointsProps = ITalkingPoints & {
-  points: PointsList
   className?: string
 }
 
 export default function TalkingPoints({
   points,
   className,
+  variation = 'standard',
 }: TalkingPointsProps) {
   return (
-    <section className={cx(styles.Wrap, className)}>
-      <div className={styles.PointsWrap}>
-        {points && points.map((point, index) => {
+    <section className={cx(styles.grid, className)}>
+      <div className={cx(styles.pointsWrap, styles[`pointsWrap__${variation}`])}>
+        {points && points.map((point) => {
           const {
             id,
             icon,
@@ -27,29 +27,25 @@ export default function TalkingPoints({
           if (!icon && !header && !text) {
             return null
           }
+          const iconMarkup = (iconClassName: string) => (icon && typeof icon === 'object' && icon.url) && (
+            <Image
+              src={icon.url}
+              alt={icon.alt}
+              width={icon.width ?? 0}
+              height={icon.height ?? 0}
+              className={cx(styles.point_Image, styles[`point_Image__${variation}`], iconClassName)}
+            />
+          )
           return (
-            <div
-              key={id}
-              className={cx(
-                styles.Point,
-                index % 2 !== 0 ? styles.Point__right : styles.Point__left,
-                index === points.length - 1 && styles.Point__noBorderBottom,
-                (index % 2 === 0 && index === points.length - 2) && styles.Point__noBorderBottom,
-              )}
-            >
-              <div className={styles.PointHeaderWrap}>
-                {(icon && typeof icon === 'object' && icon.url) && (
-                  <Image
-                    src={icon.url}
-                    alt={icon.alt}
-                    width={50}
-                    height={50}
-                    className={styles.PointImage}
-                  />
-                )}
-                <div className={styles.PointHeader}>{header}</div>
+            <div key={id} className={cx(styles.point, styles[`point__${variation}`])}>
+              {iconMarkup(styles.point_Image__iso)}
+              <div>
+                <div className={styles.point_HeaderWrap}>
+                  {iconMarkup(styles.point_Image__header)}
+                  <div className={styles.point_Header}>{header}</div>
+                </div>
+                {text && <LexicalRenderer content={text as PayloadLexicalReactRendererContent} />}
               </div>
-              {text && <LexicalRenderer content={text as PayloadLexicalReactRendererContent} />}
             </div>
           )
         })}
