@@ -69,7 +69,6 @@ export default async function Page({ params }: PageProps) {
     devHub,
     grants,
   } = pageData
-  console.log(pageData)
   let featuredEvent
   if (pageTemplate === 'events') {
     featuredEvent = await getFeaturedEvent()
@@ -273,7 +272,7 @@ export default async function Page({ params }: PageProps) {
                   break
 
                 case 'pastFGrantsGrid':
-                  componentToRender = <PastFeaturedGrantsGridBlock key={component.id} />
+                  componentToRender = <PastFeaturedGrantsGridBlock key={component.id} {...component} />
                   break
 
                 case 'richTextBlock':
