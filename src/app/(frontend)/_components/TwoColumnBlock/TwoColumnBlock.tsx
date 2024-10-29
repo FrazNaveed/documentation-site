@@ -7,8 +7,8 @@ import styles from './TwoColumnBlock.module.scss'
 
 export default function TwoColumnBlock({
   layout,
-  'Column 1': columnOne,
-  'Column 2': columnTwo,
+  ColumnOne: columnOne,
+  ColumnTwo: columnTwo,
   id,
 }: TwoColumns) {
   const columns = [columnOne, columnTwo]

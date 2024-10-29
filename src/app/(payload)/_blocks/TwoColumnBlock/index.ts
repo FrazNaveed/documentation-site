@@ -107,16 +107,18 @@ export const TwoColumnBlock: Block = {
       defaultValue: 'default',
     },
     {
-      name: 'Column 1',
+      name: 'ColumnOne',
       type: 'group',
+      label: 'Column 1',
       localized: true,
       fields: [
         ...columnFields,
       ],
     },
     {
-      name: 'Column 2',
+      name: 'ColumnTwo',
       type: 'group',
+      label: 'Column 2',
       localized: true,
       fields: [
         ...columnFields,

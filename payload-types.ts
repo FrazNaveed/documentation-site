@@ -1341,7 +1341,7 @@ export interface ITalkingPoints {
  */
 export interface TwoColumns {
   layout?: ('default' | 'reverse' | 'even') | null;
-  'Column 1'?: {
+  ColumnOne?: {
     contentType?: ('image' | 'text') | null;
     image?: (number | null) | Media;
     text?: {
@@ -1362,7 +1362,7 @@ export interface TwoColumns {
     imageAlignment?: ('center' | 'left' | 'right') | null;
     imageFill?: ('contain' | 'cover') | null;
   };
-  'Column 2'?: {
+  ColumnTwo?: {
     contentType?: ('image' | 'text') | null;
     image?: (number | null) | Media;
     text?: {
