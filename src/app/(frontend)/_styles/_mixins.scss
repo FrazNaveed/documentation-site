@@ -172,3 +172,11 @@ $root-font-size: $root-font-size-number * 1px;
     margin-bottom: to-rem($spacing-small);
   }
 }
+
+@mixin showOnMobile {
+  display: none;
+
+  @include media-breakpoint-down(md) {
+    display: block;
+  }
+}
