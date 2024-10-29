@@ -5,7 +5,6 @@
 
 .twoColumnBlock {
   @include grid(10);
-  @include pageComponentSpacing;
 
   margin-right: -$container-padding-md;
   margin-left: -$container-padding-md;
