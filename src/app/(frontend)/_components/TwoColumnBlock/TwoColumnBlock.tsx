@@ -42,6 +42,7 @@ export default function TwoColumnBlock({
                   width={column.image.width ?? 0}
                   height={column.image.height ?? 0}
                   loading='lazy'
+                  sizes='(max-width: 768px) 25vw, (max-width: 1024px) 12.5vw, 8.33vw'
                   style={{
                     objectFit: column.imageFill || 'contain',
                     objectPosition: column.imageAlignment || 'center',
@@ -54,6 +55,7 @@ export default function TwoColumnBlock({
                   width={column.image.width ?? 0}
                   height={column.image.height ?? 0}
                   loading='lazy'
+                  sizes='(max-width: 768px) 25vw, (max-width: 1024px) 12.5vw, 8.33vw'
                   style={{
                     objectFit: column.imageFill || 'contain',
                     objectPosition: column.imageAlignment || 'center',
