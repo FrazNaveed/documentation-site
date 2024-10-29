@@ -280,10 +280,12 @@ export default async function Page({ params }: PageProps) {
                   break
 
                 case 'talkingPoints':
-                  return <TalkingPoints key={component.id} {...component} />
+                  componentToRender = <TalkingPoints key={component.id} {...component} />
+                  break
 
                 case 'twoColumn':
-                  return <TwoColumnBlock key={component.id} {...component} />
+                  componentToRender = <TwoColumnBlock key={component.id} {...component} />
+                  break
 
                 default:
                   componentToRender = null
