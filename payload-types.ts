@@ -1328,6 +1328,7 @@ export interface TableWithDrawers {
  * via the `definition` "ITalkingPoints".
  */
 export interface ITalkingPoints {
+  variation: 'standard' | 'wideList';
   points: PointsList;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
