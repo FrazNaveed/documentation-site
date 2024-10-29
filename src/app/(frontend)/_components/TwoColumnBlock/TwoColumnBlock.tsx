@@ -40,17 +40,19 @@ export default function TwoColumnBlock({
                   src={column.image.url}
                   alt={column.image.alt}
                   sizes='(max-width: 768px) 25vw, (max-width: 1024px) 12.5vw, 50vw'
-                  fill
                   style={{
                     objectFit: column.imageFill || 'contain',
                     objectPosition: column.imageAlignment || 'center',
                   }}
+                  width={column.image.width ?? 0}
+                  height={column.image.height ?? 0}
                   className={styles.image}
                 />
                 <Image
                   src={column.image.url}
                   alt={column.image.alt}
-                  fill
+                  width={column.image.width ?? 0}
+                  height={column.image.height ?? 0}
                   sizes='(max-width: 768px) 25vw, (max-width: 1024px) 12.5vw, 50vw'
                   style={{
                     objectFit: column.imageFill || 'contain',
