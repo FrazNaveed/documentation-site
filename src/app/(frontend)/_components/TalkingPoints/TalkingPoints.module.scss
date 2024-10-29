@@ -5,110 +5,146 @@
 @use "../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
-.Wrap {
-  @include container;
+.grid {
+  @include grid(10);
 }
 
-.PointsWrap {
-  @include columns(3, 12);
+.pointsWrap {
+  @include columns(1, 10);
 
   display: flex;
   flex-wrap: wrap;
-  padding-bottom: to-rem($spacing-xxx-large);
 
   @include media-breakpoint-down(lg) {
-    @include columns(3, 8);
+    @include columns(1, 8);
 
-    padding-bottom: to-rem($spacing-x-large);
+    &__standard {
+      row-gap: to-rem($spacing-large);
+    }
   }
 
   @include media-breakpoint-down(md) {
     @include columns(1, -1);
+  }
 
-    padding-bottom: to-rem($spacing-large);
+  &__wideList {
+    grid-column-end: 9;
+
+    @include media-breakpoint-down(lg) {
+      grid-column-end: -1;
+    }
   }
 }
 
-.Point {
-  flex-basis: 50%;
-  padding-bottom: to-rem($spacing-standard);
-  border-bottom: 1px solid $gray-100;
-  box-sizing: border-box;
+.point {
+  flex-basis: 100%;
 
-  @include media-breakpoint-up(lg) {
-    &:nth-child(n + 3) {
-      padding-top: to-rem($spacing-large);
+  &__standard {
+    @include media-breakpoint-up(lg) {
+      flex-basis: 50%;
+      padding-bottom: to-rem($spacing-standard);
+      border-bottom: 1px solid $gray-100;
+
+      &:nth-child(n + 3) {
+        padding-top: to-rem($spacing-large);
+      }
+
+      &:nth-child(odd) {
+        padding-right: to-rem($spacing-xxx-large);
+        border-right: 1px solid $gray-100;
+      }
+
+      &:nth-child(even) {
+        padding-right: to-rem($spacing-medium);
+        padding-left: to-rem($spacing-medium);
+      }
+
+      &:last-child,
+      &:nth-child(odd):nth-last-child(2) {
+        border-bottom: none;
+      }
     }
   }
 
-  @include media-breakpoint-down(lg) {
-    flex-basis: 100%;
-    margin-bottom: to-rem($spacing-large);
-    padding-bottom: 0;
-    border-bottom: none;
+  &__wideList {
+    padding-top: to-rem($spacing-medium);
+    padding-bottom: to-rem($spacing-medium);
+    border-bottom: 1px solid $gray-50;
+
+    @include media-breakpoint-down(md) {
+      padding-top: to-rem($spacing-standard);
+      padding-bottom: to-rem($spacing-standard);
+    }
+
+    &:first-child {
+      padding-top: 0;
+    }
 
     &:last-child {
-      margin-bottom: 0;
+      border-bottom: 0;
+    }
+
+    @include media-breakpoint-up(md) {
+      display: flex;
+      align-items: center;
+      gap: to-rem($spacing-standard);
+    }
+
+    @include media-breakpoint-up(lg) {
+      gap: to-rem($spacing-medium);
     }
   }
 
-  &__borderRight {
-    border-right: 1px solid $gray-100;
-  }
-
-  &__left {
-    padding-right: to-rem($spacing-xxx-large);
-    border-right: 1px solid $gray-100;
-
-    @include media-breakpoint-down(lg) {
-      padding-right: 0;
-      border-right: none;
-    }
-  }
-
-  &__noBorderRight {
-    border-right: none;
-  }
-
-  &__noBorderBottom {
-    border-bottom: none;
-  }
-
-  &__right {
-    padding-left: to-rem($spacing-medium + 4px);
-
-    @include media-breakpoint-down(lg) {
-      padding-left: 0;
-    }
-  }
-
-  &HeaderWrap {
+  &_HeaderWrap {
     display: flex;
     align-items: center;
     margin-bottom: to-rem($spacing-small);
+    gap: to-rem($spacing-standard);
 
     @include media-breakpoint-down(lg) {
       margin-bottom: to-rem($spacing-x-small);
     }
   }
 
-  &Header {
-    @include headerDesktopH7;
+  &_Header {
+    @include headerH7;
 
+    margin-bottom: 0;
     color: $black;
-
-    @include media-breakpoint-down(lg) {
-      @include headerMobileH7;
-    }
   }
 
-  &Image {
-    margin-right: to-rem($spacing-standard);
+  &_Image {
+    width: 50px;
+    height: auto;
+
+    &__wideList {
+      @include media-breakpoint-up(md) {
+        width: 72px;
+      }
+
+      @include media-breakpoint-up(lg) {
+        width: 140px;
+      }
+    }
+
+    &__standard.point_Image__iso {
+      display: none;
+    }
+
+    &__wideList.point_Image__header {
+      @include media-breakpoint-up(md) {
+        display: none;
+      }
+    }
+
+    &__wideList.point_Image__iso {
+      @include media-breakpoint-down(md) {
+        display: none;
+      }
+    }
   }
 
   p {
     @include fontStyle(16, 24);
-
-    margin-bottom: 0;
   }
 }
