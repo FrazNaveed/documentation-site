@@ -7,12 +7,11 @@ import styles from './TwoColumnBlock.module.scss'
 
 export default function TwoColumnBlock({
   layout,
-  'Column 1': columnOne,
-  'Column 2': columnTwo,
+  ColumnOne: columnOne,
+  ColumnTwo: columnTwo,
   id,
 }: TwoColumns) {
   const columns = [columnOne, columnTwo]
-  // console.log('array? ', columns)
   return (
     <section className={cx(styles.twoColumnBlock)}>
       {columns?.map((column, index) => {
@@ -27,6 +26,7 @@ export default function TwoColumnBlock({
               styles.column,
               styles[`column__${layout}`],
               !isImage && styles.columnText,
+              isImage && styles.columnImage,
               isImage && styles.column__mobileImage,
             )}
           >
@@ -39,8 +39,8 @@ export default function TwoColumnBlock({
                 <Image
                   src={column.image.url}
                   alt={column.image.alt}
-                  width={column.image.width ?? 0}
-                  height={column.image.height ?? 0}
+                  sizes='(max-width: 768px) 25vw, (max-width: 1024px) 12.5vw, 50vw'
+                  fill
                   style={{
                     objectFit: column.imageFill || 'contain',
                     objectPosition: column.imageAlignment || 'center',
@@ -50,8 +50,8 @@ export default function TwoColumnBlock({
                 <Image
                   src={column.image.url}
                   alt={column.image.alt}
-                  width={column.image.width ?? 0}
-                  height={column.image.height ?? 0}
+                  fill
+                  sizes='(max-width: 768px) 25vw, (max-width: 1024px) 12.5vw, 50vw'
                   style={{
                     objectFit: column.imageFill || 'contain',
                     objectPosition: column.imageAlignment || 'center',

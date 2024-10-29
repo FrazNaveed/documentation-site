@@ -5,7 +5,11 @@
 
 .twoColumnBlock {
   @include grid(10);
-  @include pageComponentSpacing;
+
+  margin-right: -$container-padding-md;
+  margin-left: -$container-padding-md;
+  padding: $spacing-large $container-padding-md $spacing-x-large;
+  overflow: hidden;
 
   @include media-breakpoint-down(lg) {
     @include grid(6, false);
@@ -17,11 +21,18 @@
 }
 
 .column {
+  &Image {
+    height: 100%;
+    z-index: -1;
+    grid-row: 1;
+  }
+
   &Text {
     @include bodyBaseMobile;
 
     display: flex;
     align-items: center;
+    grid-row: 1;
 
     a {
       svg {
@@ -57,21 +68,16 @@
 
 .image {
   @include media-breakpoint-down(md) {
-    position: absolute;
-    top: 0;
-    left: -25vw;
-    transform: translateY(-30%);
+    position: absolute !important;
+    top: -30% !important;
+    left: -25% !important;
+    width: 50% !important;
   }
 
   &Wrap {
     position: relative;
     width: 100%;
     height: 100%;
-
-    @include media-breakpoint-down(md) {
-      width: 50%;
-      height: auto;
-    }
   }
 }
 
@@ -79,10 +85,10 @@
   @include showOnMobile;
 
   @include media-breakpoint-down(md) {
-    position: absolute;
-    top: 0;
-    // left: 50vw;
-    right: 0;
-    transform: translateX(150%) translateY(20%) scaleX(-1);
+    position: absolute !important;
+    top: 30% !important;
+    left: 75% !important;
+    width: 50% !important;
+    transform: scaleX(-1);
   }
 }
