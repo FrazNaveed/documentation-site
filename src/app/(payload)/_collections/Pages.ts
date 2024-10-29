@@ -37,6 +37,7 @@ import { Grants } from '../_fields/Grants'
 import { TeamGrid } from '../_fields/Team'
 import { WalletsGrid } from '../_fields/WalletsGrid'
 import { TalkingPoints } from '../_blocks/TalkingPointsBlock'
+import { PastFeaturedGrantsGridBlock } from '../_blocks/PastFeaturedGrantsGridBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -172,6 +173,7 @@ export const Pages: CollectionConfig = {
         ImageBlock,
         ImageTextGridBlock,
         RichTextBlockWithSideNavLink,
+        PastFeaturedGrantsGridBlock,
         StatsBlock,
         TableDrawersBlock,
         TalkingPoints,
