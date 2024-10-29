@@ -5,6 +5,20 @@
 @use "../../_styles/transitions" as *;
 @use "../../_styles/typography" as *;
 
-.Wrap {
+.wrap {
   border: 2px solid magenta;
+  @include grid(10);
+}
+
+.gridTitle {
+  @include columns(1, -1);
+}
+
+.grantsGrid {
+  @include columns(1, -1);
+  @include grid(10);
+}
+
+.grant {
+  grid-column: span 5;
 }
