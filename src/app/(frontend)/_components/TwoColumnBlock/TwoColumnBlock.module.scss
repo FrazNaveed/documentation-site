@@ -68,10 +68,10 @@
 
 .image {
   @include media-breakpoint-down(md) {
-    position: absolute;
-    top: -30%;
-    left: -25%;
-    width: 50%;
+    position: absolute !important;
+    top: -30% !important;
+    left: -25% !important;
+    width: 50% !important;
   }
 
   &Wrap {
@@ -85,10 +85,10 @@
   @include showOnMobile;
 
   @include media-breakpoint-down(md) {
-    position: absolute;
-    bottom: -30%;
-    left: 75%;
-    width: 50%;
+    position: absolute !important;
+    top: 30% !important;
+    left: 75% !important;
+    width: 50% !important;
     transform: scaleX(-1);
   }
 }
