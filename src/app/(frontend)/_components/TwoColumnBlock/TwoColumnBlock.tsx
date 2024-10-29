@@ -39,9 +39,8 @@ export default function TwoColumnBlock({
                 <Image
                   src={column.image.url}
                   alt={column.image.alt}
-                  width={column.image.width ?? 0}
-                  height={column.image.height ?? 0}
                   sizes='(max-width: 768px) 25vw, (max-width: 1024px) 12.5vw, 50vw'
+                  fill
                   style={{
                     objectFit: column.imageFill || 'contain',
                     objectPosition: column.imageAlignment || 'center',
@@ -51,9 +50,7 @@ export default function TwoColumnBlock({
                 <Image
                   src={column.image.url}
                   alt={column.image.alt}
-                  width={column.image.width ?? 0}
-                  height={column.image.height ?? 0}
-                  loading='lazy'
+                  fill
                   sizes='(max-width: 768px) 25vw, (max-width: 1024px) 12.5vw, 50vw'
                   style={{
                     objectFit: column.imageFill || 'contain',
