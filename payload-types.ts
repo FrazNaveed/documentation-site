@@ -1297,12 +1297,12 @@ export interface RichTextBlock {
  */
 export interface PastFeaturedGrantsGridBlock {
   gridTitle?: string | null;
-  pastFeaturedGrantsGrid?: (number | Grant)[] | null;
+  grantsGrid?: (number | Grant)[] | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'pastFeaturedGrantsGrid';
+  blockType: 'pastFGrantsGrid';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
