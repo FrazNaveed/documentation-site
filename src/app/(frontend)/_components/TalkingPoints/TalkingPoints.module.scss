@@ -107,13 +107,10 @@
   }
 
   &_Header {
-    @include headerDesktopH7;
+    @include headerH7;
 
+    margin-bottom: 0;
     color: $black;
-
-    @include media-breakpoint-down(lg) {
-      @include headerMobileH7;
-    }
   }
 
   &_Image {

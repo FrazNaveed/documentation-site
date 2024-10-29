@@ -42,7 +42,7 @@ export default function TalkingPoints({
               <div>
                 <div className={styles.point_HeaderWrap}>
                   {iconMarkup(styles.point_Image__header)}
-                  <div className={styles.point_Header}>{header}</div>
+                  <h4 className={styles.point_Header}>{header}</h4>
                 </div>
                 {text && <LexicalRenderer content={text as PayloadLexicalReactRendererContent} />}
               </div>
