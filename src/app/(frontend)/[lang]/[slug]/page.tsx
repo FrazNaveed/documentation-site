@@ -31,6 +31,7 @@ import ProductGrid from '../../_components/ProductGrid'
 import LinkBand from '../../_components/LinkBand'
 import TallCta from '../../_components/TallCTA/TallCta'
 import getCollectionPath from '../../_utils/getCollectionPath'
+import PastFeaturedGrantsGridBlock from '../../_components/PastFeaturedGrantsGridBlock'
 
 export const dynamic = 'force-dynamic'
 
@@ -68,6 +69,7 @@ export default async function Page({ params }: PageProps) {
     devHub,
     grants,
   } = pageData
+  console.log(pageData)
   let featuredEvent
   if (pageTemplate === 'events') {
     featuredEvent = await getFeaturedEvent()
@@ -268,6 +270,10 @@ export default async function Page({ params }: PageProps) {
 
                 case 'imageTextGrid':
                   componentToRender = <ImageTextGridBlock {...component} />
+                  break
+
+                case 'pastFGrantsGrid':
+                  componentToRender = <PastFeaturedGrantsGridBlock key={component.id} />
                   break
 
                 case 'richTextBlock':
