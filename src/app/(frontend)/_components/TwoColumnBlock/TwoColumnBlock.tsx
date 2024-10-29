@@ -41,6 +41,7 @@ export default function TwoColumnBlock({
                   alt={column.image.alt}
                   width={column.image.width ?? 0}
                   height={column.image.height ?? 0}
+                  loading='lazy'
                   style={{
                     objectFit: column.imageFill || 'contain',
                     objectPosition: column.imageAlignment || 'center',
@@ -52,6 +53,7 @@ export default function TwoColumnBlock({
                   alt={column.image.alt}
                   width={column.image.width ?? 0}
                   height={column.image.height ?? 0}
+                  loading='lazy'
                   style={{
                     objectFit: column.imageFill || 'contain',
                     objectPosition: column.imageAlignment || 'center',
