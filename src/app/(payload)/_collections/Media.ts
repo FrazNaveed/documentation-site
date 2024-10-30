@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { deployEnv } from '@/src/environment'
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -17,6 +18,6 @@ export const Media: CollectionConfig = {
     },
   ],
   upload: {
-    staticDir: 'app/media',
+    staticDir: deployEnv === 'docker' ? '/runtime/media' : 'media',
   },
 }
