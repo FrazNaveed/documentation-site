@@ -16,5 +16,7 @@ export const Media: CollectionConfig = {
       localized: true,
     },
   ],
-  upload: true,
+  upload: {
+    staticDir: 'app/media',
+  },
 }
