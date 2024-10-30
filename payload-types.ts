@@ -418,6 +418,7 @@ export type ApplicationProcessSteps =
         [k: string]: unknown;
       } | null;
       graphicTitle?: string | null;
+      graphicText?: string | null;
       id?: string | null;
     }[]
   | null;

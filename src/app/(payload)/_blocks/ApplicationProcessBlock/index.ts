@@ -35,6 +35,13 @@ export const ApplicationProcess: Block = {
             description: 'Graphic step titles will use the title field by default. Override it here.',
           }
         },
+        {
+          name: 'graphicText',
+          type: 'text',
+          admin: {
+            description: 'This will appear inside the colored area of the step in the graphic.',
+          }
+        },
       ],
       admin: {
         isSortable: true,

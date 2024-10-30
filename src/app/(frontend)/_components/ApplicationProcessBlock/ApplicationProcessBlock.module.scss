@@ -47,7 +47,11 @@ $step-label-edge-offset: 8px;
 
     @for $i from 1 through 7 {
       &:nth-child(#{$i}) {
+        display: flex;
         flex: 0 0 map.get($step-widths, $i);
+        align-items: center;
+        justify-content: center;
+        width: map.get($step-widths, $i);
         background-color: map.get($step-colors, $i);
       }
     }
@@ -105,11 +109,28 @@ $step-label-edge-offset: 8px;
       border-right: $step-border;
       border-left: 0;
     }
+
+    /* stylelint-disable-next-line media-feature-range-notation */
+    @media (min-width: $breakpoint-md) and (max-width: 830.98px) {
+      font-size: to-rem(10px);
+    }
   }
 
   &_SectionLabelInner {
     display: flex;
     column-gap: $step-label-gap;
+  }
+
+  &_Text {
+    @include paragraphXSmFont;
+
+    color: $white;
+    text-align: center;
+    z-index: 2;
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
   }
 }
 

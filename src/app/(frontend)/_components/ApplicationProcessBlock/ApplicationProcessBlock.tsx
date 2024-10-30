@@ -40,20 +40,34 @@ export default function ApplicationProcessBlock({ title, steps }: ApplicationPro
       {title && <h2 className={styles.title}>{title}</h2>}
       {stepsWithNumbers.length > 0 && (
         <div className={styles.graphic}>
-          {stepsWithNumbers.map((step) => (
-            <div key={step.id} className={styles.graphic_Section}>
-              <div className={styles.graphic_SectionLabel}>
-                <span className={styles.graphic_SectionLabelInner}>
-                  <span>
-                    {`${step.stepNumber}. `}
+          {stepsWithNumbers.map((step) => {
+            const {
+              id,
+              title: stepTitle,
+              graphicTitle,
+              graphicText,
+              stepNumber,
+            } = step
+            return (
+              <div key={id} className={styles.graphic_Section}>
+                <div className={styles.graphic_SectionLabel}>
+                  <span className={styles.graphic_SectionLabelInner}>
+                    <span>
+                      {`${stepNumber}. `}
+                    </span>
+                    <span>
+                      {graphicTitle || stepTitle}
+                    </span>
                   </span>
-                  <span>
-                    {step.graphicTitle || step.title}
-                  </span>
-                </span>
+                </div>
+                {graphicText && (
+                  <div className={styles.graphic_Text}>
+                    {graphicText}
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       )}
       <div className={styles.steps}>
