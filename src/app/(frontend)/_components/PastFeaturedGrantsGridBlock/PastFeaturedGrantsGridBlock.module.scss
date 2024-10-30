@@ -47,6 +47,7 @@
   }
 
   @include media-breakpoint-down(md) {
+    padding-bottom: to-rem($spacing-x-large);
     grid-column: span 4;
   }
 
@@ -80,6 +81,10 @@
 
     a {
       @include fontStyle(14, 20);
+
+      svg {
+        transform: rotate(45deg);
+      }
     }
   }
 
@@ -92,6 +97,7 @@
   &CategoryWrap {
     display: flex;
     flex-wrap: wrap;
+    row-gap: to-rem($spacing-x-small);
   }
 
   &CategoryTag {
@@ -99,6 +105,7 @@
 
     flex-shrink: 0;
     margin-right: to-rem(12px);
+    margin-bottom: 0;
     padding: to-rem(6px) to-rem(12px);
     border: 1px solid $gray;
     border-radius: 10px;
