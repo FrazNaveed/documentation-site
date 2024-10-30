@@ -1,10 +1,51 @@
 @use "../../_styles/mixins" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/typography" as *;
 @use "../../_styles/spacing" as *;
+@use "../../_styles/transitions" as *;
 
 .relatedNews {
   margin-bottom: $spacing-7x-large;
 
-  &Header {
+  &HeaderWrap {
     @include container;
+    @include sectionHeaderMargin;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &Header {
+    margin-bottom: 0;
+    letter-spacing: initial;
+  }
+
+  &Link {
+    display: flex;
+    align-items: center;
+    column-gap: to-rem($spacing-x-small);
+    text-transform: capitalize;
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    &,
+    svg,
+    svg path {
+      transition: all $transition-snappy;
+    }
+
+    &:active,
+    &:hover,
+    &:focus {
+      svg {
+        path {
+          fill: $pink-900;
+        }
+      }
+    }
   }
 }

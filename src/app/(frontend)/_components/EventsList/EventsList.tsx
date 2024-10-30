@@ -41,25 +41,33 @@ function displayDateRange(startDate: string, endDate: string | null | undefined 
   return output
 }
 
-export default async function EventsList() {
+type EventsListProps = {
+  eventListStyle?: 'standard' | 'minimal'
+}
+
+export default async function EventsList({ eventListStyle = 'standard' }: EventsListProps) {
   const eventsData = await getUpcomingEvents()
   const events = eventsData?.docs
   const upcomingEventsExist = events && events.length > 0
   return (
-    <div className={styles.wrap}>
-      <div className={styles.container}>
-        <h2 className={styles.header}>
-          {upcomingEventsExist ? 'All Upcoming Events' : 'No Upcoming Events'}
-        </h2>
+    <div className={cx(styles.wrap, styles[`wrap__${eventListStyle}`])}>
+      <div className={cx({ [styles.container]: eventListStyle === 'standard' })}>
+        {eventListStyle === 'standard' && (
+          <h2 className={styles.header}>
+            {upcomingEventsExist ? 'All Upcoming Events' : 'No Upcoming Events'}
+          </h2>
+        )}
         {upcomingEventsExist && (
           <>
-            <div className={styles.colHeaders}>
-              <p className={styles.colHeader}>Event</p>
-              <p className={styles.colHeader}>Date</p>
-              <p className={styles.colHeader}>Location</p>
-              <p className={styles.colHeader}>Flare Involvement</p>
-            </div>
-            <div className={styles.grid}>
+            {eventListStyle === 'standard' && (
+              <div className={styles.colHeaders}>
+                <p className={styles.colHeader}>Event</p>
+                <p className={styles.colHeader}>Date</p>
+                <p className={styles.colHeader}>Location</p>
+                <p className={styles.colHeader}>Flare Involvement</p>
+              </div>
+            )}
+            <div className={styles.content}>
               {events.map((event) => {
                 const {
                   title,

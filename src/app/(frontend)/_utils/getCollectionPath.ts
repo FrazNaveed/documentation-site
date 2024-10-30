@@ -6,7 +6,7 @@ function getCollectionPath(contentType: CollectionPathContentTypes) {
   const newsPath = '/news/'
   const contentUrlPathPrefixes = {
     news: newsPath,
-    'news-types': `${newsPath}type`,
+    'news-types': `${newsPath}category/`,
   }
   return contentUrlPathPrefixes[contentType] || '/'
 }

@@ -5,10 +5,7 @@ import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
 export const NewsTypes: CollectionConfig = {
   slug: 'news-types',
   access: {
-    // for seeding purposes; review for production
     read: () => true,
-    create: () => true,
-    update: () => true,
   },
   labels: {
     singular: 'News Type',

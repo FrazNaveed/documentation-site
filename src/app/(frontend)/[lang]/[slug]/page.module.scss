@@ -7,8 +7,7 @@
 
 .grid {
   @include containerGrid;
-
-  padding-top: to-rem($spacing-standard);
+  @include pageComponentSpacing;
 }
 
 .mainContent {
@@ -18,12 +17,13 @@
     margin-top: to-rem($spacing-4x-large);
     margin-bottom: to-rem($spacing-4x-large);
 
-    &:first-child {
-      margin-top: 0;
-    }
-
     &:last-child {
       margin-bottom: 0;
+    }
+
+    &:first-child,
+    &.jumpLinkAnchor:first-child + * {
+      margin-top: 0;
     }
 
     &.jumpLinkAnchor {

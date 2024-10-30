@@ -5,13 +5,28 @@
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .bg {
-  background-color: $gray-100;
+  background-color: $events-hero-bg-color;
   overflow: hidden;
   container-type: inline-size;
+
+  &__artOnly {
+    height: 100%;
+  }
 }
 
 .container {
   @include container;
+
+  &__noDtContainerPadding {
+    @include media-breakpoint-up(lg) {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+  &__artOnly {
+    height: 100%;
+  }
 }
 
 .grid {
@@ -98,6 +113,10 @@
   @include container-breakpoint-down(sm) {
     display: none;
   }
+
+  &__artOnly {
+    margin-left: auto;
+  }
 }
 
 .bgImgWrap {
@@ -118,5 +137,10 @@
   @include container-breakpoint-down(lg) {
     max-width: 120%;
     max-height: 120%;
+  }
+
+  &__artOnly {
+    max-width: 200%;
+    max-height: 200%;
   }
 }

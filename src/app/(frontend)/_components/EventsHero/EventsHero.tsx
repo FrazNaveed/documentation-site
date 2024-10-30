@@ -10,8 +10,9 @@ import type { TLocales } from 'src/app/(frontend)/_utils/getDateTimeLocale'
 import styles from './EventsHero.module.scss'
 
 export type EventsHeroProps = {
-  event: Event
+  event?: Event | null
   backgroundImage?: Media
+  noDesktopContainerPadding?: boolean
 }
 
 function displayDayRange(startDate: string, endDate: string | null | undefined = startDate, locale: TLocales = 'en') {
@@ -36,44 +37,61 @@ function displayDayRange(startDate: string, endDate: string | null | undefined =
   return output
 }
 
-export default function EventsHero({ event, backgroundImage }: EventsHeroProps) {
-  const {
-    title: header,
-    startDate,
-    startTime,
-    endDate,
-    country,
-    location,
-    flareInvolvement: eyebrow,
-    button,
-  } = event
-  const startYear = startDate && new Date(startDate).getFullYear()
-  const endYear = endDate && new Date(endDate).getFullYear()
+export default function EventsHero({ event, backgroundImage, noDesktopContainerPadding }: EventsHeroProps) {
+  let eventContent
+  if (event) {
+    const {
+      title: header,
+      startDate,
+      startTime,
+      endDate,
+      country,
+      location,
+      flareInvolvement: eyebrowDefault,
+      featuredHeroEyebrow: eyebrowOverride,
+      button,
+    } = event
+    const eyebrow = eyebrowOverride || eyebrowDefault
+    const startYear = startDate && new Date(startDate).getFullYear()
+    const endYear = endDate && new Date(endDate).getFullYear()
+    eventContent = (
+      <div className={styles.content}>
+        <EventsFeaturedLabel textClassName={styles.featuredText} />
+        {eyebrow && <h2 className={styles.eyebrow}>{eyebrow}</h2>}
+        {header && <h1 className={styles.header}>{header}</h1>}
+        <p className={styles.date}>
+          {displayDayRange(startDate, endDate)}
+          {startTime && ` / ${convertTimestampToMilitaryTime(startTime)}`}
+          {startYear && ` / ${startYear}`}
+          {endYear && ` - ${endYear}`}
+        </p>
+        <EventsLocation location={location} country={country} className={styles.location} iconSmall />
+        {button?.link && (
+          <div className={styles.meta}>
+            <EventsButton button={button} className={styles.button} />
+          </div>
+        )}
+      </div>
+    )
+  }
   return (
-    <div className={styles.bg}>
-      <div className={cx(styles.container, styles.grid)}>
-        <div className={styles.content}>
-          <EventsFeaturedLabel textClassName={styles.featuredText} />
-          {eyebrow && <h2 className={styles.eyebrow}>{eyebrow}</h2>}
-          {header && <h1 className={styles.header}>{header}</h1>}
-          <p className={styles.date}>
-            {displayDayRange(startDate, endDate)}
-            {startTime && ` / ${convertTimestampToMilitaryTime(startTime)}`}
-            {startYear && ` / ${startYear}`}
-            {endYear && ` - ${endYear}`}
-          </p>
-          <EventsLocation location={location} country={country} className={styles.location} iconSmall />
-          {button?.link && (
-            <div className={styles.meta}>
-              <EventsButton button={button} className={styles.button} />
-            </div>
-          )}
-        </div>
-        <div className={styles.decoration}>
+    <div className={cx(styles.bg, { [styles.bg__artOnly]: !event })}>
+      <div
+        className={cx(
+          styles.container,
+          styles.grid,
+          {
+            [styles.container__noDtContainerPadding]: noDesktopContainerPadding,
+            [styles.container__artOnly]: !event,
+          },
+        )}
+      >
+        {eventContent}
+        <div className={cx(styles.decoration, { [styles.decoration__artOnly]: !event })}>
           {backgroundImage?.url && (
             <div className={styles.bgImgWrap}>
               <Image
-                className={styles.bgImg}
+                className={cx(styles.bgImg, { [styles.bgImg__artOnly]: !event })}
                 src={backgroundImage.url}
                 width={backgroundImage.width ?? 0}
                 height={backgroundImage.height ?? 0}
