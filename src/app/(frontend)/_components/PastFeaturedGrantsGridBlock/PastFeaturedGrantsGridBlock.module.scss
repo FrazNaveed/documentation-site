@@ -6,7 +6,8 @@
 @use "../../_styles/typography" as *;
 
 .gridTitle {
-  @include headerH4;
+  @include sectionHeaderFont;
+  @include sectionHeaderMargin;
 }
 
 .grantsGrid {
