@@ -29,7 +29,9 @@ export default function PastFeaturedGrantsGridBlock({ gridTitle, grantsGrid }: P
     <section className={styles.wrap}>
       {gridTitle && <h2 className={styles.gridTitle}>{gridTitle}</h2>}
       <div id='past-featured-grants-grid' className={styles.grantsGrid}>
-        {grantsGrid?.map((grant :any, index) => {
+        {grantsGrid?.map((grant, index) => {
+          if (typeof grant === 'number') return null
+
           const {
             name,
             description,
