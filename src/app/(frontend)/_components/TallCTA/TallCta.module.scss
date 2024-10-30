@@ -1,0 +1,112 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+// @use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.tallCta {
+  @include container;
+  @include pageComponentSpacing;
+
+  &Wrap {
+    @include grid;
+
+    @include media-breakpoint-down(md) {
+      min-height: to-rem(360px);
+      column-gap: $grid-column-gap-flare;
+    }
+  }
+
+  &ImageWrap {
+    @include columns(2, 7);
+
+    position: relative;
+
+    @include media-breakpoint-down(lg) {
+      @include columns(1, 6);
+    }
+
+    @include media-breakpoint-down(md) {
+      @include columns(4, -1, false);
+
+      order: 2;
+    }
+  }
+
+  &Image {
+    @include media-breakpoint-down(md) {
+      width: to-rem(400px);
+      height: auto;
+    }
+
+    @include media-breakpoint-down(sm) {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: to-rem(160px);
+      height: auto;
+      transform: translateX(-50%);
+    }
+  }
+
+  &OptionalImage {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: -20%;
+
+    @include media-breakpoint-down(lg) {
+      bottom: 0;
+      left: 10%;
+      width: 175px;
+      height: auto;
+      margin-left: 0;
+    }
+
+    @include media-breakpoint-down(md) {
+      top: 50%;
+      left: 50%;
+      width: 70px;
+      height: auto;
+      transform: translate(-50%, 50%);
+    }
+  }
+
+  &Text {
+    @include columns(8, -1);
+
+    margin-top: auto;
+    margin-bottom: auto;
+
+    @include media-breakpoint-down(lg) {
+      @include columns(6, -1);
+    }
+
+    @include media-breakpoint-down(md) {
+      @include columns(1, 4, false);
+
+      order: 1;
+      margin-top: to-rem($spacing-medium);
+    }
+  }
+
+  &Title {
+    @include headerH4;
+
+    margin-bottom: to-rem($spacing-small);
+    letter-spacing: initial;
+  }
+
+  &Content {
+    @include headerH6;
+
+    width: 100%;
+    max-width: 66.66%;
+    margin-bottom: to-rem($spacing-standard);
+
+    @include media-breakpoint-down(md) {
+      max-width: 100%;
+    }
+  }
+}

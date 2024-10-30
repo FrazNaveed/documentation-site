@@ -1,23 +1,17 @@
 import { Fragment } from 'react'
 import Link from 'next/link'
 import cx from 'classnames'
-import * as flags from 'country-flag-icons/react/3x2'
-import Button from 'src/app/(frontend)/_components/Button'
-import { getEventsArchive } from 'src/app/(frontend)/_lib/payload/eventsQueries'
+import EventsButton from 'src/app/(frontend)/_components/EventsButton'
+import EventsFeaturedLabel from 'src/app/(frontend)/_components/EventsFeaturedLabel'
+import EventsLocation from 'src/app/(frontend)/_components/EventsLocation'
+import { getUpcomingEvents } from 'src/app/(frontend)/_lib/payload/eventsQueries'
+import convertTimestampToMilitaryTime from 'src/app/(frontend)/_utils/convertTimestampToMilitaryTime'
 import getDateTimeLocale from 'src/app/(frontend)/_utils/getDateTimeLocale'
 import type { TLocales } from 'src/app/(frontend)/_utils/getDateTimeLocale'
 import isUrlExternal from 'src/app/(frontend)/_utils/isUrlExternal'
-import Flare from 'src/app/(frontend)/_components/svgs/Flare'
 import DiagonalArrowSquare from 'src/app/(frontend)/_components/svgs/DiagonalArrowSquare'
 import RightArrow from 'src/app/(frontend)/_components/svgs/RightArrow'
 import styles from './EventsList.module.scss'
-
-function convertTimestampToMilitaryTime(timestamp: string) {
-  const date = new Date(timestamp)
-  const hours = String(date.getHours()).padStart(2, '0')
-  const minutes = String(date.getMinutes()).padStart(2, '0')
-  return `${hours}:${minutes}`
-}
 
 function displayDateRange(startDate: string, endDate: string | null | undefined = startDate, locale: TLocales = 'en') {
   const start = new Date(startDate)
@@ -47,25 +41,33 @@ function displayDateRange(startDate: string, endDate: string | null | undefined 
   return output
 }
 
-export default async function EventsList() {
-  const eventsData = await getEventsArchive()
-  const events = eventsData.docs
-  const upcomingEventsExist = events.length > 0
+type EventsListProps = {
+  eventListStyle?: 'standard' | 'minimal'
+}
+
+export default async function EventsList({ eventListStyle = 'standard' }: EventsListProps) {
+  const eventsData = await getUpcomingEvents()
+  const events = eventsData?.docs
+  const upcomingEventsExist = events && events.length > 0
   return (
-    <div className={styles.wrap}>
-      <div className={styles.container}>
-        <h2 className={styles.header}>
-          {upcomingEventsExist ? 'All Upcoming Events' : 'No Upcoming Events'}
-        </h2>
+    <div className={cx(styles.wrap, styles[`wrap__${eventListStyle}`])}>
+      <div className={cx({ [styles.container]: eventListStyle === 'standard' })}>
+        {eventListStyle === 'standard' && (
+          <h2 className={styles.header}>
+            {upcomingEventsExist ? 'All Upcoming Events' : 'No Upcoming Events'}
+          </h2>
+        )}
         {upcomingEventsExist && (
           <>
-            <div className={styles.colHeaders}>
-              <p className={styles.colHeader}>Event</p>
-              <p className={styles.colHeader}>Date</p>
-              <p className={styles.colHeader}>Location</p>
-              <p className={styles.colHeader}>Flare Involvement</p>
-            </div>
-            <div className={styles.grid}>
+            {eventListStyle === 'standard' && (
+              <div className={styles.colHeaders}>
+                <p className={styles.colHeader}>Event</p>
+                <p className={styles.colHeader}>Date</p>
+                <p className={styles.colHeader}>Location</p>
+                <p className={styles.colHeader}>Flare Involvement</p>
+              </div>
+            )}
+            <div className={styles.content}>
               {events.map((event) => {
                 const {
                   title,
@@ -80,8 +82,6 @@ export default async function EventsList() {
                   button,
                   featured,
                 } = event
-                const { buttonType, link } = button || {}
-                const FlagComponent = flags[country]
                 const titleMarkup = (
                   <h3 className={styles.title}>
                     {title}
@@ -95,12 +95,7 @@ export default async function EventsList() {
                   </p>
                 )
                 const locationMarkup = (
-                  <p className={styles.location}>
-                    <span className={styles.flag}>
-                      {FlagComponent && <FlagComponent title={country} className={styles.flag_Icon} />}
-                    </span>
-                    {location}
-                  </p>
+                  <EventsLocation location={location} country={country} className={styles.location} />
                 )
                 const involvementMarkup = (
                   <p className={styles.involvement}>
@@ -115,14 +110,7 @@ export default async function EventsList() {
                 )
                 const buttonMarkup = (showArrow = false) => (
                   <div className={styles.buttonWrap}>
-                    {(buttonType && link) && (
-                      <Button
-                        className={cx(styles.button, styles[`button__${buttonType}`])}
-                        link={link}
-                        text={buttonType === 'rsvp' ? 'RSVP' : 'Announcement'}
-                        buttonStyle={buttonType === 'rsvp' ? 'pink' : 'secondary'}
-                      />
-                    )}
+                    <EventsButton button={button} className={styles.button} />
                     {showArrow && linkArrowComponent}
                   </div>
                 )
@@ -140,12 +128,7 @@ export default async function EventsList() {
                     <div className={cx(styles.event, styles.event__mobile)}>
                       <div className={styles.mobileHeader}>
                         <div className={styles.mobileHeaderText}>
-                          {featured && (
-                            <div className={styles.featured}>
-                              <Flare className={styles.featured_Logo} />
-                              <span className={styles.featured_Label}>Featured Event</span>
-                            </div>
-                          )}
+                          {featured && <EventsFeaturedLabel />}
                           {titleMarkup}
                           {dateMarkup}
                         </div>

@@ -7,10 +7,7 @@ import { Video } from '../_blocks/VideoBlock'
 export const News: CollectionConfig = {
   slug: 'news',
   access: {
-    // for seeding purposes; review for production
     read: () => true,
-    create: () => true,
-    update: () => true,
   },
   admin: {
     useAsTitle: 'title',
@@ -157,6 +154,7 @@ export const News: CollectionConfig = {
       },
       type: 'checkbox',
       defaultValue: false,
+      localized: true,
     },
     richTextFieldCustomized('content'),
   ]

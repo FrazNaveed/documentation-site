@@ -8,6 +8,9 @@ import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
 import { Pages } from 'src/app/(payload)/_collections/Pages'
+import { DeveloperGuides } from './src/app/(payload)/_collections/DeveloperGuides'
+import { DeveloperGuideTags } from './src/app/(payload)/_collections/DeveloperGuideTags'
+import { Products } from './src/app/(payload)/_collections/Products'
 import { Events } from './src/app/(payload)/_collections/Events'
 import { Users } from './src/app/(payload)/_collections/Users'
 import { Media } from './src/app/(payload)/_collections/Media'
@@ -16,6 +19,8 @@ import { NewsSubTypes } from './src/app/(payload)/_collections/NewsSubTypes'
 import { NewsTypes } from './src/app/(payload)/_collections/NewsTypes'
 import { Wallets } from './src/app/(payload)/_collections/Wallets'
 import { People } from './src/app/(payload)/_collections/People'
+import { Grants } from './src/app/(payload)/_collections/Grants'
+import { GrantTypes } from './src/app/(payload)/_collections/GrantTypes'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -27,7 +32,22 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Events, Pages, Users, Media, News, NewsTypes, NewsSubTypes, People, Wallets],
+  collections: [
+    Events,
+    Grants,
+    GrantTypes,
+    Pages,
+    Users,
+    Media,
+    News,
+    NewsTypes,
+    NewsSubTypes,
+    People,
+    DeveloperGuides,
+    DeveloperGuideTags,
+    Products,
+    Wallets,
+  ],
   editor: lexicalEditor(),
   localization: {
     locales: [

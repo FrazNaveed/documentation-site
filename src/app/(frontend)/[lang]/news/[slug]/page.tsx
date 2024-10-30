@@ -19,13 +19,14 @@ import styles from './page.module.scss'
 export const dynamic = 'force-dynamic'
 
 type PageProps = {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export default async function Page({ params }: PageProps) {
-  const news = await getNewsBySlug(params.slug)
+  const { slug } = await params
+  const news = await getNewsBySlug(slug)
 
   const newsPost = news[0]
   if (!newsPost) {
@@ -46,8 +47,10 @@ export default async function Page({ params }: PageProps) {
   const relatedNews = relatedPosts as News[] | null | undefined
 
   if (relatedBackfill && relatedBackfill > 0) {
-    const related = await getNewsArchive(relatedBackfill, 1, [id], typeof type === 'object' ? type?.title : undefined)
-    relatedNews?.push(...related.docs)
+    const related = await getNewsArchive(relatedBackfill, 1, [id], typeof type === 'object' ? type?.slug : undefined)
+    if (related) {
+      relatedNews?.push(...related.docs)
+    }
   }
 
   let typeHeroBgImage

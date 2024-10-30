@@ -10,6 +10,7 @@
   padding-bottom: 44px;
   transition: transform $transition-default;
   background-color: $white;
+  overflow: hidden;
   z-index: 100;
   backdrop-filter: none;
 

@@ -135,5 +135,13 @@ export const Events: CollectionConfig = {
       type: 'checkbox',
       defaultValue: false,
     },
+    {
+      name: 'featuredHeroEyebrow',
+      type: 'text',
+      defaultValue: false,
+      admin: {
+        description: 'This will override Flare Involvement as the eyebrow in the featured event hero',
+      },
+    },
   ],
 }

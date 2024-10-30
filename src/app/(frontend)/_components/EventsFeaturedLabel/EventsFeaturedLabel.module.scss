@@ -1,0 +1,29 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.featured {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-x-small;
+  gap: $spacing-x-small;
+
+  &_Label {
+    @include paragraphSmFont;
+
+    color: $pink-700;
+  }
+
+  &_Logo {
+    flex-shrink: 0;
+    width: 16px;
+    height: auto;
+
+    path {
+      fill: $pink-600;
+    }
+  }
+}

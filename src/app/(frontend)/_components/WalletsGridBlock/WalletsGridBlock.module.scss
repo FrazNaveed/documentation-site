@@ -6,11 +6,8 @@
 
 .walletsGrid {
   &Block {
-    @include columns(1, 13);
-
-    display: grid;
-    margin-top: to-rem($spacing-x-small);
-    grid-template-columns: subgrid;
+    @include containerGrid;
+    @include pageComponentSpacing;
 
     @include media-breakpoint-down(lg) {
       @include columns(1, -1);
@@ -43,11 +40,10 @@
   }
 
   &Wrap {
+    @include grid(10);
     @include utils.listReset;
 
-    display: grid;
     padding-left: 0;
-    grid-template-columns: subgrid;
     row-gap: $grid-column-gap-flare;
   }
 }

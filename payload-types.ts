@@ -8,6 +8,309 @@
 
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LinkBandLinks".
+ */
+export type LinkBandLinks =
+  | {
+      linkText?: string | null;
+      linkUrl?: string | null;
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedGrantsCountries".
+ */
+export type FeaturedGrantsCountries =
+  | {
+      country:
+        | 'AF'
+        | 'AX'
+        | 'AL'
+        | 'DZ'
+        | 'AS'
+        | 'AD'
+        | 'AO'
+        | 'AI'
+        | 'AQ'
+        | 'AG'
+        | 'AR'
+        | 'AM'
+        | 'AW'
+        | 'AU'
+        | 'AT'
+        | 'AZ'
+        | 'BS'
+        | 'BH'
+        | 'BD'
+        | 'BB'
+        | 'BY'
+        | 'BE'
+        | 'BZ'
+        | 'BJ'
+        | 'BM'
+        | 'BT'
+        | 'BO'
+        | 'BQ'
+        | 'BA'
+        | 'BW'
+        | 'BV'
+        | 'BR'
+        | 'IO'
+        | 'BN'
+        | 'BG'
+        | 'BF'
+        | 'BI'
+        | 'CV'
+        | 'KH'
+        | 'CM'
+        | 'CA'
+        | 'KY'
+        | 'CF'
+        | 'TD'
+        | 'CL'
+        | 'CN'
+        | 'CX'
+        | 'CC'
+        | 'CO'
+        | 'KM'
+        | 'CG'
+        | 'CD'
+        | 'CK'
+        | 'CR'
+        | 'HR'
+        | 'CU'
+        | 'CW'
+        | 'CY'
+        | 'CZ'
+        | 'CI'
+        | 'DK'
+        | 'DJ'
+        | 'DM'
+        | 'DO'
+        | 'EC'
+        | 'EG'
+        | 'SV'
+        | 'GQ'
+        | 'ER'
+        | 'EE'
+        | 'SZ'
+        | 'ET'
+        | 'FK'
+        | 'FO'
+        | 'FJ'
+        | 'FI'
+        | 'FR'
+        | 'GF'
+        | 'PF'
+        | 'TF'
+        | 'GA'
+        | 'GM'
+        | 'GE'
+        | 'DE'
+        | 'GH'
+        | 'GI'
+        | 'GR'
+        | 'GL'
+        | 'GD'
+        | 'GP'
+        | 'GU'
+        | 'GT'
+        | 'GG'
+        | 'GN'
+        | 'GW'
+        | 'GY'
+        | 'HT'
+        | 'HM'
+        | 'VA'
+        | 'HN'
+        | 'HK'
+        | 'HU'
+        | 'IS'
+        | 'IN'
+        | 'ID'
+        | 'IR'
+        | 'IQ'
+        | 'IE'
+        | 'IM'
+        | 'IL'
+        | 'IT'
+        | 'JM'
+        | 'JP'
+        | 'JE'
+        | 'JO'
+        | 'KZ'
+        | 'KE'
+        | 'KI'
+        | 'KP'
+        | 'KR'
+        | 'KW'
+        | 'KG'
+        | 'LA'
+        | 'LV'
+        | 'LB'
+        | 'LS'
+        | 'LR'
+        | 'LY'
+        | 'LI'
+        | 'LT'
+        | 'LU'
+        | 'MO'
+        | 'MG'
+        | 'MW'
+        | 'MY'
+        | 'MV'
+        | 'ML'
+        | 'MT'
+        | 'MH'
+        | 'MQ'
+        | 'MR'
+        | 'MU'
+        | 'YT'
+        | 'MX'
+        | 'FM'
+        | 'MD'
+        | 'MC'
+        | 'MN'
+        | 'ME'
+        | 'MS'
+        | 'MA'
+        | 'MZ'
+        | 'MM'
+        | 'NA'
+        | 'NR'
+        | 'NP'
+        | 'NL'
+        | 'NC'
+        | 'NZ'
+        | 'NI'
+        | 'NE'
+        | 'NG'
+        | 'NU'
+        | 'NF'
+        | 'MK'
+        | 'MP'
+        | 'NO'
+        | 'OM'
+        | 'PK'
+        | 'PW'
+        | 'PS'
+        | 'PA'
+        | 'PG'
+        | 'PY'
+        | 'PE'
+        | 'PH'
+        | 'PN'
+        | 'PL'
+        | 'PT'
+        | 'PR'
+        | 'QA'
+        | 'RO'
+        | 'RU'
+        | 'RW'
+        | 'RE'
+        | 'BL'
+        | 'SH'
+        | 'KN'
+        | 'LC'
+        | 'MF'
+        | 'PM'
+        | 'VC'
+        | 'WS'
+        | 'SM'
+        | 'ST'
+        | 'SA'
+        | 'SN'
+        | 'RS'
+        | 'SC'
+        | 'SL'
+        | 'SG'
+        | 'SX'
+        | 'SK'
+        | 'SI'
+        | 'SB'
+        | 'SO'
+        | 'ZA'
+        | 'GS'
+        | 'SS'
+        | 'ES'
+        | 'LK'
+        | 'SD'
+        | 'SR'
+        | 'SJ'
+        | 'SE'
+        | 'CH'
+        | 'SY'
+        | 'TW'
+        | 'TJ'
+        | 'TZ'
+        | 'TH'
+        | 'TL'
+        | 'TG'
+        | 'TK'
+        | 'TO'
+        | 'TT'
+        | 'TN'
+        | 'TR'
+        | 'TM'
+        | 'TC'
+        | 'TV'
+        | 'UG'
+        | 'UA'
+        | 'AE'
+        | 'GB'
+        | 'US'
+        | 'UY'
+        | 'UZ'
+        | 'VU'
+        | 'VE'
+        | 'VN'
+        | 'EH'
+        | 'YE'
+        | 'ZM'
+        | 'ZW';
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedGrantsTopCategories".
+ */
+export type FeaturedGrantsTopCategories =
+  | {
+      type: number | GrantType;
+      number?: number | null;
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageTextCards".
+ */
+export type ImageTextCards =
+  | {
+      cardImage?: (number | null) | Media;
+      cardHeader?: string | null;
+      cardText?: {
+        root: {
+          type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
+        [k: string]: unknown;
+      } | null;
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "StatsList".
  */
 export type StatsList =
@@ -99,6 +402,8 @@ export interface Config {
   };
   collections: {
     events: Event;
+    grants: Grant;
+    'grant-types': GrantType;
     pages: Page;
     users: User;
     media: Media;
@@ -106,6 +411,9 @@ export interface Config {
     'news-types': NewsType;
     'news-sub-types': NewsSubType;
     people: Person;
+    developerGuides: DeveloperGuide;
+    developerGuideTags: DeveloperGuideTag;
+    products: Product;
     wallets: Wallet;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -403,59 +711,281 @@ export interface Event {
     link?: string | null;
   };
   featured?: boolean | null;
+  featuredHeroEyebrow?: string | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages".
+ * via the `definition` "grants".
  */
-export interface Page {
+export interface Grant {
   id: number;
-  title?: string | null;
-  slug: string;
-  hero?: {
-    style: 'standard';
-    headline: string;
-    eyebrow?: string | null;
-    buttonText?: string | null;
-    buttonLink?: string | null;
-    backgroundImage?: (number | null) | Media;
-  };
-  hideHero?: boolean | null;
-  relatedNewsType?: (number | null) | NewsType;
-  previousPage?: (number | null) | Page;
-  nextPage?: (number | null) | Page;
-  linkType?: string | null;
-  pageBanner?: {
-    togglePageBanner?: boolean | null;
-    bannerText?: {
-      root: {
+  name: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
         type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
         version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-  };
-  teamGrid?: TeamGrid;
-  walletsGrid?: WalletsGrid;
-  components?: (Columns | Image | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints)[] | null;
-  pageFooterCTA?: boolean | null;
-  pageFooterCTAButton?: {
-    buttonText?: string | null;
-    buttonLink?: string | null;
-    backgroundImage?: (number | null) | Media;
-    backgroundImageStyle?: ('flipped' | 'offset') | null;
-  };
-  pageTemplate: 'default' | 'team' | 'wallets' | 'events';
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  logo?: (number | null) | Media;
+  country:
+    | 'AF'
+    | 'AX'
+    | 'AL'
+    | 'DZ'
+    | 'AS'
+    | 'AD'
+    | 'AO'
+    | 'AI'
+    | 'AQ'
+    | 'AG'
+    | 'AR'
+    | 'AM'
+    | 'AW'
+    | 'AU'
+    | 'AT'
+    | 'AZ'
+    | 'BS'
+    | 'BH'
+    | 'BD'
+    | 'BB'
+    | 'BY'
+    | 'BE'
+    | 'BZ'
+    | 'BJ'
+    | 'BM'
+    | 'BT'
+    | 'BO'
+    | 'BQ'
+    | 'BA'
+    | 'BW'
+    | 'BV'
+    | 'BR'
+    | 'IO'
+    | 'BN'
+    | 'BG'
+    | 'BF'
+    | 'BI'
+    | 'CV'
+    | 'KH'
+    | 'CM'
+    | 'CA'
+    | 'KY'
+    | 'CF'
+    | 'TD'
+    | 'CL'
+    | 'CN'
+    | 'CX'
+    | 'CC'
+    | 'CO'
+    | 'KM'
+    | 'CG'
+    | 'CD'
+    | 'CK'
+    | 'CR'
+    | 'HR'
+    | 'CU'
+    | 'CW'
+    | 'CY'
+    | 'CZ'
+    | 'CI'
+    | 'DK'
+    | 'DJ'
+    | 'DM'
+    | 'DO'
+    | 'EC'
+    | 'EG'
+    | 'SV'
+    | 'GQ'
+    | 'ER'
+    | 'EE'
+    | 'SZ'
+    | 'ET'
+    | 'FK'
+    | 'FO'
+    | 'FJ'
+    | 'FI'
+    | 'FR'
+    | 'GF'
+    | 'PF'
+    | 'TF'
+    | 'GA'
+    | 'GM'
+    | 'GE'
+    | 'DE'
+    | 'GH'
+    | 'GI'
+    | 'GR'
+    | 'GL'
+    | 'GD'
+    | 'GP'
+    | 'GU'
+    | 'GT'
+    | 'GG'
+    | 'GN'
+    | 'GW'
+    | 'GY'
+    | 'HT'
+    | 'HM'
+    | 'VA'
+    | 'HN'
+    | 'HK'
+    | 'HU'
+    | 'IS'
+    | 'IN'
+    | 'ID'
+    | 'IR'
+    | 'IQ'
+    | 'IE'
+    | 'IM'
+    | 'IL'
+    | 'IT'
+    | 'JM'
+    | 'JP'
+    | 'JE'
+    | 'JO'
+    | 'KZ'
+    | 'KE'
+    | 'KI'
+    | 'KP'
+    | 'KR'
+    | 'KW'
+    | 'KG'
+    | 'LA'
+    | 'LV'
+    | 'LB'
+    | 'LS'
+    | 'LR'
+    | 'LY'
+    | 'LI'
+    | 'LT'
+    | 'LU'
+    | 'MO'
+    | 'MG'
+    | 'MW'
+    | 'MY'
+    | 'MV'
+    | 'ML'
+    | 'MT'
+    | 'MH'
+    | 'MQ'
+    | 'MR'
+    | 'MU'
+    | 'YT'
+    | 'MX'
+    | 'FM'
+    | 'MD'
+    | 'MC'
+    | 'MN'
+    | 'ME'
+    | 'MS'
+    | 'MA'
+    | 'MZ'
+    | 'MM'
+    | 'NA'
+    | 'NR'
+    | 'NP'
+    | 'NL'
+    | 'NC'
+    | 'NZ'
+    | 'NI'
+    | 'NE'
+    | 'NG'
+    | 'NU'
+    | 'NF'
+    | 'MK'
+    | 'MP'
+    | 'NO'
+    | 'OM'
+    | 'PK'
+    | 'PW'
+    | 'PS'
+    | 'PA'
+    | 'PG'
+    | 'PY'
+    | 'PE'
+    | 'PH'
+    | 'PN'
+    | 'PL'
+    | 'PT'
+    | 'PR'
+    | 'QA'
+    | 'RO'
+    | 'RU'
+    | 'RW'
+    | 'RE'
+    | 'BL'
+    | 'SH'
+    | 'KN'
+    | 'LC'
+    | 'MF'
+    | 'PM'
+    | 'VC'
+    | 'WS'
+    | 'SM'
+    | 'ST'
+    | 'SA'
+    | 'SN'
+    | 'RS'
+    | 'SC'
+    | 'SL'
+    | 'SG'
+    | 'SX'
+    | 'SK'
+    | 'SI'
+    | 'SB'
+    | 'SO'
+    | 'ZA'
+    | 'GS'
+    | 'SS'
+    | 'ES'
+    | 'LK'
+    | 'SD'
+    | 'SR'
+    | 'SJ'
+    | 'SE'
+    | 'CH'
+    | 'SY'
+    | 'TW'
+    | 'TJ'
+    | 'TZ'
+    | 'TH'
+    | 'TL'
+    | 'TG'
+    | 'TK'
+    | 'TO'
+    | 'TT'
+    | 'TN'
+    | 'TR'
+    | 'TM'
+    | 'TC'
+    | 'TV'
+    | 'UG'
+    | 'UA'
+    | 'AE'
+    | 'GB'
+    | 'US'
+    | 'UY'
+    | 'UZ'
+    | 'VU'
+    | 'VE'
+    | 'VN'
+    | 'EH'
+    | 'YE'
+    | 'ZM'
+    | 'ZW';
+  announcementLink?: string | null;
+  grantCategory?: (number | GrantType)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -480,15 +1010,110 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "news-types".
+ * via the `definition` "grant-types".
  */
-export interface NewsType {
+export interface GrantType {
   id: number;
   title: string;
   slug: string;
-  image: number | Media;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  title?: string | null;
+  slug: string;
+  hero?: {
+    headline: string;
+    eyebrow?: string | null;
+    buttonText?: string | null;
+    buttonLink?: string | null;
+    buttonSecondaryText?: string | null;
+    buttonSecondaryLink?: string | null;
+    backgroundImage?: (number | null) | Media;
+  };
+  hideHero?: boolean | null;
+  previousPage?: (number | null) | Page;
+  nextPage?: (number | null) | Page;
+  linkType?: string | null;
+  pageBanner?: {
+    togglePageBanner?: boolean | null;
+    bannerText?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+  };
+  devHub?: DevHub;
+  grants?: Grants;
+  teamGrid?: TeamGrid;
+  walletsGrid?: WalletsGrid;
+  components?:
+    | (Columns | Image | ImageTextGridBlock | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints | TwoColumns)[]
+    | null;
+  relatedNewsType?: (number | null) | NewsType;
+  pageFooterCTA?: boolean | null;
+  pageFooterCTAButton?: {
+    buttonText?: string | null;
+    buttonLink?: string | null;
+    buttonSecondaryText?: string | null;
+    buttonSecondaryLink?: string | null;
+    backgroundImage?: (number | null) | Media;
+    backgroundImageStyle?: ('flipped' | 'offset') | null;
+  };
+  pageTemplate: 'default' | 'devHub' | 'events' | 'team' | 'wallets' | 'grants';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DevHub".
+ */
+export interface DevHub {
+  productsGrid?: (number | Product)[] | null;
+  linkBand?: {
+    linkBandTitle?: string | null;
+    links?: LinkBandLinks;
+  };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: number;
+  title: string;
+  slug: string;
+  icon?: (number | null) | Media;
+  shortDescription?: string | null;
+  titleOverride?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Grants".
+ */
+export interface Grants {
+  featuredGrants?: {
+    grantsAwarded?: number | null;
+    countries?: FeaturedGrantsCountries;
+    topCategories?: FeaturedGrantsTopCategories;
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -620,6 +1245,19 @@ export interface Image {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageTextGridBlock".
+ */
+export interface ImageTextGridBlock {
+  imageTextGridTitle?: string | null;
+  imageTextCardGrid?: ImageTextCards;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'imageTextGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "RichTextBlock".
  */
 export interface RichTextBlock {
@@ -690,12 +1328,79 @@ export interface TableWithDrawers {
  * via the `definition` "ITalkingPoints".
  */
 export interface ITalkingPoints {
+  variation: 'standard' | 'wideList';
   points: PointsList;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'talkingPoints';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "twoColumns".
+ */
+export interface TwoColumns {
+  layout?: ('default' | 'reverse' | 'even') | null;
+  ColumnOne?: {
+    contentType?: ('image' | 'text') | null;
+    image?: (number | null) | Media;
+    text?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    imageAlignment?: ('center' | 'left' | 'right') | null;
+    imageFill?: ('contain' | 'cover') | null;
+  };
+  ColumnTwo?: {
+    contentType?: ('image' | 'text') | null;
+    image?: (number | null) | Media;
+    text?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    imageAlignment?: ('center' | 'left' | 'right') | null;
+    imageFill?: ('contain' | 'cover') | null;
+  };
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'twoColumn';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-types".
+ */
+export interface NewsType {
+  id: number;
+  title: string;
+  slug: string;
+  image: number | Media;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -772,6 +1477,31 @@ export interface NewsSubType {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "developerGuides".
+ */
+export interface DeveloperGuide {
+  id: number;
+  title: string;
+  shortDescription?: string | null;
+  guideLink: string;
+  tags?: (number | DeveloperGuideTag)[] | null;
+  product?: (number | null) | Product;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "developerGuideTags".
+ */
+export interface DeveloperGuideTag {
+  id: number;
+  title: string;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -780,6 +1510,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'events';
         value: number | Event;
+      } | null)
+    | ({
+        relationTo: 'grants';
+        value: number | Grant;
+      } | null)
+    | ({
+        relationTo: 'grant-types';
+        value: number | GrantType;
       } | null)
     | ({
         relationTo: 'pages';
@@ -808,6 +1546,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'people';
         value: number | Person;
+      } | null)
+    | ({
+        relationTo: 'developerGuides';
+        value: number | DeveloperGuide;
+      } | null)
+    | ({
+        relationTo: 'developerGuideTags';
+        value: number | DeveloperGuideTag;
+      } | null)
+    | ({
+        relationTo: 'products';
+        value: number | Product;
       } | null)
     | ({
         relationTo: 'wallets';

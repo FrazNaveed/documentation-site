@@ -26,6 +26,22 @@ export const TalkingPoints: Block = {
   interfaceName: 'ITalkingPoints',
   fields: [
     {
+      name: 'variation',
+      type: 'select',
+      options: [
+        {
+          label: 'Standard (2-up grid)',
+          value: 'standard',
+        },
+        {
+          label: 'Wide List',
+          value: 'wideList',
+        },
+      ],
+      required: true,
+      defaultValue: 'standard',
+    },
+    {
       name: 'points',
       type: 'array',
       label: 'Point',
