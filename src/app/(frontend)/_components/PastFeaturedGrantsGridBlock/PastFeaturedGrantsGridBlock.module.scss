@@ -6,19 +6,114 @@
 @use "../../_styles/typography" as *;
 
 .wrap {
-  border: 2px solid magenta;
-  @include grid(10);
+  // spacing?
 }
 
 .gridTitle {
-  @include columns(1, -1);
+  @include headerH4;
 }
 
 .grantsGrid {
+  @include utils.listReset;
   @include columns(1, -1);
   @include grid(10);
+
+  row-gap: $grid-column-gap-flare;
+
+  @include media-breakpoint-down(lg) {
+    @include grid(6, false);
+  }
+
+  @include media-breakpoint-down(md) {
+    @include grid(4, false);
+  }
+
+  p {
+    @include paragraphXSmFont;
+  }
 }
 
 .grant {
+  padding: to-rem($spacing-medium) to-rem($spacing-standard)
+    to-rem($spacing-standard);
+  border: 1px solid $gray-100;
+  border-radius: 6px;
   grid-column: span 5;
+
+  @include media-breakpoint-down(lg) {
+    grid-column: span 6;
+  }
+
+  &Header {
+    display: flex;
+    align-items: center;
+    margin-bottom: to-rem($spacing-small);
+    column-gap: to-rem($spacing-small);
+  }
+
+  &Description {
+    margin-bottom: to-rem($spacing-xx-large);
+  }
+
+  &LogoWrap {
+    width: 90px;
+    height: auto;
+  }
+
+  &Footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &FooterTags {
+    display: flex;
+    align-items: center;
+  }
+
+  &CategoryTag {
+    @include label;
+
+    flex-shrink: 0;
+    margin-right: to-rem(12px);
+    padding: to-rem(6px) to-rem(12px);
+    border: 1px solid $gray;
+    border-radius: 10px;
+    color: $pink-900;
+    font-weight: 500;
+    letter-spacing: to-rem(1.2px);
+
+    &:last-child {
+      margin-right: to-rem($spacing-x-small);
+    }
+  }
+}
+
+.name {
+  @include h5;
+
+  margin-bottom: 0;
+}
+
+.flag {
+  &Wrap {
+    position: relative;
+    width: to-rem(28px);
+    height: to-rem(28px);
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  &Icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.collapsed {
+  // display: none;
 }
