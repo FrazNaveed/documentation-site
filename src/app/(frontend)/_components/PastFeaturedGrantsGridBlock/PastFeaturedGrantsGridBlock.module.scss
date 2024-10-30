@@ -5,10 +5,6 @@
 @use "../../_styles/transitions" as *;
 @use "../../_styles/typography" as *;
 
-.wrap {
-  // spacing?
-}
-
 .gridTitle {
   @include headerH4;
 }
@@ -90,7 +86,6 @@
 
   &FooterTags {
     display: flex;
-    // flex-wrap: wrap;
     align-items: center;
   }
 
