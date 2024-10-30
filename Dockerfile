@@ -12,12 +12,7 @@ RUN npm ci --legacy-peer-deps
 COPY src ./src
 COPY migrations ./migrations
 COPY public ./public
-COPY next.config.mjs .
-COPY payload.config.ts .
-COPY payload-types.ts .
-COPY tsconfig.json .
-COPY .eslintrc.json .
-COPY .stylelintrc .
+COPY next.config.mjs payload.config.ts payload-types.ts tsconfig.json .eslintrc.json .stylelintrc ./
 
 # Environment variables must be present at build time
 ARG POSTGRES_URL
@@ -31,6 +26,8 @@ RUN npm run build
 
 # Production image
 FROM base AS runner
+
+RUN apk add --no-cache bash
 
 WORKDIR /app
 
@@ -51,6 +48,9 @@ ENV POSTGRES_URL=${POSTGRES_URL}
 ENV PAYLOAD_SECRET=${PAYLOAD_SECRET}
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# Note: Don't expose ports here, Compose will handle that for us
+COPY ./docker/entrypoint.d/ /docker-entrypoint.d
+COPY ./docker/entrypoint.sh /docker-entrypoint.sh
 
+# Note: Don't expose ports here, Compose will handle that for us
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
 CMD ["node", "server.js"]
