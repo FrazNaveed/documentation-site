@@ -19,7 +19,7 @@ type CountryFlags = Record<keyof typeof flags, React.FC<{ title?: string, classN
 
 export default function PastFeaturedGrantsGridBlock({ gridTitle, grantsGrid }: PastFeaturedGrantsGridBlockProps) {
   const [allShown, setAllShown] = useState(false)
-  const displayShowButton = grantsGrid && grantsGrid.length > 3
+  const displayShowButton = grantsGrid && grantsGrid.length > 4
   const toggleAllShown = () => {
     setAllShown((prev) => !prev)
   }
