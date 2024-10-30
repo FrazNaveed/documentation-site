@@ -1,7 +1,7 @@
 'use client'
 
 import cx from 'classnames'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import * as flags from 'country-flag-icons/react/3x2'
 import type { Grant } from '@/payload-types'
 import Image from 'next/image'
@@ -21,23 +21,10 @@ type CountryFlags = {
 
 export default function PastFeaturedGrantsGridBlock({ gridTitle, grantsGrid }: PastFeaturedGrantsGridBlockProps) {
   const [allShown, setAllShown] = useState(false)
-  const [isTransitioning, setIsTransitioning] = useState(false)
   const displayShowButton = grantsGrid && grantsGrid.length > 3
   const toggleAllShown = () => {
-    if (allShown) {
-      setIsTransitioning(true)
-      setTimeout(() => setAllShown(false), 300)
-    } else {
-      setAllShown(true)
-    }
+    setAllShown((prev) => !prev)
   }
-
-  useEffect(() => {
-    if (allShown) {
-      setIsTransitioning(false)
-    }
-  }, [allShown])
-
   return (
     <section className={styles.wrap}>
       {gridTitle && <h2 className={styles.gridTitle}>{gridTitle}</h2>}
@@ -54,14 +41,7 @@ export default function PastFeaturedGrantsGridBlock({ gridTitle, grantsGrid }: P
           } = grant
           const FlagComponent = (flags as CountryFlags)[country]
           return (
-            <li
-              key={id}
-              className={cx(
-                styles.grant,
-                { [styles.collapsed]: index >= 4 && !allShown },
-                { [styles.hidden]: index >= 4 && !allShown && !isTransitioning },
-              )}
-            >
+            <li key={id} className={cx(styles.grant, { [styles.collapsed]: index >= 4 && !allShown })}>
               <div>
                 {(logo || name) && (
                 <div className={styles.grantHeader}>

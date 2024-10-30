@@ -36,9 +36,6 @@
 .grant {
   padding: to-rem($spacing-medium) to-rem($spacing-standard)
     to-rem($spacing-standard);
-  transition:
-    opacity $transition-speed-default,
-    transform $transition-speed-default;
   border: 1px solid $gray-100;
   border-radius: 6px;
   grid-column: span 5;
@@ -131,8 +128,5 @@
 }
 
 .collapsed {
-  height: 0;
-  transform: scaleY(0);
-  opacity: 0;
-  pointer-events: none;
+  display: none;
 }
