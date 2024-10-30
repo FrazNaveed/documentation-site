@@ -34,6 +34,8 @@
 }
 
 .grant {
+  display: flex;
+  flex-direction: column;
   padding: to-rem($spacing-medium) to-rem($spacing-standard)
     to-rem($spacing-standard);
   border: 1px solid $gray-100;
@@ -41,7 +43,11 @@
   grid-column: span 5;
 
   @include media-breakpoint-down(lg) {
-    grid-column: span 6;
+    grid-column: span 3;
+  }
+
+  @include media-breakpoint-down(md) {
+    grid-column: span 4;
   }
 
   &Header {
@@ -53,6 +59,10 @@
 
   &Description {
     margin-bottom: to-rem($spacing-xx-large);
+
+    @include media-breakpoint-down(md) {
+      margin-bottom: to-rem($spacing-standard);
+    }
   }
 
   &LogoWrap {
@@ -62,13 +72,26 @@
 
   &Footer {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    margin-top: auto;
+    row-gap: to-rem($spacing-small);
+
+    a {
+      @include fontStyle(14, 20);
+    }
   }
 
   &FooterTags {
     display: flex;
+    // flex-wrap: wrap;
     align-items: center;
+  }
+
+  &CategoryWrap {
+    display: flex;
+    flex-wrap: wrap;
   }
 
   &CategoryTag {
@@ -80,8 +103,10 @@
     border: 1px solid $gray;
     border-radius: 10px;
     color: $pink-900;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: to-rem(1.2px);
+    white-space: nowrap;
 
     &:last-child {
       margin-right: to-rem($spacing-x-small);
@@ -98,8 +123,10 @@
 .flag {
   &Wrap {
     position: relative;
+    flex-shrink: 0;
     width: to-rem(28px);
     height: to-rem(28px);
+    margin-right: to-rem($spacing-x-small);
     border-radius: 50%;
     overflow: hidden;
   }
@@ -117,7 +144,7 @@
 .buttonWrap {
   @include columns(1, -1);
 
-  margin-top: to-rem($spacing-standard);
+  // margin-top: to-rem($spacing-standard);
   text-align: center;
 }
 
