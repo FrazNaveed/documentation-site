@@ -114,6 +114,19 @@
   }
 }
 
+.buttonWrap {
+  @include columns(1, -1);
+
+  margin-top: to-rem($spacing-standard);
+  text-align: center;
+}
+
+.button {
+  @include utils.buttonReset;
+  @include bodyBase;
+  @include link;
+}
+
 .collapsed {
-  // display: none;
+  display: none;
 }
