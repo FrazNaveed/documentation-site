@@ -67,9 +67,14 @@ export default function PastFeaturedGrantsGridBlock({ gridTitle, grantsGrid }: P
                 <div className={styles.grantFooterTags}>
                   {grantCategory && (
                     <div className={styles.grantCategoryWrap}>
-                      {grantCategory?.map((category: any) => (
-                        <span key={category.id} className={styles.grantCategoryTag}>{category.title}</span>
-                      ))}
+                      {grantCategory?.map((category) => {
+                        if (typeof category === 'number') return null
+                        const {
+                          id: categoryId,
+                          title: categoryTitle,
+                        } = category
+                        return (<span key={categoryId} className={styles.grantCategoryTag}>{categoryTitle}</span>)
+                      })}
                     </div>
                   )}
                   {FlagComponent && (
