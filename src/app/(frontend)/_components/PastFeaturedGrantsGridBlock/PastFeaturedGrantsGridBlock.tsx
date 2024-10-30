@@ -15,9 +15,7 @@ export type PastFeaturedGrantsGridBlockProps = {
   grantsGrid?: (number | Grant)[] | null
 }
 
-type CountryFlags = {
-  [key: string]: React.FC<{ title?: string, className?: string}>
-}
+type CountryFlags = Record<keyof typeof flags, React.FC<{ title?: string, className?: string }>>
 
 export default function PastFeaturedGrantsGridBlock({ gridTitle, grantsGrid }: PastFeaturedGrantsGridBlockProps) {
   const [allShown, setAllShown] = useState(false)
