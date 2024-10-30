@@ -1072,6 +1072,7 @@ export interface Page {
         | Stats
         | TableWithDrawers
         | ITalkingPoints
+        | TwoColumns
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -1350,12 +1351,67 @@ export interface TableWithDrawers {
  * via the `definition` "ITalkingPoints".
  */
 export interface ITalkingPoints {
+  variation: 'standard' | 'wideList';
   points: PointsList;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'talkingPoints';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "twoColumns".
+ */
+export interface TwoColumns {
+  layout?: ('default' | 'reverse' | 'even') | null;
+  ColumnOne?: {
+    contentType?: ('image' | 'text') | null;
+    image?: (number | null) | Media;
+    text?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    imageAlignment?: ('center' | 'left' | 'right') | null;
+    imageFill?: ('contain' | 'cover') | null;
+  };
+  ColumnTwo?: {
+    contentType?: ('image' | 'text') | null;
+    image?: (number | null) | Media;
+    text?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    imageAlignment?: ('center' | 'left' | 'right') | null;
+    imageFill?: ('contain' | 'cover') | null;
+  };
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'twoColumn';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

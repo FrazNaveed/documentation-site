@@ -30,6 +30,7 @@ import { PayloadLexicalReactRendererContent } from '../../_components/LexicalRen
 import ProductGrid from '../../_components/ProductGrid'
 import LinkBand from '../../_components/LinkBand'
 import TallCta from '../../_components/TallCTA/TallCta'
+import TwoColumnBlock from '../../_components/TwoColumnBlock'
 import getCollectionPath from '../../_utils/getCollectionPath'
 import PastFeaturedGrantsGridBlock from '../../_components/PastFeaturedGrantsGridBlock'
 
@@ -264,7 +265,7 @@ export default async function Page({ params }: PageProps) {
               let componentToRender
               switch (component?.blockType) {
                 case 'columns':
-                  componentToRender = <Columns {...component} />
+                  componentToRender = <Columns key={component.id} {...component} />
                   break
 
                 case 'imageTextGrid':
@@ -276,15 +277,20 @@ export default async function Page({ params }: PageProps) {
                   break
 
                 case 'richTextBlock':
-                  componentToRender = <RichTextBlock richText={component.richText} />
+                  componentToRender = <RichTextBlock key={component.id} richText={component.richText} />
                   break
 
                 case 'stats':
-                  componentToRender = <Stats {...component} />
+                  componentToRender = <Stats key={component.id} {...component} />
                   break
 
                 case 'talkingPoints':
-                  return <TalkingPoints key={component.id} {...component} />
+                  componentToRender = <TalkingPoints key={component.id} {...component} />
+                  break
+
+                case 'twoColumn':
+                  componentToRender = <TwoColumnBlock key={component.id} {...component} />
+                  break
 
                 default:
                   componentToRender = null
