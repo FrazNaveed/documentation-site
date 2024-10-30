@@ -1,11 +1,23 @@
 services:
+  nextjs:
+    restart: unless-stopped
+    build: .
+    ports:
+    - 3000:3000
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      POSTGRES_URL: postgres://postgres:postgres@postgres:5432/flarepayload
+      PAYLOAD_SECRET: secret
+
   postgres:
-    restart: always
+    restart: unless-stopped
     image: postgres:15.2
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+    - postgres_data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+    - 5432:5432
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -17,16 +29,18 @@ services:
       timeout: 60s
       retries: 5
       start_period: 15s
-    networks:
-      - postgres
 
 
   pgadmin:
     image: dpage/pgadmin4
+    restart: unless-stopped
     ports:
     - 8081:80
     user: root
     stop_signal: SIGINT
+    depends_on:
+      postgres:
+        condition: service_healthy
     environment:
       PGADMIN_DEFAULT_EMAIL: dev@flare.network
       PGADMIN_DEFAULT_PASSWORD: dev
@@ -37,12 +51,7 @@ services:
     volumes:
     - ./pgadmin-servers.json:/pgadmin4/servers.json:ro
     - pgadmin_data:/var/lib/pgadmin/
-    networks:
-    - postgres
 
 volumes:
   postgres_data:
   pgadmin_data:
-
-networks:
-  postgres:
