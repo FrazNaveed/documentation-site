@@ -61,5 +61,5 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
    DROP TABLE "appProcess_steps";
   DROP TABLE "appProcess";
-  DROP TABLE "appProcess_locales";
+  DROP TABLE "appProcess_locales";`)
 }
