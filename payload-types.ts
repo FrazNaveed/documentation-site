@@ -395,6 +395,32 @@ export type PointsList = {
   };
   id?: string | null;
 }[];
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ApplicationProcessSteps".
+ */
+export type ApplicationProcessSteps =
+  | {
+      title: string;
+      description?: {
+        root: {
+          type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
+        [k: string]: unknown;
+      } | null;
+      graphicTitle?: string | null;
+      id?: string | null;
+    }[]
+  | null;
 
 export interface Config {
   auth: {
@@ -1063,7 +1089,17 @@ export interface Page {
   teamGrid?: TeamGrid;
   walletsGrid?: WalletsGrid;
   components?:
-    | (Columns | Image | ImageTextGridBlock | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints | TwoColumns)[]
+    | (
+        | Columns
+        | Image
+        | ImageTextGridBlock
+        | RichTextBlock
+        | Stats
+        | TableWithDrawers
+        | ITalkingPoints
+        | TwoColumns
+        | ApplicationProcess
+      )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
   pageFooterCTA?: boolean | null;
@@ -1389,6 +1425,19 @@ export interface TwoColumns {
   id?: string | null;
   blockName?: string | null;
   blockType: 'twoColumn';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ApplicationProcess".
+ */
+export interface ApplicationProcess {
+  title?: string | null;
+  steps?: ApplicationProcessSteps;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'applicationProcess';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

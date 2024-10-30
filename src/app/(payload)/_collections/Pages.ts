@@ -31,6 +31,7 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { StatsBlock } from '../_blocks/StatsBlock'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
+import { ApplicationProcess } from '../_blocks/ApplicationProcessBlock'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
 import { DevHub } from '../_fields/DevHub'
 import { Grants } from '../_fields/Grants'
@@ -177,6 +178,7 @@ export const Pages: CollectionConfig = {
         TableDrawersBlock,
         TalkingPoints,
         TwoColumnBlock,
+        ApplicationProcess,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {

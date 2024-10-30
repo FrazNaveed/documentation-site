@@ -1,0 +1,180 @@
+@use "sass:map";
+@use "sass:math";
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+$step-colors: (
+  1: $pink-100,
+  2: $pink-200,
+  3: $pink-300,
+  4: $pink-400,
+  5: $pink-500,
+  6: $pink-600,
+  7: $pink-700,
+);
+$step-widths: (
+  1: 10.3%,
+  2: 9.4%,
+  3: 7.9%,
+  4: 19.5%,
+  5: 4.3%,
+  6: 45.2%,
+  7: 3.4%,
+);
+$step-height: 68px;
+$step-label-height: $spacing-x-large;
+$step-border: 1px solid #000;
+$step-label-gap: 4px;
+$step-label-edge-offset: 8px;
+
+.title {
+  @include sectionHeaderFont;
+  @include sectionHeaderMargin;
+}
+
+.graphic {
+  display: flex;
+  padding-top: $step-label-height;
+  padding-bottom: $step-label-height;
+
+  &_Section {
+    position: relative;
+    height: $step-height;
+    border-radius: 10px;
+
+    @for $i from 1 through 7 {
+      &:nth-child(#{$i}) {
+        flex: 0 0 map.get($step-widths, $i);
+        background-color: map.get($step-colors, $i);
+      }
+    }
+
+    @for $i from 1 through 7 {
+      // Allow graphic labels to extend through width of next section
+      // Except for 5 and 7 which can clash since 7 goes backwards in its section - allow those to go halfway through adjacent width
+      &:nth-child(#{$i}) .graphic_SectionLabel {
+        $current-width: map.get($step-widths, $i);
+        $next-width: map.get($step-widths, $i + 1);
+        $previous-width: map.get($step-widths, $i - 1);
+        $adjacent-width: $next-width;
+
+        @if $i == 5 {
+          $adjacent-width: $next-width / 2;
+        } @else if $i == 7 {
+          $adjacent-width: $previous-width / 2;
+        }
+
+        $width-to-add: $adjacent-width / $current-width * 100%;
+
+        max-width: calc(100% + $width-to-add - $step-label-gap);
+      }
+    }
+  }
+
+  &_SectionLabel {
+    @include labelS;
+
+    display: flex;
+    position: absolute;
+    left: 0;
+    width: max-content;
+    height: $step-height + $step-label-height - $step-label-edge-offset;
+    margin-bottom: 0;
+    padding-left: $step-label-gap;
+    border-left: $step-border;
+    color: #000;
+    z-index: 1;
+
+    .graphic_Section:nth-child(odd) & {
+      bottom: $step-label-edge-offset;
+    }
+
+    .graphic_Section:nth-child(even) & {
+      top: $step-label-edge-offset;
+      align-items: end;
+    }
+
+    .graphic_Section:last-child & {
+      right: 0;
+      left: auto;
+      padding-right: $step-label-gap;
+      padding-left: 0;
+      border-right: $step-border;
+      border-left: 0;
+    }
+  }
+
+  &_SectionLabelInner {
+    display: flex;
+    column-gap: $step-label-gap;
+  }
+}
+
+.steps {
+  margin-top: $spacing-4x-large;
+
+  @include grid(10);
+
+  @include media-breakpoint-down(lg) {
+    @include grid(6, false);
+  }
+
+  @include media-breakpoint-down(md) {
+    @include grid(4, false);
+  }
+}
+
+.stepCol {
+  &__one {
+    @include columns(1, 5);
+  }
+
+  &__two {
+    @include columns(6, 10);
+  }
+
+  @include media-breakpoint-down(lg) {
+    @include columns(1, 6);
+  }
+}
+
+.step {
+  margin-bottom: $spacing-standard;
+  padding-bottom: $spacing-standard;
+  border-bottom: 1px solid $gray-50;
+
+  @include media-breakpoint-up(lg) {
+    &:last-child {
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+  }
+
+  &_Title {
+    @include bodyBase;
+
+    display: flex;
+    align-items: center;
+    margin-bottom: to-rem(4px);
+    gap: to-rem($spacing-x-small);
+  }
+
+  &_TitleColor {
+    width: to-rem($spacing-small);
+    height: 16px;
+    border-radius: 2px;
+
+    @for $i from 1 through 7 {
+      &__#{$i} {
+        background-color: map.get($step-colors, $i);
+      }
+    }
+  }
+
+  &_Descrip {
+    @include paragraphXSmFont;
+  }
+}

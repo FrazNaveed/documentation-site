@@ -7,6 +7,7 @@ import { getFeaturedEvent } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
 import type { Person, Product, Wallet } from '@/payload-types'
 import type { Locale } from 'src/app/i18n-config'
+import ApplicationProcessBlock from 'src/app/(frontend)/_components/ApplicationProcessBlock'
 import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
 import DevGuideGrid from 'src/app/(frontend)/_components/DevGuideGrid'
@@ -263,6 +264,10 @@ export default async function Page({ params }: PageProps) {
             {components.map((component) => {
               let componentToRender
               switch (component?.blockType) {
+                case 'applicationProcess':
+                  componentToRender = <ApplicationProcessBlock key={component.id} {...component} />
+                  break
+
                 case 'columns':
                   componentToRender = <Columns key={component.id} {...component} />
                   break
