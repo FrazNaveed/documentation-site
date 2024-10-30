@@ -28,7 +28,7 @@ export default function PastFeaturedGrantsGridBlock({ gridTitle, grantsGrid }: P
   return (
     <section className={styles.wrap}>
       {gridTitle && <h2 className={styles.gridTitle}>{gridTitle}</h2>}
-      <div className={styles.grantsGrid}>
+      <div id='past-featured-grants-grid' className={styles.grantsGrid}>
         {grantsGrid?.map((grant :any, index) => {
           const {
             name,
@@ -41,7 +41,7 @@ export default function PastFeaturedGrantsGridBlock({ gridTitle, grantsGrid }: P
           } = grant
           const FlagComponent = (flags as CountryFlags)[country]
           return (
-            <li key={id} className={cx(styles.grant, index >= 4 && styles.collapsed)}>
+            <li key={id} className={cx(styles.grant, { [styles.collapsed]: index >= 4 && !allShown })}>
               <div>
                 {(logo || name) && (
                 <div className={styles.grantHeader}>
@@ -91,6 +91,8 @@ export default function PastFeaturedGrantsGridBlock({ gridTitle, grantsGrid }: P
             type='button'
             className={styles.button}
             onClick={toggleAllShown}
+            aria-expanded={allShown}
+            aria-controls='past-featured-grants-grid'
           >
             {allShown ? '- Show Less' : '+ Show All'}
           </button>
