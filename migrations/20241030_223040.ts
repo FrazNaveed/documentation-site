@@ -2,7 +2,6 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 
 export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
-   CREATE TYPE "public"."enum_pages_blocks_talking_points_variation" AS ENUM('standard', 'wideList');
   CREATE TABLE IF NOT EXISTS "appProcess_steps" (
   	"_order" integer NOT NULL,
   	"_parent_id" varchar NOT NULL,
@@ -32,7 +31,6 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	CONSTRAINT "appProcess_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
   );
   
-  ALTER TABLE "pages_blocks_talking_points" ADD COLUMN "variation" "enum_pages_blocks_talking_points_variation" DEFAULT 'standard';
   DO $$ BEGIN
    ALTER TABLE "appProcess_steps" ADD CONSTRAINT "appProcess_steps_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."appProcess"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
@@ -64,6 +62,4 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
    DROP TABLE "appProcess_steps";
   DROP TABLE "appProcess";
   DROP TABLE "appProcess_locales";
-  ALTER TABLE "pages_blocks_talking_points" DROP COLUMN IF EXISTS "variation";
-  DROP TYPE "public"."enum_pages_blocks_talking_points_variation";`)
 }
