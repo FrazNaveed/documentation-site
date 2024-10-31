@@ -1101,6 +1101,7 @@ export interface Page {
         | ITalkingPoints
         | TwoColumns
         | ApplicationProcess
+        | OfficialChannelsBlock
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -1453,6 +1454,18 @@ export interface ApplicationProcess {
   id?: string | null;
   blockName?: string | null;
   blockType: 'applicationProcess';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OfficialChannelsBlock".
+ */
+export interface OfficialChannelsBlock {
+  title?: string | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'officialChannels';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
