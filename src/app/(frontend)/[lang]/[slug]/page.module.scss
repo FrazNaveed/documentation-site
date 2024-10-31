@@ -30,4 +30,8 @@
       margin: 0;
     }
   }
+
+  &__fullWidth {
+    @include columns(1, -1);
+  }
 }

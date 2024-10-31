@@ -261,7 +261,7 @@ export default async function Page({ params }: PageProps) {
       {(components && components.length > 0) && (
         <div className={styles.grid}>
           <SideNav components={components} />
-          <div className={styles.mainContent}>
+          <div className={cx(styles.mainContent, { [styles.mainContent__fullWidth]: pageTemplate === 'fullWidth' })}>
             {components.map((component) => {
               let componentToRender
               switch (component?.blockType) {
