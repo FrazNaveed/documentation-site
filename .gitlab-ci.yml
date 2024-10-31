@@ -62,5 +62,5 @@ test-ct:
     CI_DEBUG_SERVICES: "true"
     FF_NETWORK_PER_BUILD: "true"
   script:
-  - curl --retry 30 --retry-all-errors --retry-max-time 300 http://website:3000
+  - curl --retry 30 --retry-all-errors --retry-max-time 60 http://website:3000
   rules: !reference [.rules, versiontag]
