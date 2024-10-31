@@ -53,7 +53,6 @@ export const Grants: Field[] = [
                 name: 'number',
                 type: 'number',
                 required: false,
-                localized: true,
               },
             ],
           },
