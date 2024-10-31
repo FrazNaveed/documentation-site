@@ -17,26 +17,27 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
     POSTGRES_URL=postgres://postgres:postgres@127.0.0.1:5432/postgres
     PAYLOAD_SECRET=payload
     ```
-1. In a new terminal window, run `npm run dev:init` from this project's root directory. This will bootstrap a Postgres Database in Docker
-   (running in the background on your machine), run any migrations that need to run, and then start NextJS in dev mode.
+1. In a terminal window, run `npm run db:up` from this project's root directory. This will bootstrap a Postgres database in Docker locally.
+1. In a different window, run `npm run payload migrate` which will run any database migrations for the CMS.
+1. Run `npm run dev` to start the Next.js front end and Payload CMS with a fresh DB.
 
 You will see the local dev build at [http://localhost:3000](http://localhost:3000). You can log into Payload at [http://localhost:3000/admin](http://localhost:3000/admin), create your first user, and start using Payload immediately. 
 
 ### Full Local Docker Stack
-1. If you'd like to run the whole stack in a Docker-based production build, you can do steps 1-4 above and instead run `npm run docker:init` 
-   **NB!** This will remove any and all Docker containers and volumes for this project and start fresh. Don't run it if you have local content you want to keep!
-2. This command will stop, clean and remove the Postgres and NextJS/Payload Docker containers if they exist. It then starts from scratch with a new Postgres
-   container in the background, and then runs a production Docker build, starting your NextJS/Payload instance in a Docker container at [http://localhost:3000](http://localhost:3000). 
+1. If you'd like to run the whole stack in a Docker-based production build, you can just run `docker-compose up`. This will bring up a Postgres database in Docker,
+   as well as a Next.js/Payload app. The `docker-compose.yml` file is set up to use local volumes for the Postgres data so that it persists between runs. This is
+   useful for testing against the production deployments.
+2. To bootstrap a completely clean Docker install, run `npm docker:clean`.  This command will stop, clean and remove the Postgres and NextJS/Payload Docker
+   containers if they exist. You can then run `docker-compose up` to bring everything back up.
 
 ### Helper Commands
 While the above workflow will get you up and running very quickly, once you're in development you may want to stop and start certain aspects
 of the environment individually. Here's a list of the commands we've created to help manage this (all found in the `package.json` `scripts` object.)
 To use them, prefix with `npm run`:
-- `dev`: Runs NextJS/Payload in development mode. Requires a Postgres DB running somewhere
-- `docker:up`: Starts Postgres and Next/Payload in separate Docker containers on the same network locally. Will build the project if it's not already built.
-- `docker:down`: Stops all Docker containers for this project.
-- `docker:up:pg` or `docker:up:next`: Starts Postgres or NextJS/Payload in a Docker container respectively.
-- `docker:clean`: Removes any Docker containers or images for this project. Starts all data from scratch.
+- `dev`: Runs NextJS/Payload in development mode. Requires a Postgres DB running somewhere.
+- `db:up`: Starts Postgres in a Docker container accessible on the local network. 
+- `db:down`: Stops the Postgres Docker container.
+- `db:clean`: Nukes the Postgres Docker container and removes the associated volume. This will delete your data!
 - `build`: Builds the NextJS/Payload app in production mode. Requires a Postgres DB running somewhere.
 - `start`: Runs the built NextJS/Payload app in production mode. Requires a Postgres DB running somewhere.
 
@@ -105,7 +106,7 @@ and all will be right in the world.
 ## Docker Notes
 While we will be doing most of our local development in Node with HMR and such, the production build of the NextJS/Payload stack
 will run in a Docker container. If there are issues with any of the cloud deployments you should be able to replicate them by
-running that container locally, which can be done at any time with `npm run docker:up:next`. To run the full stack including Postgres, use `npm run docker:up` instead.
+running that stack locally, which can be done at any time with `docker-compose up`.
 
 # Remote Builds and Deployments
 Our Docker environment is meant to be entirely portable, and should be able to be built and run on any Docker-compatible runtime or
