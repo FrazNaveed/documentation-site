@@ -1113,7 +1113,7 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
   };
-  pageTemplate: 'default' | 'devHub' | 'events' | 'team' | 'wallets' | 'grants';
+  pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets' | 'grants';
   updatedAt: string;
   createdAt: string;
 }
