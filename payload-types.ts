@@ -1063,7 +1063,17 @@ export interface Page {
   teamGrid?: TeamGrid;
   walletsGrid?: WalletsGrid;
   components?:
-    | (Columns | Image | ImageTextGridBlock | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints | TwoColumns)[]
+    | (
+        | Columns
+        | Image
+        | ImageTextGridBlock
+        | RichTextBlock
+        | PastFeaturedGrantsGridBlock
+        | Stats
+        | TableWithDrawers
+        | ITalkingPoints
+        | TwoColumns
+      )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
   pageFooterCTA?: boolean | null;
@@ -1281,6 +1291,19 @@ export interface RichTextBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'richTextBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PastFeaturedGrantsGridBlock".
+ */
+export interface PastFeaturedGrantsGridBlock {
+  gridTitle?: string | null;
+  grantsGrid?: (number | Grant)[] | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pastFeaturedGrantsGrid';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

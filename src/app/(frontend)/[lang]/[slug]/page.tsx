@@ -32,6 +32,7 @@ import LinkBand from '../../_components/LinkBand'
 import TallCta from '../../_components/TallCTA/TallCta'
 import TwoColumnBlock from '../../_components/TwoColumnBlock'
 import getCollectionPath from '../../_utils/getCollectionPath'
+import PastFeaturedGrantsGridBlock from '../../_components/PastFeaturedGrantsGridBlock'
 
 export const dynamic = 'force-dynamic'
 
@@ -269,6 +270,10 @@ export default async function Page({ params }: PageProps) {
 
                 case 'imageTextGrid':
                   componentToRender = <ImageTextGridBlock {...component} />
+                  break
+
+                case 'pastFeaturedGrantsGrid':
+                  componentToRender = <PastFeaturedGrantsGridBlock key={component.id} {...component} />
                   break
 
                 case 'richTextBlock':
