@@ -3,7 +3,7 @@ import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
 import { Block } from 'payload'
 
 export const PastFeaturedGrantsGridBlock: Block = {
-  slug: 'pastFGrantsGrid', // shortening to fix PostGres truncation warning
+  slug: 'pastFeaturedGrantsGrid',
   interfaceName: 'PastFeaturedGrantsGridBlock',
   fields: [
     {
@@ -23,6 +23,7 @@ export const PastFeaturedGrantsGridBlock: Block = {
     },
     ...CreateSideNavLinkFields,
   ],
+  dbName: 'pastGrantsGrid',
   imageURL: `/${i18n.defaultLocale}/icons/grid.svg`,
   imageAltText: 'Past Featured Grants Grid block icon', 
 }

@@ -272,7 +272,7 @@ export default async function Page({ params }: PageProps) {
                   componentToRender = <ImageTextGridBlock {...component} />
                   break
 
-                case 'pastFGrantsGrid':
+                case 'pastFeaturedGrantsGrid':
                   componentToRender = <PastFeaturedGrantsGridBlock key={component.id} {...component} />
                   break
 

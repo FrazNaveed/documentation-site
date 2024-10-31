@@ -1303,7 +1303,7 @@ export interface PastFeaturedGrantsGridBlock {
   linkText?: string | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'pastFGrantsGrid';
+  blockType: 'pastFeaturedGrantsGrid';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
