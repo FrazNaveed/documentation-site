@@ -16,7 +16,7 @@ export default async function SiteFooter() {
     { href: 'https://github.com/flare-foundation', label: 'GitHub', Icon: GitHub },
     { href: 'https://www.youtube.com/c/Flare_Networks', label: 'YouTube', Icon: YouTube },
     { href: 'https://www.linkedin.com/company/flarenetwork/', label: 'LinkedIn', Icon: LinkedIn },
-    { href: 'https://discord.com/invite/flarenetwork', label: 'Discord', Icon: Discord },
+    { href: 'https://.com/invite/flarenetwork', label: 'Discord', Icon: Discord },
     { href: 'https://twitter.com/FlareNetworks', label: 'X', Icon: XSocial },
     { href: 'https://medium.com/flarenetwork', label: 'Medium', Icon: Medium },
     { href: 'https://t.me/FlareNetwork', label: 'Telegram', Icon: Telegram },

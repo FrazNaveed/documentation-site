@@ -27,13 +27,11 @@ export const StatsBlock: Block = {
           name: 'label',
           type: 'text',
           required: true,
-          localized: true,
         },
         {
           name: 'stat',
           type: 'text',
           required: true,
-          localized: true,
         }
       ],
       admin: {
@@ -43,7 +41,6 @@ export const StatsBlock: Block = {
     {
       name: 'caption',
       type: 'richText',
-      localized: true,
     },
     ...CreateSideNavLinkFields,
   ],
