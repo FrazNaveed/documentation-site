@@ -1,3 +1,15 @@
+.rules:
+  versiontag:
+  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    variables:
+      CTS_BUILD_TAG: latest
+  - if: $CI_COMMIT_TAG != null
+    variables:
+      CTS_BUILD_TAG: $CI_COMMIT_TAG
+  - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+    variables:
+      CTS_BUILD_TAG: $CI_COMMIT_REF_SLUG
+
 stages:
 - build
 - test
@@ -28,14 +40,26 @@ build-ct:
       --destination "${CI_REGISTRY_IMAGE}/webpage-aleph:$CTS_BUILD_TAG"
       --cache=true
       --cache-repo "${CI_REGISTRY_IMAGE}/cache"
-  rules:
-  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-    variables:
-      CTS_BUILD_TAG: latest
-  - if: $CI_COMMIT_TAG != null
-    variables:
-      CTS_BUILD_TAG: $CI_COMMIT_TAG
-  - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
-    variables:
-      CTS_BUILD_TAG: $CI_COMMIT_REF_SLUG
+  rules: !reference [.rules, versiontag]
 
+test-ct:
+  stage: test
+  needs:
+  - build-ct
+  services:
+  - name: postgres:15.2
+    alias: postgres
+    variables:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: flarepayload
+  - alias: website
+    name: ${CI_REGISTRY_IMAGE}/webpage-aleph:$CTS_BUILD_TAG
+    variables:
+      POSTGRES_URL: postgres://postgres:postgres@postgres:5432/flarepayload
+      PAYLOAD_SECRET: secret
+  variables:
+    CI_DEBUG_SERVICES: "true"
+  script:
+  - curl --retry 30 --retry-all-errors --retry-max-time 300 http://website:3000
+  rules: !reference [.rules, versiontag]
