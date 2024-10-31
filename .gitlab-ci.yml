@@ -60,6 +60,7 @@ test-ct:
       PAYLOAD_SECRET: secret
   variables:
     CI_DEBUG_SERVICES: "true"
+    FF_NETWORK_PER_BUILD: "true"
   script:
   - curl --retry 30 --retry-all-errors --retry-max-time 300 http://website:3000
   rules: !reference [.rules, versiontag]
