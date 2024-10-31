@@ -215,6 +215,7 @@ export const Pages: CollectionConfig = {
         { label: 'Default', value: 'default', },
         { label: 'Dev Hub ', value: 'devHub', },
         { label: 'Events ', value: 'events', },
+        { label: 'Full-width', value: 'fullWidth', },
         { label: 'Team', value: 'team' },
         { label: 'Wallets', value: 'wallets', },
         { label: 'Grants', value: 'grants', },
