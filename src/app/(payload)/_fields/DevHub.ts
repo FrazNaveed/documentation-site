@@ -32,6 +32,7 @@ export const DevHub: Field[] = [
             name: 'links',
             type: 'array',
             interfaceName: 'LinkBandLinks',
+            localized: true,
             fields: [
               {
                 name: 'linkText',
