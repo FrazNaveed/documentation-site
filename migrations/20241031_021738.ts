@@ -2,14 +2,6 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 
 export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
-   CREATE TYPE "public"."enum_pages_blocks_talking_points_variation" AS ENUM('standard', 'wideList');
-  CREATE TYPE "public"."enum_pages_blocks_two_column_layout" AS ENUM('default', 'reverse', 'even');
-  CREATE TYPE "public"."enum_pages_blocks_two_column_column_one_content_type" AS ENUM('image', 'text');
-  CREATE TYPE "public"."enum_pages_blocks_two_column_column_one_image_alignment" AS ENUM('center', 'left', 'right');
-  CREATE TYPE "public"."enum_pages_blocks_two_column_column_one_image_fill" AS ENUM('contain', 'cover');
-  CREATE TYPE "public"."enum_pages_blocks_two_column_column_two_content_type" AS ENUM('image', 'text');
-  CREATE TYPE "public"."enum_pages_blocks_two_column_column_two_image_alignment" AS ENUM('center', 'left', 'right');
-  CREATE TYPE "public"."enum_pages_blocks_two_column_column_two_image_fill" AS ENUM('contain', 'cover');
   CREATE TABLE IF NOT EXISTS "pastGrantsGrid" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
