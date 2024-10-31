@@ -22,12 +22,18 @@ const SocialLinks: GlobalConfig = {
         {
           name: 'icon',
           type: 'upload',
+          label: 'Override Icon (Optional)',
           relationTo: 'media',
           admin: {
-            description: 'Replace default logo',
+            description: 'Replace default logo. Default logo is automatically matched to name used in Title.',
           },
         },
       ],
+      admin: {
+        isSortable: true,
+      },
     },
   ],
 }
+
+export default SocialLinks
