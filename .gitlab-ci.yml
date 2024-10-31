@@ -64,5 +64,5 @@ test-ct:
     FF_NETWORK_PER_BUILD: "true"
   script:
   - apk add --no-cache --quiet --no-progress curl
-  - curl --retry 90 --retry-all-errors --retry-max-time 60 http://nextjspayload:3000
+  - curl --retry 90 --retry-all-errors --retry-delay 10 --retry-max-time 900 http://nextjspayload:3000
   rules: !reference [.rules, versiontag]
