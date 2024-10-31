@@ -259,9 +259,9 @@ export default async function Page({ params }: PageProps) {
       {pageTemplate === 'team' && teamGridComponent}
       {pageTemplate === 'wallets' && walletsGridComponent}
       {(components && components.length > 0) && (
-        <div className={styles.grid}>
+        <div className={cx(styles.grid)}>
           <SideNav components={components} />
-          <div className={styles.mainContent}>
+          <div className={cx(styles.mainContent, { [styles.mainContent__fullWidth]: pageTemplate === 'fullWidth' })}>
             {components.map((component) => {
               let componentToRender
               switch (component?.blockType) {
