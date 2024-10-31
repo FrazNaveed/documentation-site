@@ -28,7 +28,6 @@ export const PageFooterCTA: Field[] = [
         ],
         defaultValue: 'flipped',
         hasMany: false,
-        localized: true,
         admin: {
           description: 'Choose how the background image is displayed',
         },
