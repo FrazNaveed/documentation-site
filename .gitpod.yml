@@ -1,0 +1,11 @@
+tasks:
+  - init: npm install --legacy-peer-deps && exit 0
+  - command: docker compose up
+
+ports:
+  - name: next
+    port: 3000
+    onOpen: open-preview
+  - name: pgadmin
+    port: 8081
+    onOpen: open-preview

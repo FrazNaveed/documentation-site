@@ -1,0 +1,41 @@
+stages:
+- build
+- test
+
+sast:
+  needs: []
+dependency_scanning:
+  needs: []
+.secret-analyzer:
+  needs: []
+
+include:
+- template: Jobs/SAST.latest.gitlab-ci.yml
+- template: Jobs/Dependency-Scanning.latest.gitlab-ci.yml
+- template: Jobs/Secret-Detection.latest.gitlab-ci.yml
+
+
+build-ct:
+  stage: build
+  needs: []
+  image:
+    name: gcr.io/kaniko-project/executor:v1.23.2-debug
+    entrypoint: [""]
+  script:
+    - /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/dockerfile"
+      --destination "${CI_REGISTRY_IMAGE}/webpage-aleph:$CTS_BUILD_TAG"
+      --cache=true
+      --cache-repo "${CI_REGISTRY_IMAGE}/cache"
+  rules:
+  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    variables:
+      CTS_BUILD_TAG: latest
+  - if: $CI_COMMIT_TAG != null
+    variables:
+      CTS_BUILD_TAG: $CI_COMMIT_TAG
+  - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+    variables:
+      CTS_BUILD_TAG: $CI_COMMIT_REF_SLUG
+

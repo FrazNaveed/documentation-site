@@ -1095,6 +1095,7 @@ export interface Page {
         | Image
         | ImageTextGridBlock
         | RichTextBlock
+        | PastFeaturedGrantsGridBlock
         | Stats
         | TableWithDrawers
         | ITalkingPoints
@@ -1318,6 +1319,19 @@ export interface RichTextBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'richTextBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PastFeaturedGrantsGridBlock".
+ */
+export interface PastFeaturedGrantsGridBlock {
+  gridTitle?: string | null;
+  grantsGrid?: (number | Grant)[] | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pastFeaturedGrantsGrid';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
