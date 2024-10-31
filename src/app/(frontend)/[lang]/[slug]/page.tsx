@@ -259,7 +259,7 @@ export default async function Page({ params }: PageProps) {
       {pageTemplate === 'team' && teamGridComponent}
       {pageTemplate === 'wallets' && walletsGridComponent}
       {(components && components.length > 0) && (
-        <div className={cx(styles.grid)}>
+        <div className={styles.grid}>
           <SideNav components={components} />
           <div className={cx(styles.mainContent, { [styles.mainContent__fullWidth]: pageTemplate === 'fullWidth' })}>
             {components.map((component) => {
