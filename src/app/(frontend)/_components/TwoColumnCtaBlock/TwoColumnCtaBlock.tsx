@@ -6,7 +6,7 @@ import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/Lexi
 import styles from './TwoColumnCtaBlock.module.scss'
 
 export default function TwoColumnCtaBlock({
-  // image,
+  image,
   eyebrow,
   header,
   text,
@@ -18,14 +18,18 @@ export default function TwoColumnCtaBlock({
   return (
     <section className={styles.twoColumnCta}>
       <div className={styles.wrap}>
-        <div className={styles.imageWrap}>
-          <Image
-            src='/foo.png'
-            alt='foo'
-            width={32}
-            height={32}
-          />
-        </div>
+        {image && typeof image === 'object' && image.url && image.alt
+          && (
+            <div className={styles.imageWrap}>
+              <Image
+                src={image.url}
+                alt={image.alt}
+                width={image.width ?? 0}
+                height={image.width ?? 0}
+                // fill
+              />
+            </div>
+          )}
         <div className={styles.content}>
           {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
           {header && <h2 className={styles.headline}>{header}</h2>}
