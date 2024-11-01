@@ -9,3 +9,62 @@
   @include sectionHeaderFont;
   @include sectionHeaderMargin;
 }
+
+.channels {
+  @include grid;
+  @include columns(1, -1);
+
+  row-gap: to-rem(11px);
+}
+
+.channel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: to-rem($spacing-standard) to-rem($spacing-medium);
+  border-radius: 11px;
+  background-color: $pink-50;
+  grid-column: span 3;
+
+  @include media-breakpoint-down(lg) {
+    grid-column: span 2;
+  }
+
+  &Title {
+    @include bodyBaseMobile;
+
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
+  }
+
+  &Icon {
+    width: to-rem(32px);
+    height: to-rem(32px);
+    margin-right: to-rem($spacing-x-small);
+
+    svg {
+      width: 100%;
+      height: auto;
+
+      path {
+        fill: $pink-700;
+      }
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    svg {
+      path {
+        fill: $pink-900;
+      }
+    }
+  }
+}
+
+.card {
+  display: flex;
+  align-items: center;
+}
