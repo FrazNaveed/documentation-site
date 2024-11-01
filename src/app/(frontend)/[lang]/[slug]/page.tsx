@@ -275,11 +275,11 @@ export default async function Page({ params }: PageProps) {
                   break
 
                 case 'imageTextGrid':
-                  componentToRender = <ImageTextGridBlock {...component} />
+                  componentToRender = <ImageTextGridBlock key={component.id} {...component} />
                   break
 
                 case 'officialChannels':
-                  componentToRender = <OfficialChannelsBlock {...component} />
+                  componentToRender = <OfficialChannelsBlock key={component.id} {...component} />
                   break
 
                 case 'pastFeaturedGrantsGrid':
