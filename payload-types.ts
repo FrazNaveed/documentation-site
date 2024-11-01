@@ -441,6 +441,7 @@ export interface Config {
     developerGuides: DeveloperGuide;
     developerGuideTags: DeveloperGuideTag;
     products: Product;
+    'social-links': SocialLink;
     wallets: Wallet;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -449,9 +450,7 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {
-    socialLinks: SocialLink;
-  };
+  globals: {};
   locale: 'en' | 'es' | 'de';
   user: User & {
     collection: 'users';
@@ -1463,11 +1462,24 @@ export interface ApplicationProcess {
  */
 export interface OfficialChannelsBlock {
   title?: string | null;
+  channels?: (number | SocialLink)[] | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'officialChannels';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-links".
+ */
+export interface SocialLink {
+  id: number;
+  title: string;
+  url: string;
+  icon?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1639,6 +1651,10 @@ export interface PayloadLockedDocument {
         value: number | Product;
       } | null)
     | ({
+        relationTo: 'social-links';
+        value: number | SocialLink;
+      } | null)
+    | ({
         relationTo: 'wallets';
         value: number | Wallet;
       } | null);
@@ -1683,23 +1699,6 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "socialLinks".
- */
-export interface SocialLink {
-  id: number;
-  socialLinks?:
-    | {
-        title: string;
-        url: string;
-        icon?: (number | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
