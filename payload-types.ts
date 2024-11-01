@@ -1102,6 +1102,35 @@ export interface Page {
         | TwoColumns
         | ApplicationProcess
         | IRegionalLinkGrid
+        | {
+            image?: (number | null) | Media;
+            eyebrow?: string | null;
+            header?: string | null;
+            text?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            primaryButtonText?: string | null;
+            primaryButtonLink?: string | null;
+            secondaryButtonText?: string | null;
+            secondaryButtonLink?: string | null;
+            createSideNavLink?: boolean | null;
+            linkText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'twoColumnCta';
+          }
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
