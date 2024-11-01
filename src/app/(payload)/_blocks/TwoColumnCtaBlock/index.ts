@@ -14,6 +14,9 @@ export const TwoColumnCtaBlock: Block = {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
+      admin: {
+        description: 'Appears in left column',
+      },
     },
     {
       name: 'eyebrow',
