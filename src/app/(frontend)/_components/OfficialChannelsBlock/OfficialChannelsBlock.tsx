@@ -1,4 +1,4 @@
-import type { OfficialChannelsBlock as Block } from '@/payload-types'
+import type { OfficialChannelsBlock as OCBlock } from '@/payload-types'
 import Image from 'next/image'
 import Discord from '../svgs/Discord'
 import Telegram from '../svgs/Telegram'
@@ -8,8 +8,8 @@ import ExternalLink from '../ExternalLink'
 import styles from './OfficialChannelsBlock.module.scss'
 
 export type OfficialChannelsBlockProps = {
-  title?: Block['title'],
-  channels?: Block['channels']
+  title?: OCBlock['title'],
+  channels?: OCBlock['channels']
 }
 
 const iconMap = {
