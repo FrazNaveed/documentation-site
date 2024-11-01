@@ -16,6 +16,11 @@ export const OfficialChannelsBlock: Block = {
       localized: true,
     },
     {
+      name: 'text',
+      type: 'richText',
+      localized: true,
+    },
+    {
       name: 'channels',
       type: 'relationship',
       relationTo: 'social-links',
