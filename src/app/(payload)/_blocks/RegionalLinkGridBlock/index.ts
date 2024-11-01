@@ -21,7 +21,6 @@ export const RegionalLinkGrid: Block = {
     {
       name: 'links',
       type: 'array',
-      maxRows: 7,
       localized: true,
       fields: [
         {
@@ -53,5 +52,5 @@ export const RegionalLinkGrid: Block = {
     ...CreateSideNavLinkFields,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/link.svg`,
-  imageAltText: 'Application Process block icon',
+  imageAltText: 'Regional Link Grid block icon',
 }
