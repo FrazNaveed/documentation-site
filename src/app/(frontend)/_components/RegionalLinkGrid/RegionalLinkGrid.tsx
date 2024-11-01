@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import * as flags from 'country-flag-icons/react/1x1'
+import * as flags from 'country-flag-icons/react/3x2'
 import type { IRegionalLinkGrid } from '@/payload-types'
 import DiagonalArrowSquare from 'src/app/(frontend)/_components/svgs/DiagonalArrowSquare'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'

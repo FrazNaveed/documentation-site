@@ -77,9 +77,12 @@
 }
 
 .flag {
+  position: relative;
   flex-shrink: 0;
   width: 45px;
   height: 45px;
+  border-radius: 50%;
+  overflow: hidden;
 
   @include media-breakpoint-down(md) {
     width: 39px;
@@ -87,10 +90,12 @@
   }
 
   &_Icon {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
   }
 }
 
