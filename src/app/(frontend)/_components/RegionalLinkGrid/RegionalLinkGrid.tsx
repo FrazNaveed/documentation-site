@@ -1,7 +1,6 @@
-import Link from 'next/link'
 import * as flags from 'country-flag-icons/react/3x2'
 import type { IRegionalLinkGrid } from '@/payload-types'
-import DiagonalArrowSquare from 'src/app/(frontend)/_components/svgs/DiagonalArrowSquare'
+import ExternalLink from 'src/app/(frontend)/_components/ExternalLink'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import styles from './RegionalLinkGrid.module.scss'
@@ -33,8 +32,8 @@ export default function RegionalLinkGrid({ title, description, links }: IRegiona
             } = regionalLink
             const FlagComponent = country && flags[country]
             return (
-              <Link key={id} href={link} className={styles.link}>
-                <div className={styles.linkInner}>
+              <div key={id} className={styles.link}>
+                <ExternalLink href={link} className={styles.linkInner} iconClassName={styles.arrow}>
                   {FlagComponent && (
                     <div className={styles.flag}>
                       <FlagComponent title={country} className={styles.flag_Icon} />
@@ -48,9 +47,8 @@ export default function RegionalLinkGrid({ title, description, links }: IRegiona
                       {translatedName}
                     </div>
                   </div>
-                  <DiagonalArrowSquare className={styles.arrow} />
-                </div>
-              </Link>
+                </ExternalLink>
+              </div>
             )
           })}
         </div>
