@@ -15,6 +15,12 @@ export const OfficialChannelsBlock: Block = {
       type: 'text',
       localized: true,
     },
+    {
+      name: 'channels',
+      type: 'relationship',
+      relationTo: 'social-links',
+      hasMany: true,
+    },
     ...CreateSideNavLinkFields,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/bell.svg`,
