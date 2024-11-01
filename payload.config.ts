@@ -21,8 +21,7 @@ import { Wallets } from './src/app/(payload)/_collections/Wallets'
 import { People } from './src/app/(payload)/_collections/People'
 import { Grants } from './src/app/(payload)/_collections/Grants'
 import { GrantTypes } from './src/app/(payload)/_collections/GrantTypes'
-
-import SocialLinks from './src/app/(payload)/_globals/SocialLinks'
+import { SocialLinks } from './src/app/(payload)/_collections/SocialLinks'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -48,10 +47,10 @@ export default buildConfig({
     DeveloperGuides,
     DeveloperGuideTags,
     Products,
+    SocialLinks,
     Wallets,
   ],
   editor: lexicalEditor(),
-  globals: [SocialLinks],
   localization: {
     locales: [
       {
