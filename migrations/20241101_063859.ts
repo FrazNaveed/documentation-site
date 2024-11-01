@@ -29,8 +29,8 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
   );
   
-  ALTER TABLE "pages_rels" ADD COLUMN "social_links_id" integer;
-  ALTER TABLE "payload_locked_documents_rels" ADD COLUMN "social_links_id" integer;
+  ALTER TABLE "pages_rels" ADD COLUMN IF NOT EXISTS "social_links_id" integer;
+  ALTER TABLE "payload_locked_documents_rels" ADD COLUMN IF NOT EXISTS "social_links_id" integer;
   DO $$ BEGIN
    ALTER TABLE "pages_blocks_official_channels" ADD CONSTRAINT "pages_blocks_official_channels_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
