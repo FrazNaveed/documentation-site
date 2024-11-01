@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import Image from 'next/image'
 import type { ITwoColumnCta } from '@/payload-types'
 import Button from '../Button'
@@ -18,19 +19,22 @@ export default function TwoColumnCtaBlock({
   return (
     <section className={styles.twoColumnCta}>
       <div className={styles.wrap}>
-        {image && typeof image === 'object' && image.url && image.alt
-          && (
-            <div className={styles.imageWrap}>
-              <Image
-                src={image.url}
-                alt={image.alt}
-                width={image.width ?? 0}
-                height={image.width ?? 0}
-                // fill
-              />
-            </div>
-          )}
-        <div className={styles.content}>
+        <div className={styles.imageColumnWrap}>
+          {image && typeof image === 'object' && image.url && image.alt
+            && (
+              <div className={styles.imageWrap}>
+                <Image
+                  src={image.url}
+                  alt={image.alt}
+                  width={image.width ?? 0}
+                  height={image.width ?? 0}
+                  className={styles.image}
+                />
+              </div>
+            )}
+          {eyebrow && <p className={cx(styles.eyebrow, styles.eyebrow__showOnMobile)}>{eyebrow}</p>}
+        </div>
+        <div className={styles.contentColumnWrap}>
           {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
           {header && <h2 className={styles.headline}>{header}</h2>}
           <div className={styles.text}>
