@@ -2,7 +2,7 @@ import type { OfficialChannelsBlock as OCBlock } from '@/payload-types'
 import Image from 'next/image'
 import Discord from '../svgs/Discord'
 import Telegram from '../svgs/Telegram'
-import XSocial from '../svgs/XSocial'
+import XSocialSymbol from '../svgs/XSocialSymbol'
 import YouTube from '../svgs/YouTube'
 import ExternalLink from '../ExternalLink'
 import styles from './OfficialChannelsBlock.module.scss'
@@ -15,7 +15,7 @@ export type OfficialChannelsBlockProps = {
 const iconMap = {
   Discord,
   Telegram,
-  X: XSocial,
+  X: XSocialSymbol,
   YouTube,
 }
 
