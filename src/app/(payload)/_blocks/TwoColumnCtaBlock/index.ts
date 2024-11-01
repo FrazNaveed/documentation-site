@@ -5,6 +5,7 @@ import validateTextFieldUrl from '../../_utils/validateTextFieldUrl'
 
 export const TwoColumnCtaBlock: Block = {
   slug: 'twoColumnCta',
+  interfaceName: 'ITwoColumnCta',
   labels: {
     singular: 'Two Column CTA',
     plural: 'Two Column CTAs',
