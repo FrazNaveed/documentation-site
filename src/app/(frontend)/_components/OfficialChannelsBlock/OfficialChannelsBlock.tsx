@@ -51,9 +51,10 @@ export default function OfficialChannelsBlock({ title, channels }: OfficialChann
             <ExternalLink
               href={url}
               key={id}
+              className={styles.channel}
             >
               <div className={styles.card}>
-                {cardIcon}
+                {cardIcon && <span className={styles.channelIcon}>{cardIcon}</span>}
                 <span className={styles.channelTitle}>{channelTitle}</span>
               </div>
             </ExternalLink>
