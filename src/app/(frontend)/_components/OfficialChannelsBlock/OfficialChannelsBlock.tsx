@@ -32,7 +32,7 @@ export default function OfficialChannelsBlock({ title, text, channels }: Officia
             <LexicalRenderer content={text as PayloadLexicalReactRendererContent} />
           </div>
         )}
-      <div className={styles.channels}>
+      <div className={styles.channels} role='list'>
         {channels?.map((channel) => {
           if (typeof channel === 'number') return null
 
@@ -63,10 +63,7 @@ export default function OfficialChannelsBlock({ title, text, channels }: Officia
               className={styles.channel}
               aria-label={`Visit our ${channelTitle} channel`}
             >
-              <div
-                className={styles.card}
-                role='listitem'
-              >
+              <div className={styles.card} role='listitem'>
                 {cardIcon && <span className={styles.channelIcon}>{cardIcon}</span>}
                 <span className={styles.channelTitle}>{channelTitle}</span>
               </div>
