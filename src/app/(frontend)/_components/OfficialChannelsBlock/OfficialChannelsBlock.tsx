@@ -61,8 +61,12 @@ export default function OfficialChannelsBlock({ title, text, channels }: Officia
               href={url}
               key={id}
               className={styles.channel}
+              aria-label={`Visit our ${channelTitle} channel`}
             >
-              <div className={styles.card}>
+              <div
+                className={styles.card}
+                role='listitem'
+              >
                 {cardIcon && <span className={styles.channelIcon}>{cardIcon}</span>}
                 <span className={styles.channelTitle}>{channelTitle}</span>
               </div>
