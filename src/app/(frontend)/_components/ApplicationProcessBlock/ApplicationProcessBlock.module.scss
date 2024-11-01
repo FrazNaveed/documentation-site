@@ -119,12 +119,12 @@ $graphic-section-width-mobile: 70px;
         $adjacent-width: $next-width;
 
         @if $i == $steps-count - 2 {
-          $adjacent-width: $next-width / 2;
+          $adjacent-width: math.div($next-width, 2);
         } @else if $i == $steps-count {
-          $adjacent-width: $previous-width / 2;
+          $adjacent-width: math.div($previous-width, 2);
         }
 
-        $width-to-add: $adjacent-width / $current-width * 100%;
+        $width-to-add: math.div($adjacent-width, $current-width) * 100%;
 
         @include media-breakpoint-up(md) {
           max-width: calc(100% + $width-to-add - $step-label-gap);

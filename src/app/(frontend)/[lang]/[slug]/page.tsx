@@ -18,6 +18,7 @@ import JumpLinkAnchor from 'src/app/(frontend)/_components/SideNav/JumpLinkAncho
 import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
 import EventsList from 'src/app/(frontend)/_components/EventsList'
 import Columns from 'src/app/(frontend)/_components/Columns'
+import RegionalLinkGrid from 'src/app/(frontend)/_components/RegionalLinkGrid'
 import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
@@ -279,6 +280,10 @@ export default async function Page({ params }: PageProps) {
 
                 case 'pastFeaturedGrantsGrid':
                   componentToRender = <PastFeaturedGrantsGridBlock key={component.id} {...component} />
+                  break
+
+                case 'regionalLinkGrid':
+                  componentToRender = <RegionalLinkGrid key={component.id} {...component} />
                   break
 
                 case 'richTextBlock':
