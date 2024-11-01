@@ -41,6 +41,7 @@ import { WalletsGrid } from '../_fields/WalletsGrid'
 import { TalkingPoints } from '../_blocks/TalkingPointsBlock'
 import { PastFeaturedGrantsGridBlock } from '../_blocks/PastFeaturedGrantsGridBlock'
 import { TwoColumnBlock } from '../_blocks/TwoColumnBlock'
+import { TwoColumnCtaBlock } from '../_blocks/TwoColumnCtaBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -183,6 +184,7 @@ export const Pages: CollectionConfig = {
         TwoColumnBlock,
         ApplicationProcess,
         RegionalLinkGrid,
+        TwoColumnCtaBlock,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
