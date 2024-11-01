@@ -41,6 +41,7 @@ import { WalletsGrid } from '../_fields/WalletsGrid'
 import { TalkingPoints } from '../_blocks/TalkingPointsBlock'
 import { PastFeaturedGrantsGridBlock } from '../_blocks/PastFeaturedGrantsGridBlock'
 import { TwoColumnBlock } from '../_blocks/TwoColumnBlock'
+import { OfficialChannelsBlock } from '../_blocks/OfficialChannelsBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -182,6 +183,7 @@ export const Pages: CollectionConfig = {
         TalkingPoints,
         TwoColumnBlock,
         ApplicationProcess,
+        OfficialChannelsBlock,
         RegionalLinkGrid,
       ],
       admin: {
