@@ -441,6 +441,7 @@ export interface Config {
     developerGuides: DeveloperGuide;
     developerGuideTags: DeveloperGuideTag;
     products: Product;
+    'social-links': SocialLink;
     wallets: Wallet;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -1101,6 +1102,7 @@ export interface Page {
         | ITalkingPoints
         | TwoColumns
         | ApplicationProcess
+        | OfficialChannelsBlock
         | IRegionalLinkGrid
         | {
             image?: (number | null) | Media;
@@ -1483,6 +1485,46 @@ export interface ApplicationProcess {
   id?: string | null;
   blockName?: string | null;
   blockType: 'applicationProcess';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OfficialChannelsBlock".
+ */
+export interface OfficialChannelsBlock {
+  title?: string | null;
+  text?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  channels?: (number | SocialLink)[] | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'officialChannels';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-links".
+ */
+export interface SocialLink {
+  id: number;
+  title: string;
+  url: string;
+  icon?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1936,6 +1978,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'products';
         value: number | Product;
+      } | null)
+    | ({
+        relationTo: 'social-links';
+        value: number | SocialLink;
       } | null)
     | ({
         relationTo: 'wallets';

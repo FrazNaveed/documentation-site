@@ -47,21 +47,6 @@
     flex: 0 0 calc(50% - ($grid-column-gap / 2));
     width: calc(50% - ($grid-column-gap / 2));
   }
-
-  &,
-  &:visited {
-    .arrow path {
-      fill: $link-color;
-    }
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    .arrow path {
-      fill: $link-hover-color;
-    }
-  }
 }
 
 .linkInner {
@@ -111,6 +96,6 @@
 }
 
 .arrow {
-  flex-shrink: 0;
+  width: 0.7em;
   margin-left: auto;
 }
