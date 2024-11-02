@@ -1,5 +1,6 @@
 import cx from 'classnames'
 import Image from 'next/image'
+import Link from 'next/link'
 import type { ITalkingPoints } from '@/payload-types'
 import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import LexicalRenderer from '../LexicalRenderer'
@@ -23,6 +24,8 @@ export default function TalkingPoints({
             icon,
             header,
             text,
+            addLogos,
+            logos,
           } = point
           if (!icon && !header && !text) {
             return null
@@ -37,14 +40,57 @@ export default function TalkingPoints({
             />
           )
           return (
-            <div key={id} className={cx(styles.point, styles[`point__${variation}`])}>
+            <div
+              key={id}
+              className={cx(
+                styles.point,
+                styles[`point__${variation}`],
+                { [styles.point__hasLogos]: addLogos },
+              )}
+            >
               {iconMarkup(styles.point_Image__iso)}
               <div>
                 <div className={styles.point_HeaderWrap}>
                   {iconMarkup(styles.point_Image__header)}
                   <h4 className={styles.point_Header}>{header}</h4>
                 </div>
-                {text && <LexicalRenderer content={text as PayloadLexicalReactRendererContent} />}
+                {text && (
+                  <div className={styles.point_Text}>
+                    <LexicalRenderer content={text as PayloadLexicalReactRendererContent} />
+                  </div>
+                )}
+                {addLogos && logos && logos.length > 0
+                && (
+                  <div className={styles.point_LogosWrap}>
+                    {logos?.map((card) => {
+                      if (typeof card === 'object' && card.link) {
+                        const {
+                          link,
+                          logo,
+                        } = card
+                        return (
+                          <Link
+                            href={link}
+                            className={styles.logoCard}
+                          >
+                            {typeof logo === 'object' && logo?.url
+                              && (
+                                <div className={styles.imageWrap}>
+                                  <Image
+                                    src={logo.url}
+                                    alt={logo.alt}
+                                    width={logo.width ?? 0}
+                                    height={logo.height ?? 0}
+                                  />
+                                </div>
+                              )}
+                          </Link>
+                        )
+                      }
+                      return null
+                    })}
+                  </div>
+                )}
               </div>
             </div>
           )
