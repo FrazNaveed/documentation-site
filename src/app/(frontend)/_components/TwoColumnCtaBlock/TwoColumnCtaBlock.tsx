@@ -19,21 +19,19 @@ export default function TwoColumnCtaBlock({
   return (
     <section className={styles.twoColumnCta}>
       <div className={styles.wrap}>
-        <div className={styles.imageColumnWrap}>
-          {image && typeof image === 'object' && image.url && image.alt
-            && (
-              <div className={styles.imageWrap}>
-                <Image
-                  src={image.url}
-                  alt={image.alt}
-                  width={image.width ?? 0}
-                  height={image.width ?? 0}
-                  className={styles.image}
-                />
-              </div>
-            )}
-          {eyebrow && <p className={cx(styles.eyebrow, styles.eyebrow__showOnMobile)}>{eyebrow}</p>}
-        </div>
+        {image && typeof image === 'object' && image.url && image.alt
+          && (
+            <div className={styles.imageWrap}>
+              <Image
+                src={image.url}
+                alt={image.alt}
+                width={image.width ?? 0}
+                height={image.width ?? 0}
+                className={styles.image}
+              />
+            </div>
+          )}
+        {eyebrow && <p className={cx(styles.eyebrow, styles.eyebrow__showOnMobile)}>{eyebrow}</p>}
         <div className={styles.contentColumnWrap}>
           {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
           {header && <h2 className={styles.header}>{header}</h2>}
@@ -53,6 +51,7 @@ export default function TwoColumnCtaBlock({
               <Button
                 link={secondaryButtonLink}
                 text={secondaryButtonText}
+                buttonStyle='secondary'
               />
             )}
           </div>
