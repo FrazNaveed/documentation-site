@@ -89,6 +89,22 @@ export const TalkingPoints: Block = {
           }),
           required: true,
         },
+        {
+          name: 'addLogos',
+          type: 'checkbox',
+          defaultValue: false,
+        },
+        {
+          name: 'logos',
+          type: 'relationship',
+          relationTo: 'media',
+          hasMany: true,
+          admin: {
+            condition: (data, siblingData, { user }) => {
+              return siblingData.addLogos
+            },
+          },
+        },
       ],
       localized: true,
       minRows: 2,
