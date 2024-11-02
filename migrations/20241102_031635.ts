@@ -27,7 +27,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	CONSTRAINT "pages_blocks_two_column_cta_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
   );
   
-  ALTER TABLE "pages_blocks_official_channels_locales" ADD COLUMN IF NOT EXIST "text" jsonb;
+  ALTER TABLE "pages_blocks_official_channels_locales" ADD COLUMN IF NOT EXISTS "text" jsonb;
   
   DO $$ BEGIN
    ALTER TABLE "pages_blocks_two_column_cta" ADD CONSTRAINT "pages_blocks_two_column_cta_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
