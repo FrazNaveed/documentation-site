@@ -89,5 +89,6 @@
 
 .buttonsWrap {
   display: flex;
-  column-gap: to-rem(12px);
+  flex-wrap: wrap;
+  gap: to-rem(12px) to-rem($spacing-small);
 }
