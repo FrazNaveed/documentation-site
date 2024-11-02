@@ -31,7 +31,12 @@ export default function TwoColumnCtaBlock({
               />
             </div>
           )}
-        {eyebrow && <p className={cx(styles.eyebrow, styles.eyebrow__showOnMobile)}>{eyebrow}</p>}
+        {eyebrow
+          && (
+            <div className={cx(styles.eyebrow, styles.eyebrow__mobile)}>
+              <p className={styles.eyebrow__mobile}>{eyebrow}</p>
+            </div>
+          )}
         <div className={styles.contentColumnWrap}>
           {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
           {header && <h2 className={styles.header}>{header}</h2>}
