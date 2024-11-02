@@ -36,7 +36,7 @@ export default function TwoColumnCtaBlock({
         </div>
         <div className={styles.contentColumnWrap}>
           {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
-          {header && <h2 className={styles.headline}>{header}</h2>}
+          {header && <h2 className={styles.header}>{header}</h2>}
           <div className={styles.text}>
             {text && <LexicalRenderer content={text as PayloadLexicalReactRendererContent} />}
           </div>
