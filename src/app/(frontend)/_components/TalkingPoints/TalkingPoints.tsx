@@ -63,17 +63,18 @@ export default function TalkingPoints({
                 && (
                   <div className={styles.point_LogosWrap}>
                     {logos?.map((card) => {
-                      if (typeof card === 'object' && card.link) {
+                      if (typeof card === 'object') {
                         const {
                           link,
                           logo,
                         } = card
                         return (
-                          <Link
-                            href={link}
-                            className={styles.logoCard}
-                          >
-                            {typeof logo === 'object' && logo?.url
+                          link ? (
+                            <Link
+                              href={link}
+                              className={cx(styles.logoCard, cx(styles.logoCard__linked))}
+                            >
+                              {typeof logo === 'object' && logo?.url
                               && (
                                 <div className={styles.imageWrap}>
                                   <Image
@@ -84,7 +85,22 @@ export default function TalkingPoints({
                                   />
                                 </div>
                               )}
-                          </Link>
+                            </Link>
+                          ) : (
+                            typeof logo === 'object' && logo?.url
+                            && (
+                              <div className={styles.logoCard}>
+                                <div className={styles.imageWrap}>
+                                  <Image
+                                    src={logo.url}
+                                    alt={logo.alt}
+                                    width={logo.width ?? 0}
+                                    height={logo.height ?? 0}
+                                  />
+                                </div>
+                              </div>
+                            )
+                          )
                         )
                       }
                       return null
