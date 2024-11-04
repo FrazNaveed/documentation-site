@@ -176,10 +176,12 @@
   border: 1px solid $gray-200;
   border-radius: 6px;
 
-  &:hover,
-  &:focus {
-    border: 1px solid transparent;
-    background-color: $gray-50;
+  &__linked {
+    &:hover,
+    &:focus {
+      border: 1px solid transparent;
+      background-color: $gray-50;
+    }
   }
 }
 
