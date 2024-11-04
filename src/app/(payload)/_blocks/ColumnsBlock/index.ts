@@ -44,6 +44,14 @@ export const ColumnsBlock: Block = {
       defaultValue: 'equal',
     },
     {
+      name: 'alignColumns',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        description: 'Align both columns to top of block.',
+      },
+    },
+    {
       name: 'leftColumnBlock',
       type: 'blocks',
       blocks: [
