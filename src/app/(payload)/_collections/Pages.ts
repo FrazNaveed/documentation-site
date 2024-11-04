@@ -42,6 +42,7 @@ import { TalkingPoints } from '../_blocks/TalkingPointsBlock'
 import { PastFeaturedGrantsGridBlock } from '../_blocks/PastFeaturedGrantsGridBlock'
 import { TwoColumnBlock } from '../_blocks/TwoColumnBlock'
 import { OfficialChannelsBlock } from '../_blocks/OfficialChannelsBlock'
+import { FlareDropDatesBlock } from '../_blocks/FlareDropDatesBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -185,6 +186,7 @@ export const Pages: CollectionConfig = {
         ApplicationProcess,
         OfficialChannelsBlock,
         RegionalLinkGrid,
+        FlareDropDatesBlock,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
