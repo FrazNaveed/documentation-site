@@ -65,41 +65,36 @@ export default function TalkingPoints({
                     {logos?.map((card) => {
                       if (typeof card === 'object') {
                         const {
+                          id: cardId,
                           link,
                           logo,
                         } = card
+                        const imageMarkup = (typeof logo === 'object' && logo?.url) && (
+                          <div className={styles.imageWrap}>
+                            <Image
+                              src={logo.url}
+                              alt={logo.alt}
+                              width={logo.width ?? 0}
+                              height={logo.height ?? 0}
+                            />
+                          </div>
+                        )
+                        if (!imageMarkup) {
+                          return null
+                        }
                         return (
                           link ? (
                             <Link
+                              key={cardId}
                               href={link}
                               className={cx(styles.logoCard, cx(styles.logoCard__linked))}
                             >
-                              {typeof logo === 'object' && logo?.url
-                              && (
-                                <div className={styles.imageWrap}>
-                                  <Image
-                                    src={logo.url}
-                                    alt={logo.alt}
-                                    width={logo.width ?? 0}
-                                    height={logo.height ?? 0}
-                                  />
-                                </div>
-                              )}
+                              {imageMarkup}
                             </Link>
                           ) : (
-                            typeof logo === 'object' && logo?.url
-                            && (
-                              <div className={styles.logoCard}>
-                                <div className={styles.imageWrap}>
-                                  <Image
-                                    src={logo.url}
-                                    alt={logo.alt}
-                                    width={logo.width ?? 0}
-                                    height={logo.height ?? 0}
-                                  />
-                                </div>
-                              </div>
-                            )
+                            <div key={cardId} className={styles.logoCard}>
+                              {imageMarkup}
+                            </div>
                           )
                         )
                       }
