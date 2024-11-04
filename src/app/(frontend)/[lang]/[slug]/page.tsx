@@ -277,7 +277,7 @@ export default async function Page({ params }: PageProps) {
                   break
 
                 case 'flareDropDates':
-                  componentToRender = <FlareDropDates />
+                  componentToRender = <FlareDropDates key={component.id} />
                   break
 
                 case 'imageTextGrid':
