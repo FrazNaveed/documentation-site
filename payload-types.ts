@@ -1230,6 +1230,7 @@ export interface Wallet {
  */
 export interface Columns {
   layout?: ('equal' | 'wideLeft' | 'wideRight') | null;
+  alignColumns?: boolean | null;
   leftColumnBlock?:
     | (
         | {
