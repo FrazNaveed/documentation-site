@@ -35,6 +35,10 @@ export const TalkingPoints: Block = {
           value: 'standard',
         },
         {
+          label: 'Textual Grid (3-up grid)',
+          value: 'textualGrid',
+        },
+        {
           label: 'Wide List',
           value: 'wideList',
         },

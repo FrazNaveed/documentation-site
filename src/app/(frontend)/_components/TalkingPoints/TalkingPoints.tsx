@@ -50,7 +50,7 @@ export default function TalkingPoints({
             >
               {iconMarkup(styles.point_Image__iso)}
               <div>
-                <div className={styles.point_HeaderWrap}>
+                <div className={cx(styles.point_HeaderWrap, styles[`point_HeaderWrap__${variation}`])}>
                   {iconMarkup(styles.point_Image__header)}
                   <h4 className={styles.point_Header}>{header}</h4>
                 </div>

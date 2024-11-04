@@ -27,6 +27,22 @@
     @include columns(1, -1);
   }
 
+  &__textualGrid {
+    @include columns(1, 10);
+    @include grid(9);
+
+    row-gap: to-rem($spacing-x-large);
+
+    @include media-breakpoint-down(lg) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    @include media-breakpoint-down(md) {
+      @include grid;
+    }
+  }
+
   &__wideList {
     grid-column-end: 9;
 
@@ -63,6 +79,18 @@
       &:nth-child(odd):nth-last-child(2) {
         border-bottom: none;
       }
+    }
+  }
+
+  &__textualGrid {
+    grid-column: span 3;
+
+    @include media-breakpoint-down(lg) {
+      flex-basis: 30%;
+    }
+
+    @include media-breakpoint-down(md) {
+      grid-column: span 4;
     }
   }
 
@@ -110,6 +138,10 @@
     @include media-breakpoint-down(lg) {
       margin-bottom: to-rem($spacing-x-small);
     }
+
+    &__textualGrid {
+      gap: to-rem($spacing-x-small);
+    }
   }
 
   &_Header {
@@ -124,6 +156,10 @@
     width: 50px;
     height: auto;
 
+    &__textualGrid {
+      width: 24px;
+    }
+
     &__wideList {
       @include media-breakpoint-up(md) {
         width: 72px;
@@ -134,7 +170,8 @@
       }
     }
 
-    &__standard.point_Image__iso {
+    &__standard.point_Image__iso,
+    &__textualGrid.point_Image__iso {
       display: none;
     }
 

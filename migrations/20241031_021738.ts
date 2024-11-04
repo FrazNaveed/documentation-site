@@ -47,7 +47,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" varchar NOT NULL,
   	CONSTRAINT "pages_blocks_two_column_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
   );
+<<<<<<< HEAD
+  
+  DROP TABLE "pages_blocks_past_f_grants_grid" CASCADE;
+=======
 
+>>>>>>> d42b18fa434fb7db768698075e3fdaa8de25c61f
   DROP TABLE "pages_blocks_past_f_grants_grid_locales";
   DO $$ BEGIN
    ALTER TABLE "pastGrantsGrid" ADD CONSTRAINT "pastGrantsGrid_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
