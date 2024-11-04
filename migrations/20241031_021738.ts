@@ -2,14 +2,6 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 
 export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
-   CREATE TYPE "public"."enum_pages_blocks_talking_points_variation" AS ENUM('standard', 'wideList');
-  CREATE TYPE "public"."enum_pages_blocks_two_column_layout" AS ENUM('default', 'reverse', 'even');
-  CREATE TYPE "public"."enum_pages_blocks_two_column_column_one_content_type" AS ENUM('image', 'text');
-  CREATE TYPE "public"."enum_pages_blocks_two_column_column_one_image_alignment" AS ENUM('center', 'left', 'right');
-  CREATE TYPE "public"."enum_pages_blocks_two_column_column_one_image_fill" AS ENUM('contain', 'cover');
-  CREATE TYPE "public"."enum_pages_blocks_two_column_column_two_content_type" AS ENUM('image', 'text');
-  CREATE TYPE "public"."enum_pages_blocks_two_column_column_two_image_alignment" AS ENUM('center', 'left', 'right');
-  CREATE TYPE "public"."enum_pages_blocks_two_column_column_two_image_fill" AS ENUM('contain', 'cover');
   CREATE TABLE IF NOT EXISTS "pastGrantsGrid" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -55,10 +47,8 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" varchar NOT NULL,
   	CONSTRAINT "pages_blocks_two_column_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
   );
-  
-  DROP TABLE "pages_blocks_past_f_grants_grid";
+
   DROP TABLE "pages_blocks_past_f_grants_grid_locales";
-  ALTER TABLE "pages_blocks_talking_points" ADD COLUMN "variation" "enum_pages_blocks_talking_points_variation" DEFAULT 'standard';
   DO $$ BEGIN
    ALTER TABLE "pastGrantsGrid" ADD CONSTRAINT "pastGrantsGrid_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
@@ -145,7 +135,6 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "pages_blocks_past_f_grants_grid_parent_id_idx" ON "pages_blocks_past_f_grants_grid" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_past_f_grants_grid_path_idx" ON "pages_blocks_past_f_grants_grid" USING btree ("_path");
   ALTER TABLE "pages_blocks_talking_points" DROP COLUMN IF EXISTS "variation";
-  DROP TYPE "public"."enum_pages_blocks_talking_points_variation";
   DROP TYPE "public"."enum_pages_blocks_two_column_layout";
   DROP TYPE "public"."enum_pages_blocks_two_column_column_one_content_type";
   DROP TYPE "public"."enum_pages_blocks_two_column_column_one_image_alignment";
