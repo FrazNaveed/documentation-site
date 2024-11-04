@@ -16,6 +16,7 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
+import validateTextFieldUrl from '../../_utils/validateTextFieldUrl'
 
 export const TalkingPoints: Block = {
   slug: 'talkingPoints',
@@ -88,6 +89,32 @@ export const TalkingPoints: Block = {
             ],
           }),
           required: true,
+        },
+        {
+          name: 'addLogos',
+          type: 'checkbox',
+          defaultValue: false,
+        },
+        {
+          name: 'logos',
+          type: 'array',
+          fields: [
+            {
+              name: 'logo',
+              type: 'upload',
+              relationTo: 'media',
+            },
+            {
+              name: 'link',
+              type: 'text',
+              validate: validateTextFieldUrl,
+            },
+          ],
+          admin: {
+            condition: (data, siblingData, { user }) => {
+              return siblingData.addLogos
+            },
+          },
         },
       ],
       localized: true,

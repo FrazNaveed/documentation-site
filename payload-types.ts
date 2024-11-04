@@ -393,6 +393,14 @@ export type PointsList = {
     };
     [k: string]: unknown;
   };
+  addLogos?: boolean | null;
+  logos?:
+    | {
+        logo?: (number | null) | Media;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
 }[];
 /**

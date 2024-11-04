@@ -95,6 +95,12 @@
     }
   }
 
+  &__hasLogos {
+    &:nth-child(even) {
+      padding-right: 0;
+    }
+  }
+
   &_HeaderWrap {
     display: flex;
     align-items: center;
@@ -145,7 +151,45 @@
     }
   }
 
+  &_LogosWrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: to-rem($spacing-large);
+    gap: to-rem(10px) to-rem($spacing-small);
+  }
+
+  &_Text {
+    margin-bottom: to-rem($spacing-standard);
+  }
+
   p {
     @include fontStyle(16, 24);
+  }
+}
+
+.logoCard {
+  display: block;
+  align-self: self-start;
+  max-width: to-rem(148px);
+  height: auto;
+  padding: to-rem($spacing-small) to-rem(12px);
+  border: 1px solid $gray-200;
+  border-radius: 6px;
+
+  &__linked {
+    &:hover,
+    &:focus {
+      border: 1px solid transparent;
+      background-color: $gray-50;
+    }
+  }
+}
+
+.imageWrap {
+  width: 100%;
+  height: auto;
+
+  img {
+    display: block;
   }
 }
