@@ -393,6 +393,14 @@ export type PointsList = {
     };
     [k: string]: unknown;
   };
+  addLogos?: boolean | null;
+  logos?:
+    | {
+        logo?: (number | null) | Media;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
 }[];
 /**
@@ -1105,6 +1113,7 @@ export interface Page {
         | OfficialChannelsBlock
         | IRegionalLinkGrid
         | FlareDropDates
+        | ITwoColumnCta
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -1383,7 +1392,7 @@ export interface TableWithDrawers {
  * via the `definition` "ITalkingPoints".
  */
 export interface ITalkingPoints {
-  variation: 'standard' | 'wideList';
+  variation: 'standard' | 'textualGrid' | 'wideList';
   points: PointsList;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
@@ -1792,6 +1801,39 @@ export interface FlareDropDates {
   id?: string | null;
   blockName?: string | null;
   blockType: 'flareDropDates';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ITwoColumnCta".
+ */
+export interface ITwoColumnCta {
+  image?: (number | null) | Media;
+  eyebrow?: string | null;
+  header?: string | null;
+  text?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  primaryButtonText?: string | null;
+  primaryButtonLink?: string | null;
+  secondaryButtonText?: string | null;
+  secondaryButtonLink?: string | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'twoColumnCta';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
