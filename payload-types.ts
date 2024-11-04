@@ -1112,6 +1112,7 @@ export interface Page {
         | ApplicationProcess
         | OfficialChannelsBlock
         | IRegionalLinkGrid
+        | ITwoColumnCta
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -1788,6 +1789,39 @@ export interface IRegionalLinkGrid {
   id?: string | null;
   blockName?: string | null;
   blockType: 'regionalLinkGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ITwoColumnCta".
+ */
+export interface ITwoColumnCta {
+  image?: (number | null) | Media;
+  eyebrow?: string | null;
+  header?: string | null;
+  text?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  primaryButtonText?: string | null;
+  primaryButtonLink?: string | null;
+  secondaryButtonText?: string | null;
+  secondaryButtonLink?: string | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'twoColumnCta';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

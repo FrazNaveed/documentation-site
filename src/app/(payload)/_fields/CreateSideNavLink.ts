@@ -12,7 +12,7 @@ export const CreateSideNavLinkFields: Field[] = [
         admin: {
           width: '20%',
           condition: ( data, getSiblingData, { user }) => {
-            if (getSiblingData.createSideNavLink || data.pageTemplate !== 'fullWidth') {
+            if (data.pageTemplate !== 'fullWidth') {
               return true
             } else {
               return false
@@ -27,7 +27,7 @@ export const CreateSideNavLinkFields: Field[] = [
         localized: true,
         admin: {
           condition: ( data, getSiblingData, { user }) => {
-            if (getSiblingData.createSideNavLink || data.pageTemplate !== 'fullWidth') {
+            if (getSiblingData.createSideNavLink && data.pageTemplate !== 'fullWidth') {
               return true
             } else {
               return false

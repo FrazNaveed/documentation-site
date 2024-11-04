@@ -36,6 +36,7 @@ import TwoColumnBlock from '../../_components/TwoColumnBlock'
 import getCollectionPath from '../../_utils/getCollectionPath'
 import PastFeaturedGrantsGridBlock from '../../_components/PastFeaturedGrantsGridBlock'
 import OfficialChannelsBlock from '../../_components/OfficialChannelsBlock'
+import TwoColumnCtaBlock from '../../_components/TwoColumnCtaBlock/TwoColumnCtaBlock'
 
 export const dynamic = 'force-dynamic'
 
@@ -305,6 +306,10 @@ export default async function Page({ params }: PageProps) {
 
                 case 'twoColumn':
                   componentToRender = <TwoColumnBlock key={component.id} {...component} />
+                  break
+
+                case 'twoColumnCta':
+                  componentToRender = <TwoColumnCtaBlock key={component.id} {...component} />
                   break
 
                 default:
