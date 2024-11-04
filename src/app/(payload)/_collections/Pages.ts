@@ -43,6 +43,7 @@ import { PastFeaturedGrantsGridBlock } from '../_blocks/PastFeaturedGrantsGridBl
 import { TwoColumnBlock } from '../_blocks/TwoColumnBlock'
 import { TwoColumnCtaBlock } from '../_blocks/TwoColumnCtaBlock'
 import { OfficialChannelsBlock } from '../_blocks/OfficialChannelsBlock'
+import { FlareDropDatesBlock } from '../_blocks/FlareDropDatesBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -186,6 +187,7 @@ export const Pages: CollectionConfig = {
         ApplicationProcess,
         OfficialChannelsBlock,
         RegionalLinkGrid,
+        FlareDropDatesBlock,
         TwoColumnCtaBlock,
       ],
       admin: {
