@@ -48,7 +48,7 @@ export const ColumnsBlock: Block = {
       type: 'checkbox',
       defaultValue: false,
       admin: {
-        description: 'Align both columns to top of block.',
+        description: 'Align both columns to top of block. Default is centered vertically.',
       },
     },
     {
