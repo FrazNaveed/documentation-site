@@ -169,6 +169,7 @@
 
 .logoCard {
   display: block;
+  align-self: self-start;
   width: to-rem(148px);
   height: auto;
   padding: to-rem($spacing-small) to-rem(12px);
