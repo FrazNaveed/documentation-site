@@ -170,7 +170,7 @@
 .logoCard {
   display: block;
   align-self: self-start;
-  width: to-rem(148px);
+  max-width: to-rem(148px);
   height: auto;
   padding: to-rem($spacing-small) to-rem(12px);
   border: 1px solid $gray-200;
