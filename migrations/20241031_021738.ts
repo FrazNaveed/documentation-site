@@ -47,8 +47,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" varchar NOT NULL,
   	CONSTRAINT "pages_blocks_two_column_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
   );
+<<<<<<< HEAD
   
   DROP TABLE "pages_blocks_past_f_grants_grid" CASCADE;
+=======
+
+>>>>>>> d42b18fa434fb7db768698075e3fdaa8de25c61f
   DROP TABLE "pages_blocks_past_f_grants_grid_locales";
   DO $$ BEGIN
    ALTER TABLE "pastGrantsGrid" ADD CONSTRAINT "pastGrantsGrid_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
@@ -136,7 +140,6 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "pages_blocks_past_f_grants_grid_parent_id_idx" ON "pages_blocks_past_f_grants_grid" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_past_f_grants_grid_path_idx" ON "pages_blocks_past_f_grants_grid" USING btree ("_path");
   ALTER TABLE "pages_blocks_talking_points" DROP COLUMN IF EXISTS "variation";
-  DROP TYPE "public"."enum_pages_blocks_talking_points_variation";
   DROP TYPE "public"."enum_pages_blocks_two_column_layout";
   DROP TYPE "public"."enum_pages_blocks_two_column_column_one_content_type";
   DROP TYPE "public"."enum_pages_blocks_two_column_column_one_image_alignment";

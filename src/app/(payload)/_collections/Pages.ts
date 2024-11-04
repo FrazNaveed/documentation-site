@@ -41,6 +41,7 @@ import { WalletsGrid } from '../_fields/WalletsGrid'
 import { TalkingPoints } from '../_blocks/TalkingPointsBlock'
 import { PastFeaturedGrantsGridBlock } from '../_blocks/PastFeaturedGrantsGridBlock'
 import { TwoColumnBlock } from '../_blocks/TwoColumnBlock'
+import { TwoColumnCtaBlock } from '../_blocks/TwoColumnCtaBlock'
 import { OfficialChannelsBlock } from '../_blocks/OfficialChannelsBlock'
 
 export const Pages: CollectionConfig = {
@@ -185,6 +186,7 @@ export const Pages: CollectionConfig = {
         ApplicationProcess,
         OfficialChannelsBlock,
         RegionalLinkGrid,
+        TwoColumnCtaBlock,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
