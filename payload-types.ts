@@ -1104,6 +1104,7 @@ export interface Page {
         | ApplicationProcess
         | OfficialChannelsBlock
         | IRegionalLinkGrid
+        | FlareDropDates
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -1780,6 +1781,17 @@ export interface IRegionalLinkGrid {
   id?: string | null;
   blockName?: string | null;
   blockType: 'regionalLinkGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FlareDropDates".
+ */
+export interface FlareDropDates {
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'flareDropDates';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
