@@ -36,6 +36,7 @@ import TwoColumnBlock from '../../_components/TwoColumnBlock'
 import getCollectionPath from '../../_utils/getCollectionPath'
 import PastFeaturedGrantsGridBlock from '../../_components/PastFeaturedGrantsGridBlock'
 import OfficialChannelsBlock from '../../_components/OfficialChannelsBlock'
+import FlareDropDates from '../../_components/FlaredropDates'
 
 export const dynamic = 'force-dynamic'
 
@@ -273,6 +274,10 @@ export default async function Page({ params }: PageProps) {
 
                 case 'columns':
                   componentToRender = <Columns key={component.id} {...component} />
+                  break
+
+                case 'flareDropDates':
+                  componentToRender = <FlareDropDates />
                   break
 
                 case 'imageTextGrid':
