@@ -34,7 +34,6 @@ import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import { ApplicationProcess } from '../_blocks/ApplicationProcessBlock'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
 import { DevHub } from '../_fields/DevHub'
-import { Grants } from '../_fields/Grants'
 import { RegionalLinkGrid } from '../_blocks/RegionalLinkGridBlock'
 import { TeamGrid } from '../_fields/Team'
 import { WalletsGrid } from '../_fields/WalletsGrid'
@@ -168,7 +167,6 @@ export const Pages: CollectionConfig = {
       },
     },
     ...DevHub,
-    ...Grants,
     ...TeamGrid,
     ...WalletsGrid,
     {
@@ -226,7 +224,6 @@ export const Pages: CollectionConfig = {
         { label: 'Full-width', value: 'fullWidth', },
         { label: 'Team', value: 'team' },
         { label: 'Wallets', value: 'wallets', },
-        { label: 'Grants', value: 'grants', },
       ],
       admin: {
         position: 'sidebar',

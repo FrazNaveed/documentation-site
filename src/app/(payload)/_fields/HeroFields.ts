@@ -1,5 +1,6 @@
 import type { Field } from 'payload'
 import { ButtonFields } from './ButtonFields'
+import countryArray from '../_utils/countryArray'
 
 export const HeroFields: Field[] = [
   {
@@ -18,6 +19,10 @@ export const HeroFields: Field[] = [
           {
             label: 'Protocol',
             value: 'protocol',
+          },
+          {
+            label: 'Grants',
+            value: 'grants',
           },
         ],
         required: true,
@@ -44,19 +49,81 @@ export const HeroFields: Field[] = [
         relationTo: 'media',
       },
       {
-        name: 'protocolInfo',
-      interfaceName: 'PageHeroProtocolInfo',
+        name: 'logo',
+        type: 'relationship',
+        relationTo: 'media',
+        admin: {
+          condition: (data, siblingData, { user }) => {
+            return siblingData.style === 'protocol'
+          },
+        },
+      },
+      {
+        name: 'text',
+        type: 'richText',
+        admin: {
+          condition: (data, siblingData, { user }) => {
+            return siblingData.style === 'protocol'
+          },
+        },
+      },
+      {
+        name: 'grantsInfo',
         type: 'group',
+        interfaceName: 'PageHeroGrantsInfo',
         fields: [
           {
-            name: 'logo',
-            type: 'relationship',
-            relationTo: 'media',
+            name: 'grantsAwarded',
+            type: 'number',
           },
           {
-            name: 'text',
-            type: 'richText',
+            name: 'countries',
+            type: 'array',
+            interfaceName: 'FeaturedGrantsCountries',
+            localized: true,
+            fields: [
+              {
+                name: 'country',
+                type: 'select',
+                options: countryArray,
+                hasMany: false,
+                required: true,
+              },
+            ],
           },
+          {
+            name: 'topCategories',
+            type: 'array',
+            interfaceName: 'FeaturedGrantsTopCategories',
+            localized: true,
+            fields: [
+              {
+                name: 'type',
+                label: 'Grant Type',
+                type: 'relationship',
+                relationTo: 'grant-types',
+                hasMany: false,
+                required: true,
+              },
+              {
+                name: 'number',
+                type: 'number',
+                required: false,
+              },
+            ],
+          },
+        ],
+        admin: {
+          condition: (data, siblingData, { user }) => {
+            return siblingData.style === 'grants'
+          },
+        },
+      },
+      {
+        name: 'protocolInfo',
+        interfaceName: 'PageHeroProtocolInfo',
+        type: 'group',
+        fields: [
           {
             name: 'providers',
             label: 'Provider Count',
