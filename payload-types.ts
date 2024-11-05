@@ -8,17 +8,6 @@
 
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "LinkBandLinks".
- */
-export type LinkBandLinks =
-  | {
-      linkText?: string | null;
-      linkUrl?: string | null;
-      id?: string | null;
-    }[]
-  | null;
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "FeaturedGrantsCountries".
  */
 export type FeaturedGrantsCountries =
@@ -280,6 +269,17 @@ export type FeaturedGrantsTopCategories =
   | {
       type: number | GrantType;
       number?: number | null;
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LinkBandLinks".
+ */
+export type LinkBandLinks =
+  | {
+      linkText?: string | null;
+      linkUrl?: string | null;
       id?: string | null;
     }[]
   | null;
@@ -1087,7 +1087,6 @@ export interface Page {
     } | null;
   };
   devHub?: DevHub;
-  grants?: Grants;
   teamGrid?: TeamGrid;
   walletsGrid?: WalletsGrid;
   components?:
@@ -1118,7 +1117,7 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
   };
-  pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets' | 'grants';
+  pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets';
   updatedAt: string;
   createdAt: string;
 }
@@ -1127,7 +1126,7 @@ export interface Page {
  * via the `definition` "PageHero".
  */
 export interface PageHero {
-  style: 'standard' | 'protocol';
+  style: 'standard' | 'protocol' | 'grants';
   headline: string;
   eyebrow?: string | null;
   buttonText?: string | null;
@@ -1151,7 +1150,17 @@ export interface PageHero {
     };
     [k: string]: unknown;
   } | null;
+  grantsInfo?: PageHeroGrantsInfo;
   protocolInfo?: PageHeroProtocolInfo;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PageHeroGrantsInfo".
+ */
+export interface PageHeroGrantsInfo {
+  grantsAwarded?: number | null;
+  countries?: FeaturedGrantsCountries;
+  topCategories?: FeaturedGrantsTopCategories;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1188,17 +1197,6 @@ export interface Product {
   titleOverride?: string | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Grants".
- */
-export interface Grants {
-  featuredGrants?: {
-    grantsAwarded?: number | null;
-    countries?: FeaturedGrantsCountries;
-    topCategories?: FeaturedGrantsTopCategories;
-  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import cx from 'classnames'
-import type { Grants, Media } from '@/payload-types'
+import type { PageHeroGrantsInfo, Media } from '@/payload-types'
 import Button from '../Button'
 import FeaturedGrants from '../FeaturedGrants'
 import styles from './PageHero.module.scss'
@@ -18,7 +18,7 @@ export type PageHeroProps = {
     text: string
     link: string
   }
-  grants?: Grants['featuredGrants']
+  grants?: PageHeroGrantsInfo
 }
 
 export default function PageHero({
