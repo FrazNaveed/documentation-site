@@ -5,6 +5,7 @@ import Button from 'src/app/(frontend)/_components/Button'
 import FlareLogo from 'src/app/(frontend)/_components/svgs/FlareLogo'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
+import type { Locale } from 'src/app/i18n-config'
 import styles from './ProtocolHero.module.scss'
 
 export type ProtocolHeroProps = {
@@ -20,13 +21,28 @@ export type ProtocolHeroProps = {
     link: string
   }
   protocolInfo?: PageHeroProtocolInfo
+  lang: Locale
 }
 
-const formatNumber = (number: number) => {
-  if (number >= 1e9) return `${(number / 1e9).toFixed(1)}b` // For billions
-  if (number >= 1e6) return `${(number / 1e6).toFixed(1)}m` // For millions
-  if (number >= 1e3) return `${(number / 1e3).toFixed(1)}k` // For thousands
-  return number.toString() // For numbers smaller than 1000
+const formatNumber = (number: number, lang: Locale, isCurrency = false) => {
+  if (isCurrency) {
+    const formatter = new Intl.NumberFormat(lang, {
+      style: 'currency',
+      currency: 'USD',
+      notation: 'compact',
+      compactDisplay: 'short',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 1,
+    })
+    return formatter.format(number)
+  }
+  const compactFormatter = new Intl.NumberFormat(lang, {
+    notation: 'compact',
+    compactDisplay: 'short',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 1,
+  })
+  return compactFormatter.format(number)
 }
 
 export default function ProtocolHero({
@@ -36,6 +52,7 @@ export default function ProtocolHero({
   cta,
   ctaSecondary,
   protocolInfo,
+  lang,
 }: ProtocolHeroProps) {
   const logo = protocolInfo?.logo
   const text = protocolInfo?.text
@@ -76,11 +93,11 @@ export default function ProtocolHero({
             <p className={styles.protocol_Data}>
               <span className={cx(styles.protocol_DataSpan, styles.protocol_DataSpan__dt)}>
                 <FlareLogo className={styles.protocol_DataLogo} />
-                {stakeTokens && `${formatNumber(stakeTokens)} `}
-                {stakeValue && `($${formatNumber(stakeValue)})`}
+                {stakeTokens && `${formatNumber(stakeTokens, lang)} `}
+                {stakeValue && `(${formatNumber(stakeValue, lang, true)})`}
               </span>
               <span className={styles.protocol_DataSpan__mobile}>
-                {stakeValue && formatNumber(stakeValue)}
+                {stakeValue && formatNumber(stakeValue, lang, true)}
               </span>
             </p>
           </div>

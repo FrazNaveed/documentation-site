@@ -118,6 +118,7 @@ export default async function Page({ params }: PageProps) {
           {...heroCtaSecondaryProps}
           {...heroBackgroundImageProps}
           protocolInfo={protocolInfo}
+          lang={lang}
         />
       )
     } else {
