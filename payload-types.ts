@@ -1063,15 +1063,7 @@ export interface Page {
   id: number;
   title?: string | null;
   slug: string;
-  hero?: {
-    headline: string;
-    eyebrow?: string | null;
-    buttonText?: string | null;
-    buttonLink?: string | null;
-    buttonSecondaryText?: string | null;
-    buttonSecondaryLink?: string | null;
-    backgroundImage?: (number | null) | Media;
-  };
+  hero?: PageHero;
   hideHero?: boolean | null;
   previousPage?: (number | null) | Page;
   nextPage?: (number | null) | Page;
@@ -1129,6 +1121,48 @@ export interface Page {
   pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets' | 'grants';
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PageHero".
+ */
+export interface PageHero {
+  style: 'standard' | 'protocol';
+  headline: string;
+  eyebrow?: string | null;
+  buttonText?: string | null;
+  buttonLink?: string | null;
+  buttonSecondaryText?: string | null;
+  buttonSecondaryLink?: string | null;
+  backgroundImage?: (number | null) | Media;
+  protocolInfo?: PageHeroProtocolInfo;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PageHeroProtocolInfo".
+ */
+export interface PageHeroProtocolInfo {
+  logo?: (number | null) | Media;
+  text?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  providers?: number | null;
+  feeds?: number | null;
+  stakeTokens?: number | null;
+  stakeValue?: number | null;
+  averageBlockTime?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

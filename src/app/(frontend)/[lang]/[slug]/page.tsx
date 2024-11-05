@@ -10,6 +10,7 @@ import type { Locale } from 'src/app/i18n-config'
 import ApplicationProcessBlock from 'src/app/(frontend)/_components/ApplicationProcessBlock'
 import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
+import ProtocolHero from 'src/app/(frontend)/_components/ProtocolHero'
 import DevGuideGrid from 'src/app/(frontend)/_components/DevGuideGrid'
 import EventsHero from 'src/app/(frontend)/_components/EventsHero'
 import EventsWidget from 'src/app/(frontend)/_components/EventsWidget'
@@ -82,6 +83,7 @@ export default async function Page({ params }: PageProps) {
   let heroComponent
   if (hero) {
     const {
+      style: heroStyle,
       headline,
       eyebrow,
       buttonText,
@@ -89,6 +91,7 @@ export default async function Page({ params }: PageProps) {
       buttonSecondaryText,
       buttonSecondaryLink,
       backgroundImage,
+      protocolInfo,
     } = hero
     const heroCtaProps = (buttonText && buttonLink) ? { cta: { text: buttonText, link: buttonLink } } : {}
     const heroCtaSecondaryProps = (buttonSecondaryText && buttonSecondaryLink)
@@ -99,21 +102,36 @@ export default async function Page({ params }: PageProps) {
     if (pageTemplate === 'grants' && grants) {
       featuredGrants = grants.featuredGrants
     }
-    heroComponent = featuredEvent ? (
-      <EventsHero
-        event={featuredEvent}
-        {...heroBackgroundImageProps}
-      />
-    ) : (
-      <PageHero
-        header={headline}
-        eyebrow={eyebrow || title}
-        {...heroCtaProps}
-        {...heroCtaSecondaryProps}
-        {...heroBackgroundImageProps}
-        grants={featuredGrants}
-      />
-    )
+    if (featuredEvent) {
+      heroComponent = (
+        <EventsHero
+          event={featuredEvent}
+          {...heroBackgroundImageProps}
+        />
+      )
+    } else if (heroStyle === 'protocol') {
+      heroComponent = (
+        <ProtocolHero
+          header={headline}
+          eyebrow={eyebrow || title}
+          {...heroCtaProps}
+          {...heroCtaSecondaryProps}
+          {...heroBackgroundImageProps}
+          protocolInfo={protocolInfo}
+        />
+      )
+    } else {
+      heroComponent = (
+        <PageHero
+          header={headline}
+          eyebrow={eyebrow || title}
+          {...heroCtaProps}
+          {...heroCtaSecondaryProps}
+          {...heroBackgroundImageProps}
+          grants={featuredGrants}
+        />
+      )
+    }
   }
 
   let pageBannerComponent
