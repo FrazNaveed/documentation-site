@@ -25,23 +25,21 @@ export type ProtocolHeroProps = {
 }
 
 const formatNumber = (number: number, lang: Locale, isCurrency = false) => {
+  const formatterBaseOptions = {
+    notation: 'compact' as const,
+    compactDisplay: 'short' as const,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 1,
+  }
   if (isCurrency) {
     const formatter = new Intl.NumberFormat(lang, {
       style: 'currency',
       currency: 'USD',
-      notation: 'compact',
-      compactDisplay: 'short',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 1,
+      ...formatterBaseOptions,
     })
     return formatter.format(number)
   }
-  const compactFormatter = new Intl.NumberFormat(lang, {
-    notation: 'compact',
-    compactDisplay: 'short',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 1,
-  })
+  const compactFormatter = new Intl.NumberFormat(lang, formatterBaseOptions)
   return compactFormatter.format(number)
 }
 
