@@ -1135,13 +1135,6 @@ export interface PageHero {
   buttonSecondaryText?: string | null;
   buttonSecondaryLink?: string | null;
   backgroundImage?: (number | null) | Media;
-  protocolInfo?: PageHeroProtocolInfo;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "PageHeroProtocolInfo".
- */
-export interface PageHeroProtocolInfo {
   logo?: (number | null) | Media;
   text?: {
     root: {
@@ -1158,6 +1151,13 @@ export interface PageHeroProtocolInfo {
     };
     [k: string]: unknown;
   } | null;
+  protocolInfo?: PageHeroProtocolInfo;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PageHeroProtocolInfo".
+ */
+export interface PageHeroProtocolInfo {
   providers?: number | null;
   feeds?: number | null;
   stakeTokens?: number | null;

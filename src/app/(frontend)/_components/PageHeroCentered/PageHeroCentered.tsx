@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import cx from 'classnames'
-import type { PageHeroProtocolInfo, Media } from '@/payload-types'
+import type { PageHeroProtocolInfo, PageHero, Media } from '@/payload-types'
 import Button from 'src/app/(frontend)/_components/Button'
 import FlareLogo from 'src/app/(frontend)/_components/svgs/FlareLogo'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import type { Locale } from 'src/app/i18n-config'
-import styles from './ProtocolHero.module.scss'
+import styles from './PageHeroCentered.module.scss'
 
-export type ProtocolHeroProps = {
+export type PageHeroCenteredProps = {
   backgroundImage?: Media
   header?: string | null
   eyebrow?: string | null
@@ -20,6 +20,8 @@ export type ProtocolHeroProps = {
     text: string
     link: string
   }
+  logo?: PageHero['logo']
+  text?: PageHero['text']
   protocolInfo?: PageHeroProtocolInfo
   lang: Locale
 }
@@ -43,17 +45,17 @@ const formatNumber = (number: number, lang: Locale, isCurrency = false) => {
   return compactFormatter.format(number)
 }
 
-export default function ProtocolHero({
+export default function PageHeroCentered({
   backgroundImage,
   header,
   eyebrow,
   cta,
   ctaSecondary,
+  logo,
+  text,
   protocolInfo,
   lang,
-}: ProtocolHeroProps) {
-  const logo = protocolInfo?.logo
-  const text = protocolInfo?.text
+}: PageHeroCenteredProps) {
   let hasProtocolInfo
   let protocolMarkup
   if (protocolInfo) {

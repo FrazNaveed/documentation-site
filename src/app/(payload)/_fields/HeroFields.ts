@@ -44,19 +44,29 @@ export const HeroFields: Field[] = [
         relationTo: 'media',
       },
       {
+        name: 'logo',
+        type: 'relationship',
+        relationTo: 'media',
+        admin: {
+          condition: (data, siblingData, { user }) => {
+            return siblingData.style === 'protocol'
+          },
+        },
+      },
+      {
+        name: 'text',
+        type: 'richText',
+        admin: {
+          condition: (data, siblingData, { user }) => {
+            return siblingData.style === 'protocol'
+          },
+        },
+      },
+      {
         name: 'protocolInfo',
-      interfaceName: 'PageHeroProtocolInfo',
+        interfaceName: 'PageHeroProtocolInfo',
         type: 'group',
         fields: [
-          {
-            name: 'logo',
-            type: 'relationship',
-            relationTo: 'media',
-          },
-          {
-            name: 'text',
-            type: 'richText',
-          },
           {
             name: 'providers',
             label: 'Provider Count',

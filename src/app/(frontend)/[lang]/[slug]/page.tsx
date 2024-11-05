@@ -10,7 +10,7 @@ import type { Locale } from 'src/app/i18n-config'
 import ApplicationProcessBlock from 'src/app/(frontend)/_components/ApplicationProcessBlock'
 import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
-import ProtocolHero from 'src/app/(frontend)/_components/ProtocolHero'
+import PageHeroCentered from 'src/app/(frontend)/_components/PageHeroCentered'
 import DevGuideGrid from 'src/app/(frontend)/_components/DevGuideGrid'
 import EventsHero from 'src/app/(frontend)/_components/EventsHero'
 import EventsWidget from 'src/app/(frontend)/_components/EventsWidget'
@@ -91,6 +91,8 @@ export default async function Page({ params }: PageProps) {
       buttonSecondaryText,
       buttonSecondaryLink,
       backgroundImage,
+      logo: heroLogo,
+      text: heroText,
       protocolInfo,
     } = hero
     const heroCtaProps = (buttonText && buttonLink) ? { cta: { text: buttonText, link: buttonLink } } : {}
@@ -111,12 +113,14 @@ export default async function Page({ params }: PageProps) {
       )
     } else if (heroStyle === 'protocol') {
       heroComponent = (
-        <ProtocolHero
+        <PageHeroCentered
           header={headline}
           eyebrow={eyebrow || title}
           {...heroCtaProps}
           {...heroCtaSecondaryProps}
           {...heroBackgroundImageProps}
+          logo={heroLogo}
+          text={heroText}
           protocolInfo={protocolInfo}
           lang={lang}
         />
