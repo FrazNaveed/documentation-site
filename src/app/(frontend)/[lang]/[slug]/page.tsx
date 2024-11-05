@@ -7,6 +7,7 @@ import { getFeaturedEvent } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
 import type { Person, Product, Wallet } from '@/payload-types'
 import type { Locale } from 'src/app/i18n-config'
+import ApplicationProcessBlock from 'src/app/(frontend)/_components/ApplicationProcessBlock'
 import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
 import DevGuideGrid from 'src/app/(frontend)/_components/DevGuideGrid'
@@ -17,6 +18,7 @@ import JumpLinkAnchor from 'src/app/(frontend)/_components/SideNav/JumpLinkAncho
 import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
 import EventsList from 'src/app/(frontend)/_components/EventsList'
 import Columns from 'src/app/(frontend)/_components/Columns'
+import RegionalLinkGrid from 'src/app/(frontend)/_components/RegionalLinkGrid'
 import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
@@ -32,6 +34,8 @@ import LinkBand from '../../_components/LinkBand'
 import TallCta from '../../_components/TallCTA/TallCta'
 import TwoColumnBlock from '../../_components/TwoColumnBlock'
 import getCollectionPath from '../../_utils/getCollectionPath'
+import PastFeaturedGrantsGridBlock from '../../_components/PastFeaturedGrantsGridBlock'
+import OfficialChannelsBlock from '../../_components/OfficialChannelsBlock'
 
 export const dynamic = 'force-dynamic'
 
@@ -259,16 +263,32 @@ export default async function Page({ params }: PageProps) {
       {(components && components.length > 0) && (
         <div className={styles.grid}>
           <SideNav components={components} />
-          <div className={styles.mainContent}>
+          <div className={cx(styles.mainContent, { [styles.mainContent__fullWidth]: pageTemplate === 'fullWidth' })}>
             {components.map((component) => {
               let componentToRender
               switch (component?.blockType) {
+                case 'applicationProcess':
+                  componentToRender = <ApplicationProcessBlock key={component.id} {...component} />
+                  break
+
                 case 'columns':
                   componentToRender = <Columns key={component.id} {...component} />
                   break
 
                 case 'imageTextGrid':
-                  componentToRender = <ImageTextGridBlock {...component} />
+                  componentToRender = <ImageTextGridBlock key={component.id} {...component} />
+                  break
+
+                case 'officialChannels':
+                  componentToRender = <OfficialChannelsBlock key={component.id} {...component} />
+                  break
+
+                case 'pastFeaturedGrantsGrid':
+                  componentToRender = <PastFeaturedGrantsGridBlock key={component.id} {...component} />
+                  break
+
+                case 'regionalLinkGrid':
+                  componentToRender = <RegionalLinkGrid key={component.id} {...component} />
                   break
 
                 case 'richTextBlock':

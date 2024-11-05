@@ -1,0 +1,163 @@
+@use "@aleph/nought-sass-mixins/sass/utils";
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "../../_styles/mixins" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/typography" as *;
+
+.gridTitle {
+  @include sectionHeaderFont;
+  @include sectionHeaderMargin;
+}
+
+.grantsGrid {
+  @include utils.listReset;
+  @include columns(1, -1);
+  @include grid(10);
+
+  row-gap: $grid-column-gap-flare;
+
+  @include media-breakpoint-down(lg) {
+    @include grid(6, false);
+  }
+
+  @include media-breakpoint-down(md) {
+    @include grid(4, false);
+  }
+
+  p {
+    @include paragraphXSmFont;
+  }
+}
+
+.grant {
+  display: flex;
+  flex-direction: column;
+  padding: to-rem($spacing-medium) to-rem($spacing-standard)
+    to-rem($spacing-standard);
+  border: 1px solid $gray-100;
+  border-radius: 6px;
+  grid-column: span 5;
+
+  @include media-breakpoint-down(lg) {
+    grid-column: span 3;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-bottom: to-rem($spacing-x-large);
+    grid-column: span 4;
+  }
+
+  &Header {
+    display: flex;
+    align-items: center;
+    margin-bottom: to-rem($spacing-small);
+    column-gap: to-rem($spacing-small);
+  }
+
+  &Description {
+    margin-bottom: to-rem($spacing-xx-large);
+
+    @include media-breakpoint-down(md) {
+      margin-bottom: to-rem($spacing-standard);
+    }
+  }
+
+  &LogoWrap {
+    width: 90px;
+    height: auto;
+  }
+
+  &Footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    row-gap: to-rem($spacing-small);
+
+    a {
+      @include fontStyle(14, 20);
+
+      svg {
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  &FooterTags {
+    display: flex;
+    align-items: center;
+  }
+
+  &CategoryWrap {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: to-rem($spacing-x-small);
+  }
+
+  &CategoryTag {
+    @include label;
+
+    flex-shrink: 0;
+    margin-right: to-rem(12px);
+    margin-bottom: 0;
+    padding: to-rem(6px) to-rem(12px);
+    border: 1px solid $gray;
+    border-radius: 10px;
+    color: $pink-900;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: to-rem(1.2px);
+    line-height: to-rem(16px);
+    white-space: nowrap;
+
+    &:last-child {
+      margin-right: to-rem($spacing-x-small);
+    }
+  }
+}
+
+.name {
+  @include h5;
+
+  margin-bottom: 0;
+}
+
+.flag {
+  &Wrap {
+    position: relative;
+    flex-shrink: 0;
+    width: to-rem(28px);
+    height: to-rem(28px);
+    margin-right: to-rem($spacing-x-small);
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  &Icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.buttonWrap {
+  @include columns(1, -1);
+
+  // margin-top: to-rem($spacing-standard);
+  text-align: center;
+}
+
+.button {
+  @include utils.buttonReset;
+  @include bodyBase;
+  @include link;
+}
+
+.collapsed {
+  display: none;
+}

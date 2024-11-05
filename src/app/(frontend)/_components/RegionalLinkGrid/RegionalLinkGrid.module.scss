@@ -1,0 +1,101 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.grid {
+  @include grid;
+}
+
+.intro {
+  @include columns(1, 11);
+  @include sectionHeaderMargin;
+
+  margin-bottom: to-rem($spacing-small);
+
+  @include media-breakpoint-down(lg) {
+    @include columns(1, 8);
+  }
+}
+
+.title {
+  @include sectionHeaderFont;
+
+  margin-bottom: to-rem($spacing-x-small);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-medium $grid-column-gap;
+}
+
+.link {
+  flex: 0 0 calc(25% - ($grid-column-gap * 3 / 4));
+  width: calc(25% - ($grid-column-gap * 3 / 4));
+
+  @include media-breakpoint-down(lg) {
+    flex: 0 0 calc(33.3% - ($grid-column-gap * 2 / 3));
+    width: calc(33.3% - ($grid-column-gap * 2 / 3));
+  }
+
+  @include media-breakpoint-down(md) {
+    flex: 0 0 calc(50% - ($grid-column-gap / 2));
+    width: calc(50% - ($grid-column-gap / 2));
+  }
+}
+
+.linkInner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: $spacing-x-small $spacing-standard $spacing-x-small $spacing-small;
+  gap: to-rem(12px);
+
+  @include media-breakpoint-down(md) {
+    padding: $spacing-x-small;
+  }
+}
+
+.flag {
+  position: relative;
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  @include media-breakpoint-down(md) {
+    width: 39px;
+    height: 39px;
+  }
+
+  &_Icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.names {
+  overflow-wrap: anywhere;
+}
+
+.name,
+.translatedName {
+  @include paragraphXSmFont;
+
+  margin-bottom: 0;
+}
+
+.arrow {
+  width: 0.7em;
+  margin-left: auto;
+}

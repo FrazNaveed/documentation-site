@@ -38,12 +38,10 @@ export const TableDrawersBlock: Block = {
           name: 'name',
           type: 'text',
           required: true,
-          localized: true,
         },
         {
           name: 'rows',
           type: 'array',
-          localized: true,
           interfaceName: 'Rows',
           labels: {
             singular: 'Row',
@@ -53,21 +51,18 @@ export const TableDrawersBlock: Block = {
             {
               name: 'rowLabel',
               type: 'text',
-              localized: true,
             },
             {
               name: 'column1Data',
               label: 'Column 1 Data',
               type: 'richText',
               required: true,
-              localized: true,
             },
             {
               name: 'column2Data',
               label: 'Column 2 Data',
               type: 'richText',
               required: true,
-              localized: true,
             },
           ],
           admin: {

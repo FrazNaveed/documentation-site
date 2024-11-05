@@ -1,0 +1,291 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+$step-colors: (
+  1: $pink-100,
+  2: $pink-200,
+  3: $pink-300,
+  4: $pink-400,
+  5: $pink-500,
+  6: $pink-600,
+  7: $pink-700,
+);
+$step-widths: (
+  1: 10.3%,
+  2: 9.4%,
+  3: 7.9%,
+  4: 19.5%,
+  5: 4.3%,
+  6: 45.2%,
+  7: 3.4%,
+);
+$steps-count: list.length(map.keys($step-widths));
+$step-height: 68px;
+$step-height-tablet: 39px;
+$step-label-height: $spacing-x-large;
+$step-label-height-tablet: $spacing-large;
+$step-border: 1px solid #000;
+$step-label-gap: 4px;
+$step-label-edge-offset: 8px;
+$step-label-text-offset: $step-label-edge-offset + $spacing-small;
+$graphic-section-width-mobile: 70px;
+
+.title {
+  @include sectionHeaderFont;
+  @include sectionHeaderMargin;
+}
+
+.graphic {
+  display: flex;
+
+  @include media-breakpoint-up(md) {
+    padding-top: $step-label-height-tablet;
+    padding-bottom: $step-label-height-tablet;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding-top: $step-label-height;
+    padding-bottom: $step-label-height;
+  }
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+    height: 280px;
+  }
+
+  &_Section {
+    position: relative;
+    border-radius: 10px;
+
+    @include media-breakpoint-up(md) {
+      height: $step-height-tablet;
+    }
+
+    @include media-breakpoint-up(lg) {
+      height: $step-height;
+    }
+
+    @include media-breakpoint-down(md) {
+      width: $graphic-section-width-mobile;
+
+      &::before {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: $step-label-edge-offset;
+        width: 100%;
+        height: 1px;
+        background-color: #000;
+        content: "";
+      }
+
+      &:last-child::before {
+        top: auto;
+        bottom: 0;
+      }
+    }
+
+    @for $i from 1 through $steps-count {
+      &:nth-child(#{$i}) {
+        display: flex;
+        flex: 0 0 map.get($step-widths, $i);
+        align-items: center;
+        justify-content: center;
+        background-color: map.get($step-colors, $i);
+
+        @include media-breakpoint-up(md) {
+          width: map.get($step-widths, $i);
+        }
+
+        @include media-breakpoint-down(md) {
+          height: map.get($step-widths, $i);
+        }
+      }
+    }
+
+    @for $i from 1 through $steps-count {
+      // Allow graphic labels to extend through width of next section
+      // Except for 5 and 7 which can clash since 7 goes backwards in its section - allow those to go halfway through adjacent width
+      &:nth-child(#{$i}) .graphic_SectionLabel {
+        $current-width: map.get($step-widths, $i);
+        $next-width: map.get($step-widths, $i + 1);
+        $previous-width: map.get($step-widths, $i - 1);
+        $adjacent-width: $next-width;
+
+        @if $i == $steps-count - 2 {
+          $adjacent-width: math.div($next-width, 2);
+        } @else if $i == $steps-count {
+          $adjacent-width: math.div($previous-width, 2);
+        }
+
+        $width-to-add: math.div($adjacent-width, $current-width) * 100%;
+
+        @include media-breakpoint-up(md) {
+          max-width: calc(100% + $width-to-add - $step-label-gap);
+        }
+      }
+    }
+  }
+
+  &_SectionLabel {
+    @include labelS;
+
+    display: flex;
+    position: absolute;
+    width: max-content;
+    margin-bottom: 0;
+    color: #000;
+    z-index: 1;
+
+    @include media-breakpoint-up(md) {
+      left: 0;
+      /* stylelint-disable-next-line prettier/prettier */
+      height: $step-height-tablet + $step-label-height-tablet - $step-label-edge-offset;
+      padding-left: $step-label-gap;
+      border-left: $step-border;
+
+      .graphic_Section:nth-child(odd) & {
+        bottom: $step-label-edge-offset;
+      }
+
+      .graphic_Section:nth-child(even) & {
+        top: $step-label-edge-offset;
+        align-items: end;
+      }
+
+      .graphic_Section:last-child & {
+        right: 0;
+        left: auto;
+        padding-right: $step-label-gap;
+        padding-left: 0;
+        border-right: $step-border;
+        border-left: 0;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      height: $step-height + $step-label-height - $step-label-edge-offset;
+    }
+
+    @include media-breakpoint-down(md) {
+      top: 0;
+      right: 0;
+      /* stylelint-disable-next-line prettier/prettier */
+      max-width: calc(100vw - ($container-padding-md * 2) - $graphic-section-width-mobile - $step-label-text-offset);
+      transform: translate(calc(100% + $step-label-text-offset), -50%);
+
+      .graphic_Section:last-child & {
+        top: auto;
+        bottom: 0;
+        transform: translate(calc(100% + $step-label-text-offset), 50%);
+      }
+    }
+
+    /* stylelint-disable-next-line media-feature-range-notation */
+    @media (min-width: $breakpoint-md) and (max-width: 830.98px) {
+      font-size: to-rem(10px);
+    }
+  }
+
+  &_SectionLabelInner {
+    display: flex;
+    column-gap: $step-label-gap;
+  }
+
+  &_Text {
+    @include paragraphXSmFont;
+
+    color: $white;
+    text-align: center;
+    z-index: 2;
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+}
+
+.steps {
+  margin-top: $spacing-4x-large;
+
+  @include grid(10);
+
+  @include media-breakpoint-down(lg) {
+    @include grid(6, false);
+  }
+
+  @include media-breakpoint-down(md) {
+    @include grid(4, false);
+
+    margin-top: $spacing-large;
+  }
+}
+
+.stepCol {
+  &__one {
+    @include columns(1, 5);
+  }
+
+  &__two {
+    @include columns(6, 10);
+  }
+
+  @include media-breakpoint-down(lg) {
+    @include columns(1, 6);
+  }
+}
+
+.step {
+  margin-bottom: $spacing-standard;
+  padding-bottom: $spacing-standard;
+  border-bottom: 1px solid $gray-50;
+
+  @include media-breakpoint-up(lg) {
+    &:last-child {
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    .stepCol__two &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: $spacing-small;
+    padding-bottom: $spacing-small;
+  }
+
+  &_Title {
+    @include bodyBase;
+
+    display: flex;
+    align-items: center;
+    margin-bottom: to-rem(4px);
+    gap: to-rem($spacing-x-small);
+  }
+
+  &_TitleColor {
+    width: to-rem($spacing-small);
+    height: 16px;
+    border-radius: 2px;
+
+    @for $i from 1 through $steps-count {
+      &__#{$i} {
+        background-color: map.get($step-colors, $i);
+      }
+    }
+  }
+
+  &_Descrip {
+    @include paragraphXSmFont;
+  }
+}

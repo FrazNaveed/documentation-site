@@ -19,6 +19,7 @@ export const DevHub: Field[] = [
       {
         name: 'linkBand',
         type: 'group',
+        localized: true,
         label: 'Link Band',
         fields: [
           {

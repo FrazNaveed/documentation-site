@@ -395,6 +395,33 @@ export type PointsList = {
   };
   id?: string | null;
 }[];
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ApplicationProcessSteps".
+ */
+export type ApplicationProcessSteps =
+  | {
+      title: string;
+      description?: {
+        root: {
+          type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
+        [k: string]: unknown;
+      } | null;
+      graphicTitle?: string | null;
+      graphicText?: string | null;
+      id?: string | null;
+    }[]
+  | null;
 
 export interface Config {
   auth: {
@@ -414,6 +441,7 @@ export interface Config {
     developerGuides: DeveloperGuide;
     developerGuideTags: DeveloperGuideTag;
     products: Product;
+    'social-links': SocialLink;
     wallets: Wallet;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -1063,7 +1091,20 @@ export interface Page {
   teamGrid?: TeamGrid;
   walletsGrid?: WalletsGrid;
   components?:
-    | (Columns | Image | ImageTextGridBlock | RichTextBlock | Stats | TableWithDrawers | ITalkingPoints | TwoColumns)[]
+    | (
+        | Columns
+        | Image
+        | ImageTextGridBlock
+        | RichTextBlock
+        | PastFeaturedGrantsGridBlock
+        | Stats
+        | TableWithDrawers
+        | ITalkingPoints
+        | TwoColumns
+        | ApplicationProcess
+        | OfficialChannelsBlock
+        | IRegionalLinkGrid
+      )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
   pageFooterCTA?: boolean | null;
@@ -1075,7 +1116,7 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
   };
-  pageTemplate: 'default' | 'devHub' | 'events' | 'team' | 'wallets' | 'grants';
+  pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets' | 'grants';
   updatedAt: string;
   createdAt: string;
 }
@@ -1284,6 +1325,19 @@ export interface RichTextBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PastFeaturedGrantsGridBlock".
+ */
+export interface PastFeaturedGrantsGridBlock {
+  gridTitle?: string | null;
+  grantsGrid?: (number | Grant)[] | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pastFeaturedGrantsGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "Stats".
  */
 export interface Stats {
@@ -1389,6 +1443,343 @@ export interface TwoColumns {
   id?: string | null;
   blockName?: string | null;
   blockType: 'twoColumn';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ApplicationProcess".
+ */
+export interface ApplicationProcess {
+  title?: string | null;
+  steps?: ApplicationProcessSteps;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'applicationProcess';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OfficialChannelsBlock".
+ */
+export interface OfficialChannelsBlock {
+  title?: string | null;
+  text?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  channels?: (number | SocialLink)[] | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'officialChannels';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-links".
+ */
+export interface SocialLink {
+  id: number;
+  title: string;
+  url: string;
+  icon?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IRegionalLinkGrid".
+ */
+export interface IRegionalLinkGrid {
+  title?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  links?:
+    | {
+        link: string;
+        name: string;
+        translatedName?: string | null;
+        country?:
+          | (
+              | 'AF'
+              | 'AX'
+              | 'AL'
+              | 'DZ'
+              | 'AS'
+              | 'AD'
+              | 'AO'
+              | 'AI'
+              | 'AQ'
+              | 'AG'
+              | 'AR'
+              | 'AM'
+              | 'AW'
+              | 'AU'
+              | 'AT'
+              | 'AZ'
+              | 'BS'
+              | 'BH'
+              | 'BD'
+              | 'BB'
+              | 'BY'
+              | 'BE'
+              | 'BZ'
+              | 'BJ'
+              | 'BM'
+              | 'BT'
+              | 'BO'
+              | 'BQ'
+              | 'BA'
+              | 'BW'
+              | 'BV'
+              | 'BR'
+              | 'IO'
+              | 'BN'
+              | 'BG'
+              | 'BF'
+              | 'BI'
+              | 'CV'
+              | 'KH'
+              | 'CM'
+              | 'CA'
+              | 'KY'
+              | 'CF'
+              | 'TD'
+              | 'CL'
+              | 'CN'
+              | 'CX'
+              | 'CC'
+              | 'CO'
+              | 'KM'
+              | 'CG'
+              | 'CD'
+              | 'CK'
+              | 'CR'
+              | 'HR'
+              | 'CU'
+              | 'CW'
+              | 'CY'
+              | 'CZ'
+              | 'CI'
+              | 'DK'
+              | 'DJ'
+              | 'DM'
+              | 'DO'
+              | 'EC'
+              | 'EG'
+              | 'SV'
+              | 'GQ'
+              | 'ER'
+              | 'EE'
+              | 'SZ'
+              | 'ET'
+              | 'FK'
+              | 'FO'
+              | 'FJ'
+              | 'FI'
+              | 'FR'
+              | 'GF'
+              | 'PF'
+              | 'TF'
+              | 'GA'
+              | 'GM'
+              | 'GE'
+              | 'DE'
+              | 'GH'
+              | 'GI'
+              | 'GR'
+              | 'GL'
+              | 'GD'
+              | 'GP'
+              | 'GU'
+              | 'GT'
+              | 'GG'
+              | 'GN'
+              | 'GW'
+              | 'GY'
+              | 'HT'
+              | 'HM'
+              | 'VA'
+              | 'HN'
+              | 'HK'
+              | 'HU'
+              | 'IS'
+              | 'IN'
+              | 'ID'
+              | 'IR'
+              | 'IQ'
+              | 'IE'
+              | 'IM'
+              | 'IL'
+              | 'IT'
+              | 'JM'
+              | 'JP'
+              | 'JE'
+              | 'JO'
+              | 'KZ'
+              | 'KE'
+              | 'KI'
+              | 'KP'
+              | 'KR'
+              | 'KW'
+              | 'KG'
+              | 'LA'
+              | 'LV'
+              | 'LB'
+              | 'LS'
+              | 'LR'
+              | 'LY'
+              | 'LI'
+              | 'LT'
+              | 'LU'
+              | 'MO'
+              | 'MG'
+              | 'MW'
+              | 'MY'
+              | 'MV'
+              | 'ML'
+              | 'MT'
+              | 'MH'
+              | 'MQ'
+              | 'MR'
+              | 'MU'
+              | 'YT'
+              | 'MX'
+              | 'FM'
+              | 'MD'
+              | 'MC'
+              | 'MN'
+              | 'ME'
+              | 'MS'
+              | 'MA'
+              | 'MZ'
+              | 'MM'
+              | 'NA'
+              | 'NR'
+              | 'NP'
+              | 'NL'
+              | 'NC'
+              | 'NZ'
+              | 'NI'
+              | 'NE'
+              | 'NG'
+              | 'NU'
+              | 'NF'
+              | 'MK'
+              | 'MP'
+              | 'NO'
+              | 'OM'
+              | 'PK'
+              | 'PW'
+              | 'PS'
+              | 'PA'
+              | 'PG'
+              | 'PY'
+              | 'PE'
+              | 'PH'
+              | 'PN'
+              | 'PL'
+              | 'PT'
+              | 'PR'
+              | 'QA'
+              | 'RO'
+              | 'RU'
+              | 'RW'
+              | 'RE'
+              | 'BL'
+              | 'SH'
+              | 'KN'
+              | 'LC'
+              | 'MF'
+              | 'PM'
+              | 'VC'
+              | 'WS'
+              | 'SM'
+              | 'ST'
+              | 'SA'
+              | 'SN'
+              | 'RS'
+              | 'SC'
+              | 'SL'
+              | 'SG'
+              | 'SX'
+              | 'SK'
+              | 'SI'
+              | 'SB'
+              | 'SO'
+              | 'ZA'
+              | 'GS'
+              | 'SS'
+              | 'ES'
+              | 'LK'
+              | 'SD'
+              | 'SR'
+              | 'SJ'
+              | 'SE'
+              | 'CH'
+              | 'SY'
+              | 'TW'
+              | 'TJ'
+              | 'TZ'
+              | 'TH'
+              | 'TL'
+              | 'TG'
+              | 'TK'
+              | 'TO'
+              | 'TT'
+              | 'TN'
+              | 'TR'
+              | 'TM'
+              | 'TC'
+              | 'TV'
+              | 'UG'
+              | 'UA'
+              | 'AE'
+              | 'GB'
+              | 'US'
+              | 'UY'
+              | 'UZ'
+              | 'VU'
+              | 'VE'
+              | 'VN'
+              | 'EH'
+              | 'YE'
+              | 'ZM'
+              | 'ZW'
+            )
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'regionalLinkGrid';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1558,6 +1949,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'products';
         value: number | Product;
+      } | null)
+    | ({
+        relationTo: 'social-links';
+        value: number | SocialLink;
       } | null)
     | ({
         relationTo: 'wallets';
