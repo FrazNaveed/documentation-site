@@ -46,7 +46,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "pages_hero_grants_info_top_categories_locale_idx" ON "pages_hero_grants_info_top_categories" USING btree ("_locale");
   CREATE INDEX IF NOT EXISTS "pages_hero_grants_info_top_categories_type_idx" ON "pages_hero_grants_info_top_categories" USING btree ("type_id");
   ALTER TABLE "public"."pages_locales" ALTER COLUMN "page_template" SET DATA TYPE text;
-  DROP TYPE "public"."enum_pages_page_template";
+  DROP TYPE "public"."enum_pages_page_template" CASCADE;
   CREATE TYPE "public"."enum_pages_page_template" AS ENUM('default', 'devHub', 'events', 'fullWidth', 'team', 'wallets');
   ALTER TABLE "public"."pages_locales" ALTER COLUMN "page_template" SET DATA TYPE "public"."enum_pages_page_template" USING "page_template"::"public"."enum_pages_page_template";`)
 }
