@@ -210,5 +210,24 @@ export const Pages: CollectionConfig = {
       }
     },
     ...PageFooterCTA,
+    {
+      name: 'pageTemplate',
+      type: 'select',
+      label: 'Page Template',
+      required: true,
+      defaultValue: 'default',
+      localized: true,
+      options: [
+        { label: 'Default', value: 'default', },
+        { label: 'Dev Hub ', value: 'devHub', },
+        { label: 'Events ', value: 'events', },
+        { label: 'Full-width', value: 'fullWidth', },
+        { label: 'Team', value: 'team' },
+        { label: 'Wallets', value: 'wallets', },
+      ],
+      admin: {
+        position: 'sidebar',
+      },
+    },
   ],
 }

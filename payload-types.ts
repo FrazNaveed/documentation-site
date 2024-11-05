@@ -1117,6 +1117,7 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
   };
+  pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets';
   updatedAt: string;
   createdAt: string;
 }
