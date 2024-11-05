@@ -59,6 +59,8 @@ export default async function Page({ params }: PageProps) {
     notFound()
   }
 
+  const pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets' | undefined = undefined
+
   const {
     title,
     hero,
@@ -66,7 +68,6 @@ export default async function Page({ params }: PageProps) {
     components,
     pageFooterCTA,
     pageFooterCTAButton,
-    pageTemplate,
     walletsGrid,
     relatedNewsType,
     previousPage,
