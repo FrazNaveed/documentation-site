@@ -45,7 +45,7 @@ export const HeroFields: Field[] = [
       },
       {
         name: 'protocolInfo',
-        interfaceName: 'PageHeroProtocolInfo',
+      interfaceName: 'PageHeroProtocolInfo',
         type: 'group',
         fields: [
           {
@@ -59,10 +59,12 @@ export const HeroFields: Field[] = [
           },
           {
             name: 'providers',
+            label: 'Provider Count',
             type: 'number',
           },
           {
             name: 'feeds',
+            label: 'Feed Count',
             type: 'number',
           },
           {
@@ -71,6 +73,7 @@ export const HeroFields: Field[] = [
           },
           {
             name: 'stakeValue',
+            label: 'Stake Value in USD',
             type: 'number',
           },
           {
