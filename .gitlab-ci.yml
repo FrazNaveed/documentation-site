@@ -84,6 +84,6 @@ release-ct:
   - test-ct
   script:
   - crane auth login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-  - crane copy ${CI_REGISTRY_IMAGE}/webpage-aleph:$CI_PIPELINE_ID ${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CTS_BUILD_TAG
+  - crane copy ${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CI_PIPELINE_ID ${CI_REGISTRY_IMAGE}/webpage-aleph:$CTS_BUILD_TAG
   rules: !reference [.rules, versiontag]
   
