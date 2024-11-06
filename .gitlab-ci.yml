@@ -41,12 +41,12 @@ build-ct:
     name: gcr.io/kaniko-project/executor:v1.23.2-debug
     entrypoint: [""]
   script:
-    - /kaniko/executor
-      --context "${CI_PROJECT_DIR}"
-      --dockerfile "${CI_PROJECT_DIR}/dockerfile"
-      --destination "${CI_REGISTRY_IMAGE}/webpage-aleph:$CTS_BUILD_TAG"
-      --cache=true
-      --cache-repo "${CI_REGISTRY_IMAGE}/cache"
+  - /kaniko/executor
+    --context "${CI_PROJECT_DIR}"
+    --dockerfile "${CI_PROJECT_DIR}/dockerfile"
+    --destination "${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CI_COMMIT_SHORT_SHA"
+    --cache=true
+    --cache-repo "${CI_REGISTRY_IMAGE}/cache"
   rules: !reference [.rules, versiontag]
 
 test-ct:
@@ -62,7 +62,7 @@ test-ct:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: flarepayload
   - alias: nextjspayload
-    name: ${CI_REGISTRY_IMAGE}/webpage-aleph:$CTS_BUILD_TAG
+    name: ${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CI_COMMIT_SHORT_SHA
     variables:
       POSTGRES_URL: postgres://postgres:postgres@postgres:5432/flarepayload
       PAYLOAD_SECRET: secret
@@ -73,3 +73,16 @@ test-ct:
   - apk add --no-cache --quiet --no-progress curl
   - curl --retry 90 --retry-all-errors --retry-delay 10 --retry-max-time 900 http://nextjspayload:3000
   rules: !reference [.rules, versiontag]
+
+release-ct:
+  stage: release
+  image:
+    name: gcr.io/go-containerregistry/crane:debug
+    entrypoint: [""]
+  needs:
+  - test-ct
+  script:
+  - crane auth login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  - crane copy ${CI_REGISTRY_IMAGE}/webpage-aleph:$CI_COMMIT_SHORT_SHA ${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CTS_BUILD_TAG
+  rules: !reference [.rules, versiontag]
+  
