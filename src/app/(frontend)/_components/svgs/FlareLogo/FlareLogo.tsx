@@ -1,5 +1,5 @@
-const FlareLogo = (): React.JSX.Element => (
-  <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
+const FlareLogo = ({ className }: { className?: string }): React.JSX.Element => (
+  <svg className={className} width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
     <g clipPath='url(#clip0_384_3572)'>
       <path d='M13.4589 13.4583C16.4734 10.4438 16.4734 5.55624 13.4589 2.5417C10.4443 -0.472834 5.55682 -0.472834 2.54228 2.5417C-0.472252 5.55624 -0.472252 10.4438 2.54228 13.4583C5.55682 16.4728 10.4443 16.4728 13.4589 13.4583Z' fill='#E62058' />
       <path d='M10.0628 7.33456L6.39889 7.33179C5.40003 7.33179 4.56927 8.12157 4.54324 9.13704C4.5424 9.16418 4.56484 9.18661 4.59197 9.18661L8.25593 9.18883V9.18938C9.25479 9.18938 10.0856 8.3996 10.1116 7.38412C10.1124 7.35699 10.09 7.33456 10.0628 7.33456Z' fill='white' />

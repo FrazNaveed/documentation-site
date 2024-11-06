@@ -34,14 +34,15 @@ import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import { ApplicationProcess } from '../_blocks/ApplicationProcessBlock'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
 import { DevHub } from '../_fields/DevHub'
-import { Grants } from '../_fields/Grants'
 import { RegionalLinkGrid } from '../_blocks/RegionalLinkGridBlock'
 import { TeamGrid } from '../_fields/Team'
 import { WalletsGrid } from '../_fields/WalletsGrid'
 import { TalkingPoints } from '../_blocks/TalkingPointsBlock'
 import { PastFeaturedGrantsGridBlock } from '../_blocks/PastFeaturedGrantsGridBlock'
 import { TwoColumnBlock } from '../_blocks/TwoColumnBlock'
+import { TwoColumnCtaBlock } from '../_blocks/TwoColumnCtaBlock'
 import { OfficialChannelsBlock } from '../_blocks/OfficialChannelsBlock'
+import { FlareDropDatesBlock } from '../_blocks/FlareDropDatesBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -166,7 +167,6 @@ export const Pages: CollectionConfig = {
       },
     },
     ...DevHub,
-    ...Grants,
     ...TeamGrid,
     ...WalletsGrid,
     {
@@ -185,6 +185,8 @@ export const Pages: CollectionConfig = {
         ApplicationProcess,
         OfficialChannelsBlock,
         RegionalLinkGrid,
+        FlareDropDatesBlock,
+        TwoColumnCtaBlock,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
@@ -222,7 +224,6 @@ export const Pages: CollectionConfig = {
         { label: 'Full-width', value: 'fullWidth', },
         { label: 'Team', value: 'team' },
         { label: 'Wallets', value: 'wallets', },
-        { label: 'Grants', value: 'grants', },
       ],
       admin: {
         position: 'sidebar',
