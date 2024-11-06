@@ -4,12 +4,15 @@ import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import type { Columns as TColumns } from 'payload-types'
 import styles from './Columns.module.scss'
+import inlineBlockMarginStyles from '../../_utils/inlineBlockMarginStyles'
 
 export default function Columns({
   layout,
   alignColumns,
   leftColumnBlock: leftColumn,
   rightColumnBlock: rightColumn,
+  standardTopMargin,
+  standardBottomMargin,
   // createSideNavLink,
   // linkText,
 }: TColumns) {
@@ -43,7 +46,12 @@ export default function Columns({
     return null
   }
   return (
-    <div className={cx(styles.columns, alignColumns && styles.columns__topAligned)}>
+    <div className={cx(
+      styles.columns,
+      alignColumns && styles.columns__topAligned,
+      inlineBlockMarginStyles(standardTopMargin, standardBottomMargin),
+    )}
+    >
       <div className={cx(styles.colLeft, styles[`colLeft__${layout}`])}>
         {blockMarkup(leftColumn)}
       </div>
