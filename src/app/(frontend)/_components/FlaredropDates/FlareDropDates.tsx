@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import styles from './FlareDropDates.module.scss'
 import { toShortBillion } from '../../_utils/numberFormats'
+import inlineBlockMarginStyles from '../../_utils/inlineBlockMarginStyles'
 import dropDateData from './dropDateData.json'
 import {
   formatDropDate, getNextDropDate, isDropDateInThePast, getNewYear, calculateAwardTotals,
@@ -8,16 +9,19 @@ import {
 
 export type FlareDropDatesProps = {
   title?: string,
+  standardTopMargin?: boolean | null | undefined,
+  standardBottomMargin?: boolean | null | undefined,
 }
 
 export default function FlareDropDates({
   title = 'FlareDrop Dates',
+  standardBottomMargin,
+  standardTopMargin,
 }: FlareDropDatesProps) {
   const awarded = calculateAwardTotals(dropDateData).awarded * 1000000
   const toBeAwarded = calculateAwardTotals(dropDateData).toAward * 1000000
-
   return (
-    <section className={styles.wrap}>
+    <section className={cx(styles.wrap, inlineBlockMarginStyles(standardTopMargin, standardBottomMargin))}>
       <h2 className={styles.title}>{title}</h2>
       <div className={styles.legend}>
         <div className={styles.legendCard}>

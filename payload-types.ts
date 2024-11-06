@@ -1840,6 +1840,9 @@ export interface IRegionalLinkGrid {
 export interface FlareDropDates {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'flareDropDates';
