@@ -45,7 +45,7 @@ build-ct:
   - /kaniko/executor
     --context "${CI_PROJECT_DIR}"
     --dockerfile "${CI_PROJECT_DIR}/dockerfile"
-    --destination "${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CI_COMMIT_SHORT_SHA"
+    --destination "${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CI_PIPELINE_ID"
     --cache=true
     --cache-repo "${CI_REGISTRY_IMAGE}/cache"
   rules: !reference [.rules, versiontag]
@@ -63,7 +63,7 @@ test-ct:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: flarepayload
   - alias: nextjspayload
-    name: ${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CI_COMMIT_SHORT_SHA
+    name: ${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CI_PIPELINE_ID
     variables:
       POSTGRES_URL: postgres://postgres:postgres@postgres:5432/flarepayload
       PAYLOAD_SECRET: secret
@@ -84,6 +84,6 @@ release-ct:
   - test-ct
   script:
   - crane auth login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-  - crane copy ${CI_REGISTRY_IMAGE}/webpage-aleph:$CI_COMMIT_SHORT_SHA ${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CTS_BUILD_TAG
+  - crane copy ${CI_REGISTRY_IMAGE}/webpage-aleph:$CI_PIPELINE_ID ${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CTS_BUILD_TAG
   rules: !reference [.rules, versiontag]
   
