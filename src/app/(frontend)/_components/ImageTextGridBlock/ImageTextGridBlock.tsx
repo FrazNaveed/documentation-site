@@ -4,7 +4,7 @@ import type { ImageTextCards } from '@/payload-types'
 import LexicalRenderer from '../LexicalRenderer'
 import styles from './ImageTextGridBlock.module.scss'
 import { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
-import inlineBlockMarginStyles from '../../_utils/inlineBlockMarginStyles'
+import applyBlockMarginStyles from '../../_utils/applyBlockMarginStyles'
 
 export type ImageTextGridBlockProps = {
   imageTextGridTitle?: string | null
@@ -19,7 +19,7 @@ export default function ImageTextGridBlock({
   return (
     <section className={cx(
       styles.imageTextGridBlock,
-      inlineBlockMarginStyles(standardTopMargin, standardBottomMargin),
+      applyBlockMarginStyles(standardTopMargin, standardBottomMargin),
     )}
     >
       {imageTextGridTitle && <h2 className={styles.imageTextGridTitle}>{imageTextGridTitle}</h2>}

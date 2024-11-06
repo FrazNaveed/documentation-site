@@ -2,7 +2,7 @@ import cx from 'classnames'
 import type { ApplicationProcess } from '@/payload-types'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
-import inlineBlockMarginStyles from '../../_utils/inlineBlockMarginStyles'
+import applyBlockMarginStyles from '../../_utils/applyBlockMarginStyles'
 import styles from './ApplicationProcessBlock.module.scss'
 
 export default function ApplicationProcessBlock({
@@ -39,7 +39,7 @@ export default function ApplicationProcessBlock({
     })
   )
   return (
-    <section className={cx(inlineBlockMarginStyles(standardBottomMargin, standardTopMargin))}>
+    <section className={cx(applyBlockMarginStyles(standardBottomMargin, standardTopMargin))}>
       {title && <h2 className={styles.title}>{title}</h2>}
       {stepsWithNumbers.length > 0 && (
         <div className={styles.graphic}>

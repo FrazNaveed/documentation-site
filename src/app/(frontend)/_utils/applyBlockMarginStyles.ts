@@ -1,4 +1,4 @@
-const inlineBlockMarginStyles = (topMargin?: boolean | null | undefined, bottomMargin?: boolean | null | undefined) => {
+const applyBlockMarginStyles = (topMargin?: boolean | null | undefined, bottomMargin?: boolean | null | undefined) => {
   if (!topMargin && !bottomMargin) return undefined
 
   const classes = []
@@ -14,4 +14,4 @@ const inlineBlockMarginStyles = (topMargin?: boolean | null | undefined, bottomM
   return classes.join(' ')
 }
 
-export default inlineBlockMarginStyles
+export default applyBlockMarginStyles
