@@ -1339,6 +1339,9 @@ export interface ImageTextGridBlock {
   imageTextCardGrid?: ImageTextCards;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'imageTextGrid';
