@@ -1381,6 +1381,9 @@ export interface PastFeaturedGrantsGridBlock {
   grantsGrid?: (number | Grant)[] | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'pastFeaturedGrantsGrid';

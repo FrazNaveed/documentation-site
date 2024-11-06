@@ -9,22 +9,27 @@ import ExternalLink from '../ExternalLink'
 import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import styles from './PastFeaturedGrantsGridBlock.module.scss'
 import LexicalRenderer from '../LexicalRenderer'
+import applyBlockMarginStyles from '../../_utils/applyBlockMarginStyles'
 
 export type PastFeaturedGrantsGridBlockProps = {
   gridTitle?: string | null
   grantsGrid?: (number | Grant)[] | null
+  standardTopMargin?: boolean | null | undefined,
+  standardBottomMargin?: boolean | null | undefined
 }
 
 type CountryFlags = Record<keyof typeof flags, React.FC<{ title?: string, className?: string }>>
 
-export default function PastFeaturedGrantsGridBlock({ gridTitle, grantsGrid }: PastFeaturedGrantsGridBlockProps) {
+export default function PastFeaturedGrantsGridBlock({
+  gridTitle, grantsGrid, standardBottomMargin, standardTopMargin,
+}: PastFeaturedGrantsGridBlockProps) {
   const [allShown, setAllShown] = useState(false)
   const displayShowButton = grantsGrid && grantsGrid.length > 4
   const toggleAllShown = () => {
     setAllShown((prev) => !prev)
   }
   return (
-    <section className={styles.wrap}>
+    <section className={cx(styles.wrap, applyBlockMarginStyles(standardTopMargin, standardBottomMargin))}>
       {gridTitle && <h2 className={styles.gridTitle}>{gridTitle}</h2>}
       <div id='past-featured-grants-grid' className={styles.grantsGrid}>
         {grantsGrid?.map((grant, index) => {

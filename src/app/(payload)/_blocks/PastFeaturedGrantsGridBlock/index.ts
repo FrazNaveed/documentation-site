@@ -1,6 +1,7 @@
 import { i18n } from '@/src/app/i18n-config'
 import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
 import { Block } from 'payload'
+import { BlockMarginSettings } from '../../_fields/BlockMarginSettings'
 
 export const PastFeaturedGrantsGridBlock: Block = {
   slug: 'pastFeaturedGrantsGrid',
@@ -22,6 +23,7 @@ export const PastFeaturedGrantsGridBlock: Block = {
       },
     },
     ...CreateSideNavLinkFields,
+    ...BlockMarginSettings,
   ],
   dbName: 'pastGrantsGrid',
   imageURL: `/${i18n.defaultLocale}/icons/grid.svg`,
