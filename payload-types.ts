@@ -1533,6 +1533,9 @@ export interface OfficialChannelsBlock {
   channels?: (number | SocialLink)[] | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'officialChannels';
