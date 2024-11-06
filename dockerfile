@@ -40,5 +40,3 @@ HEALTHCHECK --start-period=60s --interval=15s --timeout=2s \
     CMD curl -f http://localhost:3000 || exit 1
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 CMD ["node", "server.js"]
-
-# CMD sleep 900
