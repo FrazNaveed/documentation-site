@@ -34,12 +34,14 @@
   &__fullWidth {
     @include columns(1, -1);
   }
+}
 
-  :global(.standardBottomMargin) {
+.block {
+  &.standardTopMargin {
     margin-bottom: $spacing-standard;
   }
 
-  :global(.standardTopMargin) {
-    margin-top: $spacing-standard;
+  &.standardBottomMargin {
+    margin-bottom: $spacing-standard;
   }
 }
