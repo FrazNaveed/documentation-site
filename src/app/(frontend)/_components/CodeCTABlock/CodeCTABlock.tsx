@@ -14,7 +14,7 @@ import codeExamples from './codeExamples'
 import styles from './CodeCTABlock.module.scss'
 
 const ibmPlexMono = IBM_Plex_Mono({
-  weight: '500',
+  weight: ['400', '500'],
   subsets: ['latin'],
   display: 'swap',
 })

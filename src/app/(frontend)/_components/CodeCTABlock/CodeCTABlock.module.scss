@@ -128,14 +128,16 @@ $mobile-padding: to-rem($spacing-standard);
 }
 
 .code {
+  @include fontStyle(12, 23);
+
   height: 100%;
-  font-size: to-rem(12px);
+  font-weight: 500;
 
   pre {
     height: 100%;
     max-height: 550px;
     margin: 0;
-    padding-right: to-rem($spacing-standard);
+    padding: $spacing-small;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -148,6 +150,22 @@ $mobile-padding: to-rem($spacing-standard);
   pre,
   code {
     font-family: inherit;
+  }
+
+  code {
+    counter-reset: line;
+    counter-increment: line 0;
+
+    :global(.line)::before {
+      display: inline-block;
+      width: 1rem;
+      margin-right: 1.5rem;
+      color: rgba(0 0 0 / 40%);
+      font-weight: 400;
+      text-align: right;
+      content: counter(line);
+      counter-increment: line;
+    }
   }
 }
 
