@@ -66,8 +66,11 @@ export default async function CodeCTABlock({
                 return (
                   <div
                     key={codeExample.language}
+                    id={`code-cta-tabpanel-${i}`}
                     className={cx(styles.code, styles[`code__${i}`], ibmPlexMono.className)}
                     dangerouslySetInnerHTML={{ __html: codeHighlighted }}
+                    role='tabpanel'
+                    aria-labelledby={`code-cta-tab-${i}`}
                   />
                 )
               })}
