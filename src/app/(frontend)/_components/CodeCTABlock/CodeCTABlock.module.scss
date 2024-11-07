@@ -135,9 +135,10 @@ $mobile-padding: to-rem($spacing-standard);
 
   pre {
     height: 100%;
-    max-height: 550px;
+    max-height: 600px;
     margin: 0;
     padding: $spacing-small;
+    white-space: pre-wrap;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -170,7 +171,7 @@ $mobile-padding: to-rem($spacing-standard);
 }
 
 // Increase count if more than 10 code examples
-// Matching CSS instead of using active class to keep code highlighting server-side
+// Matching CSS instead of using active class from React state on codeWrap to keep code highlighting server-side
 @for $i from 0 through 10 {
   .tabs__active-#{$i} + .codeExamples .codeWrap__#{$i} {
     opacity: 1;
