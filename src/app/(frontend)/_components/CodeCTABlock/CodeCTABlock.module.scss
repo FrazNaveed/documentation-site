@@ -192,6 +192,7 @@ $tab-border-radius: 6px;
   @include utils.buttonReset;
   @include paragraphXSmFont;
 
+  position: relative;
   flex: 1 1 min-content;
   padding: $spacing-x-small;
   transition: color $transition-snappy;
@@ -212,8 +213,33 @@ $tab-border-radius: 6px;
     border-bottom-right-radius: $tab-border-radius;
   }
 
+  &::after {
+    transition: opacity $transition-snappy;
+    opacity: 0;
+  }
+
   &__active {
     color: #000;
+
+    &::after {
+      display: block;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      background-color: $black;
+      content: "";
+      opacity: 1;
+    }
+
+    &:first-child::after {
+      left: $tab-border-radius;
+    }
+
+    &:last-child::after {
+      right: $tab-border-radius;
+    }
   }
 }
 
