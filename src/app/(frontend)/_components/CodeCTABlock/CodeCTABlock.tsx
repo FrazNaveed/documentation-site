@@ -9,6 +9,7 @@ import Button from 'src/app/(frontend)/_components/Button'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import CodeCTATabs from './CodeCTATabs'
+import CodeCTACopyButton from './CodeCTACopyButton'
 import codeExamples from './codeExamples'
 import styles from './CodeCTABlock.module.scss'
 
@@ -64,14 +65,17 @@ export default async function CodeCTABlock({
                   theme: 'github-light',
                 })
                 return (
-                  <div
-                    key={codeExample.language}
-                    id={`code-cta-tabpanel-${i}`}
-                    className={cx(styles.code, styles[`code__${i}`], ibmPlexMono.className)}
-                    dangerouslySetInnerHTML={{ __html: codeHighlighted }}
-                    role='tabpanel'
-                    aria-labelledby={`code-cta-tab-${i}`}
-                  />
+                  <div className={cx(styles.codeWrap, styles[`codeWrap__${i}`])}>
+                    <div
+                      key={codeExample.language}
+                      id={`code-cta-tabpanel-${i}`}
+                      className={cx(styles.code, ibmPlexMono.className)}
+                      dangerouslySetInnerHTML={{ __html: codeHighlighted }}
+                      role='tabpanel'
+                      aria-labelledby={`code-cta-tab-${i}`}
+                    />
+                    <CodeCTACopyButton codeToCopy={codeExample.code} />
+                  </div>
                 )
               })}
             </div>

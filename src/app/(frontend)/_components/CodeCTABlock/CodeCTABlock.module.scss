@@ -106,27 +106,33 @@ $mobile-padding: to-rem($spacing-standard);
 }
 
 .codeExamples {
-  @include grid(1);
-
+  display: grid;
+  position: relative;
   align-items: start;
   border-radius: 4px;
-  background-color: $white;
   overflow: auto;
+  grid-template-columns: repeat(1, 100%);
 }
 
-.code {
+.codeWrap {
   @include spanColumns(1);
 
+  height: 100%;
   transition:
     opacity $transition-snappy,
     visibility $transition-snappy;
-  font-size: to-rem(12px);
   opacity: 0;
   visibility: hidden;
   grid-column: 1;
   grid-row: 1;
+}
+
+.code {
+  height: 100%;
+  font-size: to-rem(12px);
 
   pre {
+    height: 100%;
     max-height: 550px;
     margin: 0;
     padding-right: to-rem($spacing-standard);
@@ -148,7 +154,7 @@ $mobile-padding: to-rem($spacing-standard);
 // Increase count if more than 10 code examples
 // Matching CSS instead of using active class to keep code highlighting server-side
 @for $i from 0 through 10 {
-  .tabs__active-#{$i} + .codeExamples .code__#{$i} {
+  .tabs__active-#{$i} + .codeExamples .codeWrap__#{$i} {
     opacity: 1;
     visibility: visible;
   }
@@ -190,6 +196,18 @@ $tab-border-radius: 6px;
   &__active {
     color: #000;
   }
+}
+
+.copyButton {
+  @include utils.buttonReset;
+  @include paragraphXSmFont;
+
+  position: absolute;
+  right: $spacing-small;
+  bottom: $spacing-small;
+  border: 1px solid $black;
+  background-color: $white;
+  color: $black;
 }
 
 .image {
