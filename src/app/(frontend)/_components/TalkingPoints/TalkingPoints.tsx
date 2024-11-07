@@ -5,7 +5,6 @@ import type { ITalkingPoints } from '@/payload-types'
 import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import LexicalRenderer from '../LexicalRenderer'
 import styles from './TalkingPoints.module.scss'
-import applyBlockMarginStyles from '../../_utils/applyBlockMarginStyles'
 
 export type TalkingPointsProps = ITalkingPoints & {
   className?: string
@@ -14,12 +13,10 @@ export type TalkingPointsProps = ITalkingPoints & {
 export default function TalkingPoints({
   points,
   className,
-  standardBottomMargin,
-  standardTopMargin,
   variation = 'standard',
 }: TalkingPointsProps) {
   return (
-    <section className={cx(styles.grid, className, applyBlockMarginStyles(standardTopMargin, standardBottomMargin))}>
+    <section className={cx(styles.grid, className)}>
       <div className={cx(styles.pointsWrap, styles[`pointsWrap__${variation}`])}>
         {points && points.map((point) => {
           const {
