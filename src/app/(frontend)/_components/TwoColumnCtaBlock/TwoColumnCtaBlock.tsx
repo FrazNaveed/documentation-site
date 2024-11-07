@@ -5,7 +5,10 @@ import Button from '../Button'
 import LexicalRenderer from '../LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import styles from './TwoColumnCtaBlock.module.scss'
-import applyBlockMarginStyles from '../../_utils/applyBlockMarginStyles'
+
+export type TwoColumnCtaProps = ITwoColumnCta & {
+  className?: string
+}
 
 export default function TwoColumnCtaBlock({
   image,
@@ -16,11 +19,10 @@ export default function TwoColumnCtaBlock({
   primaryButtonLink,
   secondaryButtonText,
   secondaryButtonLink,
-  standardBottomMargin,
-  standardTopMargin,
-}: ITwoColumnCta) {
+  className,
+}: TwoColumnCtaProps) {
   return (
-    <section className={cx(styles.twoColumnCta, applyBlockMarginStyles(standardTopMargin, standardBottomMargin))}>
+    <section className={cx(styles.twoColumnCta, className)}>
       <div className={styles.wrap}>
         {image && typeof image === 'object' && image.url && image.alt
           && (
