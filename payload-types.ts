@@ -1904,7 +1904,7 @@ export interface ITwoColumnCta {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "videoEmbedBlock".
+ * via the `definition` "VideoEmbedBlock".
  */
 export interface VideoEmbedBlock {
   title?: string | null;

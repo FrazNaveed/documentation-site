@@ -6,7 +6,7 @@ import validateTextFieldUrl from '../../_utils/validateTextFieldUrl'
 
 export const VideoEmbedBlock: Block = {
   slug: 'videoEmbedBlock',
-  interfaceName: 'videoEmbedBlock',
+  interfaceName: 'VideoEmbedBlock',
   fields: [
     {
       name: 'title',
