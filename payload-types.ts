@@ -1105,6 +1105,7 @@ export interface Page {
         | IRegionalLinkGrid
         | FlareDropDates
         | ITwoColumnCta
+        | VideoEmbedBlock
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -1900,6 +1901,22 @@ export interface ITwoColumnCta {
   id?: string | null;
   blockName?: string | null;
   blockType: 'twoColumnCta';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videoEmbedBlock".
+ */
+export interface VideoEmbedBlock {
+  title?: string | null;
+  url?: string | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'videoEmbedBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
