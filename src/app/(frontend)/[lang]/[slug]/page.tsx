@@ -318,7 +318,14 @@ export default async function Page({ params }: PageProps) {
                   break
 
                 case 'richTextBlock':
-                  componentToRender = <RichTextBlock key={component.id} richText={component.richText} />
+                  componentToRender = (
+                    <RichTextBlock
+                      key={component.id}
+                      richText={component.richText}
+                      standardTopMargin={component.standardTopMargin}
+                      standardBottomMargin={component.standardBottomMargin}
+                    />
+                  )
                   break
 
                 case 'stats':
