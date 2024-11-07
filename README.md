@@ -27,7 +27,7 @@ You will see the local dev build at [http://localhost:3000](http://localhost:300
 1. If you'd like to run the whole stack in a Docker-based production build, you can just run `docker-compose up`. This will bring up a Postgres database in Docker,
    as well as a Next.js/Payload app. The `docker-compose.yml` file is set up to use local volumes for the Postgres data so that it persists between runs. This is
    useful for testing against the production deployments.
-2. To bootstrap a completely clean Docker install, run `npm docker:clean`.  This command will stop, clean and remove the Postgres and NextJS/Payload Docker
+2. To bootstrap a completely clean Docker install, run `npm run docker:clean`.  This command will stop, clean and remove the Postgres and NextJS/Payload Docker
    containers if they exist. You can then run `docker-compose up` to bring everything back up.
 
 ### Helper Commands
