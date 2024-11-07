@@ -9,7 +9,9 @@ type CodeCTACopyButtonProps = {
 }
 
 export default function CodeCTACopyButton({ codeToCopy }: CodeCTACopyButtonProps) {
-  const [buttonText, setButtonText] = useState('Copy')
+  const defaultText = 'copy'
+  const timeoutDuration = 3000
+  const [buttonText, setButtonText] = useState(defaultText)
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>()
 
   useEffect(() => () => {
@@ -19,10 +21,17 @@ export default function CodeCTACopyButton({ codeToCopy }: CodeCTACopyButtonProps
   }, [timeoutId])
 
   const copyCodeClick = () => {
-    navigator.clipboard.writeText(codeToCopy)
-    setButtonText('Copied')
-    const timeout = setTimeout(() => setButtonText('Copy'), 3000)
-    setTimeoutId(timeout)
+    try {
+      navigator.clipboard.writeText(codeToCopy)
+      setButtonText('copied')
+      const timeout = setTimeout(() => setButtonText(defaultText), timeoutDuration)
+      setTimeoutId(timeout)
+    } catch (error) {
+      console.error('Failed to copy:', error)
+      setButtonText('failed')
+      const timeout = setTimeout(() => setButtonText(defaultText), timeoutDuration)
+      setTimeoutId(timeout)
+    }
   }
   return (
     <Button className={styles.copyButton} type='button' onClick={copyCodeClick} text={buttonText} buttonStyle='secondary' size='small' />
