@@ -3,22 +3,16 @@ import type { Stats } from '@/payload-types'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import styles from './StatsBlock.module.scss'
-import applyBlockMarginStyles from '../../_utils/applyBlockMarginStyles'
 
 export type StatsProps = Stats & {
   className?: string
 }
 
 export default function StatsBlock({
-  stats, caption, className, standardBottomMargin, standardTopMargin,
+  stats, caption, className,
 }: StatsProps) {
   return (
-    <section className={cx(
-      styles.statsBlock,
-      className,
-      applyBlockMarginStyles(standardTopMargin, standardBottomMargin),
-    )}
-    >
+    <section className={cx(styles.statsBlock, className)}>
       <div className={styles.stats}>
         {stats?.map((stat) => (
           <div key={stat.id} className={cx(styles.Stat)}>
