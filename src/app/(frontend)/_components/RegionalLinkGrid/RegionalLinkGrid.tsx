@@ -1,17 +1,19 @@
 import * as flags from 'country-flag-icons/react/3x2'
-import cx from 'classnames'
 import type { IRegionalLinkGrid } from '@/payload-types'
 import ExternalLink from 'src/app/(frontend)/_components/ExternalLink'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import styles from './RegionalLinkGrid.module.scss'
-import applyBlockMarginStyles from '../../_utils/applyBlockMarginStyles'
+
+export type RegionalLinkGridProps = IRegionalLinkGrid & {
+  className?: string
+}
 
 export default function RegionalLinkGrid({
-  title, description, links, standardBottomMargin, standardTopMargin,
-}: IRegionalLinkGrid) {
+  title, description, links, className,
+}: RegionalLinkGridProps) {
   return (
-    <section className={cx(applyBlockMarginStyles(standardTopMargin, standardBottomMargin))}>
+    <section className={className}>
       {(title || description) && (
         <div className={styles.grid}>
           <div className={styles.intro}>
