@@ -65,9 +65,8 @@ export default async function CodeCTABlock({
                   theme: 'github-light',
                 })
                 return (
-                  <div className={cx(styles.codeWrap, styles[`codeWrap__${i}`])}>
+                  <div key={codeExample.language} className={cx(styles.codeWrap, styles[`codeWrap__${i}`])}>
                     <div
-                      key={codeExample.language}
                       id={`code-cta-tabpanel-${i}`}
                       className={cx(styles.code, ibmPlexMono.className)}
                       dangerouslySetInnerHTML={{ __html: codeHighlighted }}
