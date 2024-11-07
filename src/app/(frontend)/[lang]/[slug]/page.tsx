@@ -18,6 +18,7 @@ import SideNav from 'src/app/(frontend)/_components/SideNav'
 import JumpLinkAnchor from 'src/app/(frontend)/_components/SideNav/JumpLinkAnchor'
 import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
 import EventsList from 'src/app/(frontend)/_components/EventsList'
+import CodeCTABlock from '@/src/app/(frontend)/_components/CodeCTABlock'
 import Columns from 'src/app/(frontend)/_components/Columns'
 import RegionalLinkGrid from 'src/app/(frontend)/_components/RegionalLinkGrid'
 import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
@@ -290,6 +291,10 @@ export default async function Page({ params }: PageProps) {
               switch (component?.blockType) {
                 case 'applicationProcess':
                   componentToRender = <ApplicationProcessBlock key={component.id} {...component} />
+                  break
+
+                case 'codeCta':
+                  componentToRender = <CodeCTABlock key={component.id} {...component} />
                   break
 
                 case 'columns':

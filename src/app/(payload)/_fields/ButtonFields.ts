@@ -16,6 +16,7 @@ export const ButtonFields = (includeSecondaryButton = false) => {
       {
         name: 'buttonLink',
         type: 'text',
+        localized: true,
         validate: validateTextFieldUrl,
         admin: {
           width: '75%',
@@ -40,6 +41,7 @@ export const ButtonFields = (includeSecondaryButton = false) => {
         {
           name: 'buttonSecondaryLink',
           type: 'text',
+          localized: true,
           validate: validateTextFieldUrl,
           admin: {
             width: '75%',
