@@ -1,10 +1,10 @@
 import Pill from 'src/app/(frontend)/_components/Pill'
-import type { Grants } from '@/payload-types'
+import type { PageHeroGrantsInfo } from '@/payload-types'
 import FeaturedGrantsCountries from './FeaturedGrantsCountries'
 import styles from './FeaturedGrants.module.scss'
 
 export type FeaturedGrantsProps = {
-  grants?: Grants['featuredGrants']
+  grants?: PageHeroGrantsInfo
 }
 
 export default function FeaturedGrants({ grants }: FeaturedGrantsProps) {

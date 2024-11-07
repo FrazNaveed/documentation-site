@@ -8,17 +8,6 @@
 
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "LinkBandLinks".
- */
-export type LinkBandLinks =
-  | {
-      linkText?: string | null;
-      linkUrl?: string | null;
-      id?: string | null;
-    }[]
-  | null;
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "FeaturedGrantsCountries".
  */
 export type FeaturedGrantsCountries =
@@ -285,6 +274,17 @@ export type FeaturedGrantsTopCategories =
   | null;
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LinkBandLinks".
+ */
+export type LinkBandLinks =
+  | {
+      linkText?: string | null;
+      linkUrl?: string | null;
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ImageTextCards".
  */
 export type ImageTextCards =
@@ -393,6 +393,14 @@ export type PointsList = {
     };
     [k: string]: unknown;
   };
+  addLogos?: boolean | null;
+  logos?:
+    | {
+        logo?: (number | null) | Media;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
 }[];
 /**
@@ -1055,15 +1063,7 @@ export interface Page {
   id: number;
   title?: string | null;
   slug: string;
-  hero?: {
-    headline: string;
-    eyebrow?: string | null;
-    buttonText?: string | null;
-    buttonLink?: string | null;
-    buttonSecondaryText?: string | null;
-    buttonSecondaryLink?: string | null;
-    backgroundImage?: (number | null) | Media;
-  };
+  hero?: PageHero;
   hideHero?: boolean | null;
   previousPage?: (number | null) | Page;
   nextPage?: (number | null) | Page;
@@ -1087,7 +1087,6 @@ export interface Page {
     } | null;
   };
   devHub?: DevHub;
-  grants?: Grants;
   teamGrid?: TeamGrid;
   walletsGrid?: WalletsGrid;
   components?:
@@ -1104,6 +1103,8 @@ export interface Page {
         | ApplicationProcess
         | OfficialChannelsBlock
         | IRegionalLinkGrid
+        | FlareDropDates
+        | ITwoColumnCta
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -1116,9 +1117,61 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
   };
-  pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets' | 'grants';
+  pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets';
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PageHero".
+ */
+export interface PageHero {
+  style: 'standard' | 'protocol' | 'grants';
+  headline: string;
+  eyebrow?: string | null;
+  buttonText?: string | null;
+  buttonLink?: string | null;
+  buttonSecondaryText?: string | null;
+  buttonSecondaryLink?: string | null;
+  backgroundImage?: (number | null) | Media;
+  logo?: (number | null) | Media;
+  text?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  grantsInfo?: PageHeroGrantsInfo;
+  protocolInfo?: PageHeroProtocolInfo;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PageHeroGrantsInfo".
+ */
+export interface PageHeroGrantsInfo {
+  grantsAwarded?: number | null;
+  countries?: FeaturedGrantsCountries;
+  topCategories?: FeaturedGrantsTopCategories;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PageHeroProtocolInfo".
+ */
+export interface PageHeroProtocolInfo {
+  providers?: number | null;
+  feeds?: number | null;
+  stakeTokens?: number | null;
+  stakeValue?: number | null;
+  averageBlockTime?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1144,17 +1197,6 @@ export interface Product {
   titleOverride?: string | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Grants".
- */
-export interface Grants {
-  featuredGrants?: {
-    grantsAwarded?: number | null;
-    countries?: FeaturedGrantsCountries;
-    topCategories?: FeaturedGrantsTopCategories;
-  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1220,6 +1262,7 @@ export interface Wallet {
  */
 export interface Columns {
   layout?: ('equal' | 'wideLeft' | 'wideRight') | null;
+  alignColumns?: boolean | null;
   leftColumnBlock?:
     | (
         | {
@@ -1382,7 +1425,7 @@ export interface TableWithDrawers {
  * via the `definition` "ITalkingPoints".
  */
 export interface ITalkingPoints {
-  variation: 'standard' | 'wideList';
+  variation: 'standard' | 'textualGrid' | 'wideList';
   points: PointsList;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
@@ -1780,6 +1823,50 @@ export interface IRegionalLinkGrid {
   id?: string | null;
   blockName?: string | null;
   blockType: 'regionalLinkGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FlareDropDates".
+ */
+export interface FlareDropDates {
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'flareDropDates';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ITwoColumnCta".
+ */
+export interface ITwoColumnCta {
+  image?: (number | null) | Media;
+  eyebrow?: string | null;
+  header?: string | null;
+  text?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  primaryButtonText?: string | null;
+  primaryButtonLink?: string | null;
+  secondaryButtonText?: string | null;
+  secondaryButtonLink?: string | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'twoColumnCta';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

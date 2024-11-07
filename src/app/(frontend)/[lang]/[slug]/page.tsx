@@ -10,6 +10,7 @@ import type { Locale } from 'src/app/i18n-config'
 import ApplicationProcessBlock from 'src/app/(frontend)/_components/ApplicationProcessBlock'
 import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
+import PageHeroCentered from 'src/app/(frontend)/_components/PageHeroCentered'
 import DevGuideGrid from 'src/app/(frontend)/_components/DevGuideGrid'
 import EventsHero from 'src/app/(frontend)/_components/EventsHero'
 import EventsWidget from 'src/app/(frontend)/_components/EventsWidget'
@@ -36,6 +37,8 @@ import TwoColumnBlock from '../../_components/TwoColumnBlock'
 import getCollectionPath from '../../_utils/getCollectionPath'
 import PastFeaturedGrantsGridBlock from '../../_components/PastFeaturedGrantsGridBlock'
 import OfficialChannelsBlock from '../../_components/OfficialChannelsBlock'
+import FlareDropDates from '../../_components/FlaredropDates'
+import TwoColumnCtaBlock from '../../_components/TwoColumnCtaBlock/TwoColumnCtaBlock'
 
 export const dynamic = 'force-dynamic'
 
@@ -71,7 +74,6 @@ export default async function Page({ params }: PageProps) {
     linkType,
     teamGrid,
     devHub,
-    grants,
   } = pageData
   let featuredEvent
   if (pageTemplate === 'events') {
@@ -80,6 +82,7 @@ export default async function Page({ params }: PageProps) {
   let heroComponent
   if (hero) {
     const {
+      style: heroStyle,
       headline,
       eyebrow,
       buttonText,
@@ -87,31 +90,49 @@ export default async function Page({ params }: PageProps) {
       buttonSecondaryText,
       buttonSecondaryLink,
       backgroundImage,
+      grantsInfo,
+      logo: heroLogo,
+      text: heroText,
+      protocolInfo,
     } = hero
     const heroCtaProps = (buttonText && buttonLink) ? { cta: { text: buttonText, link: buttonLink } } : {}
     const heroCtaSecondaryProps = (buttonSecondaryText && buttonSecondaryLink)
       ? { ctaSecondary: { text: buttonSecondaryText, link: buttonSecondaryLink } }
       : {}
     const heroBackgroundImageProps = (backgroundImage && typeof backgroundImage === 'object') ? { backgroundImage } : {}
-    let featuredGrants
-    if (pageTemplate === 'grants' && grants) {
-      featuredGrants = grants.featuredGrants
+    if (featuredEvent) {
+      heroComponent = (
+        <EventsHero
+          event={featuredEvent}
+          {...heroBackgroundImageProps}
+        />
+      )
+    } else if (heroStyle === 'protocol') {
+      heroComponent = (
+        <PageHeroCentered
+          header={headline}
+          eyebrow={eyebrow || title}
+          {...heroCtaProps}
+          {...heroCtaSecondaryProps}
+          {...heroBackgroundImageProps}
+          logo={heroLogo}
+          text={heroText}
+          protocolInfo={protocolInfo}
+          lang={lang}
+        />
+      )
+    } else {
+      heroComponent = (
+        <PageHero
+          header={headline}
+          eyebrow={eyebrow || title}
+          {...heroCtaProps}
+          {...heroCtaSecondaryProps}
+          {...heroBackgroundImageProps}
+          grants={grantsInfo}
+        />
+      )
     }
-    heroComponent = featuredEvent ? (
-      <EventsHero
-        event={featuredEvent}
-        {...heroBackgroundImageProps}
-      />
-    ) : (
-      <PageHero
-        header={headline}
-        eyebrow={eyebrow || title}
-        {...heroCtaProps}
-        {...heroCtaSecondaryProps}
-        {...heroBackgroundImageProps}
-        grants={featuredGrants}
-      />
-    )
   }
 
   let pageBannerComponent
@@ -275,6 +296,10 @@ export default async function Page({ params }: PageProps) {
                   componentToRender = <Columns key={component.id} {...component} />
                   break
 
+                case 'flareDropDates':
+                  componentToRender = <FlareDropDates key={component.id} />
+                  break
+
                 case 'imageTextGrid':
                   componentToRender = <ImageTextGridBlock key={component.id} {...component} />
                   break
@@ -305,6 +330,10 @@ export default async function Page({ params }: PageProps) {
 
                 case 'twoColumn':
                   componentToRender = <TwoColumnBlock key={component.id} {...component} />
+                  break
+
+                case 'twoColumnCta':
+                  componentToRender = <TwoColumnCtaBlock key={component.id} {...component} />
                   break
 
                 default:

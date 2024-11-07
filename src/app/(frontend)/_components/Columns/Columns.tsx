@@ -7,6 +7,7 @@ import styles from './Columns.module.scss'
 
 export default function Columns({
   layout,
+  alignColumns,
   leftColumnBlock: leftColumn,
   rightColumnBlock: rightColumn,
   // createSideNavLink,
@@ -42,7 +43,7 @@ export default function Columns({
     return null
   }
   return (
-    <div className={styles.columns}>
+    <div className={cx(styles.columns, alignColumns && styles.columns__topAligned)}>
       <div className={cx(styles.colLeft, styles[`colLeft__${layout}`])}>
         {blockMarkup(leftColumn)}
       </div>
