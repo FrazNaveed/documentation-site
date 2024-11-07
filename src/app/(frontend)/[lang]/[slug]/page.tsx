@@ -39,6 +39,7 @@ import PastFeaturedGrantsGridBlock from '../../_components/PastFeaturedGrantsGri
 import OfficialChannelsBlock from '../../_components/OfficialChannelsBlock'
 import FlareDropDates from '../../_components/FlaredropDates'
 import TwoColumnCtaBlock from '../../_components/TwoColumnCtaBlock/TwoColumnCtaBlock'
+import VideoBlock from '../../_components/VideoBlock'
 
 export const dynamic = 'force-dynamic'
 
@@ -297,7 +298,7 @@ export default async function Page({ params }: PageProps) {
                   break
 
                 case 'flareDropDates':
-                  componentToRender = <FlareDropDates key={component.id} />
+                  componentToRender = <FlareDropDates key={component.id} {...component} />
                   break
 
                 case 'imageTextGrid':
@@ -317,7 +318,14 @@ export default async function Page({ params }: PageProps) {
                   break
 
                 case 'richTextBlock':
-                  componentToRender = <RichTextBlock key={component.id} richText={component.richText} />
+                  componentToRender = (
+                    <RichTextBlock
+                      key={component.id}
+                      richText={component.richText}
+                      standardTopMargin={component.standardTopMargin}
+                      standardBottomMargin={component.standardBottomMargin}
+                    />
+                  )
                   break
 
                 case 'stats':
@@ -334,6 +342,10 @@ export default async function Page({ params }: PageProps) {
 
                 case 'twoColumnCta':
                   componentToRender = <TwoColumnCtaBlock key={component.id} {...component} />
+                  break
+
+                case 'videoEmbedBlock':
+                  componentToRender = <VideoBlock key={component.id} {...component} />
                   break
 
                 default:

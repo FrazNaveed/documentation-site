@@ -2,6 +2,7 @@ import SiteHeader from './_components/SiteHeader'
 import SiteFooter from './_components/SiteFooter'
 import satoshi from './_lib/fonts'
 import './_styles/globals.scss'
+import './[lang]/[slug]/page.module.scss'
 
 export default function RootLayout({
   children,
