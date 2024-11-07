@@ -1,8 +1,5 @@
 'use client'
 
-// VideoEmbed component is currently used
-// keeping this component in case it's needed later
-// See pull #66
 import dynamic from 'next/dynamic'
 import cx from 'classnames'
 import styles from './VideoBlock.module.scss'
