@@ -18,10 +18,6 @@
     @include grid(4, false);
   }
 
-  &Block {
-    @include pageComponentSpacing;
-  }
-
   &Card {
     @include spanColumns(5);
 
