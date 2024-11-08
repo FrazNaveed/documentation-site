@@ -40,6 +40,7 @@ import OfficialChannelsBlock from '../../_components/OfficialChannelsBlock'
 import FlareDropDates from '../../_components/FlaredropDates'
 import TwoColumnCtaBlock from '../../_components/TwoColumnCtaBlock/TwoColumnCtaBlock'
 import VideoBlock from '../../_components/VideoBlock'
+import TableDrawers from '../../_components/TableDrawers'
 
 export const dynamic = 'force-dynamic'
 
@@ -76,7 +77,6 @@ export default async function Page({ params }: PageProps) {
     teamGrid,
     devHub,
   } = pageData
-  console.log(pageData)
   let featuredEvent
   if (pageTemplate === 'events') {
     featuredEvent = await getFeaturedEvent()
@@ -361,6 +361,10 @@ export default async function Page({ params }: PageProps) {
 
                 case 'stats':
                   componentToRender = <Stats key={component.id} {...component} className={componentClass} />
+                  break
+
+                case 'tableDrawers':
+                  componentToRender = <TableDrawers key={component.id} data={component} className={componentClass} />
                   break
 
                 case 'talkingPoints':
