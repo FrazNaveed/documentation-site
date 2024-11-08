@@ -11,13 +11,14 @@ export type ButtonProps = {
   buttonStyle?: 'pink' | 'black' | 'secondary',
   size?: 'large' | 'medium' | 'small',
   disabled?: boolean
+  type?: 'submit' | 'button' | 'reset'
   onBlur?: () => void,
   onFocus?: () => void,
   onClick?: () => void
 }
 
 export default function Button({
-  text, link, className, buttonStyle = 'pink', size = 'medium', disabled, onBlur, onFocus, onClick,
+  text, link, className, buttonStyle = 'pink', size = 'medium', disabled, type = 'button', onBlur, onFocus, onClick,
 }: ButtonProps) {
   const linkClasses = cx(
     styles.Button,
@@ -50,6 +51,18 @@ export default function Button({
   return (
     link
       ? linkMarkup
-      : <button type='submit' className={cx(linkClasses, styles.text)} disabled={disabled} onBlur={onBlur} onFocus={onFocus} onClick={onClick}>{text}</button>
+      : (
+        <button
+          // eslint-disable-next-line react/button-has-type
+          type={type}
+          className={cx(linkClasses, styles.text)}
+          disabled={disabled}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          onClick={onClick}
+        >
+          {text}
+        </button>
+      )
   )
 }

@@ -43,6 +43,7 @@ export const TwoColumnCtaBlock: Block = {
     {
       name: 'primaryButtonLink',
       type: 'text',
+      localized: true,
       validate: validateTextFieldUrl,
     },
     {
@@ -53,6 +54,7 @@ export const TwoColumnCtaBlock: Block = {
     {
       name: 'secondaryButtonLink',
       type: 'text',
+      localized: true,
       validate: validateTextFieldUrl,
     },
     ...CreateSideNavLinkFields,

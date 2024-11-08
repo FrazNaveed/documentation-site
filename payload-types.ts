@@ -1106,6 +1106,7 @@ export interface Page {
         | FlareDropDates
         | ITwoColumnCta
         | VideoEmbedBlock
+        | ICodeCta
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -1926,6 +1927,42 @@ export interface VideoEmbedBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'videoEmbedBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ICodeCta".
+ */
+export interface ICodeCta {
+  header?: string | null;
+  text?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  buttonText?: string | null;
+  buttonLink?: string | null;
+  buttonSecondaryText?: string | null;
+  buttonSecondaryLink?: string | null;
+  hideCode?: boolean | null;
+  image?: (number | null) | Media;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'codeCta';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
