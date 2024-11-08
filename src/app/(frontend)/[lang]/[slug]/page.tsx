@@ -76,6 +76,7 @@ export default async function Page({ params }: PageProps) {
     teamGrid,
     devHub,
   } = pageData
+  console.log(pageData)
   let featuredEvent
   if (pageTemplate === 'events') {
     featuredEvent = await getFeaturedEvent()
@@ -288,33 +289,64 @@ export default async function Page({ params }: PageProps) {
           <div className={cx(styles.mainContent, { [styles.mainContent__fullWidth]: pageTemplate === 'fullWidth' })}>
             {components.map((component) => {
               let componentToRender
+              let componentClass = styles.block
+              if (component.standardTopMargin) {
+                componentClass += ` ${styles.standardTopMargin}`
+              }
+              if (component.standardBottomMargin) {
+                componentClass += ` ${styles.standardBottomMargin}`
+              }
               switch (component?.blockType) {
                 case 'applicationProcess':
-                  componentToRender = <ApplicationProcessBlock key={component.id} {...component} />
+                  componentToRender = (
+                    <ApplicationProcessBlock
+                      key={component.id}
+                      {...component}
+                      className={componentClass}
+                    />
+                  )
                   break
 
                 case 'columns':
-                  componentToRender = <Columns key={component.id} {...component} />
+                  componentToRender = <Columns key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'flareDropDates':
-                  componentToRender = <FlareDropDates key={component.id} {...component} />
+                  componentToRender = <FlareDropDates key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'imageTextGrid':
-                  componentToRender = <ImageTextGridBlock key={component.id} {...component} />
+                  componentToRender = (
+                    <ImageTextGridBlock
+                      key={component.id}
+                      {...component}
+                      className={componentClass}
+                    />
+                  )
                   break
 
                 case 'officialChannels':
-                  componentToRender = <OfficialChannelsBlock key={component.id} {...component} />
+                  componentToRender = (
+                    <OfficialChannelsBlock
+                      key={component.id}
+                      {...component}
+                      className={componentClass}
+                    />
+                  )
                   break
 
                 case 'pastFeaturedGrantsGrid':
-                  componentToRender = <PastFeaturedGrantsGridBlock key={component.id} {...component} />
+                  componentToRender = (
+                    <PastFeaturedGrantsGridBlock
+                      key={component.id}
+                      {...component}
+                      className={componentClass}
+                    />
+                  )
                   break
 
                 case 'regionalLinkGrid':
-                  componentToRender = <RegionalLinkGrid key={component.id} {...component} />
+                  componentToRender = <RegionalLinkGrid key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'richTextBlock':
@@ -322,30 +354,29 @@ export default async function Page({ params }: PageProps) {
                     <RichTextBlock
                       key={component.id}
                       richText={component.richText}
-                      standardTopMargin={component.standardTopMargin}
-                      standardBottomMargin={component.standardBottomMargin}
+                      className={componentClass}
                     />
                   )
                   break
 
                 case 'stats':
-                  componentToRender = <Stats key={component.id} {...component} />
+                  componentToRender = <Stats key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'talkingPoints':
-                  componentToRender = <TalkingPoints key={component.id} {...component} />
+                  componentToRender = <TalkingPoints key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'twoColumn':
-                  componentToRender = <TwoColumnBlock key={component.id} {...component} />
+                  componentToRender = <TwoColumnBlock key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'twoColumnCta':
-                  componentToRender = <TwoColumnCtaBlock key={component.id} {...component} />
+                  componentToRender = <TwoColumnCtaBlock key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'videoEmbedBlock':
-                  componentToRender = <VideoBlock key={component.id} {...component} />
+                  componentToRender = <VideoBlock key={component.id} {...component} className={componentClass} />
                   break
 
                 default:
