@@ -44,6 +44,7 @@ import { TwoColumnCtaBlock } from '../_blocks/TwoColumnCtaBlock'
 import { OfficialChannelsBlock } from '../_blocks/OfficialChannelsBlock'
 import { FlareDropDatesBlock } from '../_blocks/FlareDropDatesBlock'
 import { CodeCtaBlock } from '../_blocks/CodeCtaBlock'
+import { BrandLogoRollBlock } from '../_blocks/BrandLogoRollBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -189,6 +190,7 @@ export const Pages: CollectionConfig = {
         FlareDropDatesBlock,
         TwoColumnCtaBlock,
         CodeCtaBlock,
+        BrandLogoRollBlock,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
