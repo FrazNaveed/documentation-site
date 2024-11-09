@@ -29,7 +29,7 @@ export default function BrandLogoRollBlock({ header, logos, className }: BrandLo
             link ? (
               <Link
                 href={link}
-                className={styles.logo__linked}
+                className={cx(styles.logo, styles.logo__linked)}
               >
                 {imageComponent}
               </Link>
