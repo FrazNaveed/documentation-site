@@ -1,6 +1,14 @@
+image:
+  file: .gitpod.Dockerfile
+
 tasks:
+  - init: sudo apt update && sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb && exit 0
   - init: npm install --legacy-peer-deps && exit 0
   - command: docker compose up
+  - name: install cypress to workspace
+    init: cd cypress && npm install && npx cypress install && gp await-done cypress-intall && exit 0
+  - name: run cypress app
+    command: cd cypress && gp sync-await cypress-intall && CYPRESS_BASE_URL=$(pg url next) npx cypress open
 
 ports:
   - name: next
@@ -9,3 +17,10 @@ ports:
   - name: pgadmin
     port: 8081
     onOpen: open-preview
+  - name: cypress websocket
+    port: 5900
+    onOpen: ignore
+  - name: vnc webui
+    port: 6080
+    onOpen: open-preview
+
