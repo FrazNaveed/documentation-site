@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import type { OfficialChannelsBlock as OCBlock } from '@/payload-types'
 import Image from 'next/image'
 import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
@@ -12,7 +13,8 @@ import styles from './OfficialChannelsBlock.module.scss'
 export type OfficialChannelsBlockProps = {
   title?: OCBlock['title'],
   text?: OCBlock['text'],
-  channels?: OCBlock['channels']
+  channels?: OCBlock['channels'],
+  className?: string,
 }
 
 const iconMap = {
@@ -22,9 +24,11 @@ const iconMap = {
   YouTube,
 }
 
-export default function OfficialChannelsBlock({ title, text, channels }: OfficialChannelsBlockProps) {
+export default function OfficialChannelsBlock({
+  title, text, channels, className,
+}: OfficialChannelsBlockProps) {
   return (
-    <section className={styles.wrap}>
+    <section className={cx(styles.wrap, className)}>
       {title && <h2 className={styles.title}>{title}</h2>}
       {text
         && (

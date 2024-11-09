@@ -3,6 +3,7 @@ import { ButtonFields } from '../../_fields/ButtonFields'
 import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
 import { i18n } from '@/src/app/i18n-config'
 import validateTextFieldUrl from '../../_utils/validateTextFieldUrl'
+import { BlockMarginSettings } from '../../_fields/BlockMarginSettings'
 
 export const CodeCtaBlock: Block = {
   slug: 'codeCta',
@@ -43,6 +44,7 @@ export const CodeCtaBlock: Block = {
       },
     },
     ...CreateSideNavLinkFields,
+    ...BlockMarginSettings,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/code.svg`,
   imageAltText: 'Code CTA block icon',

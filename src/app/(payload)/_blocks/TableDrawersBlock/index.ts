@@ -1,6 +1,7 @@
 import { Block } from 'payload'
 import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
 import { i18n } from '../../../i18n-config'
+import { BlockMarginSettings } from '../../_fields/BlockMarginSettings'
 
 export const TableDrawersBlock: Block = {
   slug: 'tableDrawers',
@@ -76,6 +77,7 @@ export const TableDrawersBlock: Block = {
     },
 
     ...CreateSideNavLinkFields,
+    ...BlockMarginSettings,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/table.svg`,
   imageAltText: 'Table block icon',
