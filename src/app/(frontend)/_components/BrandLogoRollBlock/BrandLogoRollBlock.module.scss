@@ -3,6 +3,7 @@
 @use "../../_styles/colors" as *;
 @use "../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
+@use "sass:math";
 
 .wrap {
   @include pageComponentSpacing;
@@ -21,14 +22,37 @@
 .logoWrap {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  margin-right: to-rem(-$spacing-5x-large + $container-padding-flare);
+  margin-left: to-rem(-$spacing-5x-large + $container-padding-flare);
   padding-top: to-rem($spacing-xx-large);
   padding-bottom: to-rem($spacing-4x-large);
-  gap: to-rem($spacing-medium) to-rem($spacing-5x-large);
+  gap: to-rem($spacing-medium) 0;
+
+  @include media-breakpoint-down(lg) {
+    margin-right: to-rem(-$spacing-5x-large + $container-padding-lg);
+    margin-left: to-rem(-$spacing-5x-large + $container-padding-lg);
+    padding-top: to-rem($spacing-large);
+    padding-bottom: to-rem($spacing-xx-large);
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-right: to-rem(-$spacing-small + $container-padding-md);
+    margin-left: to-rem(-$spacing-small + $container-padding-md);
+    padding-top: to-rem($spacing-standard);
+    padding-bottom: to-rem($spacing-medium);
+  }
 }
 
 .logo {
   max-height: to-rem($spacing-medium);
+  margin-right: to-rem(math.div($spacing-5x-large, 2));
+  margin-left: to-rem(math.div($spacing-5x-large, 2));
+
+  @include media-breakpoint-down(md) {
+    margin-right: to-rem(math.div($spacing-small, 2));
+    margin-left: to-rem(math.div($spacing-small, 2));
+  }
 
   img {
     width: auto;
