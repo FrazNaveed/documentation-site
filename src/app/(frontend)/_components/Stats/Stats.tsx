@@ -8,7 +8,9 @@ export type StatsProps = Stats & {
   className?: string
 }
 
-export default function StatsBlock({ stats, caption, className }: StatsProps) {
+export default function StatsBlock({
+  stats, caption, className,
+}: StatsProps) {
   return (
     <section className={cx(styles.statsBlock, className)}>
       <div className={styles.stats}>

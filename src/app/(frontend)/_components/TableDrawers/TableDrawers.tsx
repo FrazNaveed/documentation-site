@@ -19,7 +19,12 @@ const ShowHideBtn = ({ onClick, collapsed = false }: {onClick: () => void, colla
   </button>
 )
 
-export default function TableDrawers({ data }: {data: TableWithDrawers}) {
+export type TableWithDrawersProps = {
+  data: TableWithDrawers,
+  className?: string
+}
+
+export default function TableDrawers({ data, className }: TableWithDrawersProps) {
   const {
     column1Header,
     column2Header,
@@ -38,7 +43,7 @@ export default function TableDrawers({ data }: {data: TableWithDrawers}) {
   }
 
   return (
-    <section className={cx(styles.container)}>
+    <section className={cx(styles.container, className)}>
       <div className={cx(styles.headerRow, styles.row)}>
         <div className={cx(styles.cell, styles.label, { [styles.roundBottom]: collapsedDrawers.includes(0) })}>
           {/* Hack. We compress the top section name into the first header row */}

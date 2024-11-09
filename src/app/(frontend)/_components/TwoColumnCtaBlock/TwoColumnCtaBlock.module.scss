@@ -6,7 +6,6 @@
 
 .twoColumnCta {
   @include columns(1, -1);
-  @include pageComponentSpacing;
 }
 
 .wrap {
