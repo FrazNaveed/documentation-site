@@ -35,10 +35,10 @@
   }
 
   &.standardTopMargin {
-    margin-top: $spacing-standard;
+    margin-top: to-rem($spacing-standard);
   }
 
   &.standardBottomMargin {
-    margin-bottom: $spacing-standard;
+    margin-bottom: to-rem($spacing-standard);
   }
 }
