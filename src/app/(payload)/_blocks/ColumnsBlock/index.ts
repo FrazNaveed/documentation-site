@@ -2,6 +2,7 @@ import { Block } from 'payload'
 import { RichTextBlock } from '../RichTextBlock'
 import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
 import { i18n } from '../../../i18n-config'
+import { BlockMarginSettings } from '../../_fields/BlockMarginSettings'
 
 const imageBlock: Block = {
   slug: 'colImage',
@@ -76,6 +77,7 @@ export const ColumnsBlock: Block = {
       maxRows: 1,
     },
     ...CreateSideNavLinkFields,
+    ...BlockMarginSettings,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/columns.svg`,
   imageAltText: 'Columns block icon',

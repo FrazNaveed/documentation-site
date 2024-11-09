@@ -13,18 +13,21 @@ import LexicalRenderer from '../LexicalRenderer'
 export type PastFeaturedGrantsGridBlockProps = {
   gridTitle?: string | null
   grantsGrid?: (number | Grant)[] | null
+  className?: string
 }
 
 type CountryFlags = Record<keyof typeof flags, React.FC<{ title?: string, className?: string }>>
 
-export default function PastFeaturedGrantsGridBlock({ gridTitle, grantsGrid }: PastFeaturedGrantsGridBlockProps) {
+export default function PastFeaturedGrantsGridBlock({
+  gridTitle, grantsGrid, className,
+}: PastFeaturedGrantsGridBlockProps) {
   const [allShown, setAllShown] = useState(false)
   const displayShowButton = grantsGrid && grantsGrid.length > 4
   const toggleAllShown = () => {
     setAllShown((prev) => !prev)
   }
   return (
-    <section className={styles.wrap}>
+    <section className={cx(styles.wrap, className)}>
       {gridTitle && <h2 className={styles.gridTitle}>{gridTitle}</h2>}
       <div id='past-featured-grants-grid' className={styles.grantsGrid}>
         {grantsGrid?.map((grant, index) => {

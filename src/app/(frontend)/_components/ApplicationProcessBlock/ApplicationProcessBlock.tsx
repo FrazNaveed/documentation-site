@@ -4,7 +4,13 @@ import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import styles from './ApplicationProcessBlock.module.scss'
 
-export default function ApplicationProcessBlock({ title, steps }: ApplicationProcess) {
+export type ApplicationProcessProps = ApplicationProcess & {
+  className?: string
+}
+
+export default function ApplicationProcessBlock({
+  title, steps, className,
+}: ApplicationProcessProps) {
   const stepsWithNumbers = steps?.map((step, index) => ({ ...step, stepNumber: index + 1 })) || []
   const stepCount = stepsWithNumbers.length
   const stepsHalfCount = Math.max(1, Math.floor(stepCount / 2))
@@ -36,7 +42,7 @@ export default function ApplicationProcessBlock({ title, steps }: ApplicationPro
     })
   )
   return (
-    <section>
+    <section className={className}>
       {title && <h2 className={styles.title}>{title}</h2>}
       {stepsWithNumbers.length > 0 && (
         <div className={styles.graphic}>

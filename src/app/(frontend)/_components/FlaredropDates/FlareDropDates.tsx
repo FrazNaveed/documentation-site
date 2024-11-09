@@ -8,16 +8,17 @@ import {
 
 export type FlareDropDatesProps = {
   title?: string,
+  className?: string,
 }
 
 export default function FlareDropDates({
   title = 'FlareDrop Dates',
+  className,
 }: FlareDropDatesProps) {
   const awarded = calculateAwardTotals(dropDateData).awarded * 1000000
   const toBeAwarded = calculateAwardTotals(dropDateData).toAward * 1000000
-
   return (
-    <section className={styles.wrap}>
+    <section className={cx(styles.wrap, className)}>
       <h2 className={styles.title}>{title}</h2>
       <div className={styles.legend}>
         <div className={styles.legendCard}>

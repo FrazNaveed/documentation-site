@@ -43,6 +43,7 @@ import { TwoColumnBlock } from '../_blocks/TwoColumnBlock'
 import { TwoColumnCtaBlock } from '../_blocks/TwoColumnCtaBlock'
 import { OfficialChannelsBlock } from '../_blocks/OfficialChannelsBlock'
 import { FlareDropDatesBlock } from '../_blocks/FlareDropDatesBlock'
+import { VideoEmbedBlock } from '../_blocks/VideoEmbedComponentBlock'
 import { CodeCtaBlock } from '../_blocks/CodeCtaBlock'
 
 export const Pages: CollectionConfig = {
@@ -188,6 +189,7 @@ export const Pages: CollectionConfig = {
         RegionalLinkGrid,
         FlareDropDatesBlock,
         TwoColumnCtaBlock,
+        VideoEmbedBlock,
         CodeCtaBlock,
       ],
       admin: {

@@ -1,4 +1,5 @@
 import { i18n } from '@/src/app/i18n-config'
+import { BlockMarginSettings } from '../../_fields/BlockMarginSettings'
 import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
 import { Block } from 'payload'
 
@@ -48,6 +49,7 @@ export const ApplicationProcess: Block = {
       },
     },
     ...CreateSideNavLinkFields,
+    ...BlockMarginSettings,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/edit.svg`,
   imageAltText: 'Application Process block icon',
