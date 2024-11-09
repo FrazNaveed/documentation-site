@@ -5,5 +5,34 @@
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .wrap {
-  // test
+  @include pageComponentSpacing;
+}
+
+.header {
+  @include labelS;
+
+  margin-bottom: 0;
+  color: $gray;
+  font-weight: 500;
+  letter-spacing: to-rem(1.44px);
+  text-align: center;
+}
+
+.logoWrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: to-rem($spacing-xx-large);
+  padding-bottom: to-rem($spacing-4x-large);
+  gap: to-rem($spacing-medium) to-rem($spacing-5x-large);
+}
+
+.logo {
+  max-height: to-rem($spacing-medium);
+
+  img {
+    width: auto;
+    max-width: 100%;
+    height: to-rem($spacing-medium);
+  }
 }
