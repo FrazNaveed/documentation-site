@@ -6,6 +6,7 @@ module.exports = defineConfig({
   downloadsFolder: "downloads",
   screenshotsFolder: "screenshots",
   video: true,
+  projectId: "webpage-aleph",
   e2e: {
     supportFile: false,
     specPattern: "tests/**/*.cy.js",
