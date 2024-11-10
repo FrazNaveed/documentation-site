@@ -13,7 +13,7 @@ tasks:
 ports:
   - name: next
     port: 3000
-    onOpen: open-browser
+    onOpen: ignore
     visibility: public
   - name: pgadmin
     port: 8081
