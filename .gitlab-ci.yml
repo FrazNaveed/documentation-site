@@ -84,8 +84,7 @@ test-e2e:
   script:
   - curl --retry 30 --retry-all-errors --retry-delay 10 --retry-max-time 900 -o /dev/null http://nextjspayload:3000
   - cd cypress
-  - npx cypress run --browser $CYPRESS_BROWSER --record --spec tests/01-global/*.cy.js
-  - npx cypress run --browser $CYPRESS_BROWSER --record --spec tests/02-${DATABASE_BASE}/*.cy.js
+  - npx cypress run --browser $CYPRESS_BROWSER --record --spec "tests/01-global/*.cy.js,tests/02-${DATABASE_BASE}/*.cy.js"
   rules: !reference [.rules, versiontag]
 
 release-ct:
