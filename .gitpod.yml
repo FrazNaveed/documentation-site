@@ -14,6 +14,7 @@ ports:
   - name: next
     port: 3000
     onOpen: open-browser
+    visibility: public
   - name: pgadmin
     port: 8081
     onOpen: ignore

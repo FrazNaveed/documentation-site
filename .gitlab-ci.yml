@@ -50,11 +50,20 @@ build-ct:
     --cache-repo "${CI_REGISTRY_IMAGE}/cache"
   rules: !reference [.rules, versiontag]
 
-test-ct:
+test-e2e:
   stage: test
-  image: alpine
+  image:
+    name: cypress/included
+    entrypoint: [""]
   needs:
   - build-ct
+  parallel:
+    matrix:
+    - CYPRESS_BROWSER:
+      - firefox
+      - chrome
+    - DATABASE_BASE:
+      - cleandb
   services:
   - name: postgres:15.2
     alias: postgres
@@ -70,9 +79,13 @@ test-ct:
   variables:
     CI_DEBUG_SERVICES: "true"
     FF_NETWORK_PER_BUILD: "true"
+  before_script:
+  - apt update -qq && apt install -qq curl
   script:
-  - apk add --no-cache --quiet --no-progress curl
   - curl --retry 30 --retry-all-errors --retry-delay 10 --retry-max-time 900 http://nextjspayload:3000
+  - cd cypress
+  - npx cypress run --browser $CYPRESS_BROWSER --spec tests/01-global/*.spec.js
+  - npx cypress run --browser $CYPRESS_BROWSER --spec tests/02-${DATABASE_BASE}/*.spec.js
   rules: !reference [.rules, versiontag]
 
 release-ct:
@@ -81,7 +94,8 @@ release-ct:
     name: gcr.io/go-containerregistry/crane:debug
     entrypoint: [""]
   needs:
-  - test-ct
+  - build-ct
+  - test-e2e
   script:
   - crane auth login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   - crane copy ${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CI_PIPELINE_ID ${CI_REGISTRY_IMAGE}/webpage-aleph:$CTS_BUILD_TAG
