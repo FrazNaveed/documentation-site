@@ -14,7 +14,7 @@ export default function BrandLogoRollBlock({ header, logos, className }: BrandLo
       {header && <h2 className={styles.header}>{header}</h2>}
       <div className={styles.logoWrap}>
         {logos?.map((logo) => {
-          const { image, link } = logo
+          const { id, image, link } = logo
           const imageComponent = (
             image && typeof image === 'object' && image.url && (
               <Image
@@ -28,13 +28,14 @@ export default function BrandLogoRollBlock({ header, logos, className }: BrandLo
           return (
             link ? (
               <Link
+                key={id}
                 href={link}
                 className={cx(styles.logo, styles.logo__linked)}
               >
                 {imageComponent}
               </Link>
             ) : (
-              <div className={styles.logo}>
+              <div key={id} className={styles.logo}>
                 {imageComponent}
               </div>
             )
