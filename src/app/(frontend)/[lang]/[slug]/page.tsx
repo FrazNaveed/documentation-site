@@ -42,6 +42,7 @@ import FlareDropDates from '../../_components/FlaredropDates'
 import TwoColumnCtaBlock from '../../_components/TwoColumnCtaBlock/TwoColumnCtaBlock'
 import VideoBlock from '../../_components/VideoBlock'
 import TableDrawers from '../../_components/TableDrawers'
+import FeaturedNewsCarouselBlock from '../../_components/FeaturedNewsCarouselBlock'
 
 export const dynamic = 'force-dynamic'
 
@@ -314,6 +315,16 @@ export default async function Page({ params }: PageProps) {
 
                 case 'columns':
                   componentToRender = <Columns key={component.id} {...component} className={componentClass} />
+                  break
+
+                case 'featuredNewsCarousel':
+                  componentToRender = (
+                    <FeaturedNewsCarouselBlock
+                      key={component.id}
+                      {...component}
+                      className={componentClass}
+                    />
+                  )
                   break
 
                 case 'flareDropDates':
