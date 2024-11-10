@@ -5,7 +5,9 @@ module.exports = defineConfig({
   fixturesFolder: "fixtures",
   downloadsFolder: "downloads",
   screenshotsFolder: "screenshots",
+  video: true,
   e2e: {
+    supportFile: false,
     specPattern: "tests/**/*.cy.js",
     setupNodeEvents(on, config) {
       // implement node event listeners here
