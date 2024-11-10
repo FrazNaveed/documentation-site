@@ -5,7 +5,7 @@ import { BlockMarginSettings } from '../../_fields/BlockMarginSettings'
 
 export const FeaturedNewsCarouselBlock: Block = {
   slug: 'featuredNewsCarousel',
-  interfaceName: 'FeaturedNewsCarouselBlock',
+  interfaceName: 'IFeaturedNewsCarouselBlock',
   fields: [
     {
       name: 'newsPosts',

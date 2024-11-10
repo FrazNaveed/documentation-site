@@ -1107,7 +1107,7 @@ export interface Page {
         | ITwoColumnCta
         | VideoEmbedBlock
         | ICodeCta
-        | FeaturedNewsCarouselBlock
+        | IFeaturedNewsCarouselBlock
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -1967,9 +1967,9 @@ export interface ICodeCta {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FeaturedNewsCarouselBlock".
+ * via the `definition` "IFeaturedNewsCarouselBlock".
  */
-export interface FeaturedNewsCarouselBlock {
+export interface IFeaturedNewsCarouselBlock {
   newsPosts?: (number | News)[] | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
