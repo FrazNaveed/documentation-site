@@ -62,7 +62,7 @@ test-e2e:
     - CYPRESS_BROWSER:
       - firefox
       - chrome
-    - DATABASE_BASE:
+      DATABASE_BASE:
       - cleandb
   services:
   - name: postgres:15.2
