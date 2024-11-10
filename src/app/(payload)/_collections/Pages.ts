@@ -45,6 +45,7 @@ import { OfficialChannelsBlock } from '../_blocks/OfficialChannelsBlock'
 import { FlareDropDatesBlock } from '../_blocks/FlareDropDatesBlock'
 import { VideoEmbedBlock } from '../_blocks/VideoEmbedComponentBlock'
 import { CodeCtaBlock } from '../_blocks/CodeCtaBlock'
+import { FeaturedNewsCarouselBlock } from '../_blocks/FeaturedNewsCarouselBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -191,6 +192,7 @@ export const Pages: CollectionConfig = {
         TwoColumnCtaBlock,
         VideoEmbedBlock,
         CodeCtaBlock,
+        FeaturedNewsCarouselBlock,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {

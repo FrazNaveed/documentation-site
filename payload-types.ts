@@ -1107,6 +1107,7 @@ export interface Page {
         | ITwoColumnCta
         | VideoEmbedBlock
         | ICodeCta
+        | FeaturedNewsCarouselBlock
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -1966,35 +1967,18 @@ export interface ICodeCta {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "news-types".
+ * via the `definition` "FeaturedNewsCarouselBlock".
  */
-export interface NewsType {
-  id: number;
-  title: string;
-  slug: string;
-  image: number | Media;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: number;
-  updatedAt: string;
-  createdAt: string;
-  enableAPIKey?: boolean | null;
-  apiKey?: string | null;
-  apiKeyIndex?: string | null;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password?: string | null;
+export interface FeaturedNewsCarouselBlock {
+  newsPosts?: (number | News)[] | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featuredNewsCarousel';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2034,6 +2018,38 @@ export interface News {
     };
     [k: string]: unknown;
   } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  updatedAt: string;
+  createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-types".
+ */
+export interface NewsType {
+  id: number;
+  title: string;
+  slug: string;
+  image: number | Media;
   updatedAt: string;
   createdAt: string;
 }
