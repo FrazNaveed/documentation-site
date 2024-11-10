@@ -8,8 +8,8 @@ module.exports = defineConfig({
   e2e: {
     supportFile: false,
     specPattern: "tests/**/*.cy.js",
-    // macbook-15 - https://docs.cypress.io/api/commands/viewport#Arguments
-    viewportWidth: 1440,
-    viewportHeight: 900,
+    // macbook-16 - https://docs.cypress.io/api/commands/viewport#Arguments
+    viewportWidth: 1536,
+    viewportHeight: 960,
   },
 });
