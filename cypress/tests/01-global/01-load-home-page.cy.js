@@ -3,7 +3,8 @@
 describe('base page checks', () => {
   it('loads home page', () => {
     cy.visit("/")
-    cy.scrollTo('bottom')
-    cy.scrollTo('top')
+    cy.screenshot()
+    cy.scrollTo('bottom').wait(1000)
+    cy.screenshot()
   })
 })
