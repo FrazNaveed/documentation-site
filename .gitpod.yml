@@ -8,7 +8,7 @@ tasks:
   - name: install cypress to workspace
     init: cd cypress && npm install && npx cypress install && gp await-done cypress-intall && exit 0
   - name: run cypress app
-    command: cd cypress && gp sync-await cypress-intall && CYPRESS_BASE_URL=$(pg url next) npx cypress open
+    command: cd cypress && gp sync-await cypress-intall && CYPRESS_BASE_URL=$(gp url 3000) npx cypress open
 
 ports:
   - name: next
