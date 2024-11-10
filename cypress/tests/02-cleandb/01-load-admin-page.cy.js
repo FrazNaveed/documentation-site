@@ -13,15 +13,15 @@ describe('base checks', () => {
     cy.visit("/admin")
 
     cy.get("body", { log: false }).then(body => {
-      if (body.find('form[action="/api/users/first-register"]').length == 1) {
-        cy.get('input#field-email').type(usermail)
-        cy.get('input#field-password').type(userpass)
-        cy.get('input#field-confirm-password').type(userpass)
-        cy.wait(1000)
-        cy.get('form[action="/api/users/first-register"]').submit()
-        cy.get('a[href="/admin/logout"]').should('exist').wait(1500).click()
-        cy.get('button[type="submit"]').contains('Login')
-      }
+      if (body.find('form[action="/api/users/first-register"]').length != 1) return
+
+      cy.get('input#field-email').type(usermail)
+      cy.get('input#field-password').type(userpass)
+      cy.get('input#field-confirm-password').type(userpass)
+      cy.get('form[action="/api/users/first-register"]').submit()
+
+      cy.get('a[href="/admin/logout"]').should('exist').wait(1500).click()
+      cy.get('button[type="submit"]').contains('Login')
     })    
   })
 
