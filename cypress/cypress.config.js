@@ -8,8 +8,8 @@ module.exports = defineConfig({
   e2e: {
     supportFile: false,
     specPattern: "tests/**/*.cy.js",
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+    // macbook-15 - https://docs.cypress.io/api/commands/viewport#Arguments
+    viewportWidth: 1440,
+    viewportHeight: 900,
   },
 });
