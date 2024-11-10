@@ -2,11 +2,10 @@ image:
   file: .gitpod.dockerfile
 
 tasks:
-  - init: sudo apt update && sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb && exit 0
   - init: npm install --legacy-peer-deps && exit 0
-  - command: docker compose up
-  - name: install cypress to workspace
-    init: cd cypress && npm install && npx cypress install && gp sync-done cypress-intall && exit 0
+  - init: cd cypress && npm install && npx cypress install && gp sync-done cypress-intall && exit 0
+  - name: run compose stack
+    command: docker compose up
   - name: run cypress app
     command: cd cypress && gp sync-await cypress-intall && CYPRESS_BASE_URL=$(gp url 3000) npx cypress open
 
