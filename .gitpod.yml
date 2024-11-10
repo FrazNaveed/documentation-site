@@ -6,21 +6,21 @@ tasks:
   - init: npm install --legacy-peer-deps && exit 0
   - command: docker compose up
   - name: install cypress to workspace
-    init: cd cypress && npm install && npx cypress install && gp await-done cypress-intall && exit 0
+    init: cd cypress && npm install && npx cypress install && gp sync-done cypress-intall && exit 0
   - name: run cypress app
     command: cd cypress && gp sync-await cypress-intall && CYPRESS_BASE_URL=$(gp url 3000) npx cypress open
 
 ports:
   - name: next
     port: 3000
-    onOpen: open-preview
+    onOpen: open-browser
   - name: pgadmin
     port: 8081
-    onOpen: open-preview
+    onOpen: ignore
   - name: cypress websocket
     port: 5900
     onOpen: ignore
   - name: vnc webui
     port: 6080
-    onOpen: open-preview
+    onOpen: open-browser
 
