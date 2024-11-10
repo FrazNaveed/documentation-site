@@ -2,8 +2,8 @@ image:
   file: .gitpod.dockerfile
 
 tasks:
-  - init: npm install --legacy-peer-deps && exit 0
-  - init: cd cypress && npm install && npx cypress install && gp sync-done cypress-intall && exit 0
+  - command: npm install --legacy-peer-deps && exit 0
+  - command: cd cypress && npm install && npx cypress install && gp sync-done cypress-intall && exit 0
   - name: run compose stack
     command: docker compose up
   - name: run cypress app
