@@ -52,7 +52,9 @@ build-ct:
 
 test-e2e:
   stage: test
-  image: cypress/browsers:latest
+  image:
+    name: cypress/included
+    entrypoint: [""]
   needs:
   - build-ct
   parallel:
