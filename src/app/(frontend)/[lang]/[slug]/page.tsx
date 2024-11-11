@@ -310,7 +310,13 @@ export default async function Page({ params }: PageProps) {
                   break
 
                 case 'brandLogoRoll':
-                  componentToRender = <BrandLogoRollBlock key={component.id} {...component} />
+                  componentToRender = (
+                    <BrandLogoRollBlock
+                      key={component.id}
+                      {...component}
+                      className={componentClass}
+                    />
+                  )
                   break
 
                 case 'codeCta':
