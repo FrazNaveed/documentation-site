@@ -62,6 +62,7 @@ test-e2e:
     - CYPRESS_BROWSER:
       - firefox
       - chrome
+      - edge
       DATABASE_BASE:
       - cleandb
   services:
