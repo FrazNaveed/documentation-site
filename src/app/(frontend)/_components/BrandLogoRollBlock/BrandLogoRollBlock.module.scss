@@ -20,17 +20,14 @@
   flex-wrap: wrap;
   justify-content: center;
   padding-top: to-rem($spacing-xx-large);
-  padding-bottom: to-rem($spacing-4x-large);
   gap: to-rem($spacing-medium) 0;
 
   @include media-breakpoint-down(lg) {
     padding-top: to-rem($spacing-large);
-    padding-bottom: to-rem($spacing-xx-large);
   }
 
   @include media-breakpoint-down(md) {
     padding-top: to-rem($spacing-standard);
-    padding-bottom: to-rem($spacing-medium);
   }
 }
 
