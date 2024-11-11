@@ -19,22 +19,16 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-right: to-rem(-$spacing-5x-large + $container-padding-flare);
-  margin-left: to-rem(-$spacing-5x-large + $container-padding-flare);
   padding-top: to-rem($spacing-xx-large);
   padding-bottom: to-rem($spacing-4x-large);
   gap: to-rem($spacing-medium) 0;
 
   @include media-breakpoint-down(lg) {
-    margin-right: to-rem(-$spacing-5x-large + $container-padding-lg);
-    margin-left: to-rem(-$spacing-5x-large + $container-padding-lg);
     padding-top: to-rem($spacing-large);
     padding-bottom: to-rem($spacing-xx-large);
   }
 
   @include media-breakpoint-down(md) {
-    margin-right: to-rem(-$spacing-small + $container-padding-md);
-    margin-left: to-rem(-$spacing-small + $container-padding-md);
     padding-top: to-rem($spacing-standard);
     padding-bottom: to-rem($spacing-medium);
   }
