@@ -2,6 +2,7 @@ import { Block } from 'payload'
 import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
 import { i18n } from '@/src/app/i18n-config'
 import validateTextFieldUrl from '../../_utils/validateTextFieldUrl'
+import { BlockMarginSettings } from '../../_fields/BlockMarginSettings'
 
 export const TwoColumnCtaBlock: Block = {
   slug: 'twoColumnCta',
@@ -57,6 +58,7 @@ export const TwoColumnCtaBlock: Block = {
       validate: validateTextFieldUrl,
     },
     ...CreateSideNavLinkFields,
+    ...BlockMarginSettings,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/zap.svg`,
   imageAltText: 'Two Column Cta block icon',

@@ -19,6 +19,10 @@ const ibmPlexMono = IBM_Plex_Mono({
   display: 'swap',
 })
 
+export type CodeCTABlockProps = ICodeCta & {
+  className?: string
+}
+
 export default async function CodeCTABlock({
   header,
   text,
@@ -28,7 +32,8 @@ export default async function CodeCTABlock({
   buttonSecondaryLink,
   hideCode,
   image,
-}: ICodeCta) {
+  className,
+}: CodeCTABlockProps) {
   const hasButton = buttonText && buttonLink
   const hasSecondaryButton = buttonSecondaryText && buttonSecondaryLink
   const hasTextContent = header || text || hasButton || hasSecondaryButton
@@ -37,7 +42,7 @@ export default async function CodeCTABlock({
     return null
   }
   return (
-    <section className={styles.wrap}>
+    <section className={cx(styles.wrap, className)}>
       <div className={cx(styles.grid, { [styles.grid__withImage]: showImage })}>
         {hasTextContent && (
           <div className={styles.contentCol}>

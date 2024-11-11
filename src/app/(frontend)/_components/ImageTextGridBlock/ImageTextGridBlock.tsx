@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import Image from 'next/image'
 import type { ImageTextCards } from '@/payload-types'
 import LexicalRenderer from '../LexicalRenderer'
@@ -7,11 +8,14 @@ import { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRe
 export type ImageTextGridBlockProps = {
   imageTextGridTitle?: string | null
   imageTextCardGrid?: ImageTextCards | []
+  className?: string
 }
 
-export default function ImageTextGridBlock({ imageTextGridTitle, imageTextCardGrid }: ImageTextGridBlockProps) {
+export default function ImageTextGridBlock({
+  imageTextGridTitle, imageTextCardGrid, className,
+}: ImageTextGridBlockProps) {
   return (
-    <section className={styles.imageTextGridBlock}>
+    <section className={cx(styles.imageTextGridBlock, className)}>
       {imageTextGridTitle && <h2 className={styles.imageTextGridTitle}>{imageTextGridTitle}</h2>}
       <div className={styles.imageTextGridWrap}>
         <ul className={styles.imageTextGrid}>

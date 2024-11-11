@@ -3,6 +3,7 @@ import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
 import { Block } from 'payload'
 import countryArray from '../../_utils/countryArray'
 import validateTextFieldUrl from '../../_utils/validateTextFieldUrl'
+import { BlockMarginSettings } from '../../_fields/BlockMarginSettings'
 
 export const RegionalLinkGrid: Block = {
   slug: 'regionalLinkGrid',
@@ -50,6 +51,7 @@ export const RegionalLinkGrid: Block = {
       },
     },
     ...CreateSideNavLinkFields,
+    ...BlockMarginSettings,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/link.svg`,
   imageAltText: 'Regional Link Grid block icon',

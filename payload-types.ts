@@ -1105,6 +1105,7 @@ export interface Page {
         | IRegionalLinkGrid
         | FlareDropDates
         | ITwoColumnCta
+        | VideoEmbedBlock
         | ICodeCta
         | IMarqueeGallery
       )[]
@@ -1289,6 +1290,9 @@ export interface Columns {
     | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'columns';
@@ -1325,6 +1329,9 @@ export interface Image {
   image?: (number | null) | Media;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'image';
@@ -1338,6 +1345,9 @@ export interface ImageTextGridBlock {
   imageTextCardGrid?: ImageTextCards;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'imageTextGrid';
@@ -1364,6 +1374,9 @@ export interface RichTextBlock {
   } | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'richTextBlock';
@@ -1377,6 +1390,9 @@ export interface PastFeaturedGrantsGridBlock {
   grantsGrid?: (number | Grant)[] | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'pastFeaturedGrantsGrid';
@@ -1404,6 +1420,9 @@ export interface Stats {
   } | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'stats';
@@ -1418,6 +1437,9 @@ export interface TableWithDrawers {
   sections?: Sections;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'tableDrawers';
@@ -1431,6 +1453,9 @@ export interface ITalkingPoints {
   points: PointsList;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'talkingPoints';
@@ -1485,6 +1510,9 @@ export interface TwoColumns {
   };
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'twoColumn';
@@ -1498,6 +1526,9 @@ export interface ApplicationProcess {
   steps?: ApplicationProcessSteps;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'applicationProcess';
@@ -1526,6 +1557,9 @@ export interface OfficialChannelsBlock {
   channels?: (number | SocialLink)[] | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'officialChannels';
@@ -1823,6 +1857,9 @@ export interface IRegionalLinkGrid {
     | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'regionalLinkGrid';
@@ -1834,6 +1871,9 @@ export interface IRegionalLinkGrid {
 export interface FlareDropDates {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'flareDropDates';
@@ -1867,9 +1907,28 @@ export interface ITwoColumnCta {
   secondaryButtonLink?: string | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'twoColumnCta';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VideoEmbedBlock".
+ */
+export interface VideoEmbedBlock {
+  title?: string | null;
+  url?: string | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'videoEmbedBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1900,6 +1959,9 @@ export interface ICodeCta {
   image?: (number | null) | Media;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'codeCta';
@@ -1940,6 +2002,9 @@ export interface IMarqueeGallery {
     | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'marqueeGallery';

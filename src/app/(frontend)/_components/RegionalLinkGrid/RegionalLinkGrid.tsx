@@ -5,9 +5,15 @@ import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import styles from './RegionalLinkGrid.module.scss'
 
-export default function RegionalLinkGrid({ title, description, links }: IRegionalLinkGrid) {
+export type RegionalLinkGridProps = IRegionalLinkGrid & {
+  className?: string
+}
+
+export default function RegionalLinkGrid({
+  title, description, links, className,
+}: RegionalLinkGridProps) {
   return (
-    <section>
+    <section className={className}>
       {(title || description) && (
         <div className={styles.grid}>
           <div className={styles.intro}>

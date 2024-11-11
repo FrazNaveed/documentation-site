@@ -1,5 +1,6 @@
 import { i18n } from '@/src/app/i18n-config'
 import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
+import { BlockMarginSettings } from '../../_fields/BlockMarginSettings'
 import { Block } from 'payload'
 import isValidSocialSlotInMarquee from 'src/app/(frontend)/_utils/isValidSocialSlotInMarquee'
 import { Page, IMarqueeGallery } from 'payload-types'
@@ -122,6 +123,7 @@ export const MarqueeGallery: Block = {
       },
     },
     ...CreateSideNavLinkFields,
+    ...BlockMarginSettings,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/image.svg`,
   imageAltText: 'Marquee Gallery block icon',

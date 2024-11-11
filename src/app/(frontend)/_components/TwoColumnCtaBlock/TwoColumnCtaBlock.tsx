@@ -6,6 +6,10 @@ import LexicalRenderer from '../LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import styles from './TwoColumnCtaBlock.module.scss'
 
+export type TwoColumnCtaProps = ITwoColumnCta & {
+  className?: string
+}
+
 export default function TwoColumnCtaBlock({
   image,
   eyebrow,
@@ -15,9 +19,10 @@ export default function TwoColumnCtaBlock({
   primaryButtonLink,
   secondaryButtonText,
   secondaryButtonLink,
-}: ITwoColumnCta) {
+  className,
+}: TwoColumnCtaProps) {
   return (
-    <section className={styles.twoColumnCta}>
+    <section className={cx(styles.twoColumnCta, className)}>
       <div className={styles.wrap}>
         {image && typeof image === 'object' && image.url && image.alt
           && (

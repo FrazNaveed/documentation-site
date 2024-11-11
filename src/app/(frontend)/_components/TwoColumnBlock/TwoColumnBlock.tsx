@@ -5,15 +5,20 @@ import LexicalRenderer from '../LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import styles from './TwoColumnBlock.module.scss'
 
+export type TwoColumnsProps = TwoColumns & {
+  className?: string
+}
+
 export default function TwoColumnBlock({
   layout,
   ColumnOne: columnOne,
   ColumnTwo: columnTwo,
   id,
-}: TwoColumns) {
+  className,
+}: TwoColumnsProps) {
   const columns = [columnOne, columnTwo]
   return (
-    <section className={cx(styles.twoColumnBlock)}>
+    <section className={cx(styles.twoColumnBlock, className)}>
       {columns?.map((column, index) => {
         if (!column) return null
 

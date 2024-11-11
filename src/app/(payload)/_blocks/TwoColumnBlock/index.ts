@@ -1,6 +1,7 @@
 import { Block, Field } from 'payload'
 import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
 import { i18n } from '@/src/app/i18n-config'
+import { BlockMarginSettings } from '../../_fields/BlockMarginSettings'
 
 const columnFields: Field[] = [
   {
@@ -125,6 +126,7 @@ export const TwoColumnBlock: Block = {
       ],
     },
     ...CreateSideNavLinkFields,
+    ...BlockMarginSettings,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/columns.svg`,
   imageAltText: 'Two Column block icon',

@@ -5,14 +5,19 @@ import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_com
 import type { Columns as TColumns } from 'payload-types'
 import styles from './Columns.module.scss'
 
+export type ColumnsProps = TColumns & {
+  className?: string
+}
+
 export default function Columns({
   layout,
   alignColumns,
   leftColumnBlock: leftColumn,
   rightColumnBlock: rightColumn,
+  className,
   // createSideNavLink,
   // linkText,
-}: TColumns) {
+}: ColumnsProps) {
   const blockMarkup = (column: TColumns['leftColumnBlock'] | TColumns['rightColumnBlock']) => {
     if (column && column.length > 0) {
       const block = column[0]
@@ -43,7 +48,7 @@ export default function Columns({
     return null
   }
   return (
-    <div className={cx(styles.columns, alignColumns && styles.columns__topAligned)}>
+    <div className={cx(styles.columns, alignColumns && styles.columns__topAligned, className)}>
       <div className={cx(styles.colLeft, styles[`colLeft__${layout}`])}>
         {blockMarkup(leftColumn)}
       </div>

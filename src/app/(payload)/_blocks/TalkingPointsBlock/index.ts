@@ -17,6 +17,7 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
 import validateTextFieldUrl from '../../_utils/validateTextFieldUrl'
+import { BlockMarginSettings } from '../../_fields/BlockMarginSettings'
 
 export const TalkingPoints: Block = {
   slug: 'talkingPoints',
@@ -129,6 +130,7 @@ export const TalkingPoints: Block = {
       },
     },
     ...CreateSideNavLinkFields,
+    ...BlockMarginSettings,
   ],
   imageURL: `/${i18n.defaultLocale}/icons/grid.svg`,
   imageAltText: 'Talking Points block icon',

@@ -13,25 +13,32 @@
 .mainContent {
   @include columns(3, -1);
 
-  > * {
-    margin-top: to-rem($spacing-4x-large);
-    margin-bottom: to-rem($spacing-4x-large);
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    &:first-child,
-    &.jumpLinkAnchor:first-child + * {
-      margin-top: 0;
-    }
-
-    &.jumpLinkAnchor {
-      margin: 0;
-    }
-  }
-
   &__fullWidth {
     @include columns(1, -1);
+  }
+}
+
+.block {
+  margin-top: to-rem($spacing-4x-large);
+  margin-bottom: to-rem($spacing-4x-large);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  .jumpLinkAnchor:first-child + & {
+    margin: 0;
+  }
+
+  &.standardTopMargin {
+    margin-top: to-rem($spacing-standard);
+  }
+
+  &.standardBottomMargin {
+    margin-bottom: to-rem($spacing-standard);
   }
 }
