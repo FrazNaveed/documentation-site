@@ -1,0 +1,331 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+$marquee-height: 581px;
+$marquee-height-mobile: 289px;
+$marquee-grid-gap: $spacing-small;
+$marquee-grid-gap-mobile: $spacing-x-small;
+
+.intro {
+  @include sectionHeaderMargin;
+
+  text-align: center;
+}
+
+.header {
+  @include sectionHeaderFont;
+
+  margin-bottom: 0;
+}
+
+.fullWidth {
+  position: relative;
+  right: 50%;
+  left: 50%;
+  width: 100vw;
+  margin-right: -50vw;
+  margin-left: -50vw;
+}
+
+.marqueeContainer {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  width: 100%;
+  // overflow-x: hidden;
+  overflow-x: scroll;
+}
+
+.marquee {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  min-width: auto;
+  z-index: 1;
+  // animation: scroll var(--duration) linear var(--delay) var(--iteration-count);
+  // animation-play-state: var(--play);
+  // animation-delay: var(--delay);
+  // animation-direction: var(--direction);
+}
+
+.contentWrap {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  min-width: auto;
+}
+
+.content {
+  display: grid;
+  grid-template-rows: repeat(6, minmax(0, 1fr));
+  gap: $marquee-grid-gap;
+  grid-auto-flow: column dense;
+
+  @include media-breakpoint-down(md) {
+    gap: $marquee-grid-gap-mobile;
+  }
+}
+
+.card,
+.hoverContent {
+  padding: $spacing-medium;
+
+  @include media-breakpoint-down(md) {
+    padding: $spacing-small;
+  }
+}
+
+.card {
+  position: relative;
+  height: $marquee-height;
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 0.95;
+  grid-row: span 6;
+
+  @include media-breakpoint-down(md) {
+    height: $marquee-height-mobile;
+  }
+
+  &__sm {
+    height: calc(($marquee-height - ($marquee-grid-gap * 2)) / 3);
+    padding: $spacing-standard;
+    aspect-ratio: 1.7;
+    grid-row: span 2;
+
+    @include media-breakpoint-down(md) {
+      height: calc(
+        ($marquee-height-mobile - ($marquee-grid-gap-mobile * 2)) / 3
+      );
+      padding: $spacing-x-small;
+    }
+  }
+
+  &__md {
+    height: calc(($marquee-height - $marquee-grid-gap) / 2);
+    aspect-ratio: 1.7;
+    grid-row: span 3;
+
+    @include media-breakpoint-down(md) {
+      height: calc(($marquee-height-mobile - $marquee-grid-gap-mobile) / 2);
+    }
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $pink-600;
+
+    &,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      color: $white;
+    }
+  }
+
+  &__events {
+    background-color: $events-hero-bg-color;
+  }
+
+  &_Image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.hoverContent {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  justify-content: end;
+  width: 100%;
+  height: 100%;
+  transition: opacity $transition-snappy;
+  background-color: rgba(0 0 0 / 50%);
+  color: $white;
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+
+  .card:hover &,
+  .card:focus & {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &__smCard {
+    padding: $spacing-small;
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+}
+
+.overlayTitle {
+  @include headerH4(md);
+
+  margin-bottom: $spacing-x-small;
+  color: inherit;
+
+  &__sm {
+    @include headerH6;
+  }
+
+  &__md {
+    @include media-breakpoint-down(md) {
+      @include headerH6;
+    }
+  }
+}
+
+.overlayText {
+  &__sm {
+    @include paragraphXSmFont(md);
+  }
+
+  &__md {
+    @include media-breakpoint-down(md) {
+      @include paragraphXSmFont;
+    }
+  }
+}
+
+.socialWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-standard;
+  overflow-wrap: anywhere;
+}
+
+.socialText {
+  font-size: to-rem(60px);
+  line-height: 1;
+
+  @include media-breakpoint-down(md) {
+    @include headerMobileH4;
+  }
+}
+
+.socialIcon {
+  flex-shrink: 0;
+  width: 48px;
+
+  @include media-breakpoint-down(md) {
+    width: 24px;
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    path {
+      fill: $white;
+    }
+  }
+}
+
+.eventContent {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: 100%;
+  z-index: 1;
+  overflow-wrap: break-word;
+
+  @include media-breakpoint-up(md) {
+    padding-right: 23%;
+  }
+}
+
+.eventEyebrow {
+  @include label;
+
+  color: $gray;
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: $spacing-x-small;
+    font-size: to-rem(10px);
+    line-height: 1.2;
+  }
+}
+
+.eventHeader {
+  @include headerH5;
+
+  margin-bottom: $spacing-x-small;
+
+  @include media-breakpoint-down(md) {
+    font-size: to-rem(16px);
+    line-height: 1.2;
+  }
+}
+
+.eventLocation {
+  margin-top: auto;
+
+  @include media-breakpoint-down(md) {
+    font-size: to-rem(12px);
+    line-height: 1.2;
+  }
+
+  &_Icon {
+    @include media-breakpoint-down(md) {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.eventBgImgWrap {
+  position: absolute;
+  right: 0%;
+  bottom: 0%;
+  width: 80%;
+  height: auto;
+  transform: translate(45%, 40%);
+}
+
+.eventLink {
+  @include headerH4(md);
+
+  @include media-breakpoint-down(md) {
+    @include paragraphSmFont;
+  }
+
+  &_Icon {
+    @include media-breakpoint-up(md) {
+      width: 24px;
+      margin-top: 6px;
+    }
+  }
+
+  &,
+  &:visited,
+  &:hover,
+  &:focus,
+  &:active {
+    color: $white;
+
+    .eventLink_Icon path {
+      fill: $white;
+    }
+  }
+}

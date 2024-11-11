@@ -27,6 +27,7 @@ import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
 import TeamGridBlock from '../../_components/TeamGridBlock'
 import ImageTextGridBlock from '../../_components/ImageTextGridBlock'
+import MarqueeGallery from '../../_components/MarqueeGallery'
 import styles from './page.module.scss'
 import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
@@ -323,6 +324,10 @@ export default async function Page({ params }: PageProps) {
 
                 case 'richTextBlock':
                   componentToRender = <RichTextBlock key={component.id} richText={component.richText} />
+                  break
+
+                case 'marqueeGallery':
+                  componentToRender = <MarqueeGallery key={component.id} {...component} />
                   break
 
                 case 'stats':

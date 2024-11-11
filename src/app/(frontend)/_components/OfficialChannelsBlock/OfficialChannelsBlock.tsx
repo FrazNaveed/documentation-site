@@ -1,10 +1,6 @@
 import type { OfficialChannelsBlock as OCBlock } from '@/payload-types'
-import Image from 'next/image'
 import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
-import Discord from '../svgs/Discord'
-import Telegram from '../svgs/Telegram'
-import XSocialSymbol from '../svgs/XSocialSymbol'
-import YouTube from '../svgs/YouTube'
+import OfficialChannelsIcon from '../OfficialChannelsIcon'
 import ExternalLink from '../ExternalLink'
 import LexicalRenderer from '../LexicalRenderer'
 import styles from './OfficialChannelsBlock.module.scss'
@@ -13,13 +9,6 @@ export type OfficialChannelsBlockProps = {
   title?: OCBlock['title'],
   text?: OCBlock['text'],
   channels?: OCBlock['channels']
-}
-
-const iconMap = {
-  Discord,
-  Telegram,
-  X: XSocialSymbol,
-  YouTube,
 }
 
 export default function OfficialChannelsBlock({ title, text, channels }: OfficialChannelsBlockProps) {
@@ -43,18 +32,7 @@ export default function OfficialChannelsBlock({ title, text, channels }: Officia
             id,
           } = channel
 
-          const Icon = iconMap[channelTitle as keyof typeof iconMap]
-
-          let cardIcon
-
-          if (icon && typeof icon !== 'number') {
-            cardIcon = icon.url
-              && <Image src={icon.url} alt={icon.alt} width={icon.width ?? 0} height={icon.height ?? 0} />
-          } else if (Icon) {
-            cardIcon = <Icon />
-          } else {
-            cardIcon = null
-          }
+          const cardIcon = <OfficialChannelsIcon channelTitle={channelTitle} icon={icon} />
 
           return (
             <ExternalLink

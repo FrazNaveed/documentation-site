@@ -35,6 +35,7 @@ import { ApplicationProcess } from '../_blocks/ApplicationProcessBlock'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
 import { DevHub } from '../_fields/DevHub'
 import { RegionalLinkGrid } from '../_blocks/RegionalLinkGridBlock'
+import { MarqueeGallery } from '../_blocks/MarqueeGallery'
 import { TeamGrid } from '../_fields/Team'
 import { WalletsGrid } from '../_fields/WalletsGrid'
 import { TalkingPoints } from '../_blocks/TalkingPointsBlock'
@@ -189,6 +190,7 @@ export const Pages: CollectionConfig = {
         FlareDropDatesBlock,
         TwoColumnCtaBlock,
         CodeCtaBlock,
+        MarqueeGallery,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {

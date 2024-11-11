@@ -1,0 +1,25 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: to-rem($spacing-x-small);
+
+  &_Icon {
+    width: 16px;
+    height: auto;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    .link_Icon path {
+      fill: $link-hover-color;
+    }
+  }
+}

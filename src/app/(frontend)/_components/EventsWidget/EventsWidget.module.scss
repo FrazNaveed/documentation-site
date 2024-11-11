@@ -30,15 +30,6 @@
 }
 
 .link {
-  display: flex;
-  align-items: center;
-  gap: to-rem($spacing-x-small);
-
-  &_Icon {
-    width: 16px;
-    height: auto;
-  }
-
   &:hover,
   &:focus,
   &:active {
