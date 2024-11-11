@@ -14,9 +14,13 @@ import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
 import isValidSocialSlotInMarquee from 'src/app/(frontend)/_utils/isValidSocialSlotInMarquee'
 import styles from './MarqueeGallery.module.scss'
 
+type MarqueeGalleryProps = IMarqueeGallery & {
+  className?: string
+}
+
 export default async function MarqueeGallery({
-  title, eventCardEyebrow, eventCardTitle, cards,
-}: IMarqueeGallery) {
+  title, eventCardEyebrow, eventCardTitle, cards, className,
+}: MarqueeGalleryProps) {
   const eventsPageLink = getCollectionPath('events')
   const eventsPageSlug = eventsPageLink.replace(/^\/|\/$/g, '')
   const featuredEvent = await getFeaturedEvent()
@@ -29,7 +33,7 @@ export default async function MarqueeGallery({
     : eventCardEyebrow
   const eventHeader = featuredEvent ? featuredEvent.title : eventCardTitle
   const eventsCard = (
-    <div className={cx(styles.card, styles.card__md, styles.card__events)}>
+    <div key='eventsCard' className={cx(styles.card, styles.card__md, styles.card__events)}>
       <div className={styles.eventContent}>
         {featuredEvent && <EventsFeaturedLabel textClassName={styles.featuredText} />}
         {eventEyebrow && <h4 className={styles.eventEyebrow}>{eventEyebrow}</h4>}
@@ -166,7 +170,7 @@ export default async function MarqueeGallery({
   }
   cardMarkup.splice(4, 0, eventsCard)
   return (
-    <div className={styles.wrap}>
+    <div className={cx(styles.wrap, className)}>
       <div className={styles.intro}>
         <h2 className={styles.header}>
           {title}

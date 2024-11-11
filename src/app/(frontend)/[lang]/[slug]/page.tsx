@@ -293,10 +293,10 @@ export default async function Page({ params }: PageProps) {
               let componentToRender
               let componentClass = styles.block
               if (component.standardTopMargin) {
-                componentClass += ` ${styles.standardTopMargin}`
+                componentClass += ` ${styles.block__standardTopMargin}`
               }
               if (component.standardBottomMargin) {
-                componentClass += ` ${styles.standardBottomMargin}`
+                componentClass += ` ${styles.block__standardBottomMargin}`
               }
               switch (component?.blockType) {
                 case 'applicationProcess':
@@ -366,7 +366,7 @@ export default async function Page({ params }: PageProps) {
                   break
 
                 case 'marqueeGallery':
-                  componentToRender = <MarqueeGallery key={component.id} {...component} />
+                  componentToRender = <MarqueeGallery key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'stats':
