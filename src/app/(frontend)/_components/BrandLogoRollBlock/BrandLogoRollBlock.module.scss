@@ -5,10 +5,6 @@
 @use "@aleph/nought-sass-mixins/sass/utils";
 @use "sass:math";
 
-.wrap {
-  @include pageComponentSpacing;
-}
-
 .header {
   @include labelS;
 
