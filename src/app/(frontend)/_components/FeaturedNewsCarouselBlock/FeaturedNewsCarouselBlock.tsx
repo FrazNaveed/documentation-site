@@ -29,6 +29,7 @@ export default function FeaturedNewsCarouselBlock({ newsPosts, className }: Feat
           const {
             id,
             teaserThumbnail,
+            logos,
             title,
             slug,
             excerpt,
@@ -43,6 +44,7 @@ export default function FeaturedNewsCarouselBlock({ newsPosts, className }: Feat
               <Slide
                 id={id}
                 teaserThumbnail={teaserThumbnail}
+                logos={logos}
                 title={title}
                 slug={slug}
                 excerpt={excerpt}
