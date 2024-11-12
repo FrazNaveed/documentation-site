@@ -2,6 +2,7 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -95,6 +96,19 @@ export default buildConfig({
       connectionString: process.env.POSTGRES_URL || '',
     },
     migrationDir: './migrations',
+  }),
+
+  email: nodemailerAdapter({
+    defaultFromAddress: 'donotreply@flare.network',
+    defaultFromName: 'Flare',
+    transportOptions: {
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT || 587,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    },
   }),
   sharp,
   plugins: [
