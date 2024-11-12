@@ -169,6 +169,17 @@ export default async function MarqueeGallery({
     return null
   }
   cardMarkup.splice(4, 0, eventsCard)
+  const marqueeMarkup = (
+    <div className={styles.marquee}>
+      <div className={styles.contentWrap}>
+        <div>
+          <div className={styles.content}>
+            {cardMarkup}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
   return (
     <div className={cx(styles.wrap, className)}>
       <div className={styles.intro}>
@@ -178,15 +189,8 @@ export default async function MarqueeGallery({
       </div>
       <div className={styles.fullWidth}>
         <div className={styles.marqueeContainer}>
-          <div className={styles.marquee}>
-            <div className={styles.contentWrap}>
-              <div>
-                <div className={styles.content}>
-                  {cardMarkup}
-                </div>
-              </div>
-            </div>
-          </div>
+          {marqueeMarkup}
+          {marqueeMarkup}
         </div>
       </div>
     </div>
