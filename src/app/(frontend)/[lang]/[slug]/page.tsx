@@ -1,7 +1,6 @@
 import { Fragment } from 'react'
 import { notFound } from 'next/navigation'
 import cx from 'classnames'
-import { getDictionary } from 'src/app/get-dictionary'
 import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import { getFeaturedEvent } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
@@ -57,7 +56,6 @@ type PageProps = {
 export default async function Page({ params }: PageProps) {
   const { slug, lang } = await params
   const page = await getPageBySlug(slug, lang)
-  const dictionary = await getDictionary(lang)
 
   const pageData = page[0]
   if (!pageData) {
@@ -253,26 +251,6 @@ export default async function Page({ params }: PageProps) {
     <div className={styles.wrap}>
       {pageBanner?.togglePageBanner && pageBannerComponent}
       {heroComponent}
-      <h1>
-        {dictionary['server-component'].hello}
-        , Next.js!
-      </h1>
-      <h2>
-        lang locale =
-        {
-          lang
-        }
-      </h2>
-      <h3>
-        This text is rendered on the server:
-        {' '}
-        {dictionary['server-component'].hello}
-        {' '}
-        {dictionary['server-component'].and}
-        {' '}
-        {dictionary['server-component'].welcome}
-      </h3>
-      <p>Switch between en, es, and de in the URL to see different languages. Other languages will default to en.</p>
       {pageTemplate === 'devHub' && (
         <>
           {productsGridComponent}
