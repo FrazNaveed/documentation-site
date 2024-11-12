@@ -34,11 +34,11 @@
     margin: 0;
   }
 
-  &.standardTopMargin {
+  &__standardTopMargin {
     margin-top: to-rem($spacing-standard);
   }
 
-  &.standardBottomMargin {
+  &__standardBottomMargin {
     margin-bottom: to-rem($spacing-standard);
   }
 }

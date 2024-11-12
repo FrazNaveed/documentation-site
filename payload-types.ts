@@ -479,8 +479,12 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    eventSettings: EventSetting;
+  };
+  globalsSelect: {
+    eventSettings: EventSettingsSelect<false> | EventSettingsSelect<true>;
+  };
   locale: 'en' | 'es' | 'de';
   user: User & {
     collection: 'users';
@@ -1134,6 +1138,8 @@ export interface Page {
         | VideoEmbedBlock
         | ICodeCta
         | IFeaturedNewsCarouselBlock
+        | IBrandLogoRoll
+        | IMarqueeGallery
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -1599,6 +1605,7 @@ export interface SocialLink {
   title: string;
   url: string;
   icon?: (number | null) | Media;
+  followerCount?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -2090,6 +2097,69 @@ export interface NewsSubType {
   image: number | Media;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IBrandLogoRoll".
+ */
+export interface IBrandLogoRoll {
+  header?: string | null;
+  logos?:
+    | {
+        image?: (number | null) | Media;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'brandLogoRoll';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IMarqueeGallery".
+ */
+export interface IMarqueeGallery {
+  title?: string | null;
+  cards?:
+    | {
+        isSocialLink?: boolean | null;
+        imageCard?: {
+          image: number | Media;
+          titleOverlay?: string | null;
+          textOverlay?: {
+            root: {
+              type: string;
+              children: {
+                type: string;
+                version: number;
+                [k: string]: unknown;
+              }[];
+              direction: ('ltr' | 'rtl') | null;
+              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+              indent: number;
+              version: number;
+            };
+            [k: string]: unknown;
+          } | null;
+        };
+        socialChannel?: (number | null) | SocialLink;
+        id?: string | null;
+      }[]
+    | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'marqueeGallery';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2705,6 +2775,51 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        brandLogoRoll?:
+          | T
+          | {
+              header?: T;
+              logos?:
+                | T
+                | {
+                    image?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        marqueeGallery?:
+          | T
+          | {
+              title?: T;
+              cards?:
+                | T
+                | {
+                    isSocialLink?: T;
+                    imageCard?:
+                      | T
+                      | {
+                          image?: T;
+                          titleOverlay?: T;
+                          textOverlay?: T;
+                        };
+                    socialChannel?: T;
+                    id?: T;
+                  };
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   relatedNewsType?: T;
   pageFooterCTA?: T;
@@ -2861,6 +2976,7 @@ export interface SocialLinksSelect<T extends boolean = true> {
   title?: T;
   url?: T;
   icon?: T;
+  followerCount?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2910,6 +3026,28 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "eventSettings".
+ */
+export interface EventSetting {
+  id: number;
+  eventCardEyebrow: string;
+  eventCardTitle: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "eventSettings_select".
+ */
+export interface EventSettingsSelect<T extends boolean = true> {
+  eventCardEyebrow?: T;
+  eventCardTitle?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

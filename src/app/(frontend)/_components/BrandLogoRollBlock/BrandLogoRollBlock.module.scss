@@ -1,0 +1,42 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+@use "sass:math";
+
+.header {
+  @include labelS;
+
+  margin-bottom: 0;
+  color: $gray;
+  font-weight: 500;
+  letter-spacing: to-rem(1.44px);
+  text-align: center;
+}
+
+.logoWrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding-top: to-rem($spacing-xx-large);
+  gap: to-rem($spacing-medium) to-rem($spacing-5x-large);
+
+  @include media-breakpoint-down(lg) {
+    padding-top: to-rem($spacing-large);
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-top: to-rem($spacing-standard);
+    gap: to-rem($spacing-standard) to-rem($spacing-small);
+  }
+}
+
+.logo {
+  img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+  }
+}

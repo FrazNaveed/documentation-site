@@ -1,7 +1,6 @@
 import { Fragment } from 'react'
 import { notFound } from 'next/navigation'
 import cx from 'classnames'
-import { getDictionary } from 'src/app/get-dictionary'
 import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import { getFeaturedEvent } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
@@ -27,6 +26,7 @@ import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
 import TeamGridBlock from '../../_components/TeamGridBlock'
 import ImageTextGridBlock from '../../_components/ImageTextGridBlock'
+import MarqueeGallery from '../../_components/MarqueeGallery'
 import styles from './page.module.scss'
 import RelatedPosts from '../../_components/RelatedPosts'
 import PrevNextLinks from '../../_components/PrevNextLinks'
@@ -43,6 +43,7 @@ import TwoColumnCtaBlock from '../../_components/TwoColumnCtaBlock/TwoColumnCtaB
 import VideoBlock from '../../_components/VideoBlock'
 import TableDrawers from '../../_components/TableDrawers'
 import FeaturedNewsCarouselBlock from '../../_components/FeaturedNewsCarouselBlock'
+import BrandLogoRollBlock from '../../_components/BrandLogoRollBlock'
 
 export const dynamic = 'force-dynamic'
 
@@ -56,7 +57,6 @@ type PageProps = {
 export default async function Page({ params }: PageProps) {
   const { slug, lang } = await params
   const page = await getPageBySlug(slug, lang)
-  const dictionary = await getDictionary(lang)
 
   const pageData = page[0]
   if (!pageData) {
@@ -252,26 +252,6 @@ export default async function Page({ params }: PageProps) {
     <div className={styles.wrap}>
       {pageBanner?.togglePageBanner && pageBannerComponent}
       {heroComponent}
-      <h1>
-        {dictionary['server-component'].hello}
-        , Next.js!
-      </h1>
-      <h2>
-        lang locale =
-        {
-          lang
-        }
-      </h2>
-      <h3>
-        This text is rendered on the server:
-        {' '}
-        {dictionary['server-component'].hello}
-        {' '}
-        {dictionary['server-component'].and}
-        {' '}
-        {dictionary['server-component'].welcome}
-      </h3>
-      <p>Switch between en, es, and de in the URL to see different languages. Other languages will default to en.</p>
       {pageTemplate === 'devHub' && (
         <>
           {productsGridComponent}
@@ -293,15 +273,25 @@ export default async function Page({ params }: PageProps) {
               let componentToRender
               let componentClass = styles.block
               if (component.standardTopMargin) {
-                componentClass += ` ${styles.standardTopMargin}`
+                componentClass += ` ${styles.block__standardTopMargin}`
               }
               if (component.standardBottomMargin) {
-                componentClass += ` ${styles.standardBottomMargin}`
+                componentClass += ` ${styles.block__standardBottomMargin}`
               }
               switch (component?.blockType) {
                 case 'applicationProcess':
                   componentToRender = (
                     <ApplicationProcessBlock
+                      key={component.id}
+                      {...component}
+                      className={componentClass}
+                    />
+                  )
+                  break
+
+                case 'brandLogoRoll':
+                  componentToRender = (
+                    <BrandLogoRollBlock
                       key={component.id}
                       {...component}
                       className={componentClass}
@@ -371,6 +361,17 @@ export default async function Page({ params }: PageProps) {
                       key={component.id}
                       richText={component.richText}
                       className={componentClass}
+                    />
+                  )
+                  break
+
+                case 'marqueeGallery':
+                  componentToRender = (
+                    <MarqueeGallery
+                      key={component.id}
+                      {...component}
+                      className={componentClass}
+                      locale={lang}
                     />
                   )
                   break

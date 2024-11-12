@@ -35,6 +35,7 @@ import { ApplicationProcess } from '../_blocks/ApplicationProcessBlock'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
 import { DevHub } from '../_fields/DevHub'
 import { RegionalLinkGrid } from '../_blocks/RegionalLinkGridBlock'
+import { MarqueeGallery } from '../_blocks/MarqueeGallery'
 import { TeamGrid } from '../_fields/Team'
 import { WalletsGrid } from '../_fields/WalletsGrid'
 import { TalkingPoints } from '../_blocks/TalkingPointsBlock'
@@ -46,6 +47,7 @@ import { FlareDropDatesBlock } from '../_blocks/FlareDropDatesBlock'
 import { VideoEmbedBlock } from '../_blocks/VideoEmbedComponentBlock'
 import { CodeCtaBlock } from '../_blocks/CodeCtaBlock'
 import { FeaturedNewsCarouselBlock } from '../_blocks/FeaturedNewsCarouselBlock'
+import { BrandLogoRollBlock } from '../_blocks/BrandLogoRollBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -193,6 +195,8 @@ export const Pages: CollectionConfig = {
         VideoEmbedBlock,
         CodeCtaBlock,
         FeaturedNewsCarouselBlock,
+        BrandLogoRollBlock,
+        MarqueeGallery,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
