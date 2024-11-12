@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   padding-top: to-rem($spacing-xx-large);
-  gap: to-rem($spacing-medium) 0;
+  gap: to-rem($spacing-medium) to-rem($spacing-5x-large);
 
   @include media-breakpoint-down(lg) {
     padding-top: to-rem($spacing-large);
@@ -29,18 +29,11 @@
 
   @include media-breakpoint-down(md) {
     padding-top: to-rem($spacing-standard);
+    gap: to-rem($spacing-standard) to-rem($spacing-small);
   }
 }
 
 .logo {
-  margin-right: to-rem(math.div($spacing-5x-large, 2));
-  margin-left: to-rem(math.div($spacing-5x-large, 2));
-
-  @include media-breakpoint-down(md) {
-    margin-right: to-rem(math.div($spacing-small, 2));
-    margin-left: to-rem(math.div($spacing-small, 2));
-  }
-
   img {
     display: block;
     width: auto;
