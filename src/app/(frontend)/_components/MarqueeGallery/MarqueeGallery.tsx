@@ -12,6 +12,7 @@ import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
 import isValidSocialSlotInMarquee from 'src/app/(frontend)/_utils/isValidSocialSlotInMarquee'
+import MarqueeGallerySection from './MarqueeGallerySection'
 import styles from './MarqueeGallery.module.scss'
 
 type MarqueeGalleryProps = IMarqueeGallery & {
@@ -170,15 +171,9 @@ export default async function MarqueeGallery({
   }
   cardMarkup.splice(4, 0, eventsCard)
   const marqueeMarkup = (
-    <div className={styles.marquee}>
-      <div className={styles.contentWrap}>
-        <div>
-          <div className={styles.content}>
-            {cardMarkup}
-          </div>
-        </div>
-      </div>
-    </div>
+    <MarqueeGallerySection>
+      {cardMarkup}
+    </MarqueeGallerySection>
   )
   return (
     <div className={cx(styles.wrap, className)}>
