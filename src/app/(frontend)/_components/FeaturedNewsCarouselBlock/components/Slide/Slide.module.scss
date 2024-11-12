@@ -2,7 +2,97 @@
 @use "../../../../_styles/typography" as *;
 @use "../../../../_styles/colors" as *;
 @use "../../../../_styles/spacing" as *;
-@use "../../../../_styles/transitions" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
-// styles
+.slide {
+  display: flex;
+  column-gap: to-rem($spacing-x-large);
+
+  @include media-breakpoint-down(lg) {
+    column-gap: to-rem($grid-column-gap-flare);
+  }
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+  }
+}
+
+.imageWrap,
+.content {
+  flex: 1 1 50%;
+}
+
+.imageWrap {
+  @include media-breakpoint-down(md) {
+    margin-bottom: to-rem(20px);
+  }
+
+  img {
+    display: block;
+  }
+}
+
+.link {
+  @include label;
+
+  display: flex;
+  justify-content: flex-end;
+  letter-spacing: to-rem(1.4px);
+
+  svg {
+    transform: rotate(45deg);
+  }
+
+  @include media-breakpoint-down(lg) {
+    margin-bottom: to-rem($spacing-x-large);
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-top: to-rem($spacing-small);
+    margin-bottom: to-rem($spacing-large);
+  }
+}
+
+.eyebrow {
+  @include label;
+
+  margin-bottom: to-rem($spacing-standard);
+  letter-spacing: to-rem(1px);
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: to-rem($spacing-small);
+  }
+}
+
+.title {
+  @include headerH6;
+
+  margin-bottom: to-rem($spacing-x-small);
+
+  @include media-breakpoint-down(lg) {
+    margin-bottom: to-rem($spacing-small);
+  }
+}
+
+.content {
+  margin-bottom: to-rem($spacing-small);
+}
+
+.date {
+  @include label;
+
+  color: $black;
+  letter-spacing: to-rem(1.4px);
+}
+
+.meta {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: to-rem($spacing-standard);
+  column-gap: to-rem($spacing-large);
+
+  & > *:first-child {
+    border: none;
+    background-color: $gray-50;
+  }
+}
