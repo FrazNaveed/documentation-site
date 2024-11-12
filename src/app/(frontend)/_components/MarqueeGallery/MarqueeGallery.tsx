@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import cx from 'classnames'
+import type { Locale } from 'src/app/i18n-config'
 import EventsAllLink from 'src/app/(frontend)/_components/EventsAllLink'
 import EventsFeaturedLabel from 'src/app/(frontend)/_components/EventsFeaturedLabel'
 import EventsLocation from 'src/app/(frontend)/_components/EventsLocation'
 import OfficialChannelsIcon from 'src/app/(frontend)/_components/OfficialChannelsIcon'
-import { getFeaturedEvent } from 'src/app/(frontend)/_lib/payload/eventsQueries'
+import { getFeaturedEvent, getEventGlobalSettings } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import type { IMarqueeGallery } from '@/payload-types'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
@@ -17,22 +18,24 @@ import styles from './MarqueeGallery.module.scss'
 
 type MarqueeGalleryProps = IMarqueeGallery & {
   className?: string
+  locale?: Locale
 }
 
 export default async function MarqueeGallery({
-  title, eventCardEyebrow, eventCardTitle, cards, className,
+  title, cards, className, locale,
 }: MarqueeGalleryProps) {
   const eventsPageLink = getCollectionPath('events')
   const eventsPageSlug = eventsPageLink.replace(/^\/|\/$/g, '')
   const featuredEvent = await getFeaturedEvent()
+  const eventGlobalSettings = await getEventGlobalSettings(locale)
   const eventsPage = await getPageBySlug(eventsPageSlug)
   const eventsPageData = eventsPage[0] || {}
   const { hero: eventsPageHero } = eventsPageData
   const eventsBackgroundImage = eventsPageHero?.backgroundImage
   const eventEyebrow = featuredEvent
     ? (featuredEvent.featuredHeroEyebrow || featuredEvent.flareInvolvement)
-    : eventCardEyebrow
-  const eventHeader = featuredEvent ? featuredEvent.title : eventCardTitle
+    : eventGlobalSettings?.eventCardEyebrow
+  const eventHeader = featuredEvent ? featuredEvent.title : eventGlobalSettings?.eventCardTitle
   const eventsCard = (
     <div key='eventsCard' className={cx(styles.card, styles.card__md, styles.card__events)}>
       <div className={cx(styles.eventContent, { [styles.eventContent__default]: !featuredEvent })}>

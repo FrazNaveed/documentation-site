@@ -458,7 +458,9 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {};
+  globals: {
+    eventSettings: EventSetting;
+  };
   locale: 'en' | 'es' | 'de';
   user: User & {
     collection: 'users';
@@ -1972,8 +1974,6 @@ export interface ICodeCta {
  */
 export interface IMarqueeGallery {
   title?: string | null;
-  eventCardEyebrow: string;
-  eventCardTitle: string;
   cards?:
     | {
         isSocialLink?: boolean | null;
@@ -2227,6 +2227,17 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "eventSettings".
+ */
+export interface EventSetting {
+  id: number;
+  eventCardEyebrow: string;
+  eventCardTitle: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

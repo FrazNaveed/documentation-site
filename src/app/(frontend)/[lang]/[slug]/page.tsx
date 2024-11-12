@@ -366,7 +366,14 @@ export default async function Page({ params }: PageProps) {
                   break
 
                 case 'marqueeGallery':
-                  componentToRender = <MarqueeGallery key={component.id} {...component} className={componentClass} />
+                  componentToRender = (
+                    <MarqueeGallery
+                      key={component.id}
+                      {...component}
+                      className={componentClass}
+                      locale={lang}
+                    />
+                  )
                   break
 
                 case 'stats':

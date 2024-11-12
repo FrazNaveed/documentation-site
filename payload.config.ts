@@ -7,6 +7,8 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
+import { EventSettings } from 'src/app/(payload)/_globals/EventSettings'
+
 import { Pages } from 'src/app/(payload)/_collections/Pages'
 import { DeveloperGuides } from './src/app/(payload)/_collections/DeveloperGuides'
 import { DeveloperGuideTags } from './src/app/(payload)/_collections/DeveloperGuideTags'
@@ -49,6 +51,9 @@ export default buildConfig({
     Products,
     SocialLinks,
     Wallets,
+  ],
+  globals: [
+    EventSettings,
   ],
   editor: lexicalEditor(),
   localization: {

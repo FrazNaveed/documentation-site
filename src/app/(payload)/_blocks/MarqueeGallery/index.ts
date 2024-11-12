@@ -38,24 +38,6 @@ export const MarqueeGallery: Block = {
       localized: true,
     },
     {
-      name: 'eventCardEyebrow',
-      type: 'text',
-      localized: true,
-      required: true,
-      admin: {
-        description: 'This will display on the event card when there\s no featured event.',
-      },
-    },
-    {
-      name: 'eventCardTitle',
-      type: 'text',
-      localized: true,
-      required: true,
-      admin: {
-        description: 'This will display on the event card when there\s no featured event.',
-      },
-    },
-    {
       name: 'cards',
       type: 'array',
       localized: true,
