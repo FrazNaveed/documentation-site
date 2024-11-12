@@ -1,14 +1,15 @@
-import Link from 'next/link'
 import cx from 'classnames'
+import EventsAllLink from 'src/app/(frontend)/_components/EventsAllLink'
 import EventsHero from 'src/app/(frontend)/_components/EventsHero'
 import EventsList from 'src/app/(frontend)/_components/EventsList'
-import RightArrow from 'src/app/(frontend)/_components/svgs/RightArrow'
 import { getFeaturedEvent } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
+import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
 import styles from './EventsWidget.module.scss'
 
 export default async function EventsWidget() {
-  const eventsPageSlug = 'events'
+  const eventsPageLink = getCollectionPath('events')
+  const eventsPageSlug = eventsPageLink.replace(/^\/|\/$/g, '')
   const featuredEvent = await getFeaturedEvent()
   const eventsPage = await getPageBySlug(eventsPageSlug)
   const eventsPageData = eventsPage[0] || {}
@@ -16,13 +17,10 @@ export default async function EventsWidget() {
   const heroBackgroundImage = hero?.backgroundImage
   const heroBackgroundImageProps = (heroBackgroundImage && typeof heroBackgroundImage === 'object') ? { backgroundImage: heroBackgroundImage } : {}
   const eventsLink = (mobile = false) => (
-    <Link
-      href={`/${eventsPageSlug}`}
+    <EventsAllLink
       className={cx(styles.link, { [styles.link__mobile]: mobile, [styles.link__desktop]: !mobile })}
-    >
-      View All Upcoming Events
-      <RightArrow className={styles.link_Icon} />
-    </Link>
+      iconClassName={styles.link_Icon}
+    />
   )
   return (
     <div className={styles.wrap}>

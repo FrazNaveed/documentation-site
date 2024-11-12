@@ -1,5 +1,6 @@
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import config from '@payload-config'
+import type { Locale } from 'src/app/i18n-config'
 
 const payload = await getPayloadHMR({ config })
 
@@ -77,6 +78,20 @@ export const getFeaturedEvent = async (
     return featuredEvent
   } catch (error) {
     console.error('Error fetching getFeaturedEvent:', error)
+  }
+  return null
+}
+
+export const getEventGlobalSettings = async (locale: Locale = 'en') => {
+  try {
+    const globalEventData = await payload.findGlobal({
+      slug: 'eventSettings',
+      locale,
+    })
+
+    return globalEventData
+  } catch (error) {
+    console.error('Error fetching getEventGlobalSettings: ', error)
   }
   return null
 }

@@ -24,6 +24,14 @@ export const SocialLinks: CollectionConfig = {
         description: 'Replace default logo. Default logo is automatically matched to name used in Title.',
       },
     },
+    {
+      name: 'followerCount',
+      type: 'text',
+      localized: true,
+      admin: {
+        description: 'Used in Marquee Gallery block, for example.',
+      },
+    },
   ],
   admin: {
     useAsTitle: 'title',

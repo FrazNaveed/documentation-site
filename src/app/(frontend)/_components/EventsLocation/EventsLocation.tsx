@@ -8,15 +8,16 @@ export type EventsLocationProps = {
   country: Event['country']
   className?: string
   iconSmall?: boolean
+  iconClassName?: string
 }
 
 export default function EventsLocation({
-  location, country, className, iconSmall,
+  location, country, className, iconSmall, iconClassName,
 }: EventsLocationProps) {
   const FlagComponent = flags[country]
   return (
     <p className={cx(styles.location, className)}>
-      <span className={cx(styles.flag, { [styles.flag__small]: iconSmall })}>
+      <span className={cx(styles.flag, { [styles.flag__small]: iconSmall }, iconClassName)}>
         {FlagComponent && <FlagComponent title={country} className={styles.flag_Icon} />}
       </span>
       {location}
