@@ -1109,6 +1109,7 @@ export interface Page {
         | ITwoColumnCta
         | VideoEmbedBlock
         | ICodeCta
+        | IBrandLogoRoll
         | IMarqueeGallery
       )[]
     | null;
@@ -1967,6 +1968,28 @@ export interface ICodeCta {
   id?: string | null;
   blockName?: string | null;
   blockType: 'codeCta';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IBrandLogoRoll".
+ */
+export interface IBrandLogoRoll {
+  header?: string | null;
+  logos?:
+    | {
+        image?: (number | null) | Media;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'brandLogoRoll';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -46,6 +46,7 @@ import { OfficialChannelsBlock } from '../_blocks/OfficialChannelsBlock'
 import { FlareDropDatesBlock } from '../_blocks/FlareDropDatesBlock'
 import { VideoEmbedBlock } from '../_blocks/VideoEmbedComponentBlock'
 import { CodeCtaBlock } from '../_blocks/CodeCtaBlock'
+import { BrandLogoRollBlock } from '../_blocks/BrandLogoRollBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -192,6 +193,7 @@ export const Pages: CollectionConfig = {
         TwoColumnCtaBlock,
         VideoEmbedBlock,
         CodeCtaBlock,
+        BrandLogoRollBlock,
         MarqueeGallery,
       ],
       admin: {

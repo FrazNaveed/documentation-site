@@ -43,6 +43,7 @@ import FlareDropDates from '../../_components/FlaredropDates'
 import TwoColumnCtaBlock from '../../_components/TwoColumnCtaBlock/TwoColumnCtaBlock'
 import VideoBlock from '../../_components/VideoBlock'
 import TableDrawers from '../../_components/TableDrawers'
+import BrandLogoRollBlock from '../../_components/BrandLogoRollBlock'
 
 export const dynamic = 'force-dynamic'
 
@@ -302,6 +303,16 @@ export default async function Page({ params }: PageProps) {
                 case 'applicationProcess':
                   componentToRender = (
                     <ApplicationProcessBlock
+                      key={component.id}
+                      {...component}
+                      className={componentClass}
+                    />
+                  )
+                  break
+
+                case 'brandLogoRoll':
+                  componentToRender = (
+                    <BrandLogoRollBlock
                       key={component.id}
                       {...component}
                       className={componentClass}
