@@ -18,6 +18,7 @@
 .logoWrap {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
   padding-top: to-rem($spacing-xx-large);
   gap: to-rem($spacing-medium) 0;
@@ -32,7 +33,6 @@
 }
 
 .logo {
-  max-height: to-rem($spacing-medium);
   margin-right: to-rem(math.div($spacing-5x-large, 2));
   margin-left: to-rem(math.div($spacing-5x-large, 2));
 
@@ -42,8 +42,8 @@
   }
 
   img {
+    display: block;
     width: auto;
     max-width: 100%;
-    height: to-rem($spacing-medium);
   }
 }
