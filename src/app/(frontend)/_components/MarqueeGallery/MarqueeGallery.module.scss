@@ -282,6 +282,14 @@ $marquee-grid-gap-mobile: $spacing-x-small;
   @include media-breakpoint-up(md) {
     padding-right: 23%;
   }
+
+  &__default {
+    justify-content: center;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 .eventEyebrow {

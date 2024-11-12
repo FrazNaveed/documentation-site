@@ -34,7 +34,7 @@ export default async function MarqueeGallery({
   const eventHeader = featuredEvent ? featuredEvent.title : eventCardTitle
   const eventsCard = (
     <div key='eventsCard' className={cx(styles.card, styles.card__md, styles.card__events)}>
-      <div className={styles.eventContent}>
+      <div className={cx(styles.eventContent, { [styles.eventContent__default]: !featuredEvent })}>
         {featuredEvent && <EventsFeaturedLabel textClassName={styles.featuredText} />}
         {eventEyebrow && <h4 className={styles.eventEyebrow}>{eventEyebrow}</h4>}
         {eventHeader && <h3 className={styles.eventHeader}>{eventHeader}</h3>}
