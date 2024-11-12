@@ -361,7 +361,7 @@ $marquee-grid-gap-mobile: $spacing-x-small;
   &:active {
     color: $white;
 
-    .eventLink_Icon path {
+    svg.eventLink_Icon path {
       fill: $white;
     }
   }
