@@ -1,12 +1,26 @@
+.rules:
+  versiontag:
+  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    variables:
+      CTS_BUILD_TAG: latest
+  - if: $CI_COMMIT_TAG != null
+    variables:
+      CTS_BUILD_TAG: $CI_COMMIT_TAG
+  - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+    variables:
+      CTS_BUILD_TAG: $CI_COMMIT_REF_SLUG
+
 workflow:
   rules:
     - if: '$CI_OPEN_MERGE_REQUESTS != null && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "webide")'
       when: never
     - when: always
 
+
 stages:
 - build
 - test
+- release
 
 sast:
   needs: []
@@ -28,20 +42,68 @@ build-ct:
     name: gcr.io/kaniko-project/executor:v1.23.2-debug
     entrypoint: [""]
   script:
-    - /kaniko/executor
-      --context "${CI_PROJECT_DIR}"
-      --dockerfile "${CI_PROJECT_DIR}/dockerfile"
-      --destination "${CI_REGISTRY_IMAGE}/webpage-aleph:$CTS_BUILD_TAG"
-      --cache=true
-      --cache-repo "${CI_REGISTRY_IMAGE}/cache"
-  rules:
-  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-    variables:
-      CTS_BUILD_TAG: latest
-  - if: $CI_COMMIT_TAG != null
-    variables:
-      CTS_BUILD_TAG: $CI_COMMIT_TAG
-  - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
-    variables:
-      CTS_BUILD_TAG: $CI_COMMIT_REF_SLUG
+  - /kaniko/executor
+    --context "${CI_PROJECT_DIR}"
+    --dockerfile "${CI_PROJECT_DIR}/dockerfile"
+    --destination "${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CI_PIPELINE_ID"
+    --cache=true
+    --cache-repo "${CI_REGISTRY_IMAGE}/cache"
+  rules: !reference [.rules, versiontag]
 
+test-e2e:
+  stage: test
+  image:
+    name: cypress/included
+    entrypoint: [""]
+  needs:
+  - build-ct
+  parallel:
+    matrix:
+    - CYPRESS_BROWSER:
+      - firefox
+      - chrome
+      - edge
+      DATABASE_BASE:
+      - cleandb
+  services:
+  - name: postgres:15.2
+    alias: postgres
+    variables:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: flarepayload
+  - alias: nextjspayload
+    name: ${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CI_PIPELINE_ID
+    variables:
+      POSTGRES_URL: postgres://postgres:postgres@postgres:5432/flarepayload
+      PAYLOAD_SECRET: secret
+  variables:
+    CI_DEBUG_SERVICES: "true"
+    FF_NETWORK_PER_BUILD: "true"
+    CYPRESS_BASE_URL: http://nextjspayload:3000
+  before_script:
+  - apt update -qq && apt install -qqy curl
+  script:
+  - curl --retry 30 --retry-all-errors --retry-delay 10 --retry-max-time 900 -o /dev/null $CYPRESS_BASE_URL
+  - cd cypress
+  - npx cypress run --browser $CYPRESS_BROWSER --spec "tests/01-global/*.cy.js,tests/02-${DATABASE_BASE}/*.cy.js"
+  artifacts:
+    expire_in: 1 week
+    paths:
+    - cypress/screenshots
+  rules: !reference [.rules, versiontag]
+
+release-ct:
+  stage: release
+  image:
+    name: gcr.io/go-containerregistry/crane:debug
+    entrypoint: [""]
+  needs:
+  - build-ct
+  - test-e2e
+  script:
+  - crane auth login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  - crane copy ${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CI_PIPELINE_ID ${CI_REGISTRY_IMAGE}/webpage-aleph:$CTS_BUILD_TAG
+  - crane delete ${CI_REGISTRY_IMAGE}/webpage-aleph-untested:$CI_PIPELINE_ID
+  rules: !reference [.rules, versiontag]
+  

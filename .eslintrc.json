@@ -5,5 +5,5 @@
     // "plugin:@next/next/recommended",
     "@aleph/eslint-config-nought"
   ],
-  "ignorePatterns": ["/src/*", "!/src/app", "/src/app/*", "!/src/app/(frontend)", "/migrations/*"]
+  "ignorePatterns": ["/src/*", "!/src/app", "/src/app/*", "!/src/app/(frontend)", "/migrations/*", "/cypress/*"]
 }
