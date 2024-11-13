@@ -21,8 +21,6 @@ export default function FeaturedNewsCarouselBlock({ newsPosts, className }: Feat
         modules={[Navigation, Pagination, A11y]}
         pagination
         slidesPerView={1}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
         className={styles.carouselWrap}
       >
         {newsPosts?.filter((newsPost): newsPost is News => typeof newsPost !== 'number').map((newsPost) => {
