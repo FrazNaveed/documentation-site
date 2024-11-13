@@ -6,6 +6,7 @@
 
 .slide {
   display: flex;
+  height: 100%;
   column-gap: to-rem($spacing-x-large);
 
   @include media-breakpoint-down(lg) {
@@ -75,6 +76,9 @@
 }
 
 .content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   margin-bottom: to-rem($spacing-small);
 }
 
@@ -88,6 +92,7 @@
 .meta {
   display: flex;
   align-items: baseline;
+  margin-top: auto;
   margin-bottom: to-rem($spacing-standard);
   column-gap: to-rem($spacing-large);
 
