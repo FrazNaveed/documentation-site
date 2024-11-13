@@ -14,6 +14,12 @@ type PageProps = {
 
 export default async function Page({ params }: PageProps) {
   const { slug, lang } = await params
+
+  // Using page with 'home' slug for home page
+  if (slug === 'home') {
+    notFound()
+  }
+
   const page = await getPageBySlug(slug, lang)
 
   const pageData = page[0]

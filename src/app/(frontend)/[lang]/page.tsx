@@ -1,16 +1,25 @@
-import styles from './page.module.scss'
+import { notFound } from 'next/navigation'
+import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
+import type { Locale } from 'src/app/i18n-config'
+import PageComponents from 'src/app/(frontend)/_components/PageComponents'
 
-export default function Page() {
-  return (
-    <div className={styles.wrap}>
-      <div className={styles.heroWrap}>
-        <div className={styles.hero}>
-          <video className={styles.heroBg} autoPlay loop muted>
-            <source src='/en/video/home_hero_left.mp4' type='video/mp4' />
-          </video>
-          <h3 className={styles.heroHeader}>The Blockchain for Data</h3>
-        </div>
-      </div>
-    </div>
-  )
+export const dynamic = 'force-dynamic'
+
+type PageProps = {
+  params: Promise<{
+    slug: string
+    lang: Locale
+  }>
+}
+
+export default async function Page({ params }: PageProps) {
+  const { lang } = await params
+  const page = await getPageBySlug('home', lang)
+
+  const pageData = page[0]
+  if (!pageData) {
+    notFound()
+  }
+
+  return <PageComponents pageData={pageData} lang={lang} />
 }
