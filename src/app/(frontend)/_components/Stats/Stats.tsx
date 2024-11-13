@@ -8,29 +8,34 @@ export type StatsProps = Stats & {
   className?: string
 }
 
-const bipsToPct = (bips: number | undefined): string => {
+const bipsToPct = (bips: number | undefined, addedBips: number | undefined): string => {
   if (bips === undefined) return 'N/A'
-  return `${(bips / 100).toFixed(2)}%`
+  return `${((bips + (addedBips || 0)) / 100).toFixed(2)}%`
 }
 
 async function fetchStats() {
   try {
-    const [fdApr, delegationApr, stakingApr] = await Promise.all([
-      fetch('https://flare-internal-lts-api.aflabs.org/api/v0/webpage/delegation_apr').then((res) => res.json()),
+    const [delegationApr, stakingApr] = await Promise.all([
+      /* TODO: Need actual FlareDrop APR endpoint */
+      //  fetch('https://flare-internal-lts-api.aflabs.org/api/v0/webpage/delegation_apr').then((res) => res.json()),
       fetch('https://flare-internal-lts-api.aflabs.org/api/v0/webpage/delegation_apr').then((res) => res.json()),
       fetch('https://flare-internal-lts-api.aflabs.org/api/v0/webpage/staking_apr').then((res) => res.json()),
     ])
+
+    const fdApr = { apr_bips: 2418 } // base Flaredrop APR hardcoded for now
+
     return [
-      { label: 'FlareDrop APR*', stat: bipsToPct(fdApr?.apr_bips), id: 'stat1' },
-      { label: 'FlareDrop + Delegation APR*', stat: bipsToPct(delegationApr?.apr_bips), id: 'stat2' },
-      { label: 'FlareDrop + Staking APR*', stat: bipsToPct(stakingApr?.apr_bips), id: 'stat3' },
+      // { label: 'FlareDrop APR*', stat: bipsToPct(fdApr?.apr_bips), id: 'stat1' },
+      { label: 'Flaredrop APR*', stat: bipsToPct(fdApr?.apr_bips, 0), id: 'stat1' },
+      { label: 'Flaredrop + Delegation APR*', stat: bipsToPct(delegationApr?.apr_bips, fdApr?.apr_bips), id: 'stat2' },
+      { label: 'Flaredrop + Staking APR*', stat: bipsToPct(stakingApr?.apr_bips, fdApr?.apr_bips), id: 'stat3' },
     ]
   } catch (error) {
     // console.error('Error fetching stats:', error)
     return [
-      { label: 'FlareDrop APR*', stat: 'N/A', id: 'stat1' },
-      { label: 'FlareDrop + Delegation APR*', stat: 'N/A', id: 'stat2' },
-      { label: 'FlareDrop + Staking APR*', stat: 'N/A', id: 'stat3' },
+      { label: 'Flaredrop APR*', stat: 'N/A', id: 'stat1' },
+      { label: 'Flaredrop + Delegation APR*', stat: 'N/A', id: 'stat2' },
+      { label: 'Flaredrop + Staking APR*', stat: 'N/A', id: 'stat3' },
     ]
   }
 }
