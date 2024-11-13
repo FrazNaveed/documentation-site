@@ -79,11 +79,13 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
       style: heroStyle,
       headline,
       eyebrow,
+      hideEyebrow,
       buttonText,
       buttonLink,
       buttonSecondaryText,
       buttonSecondaryLink,
       backgroundImage,
+      showBackgroundVideo,
       grantsInfo,
       logo: heroLogo,
       text: heroText,
@@ -101,14 +103,17 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
           {...heroBackgroundImageProps}
         />
       )
-    } else if (heroStyle === 'protocol') {
+    } else if (heroStyle === 'protocol' || heroStyle === 'centered') {
       heroComponent = (
         <PageHeroCentered
+          heroStyle={heroStyle}
           header={headline}
           eyebrow={eyebrow || title}
+          hideEyebrow={hideEyebrow}
           {...heroCtaProps}
           {...heroCtaSecondaryProps}
           {...heroBackgroundImageProps}
+          showBackgroundVideo={showBackgroundVideo}
           logo={heroLogo}
           text={heroText}
           protocolInfo={protocolInfo}

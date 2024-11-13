@@ -24,6 +24,10 @@ export const HeroFields: Field[] = [
             label: 'Grants',
             value: 'grants',
           },
+          {
+            label: 'Centered',
+            value: 'centered',
+          },
         ],
         required: true,
         defaultValue: 'standard',
@@ -38,9 +42,23 @@ export const HeroFields: Field[] = [
         name: 'eyebrow',
         type: 'text',
         admin: {
-          description: 'Defaults to Page Title if empty.'
+          description: 'Defaults to Page Title if empty.',
+          condition: (data, siblingData, { user }) => {
+            return siblingData.hideEyebrow !== true
+          },
         },
         localized: true,
+      },
+      {
+        name: 'hideEyebrow',
+        type: 'checkbox',
+        label: 'Hide Eyebrow',
+        defaultValue: false,
+        admin: {
+          condition: (data, siblingData, { user }) => {
+            return siblingData.style === 'protocol' || siblingData.style === 'centered'
+          },
+        },
       },
       ...ButtonFields(true),
       {
@@ -49,12 +67,21 @@ export const HeroFields: Field[] = [
         relationTo: 'media',
       },
       {
+        name: 'showBackgroundVideo',
+        type: 'checkbox',
+        admin: {
+          condition: (data, siblingData, { user }) => {
+            return siblingData.style === 'centered'
+          },
+        },
+      },
+      {
         name: 'logo',
         type: 'relationship',
         relationTo: 'media',
         admin: {
           condition: (data, siblingData, { user }) => {
-            return siblingData.style === 'protocol'
+            return siblingData.style === 'protocol' || siblingData.style === 'centered'
           },
         },
       },
@@ -63,7 +90,7 @@ export const HeroFields: Field[] = [
         type: 'richText',
         admin: {
           condition: (data, siblingData, { user }) => {
-            return siblingData.style === 'protocol'
+            return siblingData.style === 'protocol' || siblingData.style === 'centered'
           },
         },
       },
