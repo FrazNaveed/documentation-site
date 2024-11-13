@@ -14,6 +14,7 @@ export default function Slide({
       <div className={styles.link}>
         <ExternalLink
           href={`/news/${slug}`}
+          aria-label={`Read more about ${title}`}
         >
           Read more
         </ExternalLink>
@@ -30,13 +31,13 @@ export default function Slide({
           </div>
         )}
         <div className={styles.content}>
-          <h2 className={styles.eyebrow}>Flare Featured News</h2>
+          <div className={styles.eyebrow}>Flare Featured News</div>
           <div className={styles.logos}>
             {logos && <PartnerLogos logos={logos.map(({ image }) => image as Media)} />}
           </div>
-          <h3 className={styles.title}>
+          <h2 className={styles.title}>
             {title}
-          </h3>
+          </h2>
           {(type || timestamp) && (
             <div className={styles.meta}>
               {type && <Pill text={(type as NewsType).title} size='small' />}
