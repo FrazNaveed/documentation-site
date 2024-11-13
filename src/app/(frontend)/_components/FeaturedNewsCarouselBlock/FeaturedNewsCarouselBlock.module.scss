@@ -2,15 +2,40 @@
 @use "../../_styles/typography" as *;
 @use "../../_styles/colors" as *;
 @use "../../_styles/spacing" as *;
-@use "../../_styles/transitions" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .wrap {
-  margin-right: 17%;
-  margin-left: 17%;
+  :global(.swiper .swiper-pagination) {
+    bottom: 0;
+  }
+
+  :global(.swiper-pagination .swiper-pagination-bullet) {
+    margin-right: to-rem(6px);
+    margin-left: to-rem(6px);
+    border: 1px solid $pink-700;
+    background-color: $white;
+  }
+
+  :global(.swiper-pagination-bullet.swiper-pagination-bullet-active) {
+    background-color: $pink-700;
+  }
 
   @include media-breakpoint-down(lg) {
     margin-right: 0;
     margin-left: 0;
+  }
+
+  @include media-breakpoint-down(md) {
+    :global(.swiper-pagination) {
+      display: none;
+    }
+  }
+}
+
+.carouselWrap {
+  width: 66.66%;
+
+  @include media-breakpoint-down(lg) {
+    width: 100%;
   }
 }
