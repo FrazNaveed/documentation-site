@@ -31,7 +31,7 @@ export default function Slide({
         )}
         <div className={styles.content}>
           <h2 className={styles.eyebrow}>Flare Featured News</h2>
-          <div className={styles.content}>
+          <div className={styles.logos}>
             {logos && <PartnerLogos logos={logos.map(({ image }) => image as Media)} />}
           </div>
           <h3 className={styles.title}>
