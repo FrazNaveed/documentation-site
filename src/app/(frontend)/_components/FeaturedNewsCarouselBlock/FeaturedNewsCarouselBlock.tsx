@@ -3,7 +3,7 @@
 import cx from 'classnames'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, A11y } from 'swiper/modules'
-import type { IFeaturedNewsCarouselBlock } from '@/payload-types'
+import type { IFeaturedNewsCarouselBlock, News } from '@/payload-types'
 import Slide from './components/Slide'
 import styles from './FeaturedNewsCarouselBlock.module.scss'
 import 'swiper/css'
@@ -25,7 +25,7 @@ export default function FeaturedNewsCarouselBlock({ newsPosts, className }: Feat
         onSwiper={(swiper) => console.log(swiper)}
         className={styles.carouselWrap}
       >
-        {newsPosts?.map((newsPost: any) => {
+        {newsPosts?.filter((newsPost): newsPost is News => typeof newsPost !== 'number').map((newsPost) => {
           const {
             id,
             teaserThumbnail,
