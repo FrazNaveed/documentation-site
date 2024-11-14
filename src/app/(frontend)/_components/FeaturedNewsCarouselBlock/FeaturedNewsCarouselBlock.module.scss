@@ -5,6 +5,10 @@
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .wrap {
+  :global(.swiper) {
+    padding-bottom: to-rem($spacing-large);
+  }
+
   :global(.swiper .swiper-pagination) {
     bottom: 0;
   }
