@@ -123,10 +123,6 @@ export type QuoteNode = {
     children: TextNode[];
 } & AbstractElementNode<'quote'>;
 
-export type SubheaderNode = {
-  children: TextNode[];
-} & AbstractElementNode<'subheader'>;
-
 export type UploadNode<
     MediaType = {
         id: string;
@@ -161,7 +157,6 @@ export type Node =
     | ListNode
     | ListItemNode
     | QuoteNode
-    | SubheaderNode
     | HorizontalRule
     | Linebreak
     | Tab
@@ -188,9 +183,6 @@ export type ElementRenderers = {
     ) => React.ReactNode;
     quote: (
         props: { children: React.ReactNode } & Omit<QuoteNode, 'children'>
-    ) => React.ReactNode;
-    subheader: (
-        props: { children: React.ReactNode } & Omit<SubheaderNode, 'children'>
     ) => React.ReactNode;
     link: (
         props: { children: React.ReactNode } & Omit<LinkNode, 'children'>
@@ -307,11 +299,6 @@ export const defaultElementRenderers: ElementRenderers = {
     <blockquote style={getElementStyle<'quote'>(element)}>
       {element.children}
     </blockquote>
-  ),
-  subheader: (element) => (
-    <p style={getElementStyle<'subheader'>(element)}>
-      {element.children}
-    </p>
   ),
   horizontalrule: () => <hr />,
   linebreak: () => <br />,
@@ -435,13 +422,6 @@ export default function PayloadLexicalReactRenderer<
 
       if (node.type === 'quote') {
         return elementRenderers.quote({
-          ...node,
-          children,
-        })
-      }
-
-      if (node.type === 'subheader') {
-        return elementRenderers.subheader({
           ...node,
           children,
         })
