@@ -1,9 +1,11 @@
 import { Media, News, NewsType } from '@/payload-types'
 import Image from 'next/image'
 import convertToDate from '@/src/app/(frontend)/_utils/convertToDate'
-import ExternalLink from '../../../ExternalLink'
+import getCollectionPath from '@/src/app/(frontend)/_utils/getCollectionPath'
+import Link from 'next/link'
 import PartnerLogos from '../../../PartnerLogos'
 import Pill from '../../../Pill'
+import RightArrow from '../../../svgs/RightArrow'
 import styles from './Slide.module.scss'
 
 export default function Slide({
@@ -11,13 +13,15 @@ export default function Slide({
 }: News) {
   return (
     <div className={styles.slideWrap}>
-      <div className={styles.link}>
-        <ExternalLink
-          href={`/news/${slug}`}
+      <div className={styles.linkWrap}>
+        <Link
+          href={`${getCollectionPath('news')}${slug}`}
           aria-label={`Read more about ${title}`}
+          className={styles.link}
         >
           Read more
-        </ExternalLink>
+          <RightArrow className={styles.link_Icon} />
+        </Link>
       </div>
       <div className={styles.slide}>
         {typeof teaserThumbnail === 'object' && teaserThumbnail?.url && (
