@@ -9,8 +9,11 @@ import RightArrow from '../../../svgs/RightArrow'
 import styles from './Slide.module.scss'
 
 export default function Slide({
-  title, logos, slug, teaserThumbnail, publishDate: timestamp, type,
+  title, logos, slug, publishDate: timestamp, type, subtype,
 }: News) {
+  const typeHeroBgImage = typeof type === 'object' ? type.image : undefined
+  const subTypeHeroBgImage = subtype && typeof subtype === 'object' ? subtype.image : undefined
+  const backgroundImage = subTypeHeroBgImage || typeHeroBgImage
   return (
     <div className={styles.slideWrap}>
       <div className={styles.linkWrap}>
@@ -25,12 +28,12 @@ export default function Slide({
       </div>
       <div className={styles.slide}>
         <div className={styles.imageWrap}>
-          {typeof teaserThumbnail === 'object' && teaserThumbnail?.url && (
+          {typeof backgroundImage === 'object' && backgroundImage?.url && (
             <Image
-              src={teaserThumbnail.url}
-              alt={teaserThumbnail.alt}
-              width={teaserThumbnail.width ?? 0}
-              height={teaserThumbnail.height ?? 0}
+              src={backgroundImage.url}
+              alt={backgroundImage.alt}
+              width={backgroundImage.width ?? 0}
+              height={backgroundImage.height ?? 0}
             />
           )}
         </div>
