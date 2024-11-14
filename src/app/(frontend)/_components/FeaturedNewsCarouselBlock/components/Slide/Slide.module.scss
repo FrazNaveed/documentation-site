@@ -88,9 +88,12 @@
 .content {
   display: flex;
   flex-direction: column;
-  align-self: flex-start;
   height: 100%;
   margin-bottom: to-rem($spacing-small);
+
+  @include media-breakpoint-down(md) {
+    align-self: flex-start;
+  }
 }
 
 .date {
