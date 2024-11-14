@@ -1407,6 +1407,7 @@ export interface PastFeaturedGrantsGridBlock {
  * via the `definition` "Stats".
  */
 export interface Stats {
+  pullFromApi?: boolean | null;
   stats?: StatsList;
   caption?: {
     root: {
