@@ -96,9 +96,4 @@
   margin-top: auto;
   margin-bottom: to-rem($spacing-standard);
   column-gap: to-rem($spacing-large);
-
-  & > *:first-child {
-    border: none;
-    background-color: $gray-50;
-  }
 }
