@@ -24,16 +24,16 @@ export default function Slide({
         </Link>
       </div>
       <div className={styles.slide}>
-        {typeof teaserThumbnail === 'object' && teaserThumbnail?.url && (
-          <div className={styles.imageWrap}>
+        <div className={styles.imageWrap}>
+          {typeof teaserThumbnail === 'object' && teaserThumbnail?.url && (
             <Image
               src={teaserThumbnail.url}
               alt={teaserThumbnail.alt}
               width={teaserThumbnail.width ?? 0}
               height={teaserThumbnail.height ?? 0}
             />
-          </div>
-        )}
+          )}
+        </div>
         <div className={styles.content}>
           <div className={styles.eyebrow}>Flare Featured News</div>
           <div className={styles.logos}>
