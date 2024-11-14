@@ -344,3 +344,11 @@ $font-family-sathoshi: var(--satoshi);
 @mixin sectionHeaderFont {
   @include h5;
 }
+
+@mixin hugeHeader() {
+  @include fontStyle(160, 160);
+
+  @include media-breakpoint-down(lg) {
+    @include fontStyle(120, 120);
+  }
+}
