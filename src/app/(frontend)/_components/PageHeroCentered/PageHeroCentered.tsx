@@ -9,9 +9,12 @@ import type { Locale } from 'src/app/i18n-config'
 import styles from './PageHeroCentered.module.scss'
 
 export type PageHeroCenteredProps = {
+  heroStyle: 'centered' | 'protocol'
   backgroundImage?: Media
+  showBackgroundVideo?: PageHero['showBackgroundVideo']
   header?: string | null
   eyebrow?: string | null
+  hideEyebrow?: PageHero['hideEyebrow']
   cta?: {
     text: string
     link: string
@@ -46,9 +49,12 @@ const formatNumber = (number: number, lang: Locale, isCurrency = false) => {
 }
 
 export default function PageHeroCentered({
+  heroStyle = 'centered',
   backgroundImage,
+  showBackgroundVideo,
   header,
   eyebrow,
+  hideEyebrow,
   cta,
   ctaSecondary,
   logo,
@@ -129,13 +135,21 @@ export default function PageHeroCentered({
       )}
     </>
   )
+  const videoMarkup = (modiferClas?: string) => (showBackgroundVideo ? (
+    <div className={cx(styles.videoWrap, styles[`videoWrap__${modiferClas}`])}>
+      <video className={cx(styles.video, styles[`video__${modiferClas}`])} autoPlay loop muted>
+        <source src='/en/video/home_hero_left.mp4' type='video/mp4' />
+      </video>
+    </div>
+  ) : null)
   return (
-    <div className={styles.container}>
-      <div className={cx(styles.wrap, { [styles.wrap__hasProtocol]: hasProtocolInfo })}>
+    <div className={cx(styles.container, { [styles.container__fullWidthMobile]: heroStyle === 'centered' })}>
+      <div className={cx(styles.wrap, { [styles.wrap__hasProtocol]: hasProtocolInfo, [styles.wrap__centeredStyle]: heroStyle === 'centered' })}>
         <div className={styles.grid}>
+          {videoMarkup('left')}
           {backgroundImage?.url && (
             <Image
-              className={styles.bgImg}
+              className={cx(styles.bgImg, { [styles.bgImg__centeredStyle]: heroStyle === 'centered' })}
               src={backgroundImage.url}
               width={backgroundImage.width ?? 0}
               height={backgroundImage.height ?? 0}
@@ -143,7 +157,7 @@ export default function PageHeroCentered({
               priority
             />
           )}
-          <div className={cx(styles.contentCol, { [styles.contentCol__hasProtocol]: hasProtocolInfo })}>
+          <div className={cx(styles.contentCol, { [styles.contentCol__hasProtocol]: hasProtocolInfo, [styles.contentCol__centeredStyle]: heroStyle === 'centered' })}>
             {logo && typeof logo === 'object' && logo.url && (
               <Image
                 className={styles.logo}
@@ -154,11 +168,12 @@ export default function PageHeroCentered({
                 priority
               />
             )}
-            {eyebrow && <h2 className={styles.eyebrow}>{eyebrow}</h2>}
-            <div className={cx(styles.content, styles.content__dt)}>
+            {(eyebrow && !hideEyebrow) && <h2 className={styles.eyebrow}>{eyebrow}</h2>}
+            <div className={cx(styles.content, { [styles.content__dt]: heroStyle === 'protocol' })}>
               {mainContent}
             </div>
           </div>
+          {videoMarkup('right')}
           {hasProtocolInfo && (
             <div className={cx(styles.protocol, styles.protocol__dt)}>
               {protocolMarkup}
@@ -166,9 +181,11 @@ export default function PageHeroCentered({
           )}
         </div>
       </div>
-      <div className={cx(styles.content, styles.content__mobile)}>
-        {mainContent}
-      </div>
+      {heroStyle === 'protocol' && (
+        <div className={cx(styles.content, styles.content__mobile)}>
+          {mainContent}
+        </div>
+      )}
       {hasProtocolInfo && (
         <div className={cx(styles.protocol, styles.protocol__mobile)}>
           {protocolMarkup}

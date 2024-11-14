@@ -8,6 +8,7 @@
 
   display: flex;
   justify-content: space-between;
+  gap: $spacing-small;
 }
 
 .link {
@@ -38,6 +39,7 @@
   }
 
   &.next {
+    margin-left: auto;
     text-align: right;
 
     .title::after {
