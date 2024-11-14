@@ -26,7 +26,6 @@ export default function FeaturedNewsCarouselBlock({ newsPosts, className }: Feat
         {newsPosts?.filter((newsPost): newsPost is News => typeof newsPost !== 'number').map((newsPost) => {
           const {
             id,
-            teaserThumbnail,
             logos,
             title,
             slug,
@@ -34,6 +33,7 @@ export default function FeaturedNewsCarouselBlock({ newsPosts, className }: Feat
             publishDate,
             author,
             type,
+            subtype,
             updatedAt,
             createdAt,
           } = newsPost
@@ -41,7 +41,6 @@ export default function FeaturedNewsCarouselBlock({ newsPosts, className }: Feat
             <SwiperSlide key={id}>
               <Slide
                 id={id}
-                teaserThumbnail={teaserThumbnail}
                 logos={logos}
                 title={title}
                 slug={slug}
@@ -49,6 +48,7 @@ export default function FeaturedNewsCarouselBlock({ newsPosts, className }: Feat
                 publishDate={publishDate}
                 author={author}
                 type={type}
+                subtype={subtype}
                 updatedAt={updatedAt}
                 createdAt={createdAt}
               />
