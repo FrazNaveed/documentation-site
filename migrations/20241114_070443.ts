@@ -27,8 +27,6 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   DROP INDEX IF EXISTS "pages_rels_wallets_id_idx";
   DROP INDEX IF EXISTS "pages_rels_grants_id_idx";
   DROP INDEX IF EXISTS "pages_rels_social_links_id_idx";
-  ALTER TABLE "pages_rels" ADD COLUMN "locale" "_locales";
-  ALTER TABLE "pages_rels" ADD COLUMN "news_id" integer;
   DO $$ BEGIN
    ALTER TABLE "pages_blocks_featured_news_carousel" ADD CONSTRAINT "pages_blocks_featured_news_carousel_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
