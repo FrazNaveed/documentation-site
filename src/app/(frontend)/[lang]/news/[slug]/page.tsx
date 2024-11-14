@@ -60,7 +60,7 @@ export default async function Page({ params }: PageProps) {
   const subTypeHeroBgImage = subtype && typeof subtype === 'object' ? subtype.image : undefined
 
   return (
-    <article>
+    <article className={styles.article}>
       <Hero
         heroStyle='standard'
         backgroundImage={subTypeHeroBgImage as Media || typeHeroBgImage as Media}
