@@ -3,6 +3,10 @@
 @use "../../../_styles/typography" as *;
 @use "../../../_styles/spacing" as *;
 
+.article {
+  margin-bottom: $spacing-7x-large;
+}
+
 .wrap {
   @include pageWrap;
 }

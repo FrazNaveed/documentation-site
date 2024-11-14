@@ -12,6 +12,14 @@ export const StatsBlock: Block = {
   },
   fields: [
     {
+      name: 'pullFromApi',
+      label: 'Pull stats from API?',
+      type: 'checkbox',
+      admin: {
+        description: 'If checked, stats will be pulled automatically from an API endpoint for Flaredrop APR, Delegating APR and Staking APR.',
+      }
+    },
+    {
       name: 'stats',
       type: 'array',
       label: 'Stats List',
@@ -37,6 +45,7 @@ export const StatsBlock: Block = {
       ],
       admin: {
         isSortable: true,
+        condition: (data, siblingData) => siblingData?.pullFromApi !== true,
       },
     },
     {
