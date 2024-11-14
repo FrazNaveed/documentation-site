@@ -249,7 +249,7 @@ function getElementStyle<Type extends string>({
 export const defaultBlockRenderers: BlockRenderers<{ subheader: SubheaderNode, video: VideoNode }> = {
   subheader: (element) => {
     return (
-      <h3
+      <div
         className={styles.subheaderBlock}
         dangerouslySetInnerHTML={{ __html: element.fields.subheader }}
       />

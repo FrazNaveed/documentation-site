@@ -38,6 +38,13 @@
   }
 }
 
+.subheaderBlock {
+  @include h4;
+
+  color: $gray;
+  line-height: normal;
+}
+
 .figure {
   display: block;
   margin: to-rem($p-margin-bottom) auto;
