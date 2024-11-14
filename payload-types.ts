@@ -2264,6 +2264,16 @@ export interface EventSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Subheader".
+ */
+export interface Subheader {
+  subheader?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'subheader';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {

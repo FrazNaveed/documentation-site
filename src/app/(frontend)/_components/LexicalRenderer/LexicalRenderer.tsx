@@ -145,6 +145,10 @@ export type UploadNode<
     value: MediaType;
 } & AbstractElementNode<'upload'>;
 
+export type SubheaderNode = {
+  subheader: string
+} & AbstractNode<'subheader'>
+
 export type VideoNode = {
   url: string
 } & AbstractNode<'video'>
@@ -242,7 +246,14 @@ function getElementStyle<Type extends string>({
   return style
 }
 
-export const defaultBlockRenderers: BlockRenderers<{ video: VideoNode }> = {
+export const defaultBlockRenderers: BlockRenderers<{ subheader: SubheaderNode, video: VideoNode }> = {
+  subheader: (element) => {
+    return (
+      <div className={styles.subheaderBlock}>
+        {element.fields.subheader}
+      </div>
+    )
+  },
   video: (element) => {
     return (
       <div className={styles.video}>
