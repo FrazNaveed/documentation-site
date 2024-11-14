@@ -35,23 +35,30 @@
 }
 
 .link {
-  @include label;
-
   display: flex;
-  justify-content: flex-end;
-  letter-spacing: to-rem(1.4px);
+  align-items: center;
+  gap: to-rem(12px);
 
-  svg {
-    transform: rotate(45deg);
+  &Wrap {
+    @include label;
+
+    display: flex;
+    justify-content: flex-end;
+    letter-spacing: to-rem(1.4px);
+
+    @include media-breakpoint-down(lg) {
+      margin-bottom: to-rem($spacing-x-large);
+    }
+
+    @include media-breakpoint-down(md) {
+      margin-top: to-rem($spacing-small);
+      margin-bottom: to-rem($spacing-large);
+    }
   }
 
-  @include media-breakpoint-down(lg) {
-    margin-bottom: to-rem($spacing-x-large);
-  }
-
-  @include media-breakpoint-down(md) {
-    margin-top: to-rem($spacing-small);
-    margin-bottom: to-rem($spacing-large);
+  &_Icon {
+    width: 16px;
+    height: auto;
   }
 }
 
