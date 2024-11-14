@@ -5,7 +5,21 @@
 @use "../../_styles/transitions" as *;
 
 .relatedNews {
-  margin-bottom: $spacing-7x-large;
+  &:not(:first-child) {
+    margin-top: $spacing-xx-large;
+
+    @include media-breakpoint-down(md) {
+      margin-top: $spacing-large;
+    }
+  }
+
+  &:not(:last-child) {
+    margin-bottom: $spacing-7x-large;
+
+    @include media-breakpoint-down(md) {
+      margin-bottom: $spacing-large;
+    }
+  }
 
   &HeaderWrap {
     @include container;

@@ -28,6 +28,7 @@
     "@next/bundle-analyzer": "^14.2.11",
     "@payloadcms/db-postgres": "3.0.0-beta.127",
     "@payloadcms/next": "3.0.0-beta.127",
+    "@payloadcms/email-nodemailer": "3.0.0-beta.127",
     "@payloadcms/payload-cloud": "3.0.0-beta.127",
     "@payloadcms/richtext-lexical": "3.0.0-beta.127",
     "@payloadcms/storage-vercel-blob": "3.0.0-beta.127",

@@ -2,7 +2,7 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-RUN apk add --no-cache bash
+RUN apk add --no-cache bash curl
 
 COPY package.json package-lock.json ./
 # Omit --production flag for TypeScript devDependencies
@@ -35,6 +35,8 @@ COPY ./docker/entrypoint.sh /docker-entrypoint.sh
 
 WORKDIR /runtime
 EXPOSE 3000
+ENV HOSTNAME=0.0.0.0
+HEALTHCHECK --start-period=120s --interval=15s --timeout=2s \
+    CMD curl -f http://localhost:3000 || exit 1
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 CMD ["node", "server.js"]
-# CMD sleep 900

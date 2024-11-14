@@ -1161,14 +1161,16 @@ export interface Page {
  * via the `definition` "PageHero".
  */
 export interface PageHero {
-  style: 'standard' | 'protocol' | 'grants';
+  style: 'standard' | 'protocol' | 'grants' | 'centered';
   headline: string;
   eyebrow?: string | null;
+  hideEyebrow?: boolean | null;
   buttonText?: string | null;
   buttonLink?: string | null;
   buttonSecondaryText?: string | null;
   buttonSecondaryLink?: string | null;
   backgroundImage?: (number | null) | Media;
+  showBackgroundVideo?: boolean | null;
   logo?: (number | null) | Media;
   text?: {
     root: {
@@ -1434,6 +1436,7 @@ export interface PastFeaturedGrantsGridBlock {
  * via the `definition` "Stats".
  */
 export interface Stats {
+  pullFromApi?: boolean | null;
   stats?: StatsList;
   caption?: {
     root: {

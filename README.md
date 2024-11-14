@@ -49,6 +49,13 @@ After following the steps above, your local dev environment is entirely self-con
 To change the database your local instance of Payload (and NextJS) is pointing at, you simply modify your local `.env` file
 and change `POSTGRES_URL`. 
 
+### Email Provider
+The stack is configured to use SMTP credentials to send password reset emails and such. Set up the following env vars to configure your email provider:
+- `SMTP_HOST`
+- `SMTP_PORT` (defaults to `587`)
+- `SMTP_USER`
+- `SMTP_PASS`
+
 ## CMS Fields + Migrations
 We're using Postgres as our backing database for this project. PayloadCMS ships with the Drizzle ORM package and manages this
 connection transparently for us. One of the more important core concepts here is that any changes to fields in your schema (adding a new field, changing a field's type, etc.) should be done via migrations. Migrations can be managed with Payload native tooling but we must follow a fairly strict workflow around migrations and field changes to properly utilize it and minimize the risk of data loss or corruption.
