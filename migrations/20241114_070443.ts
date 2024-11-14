@@ -27,7 +27,6 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   DROP INDEX IF EXISTS "pages_rels_wallets_id_idx";
   DROP INDEX IF EXISTS "pages_rels_grants_id_idx";
   DROP INDEX IF EXISTS "pages_rels_social_links_id_idx";
-  ALTER TABLE "pages_blocks_stats" ADD COLUMN "pull_from_api" boolean;
   ALTER TABLE "pages_rels" ADD COLUMN "locale" "_locales";
   ALTER TABLE "pages_rels" ADD COLUMN "news_id" integer;
   DO $$ BEGIN
@@ -116,7 +115,6 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "pages_rels_wallets_id_idx" ON "pages_rels" USING btree ("wallets_id");
   CREATE INDEX IF NOT EXISTS "pages_rels_grants_id_idx" ON "pages_rels" USING btree ("grants_id");
   CREATE INDEX IF NOT EXISTS "pages_rels_social_links_id_idx" ON "pages_rels" USING btree ("social_links_id");
-  ALTER TABLE "pages_blocks_stats" DROP COLUMN IF EXISTS "pull_from_api";
   ALTER TABLE "pages_rels" DROP COLUMN IF EXISTS "locale";
   ALTER TABLE "pages_rels" DROP COLUMN IF EXISTS "news_id";`)
 }
