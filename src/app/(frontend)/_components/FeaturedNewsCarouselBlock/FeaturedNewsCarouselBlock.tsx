@@ -19,7 +19,7 @@ export default function FeaturedNewsCarouselBlock({ newsPosts, className }: Feat
     <div className={cx(styles.wrap, className)}>
       <Swiper
         modules={[Navigation, Pagination, A11y]}
-        pagination
+        pagination={{ clickable: true }}
         slidesPerView={1}
         className={styles.carouselWrap}
       >

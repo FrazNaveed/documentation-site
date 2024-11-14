@@ -13,14 +13,14 @@
     bottom: 0;
   }
 
-  :global(.swiper-pagination .swiper-pagination-bullet) {
+  :global(.swiper-pagination.swiper-pagination-horizontal .swiper-pagination-bullet) {
     margin-right: to-rem(6px);
     margin-left: to-rem(6px);
     border: 1px solid $pink-700;
     background-color: $white;
   }
 
-  :global(.swiper-pagination-bullet.swiper-pagination-bullet-active) {
+  :global(.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active) {
     background-color: $pink-700;
   }
 
