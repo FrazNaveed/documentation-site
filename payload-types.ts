@@ -2360,11 +2360,13 @@ export interface PagesSelect<T extends boolean = true> {
         style?: T;
         headline?: T;
         eyebrow?: T;
+        hideEyebrow?: T;
         buttonText?: T;
         buttonLink?: T;
         buttonSecondaryText?: T;
         buttonSecondaryLink?: T;
         backgroundImage?: T;
+        showBackgroundVideo?: T;
         logo?: T;
         text?: T;
         grantsInfo?:
@@ -2546,6 +2548,7 @@ export interface PagesSelect<T extends boolean = true> {
         stats?:
           | T
           | {
+              pullFromApi?: T;
               stats?:
                 | T
                 | {
