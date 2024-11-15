@@ -32,6 +32,29 @@ export const PageFooterCTA: Field[] = [
           description: 'Choose how the background image is displayed',
         },
       },
+      {
+        name: 'socialMediaButtons',
+        type: 'checkbox',
+        defaultValue: false,
+        admin: {
+          'description': 'Display social media buttons instead of CTA buttons',
+        },
+      },
+      {
+        name: 'socialMedia',
+        type: 'relationship',
+        relationTo: 'social-links',
+        hasMany: true,
+        admin: {
+          condition: ( data, siblingData, { user }) => {
+            if (siblingData.socialMediaButtons) {
+              return true
+            } else {
+              return false
+            }
+          },
+        },
+      },
     ],
     admin: {
       condition: (data, siblingData, { user }) => {
