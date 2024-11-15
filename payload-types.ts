@@ -1137,6 +1137,7 @@ export interface Page {
         | ITwoColumnCta
         | VideoEmbedBlock
         | ICodeCta
+        | IFeaturedNewsCarouselBlock
         | IBrandLogoRoll
         | IMarqueeGallery
       )[]
@@ -2004,6 +2005,106 @@ export interface ICodeCta {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IFeaturedNewsCarouselBlock".
+ */
+export interface IFeaturedNewsCarouselBlock {
+  newsPosts?: (number | News)[] | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featuredNewsCarousel';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news".
+ */
+export interface News {
+  id: number;
+  title?: string | null;
+  slug: string;
+  excerpt?: string | null;
+  publishDate: string;
+  author: number | User;
+  type: number | NewsType;
+  subtype?: (number | null) | NewsSubType;
+  contentType?: ('video' | 'podcast') | null;
+  relatedPosts?: (number | News)[] | null;
+  teaserThumbnail?: (number | null) | Media;
+  logos?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  featured?: boolean | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  updatedAt: string;
+  createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-types".
+ */
+export interface NewsType {
+  id: number;
+  title: string;
+  slug: string;
+  image: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-sub-types".
+ */
+export interface NewsSubType {
+  id: number;
+  title: string;
+  slug: string;
+  image: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "IBrandLogoRoll".
  */
 export interface IBrandLogoRoll {
@@ -2064,91 +2165,6 @@ export interface IMarqueeGallery {
   id?: string | null;
   blockName?: string | null;
   blockType: 'marqueeGallery';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "news-types".
- */
-export interface NewsType {
-  id: number;
-  title: string;
-  slug: string;
-  image: number | Media;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: number;
-  updatedAt: string;
-  createdAt: string;
-  enableAPIKey?: boolean | null;
-  apiKey?: string | null;
-  apiKeyIndex?: string | null;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "news".
- */
-export interface News {
-  id: number;
-  title?: string | null;
-  slug: string;
-  excerpt?: string | null;
-  publishDate: string;
-  author: number | User;
-  type: number | NewsType;
-  subtype?: (number | null) | NewsSubType;
-  contentType?: ('video' | 'podcast') | null;
-  relatedPosts?: (number | News)[] | null;
-  teaserThumbnail?: (number | null) | Media;
-  logos?:
-    | {
-        image: number | Media;
-        id?: string | null;
-      }[]
-    | null;
-  featured?: boolean | null;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "news-sub-types".
- */
-export interface NewsSubType {
-  id: number;
-  title: string;
-  slug: string;
-  image: number | Media;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2755,6 +2771,18 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        featuredNewsCarousel?:
+          | T
+          | {
+              newsPosts?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
         brandLogoRoll?:
           | T
           | {
@@ -3030,6 +3058,16 @@ export interface EventSettingsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Subheader".
+ */
+export interface Subheader {
+  subheader?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'subheader';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
