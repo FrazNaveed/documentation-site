@@ -13,6 +13,7 @@ export const getPageBySlug = async (slug: string, locale: Locale = 'en') => {
     const pageData = await payload.find({
       collection: 'pages',
       limit: 1,
+      depth: 3,
       locale,
       where: {
         slug: {

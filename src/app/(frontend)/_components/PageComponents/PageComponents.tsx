@@ -46,6 +46,7 @@ import type {
   Product,
   Wallet,
 } from '@/payload-types'
+import FeaturedNewsCarouselBlock from '../FeaturedNewsCarouselBlock'
 import styles from './PageComponents.module.scss'
 
 export type PageComponentsProps = {
@@ -301,6 +302,16 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
 
                 case 'columns':
                   componentToRender = <Columns key={component.id} {...component} className={componentClass} />
+                  break
+
+                case 'featuredNewsCarousel':
+                  componentToRender = (
+                    <FeaturedNewsCarouselBlock
+                      key={component.id}
+                      {...component}
+                      className={componentClass}
+                    />
+                  )
                   break
 
                 case 'flareDropDates':

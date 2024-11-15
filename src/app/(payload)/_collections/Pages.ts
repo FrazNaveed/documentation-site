@@ -46,6 +46,7 @@ import { OfficialChannelsBlock } from '../_blocks/OfficialChannelsBlock'
 import { FlareDropDatesBlock } from '../_blocks/FlareDropDatesBlock'
 import { VideoEmbedBlock } from '../_blocks/VideoEmbedComponentBlock'
 import { CodeCtaBlock } from '../_blocks/CodeCtaBlock'
+import { FeaturedNewsCarouselBlock } from '../_blocks/FeaturedNewsCarouselBlock'
 import { BrandLogoRollBlock } from '../_blocks/BrandLogoRollBlock'
 import { ResponsiveImageBlock } from '../_blocks/ResponsiveImage'
 
@@ -194,6 +195,7 @@ export const Pages: CollectionConfig = {
         TwoColumnCtaBlock,
         VideoEmbedBlock,
         CodeCtaBlock,
+        FeaturedNewsCarouselBlock,
         BrandLogoRollBlock,
         MarqueeGallery,
         ResponsiveImageBlock,

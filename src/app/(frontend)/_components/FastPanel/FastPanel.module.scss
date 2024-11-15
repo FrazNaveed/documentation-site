@@ -1,0 +1,54 @@
+@use "../../_styles/colors" as *;
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+// @use "../../_styles/spacing" as *;
+// @use "../../_styles/transitions" as *;
+
+.wrap {
+  position: relative;
+  background-color: $pink-600;
+  overflow: hidden;
+}
+
+.container {
+  height: 100%;
+
+  @include containerGrid;
+}
+
+.content {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 547px;
+  color: $white;
+  pointer-events: none;
+
+  @include columns(8, -1);
+}
+
+.header {
+  color: $white;
+
+  @include hugeHeader;
+}
+
+.counter {
+  @include headerDesktopH3;
+}
+
+.text {
+  @include paragraphXSm;
+}
+
+.bgVideo {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+
+  &Wrap {
+    position: absolute;
+    inset: 0;
+  }
+}

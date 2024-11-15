@@ -5,12 +5,6 @@
 @use "../../_styles/transitions" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
-.container {
-  margin-bottom: $spacing-xx-large;
-
-  @include container;
-}
-
 .row {
   @include grid(8);
 

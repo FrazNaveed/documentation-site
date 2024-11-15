@@ -21,12 +21,15 @@ export default function FeaturedGrantsCountries({ countries }: FeaturedGrantsCou
   const flagWidthOverlap = 4
 
   const updateDimensions = () => {
-    if (countriesContainer.current && flagContainer.current && extraCountryContainer.current) {
+    if (countriesContainer.current && flagContainer.current) {
       const countriesContainerWidth = countriesContainer.current.offsetWidth
-      const extraCountryContainerWidth = extraCountryContainer.current.offsetWidth - flagWidthOverlap
       const lefthandElementWidth = (
         flagContainer.current.getBoundingClientRect().left - countriesContainer.current.getBoundingClientRect().left
       )
+      let extraCountryContainerWidth = 0
+      if (extraCountryContainer.current) {
+        extraCountryContainerWidth = extraCountryContainer.current.offsetWidth - flagWidthOverlap
+      }
       const maxFlagContainerWidth = countriesContainerWidth - extraCountryContainerWidth - lefthandElementWidth
       setFlagContainerWidth(maxFlagContainerWidth)
       setHasUpdated(true)
