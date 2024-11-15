@@ -70,6 +70,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
     teamGrid,
     devHub,
   } = pageData
+  console.log(pageData)
   let featuredEvent
   if (pageTemplate === 'events') {
     featuredEvent = await getFeaturedEvent()
@@ -421,8 +422,10 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
         </div>
       )}
       {(pageFooterCTA
-      && pageFooterCTAButton?.buttonLink
-      && pageFooterCTAButton?.buttonText
+      && (
+        (pageFooterCTAButton?.buttonLink && pageFooterCTAButton?.buttonText)
+        || pageFooterCTAButton?.useSocialMediaButtons
+      )
       && pageFooterCTAButton?.backgroundImageStyle)
       && (
         <PageFooterCTA
@@ -432,6 +435,8 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
           buttonSecondaryLink={pageFooterCTAButton?.buttonSecondaryLink ?? undefined}
           backgroundImage={pageFooterCTAButton?.backgroundImage}
           backgroundImageStyle={pageFooterCTAButton?.backgroundImageStyle}
+          socialMediaButtons={pageFooterCTAButton?.socialMediaButtons}
+          useSocialMediaButtons={pageFooterCTAButton?.useSocialMediaButtons}
         />
       )}
 
