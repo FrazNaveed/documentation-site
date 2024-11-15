@@ -1151,8 +1151,8 @@ export interface Page {
     buttonSecondaryLink?: string | null;
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
-    socialMediaButtons?: boolean | null;
-    socialMedia?: (number | SocialLink)[] | null;
+    useSocialMediaButtons?: boolean | null;
+    socialMediaButtons?: (number | SocialLink)[] | null;
   };
   pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets';
   updatedAt: string;
@@ -2840,8 +2840,8 @@ export interface PagesSelect<T extends boolean = true> {
         buttonSecondaryLink?: T;
         backgroundImage?: T;
         backgroundImageStyle?: T;
+        useSocialMediaButtons?: T;
         socialMediaButtons?: T;
-        socialMedia?: T;
       };
   pageTemplate?: T;
   updatedAt?: T;
