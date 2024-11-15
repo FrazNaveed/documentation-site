@@ -346,6 +346,8 @@ $font-family-sathoshi: var(--satoshi);
 }
 
 @mixin hugeHeader() {
+  font-weight: 500;
+
   @include fontStyle(160, 160);
 
   @include media-breakpoint-down(lg) {
