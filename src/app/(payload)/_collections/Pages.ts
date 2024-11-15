@@ -48,6 +48,7 @@ import { VideoEmbedBlock } from '../_blocks/VideoEmbedComponentBlock'
 import { CodeCtaBlock } from '../_blocks/CodeCtaBlock'
 import { FeaturedNewsCarouselBlock } from '../_blocks/FeaturedNewsCarouselBlock'
 import { BrandLogoRollBlock } from '../_blocks/BrandLogoRollBlock'
+import { ResponsiveImageBlock } from '../_blocks/ResponsiveImage'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -197,6 +198,7 @@ export const Pages: CollectionConfig = {
         FeaturedNewsCarouselBlock,
         BrandLogoRollBlock,
         MarqueeGallery,
+        ResponsiveImageBlock,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
