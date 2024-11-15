@@ -43,7 +43,7 @@ export default function TableDrawers({ data, className }: TableWithDrawersProps)
   }
 
   return (
-    <section className={cx(styles.container, className)}>
+    <section className={className}>
       <div className={cx(styles.headerRow, styles.row)}>
         <div className={cx(styles.cell, styles.label, { [styles.roundBottom]: collapsedDrawers.includes(0) })}>
           {/* Hack. We compress the top section name into the first header row */}
