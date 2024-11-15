@@ -1,0 +1,68 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.grid {
+  @include grid(10);
+
+  @include media-breakpoint-down(lg) {
+    @include grid(6, false);
+  }
+
+  @include media-breakpoint-down(md) {
+    @include grid(4, false);
+
+    margin-top: $spacing-large;
+  }
+}
+
+.content {
+  @include columns(1, 10, lg);
+}
+
+.title {
+  @include sectionHeaderFont;
+  @include sectionHeaderMargin;
+}
+
+.image {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% auto;
+
+  &__defaultMediumExists {
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
+  }
+
+  &__defaultMobileExists {
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+
+  &__medium {
+    @include media-breakpoint-up(lg) {
+      display: none;
+    }
+  }
+
+  &__mediumMobileExists {
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+
+  &__mobile {
+    @include media-breakpoint-up(md) {
+      display: none;
+    }
+  }
+}
+
+.srOnly {
+  @include utils.srOnly;
+}

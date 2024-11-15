@@ -47,6 +47,7 @@ import { FlareDropDatesBlock } from '../_blocks/FlareDropDatesBlock'
 import { VideoEmbedBlock } from '../_blocks/VideoEmbedComponentBlock'
 import { CodeCtaBlock } from '../_blocks/CodeCtaBlock'
 import { BrandLogoRollBlock } from '../_blocks/BrandLogoRollBlock'
+import { ResponsiveImageBlock } from '../_blocks/ResponsiveImage'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -195,6 +196,7 @@ export const Pages: CollectionConfig = {
         CodeCtaBlock,
         BrandLogoRollBlock,
         MarqueeGallery,
+        ResponsiveImageBlock,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
