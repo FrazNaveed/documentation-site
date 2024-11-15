@@ -70,7 +70,6 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
     teamGrid,
     devHub,
   } = pageData
-  console.log(pageData)
   let featuredEvent
   if (pageTemplate === 'events') {
     featuredEvent = await getFeaturedEvent()
