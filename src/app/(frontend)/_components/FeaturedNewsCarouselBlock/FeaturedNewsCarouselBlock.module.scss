@@ -13,6 +13,7 @@
     bottom: 0;
   }
 
+  /* prettier-ignore */
   :global(.swiper-pagination.swiper-pagination-horizontal .swiper-pagination-bullet) {
     margin-right: to-rem(6px);
     margin-left: to-rem(6px);
@@ -20,6 +21,7 @@
     background-color: $white;
   }
 
+  /* prettier-ignore */
   :global(.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active) {
     background-color: $pink-700;
   }
