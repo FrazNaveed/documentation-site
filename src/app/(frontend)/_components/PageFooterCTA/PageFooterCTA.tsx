@@ -1,17 +1,21 @@
 import cx from 'classnames'
-import { Media } from '@/payload-types'
+import { Media, SocialLink } from '@/payload-types'
+import Image from 'next/image'
+import Link from 'next/link'
 import PageFooterImage from './components/PageFooterImage'
 import Button from '../Button'
 import styles from './PageFooterCTA.module.scss'
 
 export type PageFooterCTAProps = {
   className?: string,
-  buttonText?: string,
-  buttonLink?: string,
+  buttonText?: string | null,
+  buttonLink?: string | null,
   buttonSecondaryText?: string,
   buttonSecondaryLink?: string,
   backgroundImage?: (number | null) | Media
   backgroundImageStyle: ('flipped' | 'offset') | null
+  socialMediaButtons?: (number | SocialLink)[] | null
+  useSocialMediaButtons?: boolean | null
 }
 
 export default function PageFooterCTA({
@@ -22,25 +26,51 @@ export default function PageFooterCTA({
   buttonSecondaryLink,
   backgroundImage,
   backgroundImageStyle,
+  socialMediaButtons,
+  useSocialMediaButtons,
 }: PageFooterCTAProps) {
   return (
     <section className={cx(styles.Wrap, className)}>
       <div className={cx(styles.content, [buttonSecondaryLink && buttonSecondaryText && styles.content__hasSecondary])}>
         <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='left' />
-        <div className={styles.buttonWrap}>
-          {[
-            { text: buttonText, link: buttonLink, buttonStyle: 'pink' as const },
-            { text: buttonSecondaryText, link: buttonSecondaryLink, buttonStyle: 'secondary' as const },
-          ].map(({ text, link, buttonStyle }) => text && link && (
-          <Button
-            key={text}
-            text={text}
-            link={link}
-            size='large'
-            buttonStyle={buttonStyle}
-            className={styles.Button}
-          />
-          ))}
+        <div className={cx(styles.buttonWrap, { [styles.buttonWrap__socialMediaButtons]: useSocialMediaButtons })}>
+          {useSocialMediaButtons ? (
+            socialMediaButtons && socialMediaButtons.map((socialMediaButton: any) => {
+              const {
+                id, title, url, icon,
+              } = socialMediaButton
+              return (
+                <Link
+                  key={`${id}-${title}`}
+                  href={url}
+                  aria-label={`Go to ${title}`}
+                  className={cx(styles.Button, styles.Button__icon)}
+                >
+                  <Image
+                    src={icon.url}
+                    alt={icon.alt}
+                    width={24}
+                    height={24}
+                  />
+                </Link>
+              )
+            })
+          )
+            : (
+              [
+                { text: buttonText, link: buttonLink, buttonStyle: 'pink' as const },
+                { text: buttonSecondaryText, link: buttonSecondaryLink, buttonStyle: 'secondary' as const },
+              ].map(({ text, link, buttonStyle }) => text && link && (
+              <Button
+                key={text}
+                text={text}
+                link={link}
+                size='large'
+                buttonStyle={buttonStyle}
+                className={styles.Button}
+              />
+              ))
+            )}
         </div>
         <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='right' />
       </div>
