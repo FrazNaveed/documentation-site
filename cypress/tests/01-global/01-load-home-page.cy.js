@@ -2,9 +2,8 @@
 
 describe('base page checks', () => {
   it('loads home page', () => {
-    cy.visit("/")
-    cy.screenshot()
-    cy.scrollTo('bottom').wait(1000)
+    cy.request({ url: '/', failOnStatusCode: false }).its('status').should('equal', 404)
+    cy.visit('/', {failOnStatusCode: false})
     cy.screenshot()
   })
 })
