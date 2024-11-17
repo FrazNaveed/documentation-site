@@ -12,6 +12,16 @@
   max-width: none;
   margin-bottom: to-rem($spacing-medium);
   background-color: $gray-50;
+
+  &__hasSocialMediaButtons {
+    @include media-breakpoint-down(md) {
+      height: to-rem(200px);
+    }
+
+    @include media-breakpoint-down(sm) {
+      height: to-rem(245px);
+    }
+  }
 }
 
 .content {
