@@ -30,9 +30,14 @@ export default function PageFooterCTA({
   useSocialMediaButtons,
 }: PageFooterCTAProps) {
   return (
-    <section className={cx(styles.Wrap, className)}>
-      <div className={cx(styles.content, [buttonSecondaryLink && buttonSecondaryText && styles.content__hasSecondary])}>
-        <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='left' />
+    <section className={cx(styles.Wrap, { [styles.Wrap__hasSocialMediaButtons]: useSocialMediaButtons }, className)}>
+      <div className={cx(
+        styles.content,
+        { [styles.content__hasSecondary]: buttonSecondaryLink && buttonSecondaryText && !useSocialMediaButtons },
+        { [styles.Wrap__hasSocialMediaButtons]: useSocialMediaButtons },
+      )}
+      >
+        <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='left' hasSocialMediaButtons={useSocialMediaButtons} />
         <div className={cx(styles.buttonWrap, { [styles.buttonWrap__socialMediaButtons]: useSocialMediaButtons })}>
           {useSocialMediaButtons ? (
             socialMediaButtons && socialMediaButtons.map((socialMediaButton: any) => {
@@ -72,7 +77,7 @@ export default function PageFooterCTA({
               ))
             )}
         </div>
-        <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='right' />
+        <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='right' hasSocialMediaButtons={useSocialMediaButtons} />
       </div>
     </section>
   )
