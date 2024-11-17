@@ -8,11 +8,13 @@ export const SocialLinks: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       name: 'url',
       type: 'text',
       required: true,
+      localized: true,
       validate: validateTextFieldUrl,
     },
     {
