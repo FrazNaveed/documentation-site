@@ -17,6 +17,18 @@
   &.bgImg__offset {
     transform: translateY(-35%);
   }
+
+  &__hasSocialMediaButtons {
+    @include media-breakpoint-down(md) {
+      &:first-child {
+        display: block;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      height: 100%;
+    }
+  }
 }
 
 .bgImg {
@@ -41,6 +53,12 @@
     &.bgImg__offset {
       transform: translateY(-35%);
     }
+
+    &.bgImg__hasSocialMediaButtons {
+      display: block;
+      width: to-rem(200px);
+      transform: translateY(25%);
+    }
   }
 
   &__right {
@@ -60,6 +78,10 @@
       @include media-breakpoint-down(md) {
         transform: rotate(0);
       }
+    }
+
+    &.bgImg__hasSocialMediaButtons {
+      transform: translateY(-25%);
     }
   }
 
