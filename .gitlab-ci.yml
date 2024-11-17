@@ -10,12 +10,6 @@
     variables:
       CTS_BUILD_TAG: $CI_COMMIT_REF_SLUG
 
-workflow:
-  rules:
-    - if: '$CI_OPEN_MERGE_REQUESTS != null && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "webide")'
-      when: never
-    - when: always
-
 
 stages:
 - build
