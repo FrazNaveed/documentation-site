@@ -14,12 +14,21 @@
   background-color: $gray-50;
 
   &__hasSocialMediaButtons {
+    & > * {
+      flex: 0 1 auto;
+    }
+
+    & > *:nth-child(2) {
+      flex: 0 0 auto;
+    }
+
     @include media-breakpoint-down(md) {
       height: to-rem(200px);
     }
 
     @include media-breakpoint-down(sm) {
       height: to-rem(245px);
+      // flex-direction: column;
     }
   }
 }
