@@ -28,7 +28,6 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   DROP INDEX IF EXISTS "pages_rels_grants_id_idx";
   DROP INDEX IF EXISTS "pages_rels_social_links_id_idx";
   ALTER TABLE "pages" ADD COLUMN "page_footer_c_t_a_button_use_social_media_buttons" boolean DEFAULT false;
-  ALTER TABLE "pages_rels" ADD COLUMN "locale" "_locales";
   ALTER TABLE "pages_rels" ADD COLUMN "news_id" integer;
   ALTER TABLE "social_links_locales" ADD COLUMN "title" varchar NOT NULL;
   ALTER TABLE "social_links_locales" ADD COLUMN "url" varchar NOT NULL;
