@@ -7,9 +7,15 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      mailcatcher:
+        condition: service_started
     environment:
       POSTGRES_URL: postgres://postgres:postgres@postgres:5432/flarepayload
       PAYLOAD_SECRET: secret
+      SMTP_HOST: mailcatcher
+      SMTP_PORT: 1025
+      SMTP_USER: ""
+      SMTP_PASS: ""
 
   postgres:
     restart: unless-stopped
@@ -50,6 +56,11 @@ services:
     volumes:
     - ./pgadmin-servers.json:/pgadmin4/servers.json:ro
     - pgadmin_data:/var/lib/pgadmin/
+
+  mailcatcher:
+    image: sj26/mailcatcher
+    ports:
+    - 1080:1080
 
 volumes:
   postgres_data:

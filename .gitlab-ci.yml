@@ -10,12 +10,6 @@
     variables:
       CTS_BUILD_TAG: $CI_COMMIT_REF_SLUG
 
-workflow:
-  rules:
-    - if: '$CI_OPEN_MERGE_REQUESTS != null && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "webide")'
-      when: never
-    - when: always
-
 
 stages:
 - build
@@ -57,6 +51,7 @@ test-e2e:
     entrypoint: [""]
   needs:
   - build-ct
+  retry: 2
   parallel:
     matrix:
     - CYPRESS_BROWSER:
@@ -86,7 +81,7 @@ test-e2e:
   script:
   - curl --retry 30 --retry-all-errors --retry-delay 10 --retry-max-time 900 -o /dev/null $CYPRESS_BASE_URL
   - cd cypress
-  - npx cypress run --browser $CYPRESS_BROWSER --spec "tests/01-global/*.cy.js,tests/02-${DATABASE_BASE}/*.cy.js"
+  - npx cypress run --browser $CYPRESS_BROWSER --spec "tests/${DATABASE_BASE}.cy.js"
   artifacts:
     expire_in: 1 week
     paths:
