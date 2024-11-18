@@ -51,6 +51,7 @@ test-e2e:
     entrypoint: [""]
   needs:
   - build-ct
+  retry: 2
   parallel:
     matrix:
     - CYPRESS_BROWSER:
