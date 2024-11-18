@@ -1112,6 +1112,7 @@ export interface Page {
         | IFeaturedNewsCarouselBlock
         | IBrandLogoRoll
         | IMarqueeGallery
+        | IResponsiveImage
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -2137,6 +2138,24 @@ export interface IMarqueeGallery {
   id?: string | null;
   blockName?: string | null;
   blockType: 'marqueeGallery';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IResponsiveImage".
+ */
+export interface IResponsiveImage {
+  header?: string | null;
+  imageDefault: number | Media;
+  imageMedium?: (number | null) | Media;
+  imageMobile?: (number | null) | Media;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'responsiveImage';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

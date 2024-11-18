@@ -24,6 +24,7 @@ import PrevNextLinks from 'src/app/(frontend)/_components/PrevNextLinks'
 import ProductGrid from 'src/app/(frontend)/_components/ProductGrid'
 import RegionalLinkGrid from 'src/app/(frontend)/_components/RegionalLinkGrid'
 import RelatedPosts from 'src/app/(frontend)/_components/RelatedPosts'
+import ResponsiveImageBlock from 'src/app/(frontend)/_components/ResponsiveImageBlock'
 import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import SideNav from 'src/app/(frontend)/_components/SideNav'
 import Stats from 'src/app/(frontend)/_components/Stats'
@@ -368,6 +369,16 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
                       {...component}
                       className={componentClass}
                       locale={lang}
+                    />
+                  )
+                  break
+
+                case 'responsiveImage':
+                  componentToRender = (
+                    <ResponsiveImageBlock
+                      key={component.id}
+                      {...component}
+                      className={componentClass}
                     />
                   )
                   break
