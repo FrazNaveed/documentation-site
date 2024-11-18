@@ -14,21 +14,11 @@
   background-color: $gray-50;
 
   &__hasSocialMediaButtons {
-    & > * {
-      flex: 0 1 auto;
-    }
-
-    & > *:nth-child(2) {
-      flex: 0 0 auto;
-    }
-
-    @include media-breakpoint-down(md) {
-      height: to-rem(200px);
-    }
+    height: to-rem(200px);
+    overflow: hidden;
 
     @include media-breakpoint-down(sm) {
       height: to-rem(245px);
-      // flex-direction: column;
     }
   }
 }
@@ -43,6 +33,23 @@
       flex-direction: column;
       padding-top: to-rem($spacing-xx-large);
       padding-bottom: to-rem($spacing-standard);
+    }
+  }
+
+  &__hasSocialMediaButtons {
+    height: 100%;
+
+    & > * {
+      flex: 0 1 auto;
+    }
+
+    & > *:nth-child(2) {
+      flex: 0 0 auto;
+    }
+
+    @include media-breakpoint-down(sm) {
+      flex-direction: column;
+      width: 100%;
     }
   }
 }

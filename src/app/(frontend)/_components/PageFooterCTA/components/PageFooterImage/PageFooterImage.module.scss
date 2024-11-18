@@ -19,6 +19,8 @@
   }
 
   &__hasSocialMediaButtons {
+    overflow: visible;
+
     @include media-breakpoint-down(md) {
       &:first-child {
         display: block;
@@ -26,7 +28,9 @@
     }
 
     @include media-breakpoint-down(sm) {
+      width: 100%;
       height: 100%;
+      overflow: hidden;
     }
   }
 }
@@ -57,7 +61,17 @@
     &.bgImg__hasSocialMediaButtons {
       display: block;
       width: to-rem(200px);
-      transform: translateY(25%);
+      transform: translateY(45%);
+
+      @include media-breakpoint-down(md) {
+        transform: translateY(55%);
+      }
+
+      @include media-breakpoint-down(sm) {
+        width: to-rem(120px);
+        margin-left: auto;
+        transform: translateY(-15%);
+      }
     }
   }
 
@@ -81,7 +95,17 @@
     }
 
     &.bgImg__hasSocialMediaButtons {
-      transform: translateY(-25%);
+      width: to-rem(200px);
+      transform: translateY(-45%);
+
+      @include media-breakpoint-down(md) {
+        transform: translateY(-38%);
+      }
+
+      @include media-breakpoint-down(sm) {
+        width: to-rem(120px);
+        transform: translateY(25%);
+      }
     }
   }
 
