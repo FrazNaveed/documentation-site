@@ -11,6 +11,13 @@ export const ButtonFields = (includeSecondaryButton = false) => {
         localized: true,
         admin: {
           width: '25%',
+          condition: ( data, siblingData, { user }) => {
+            if (siblingData.useSocialMediaButtons) {
+              return false
+            } else {
+              return true
+            }
+          },
         },
       },
       {
@@ -20,6 +27,13 @@ export const ButtonFields = (includeSecondaryButton = false) => {
         validate: validateTextFieldUrl,
         admin: {
           width: '75%',
+          condition: ( data, siblingData, { user }) => {
+            if (siblingData.useSocialMediaButtons) {
+              return false
+            } else {
+              return true
+            }
+          },
         }
       },
     ],
@@ -36,6 +50,13 @@ export const ButtonFields = (includeSecondaryButton = false) => {
           localized: true,
           admin: {
             width: '25%',
+            condition: ( data, siblingData, { user }) => {
+              if (siblingData.useSocialMediaButtons) {
+                return false
+              } else {
+                return true
+              }
+            },
           },
         },
         {
@@ -45,6 +66,13 @@ export const ButtonFields = (includeSecondaryButton = false) => {
           validate: validateTextFieldUrl,
           admin: {
             width: '75%',
+            condition: ( data, siblingData, { user }) => {
+              if (siblingData.useSocialMediaButtons) {
+                return false
+              } else {
+                return true
+              }
+            },
           }
         },
       ],

@@ -30,6 +30,13 @@ export const PageFooterCTA: Field[] = [
         hasMany: false,
         admin: {
           description: 'Choose how the background image is displayed',
+          condition: ( data, siblingData, { user }) => {
+            if (siblingData.useSocialMediaButtons) {
+              return false
+            } else {
+              return true
+            }
+          },
         },
       },
       {
