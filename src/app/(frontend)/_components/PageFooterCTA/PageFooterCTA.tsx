@@ -34,7 +34,7 @@ export default function PageFooterCTA({
       <div className={cx(
         styles.content,
         { [styles.content__hasSecondary]: buttonSecondaryLink && buttonSecondaryText && !useSocialMediaButtons },
-        { [styles.Wrap__hasSocialMediaButtons]: useSocialMediaButtons },
+        { [styles.content__hasSocialMediaButtons]: useSocialMediaButtons },
       )}
       >
         <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='left' hasSocialMediaButtons={useSocialMediaButtons} />
