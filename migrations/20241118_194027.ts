@@ -28,7 +28,6 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   DROP INDEX IF EXISTS "pages_rels_grants_id_idx";
   DROP INDEX IF EXISTS "pages_rels_social_links_id_idx";
   ALTER TABLE "pages" ADD COLUMN "page_footer_c_t_a_button_use_social_media_buttons" boolean DEFAULT false;
-  ALTER TABLE "pages_rels" ADD COLUMN "news_id" integer;
   ALTER TABLE "social_links_locales" ADD COLUMN "title" varchar NOT NULL;
   ALTER TABLE "social_links_locales" ADD COLUMN "url" varchar NOT NULL;
   DO $$ BEGIN
@@ -46,11 +45,6 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "newsCarousel_order_idx" ON "newsCarousel" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "newsCarousel_parent_id_idx" ON "newsCarousel" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "newsCarousel_path_idx" ON "newsCarousel" USING btree ("_path");
-  DO $$ BEGIN
-   ALTER TABLE "pages_rels" ADD CONSTRAINT "pages_rels_news_fk" FOREIGN KEY ("news_id") REFERENCES "public"."news"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
   
   CREATE INDEX IF NOT EXISTS "pages_rels_news_id_idx" ON "pages_rels" USING btree ("news_id","locale");
   CREATE INDEX IF NOT EXISTS "pages_rels_locale_idx" ON "pages_rels" USING btree ("locale");
