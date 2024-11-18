@@ -18,7 +18,7 @@
     overflow: hidden;
 
     @include media-breakpoint-down(sm) {
-      height: to-rem(245px);
+      height: 100%;
     }
   }
 }
@@ -64,7 +64,7 @@
   gap: to-rem($spacing-small);
 
   &__socialMediaButtons {
-    justify-content: flex-start;
+    justify-content: center;
     gap: to-rem($spacing-x-small);
   }
 
