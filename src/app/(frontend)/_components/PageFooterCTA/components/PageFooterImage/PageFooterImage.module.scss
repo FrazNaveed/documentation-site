@@ -5,6 +5,12 @@
 @use "../../../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
+$image-transform-y-default: 45%;
+$image-left-transform-y-md: 55%;
+$image-left-transform-y-sm: -15%;
+$image-right-transform-y-md: -38%;
+$image-right-transform-y-sm: 25%;
+
 .ImageWrap {
   overflow: hidden;
 
@@ -61,16 +67,16 @@
     &.bgImg__hasSocialMediaButtons {
       display: block;
       width: to-rem(200px);
-      transform: translateY(45%);
+      transform: translateY($image-transform-y-default);
 
       @include media-breakpoint-down(md) {
-        transform: translateY(55%);
+        transform: translateY($image-left-transform-y-md);
       }
 
       @include media-breakpoint-down(sm) {
         width: to-rem(120px);
         margin-left: auto;
-        transform: translateY(-15%);
+        transform: translateY($image-left-transform-y-sm);
       }
     }
   }
@@ -96,15 +102,15 @@
 
     &.bgImg__hasSocialMediaButtons {
       width: to-rem(200px);
-      transform: translateY(-45%);
+      transform: translateY(-$image-transform-y-default);
 
       @include media-breakpoint-down(md) {
-        transform: translateY(-38%);
+        transform: translateY($image-right-transform-y-md);
       }
 
       @include media-breakpoint-down(sm) {
         width: to-rem(120px);
-        transform: translateY(25%);
+        transform: translateY($image-right-transform-y-sm);
       }
     }
   }
