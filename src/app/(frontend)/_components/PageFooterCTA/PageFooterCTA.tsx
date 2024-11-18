@@ -40,26 +40,29 @@ export default function PageFooterCTA({
         <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='left' hasSocialMediaButtons={useSocialMediaButtons} />
         <div className={cx(styles.buttonWrap, { [styles.buttonWrap__socialMediaButtons]: useSocialMediaButtons })}>
           {useSocialMediaButtons ? (
-            socialMediaButtons && socialMediaButtons.map((socialMediaButton: any) => {
-              const {
-                id, title, url, icon,
-              } = socialMediaButton
-              return (
-                <Link
-                  key={`${id}-${title}`}
-                  href={url}
-                  aria-label={`Go to ${title}`}
-                  className={cx(styles.Button, styles.Button__icon)}
-                >
-                  <Image
-                    src={icon.url}
-                    alt={icon.alt}
-                    width={24}
-                    height={24}
-                  />
-                </Link>
-              )
-            })
+            socialMediaButtons && socialMediaButtons.filter((socialMediaButton): socialMediaButton is SocialLink => typeof socialMediaButton === 'object')
+              .map((socialMediaButton) => {
+                const {
+                  id, title, url, icon,
+                } = socialMediaButton
+                return (
+                  <Link
+                    key={`${id}-${title}`}
+                    href={url}
+                    aria-label={`Go to ${title}`}
+                    className={cx(styles.Button, styles.Button__icon)}
+                  >
+                    {typeof icon === 'object' && icon?.url && (
+                    <Image
+                      src={icon.url}
+                      alt={icon.alt}
+                      width={24}
+                      height={24}
+                    />
+                    )}
+                  </Link>
+                )
+              })
           )
             : (
               [
