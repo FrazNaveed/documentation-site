@@ -37,7 +37,7 @@ To use them, prefix with `npm run`:
 - `dev`: Runs NextJS/Payload in development mode. Requires a Postgres DB running somewhere.
 - `db:up`: Starts Postgres in a Docker container accessible on the local network. 
 - `db:down`: Stops the Postgres Docker container.
-- `db:clean`: Nukes the Postgres Docker container and removes the associated volume. This will delete your data!
+- `docker:clean`: Nukes the Postgres Docker container and removes the associated volume. This will delete your data!
 - `build`: Builds the NextJS/Payload app in production mode. Requires a Postgres DB running somewhere.
 - `start`: Runs the built NextJS/Payload app in production mode. Requires a Postgres DB running somewhere.
 

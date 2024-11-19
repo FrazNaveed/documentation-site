@@ -1,4 +1,3 @@
-import { notFound } from 'next/navigation'
 import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import type { Locale } from 'src/app/i18n-config'
 import PageComponents from 'src/app/(frontend)/_components/PageComponents'
@@ -19,10 +18,7 @@ export default async function Page({ params }: PageProps) {
   const { lang } = await params
   const page = await getPageBySlug('home', lang)
 
-  const pageData = page[0]
-  if (!pageData) {
-    notFound()
-  }
+  const pageData = page[0] || {}
 
   return (
     <>

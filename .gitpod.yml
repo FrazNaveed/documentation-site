@@ -10,17 +10,20 @@ tasks:
     command: cd cypress && gp sync-await cypress-intall && CYPRESS_BASE_URL=$(gp url 3000) npx cypress open
 
 ports:
+  - name: vnc webui
+    port: 6080
+    onOpen: open-browser
   - name: next
     port: 3000
     onOpen: ignore
     visibility: public
+  - name: mailcatcher
+    port: 1080
+    onOpen: ignore
   - name: pgadmin
     port: 8081
     onOpen: ignore
   - name: cypress websocket
     port: 5900
     onOpen: ignore
-  - name: vnc webui
-    port: 6080
-    onOpen: open-browser
 
