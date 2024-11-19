@@ -6,9 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "cross-env next build",
-    "db:clean": "docker-compose -f docker-compose-pg.dev.yml down --rmi all -v",
-    "db:down": "docker-compose -f docker-compose-pg.dev.yml down",
-    "db:up": "docker-compose -f docker-compose-pg.dev.yml up",
+    "db:down": "docker-compose down postgres",
+    "db:up": "docker-compose up postgres",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "docker:init": "npm run docker:clean && docker-compose up",
