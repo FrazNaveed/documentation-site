@@ -84,6 +84,7 @@ test-e2e:
   - npx cypress run --browser $CYPRESS_BROWSER --spec "tests/${DATABASE_BASE}.cy.js"
   artifacts:
     expire_in: 1 week
+    when: always
     paths:
     - cypress/screenshots
   rules: !reference [.rules, versiontag]
