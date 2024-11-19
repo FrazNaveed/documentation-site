@@ -49,6 +49,7 @@ import { CodeCtaBlock } from '../_blocks/CodeCtaBlock'
 import { FeaturedNewsCarouselBlock } from '../_blocks/FeaturedNewsCarouselBlock'
 import { BrandLogoRollBlock } from '../_blocks/BrandLogoRollBlock'
 import { ResponsiveImageBlock } from '../_blocks/ResponsiveImage'
+import { StepsBlock } from '../_blocks/StepsBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -199,6 +200,7 @@ export const Pages: CollectionConfig = {
         BrandLogoRollBlock,
         MarqueeGallery,
         ResponsiveImageBlock,
+        StepsBlock,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {

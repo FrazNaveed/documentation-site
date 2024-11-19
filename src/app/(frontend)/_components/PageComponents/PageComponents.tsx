@@ -28,6 +28,7 @@ import ResponsiveImageBlock from 'src/app/(frontend)/_components/ResponsiveImage
 import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
 import SideNav from 'src/app/(frontend)/_components/SideNav'
 import Stats from 'src/app/(frontend)/_components/Stats'
+import StepsBlock from 'src/app/(frontend)/_components/StepsBlock'
 import TableDrawers from 'src/app/(frontend)/_components/TableDrawers'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import TallCta from 'src/app/(frontend)/_components/TallCTA/TallCta'
@@ -385,6 +386,10 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
 
                 case 'stats':
                   componentToRender = <Stats key={component.id} {...component} className={componentClass} />
+                  break
+
+                case 'steps':
+                  componentToRender = <StepsBlock key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'tableDrawers':

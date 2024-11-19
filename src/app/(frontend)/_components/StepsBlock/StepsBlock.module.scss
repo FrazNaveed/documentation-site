@@ -1,0 +1,59 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.grid {
+  @include grid(10);
+
+  @include media-breakpoint-down(lg) {
+    @include grid(6, false);
+  }
+
+  @include media-breakpoint-down(md) {
+    @include grid(4, false);
+  }
+}
+
+.wrap {
+  @include columns(1, 9, lg);
+}
+
+.title {
+  @include sectionHeaderFont;
+  @include sectionHeaderMargin;
+}
+
+.steps {
+  @include media-breakpoint-up(md) {
+    columns: 2;
+    gap: $grid-column-gap;
+  }
+}
+
+.step {
+  margin-bottom: to-rem($spacing-standard);
+  break-inside: avoid;
+
+  @include media-breakpoint-down(lg) {
+    margin-bottom: to-rem($spacing-medium);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &_Title {
+    @include paragraphSmFont;
+
+    margin-bottom: to-rem($spacing-x-small);
+  }
+
+  &_Descrip {
+    @include paragraphSmFont;
+  }
+}
