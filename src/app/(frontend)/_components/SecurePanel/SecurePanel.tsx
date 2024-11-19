@@ -4,7 +4,7 @@ import SecureVideo from './SecureBgVideo'
 export default async function SecurePanel() {
   return (
     <section className={styles.wrap}>
-      <SecureVideo videoSrc='/en/video/home_secure_desktop.mp4' mobileVideoSrc='/en/video/home_secure_mobile.mp4' />
+      <SecureVideo videoSrc='/en/video/home_secure_desktop.webm' mobileVideoSrc='/en/video/home_secure_mobile.mp4' />
       <div className={styles.container}>
         <div className={styles.content}>
           <h1 className={styles.header}>Secure</h1>
