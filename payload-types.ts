@@ -1141,6 +1141,7 @@ export interface Page {
         | IBrandLogoRoll
         | IMarqueeGallery
         | IResponsiveImage
+        | IStepsBlock
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -2185,6 +2186,40 @@ export interface IResponsiveImage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IStepsBlock".
+ */
+export interface IStepsBlock {
+  title?: string | null;
+  steps: {
+    title?: string | null;
+    description?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    id?: string | null;
+  }[];
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'steps';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "developerGuides".
  */
 export interface DeveloperGuide {
@@ -2852,6 +2887,25 @@ export interface PagesSelect<T extends boolean = true> {
               imageDefault?: T;
               imageMedium?: T;
               imageMobile?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        steps?:
+          | T
+          | {
+              title?: T;
+              steps?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
               createSideNavLink?: T;
               linkText?: T;
               blockMarginSettings?: T;
