@@ -93,5 +93,14 @@
     &:focus {
       background-color: $gray-50;
     }
+
+    svg {
+      width: 100%;
+      height: auto;
+
+      path {
+        fill: $pink-700;
+      }
+    }
   }
 }
