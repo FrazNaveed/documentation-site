@@ -21,7 +21,7 @@ export default async function FastPanel() {
   const { abt, transactionCount } = await fetchData()
   return (
     <section className={styles.wrap}>
-      <FastVideo videoSrc='/en/video/home_fast_desktop.mp4' mobileVideoSrc='/en/video/home_fast_mobile.mp4' />
+      <FastVideo videoSrc='/en/video/home_fast_desktop.webm' mobileVideoSrc='/en/video/home_fast_mobile.mp4' />
       <div className={styles.container}>
         <div className={styles.content}>
           <h1 className={styles.header}>Fast</h1>
