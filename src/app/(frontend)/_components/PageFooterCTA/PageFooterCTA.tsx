@@ -1,10 +1,10 @@
 import cx from 'classnames'
 import { Media, SocialLink } from '@/payload-types'
-import Image from 'next/image'
 import Link from 'next/link'
 import PageFooterImage from './components/PageFooterImage'
 import Button from '../Button'
 import styles from './PageFooterCTA.module.scss'
+import OfficialChannelsIcon from '../OfficialChannelsIcon'
 
 export type PageFooterCTAProps = {
   className?: string,
@@ -52,14 +52,10 @@ export default function PageFooterCTA({
                     aria-label={`Go to ${title}`}
                     className={cx(styles.Button, styles.Button__icon)}
                   >
-                    {typeof icon === 'object' && icon?.url && (
-                    <Image
-                      src={icon.url}
-                      alt={icon.alt}
-                      width={24}
-                      height={24}
+                    <OfficialChannelsIcon
+                      channelTitle={title}
+                      icon={typeof icon === 'object' && icon?.url ? icon : undefined}
                     />
-                    )}
                   </Link>
                 )
               })
