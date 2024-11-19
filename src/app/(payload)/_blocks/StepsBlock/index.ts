@@ -21,6 +21,7 @@ export const StepsBlock: Block = {
       name: 'steps',
       type: 'array',
       localized: true,
+      required: true,
       fields: [
         {
           name: 'title',

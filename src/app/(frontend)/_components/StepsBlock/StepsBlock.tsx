@@ -11,14 +11,11 @@ export type StepsBlockProps = IStepsBlock & {
 export default function StepsBlock({
   title, steps, className,
 }: StepsBlockProps) {
-  if (!title && (!steps || steps.length === 0)) {
-    return null
-  }
   return (
     <section className={cx(styles.grid, className)}>
       <div className={styles.wrap}>
         {title && <h2 className={styles.title}>{title}</h2>}
-        {steps && steps.length > 0 && (
+        {steps?.length > 0 && (
           <div className={styles.steps}>
             {steps.map((step) => {
               const { id, title: stepTitle, description } = step
