@@ -80,6 +80,8 @@
   margin-bottom: 0;
 
   &__icon {
+    @include officialChannelsIcon;
+
     display: flex;
     width: to-rem(48px);
     height: to-rem(48px);
@@ -92,15 +94,6 @@
     &:hover,
     &:focus {
       background-color: $gray-50;
-    }
-
-    svg {
-      width: 100%;
-      height: auto;
-
-      path {
-        fill: $pink-700;
-      }
     }
   }
 }
