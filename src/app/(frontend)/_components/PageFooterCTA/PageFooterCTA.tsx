@@ -6,7 +6,6 @@ import Button from '../Button'
 import styles from './PageFooterCTA.module.scss'
 import OfficialChannelsIcon from '../OfficialChannelsIcon'
 import { getGlobalSocialChannels } from '../../_lib/payload/pageQueries'
-// import { SocialChannels } from '@/src/app/(payload)/_globals/SocialChannels'
 
 export type PageFooterCTAProps = {
   className?: string,
@@ -64,42 +63,8 @@ export default async function PageFooterCTA({
   lang,
 }: PageFooterCTAProps) {
   const globalSocialChannels: any = await getGlobalSocialChannels(lang)
-  // console.log('yes?', globalSocialChannels)
   const socialMediaChannels = filterAndOrderSocialChannels(globalSocialChannels, selectSocialChannels)
-  // const socialMediaChannels = selectSocialChannels?.map((key) => {
-  //   const socialChannel = globalSocialChannels && globalSocialChannels[key]
-  //   if (
-  //     socialChannel &&
-  //     typeof socialChannel === 'object' &&
-  //     'title' in socialChannel &&
-  //     'url' in socialChannel
-  //   ) {
-  //     return {
-  //       key,
-  //       title: socialChannel.title,
-  //       url: socialChannel.url,
-  //       followerCount: socialChannel.followerCount
-  //     }
-  //   }
-  //   return null
-  // })
-  // .filter((socialChannel): socialChannel is NonNullable<typeof socialChannel> => socialChannel !== null)
 
-  // globalSocialChannels && Object.entries(globalSocialChannels)
-  //   .filter(([key, value]) => typeof value === 'object'
-  //   && value !== null
-  //   && 'title' in value
-  //   && 'url' in value
-  //   && selectSocialChannels?.includes(key))
-  //   .map(([key, value]) => ({
-  //     key,
-  //     title: value.title,
-  //     url: value.url,
-  //     followerCount: value.followerCount,
-  //   }))
-
-  // console.log(socialMediaChannels);
-  // console.log('should only get these: ', selectSocialChannels)
   return (
     <section className={cx(styles.Wrap, { [styles.Wrap__hasSocialMediaButtons]: useSocialMediaButtons }, className)}>
       <div className={cx(
@@ -130,26 +95,6 @@ export default async function PageFooterCTA({
                 </Link>
               )
             })
-            // socialMediaButtons && socialMediaButtons.filter(
-            // (socialMediaButton): socialMediaButton is SocialLink => typeof socialMediaButton === 'object')
-            //   .map((socialMediaButton) => {
-            //     const {
-            //       id, title, url, icon,
-            //     } = socialMediaButton
-            //     return (
-            //       <Link
-            //         key={`${id}-${title}`}
-            //         href={url}
-            //         aria-label={`Go to ${title}`}
-            //         className={cx(styles.Button, styles.Button__icon)}
-            //       >
-            //         <OfficialChannelsIcon
-            //           channelTitle={title}
-            //           icon={typeof icon === 'object' && icon?.url ? icon : undefined}
-            //         />
-            //       </Link>
-            //     )
-          // })
           )
             : (
               [
