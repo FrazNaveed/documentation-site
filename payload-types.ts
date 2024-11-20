@@ -460,6 +460,7 @@ export interface Config {
   };
   globals: {
     eventSettings: EventSetting;
+    selectPageFooterCtaSocialChannels: SelectPageFooterCtaSocialChannel;
     'social-channels': SocialChannel;
   };
   locale: 'en' | 'es' | 'de';
@@ -2335,6 +2336,16 @@ export interface EventSetting {
   id: number;
   eventCardEyebrow: string;
   eventCardTitle: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "selectPageFooterCtaSocialChannels".
+ */
+export interface SelectPageFooterCtaSocialChannel {
+  id: number;
+  selectSocialChannels?: ('discord' | 'github' | 'linkedin' | 'medium' | 'telegram' | 'x' | 'youtube')[] | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
