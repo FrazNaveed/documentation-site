@@ -68,6 +68,10 @@
     height: auto;
   }
 
+  &Logo {
+    display: block;
+  }
+
   &Footer {
     display: flex;
     flex-wrap: wrap;

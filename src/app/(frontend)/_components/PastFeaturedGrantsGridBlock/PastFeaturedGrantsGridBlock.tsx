@@ -51,6 +51,7 @@ export default function PastFeaturedGrantsGridBlock({
                         && (
                         <div className={styles.grantLogoWrap}>
                           <Image
+                            className={styles.grantLogo}
                             src={logo.url}
                             alt={logo.alt}
                             width={logo.width ?? 0}
