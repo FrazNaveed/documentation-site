@@ -1126,7 +1126,7 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
     useSocialMediaButtons?: boolean | null;
-    socialMediaButtons?: (number | SocialLink)[] | null;
+    selectSocialChannels?: ('discord' | 'github' | 'linkedin' | 'medium' | 'telegram' | 'x' | 'youtube')[] | null;
   };
   pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets';
   updatedAt: string;
