@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import cx from 'classnames'
 import styles from './DecentralizedPanel.module.scss'
 

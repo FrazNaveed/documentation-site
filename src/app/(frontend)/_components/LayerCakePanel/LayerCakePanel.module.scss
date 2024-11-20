@@ -1,0 +1,192 @@
+@use "../../_styles/colors" as *;
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/spacing" as *;
+
+.wrap {
+  padding-bottom: $spacing-7x-large;
+
+  @include containerGrid;
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 33px;
+  border-radius: 8px 8px 0 0;
+  background-color: $gray-50;
+
+  @include labelS;
+  @include columns(1, -1);
+}
+
+.logoWrap {
+  display: flex;
+  justify-content: center;
+  padding: $spacing-x-large 0;
+
+  @include columns(1, -1);
+}
+
+.column {
+  &__primary {
+    @include columns(1, 4);
+
+    @include media-breakpoint-down(lg) {
+      @include columns(6, -1);
+    }
+  }
+
+  &__main {
+    @include columns(4, 10);
+
+    @include media-breakpoint-down(lg) {
+      grid-row: 3;
+      @include columns(1, 6);
+    }
+  }
+
+  &__secondary {
+    @include columns(10, -1);
+
+    @include media-breakpoint-down(lg) {
+      @include grid(8);
+      @include columns(1, -1);
+    }
+  }
+}
+
+.label {
+  @include labelS;
+
+  margin-bottom: $spacing-medium;
+  color: $gray;
+}
+@include media-breakpoint-down(lg) {
+  .products {
+    &First {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: $grid-column-gap-flare;
+
+      @include columns(1, 6);
+
+      .label {
+        flex-basis: 100%;
+      }
+    }
+
+    &Second {
+      @include columns(6, -1);
+    }
+  }
+
+  .placeholder {
+    flex: 1;
+
+    @include media-breakpoint-down(md) {
+      flex-basis: 100%;
+    }
+  }
+}
+
+.primary {
+  &Header {
+    @include headerH7;
+
+    margin: 0 0 $spacing-x-small;
+  }
+
+  &Text {
+    @include paragraphSm;
+  }
+}
+
+.textLayers {
+  .textLayer {
+    margin-bottom: $spacing-4x-large;
+    opacity: 0;
+  }
+
+  &.animate {
+    .textLayer {
+      &__top {
+        animation: fade-in 600ms ease-in-out forwards;
+      }
+
+      &__middle {
+        animation: fade-in 800ms ease-in-out forwards;
+        animation-delay: 500ms;
+      }
+
+      &__bottom {
+        animation: fade-in 1000ms ease-in-out forwards;
+        animation-delay: 1000ms;
+      }
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.layersWrap {
+  position: relative;
+  aspect-ratio: 4/3;
+
+  .layer {
+    position: absolute;
+    transform: translateY(40px);
+    opacity: 0;
+
+    &__top {
+      top: 0;
+    }
+
+    &__middle {
+      top: 36%;
+    }
+
+    &__bottom {
+      top: 46%;
+    }
+  }
+
+  &.animate {
+    .layer {
+      &__top {
+        animation: fade-in-up 600ms ease-in-out forwards;
+      }
+
+      &__middle {
+        animation: fade-in-up 800ms ease-in-out forwards;
+        animation-delay: 500ms;
+      }
+
+      &__bottom {
+        animation: fade-in-up 1000ms ease-in-out forwards;
+        animation-delay: 1000ms;
+      }
+    }
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
