@@ -30,3 +30,17 @@ export const getPageBySlug = async (slug: string, locale: Locale = 'en') => {
   }
   return []
 }
+
+export const getGlobalSocialChannels = async (locale: Locale = 'en') => {
+  try {
+    const globalSocialChannelsData = await payload.findGlobal({
+      slug: 'social-channels',
+      locale,
+    })
+
+    return globalSocialChannelsData
+  } catch (error) {
+    console.error('Error fetching getGlobalSocialChannels: ', error)
+  }
+  return {}
+}

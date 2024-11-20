@@ -460,6 +460,7 @@ export interface Config {
   };
   globals: {
     eventSettings: EventSetting;
+    'social-channels': SocialChannel;
   };
   locale: 'en' | 'es' | 'de';
   user: User & {
@@ -1126,7 +1127,7 @@ export interface Page {
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
     useSocialMediaButtons?: boolean | null;
-    socialMediaButtons?: (number | SocialLink)[] | null;
+    selectSocialChannels?: ('discord' | 'github' | 'linkedin' | 'medium' | 'telegram' | 'x' | 'youtube')[] | null;
   };
   pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets';
   updatedAt: string;
@@ -2334,6 +2335,50 @@ export interface EventSetting {
   id: number;
   eventCardEyebrow: string;
   eventCardTitle: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-channels".
+ */
+export interface SocialChannel {
+  id: number;
+  discord: {
+    title: string;
+    url: string;
+    followerCount?: string | null;
+  };
+  github: {
+    title: string;
+    url: string;
+    followerCount?: string | null;
+  };
+  linkedin: {
+    title: string;
+    url: string;
+    followerCount?: string | null;
+  };
+  medium: {
+    title: string;
+    url: string;
+    followerCount?: string | null;
+  };
+  telegram: {
+    title: string;
+    url: string;
+    followerCount?: string | null;
+  };
+  x: {
+    title: string;
+    url: string;
+    followerCount?: string | null;
+  };
+  youtube: {
+    title: string;
+    url: string;
+    followerCount?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }

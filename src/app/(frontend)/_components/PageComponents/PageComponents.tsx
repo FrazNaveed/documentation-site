@@ -450,8 +450,9 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
           buttonSecondaryLink={pageFooterCTAButton?.buttonSecondaryLink ?? undefined}
           backgroundImage={pageFooterCTAButton?.backgroundImage}
           backgroundImageStyle={pageFooterCTAButton?.backgroundImageStyle}
-          socialMediaButtons={pageFooterCTAButton?.socialMediaButtons}
+          selectSocialChannels={pageFooterCTAButton?.selectSocialChannels}
           useSocialMediaButtons={pageFooterCTAButton?.useSocialMediaButtons}
+          lang={lang}
         />
       )}
 
