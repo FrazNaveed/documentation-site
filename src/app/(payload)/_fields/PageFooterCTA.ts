@@ -45,7 +45,7 @@ export const PageFooterCTA: Field[] = [
         type: 'checkbox',
         defaultValue: false,
         admin: {
-          'description': 'Display Social Channels as buttons instead of CTA buttons',
+          'description': 'Display Social Channels as buttons instead of CTA buttons. Manage in Globals under Page Footer CTA Social Channels.',
         },
       },
       ...SelectSocialChannels,
