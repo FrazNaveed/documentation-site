@@ -42,5 +42,5 @@ export const getGlobalSocialChannels = async (locale: Locale = 'en') => {
   } catch (error) {
     console.error('Error fetching getGlobalSocialChannels: ', error)
   }
-  return null
+  return {}
 }

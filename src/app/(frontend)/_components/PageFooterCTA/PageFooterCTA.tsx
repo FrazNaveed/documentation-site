@@ -62,7 +62,7 @@ export default async function PageFooterCTA({
   useSocialMediaButtons,
   lang,
 }: PageFooterCTAProps) {
-  const globalSocialChannels: any = await getGlobalSocialChannels(lang)
+  const globalSocialChannels: IGlobalSocialChannels = await getGlobalSocialChannels(lang)
   const socialMediaChannels = filterAndOrderSocialChannels(globalSocialChannels, selectSocialChannels)
 
   return (
