@@ -1,5 +1,4 @@
 import type { SocialLink as ISocialLink } from '@/payload-types'
-// import Image from 'next/image'
 import Discord from '../svgs/Discord'
 import GitHub from '../svgs/GitHub'
 import LinkedIn from '../svgs/LinkedIn'
@@ -29,10 +28,6 @@ export default function OfficialChannelsIcon({ channelTitle, icon }: OfficialCha
 
   let cardIcon
 
-  // if (icon && typeof icon !== 'number') {
-  //   cardIcon = icon.url
-  //     && <Image src={icon.url} alt={icon.alt} width={icon.width ?? 0} height={icon.height ?? 0} />
-  // } else
   if (Icon) {
     cardIcon = <Icon />
   } else {
