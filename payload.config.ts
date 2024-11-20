@@ -25,6 +25,7 @@ import { People } from './src/app/(payload)/_collections/People'
 import { Grants } from './src/app/(payload)/_collections/Grants'
 import { GrantTypes } from './src/app/(payload)/_collections/GrantTypes'
 import { SocialLinks } from './src/app/(payload)/_collections/SocialLinks'
+import { SelectPageFooterCtaSocialChannels } from './src/app/(payload)/_globals/PageFooterCtaSocialChannels'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -55,6 +56,7 @@ export default buildConfig({
   ],
   globals: [
     EventSettings,
+    SelectPageFooterCtaSocialChannels,
     SocialChannels,
   ],
   editor: lexicalEditor(),
