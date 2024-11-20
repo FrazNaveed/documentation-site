@@ -84,7 +84,8 @@ export default function LayerCakePanel() {
           <Image src={top} alt='top' />
         </div>
         {['ftso', 'fdc', 'fassets', 'fpo1', 'fpo2', 'fpo3'].map((dotName) => (
-          <div className={cx(styles.flareDot, styles[`flareDot__${dotName}`])}>
+          // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
+          <div key={dotName} className={cx(styles.flareDot, styles[`flareDot__${dotName}`])} onClick={() => false}>
             <span className={styles.flareDotText}>{dotName}</span>
           </div>
         ))}

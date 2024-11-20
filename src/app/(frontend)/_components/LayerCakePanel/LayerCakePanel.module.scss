@@ -212,6 +212,10 @@
   background-color: $black;
   color: $white;
 
+  @include media-breakpoint-up(md) {
+    display: none;
+  }
+
   &::before {
     display: inline-block;
     width: 8px;
