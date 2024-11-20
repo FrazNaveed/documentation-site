@@ -22,9 +22,8 @@ const iconMap = {
   youtube: YouTube,
 }
 
-export default function OfficialChannelsIcon({ channelTitle, icon }: OfficialChannelsIconProps) {
+export default function OfficialChannelsIcon({ channelTitle }: OfficialChannelsIconProps) {
   const Icon = iconMap[channelTitle as keyof typeof iconMap]
-  console.log(icon)
 
   let cardIcon
 
