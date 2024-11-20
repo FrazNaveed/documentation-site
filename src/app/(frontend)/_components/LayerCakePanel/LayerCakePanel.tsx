@@ -54,7 +54,7 @@ export default function LayerCakePanel() {
           <div className={cx(styles.textLayer, styles.textLayer__top)}>
             <h4 className={styles.primaryHeader}>Enshrined Data Protocols</h4>
             <p className={styles.primaryText}>
-              Flare’s protocols are integrated into the blockchain&rsquo;s core,
+              Flare&rsquo;s protocols are integrated into the blockchain&rsquo;s core,
               and inherit the economic security of the entire network
             </p>
           </div>
@@ -83,6 +83,11 @@ export default function LayerCakePanel() {
         <div className={cx(styles.layer, styles.layer__top)}>
           <Image src={top} alt='top' />
         </div>
+        {['ftso', 'fdc', 'fassets', 'fpo1', 'fpo2', 'fpo3'].map((dotName) => (
+          <div className={cx(styles.flareDot, styles[`flareDot__${dotName}`])}>
+            <span className={styles.flareDotText}>{dotName}</span>
+          </div>
+        ))}
       </div>
       <aside className={styles.column__secondary}>
         <div className={styles.productsFirst}>
