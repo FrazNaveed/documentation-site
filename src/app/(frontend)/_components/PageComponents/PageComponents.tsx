@@ -447,6 +447,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
           backgroundImageStyle={pageFooterCTAButton?.backgroundImageStyle}
           selectSocialChannels={pageFooterCTAButton?.selectSocialChannels}
           useSocialMediaButtons={pageFooterCTAButton?.useSocialMediaButtons}
+          lang={lang}
         />
       )}
 
