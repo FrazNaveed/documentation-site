@@ -6,6 +6,7 @@ import Button from '../Button'
 import styles from './PageFooterCTA.module.scss'
 import OfficialChannelsIcon from '../OfficialChannelsIcon'
 import { getGlobalSocialChannels } from '../../_lib/payload/pageQueries'
+// import { SocialChannels } from '@/src/app/(payload)/_globals/SocialChannels'
 
 export type PageFooterCTAProps = {
   className?: string,
@@ -20,6 +21,36 @@ export type PageFooterCTAProps = {
   lang: 'en' | 'es' | 'de' | undefined
 }
 
+interface SocialChannel {
+  title: string;
+  url: string;
+  followerCount: number | null;
+}
+
+interface GlobalSocialChannels {
+  [key: string]: SocialChannel;
+}
+
+function filterAndOrderSocialChannels(
+  globalSocialChannels: GlobalSocialChannels,
+  selectSocialChannels: PageFooterCTAProps['selectSocialChannels'] | null,
+): Array<SocialChannel & { key: string }> {
+  if (!selectSocialChannels) return []
+
+  return selectSocialChannels
+    .map((key) => {
+      const channel = globalSocialChannels[key]
+      if (channel) {
+        return {
+          key,
+          ...channel,
+        }
+      }
+      return null
+    })
+    .filter((channel): channel is SocialChannel & { key: string } => channel !== null)
+}
+
 export default async function PageFooterCTA({
   className,
   buttonText,
@@ -32,20 +63,40 @@ export default async function PageFooterCTA({
   useSocialMediaButtons,
   lang,
 }: PageFooterCTAProps) {
-  const globalSocialChannels = await getGlobalSocialChannels(lang)
+  const globalSocialChannels: any = await getGlobalSocialChannels(lang)
   // console.log('yes?', globalSocialChannels)
-  const socialMediaChannels = globalSocialChannels && Object.entries(globalSocialChannels)
-    .filter(([key, value]) => typeof value === 'object'
-    && value !== null
-    && 'title' in value
-    && 'url' in value
-    && selectSocialChannels?.includes(key))
-    .map(([key, value]) => ({
-      key,
-      title: value.title,
-      url: value.url,
-      followerCount: value.followerCount,
-    }))
+  const socialMediaChannels = filterAndOrderSocialChannels(globalSocialChannels, selectSocialChannels)
+  // const socialMediaChannels = selectSocialChannels?.map((key) => {
+  //   const socialChannel = globalSocialChannels && globalSocialChannels[key]
+  //   if (
+  //     socialChannel &&
+  //     typeof socialChannel === 'object' &&
+  //     'title' in socialChannel &&
+  //     'url' in socialChannel
+  //   ) {
+  //     return {
+  //       key,
+  //       title: socialChannel.title,
+  //       url: socialChannel.url,
+  //       followerCount: socialChannel.followerCount
+  //     }
+  //   }
+  //   return null
+  // })
+  // .filter((socialChannel): socialChannel is NonNullable<typeof socialChannel> => socialChannel !== null)
+
+  // globalSocialChannels && Object.entries(globalSocialChannels)
+  //   .filter(([key, value]) => typeof value === 'object'
+  //   && value !== null
+  //   && 'title' in value
+  //   && 'url' in value
+  //   && selectSocialChannels?.includes(key))
+  //   .map(([key, value]) => ({
+  //     key,
+  //     title: value.title,
+  //     url: value.url,
+  //     followerCount: value.followerCount,
+  //   }))
 
   // console.log(socialMediaChannels);
   // console.log('should only get these: ', selectSocialChannels)
