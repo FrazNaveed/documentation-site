@@ -47,6 +47,7 @@ import type {
   Product,
   Wallet,
 } from '@/payload-types'
+import { getPageFooterCtaSocialChannels } from '../../_lib/payload/pageQueries'
 import FeaturedNewsCarouselBlock from '../FeaturedNewsCarouselBlock'
 import styles from './PageComponents.module.scss'
 
@@ -245,6 +246,8 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
   if (relatedNewsType && typeof relatedNewsType === 'object') {
     relatedNewsPosts = await getNewsArchive(3, 1, [], relatedNewsType.slug)
   }
+
+  const pageFooterCtaSocialChannels = await getPageFooterCtaSocialChannels(lang)
 
   return (
     <div className={styles.wrap}>
@@ -450,7 +453,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
           buttonSecondaryLink={pageFooterCTAButton?.buttonSecondaryLink ?? undefined}
           backgroundImage={pageFooterCTAButton?.backgroundImage}
           backgroundImageStyle={pageFooterCTAButton?.backgroundImageStyle}
-          selectSocialChannels={pageFooterCTAButton?.selectSocialChannels}
+          selectSocialChannels={pageFooterCtaSocialChannels.selectSocialChannels}
           useSocialMediaButtons={pageFooterCTAButton?.useSocialMediaButtons}
           lang={lang}
         />
