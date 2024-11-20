@@ -20,20 +20,20 @@ export type PageFooterCTAProps = {
   lang: 'en' | 'es' | 'de' | undefined
 }
 
-interface SocialChannel {
+interface ISocialChannel {
   title: string;
   url: string;
   followerCount: number | null;
 }
 
-interface GlobalSocialChannels {
-  [key: string]: SocialChannel;
+interface IGlobalSocialChannels {
+  [key: string]: ISocialChannel;
 }
 
 function filterAndOrderSocialChannels(
-  globalSocialChannels: GlobalSocialChannels,
+  globalSocialChannels: IGlobalSocialChannels,
   selectSocialChannels: PageFooterCTAProps['selectSocialChannels'] | null,
-): Array<SocialChannel & { key: string }> {
+): Array<ISocialChannel & { key: string }> {
   if (!selectSocialChannels) return []
 
   return selectSocialChannels
@@ -47,7 +47,7 @@ function filterAndOrderSocialChannels(
       }
       return null
     })
-    .filter((channel): channel is SocialChannel & { key: string } => channel !== null)
+    .filter((channel): channel is ISocialChannel & { key: string } => channel !== null)
 }
 
 export default async function PageFooterCTA({
