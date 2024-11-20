@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import { Media, SocialLink } from '@/payload-types'
+import { Media } from '@/payload-types'
 import Link from 'next/link'
 import PageFooterImage from './components/PageFooterImage'
 import Button from '../Button'
@@ -14,7 +14,7 @@ export type PageFooterCTAProps = {
   buttonSecondaryLink?: string,
   backgroundImage?: (number | null) | Media
   backgroundImageStyle: ('flipped' | 'offset') | null
-  socialMediaButtons?: (number | SocialLink)[] | null
+  selectSocialChannels?: string[] | null
   useSocialMediaButtons?: boolean | null
 }
 
@@ -26,7 +26,7 @@ export default function PageFooterCTA({
   buttonSecondaryLink,
   backgroundImage,
   backgroundImageStyle,
-  socialMediaButtons,
+  selectSocialChannels,
   useSocialMediaButtons,
 }: PageFooterCTAProps) {
   return (
@@ -40,25 +40,38 @@ export default function PageFooterCTA({
         <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='left' hasSocialMediaButtons={useSocialMediaButtons} />
         <div className={cx(styles.buttonWrap, { [styles.buttonWrap__socialMediaButtons]: useSocialMediaButtons })}>
           {useSocialMediaButtons ? (
-            socialMediaButtons && socialMediaButtons.filter((socialMediaButton): socialMediaButton is SocialLink => typeof socialMediaButton === 'object')
-              .map((socialMediaButton) => {
-                const {
-                  id, title, url, icon,
-                } = socialMediaButton
-                return (
-                  <Link
-                    key={`${id}-${title}`}
-                    href={url}
-                    aria-label={`Go to ${title}`}
-                    className={cx(styles.Button, styles.Button__icon)}
-                  >
-                    <OfficialChannelsIcon
-                      channelTitle={title}
-                      icon={typeof icon === 'object' && icon?.url ? icon : undefined}
-                    />
-                  </Link>
-                )
-              })
+            selectSocialChannels?.map((socialChannel) => (
+              <Link
+                key={`${socialChannel}`}
+                href='/foo' // url
+                aria-label={`Go to ${socialChannel}`} // title
+                className={cx(styles.Button, styles.Button__icon)}
+              >
+                <OfficialChannelsIcon
+                  channelTitle={socialChannel}
+                />
+              </Link>
+            ))
+            // socialMediaButtons && socialMediaButtons.filter(
+            // (socialMediaButton): socialMediaButton is SocialLink => typeof socialMediaButton === 'object')
+            //   .map((socialMediaButton) => {
+            //     const {
+            //       id, title, url, icon,
+            //     } = socialMediaButton
+            //     return (
+            //       <Link
+            //         key={`${id}-${title}`}
+            //         href={url}
+            //         aria-label={`Go to ${title}`}
+            //         className={cx(styles.Button, styles.Button__icon)}
+            //       >
+            //         <OfficialChannelsIcon
+            //           channelTitle={title}
+            //           icon={typeof icon === 'object' && icon?.url ? icon : undefined}
+            //         />
+            //       </Link>
+            //     )
+          // })
           )
             : (
               [
