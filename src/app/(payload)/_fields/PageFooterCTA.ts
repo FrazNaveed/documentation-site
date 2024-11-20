@@ -48,21 +48,6 @@ export const PageFooterCTA: Field[] = [
           'description': 'Display Social Channels as buttons instead of CTA buttons',
         },
       },
-      // {
-      //   name: 'socialMediaButtons',
-      //   type: 'relationship',
-      //   relationTo: 'social-links',
-      //   hasMany: true,
-      //   admin: {
-      //     condition: ( data, siblingData, { user }) => {
-      //       if (siblingData.useSocialMediaButtons) {
-      //         return true
-      //       } else {
-      //         return false
-      //       }
-      //     },
-      //   },
-      // },
       ...SelectSocialChannels,
     ],
     admin: {
