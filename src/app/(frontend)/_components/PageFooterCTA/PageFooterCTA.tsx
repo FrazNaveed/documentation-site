@@ -30,15 +30,37 @@ interface IGlobalSocialChannels {
   [key: string]: ISocialChannel;
 }
 
+interface SocialChannel {
+  discord: { title: string; url: string; followerCount?: string | null };
+  github: { title: string; url: string; followerCount?: string | null };
+  linkedin: { title: string; url: string; followerCount?: string | null };
+  medium: { title: string; url: string; followerCount?: string | null };
+  telegram: { title: string; url: string; followerCount?: string | null };
+  x: { title: string; url: string; followerCount?: string | null };
+  youtube: { title: string; url: string; followerCount?: string | null };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+
+interface GlobalSocialChannels {
+  discord?: SocialChannel['discord'];
+  github?: SocialChannel['github'];
+  linkedin?: SocialChannel['linkedin'];
+  medium?: SocialChannel['medium'];
+  telegram?: SocialChannel['telegram'];
+  x?: SocialChannel['x'];
+  youtube?: SocialChannel['youtube'];
+}
+
 function filterAndOrderSocialChannels(
-  globalSocialChannels: IGlobalSocialChannels,
+  globalSocialChannels: GlobalSocialChannels,
   selectSocialChannels: PageFooterCTAProps['selectSocialChannels'] | null,
-): Array<ISocialChannel & { key: string }> {
-  if (!selectSocialChannels) return []
+): Array<{ key: keyof GlobalSocialChannels; title: string; url: string; followerCount?: string | null | undefined}> {
+  if (!globalSocialChannels || !selectSocialChannels) return []
 
   return selectSocialChannels
     .map((key) => {
-      const channel = globalSocialChannels[key]
+      const channel = globalSocialChannels[key as keyof GlobalSocialChannels]
       if (channel) {
         return {
           key,
@@ -47,7 +69,7 @@ function filterAndOrderSocialChannels(
       }
       return null
     })
-    .filter((channel): channel is ISocialChannel & { key: string } => channel !== null)
+    .filter((channel): channel is { key: keyof GlobalSocialChannels; title: string; url: string; followerCount?: string | null | undefined } => channel !== null)
 }
 
 export default async function PageFooterCTA({
@@ -62,8 +84,17 @@ export default async function PageFooterCTA({
   useSocialMediaButtons,
   lang,
 }: PageFooterCTAProps) {
-  const globalSocialChannels: any = await getGlobalSocialChannels(lang)
-  const socialMediaChannels = filterAndOrderSocialChannels(globalSocialChannels, selectSocialChannels)
+  const globalSocialChannels: GlobalSocialChannels | null = await getGlobalSocialChannels(lang)
+  const safeGlobalSocialChannels = globalSocialChannels || {
+    discord: { title: '', url: '', followerCount: null },
+    github: { title: '', url: '', followerCount: null },
+    linkedin: { title: '', url: '', followerCount: null },
+    medium: { title: '', url: '', followerCount: null },
+    telegram: { title: '', url: '', followerCount: null },
+    x: { title: '', url: '', followerCount: null },
+    youtube: { title: '', url: '', followerCount: null },
+  }
+  const socialMediaChannels = filterAndOrderSocialChannels(safeGlobalSocialChannels, selectSocialChannels)
 
   return (
     <section className={cx(styles.Wrap, { [styles.Wrap__hasSocialMediaButtons]: useSocialMediaButtons }, className)}>
