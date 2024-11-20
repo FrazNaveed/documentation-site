@@ -7,6 +7,22 @@ import styles from './PageFooterCTA.module.scss'
 import OfficialChannelsIcon from '../OfficialChannelsIcon'
 import { getGlobalSocialChannels } from '../../_lib/payload/pageQueries'
 
+type SocialMediaChannel = 'discord' | 'github' | 'linkedin' | 'medium' | 'telegram' | 'x' | 'youtube'
+
+type SocialChannel = {
+  title: string;
+  url: string;
+  followerCount?: string | null;
+}
+
+type GlobalSocialChannels = {
+  // eslint-disable-next-line no-unused-vars
+  [K in SocialMediaChannel]?: SocialChannel
+} & {
+  updatedAt?: string | null
+  createdAt?: string | null
+}
+
 export type PageFooterCTAProps = {
   className?: string,
   buttonText?: string | null,
@@ -15,61 +31,33 @@ export type PageFooterCTAProps = {
   buttonSecondaryLink?: string,
   backgroundImage?: (number | null) | Media
   backgroundImageStyle: ('flipped' | 'offset') | null
-  selectSocialChannels?: string[] | null
+  selectSocialChannels?: SocialMediaChannel[] | null
   useSocialMediaButtons?: boolean | null
   lang: 'en' | 'es' | 'de' | undefined
 }
 
-interface ISocialChannel {
-  title: string;
-  url: string;
-  followerCount: number | null;
-}
-
-interface IGlobalSocialChannels {
-  [key: string]: ISocialChannel;
-}
-
-interface SocialChannel {
-  discord: { title: string; url: string; followerCount?: string | null };
-  github: { title: string; url: string; followerCount?: string | null };
-  linkedin: { title: string; url: string; followerCount?: string | null };
-  medium: { title: string; url: string; followerCount?: string | null };
-  telegram: { title: string; url: string; followerCount?: string | null };
-  x: { title: string; url: string; followerCount?: string | null };
-  youtube: { title: string; url: string; followerCount?: string | null };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-
-interface GlobalSocialChannels {
-  discord?: SocialChannel['discord'];
-  github?: SocialChannel['github'];
-  linkedin?: SocialChannel['linkedin'];
-  medium?: SocialChannel['medium'];
-  telegram?: SocialChannel['telegram'];
-  x?: SocialChannel['x'];
-  youtube?: SocialChannel['youtube'];
-}
+type FilteredSocialChannel = SocialChannel & { key: SocialMediaChannel }
 
 function filterAndOrderSocialChannels(
   globalSocialChannels: GlobalSocialChannels,
   selectSocialChannels: PageFooterCTAProps['selectSocialChannels'] | null,
-): Array<{ key: keyof GlobalSocialChannels; title: string; url: string; followerCount?: string | null | undefined}> {
+): FilteredSocialChannel[] {
   if (!globalSocialChannels || !selectSocialChannels) return []
 
   return selectSocialChannels
     .map((key) => {
-      const channel = globalSocialChannels[key as keyof GlobalSocialChannels]
-      if (channel) {
-        return {
-          key,
-          ...channel,
+      if (key in globalSocialChannels) {
+        const channel = globalSocialChannels[key as SocialMediaChannel]
+        if (channel) {
+          return {
+            key,
+            ...channel,
+          }
         }
       }
       return null
     })
-    .filter((channel): channel is { key: keyof GlobalSocialChannels; title: string; url: string; followerCount?: string | null | undefined } => channel !== null)
+    .filter((channel): channel is FilteredSocialChannel => channel !== null)
 }
 
 export default async function PageFooterCTA({
