@@ -1,5 +1,6 @@
 import type { Field } from 'payload'
 import { ButtonFields } from './ButtonFields'
+import { SelectSocialChannels } from './SelectSocialChannels'
 
 export const PageFooterCTA: Field[] = [
   {
@@ -44,24 +45,25 @@ export const PageFooterCTA: Field[] = [
         type: 'checkbox',
         defaultValue: false,
         admin: {
-          'description': 'Display social media buttons instead of CTA buttons',
+          'description': 'Display Social Channels as buttons instead of CTA buttons',
         },
       },
-      {
-        name: 'socialMediaButtons',
-        type: 'relationship',
-        relationTo: 'social-links',
-        hasMany: true,
-        admin: {
-          condition: ( data, siblingData, { user }) => {
-            if (siblingData.useSocialMediaButtons) {
-              return true
-            } else {
-              return false
-            }
-          },
-        },
-      },
+      // {
+      //   name: 'socialMediaButtons',
+      //   type: 'relationship',
+      //   relationTo: 'social-links',
+      //   hasMany: true,
+      //   admin: {
+      //     condition: ( data, siblingData, { user }) => {
+      //       if (siblingData.useSocialMediaButtons) {
+      //         return true
+      //       } else {
+      //         return false
+      //       }
+      //     },
+      //   },
+      // },
+      ...SelectSocialChannels,
     ],
     admin: {
       condition: (data, siblingData, { user }) => {
