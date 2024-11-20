@@ -10,6 +10,10 @@ export const SelectSocialChannels: Field[] = [
         value: 'discord',
       },
       {
+        label: 'GitHub',
+        value: 'github',
+      },
+      {
         label: 'LinkedIn',
         value: 'linkedin',
       },
