@@ -5,6 +5,7 @@ import PageFooterImage from './components/PageFooterImage'
 import Button from '../Button'
 import styles from './PageFooterCTA.module.scss'
 import OfficialChannelsIcon from '../OfficialChannelsIcon'
+import { getGlobalSocialChannels } from '../../_lib/payload/pageQueries'
 
 export type PageFooterCTAProps = {
   className?: string,
@@ -16,9 +17,10 @@ export type PageFooterCTAProps = {
   backgroundImageStyle: ('flipped' | 'offset') | null
   selectSocialChannels?: string[] | null
   useSocialMediaButtons?: boolean | null
+  lang: 'en' | 'es' | 'de' | undefined
 }
 
-export default function PageFooterCTA({
+export default async function PageFooterCTA({
   className,
   buttonText,
   buttonLink,
@@ -28,7 +30,25 @@ export default function PageFooterCTA({
   backgroundImageStyle,
   selectSocialChannels,
   useSocialMediaButtons,
+  lang,
 }: PageFooterCTAProps) {
+  const globalSocialChannels = await getGlobalSocialChannels(lang)
+  // console.log('yes?', globalSocialChannels)
+  const socialMediaChannels = globalSocialChannels && Object.entries(globalSocialChannels)
+    .filter(([key, value]) => typeof value === 'object'
+    && value !== null
+    && 'title' in value
+    && 'url' in value
+    && selectSocialChannels?.includes(key))
+    .map(([key, value]) => ({
+      key,
+      title: value.title,
+      url: value.url,
+      followerCount: value.followerCount,
+    }))
+
+  // console.log(socialMediaChannels);
+  // console.log('should only get these: ', selectSocialChannels)
   return (
     <section className={cx(styles.Wrap, { [styles.Wrap__hasSocialMediaButtons]: useSocialMediaButtons }, className)}>
       <div className={cx(
@@ -40,18 +60,25 @@ export default function PageFooterCTA({
         <PageFooterImage backgroundImage={backgroundImage} backgroundImageStyle={backgroundImageStyle} backgroundImagePosition='left' hasSocialMediaButtons={useSocialMediaButtons} />
         <div className={cx(styles.buttonWrap, { [styles.buttonWrap__socialMediaButtons]: useSocialMediaButtons })}>
           {useSocialMediaButtons ? (
-            selectSocialChannels?.map((socialChannel) => (
-              <Link
-                key={`${socialChannel}`}
-                href='/foo' // url
-                aria-label={`Go to ${socialChannel}`} // title
-                className={cx(styles.Button, styles.Button__icon)}
-              >
-                <OfficialChannelsIcon
-                  channelTitle={socialChannel}
-                />
-              </Link>
-            ))
+            socialMediaChannels?.map((socialMediaChannel) => {
+              const {
+                key,
+                title,
+                url,
+              } = socialMediaChannel
+              return (
+                <Link
+                  key={key}
+                  href={url}
+                  aria-label={`Go to ${title}`}
+                  className={cx(styles.Button, styles.Button__icon)}
+                >
+                  <OfficialChannelsIcon
+                    channelTitle={key}
+                  />
+                </Link>
+              )
+            })
             // socialMediaButtons && socialMediaButtons.filter(
             // (socialMediaButton): socialMediaButton is SocialLink => typeof socialMediaButton === 'object')
             //   .map((socialMediaButton) => {
