@@ -39,14 +39,6 @@
   &__hasSocialMediaButtons {
     height: 100%;
 
-    & > * {
-      flex: 0 1 auto;
-    }
-
-    & > *:nth-child(2) {
-      flex: 0 0 auto;
-    }
-
     @include media-breakpoint-down(sm) {
       flex-direction: column;
       width: 100%;
@@ -64,6 +56,7 @@
   gap: to-rem($spacing-small);
 
   &__socialMediaButtons {
+    flex: 0 0 auto;
     justify-content: center;
     gap: to-rem($spacing-x-small);
   }

@@ -25,6 +25,7 @@ $image-right-transform-y-sm: 25%;
   }
 
   &__hasSocialMediaButtons {
+    flex: 0 1 auto;
     overflow: visible;
 
     @include media-breakpoint-down(md) {
