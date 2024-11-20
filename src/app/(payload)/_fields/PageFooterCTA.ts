@@ -48,7 +48,6 @@ export const PageFooterCTA: Field[] = [
           'description': 'Display Social Channels as buttons instead of CTA buttons. Manage in Globals under Page Footer CTA Social Channels.',
         },
       },
-      ...SelectSocialChannels,
     ],
     admin: {
       condition: (data, siblingData, { user }) => {
