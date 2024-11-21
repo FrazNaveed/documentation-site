@@ -27,7 +27,7 @@ interface IGlobalSocialChannels {
 
 function filterAndOrderSocialChannels(
   globalSocialChannels: IGlobalSocialChannels,
-  selectSocialChannels: OfficialChannelsBlockProps['selectSocialChannels'] | null,
+  selectSocialChannels: string[] | null | undefined,
 ): Array<ISocialChannel & { key: string }> {
   if (!selectSocialChannels) return []
 
