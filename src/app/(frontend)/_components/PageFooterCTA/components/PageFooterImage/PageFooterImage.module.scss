@@ -5,6 +5,12 @@
 @use "../../../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
+$image-transform-y-default: 45%;
+$image-left-transform-y-md: 55%;
+$image-left-transform-y-sm: -15%;
+$image-right-transform-y-md: -38%;
+$image-right-transform-y-sm: 25%;
+
 .ImageWrap {
   overflow: hidden;
 
@@ -16,6 +22,23 @@
 
   &.bgImg__offset {
     transform: translateY(-35%);
+  }
+
+  &__hasSocialMediaButtons {
+    flex: 0 1 auto;
+    overflow: visible;
+
+    @include media-breakpoint-down(md) {
+      &:first-child {
+        display: block;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
   }
 }
 
@@ -41,6 +64,22 @@
     &.bgImg__offset {
       transform: translateY(-35%);
     }
+
+    &.bgImg__hasSocialMediaButtons {
+      display: block;
+      width: to-rem(200px);
+      transform: translateY($image-transform-y-default);
+
+      @include media-breakpoint-down(md) {
+        transform: translateY($image-left-transform-y-md);
+      }
+
+      @include media-breakpoint-down(sm) {
+        width: to-rem(120px);
+        margin-left: auto;
+        transform: translateY($image-left-transform-y-sm);
+      }
+    }
   }
 
   &__right {
@@ -59,6 +98,20 @@
 
       @include media-breakpoint-down(md) {
         transform: rotate(0);
+      }
+    }
+
+    &.bgImg__hasSocialMediaButtons {
+      width: to-rem(200px);
+      transform: translateY(-$image-transform-y-default);
+
+      @include media-breakpoint-down(md) {
+        transform: translateY($image-right-transform-y-md);
+      }
+
+      @include media-breakpoint-down(sm) {
+        width: to-rem(120px);
+        transform: translateY($image-right-transform-y-sm);
       }
     }
   }

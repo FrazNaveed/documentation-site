@@ -1,0 +1,277 @@
+@use "../../_styles/colors" as *;
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/spacing" as *;
+
+.wrap {
+  padding-bottom: $spacing-7x-large;
+
+  @include containerGrid;
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 33px;
+  border-radius: 8px 8px 0 0;
+  background-color: $gray-50;
+
+  @include labelS;
+  @include columns(1, -1);
+}
+
+.logoWrap {
+  display: flex;
+  justify-content: center;
+  padding: $spacing-x-large 0;
+
+  @include columns(1, -1);
+}
+
+.column {
+  &__primary {
+    @include columns(1, 4);
+
+    @include media-breakpoint-down(lg) {
+      @include columns(6, -1);
+    }
+  }
+
+  &__main {
+    @include columns(4, 10);
+
+    @include media-breakpoint-down(lg) {
+      grid-row: 3;
+      @include columns(1, 6);
+    }
+  }
+
+  &__secondary {
+    @include columns(10, -1);
+
+    @include media-breakpoint-down(lg) {
+      @include grid(8);
+      @include columns(1, -1);
+    }
+  }
+}
+
+.label {
+  @include labelS;
+
+  margin-bottom: $spacing-medium;
+  color: $gray;
+}
+
+@include media-breakpoint-down(lg) {
+  .products {
+    &First {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: $grid-column-gap-flare;
+
+      @include columns(1, 6);
+
+      .label {
+        flex-basis: 100%;
+      }
+    }
+
+    &Second {
+      @include columns(6, -1);
+    }
+  }
+
+  .placeholder {
+    flex: 1;
+
+    @include media-breakpoint-down(md) {
+      flex-basis: 100%;
+    }
+  }
+}
+
+.primary {
+  &Header {
+    @include headerH7;
+
+    margin: 0 0 $spacing-x-small;
+  }
+
+  &Text {
+    @include paragraphSm;
+  }
+}
+
+.textLayers {
+  .textLayer {
+    margin-bottom: $spacing-medium;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: $spacing-4x-large;
+      opacity: 0;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    &.animate {
+      .textLayer {
+        &__top {
+          animation: fade-in 600ms ease-in-out forwards;
+        }
+
+        &__middle {
+          animation: fade-in 800ms ease-in-out forwards;
+          animation-delay: 500ms;
+        }
+
+        &__bottom {
+          animation: fade-in 1000ms ease-in-out forwards;
+          animation-delay: 1000ms;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.layersWrap {
+  position: relative;
+  aspect-ratio: 6/5;
+
+  .layer {
+    position: absolute;
+
+    @include media-breakpoint-up(md) {
+      transform: translateY(40px);
+      opacity: 0;
+    }
+
+    &__top {
+      top: 0;
+    }
+
+    &__middle {
+      top: 32%;
+    }
+
+    &__bottom {
+      top: 40%;
+    }
+  }
+  @include media-breakpoint-up(md) {
+    &.animate {
+      .layer {
+        &__top {
+          animation: fade-in-up 600ms ease-in-out forwards;
+        }
+
+        &__middle {
+          animation: fade-in-up 800ms ease-in-out forwards;
+          animation-delay: 500ms;
+        }
+
+        &__bottom {
+          animation: fade-in-up 1000ms ease-in-out forwards;
+          animation-delay: 1000ms;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.flareDot {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  min-height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background-color: $black;
+  color: $white;
+
+  @include media-breakpoint-up(md) {
+    display: none;
+  }
+
+  &::before {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background-color: $white;
+    content: "";
+  }
+
+  &Text {
+    @include labelS;
+
+    max-width: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    .flareDotText {
+      max-width: 200px;
+      padding-left: 6px;
+      opacity: 1;
+    }
+  }
+
+  &__ftso {
+    top: 40%;
+    left: 5%;
+  }
+
+  &__fdc {
+    top: 5%;
+    left: 48.5%;
+  }
+
+  &__fassets {
+    top: 35%;
+    left: 76.5%;
+  }
+
+  &__fpo1 {
+    top: 55%;
+    left: 48.5%;
+  }
+
+  &__fpo2 {
+    top: 68%;
+    left: 48.5%;
+  }
+
+  &__fpo3 {
+    top: 82%;
+    left: 48.5%;
+  }
+}

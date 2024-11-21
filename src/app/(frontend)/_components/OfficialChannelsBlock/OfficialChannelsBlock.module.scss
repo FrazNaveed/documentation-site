@@ -42,18 +42,11 @@
   }
 
   &Icon {
+    @include officialChannelsIcon;
+
     width: to-rem(32px);
     height: to-rem(32px);
     margin-right: to-rem($spacing-x-small);
-
-    svg {
-      width: 100%;
-      height: auto;
-
-      path {
-        fill: $pink-700;
-      }
-    }
   }
 
   &:hover,

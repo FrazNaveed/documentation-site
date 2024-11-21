@@ -30,3 +30,31 @@ export const getPageBySlug = async (slug: string, locale: Locale = 'en') => {
   }
   return []
 }
+
+export const getGlobalSocialChannels = async (locale: Locale = 'en') => {
+  try {
+    const globalSocialChannelsData = await payload.findGlobal({
+      slug: 'social-channels',
+      locale,
+    })
+
+    return globalSocialChannelsData
+  } catch (error) {
+    console.error('Error fetching getGlobalSocialChannels: ', error)
+  }
+  return {}
+}
+
+export const getPageFooterCtaSocialChannels = async (locale: Locale = 'en') => {
+  try {
+    const globalPageFooterCtaSocialChannels = await payload.findGlobal({
+      slug: 'selectPageFooterCtaSocialChannels',
+      locale,
+    })
+
+    return globalPageFooterCtaSocialChannels
+  } catch (error) {
+    console.error('Error fetching getPageFooterCtaSocialChannels: ', error)
+  }
+  return { selectSocialChannels: null }
+}

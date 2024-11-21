@@ -180,3 +180,14 @@ $root-font-size: $root-font-size-number * 1px;
     display: block;
   }
 }
+
+@mixin officialChannelsIcon($fill-color: $pink-700) {
+  svg {
+    width: 100%;
+    height: auto;
+
+    path {
+      fill: $fill-color;
+    }
+  }
+}

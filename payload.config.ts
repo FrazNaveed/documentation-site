@@ -8,9 +8,9 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
-import { EventSettings } from 'src/app/(payload)/_globals/EventSettings'
-
 import { Pages } from 'src/app/(payload)/_collections/Pages'
+import { EventSettings } from 'src/app/(payload)/_globals/EventSettings'
+import { SocialChannels } from 'src/app/(payload)/_globals/SocialChannels'
 import { DeveloperGuides } from './src/app/(payload)/_collections/DeveloperGuides'
 import { DeveloperGuideTags } from './src/app/(payload)/_collections/DeveloperGuideTags'
 import { Products } from './src/app/(payload)/_collections/Products'
@@ -25,6 +25,7 @@ import { People } from './src/app/(payload)/_collections/People'
 import { Grants } from './src/app/(payload)/_collections/Grants'
 import { GrantTypes } from './src/app/(payload)/_collections/GrantTypes'
 import { SocialLinks } from './src/app/(payload)/_collections/SocialLinks'
+import { SelectPageFooterCtaSocialChannels } from './src/app/(payload)/_globals/PageFooterCtaSocialChannels'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -55,6 +56,8 @@ export default buildConfig({
   ],
   globals: [
     EventSettings,
+    SelectPageFooterCtaSocialChannels,
+    SocialChannels,
   ],
   editor: lexicalEditor(),
   localization: {

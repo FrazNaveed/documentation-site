@@ -4,6 +4,7 @@ import PageComponents from 'src/app/(frontend)/_components/PageComponents'
 import FastPanel from '../_components/FastPanel'
 import DecentralizedPanel from '../_components/DecentralizedPanel'
 import SecurePanel from '../_components/SecurePanel'
+import LayerCakePanel from '../_components/LayerCakePanel'
 
 export const dynamic = 'force-dynamic'
 
@@ -26,6 +27,7 @@ export default async function Page({ params }: PageProps) {
       <FastPanel />
       <DecentralizedPanel />
       <SecurePanel />
+      <LayerCakePanel />
     </>
   )
 }

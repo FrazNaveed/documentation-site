@@ -481,9 +481,13 @@ export interface Config {
   };
   globals: {
     eventSettings: EventSetting;
+    selectPageFooterCtaSocialChannels: SelectPageFooterCtaSocialChannel;
+    'social-channels': SocialChannel;
   };
   globalsSelect: {
     eventSettings: EventSettingsSelect<false> | EventSettingsSelect<true>;
+    selectPageFooterCtaSocialChannels: SelectPageFooterCtaSocialChannelsSelect<false> | SelectPageFooterCtaSocialChannelsSelect<true>;
+    'social-channels': SocialChannelsSelect<false> | SocialChannelsSelect<true>;
   };
   locale: 'en' | 'es' | 'de';
   user: User & {
@@ -1153,6 +1157,7 @@ export interface Page {
     buttonSecondaryLink?: string | null;
     backgroundImage?: (number | null) | Media;
     backgroundImageStyle?: ('flipped' | 'offset') | null;
+    useSocialMediaButtons?: boolean | null;
   };
   pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets';
   updatedAt: string;
@@ -2926,6 +2931,7 @@ export interface PagesSelect<T extends boolean = true> {
         buttonSecondaryLink?: T;
         backgroundImage?: T;
         backgroundImageStyle?: T;
+        useSocialMediaButtons?: T;
       };
   pageTemplate?: T;
   updatedAt?: T;
@@ -3134,11 +3140,133 @@ export interface EventSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "selectPageFooterCtaSocialChannels".
+ */
+export interface SelectPageFooterCtaSocialChannel {
+  id: number;
+  selectSocialChannels?: ('discord' | 'github' | 'linkedin' | 'medium' | 'telegram' | 'x' | 'youtube')[] | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-channels".
+ */
+export interface SocialChannel {
+  id: number;
+  discord: {
+    title: string;
+    url: string;
+    followerCount?: string | null;
+  };
+  github: {
+    title: string;
+    url: string;
+    followerCount?: string | null;
+  };
+  linkedin: {
+    title: string;
+    url: string;
+    followerCount?: string | null;
+  };
+  medium: {
+    title: string;
+    url: string;
+    followerCount?: string | null;
+  };
+  telegram: {
+    title: string;
+    url: string;
+    followerCount?: string | null;
+  };
+  x: {
+    title: string;
+    url: string;
+    followerCount?: string | null;
+  };
+  youtube: {
+    title: string;
+    url: string;
+    followerCount?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "eventSettings_select".
  */
 export interface EventSettingsSelect<T extends boolean = true> {
   eventCardEyebrow?: T;
   eventCardTitle?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "selectPageFooterCtaSocialChannels_select".
+ */
+export interface SelectPageFooterCtaSocialChannelsSelect<T extends boolean = true> {
+  selectSocialChannels?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-channels_select".
+ */
+export interface SocialChannelsSelect<T extends boolean = true> {
+  discord?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        followerCount?: T;
+      };
+  github?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        followerCount?: T;
+      };
+  linkedin?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        followerCount?: T;
+      };
+  medium?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        followerCount?: T;
+      };
+  telegram?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        followerCount?: T;
+      };
+  x?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        followerCount?: T;
+      };
+  youtube?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        followerCount?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
