@@ -455,6 +455,27 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
+  collectionsJoins: {};
+  collectionsSelect: {
+    events: EventsSelect<false> | EventsSelect<true>;
+    grants: GrantsSelect<false> | GrantsSelect<true>;
+    'grant-types': GrantTypesSelect<false> | GrantTypesSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    news: NewsSelect<false> | NewsSelect<true>;
+    'news-types': NewsTypesSelect<false> | NewsTypesSelect<true>;
+    'news-sub-types': NewsSubTypesSelect<false> | NewsSubTypesSelect<true>;
+    people: PeopleSelect<false> | PeopleSelect<true>;
+    developerGuides: DeveloperGuidesSelect<false> | DeveloperGuidesSelect<true>;
+    developerGuideTags: DeveloperGuideTagsSelect<false> | DeveloperGuideTagsSelect<true>;
+    products: ProductsSelect<false> | ProductsSelect<true>;
+    'social-links': SocialLinksSelect<false> | SocialLinksSelect<true>;
+    wallets: WalletsSelect<false> | WalletsSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+  };
   db: {
     defaultIDType: number;
   };
@@ -463,9 +484,18 @@ export interface Config {
     selectPageFooterCtaSocialChannels: SelectPageFooterCtaSocialChannel;
     'social-channels': SocialChannel;
   };
+  globalsSelect: {
+    eventSettings: EventSettingsSelect<false> | EventSettingsSelect<true>;
+    selectPageFooterCtaSocialChannels: SelectPageFooterCtaSocialChannelsSelect<false> | SelectPageFooterCtaSocialChannelsSelect<true>;
+    'social-channels': SocialChannelsSelect<false> | SocialChannelsSelect<true>;
+  };
   locale: 'en' | 'es' | 'de';
   user: User & {
     collection: 'users';
+  };
+  jobs?: {
+    tasks: unknown;
+    workflows?: unknown;
   };
 }
 export interface UserAuthOperations {
@@ -2329,6 +2359,776 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  title?: T;
+  startDate?: T;
+  startTime?: T;
+  endDate?: T;
+  endTime?: T;
+  country?: T;
+  location?: T;
+  flareInvolvement?: T;
+  eventLink?: T;
+  button?:
+    | T
+    | {
+        buttonType?: T;
+        link?: T;
+      };
+  featured?: T;
+  featuredHeroEyebrow?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "grants_select".
+ */
+export interface GrantsSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  logo?: T;
+  country?: T;
+  announcementLink?: T;
+  grantCategory?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "grant-types_select".
+ */
+export interface GrantTypesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  hero?:
+    | T
+    | {
+        style?: T;
+        headline?: T;
+        eyebrow?: T;
+        hideEyebrow?: T;
+        buttonText?: T;
+        buttonLink?: T;
+        buttonSecondaryText?: T;
+        buttonSecondaryLink?: T;
+        backgroundImage?: T;
+        showBackgroundVideo?: T;
+        logo?: T;
+        text?: T;
+        grantsInfo?:
+          | T
+          | {
+              grantsAwarded?: T;
+              countries?:
+                | T
+                | {
+                    country?: T;
+                    id?: T;
+                  };
+              topCategories?:
+                | T
+                | {
+                    type?: T;
+                    number?: T;
+                    id?: T;
+                  };
+            };
+        protocolInfo?:
+          | T
+          | {
+              providers?: T;
+              feeds?: T;
+              stakeTokens?: T;
+              stakeValue?: T;
+              averageBlockTime?: T;
+            };
+      };
+  hideHero?: T;
+  previousPage?: T;
+  nextPage?: T;
+  linkType?: T;
+  pageBanner?:
+    | T
+    | {
+        togglePageBanner?: T;
+        bannerText?: T;
+      };
+  devHub?:
+    | T
+    | {
+        productsGrid?: T;
+        linkBand?:
+          | T
+          | {
+              linkBandTitle?: T;
+              links?:
+                | T
+                | {
+                    linkText?: T;
+                    linkUrl?: T;
+                    id?: T;
+                  };
+            };
+      };
+  teamGrid?:
+    | T
+    | {
+        gridTitle?: T;
+        team?: T;
+      };
+  walletsGrid?:
+    | T
+    | {
+        walletsGridIntro?: T;
+        wallets?: T;
+      };
+  components?:
+    | T
+    | {
+        columns?:
+          | T
+          | {
+              layout?: T;
+              alignColumns?: T;
+              leftColumnBlock?:
+                | T
+                | {
+                    colImage?:
+                      | T
+                      | {
+                          image?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                    richText?:
+                      | T
+                      | {
+                          richText?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
+              rightColumnBlock?:
+                | T
+                | {
+                    colImage?:
+                      | T
+                      | {
+                          image?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                    richText?:
+                      | T
+                      | {
+                          richText?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        image?:
+          | T
+          | {
+              image?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        imageTextGrid?:
+          | T
+          | {
+              imageTextGridTitle?: T;
+              imageTextCardGrid?:
+                | T
+                | {
+                    cardImage?: T;
+                    cardHeader?: T;
+                    cardText?: T;
+                    id?: T;
+                  };
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        richTextBlock?:
+          | T
+          | {
+              richText?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        pastFeaturedGrantsGrid?:
+          | T
+          | {
+              gridTitle?: T;
+              grantsGrid?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        stats?:
+          | T
+          | {
+              pullFromApi?: T;
+              stats?:
+                | T
+                | {
+                    label?: T;
+                    stat?: T;
+                    id?: T;
+                  };
+              caption?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        tableDrawers?:
+          | T
+          | {
+              column1Header?: T;
+              column2Header?: T;
+              sections?:
+                | T
+                | {
+                    name?: T;
+                    rows?:
+                      | T
+                      | {
+                          rowLabel?: T;
+                          column1Data?: T;
+                          column2Data?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        talkingPoints?:
+          | T
+          | {
+              variation?: T;
+              points?:
+                | T
+                | {
+                    icon?: T;
+                    header?: T;
+                    text?: T;
+                    addLogos?: T;
+                    logos?:
+                      | T
+                      | {
+                          logo?: T;
+                          link?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        twoColumn?:
+          | T
+          | {
+              layout?: T;
+              ColumnOne?:
+                | T
+                | {
+                    contentType?: T;
+                    image?: T;
+                    text?: T;
+                    imageAlignment?: T;
+                    imageFill?: T;
+                  };
+              ColumnTwo?:
+                | T
+                | {
+                    contentType?: T;
+                    image?: T;
+                    text?: T;
+                    imageAlignment?: T;
+                    imageFill?: T;
+                  };
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        applicationProcess?:
+          | T
+          | {
+              title?: T;
+              steps?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    graphicTitle?: T;
+                    graphicText?: T;
+                    id?: T;
+                  };
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        officialChannels?:
+          | T
+          | {
+              title?: T;
+              text?: T;
+              channels?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        regionalLinkGrid?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              links?:
+                | T
+                | {
+                    link?: T;
+                    name?: T;
+                    translatedName?: T;
+                    country?: T;
+                    id?: T;
+                  };
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        flareDropDates?:
+          | T
+          | {
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        twoColumnCta?:
+          | T
+          | {
+              image?: T;
+              eyebrow?: T;
+              header?: T;
+              text?: T;
+              primaryButtonText?: T;
+              primaryButtonLink?: T;
+              secondaryButtonText?: T;
+              secondaryButtonLink?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        videoEmbedBlock?:
+          | T
+          | {
+              title?: T;
+              url?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        codeCta?:
+          | T
+          | {
+              header?: T;
+              text?: T;
+              buttonText?: T;
+              buttonLink?: T;
+              buttonSecondaryText?: T;
+              buttonSecondaryLink?: T;
+              hideCode?: T;
+              image?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featuredNewsCarousel?:
+          | T
+          | {
+              newsPosts?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        brandLogoRoll?:
+          | T
+          | {
+              header?: T;
+              logos?:
+                | T
+                | {
+                    image?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        marqueeGallery?:
+          | T
+          | {
+              title?: T;
+              cards?:
+                | T
+                | {
+                    isSocialLink?: T;
+                    imageCard?:
+                      | T
+                      | {
+                          image?: T;
+                          titleOverlay?: T;
+                          textOverlay?: T;
+                        };
+                    socialChannel?: T;
+                    id?: T;
+                  };
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        responsiveImage?:
+          | T
+          | {
+              header?: T;
+              imageDefault?: T;
+              imageMedium?: T;
+              imageMobile?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        steps?:
+          | T
+          | {
+              title?: T;
+              steps?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  relatedNewsType?: T;
+  pageFooterCTA?: T;
+  pageFooterCTAButton?:
+    | T
+    | {
+        buttonText?: T;
+        buttonLink?: T;
+        buttonSecondaryText?: T;
+        buttonSecondaryLink?: T;
+        backgroundImage?: T;
+        backgroundImageStyle?: T;
+        useSocialMediaButtons?: T;
+      };
+  pageTemplate?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  enableAPIKey?: T;
+  apiKey?: T;
+  apiKeyIndex?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news_select".
+ */
+export interface NewsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  excerpt?: T;
+  publishDate?: T;
+  author?: T;
+  type?: T;
+  subtype?: T;
+  contentType?: T;
+  relatedPosts?: T;
+  teaserThumbnail?: T;
+  logos?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  featured?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-types_select".
+ */
+export interface NewsTypesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-sub-types_select".
+ */
+export interface NewsSubTypesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "people_select".
+ */
+export interface PeopleSelect<T extends boolean = true> {
+  fullName?: T;
+  jobTitle?: T;
+  headshot?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "developerGuides_select".
+ */
+export interface DeveloperGuidesSelect<T extends boolean = true> {
+  title?: T;
+  shortDescription?: T;
+  guideLink?: T;
+  tags?: T;
+  product?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "developerGuideTags_select".
+ */
+export interface DeveloperGuideTagsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products_select".
+ */
+export interface ProductsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  icon?: T;
+  shortDescription?: T;
+  titleOverride?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-links_select".
+ */
+export interface SocialLinksSelect<T extends boolean = true> {
+  title?: T;
+  url?: T;
+  icon?: T;
+  followerCount?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wallets_select".
+ */
+export interface WalletsSelect<T extends boolean = true> {
+  name?: T;
+  logo?: T;
+  walletLink?: T;
+  flrFunctionality?: T;
+  walletConnect?: T;
+  tags?: T;
+  platforms?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-locked-documents_select".
+ */
+export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
+  document?: T;
+  globalSlug?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-preferences_select".
+ */
+export interface PayloadPreferencesSelect<T extends boolean = true> {
+  user?: T;
+  key?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-migrations_select".
+ */
+export interface PayloadMigrationsSelect<T extends boolean = true> {
+  name?: T;
+  batch?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "eventSettings".
  */
 export interface EventSetting {
@@ -2391,6 +3191,85 @@ export interface SocialChannel {
   };
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "eventSettings_select".
+ */
+export interface EventSettingsSelect<T extends boolean = true> {
+  eventCardEyebrow?: T;
+  eventCardTitle?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "selectPageFooterCtaSocialChannels_select".
+ */
+export interface SelectPageFooterCtaSocialChannelsSelect<T extends boolean = true> {
+  selectSocialChannels?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-channels_select".
+ */
+export interface SocialChannelsSelect<T extends boolean = true> {
+  discord?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        followerCount?: T;
+      };
+  github?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        followerCount?: T;
+      };
+  linkedin?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        followerCount?: T;
+      };
+  medium?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        followerCount?: T;
+      };
+  telegram?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        followerCount?: T;
+      };
+  x?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        followerCount?: T;
+      };
+  youtube?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        followerCount?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
