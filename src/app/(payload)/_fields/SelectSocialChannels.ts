@@ -1,39 +1,11 @@
 import type { Field } from 'payload'
+import { socialChannels } from '../_options/socialChannels'
 
 export const SelectSocialChannels: Field[] = [
   {
     name: 'selectSocialChannels',
     type: 'select',
-    options: [
-      {
-        label: 'Discord',
-        value: 'discord',
-      },
-      {
-        label: 'GitHub',
-        value: 'github',
-      },
-      {
-        label: 'LinkedIn',
-        value: 'linkedin',
-      },
-      {
-        label: 'Medium',
-        value: 'medium',
-      },
-      {
-        label: 'Telegram',
-        value: 'telegram',
-      },
-      {
-        label: 'X',
-        value: 'x',
-      },
-      {
-        label: 'YouTube',
-        value: 'youtube',
-      },
-    ],
+    options: socialChannels,
     hasMany: true,
     admin: {
       condition: (data, siblingData, { user }) => {

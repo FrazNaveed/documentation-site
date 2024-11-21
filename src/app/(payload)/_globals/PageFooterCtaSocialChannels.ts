@@ -1,4 +1,5 @@
 import { GlobalConfig } from 'payload'
+import { socialChannels } from '../_options/socialChannels'
 
 export const SelectPageFooterCtaSocialChannels: GlobalConfig = {
   slug: 'selectPageFooterCtaSocialChannels',
@@ -8,36 +9,7 @@ export const SelectPageFooterCtaSocialChannels: GlobalConfig = {
     {
       name: 'selectSocialChannels',
       type: 'select',
-      options: [
-        {
-          label: 'Discord',
-          value: 'discord',
-        },
-        {
-          label: 'GitHub',
-          value: 'github',
-        },
-        {
-          label: 'LinkedIn',
-          value: 'linkedin',
-        },
-        {
-          label: 'Medium',
-          value: 'medium',
-        },
-        {
-          label: 'Telegram',
-          value: 'telegram',
-        },
-        {
-          label: 'X',
-          value: 'x',
-        },
-        {
-          label: 'YouTube',
-          value: 'youtube',
-        },
-      ],
+      options: socialChannels,
       hasMany: true,
       admin: {
         description: 'Select Social Channels to display as Social Media buttons in Page Footer CTAs.',
