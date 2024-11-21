@@ -32,7 +32,7 @@ interface IGlobalSocialChannels {
 
 function filterAndOrderSocialChannels(
   globalSocialChannels: IGlobalSocialChannels,
-  selectSocialChannels: PageFooterCTAProps['selectSocialChannels'] | null,
+  selectSocialChannels: string[] | null | undefined,
 ): Array<ISocialChannel & { key: string }> {
   if (!selectSocialChannels) return []
 
