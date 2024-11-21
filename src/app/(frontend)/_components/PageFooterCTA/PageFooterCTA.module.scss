@@ -12,6 +12,15 @@
   max-width: none;
   margin-bottom: to-rem($spacing-medium);
   background-color: $gray-50;
+
+  &__hasSocialMediaButtons {
+    height: to-rem(200px);
+    overflow: hidden;
+
+    @include media-breakpoint-down(sm) {
+      height: 100%;
+    }
+  }
 }
 
 .content {
@@ -26,6 +35,15 @@
       padding-bottom: to-rem($spacing-standard);
     }
   }
+
+  &__hasSocialMediaButtons {
+    height: 100%;
+
+    @include media-breakpoint-down(sm) {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
 }
 
 .buttonWrap {
@@ -37,6 +55,12 @@
   z-index: 3;
   gap: to-rem($spacing-small);
 
+  &__socialMediaButtons {
+    flex: 0 0 auto;
+    justify-content: center;
+    gap: to-rem($spacing-x-small);
+  }
+
   .content__hasSecondary & {
     @include media-breakpoint-down(md) {
       margin-bottom: to-rem($spacing-small);
@@ -47,4 +71,22 @@
 .Button {
   flex-shrink: 0;
   margin-bottom: 0;
+
+  &__icon {
+    @include officialChannelsIcon;
+
+    display: flex;
+    width: to-rem(48px);
+    height: to-rem(48px);
+    padding: to-rem(12px);
+    transition: all $transition-snappy;
+    border: 1px solid $gray-200;
+    border-radius: 10px;
+    background-color: $white;
+
+    &:hover,
+    &:focus {
+      background-color: $gray-50;
+    }
+  }
 }

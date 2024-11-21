@@ -47,6 +47,7 @@ import type {
   Product,
   Wallet,
 } from '@/payload-types'
+import { getPageFooterCtaSocialChannels } from '../../_lib/payload/pageQueries'
 import FeaturedNewsCarouselBlock from '../FeaturedNewsCarouselBlock'
 import styles from './PageComponents.module.scss'
 
@@ -246,6 +247,8 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
     relatedNewsPosts = await getNewsArchive(3, 1, [], relatedNewsType.slug)
   }
 
+  const pageFooterCtaSocialChannels = await getPageFooterCtaSocialChannels(lang)
+
   return (
     <div className={styles.wrap}>
       {pageBanner?.togglePageBanner && pageBannerComponent}
@@ -437,8 +440,10 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
         </div>
       )}
       {(pageFooterCTA
-      && pageFooterCTAButton?.buttonLink
-      && pageFooterCTAButton?.buttonText
+      && (
+        (pageFooterCTAButton?.buttonLink && pageFooterCTAButton?.buttonText)
+        || pageFooterCTAButton?.useSocialMediaButtons
+      )
       && pageFooterCTAButton?.backgroundImageStyle)
       && (
         <PageFooterCTA
@@ -448,6 +453,9 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
           buttonSecondaryLink={pageFooterCTAButton?.buttonSecondaryLink ?? undefined}
           backgroundImage={pageFooterCTAButton?.backgroundImage}
           backgroundImageStyle={pageFooterCTAButton?.backgroundImageStyle}
+          selectSocialChannels={pageFooterCtaSocialChannels.selectSocialChannels}
+          useSocialMediaButtons={pageFooterCTAButton?.useSocialMediaButtons}
+          lang={lang}
         />
       )}
 

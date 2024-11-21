@@ -1,5 +1,11 @@
-import type { Field } from 'payload'
+import type { Field, User } from 'payload'
 import validateTextFieldUrl from '../_utils/validateTextFieldUrl'
+
+const hideWhenSocialMedia = (
+  data: any,
+  siblingData: { useSocialMediaButtons?: boolean },
+  { user }: { user: User | null },
+  ): boolean => !siblingData.useSocialMediaButtons
 
 export const ButtonFields = (includeSecondaryButton = false) => {
   const baseButton: Field = {
@@ -11,6 +17,7 @@ export const ButtonFields = (includeSecondaryButton = false) => {
         localized: true,
         admin: {
           width: '25%',
+          condition: hideWhenSocialMedia,
         },
       },
       {
@@ -20,6 +27,7 @@ export const ButtonFields = (includeSecondaryButton = false) => {
         validate: validateTextFieldUrl,
         admin: {
           width: '75%',
+          condition: hideWhenSocialMedia,
         }
       },
     ],
@@ -36,6 +44,7 @@ export const ButtonFields = (includeSecondaryButton = false) => {
           localized: true,
           admin: {
             width: '25%',
+            condition: hideWhenSocialMedia,
           },
         },
         {
@@ -45,6 +54,7 @@ export const ButtonFields = (includeSecondaryButton = false) => {
           validate: validateTextFieldUrl,
           admin: {
             width: '75%',
+            condition: hideWhenSocialMedia,
           }
         },
       ],

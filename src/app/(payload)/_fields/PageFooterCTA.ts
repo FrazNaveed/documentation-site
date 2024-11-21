@@ -30,6 +30,21 @@ export const PageFooterCTA: Field[] = [
         hasMany: false,
         admin: {
           description: 'Choose how the background image is displayed',
+          condition: ( data, siblingData, { user }) => {
+            if (siblingData.useSocialMediaButtons) {
+              return false
+            } else {
+              return true
+            }
+          },
+        },
+      },
+      {
+        name: 'useSocialMediaButtons',
+        type: 'checkbox',
+        defaultValue: false,
+        admin: {
+          'description': 'Display Social Channels as buttons instead of CTA buttons. Manage in Globals under Page Footer CTA Social Channels.',
         },
       },
     ],
