@@ -113,7 +113,7 @@ export default function PageHeroCentered({
             <p className={styles.protocol_SectionLabel}>
               Average Block Time
             </p>
-            <p className={styles.protocol_Data}>{averageBlockTime}</p>
+            <p className={styles.protocol_Data}>{`${averageBlockTime}s`}</p>
           </div>
         )}
       </>

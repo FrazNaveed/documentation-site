@@ -172,6 +172,7 @@ export const HeroFields: Field[] = [
           },
           {
             name: 'averageBlockTime',
+            label: 'Average Block Time (in seconds)',
             type: 'number',
           },
         ],
