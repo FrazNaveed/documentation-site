@@ -1,6 +1,5 @@
 import type { Field } from 'payload'
 import { ButtonFields } from './ButtonFields'
-import { SelectSocialChannels } from './SelectSocialChannels'
 
 export const PageFooterCTA: Field[] = [
   {
