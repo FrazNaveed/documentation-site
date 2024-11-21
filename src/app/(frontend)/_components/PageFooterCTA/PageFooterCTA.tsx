@@ -21,36 +21,6 @@ export type PageFooterCTAProps = {
   lang: 'en' | 'es' | 'de' | undefined
 }
 
-// interface ISocialChannel {
-//   title: string;
-//   url: string;
-//   followerCount: number | null;
-// }
-
-// interface IGlobalSocialChannels {
-//   [key: string]: ISocialChannel;
-// }
-
-// function filterAndOrderSocialChannels(
-//   globalSocialChannels: IGlobalSocialChannels,
-//   selectSocialChannels: string[] | null | undefined,
-// ): Array<ISocialChannel & { key: string }> {
-//   if (!selectSocialChannels) return []
-
-//   return selectSocialChannels
-//     .map((key) => {
-//       const channel = globalSocialChannels[key]
-//       if (channel) {
-//         return {
-//           key,
-//           ...channel,
-//         }
-//       }
-//       return null
-//     })
-//     .filter((channel): channel is ISocialChannel & { key: string } => channel !== null)
-// }
-
 export default async function PageFooterCTA({
   className,
   buttonText,
