@@ -71,7 +71,7 @@ export default async function OfficialChannelsBlock({
           } = socialMediaChannel
 
           const cardIcon = <OfficialChannelsIcon channelTitle={key} />
-          console.log(cardIcon)
+
           return (
             <ExternalLink
               href={url}
