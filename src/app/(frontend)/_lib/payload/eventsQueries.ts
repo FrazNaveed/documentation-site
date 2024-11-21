@@ -1,8 +1,8 @@
-import { getPayloadHMR } from '@payloadcms/next/utilities'
+import { getPayload } from 'payload'
 import config from '@payload-config'
 import type { Locale } from 'src/app/i18n-config'
 
-const payload = await getPayloadHMR({ config })
+const payload = await getPayload({ config })
 
 const today = new Date()
 const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000) // Add 24 hours in milliseconds

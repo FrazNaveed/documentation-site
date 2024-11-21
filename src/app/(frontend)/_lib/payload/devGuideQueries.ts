@@ -1,7 +1,7 @@
-import { getPayloadHMR } from '@payloadcms/next/utilities'
+import { getPayload } from 'payload'
 import config from '@payload-config'
 
-const payload = await getPayloadHMR({ config })
+const payload = await getPayload({ config })
 
 // eslint-disable-next-line import/prefer-default-export
 export const getDevGuides = async (

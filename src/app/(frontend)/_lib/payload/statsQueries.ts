@@ -1,10 +1,10 @@
 'use server'
 
-import { getPayloadHMR } from '@payloadcms/next/utilities'
+import { getPayload } from 'payload'
 import config from '@payload-config'
 import { Stats } from '@/payload-types'
 
-const payload = await getPayloadHMR({ config })
+const payload = await getPayload({ config })
 
 export default async function getStatsBlockFromPage(slug: string): Promise<Stats | null> {
   try {
