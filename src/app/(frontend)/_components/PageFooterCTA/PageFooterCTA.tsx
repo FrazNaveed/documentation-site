@@ -82,11 +82,15 @@ export default async function PageFooterCTA({
                 title,
                 url,
               } = socialMediaChannel
+              if (!url) {
+                console.warn('Invalid social channel url. Check Url field is filled out in Global > Social Channels collection for', key)
+                return null
+              }
               return (
                 <Link
                   key={key}
                   href={url}
-                  aria-label={`Go to ${title}`}
+                  aria-label={`Go to ${title || 'Social Media'}`}
                   className={cx(styles.Button, styles.Button__icon)}
                 >
                   <OfficialChannelsIcon
