@@ -1596,7 +1596,7 @@ export interface OfficialChannelsBlock {
     };
     [k: string]: unknown;
   } | null;
-  channels?: (number | SocialLink)[] | null;
+  selectSocialChannels?: ('discord' | 'github' | 'linkedin' | 'medium' | 'telegram' | 'x' | 'youtube')[] | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
@@ -1605,19 +1605,6 @@ export interface OfficialChannelsBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'officialChannels';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "social-links".
- */
-export interface SocialLink {
-  id: number;
-  title: string;
-  url: string;
-  icon?: (number | null) | Media;
-  followerCount?: string | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2170,6 +2157,19 @@ export interface IMarqueeGallery {
   id?: string | null;
   blockName?: string | null;
   blockType: 'marqueeGallery';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-links".
+ */
+export interface SocialLink {
+  id: number;
+  title: string;
+  url: string;
+  icon?: (number | null) | Media;
+  followerCount?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2735,7 +2735,7 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               title?: T;
               text?: T;
-              channels?: T;
+              selectSocialChannels?: T;
               createSideNavLink?: T;
               linkText?: T;
               blockMarginSettings?: T;
