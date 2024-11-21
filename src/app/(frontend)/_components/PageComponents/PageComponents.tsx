@@ -338,6 +338,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
                       key={component.id}
                       {...component}
                       className={componentClass}
+                      lang={lang}
                     />
                   )
                   break
