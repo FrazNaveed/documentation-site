@@ -7,7 +7,7 @@
 
 .content {
   h2 {
-    @include h5;
+    @include h4;
 
     margin-bottom: to-rem($spacing-standard);
     letter-spacing: 0;
