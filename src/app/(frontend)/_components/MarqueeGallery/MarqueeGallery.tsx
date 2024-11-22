@@ -7,7 +7,7 @@ import EventsFeaturedLabel from 'src/app/(frontend)/_components/EventsFeaturedLa
 import EventsLocation from 'src/app/(frontend)/_components/EventsLocation'
 import OfficialChannelsIcon from 'src/app/(frontend)/_components/OfficialChannelsIcon'
 import { getFeaturedEvent, getEventGlobalSettings } from 'src/app/(frontend)/_lib/payload/eventsQueries'
-import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
+import { getGlobalSocialChannels, getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import type { IMarqueeGallery } from '@/payload-types'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
@@ -15,6 +15,7 @@ import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
 import isValidSocialSlotInMarquee from 'src/app/(frontend)/_utils/isValidSocialSlotInMarquee'
 import MarqueeGallerySection from './MarqueeGallerySection'
 import styles from './MarqueeGallery.module.scss'
+import filterAndOrderSocialChannels, { IGlobalSocialChannels } from '../../_utils/filterAndOrderSocialChannels'
 
 type MarqueeGalleryProps = IMarqueeGallery & {
   className?: string
@@ -29,6 +30,7 @@ export default async function MarqueeGallery({
   const featuredEvent = await getFeaturedEvent()
   const eventGlobalSettings = await getEventGlobalSettings(locale)
   const eventsPage = await getPageBySlug(eventsPageSlug)
+  const globalSocialChannels: IGlobalSocialChannels = await getGlobalSocialChannels(locale)
   const eventsPageData = eventsPage[0] || {}
   const { hero: eventsPageHero } = eventsPageData
   const eventsBackgroundImage = eventsPageHero?.backgroundImage
@@ -78,16 +80,16 @@ export default async function MarqueeGallery({
       imageCard,
       socialChannel,
     } = card
+    const socialMediaChannels = filterAndOrderSocialChannels(globalSocialChannels, [card.socialChannel ?? ''])
     const isSmallCard = isValidSocialSlotInMarquee(index)
     const isMdCard = index % 10 === 4 || (index > 12 && index % 10 === 3)
-    if (isSmallCard && isSocialLink && socialChannel && typeof socialChannel === 'object') {
+    if (isSmallCard && isSocialLink && socialChannel) {
       const {
-        title: channelTitle,
+        key,
         url: socialUrl,
-        icon: socialIcon,
         followerCount,
-      } = socialChannel
-      const socialCardIcon = <OfficialChannelsIcon channelTitle={channelTitle} icon={socialIcon} />
+      } = socialMediaChannels[0]
+      const socialCardIcon = <OfficialChannelsIcon channelTitle={key} />
       output = (
         <Link key={id} href={socialUrl} className={cx(styles.card, styles.card__sm, styles.card__social)}>
           <div className={styles.socialWrap}>

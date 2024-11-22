@@ -1,6 +1,8 @@
 import cx from 'classnames'
 import type { OfficialChannelsBlock as OCBlock } from '@/payload-types'
 import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
+import { getGlobalSocialChannels } from '../../_lib/payload/pageQueries'
+import filterAndOrderSocialChannels, { IGlobalSocialChannels } from '../../_utils/filterAndOrderSocialChannels'
 import OfficialChannelsIcon from '../OfficialChannelsIcon'
 import ExternalLink from '../ExternalLink'
 import LexicalRenderer from '../LexicalRenderer'
@@ -9,13 +11,17 @@ import styles from './OfficialChannelsBlock.module.scss'
 export type OfficialChannelsBlockProps = {
   title?: OCBlock['title'],
   text?: OCBlock['text'],
-  channels?: OCBlock['channels'],
+  selectSocialChannels?: string[] | null,
+  lang: 'en' | 'es' | 'de' | undefined,
   className?: string,
 }
 
-export default function OfficialChannelsBlock({
-  title, text, channels, className,
+export default async function OfficialChannelsBlock({
+  title, text, lang, selectSocialChannels, className,
 }: OfficialChannelsBlockProps) {
+  const globalSocialChannels: IGlobalSocialChannels = await getGlobalSocialChannels(lang)
+  const socialMediaChannels = filterAndOrderSocialChannels(globalSocialChannels, selectSocialChannels)
+
   return (
     <section className={cx(styles.wrap, className)}>
       {title && <h2 className={styles.title}>{title}</h2>}
@@ -26,22 +32,21 @@ export default function OfficialChannelsBlock({
           </div>
         )}
       <div className={styles.channels} role='list'>
-        {channels?.map((channel) => {
-          if (typeof channel === 'number') return null
+        {socialMediaChannels?.map((socialMediaChannel) => {
+          if (typeof socialMediaChannel === 'number') return null
 
           const {
+            key,
             title: channelTitle,
             url,
-            icon,
-            id,
-          } = channel
+          } = socialMediaChannel
 
-          const cardIcon = <OfficialChannelsIcon channelTitle={channelTitle} icon={icon} />
+          const cardIcon = <OfficialChannelsIcon channelTitle={key} />
 
           return (
             <ExternalLink
               href={url}
-              key={id}
+              key={key}
               className={styles.channel}
               aria-label={`Visit our ${channelTitle} channel`}
             >

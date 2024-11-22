@@ -2,6 +2,7 @@ import { i18n } from '@/src/app/i18n-config'
 import { CreateSideNavLinkFields } from '../../_fields/CreateSideNavLink'
 import { Block } from 'payload'
 import { BlockMarginSettings } from '../../_fields/BlockMarginSettings'
+import { SelectSocialChannels } from '../../_fields/SelectSocialChannels'
 
 export const OfficialChannelsBlock: Block = {
   slug: 'officialChannels',
@@ -21,12 +22,7 @@ export const OfficialChannelsBlock: Block = {
       type: 'richText',
       localized: true,
     },
-    {
-      name: 'channels',
-      type: 'relationship',
-      relationTo: 'social-links',
-      hasMany: true,
-    },
+    ...SelectSocialChannels,
     ...CreateSideNavLinkFields,
     ...BlockMarginSettings,
   ],
