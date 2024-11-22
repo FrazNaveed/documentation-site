@@ -7,20 +7,21 @@ export const dynamic = 'force-dynamic'
 
 type PageProps = {
   params: Promise<{
-    slug: string
+    slug: string[]
     lang: Locale
   }>
 }
 
 export default async function Page({ params }: PageProps) {
   const { slug, lang } = await params
+  const slugString = slug.join('/')
 
   // Using page with 'home' slug for home page
-  if (slug === 'home') {
+  if (slugString === 'home') {
     notFound()
   }
 
-  const page = await getPageBySlug(slug, lang)
+  const page = await getPageBySlug(slugString, lang)
 
   const pageData = page[0]
   if (!pageData) {
