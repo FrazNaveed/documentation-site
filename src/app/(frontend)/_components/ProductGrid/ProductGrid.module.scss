@@ -65,6 +65,7 @@
   }
 
   &IconWrap {
+    display: flex;
     flex-shrink: 0;
     width: to-rem(48px);
     height: to-rem(48px);
