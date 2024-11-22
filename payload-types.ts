@@ -1146,6 +1146,10 @@ export interface Page {
         | IMarqueeGallery
         | IResponsiveImage
         | IStepsBlock
+        | ILayerCake
+        | IFastPanel
+        | IDecentralizedPanel
+        | ISecurePanel
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -2225,6 +2229,83 @@ export interface IStepsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ILayerCake".
+ */
+export interface ILayerCake {
+  bannerText?: string | null;
+  primaryColumnLabel?: string | null;
+  layers?:
+    | {
+        header?: string | null;
+        text?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  secondaryColumnSections?:
+    | {
+        label?: string | null;
+        products?: (number | Product)[] | null;
+        id?: string | null;
+      }[]
+    | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'layerCake';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IFastPanel".
+ */
+export interface IFastPanel {
+  text?: string | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'fastPanel';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IDecentralizedPanel".
+ */
+export interface IDecentralizedPanel {
+  header?: string | null;
+  subheader?: string | null;
+  text?: string | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'decentralizedPanel';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ISecurePanel".
+ */
+export interface ISecurePanel {
+  text?: string | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'securePanel';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "developerGuides".
  */
 export interface DeveloperGuide {
@@ -2911,6 +2992,71 @@ export interface PagesSelect<T extends boolean = true> {
                     description?: T;
                     id?: T;
                   };
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        layerCake?:
+          | T
+          | {
+              bannerText?: T;
+              primaryColumnLabel?: T;
+              layers?:
+                | T
+                | {
+                    header?: T;
+                    text?: T;
+                    id?: T;
+                  };
+              secondaryColumnSections?:
+                | T
+                | {
+                    label?: T;
+                    products?: T;
+                    id?: T;
+                  };
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        fastPanel?:
+          | T
+          | {
+              text?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        decentralizedPanel?:
+          | T
+          | {
+              header?: T;
+              subheader?: T;
+              text?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        securePanel?:
+          | T
+          | {
+              text?: T;
               createSideNavLink?: T;
               linkText?: T;
               blockMarginSettings?: T;

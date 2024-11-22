@@ -5,8 +5,9 @@
 // @use "../../_styles/transitions" as *;
 
 .wrap {
-  position: relative;
   overflow: hidden;
+
+  @include fullWidthBreakout;
 }
 
 .container {

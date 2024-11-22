@@ -1,18 +1,30 @@
+import cx from 'classnames'
+import type { IDecentralizedPanel } from 'payload-types'
 import styles from './DecentralizedPanel.module.scss'
 import DecentralizedGraph from './DecentralizedGraph'
 
-export default function DecentralizedPanel() {
+type DecentralizedPanelProps = IDecentralizedPanel & {
+  className?: string
+}
+
+export default function DecentralizedPanel({
+  header, subheader, text, className,
+}: DecentralizedPanelProps) {
   return (
-    <section className={styles.wrap}>
+    <section className={cx(styles.wrap, className)}>
       <div className={styles.container}>
         <DecentralizedGraph />
         <div className={styles.content}>
-          <h1 className={styles.header}>Decentralized</h1>
-          <span className={styles.counter}>100 Data Providers</span>
-          <br />
-          <p className={styles.text}>
-            3.3% maximum stake per data provider
-          </p>
+          {header && <h1 className={styles.header}>{header}</h1>}
+          {subheader && <span className={styles.counter}>{subheader}</span>}
+          {text && (
+            <>
+              <br />
+              <p className={styles.text}>
+                3.3% maximum stake per data provider
+              </p>
+            </>
+          )}
         </div>
       </div>
     </section>

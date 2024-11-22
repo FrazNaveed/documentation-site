@@ -5,7 +5,8 @@
 // @use "../../_styles/transitions" as *;
 
 .wrap {
-  position: relative;
+  @include fullWidthBreakout;
+
   background-color: $pink-600;
   overflow: hidden;
 }

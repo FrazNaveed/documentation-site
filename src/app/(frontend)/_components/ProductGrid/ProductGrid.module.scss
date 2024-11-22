@@ -52,6 +52,7 @@
     margin-bottom: to-rem($spacing-standard);
 
     svg {
+      flex-shrink: 0;
       width: 15px;
       height: 15px;
     }
@@ -64,6 +65,7 @@
   }
 
   &IconWrap {
+    flex-shrink: 0;
     width: to-rem(48px);
     height: to-rem(48px);
   }

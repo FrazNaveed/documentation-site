@@ -6,6 +6,18 @@
 
 .wrap {
   position: relative;
+  margin-right: -$container-padding;
+  margin-left: -$container-padding;
+
+  @include media-breakpoint-down(lg) {
+    margin-right: -$container-padding-lg;
+    margin-left: -$container-padding-lg;
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-right: -$container-padding-md;
+    margin-left: -$container-padding-md;
+  }
 }
 
 .container {

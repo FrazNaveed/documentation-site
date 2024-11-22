@@ -50,6 +50,10 @@ import { FeaturedNewsCarouselBlock } from '../_blocks/FeaturedNewsCarouselBlock'
 import { BrandLogoRollBlock } from '../_blocks/BrandLogoRollBlock'
 import { ResponsiveImageBlock } from '../_blocks/ResponsiveImage'
 import { StepsBlock } from '../_blocks/StepsBlock'
+import { LayerCakeBlock } from '../_blocks/LayerCakeBlock'
+import { FastPanelBlock } from '../_blocks/FastPanelBlock'
+import { DecentralizedPanelBlock } from '../_blocks/DecentralizedPanelBlock'
+import { SecurePanelBlock } from '../_blocks/SecurePanelBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -201,6 +205,10 @@ export const Pages: CollectionConfig = {
         MarqueeGallery,
         ResponsiveImageBlock,
         StepsBlock,
+        LayerCakeBlock,
+        FastPanelBlock,
+        DecentralizedPanelBlock,
+        SecurePanelBlock,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
