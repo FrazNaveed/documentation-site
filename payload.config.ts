@@ -24,7 +24,6 @@ import { Wallets } from './src/app/(payload)/_collections/Wallets'
 import { People } from './src/app/(payload)/_collections/People'
 import { Grants } from './src/app/(payload)/_collections/Grants'
 import { GrantTypes } from './src/app/(payload)/_collections/GrantTypes'
-import { SocialLinks } from './src/app/(payload)/_collections/SocialLinks'
 import { SelectPageFooterCtaSocialChannels } from './src/app/(payload)/_globals/PageFooterCtaSocialChannels'
 
 const filename = fileURLToPath(import.meta.url)
@@ -51,7 +50,6 @@ export default buildConfig({
     DeveloperGuides,
     DeveloperGuideTags,
     Products,
-    SocialLinks,
     Wallets,
   ],
   globals: [
