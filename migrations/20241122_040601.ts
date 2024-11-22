@@ -6,7 +6,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "social_links_locales" DISABLE ROW LEVEL SECURITY;
   DROP TABLE "social_links" CASCADE;
   DROP TABLE "social_links_locales" CASCADE;
-  ALTER TABLE "payload_locked_documents_rels" DROP CONSTRAINT "payload_locked_documents_rels_social_links_fk";
+  ALTER TABLE "payload_locked_documents_rels" DROP CONSTRAINT IF EXISTS "payload_locked_documents_rels_social_links_fk";
   
   DROP INDEX IF EXISTS "payload_locked_documents_rels_social_links_id_idx";
   ALTER TABLE "payload_locked_documents_rels" DROP COLUMN IF EXISTS "social_links_id";`)
