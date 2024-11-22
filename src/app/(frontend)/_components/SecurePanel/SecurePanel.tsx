@@ -1,9 +1,15 @@
+import cx from 'classnames'
+import type { ISecurePanel } from 'payload-types'
 import styles from './SecurePanel.module.scss'
 import SecureVideo from './SecureBgVideo'
 
-export default async function SecurePanel() {
+type SecurePanelProps = ISecurePanel & {
+  className?: string
+}
+
+export default async function SecurePanel({ text, className }: SecurePanelProps) {
   return (
-    <section className={styles.wrap}>
+    <section className={cx(styles.wrap, className)}>
       <SecureVideo videoSrc='/en/video/home_secure_desktop.webm' mobileVideoSrc='/en/video/home_secure_mobile.mp4' />
       <div className={styles.container}>
         <div className={styles.content}>
@@ -17,9 +23,11 @@ export default async function SecurePanel() {
               </svg>
             </div>
             <span className={styles.counter}>FLR Staked</span>
-            <p className={styles.text}>
-              avg block time with single-slot finality
-            </p>
+            {text && (
+              <p className={styles.text}>
+                {text}
+              </p>
+            )}
           </div>
         </div>
       </div>

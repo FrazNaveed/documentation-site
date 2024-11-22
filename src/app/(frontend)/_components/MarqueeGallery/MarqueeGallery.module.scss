@@ -23,12 +23,7 @@ $marquee-grid-gap-mobile: $spacing-x-small;
 }
 
 .fullWidth {
-  position: relative;
-  right: 50%;
-  left: 50%;
-  width: 100vw;
-  margin-right: -50vw;
-  margin-left: -50vw;
+  @include fullWidthBreakout;
 }
 
 .marqueeContainer {

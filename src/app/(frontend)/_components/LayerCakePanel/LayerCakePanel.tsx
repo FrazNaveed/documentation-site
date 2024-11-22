@@ -3,13 +3,21 @@
 import { useRef, useState, useEffect } from 'react'
 import cx from 'classnames'
 import Image from 'next/image'
+import type { ILayerCake } from 'payload-types'
+import ProductGridItem from '../ProductGrid/ProductGridItem'
 import styles from './LayerCakePanel.module.scss'
 import top from './layers/top.png'
 import middle from './layers/middle.png'
 import bottom from './layers/bottom.png'
 import FlareMarkOnly from '../svgs/FlareMarkOnly'
 
-export default function LayerCakePanel() {
+type LayerCakeProps = ILayerCake & {
+  className?: string
+}
+
+export default function LayerCakePanel({
+  bannerText, primaryColumnLabel, layers, secondaryColumnSections, className,
+}: LayerCakeProps) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [isAnimating, setIsAnimating] = useState(false)
 
@@ -43,34 +51,27 @@ export default function LayerCakePanel() {
   }, [])
 
   return (
-    <section className={styles.wrap} ref={containerRef}>
-      <header className={styles.banner}>Flare Network</header>
+    <section className={cx(styles.wrap, className)} ref={containerRef}>
+      {bannerText && <header className={styles.banner}>{bannerText}</header>}
       <div className={styles.logoWrap}>
         <FlareMarkOnly />
       </div>
       <aside className={styles.column__primary}>
-        <h3 className={styles.label}>Foundational technology</h3>
+        {primaryColumnLabel && <h3 className={styles.label}>{primaryColumnLabel}</h3>}
         <div className={cx(styles.textLayers, { [styles.animate]: isAnimating })}>
-          <div className={cx(styles.textLayer, styles.textLayer__top)}>
-            <h4 className={styles.primaryHeader}>Enshrined Data Protocols</h4>
-            <p className={styles.primaryText}>
-              Flare&rsquo;s protocols are integrated into the blockchain&rsquo;s core,
-              and inherit the economic security of the entire network
-            </p>
-          </div>
-          <div className={cx(styles.textLayer, styles.textLayer__middle)}>
-            <h4 className={styles.primaryHeader}>Ethereum Virtual Machine</h4>
-            <p className={styles.primaryText}>
-              Flare is EVM compatible with out-of-the-box support for all your favorite tooling
-            </p>
-          </div>
-          <div className={cx(styles.textLayer, styles.textLayer__bottom)}>
-            <h4 className={styles.primaryHeader}>Flare Stake</h4>
-            <p className={styles.primaryText}>
-              Flare uses a delegated proof-of-stake (DPoS) mechanism
-              to ensure a significant and consistent level of economic security
-            </p>
-          </div>
+          {layers?.map((layer, index) => {
+            const { id, header, text } = layer
+            return (
+              <div key={id} className={cx(styles.textLayer, styles[`textLayer__${index}`])}>
+                {header && <h4 className={styles.primaryHeader}>{header}</h4>}
+                {text && (
+                  <p className={styles.primaryText}>
+                    {text}
+                  </p>
+                )}
+              </div>
+            )
+          })}
         </div>
       </aside>
       <div className={cx(styles.layersWrap, styles.column__main, { [styles.animate]: isAnimating })}>
@@ -91,21 +92,24 @@ export default function LayerCakePanel() {
         ))}
       </div>
       <aside className={styles.column__secondary}>
-        <div className={styles.productsFirst}>
-          <h3 className={styles.label}>Enshrined data protocols</h3>
-          <div className={styles.placeholder}>
-            <h2>FPO</h2>
-          </div>
-          <div className={styles.placeholder}>
-            <h2>FPO</h2>
-          </div>
-        </div>
-        <div className={styles.productsSecond}>
-          <h3 className={styles.label}>New use cases</h3>
-          <div className={styles.placeholder}>
-            <h2>FPO</h2>
-          </div>
-        </div>
+        {secondaryColumnSections?.map((section) => {
+          const { id, label, products } = section
+          return (
+            <div key={id} className={styles.products}>
+              {label && <h3 className={styles.label}>{label}</h3>}
+              {products?.map((product) => {
+                if (typeof product !== 'object') {
+                  return null
+                }
+                return (
+                  <div key={product.id} className={styles.product}>
+                    <ProductGridItem {...product} />
+                  </div>
+                )
+              })}
+            </div>
+          )
+        })}
       </aside>
     </section>
   )

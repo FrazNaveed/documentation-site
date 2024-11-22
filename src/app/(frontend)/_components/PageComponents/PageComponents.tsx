@@ -5,13 +5,16 @@ import ApplicationProcessBlock from 'src/app/(frontend)/_components/ApplicationP
 import BrandLogoRollBlock from 'src/app/(frontend)/_components/BrandLogoRollBlock'
 import CodeCTABlock from '@/src/app/(frontend)/_components/CodeCTABlock'
 import Columns from 'src/app/(frontend)/_components/Columns'
+import DecentralizedPanel from 'src/app/(frontend)/_components/DecentralizedPanel'
 import DevGuideGrid from 'src/app/(frontend)/_components/DevGuideGrid'
 import ImageTextGridBlock from 'src/app/(frontend)/_components/ImageTextGridBlock'
 import JumpLinkAnchor from 'src/app/(frontend)/_components/SideNav/JumpLinkAnchor'
 import EventsHero from 'src/app/(frontend)/_components/EventsHero'
 import EventsWidget from 'src/app/(frontend)/_components/EventsWidget'
 import EventsList from 'src/app/(frontend)/_components/EventsList'
+import FastPanel from 'src/app/(frontend)/_components/FastPanel'
 import FlareDropDates from 'src/app/(frontend)/_components/FlaredropDates'
+import LayerCakePanel from 'src/app/(frontend)/_components/LayerCakePanel'
 import LinkBand from 'src/app/(frontend)/_components/LinkBand'
 import MarqueeGallery from 'src/app/(frontend)/_components/MarqueeGallery'
 import OfficialChannelsBlock from 'src/app/(frontend)/_components/OfficialChannelsBlock'
@@ -26,6 +29,7 @@ import RegionalLinkGrid from 'src/app/(frontend)/_components/RegionalLinkGrid'
 import RelatedPosts from 'src/app/(frontend)/_components/RelatedPosts'
 import ResponsiveImageBlock from 'src/app/(frontend)/_components/ResponsiveImageBlock'
 import RichTextBlock from 'src/app/(frontend)/_components/RichTextBlock'
+import SecurePanel from 'src/app/(frontend)/_components/SecurePanel'
 import SideNav from 'src/app/(frontend)/_components/SideNav'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import StepsBlock from 'src/app/(frontend)/_components/StepsBlock'
@@ -308,6 +312,12 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
                   componentToRender = <Columns key={component.id} {...component} className={componentClass} />
                   break
 
+                case 'decentralizedPanel':
+                  componentToRender = (
+                    <DecentralizedPanel key={component.id} {...component} className={componentClass} />
+                  )
+                  break
+
                 case 'featuredNewsCarousel':
                   componentToRender = (
                     <FeaturedNewsCarouselBlock
@@ -316,6 +326,10 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
                       className={componentClass}
                     />
                   )
+                  break
+
+                case 'fastPanel':
+                  componentToRender = <FastPanel key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'flareDropDates':
@@ -330,6 +344,10 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
                       className={componentClass}
                     />
                   )
+                  break
+
+                case 'layerCake':
+                  componentToRender = <LayerCakePanel key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'officialChannels':
@@ -386,6 +404,10 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
                       className={componentClass}
                     />
                   )
+                  break
+
+                case 'securePanel':
+                  componentToRender = <SecurePanel key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'stats':

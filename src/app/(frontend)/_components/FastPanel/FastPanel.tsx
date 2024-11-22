@@ -1,4 +1,6 @@
 import { flareWebsiteApiBase } from '@/src/environment'
+import cx from 'classnames'
+import type { IFastPanel } from 'payload-types'
 import FastCounter from './FastCounter'
 import styles from './FastPanel.module.scss'
 import FastVideo from './FastBgVideo'
@@ -17,10 +19,14 @@ async function fetchData(): Promise<{abt: { avg_ms: number}, transactionCount: {
   }
 }
 
-export default async function FastPanel() {
+type FastPanelProps = IFastPanel & {
+  className?: string
+}
+
+export default async function FastPanel({ text, className }: FastPanelProps) {
   const { abt, transactionCount } = await fetchData()
   return (
-    <section className={styles.wrap}>
+    <section className={cx(styles.wrap, className)}>
       <FastVideo videoSrc='/en/video/home_fast_desktop.webm' mobileVideoSrc='/en/video/home_fast_mobile.mp4' />
       <div className={styles.container}>
         <div className={styles.content}>
@@ -30,8 +36,7 @@ export default async function FastPanel() {
           <p className={styles.text}>
             {abt.avg_ms / 1000}
             ms
-            {' '}
-            avg block time with single-slot finality
+            {text && ` ${text}`}
           </p>
         </div>
       </div>

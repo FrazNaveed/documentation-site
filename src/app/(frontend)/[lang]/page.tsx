@@ -1,10 +1,6 @@
 import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import type { Locale } from 'src/app/i18n-config'
 import PageComponents from 'src/app/(frontend)/_components/PageComponents'
-import FastPanel from '../_components/FastPanel'
-import DecentralizedPanel from '../_components/DecentralizedPanel'
-import SecurePanel from '../_components/SecurePanel'
-import LayerCakePanel from '../_components/LayerCakePanel'
 
 export const dynamic = 'force-dynamic'
 
@@ -21,13 +17,5 @@ export default async function Page({ params }: PageProps) {
 
   const pageData = page[0] || {}
 
-  return (
-    <>
-      <PageComponents pageData={pageData} lang={lang} />
-      <FastPanel />
-      <DecentralizedPanel />
-      <SecurePanel />
-      <LayerCakePanel />
-    </>
-  )
+  return <PageComponents pageData={pageData} lang={lang} />
 }
