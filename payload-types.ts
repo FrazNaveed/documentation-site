@@ -449,7 +449,6 @@ export interface Config {
     developerGuides: DeveloperGuide;
     developerGuideTags: DeveloperGuideTag;
     products: Product;
-    'social-links': SocialLink;
     wallets: Wallet;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -470,7 +469,6 @@ export interface Config {
     developerGuides: DeveloperGuidesSelect<false> | DeveloperGuidesSelect<true>;
     developerGuideTags: DeveloperGuideTagsSelect<false> | DeveloperGuideTagsSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
-    'social-links': SocialLinksSelect<false> | SocialLinksSelect<true>;
     wallets: WalletsSelect<false> | WalletsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -2237,19 +2235,6 @@ export interface DeveloperGuideTag {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "social-links".
- */
-export interface SocialLink {
-  id: number;
-  title: string;
-  url: string;
-  icon?: (number | null) | Media;
-  followerCount?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -2306,10 +2291,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'products';
         value: number | Product;
-      } | null)
-    | ({
-        relationTo: 'social-links';
-        value: number | SocialLink;
       } | null)
     | ({
         relationTo: 'wallets';
@@ -3065,18 +3046,6 @@ export interface ProductsSelect<T extends boolean = true> {
   icon?: T;
   shortDescription?: T;
   titleOverride?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "social-links_select".
- */
-export interface SocialLinksSelect<T extends boolean = true> {
-  title?: T;
-  url?: T;
-  icon?: T;
-  followerCount?: T;
   updatedAt?: T;
   createdAt?: T;
 }
