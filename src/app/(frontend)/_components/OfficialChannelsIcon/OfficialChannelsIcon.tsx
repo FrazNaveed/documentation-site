@@ -1,4 +1,3 @@
-import type { SocialLink as ISocialLink } from '@/payload-types'
 import Discord from '../svgs/Discord'
 import GitHub from '../svgs/GitHub'
 import LinkedIn from '../svgs/LinkedIn'
@@ -8,8 +7,7 @@ import XSocialSymbol from '../svgs/XSocialSymbol'
 import YouTube from '../svgs/YouTube'
 
 export type OfficialChannelsIconProps = {
-  channelTitle?: ISocialLink['title'],
-  icon?: ISocialLink['icon'] // to remove
+  channelTitle?: string,
 }
 
 const iconMap = {
