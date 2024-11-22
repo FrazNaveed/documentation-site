@@ -2145,7 +2145,7 @@ export interface IMarqueeGallery {
             [k: string]: unknown;
           } | null;
         };
-        socialChannel?: (number | null) | SocialLink;
+        socialChannel?: ('discord' | 'github' | 'linkedin' | 'medium' | 'telegram' | 'x' | 'youtube') | null;
         id?: string | null;
       }[]
     | null;
@@ -2157,19 +2157,6 @@ export interface IMarqueeGallery {
   id?: string | null;
   blockName?: string | null;
   blockType: 'marqueeGallery';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "social-links".
- */
-export interface SocialLink {
-  id: number;
-  title: string;
-  url: string;
-  icon?: (number | null) | Media;
-  followerCount?: string | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2245,6 +2232,19 @@ export interface DeveloperGuideTag {
   id: number;
   title: string;
   slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-links".
+ */
+export interface SocialLink {
+  id: number;
+  title: string;
+  url: string;
+  icon?: (number | null) | Media;
+  followerCount?: string | null;
   updatedAt: string;
   createdAt: string;
 }
