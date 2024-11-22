@@ -263,7 +263,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
           <DevGuideGrid devHubProducts={devHubProducts} />
           {linkBandComponent}
           {bugBountyCtaComponent}
-          <EventsWidget />
+          <EventsWidget blockType='eventsWidget' />
           {pastEventsComponent}
         </>
       )}
@@ -316,6 +316,10 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
                   componentToRender = (
                     <DecentralizedPanel key={component.id} {...component} className={componentClass} />
                   )
+                  break
+
+                case 'eventsWidget':
+                  componentToRender = (<EventsWidget key={component.id} {...component} className={componentClass} />)
                   break
 
                 case 'featuredNewsCarousel':
