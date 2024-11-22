@@ -4,6 +4,7 @@ import { BlockMarginSettings } from '../../_fields/BlockMarginSettings'
 import { Block } from 'payload'
 import isValidSocialSlotInMarquee from 'src/app/(frontend)/_utils/isValidSocialSlotInMarquee'
 import { Page, IMarqueeGallery } from 'payload-types'
+import { socialChannels } from '../../_options/socialChannels'
 
 function socialLinksAllowed(components: Page['components'], cardId: string) {
   let index = -1 // Set index to -1 if no card with the cardId is found
@@ -48,7 +49,7 @@ export const MarqueeGallery: Block = {
           type: 'checkbox',
           defaultValue: false,
           admin: {
-            description: 'Add social count and link instead of image. Use global Social Links collection to modify count, icon, and links. Social links may only be added in certain slots in the gallery to maintain the pattern of the grid',
+            description: 'Add social count and link instead of image. Use global Social Channels collection to modify count, icon, and links. Social links may only be added in certain slots in the gallery to maintain the pattern of the grid',
             condition: (data, siblingData, { user }) => {
               return socialLinksAllowed(data.components, siblingData.id)
             },
@@ -88,8 +89,8 @@ export const MarqueeGallery: Block = {
         {
           name: 'socialChannel',
           label: 'Social Channel',
-          type: 'relationship',
-          relationTo: 'social-links',
+          type: 'select',
+          options: socialChannels,
           hasMany: false,
           required: true,
           admin: {
