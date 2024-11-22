@@ -13,6 +13,21 @@ export const TwoColumnCtaBlock: Block = {
   },
   fields: [
     {
+      name: 'variation',
+      type: 'select',
+      defaultValue: 'standard',
+      options: [
+        {
+          label: 'Standard',
+          value: 'standard',
+        },
+        {
+          label: 'Alternate - columns flipped, gray background',
+          value: 'alternate',
+        },
+      ],
+    },
+    {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
