@@ -91,3 +91,41 @@
   flex-wrap: wrap;
   gap: to-rem(12px) to-rem($spacing-small);
 }
+
+.twoColumnCta__alternate {
+  .wrap {
+    @include grid(10);
+
+    border-radius: 10px;
+    background-color: $gray-50;
+  }
+
+  .imageWrap {
+    align-self: center;
+    order: 2;
+
+    @include media-breakpoint-down(md) {
+      padding-left: to-rem($spacing-medium);
+    }
+  }
+
+  .contentColumnWrap {
+    align-self: center;
+    order: 1;
+    margin: 0;
+    padding-top: to-rem($spacing-medium);
+    padding-bottom: to-rem($spacing-medium);
+    padding-left: to-rem($spacing-medium);
+    grid-column: span 4;
+  }
+
+  .header {
+    @include headerH3;
+
+    margin-bottom: to-rem(12px);
+  }
+
+  .text {
+    line-height: normal;
+  }
+}
