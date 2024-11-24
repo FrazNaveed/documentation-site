@@ -28,6 +28,12 @@
   align-items: center;
   justify-content: space-between;
 
+  &__noBackgroundImage {
+    justify-content: center;
+    padding-top: to-rem($spacing-medium);
+    padding-bottom: to-rem($spacing-medium);
+  }
+
   &__hasSecondary {
     @include media-breakpoint-down(md) {
       flex-direction: column;
