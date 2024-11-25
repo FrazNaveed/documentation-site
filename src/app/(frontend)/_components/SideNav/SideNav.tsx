@@ -87,7 +87,7 @@ export default function SideNav({ components, jumpLinkAnchorGlobalClass }: SideN
         }
       })
     }, {
-      rootMargin: `-${activeLinkTopViewportThreshold * 100}% 0px -70%`,
+      rootMargin: `-${activeLinkTopViewportThreshold * 100}% 0px -${(1 - activeLinkTopViewportThreshold) * 100}%`,
     })
 
     if (jumpLinks) {
