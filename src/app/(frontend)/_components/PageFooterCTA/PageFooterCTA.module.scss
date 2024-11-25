@@ -5,6 +5,8 @@
 @use "../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
+$footer-min-height: 200px;
+
 .Wrap {
   @include container;
   @include pageComponentSpacing;
@@ -14,7 +16,7 @@
   background-color: $gray-50;
 
   &__hasSocialMediaButtons {
-    height: to-rem(200px);
+    height: to-rem($footer-min-height);
     overflow: hidden;
 
     @include media-breakpoint-down(sm) {
@@ -30,6 +32,7 @@
 
   &__noBackgroundImage {
     justify-content: center;
+    min-height: to-rem($footer-min-height);
     padding-top: to-rem($spacing-medium);
     padding-bottom: to-rem($spacing-medium);
   }
