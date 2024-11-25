@@ -10,9 +10,10 @@ import styles from './EventsWidget.module.scss'
 
 export type EventsWidgetProps = IEventsWidget & {
   className?: string,
+  hasContainerClass?: boolean,
 }
 
-export default async function EventsWidget({ titleOverride, className }: EventsWidgetProps) {
+export default async function EventsWidget({ titleOverride, hasContainerClass, className }: EventsWidgetProps) {
   const eventsPageLink = getCollectionPath('events')
   const eventsPageSlug = eventsPageLink.replace(/^\/|\/$/g, '')
   const featuredEvent = await getFeaturedEvent()
@@ -29,7 +30,7 @@ export default async function EventsWidget({ titleOverride, className }: EventsW
   )
   return (
     <div className={cx(styles.wrap, className)}>
-      <div className={styles.container}>
+      <div className={cx({ [styles.container]: hasContainerClass })}>
         <div className={styles.intro}>
           <h2 className={styles.header}>
             {titleOverride || 'Upcoming Events'}
