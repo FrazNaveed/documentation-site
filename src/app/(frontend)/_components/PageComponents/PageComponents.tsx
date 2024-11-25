@@ -253,6 +253,9 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
 
   const pageFooterCtaSocialChannels = await getPageFooterCtaSocialChannels(lang)
 
+  const jumpLinkAnchorGlobalClass = 'sideNavAnchor'
+  let jumpLinkAnchorIndex = 0
+
   return (
     <div className={styles.wrap}>
       {pageBanner?.togglePageBanner && pageBannerComponent}
@@ -272,7 +275,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
       {pageTemplate === 'wallets' && walletsGridComponent}
       {(components && components.length > 0) && (
         <div className={styles.grid}>
-          <SideNav components={components} />
+          <SideNav components={components} jumpLinkAnchorGlobalClass={jumpLinkAnchorGlobalClass} />
           <div className={cx(styles.mainContent, { [styles.mainContent__fullWidth]: pageTemplate === 'fullWidth' })}>
             {components.map((component) => {
               let componentToRender
@@ -443,14 +446,14 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
               }
               let jumpLinkAnchor
               if (component.createSideNavLink && component.linkText) {
-                const jumpAnchorGlobalClass = 'sideNavAnchor'
                 jumpLinkAnchor = (
                   <JumpLinkAnchor
                     linkText={component.linkText}
-                    className={cx(styles.jumpLinkAnchor, jumpAnchorGlobalClass)}
-                    jumpAnchorGlobalClass={jumpAnchorGlobalClass}
+                    className={cx(styles.jumpLinkAnchor, jumpLinkAnchorGlobalClass)}
+                    index={jumpLinkAnchorIndex}
                   />
                 )
+                jumpLinkAnchorIndex += 1
               }
               return (
                 <Fragment key={component.id}>

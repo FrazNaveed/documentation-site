@@ -5,7 +5,7 @@
 .jumpLinkAnchor {
   position: absolute;
   width: 1px;
-  height: 60px;
+  height: 100px;
   scroll-margin-top: $spacing-x-large;
 
   @include media-breakpoint-down(md) {

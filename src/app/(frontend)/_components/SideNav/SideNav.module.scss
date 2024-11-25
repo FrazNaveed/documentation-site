@@ -147,8 +147,8 @@ $mobile-border: 1px solid $gray-100;
   }
 }
 
-:global(.active) {
-  &.listItem::before {
+.listItem__active {
+  &::before {
     display: block;
     position: absolute;
     top: 50%;
