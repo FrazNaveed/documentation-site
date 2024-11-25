@@ -780,8 +780,32 @@ export interface Event {
   };
   featured?: boolean | null;
   featuredHeroEyebrow?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1059,25 +1083,6 @@ export interface Grant {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "grant-types".
  */
 export interface GrantType {
@@ -1162,6 +1167,11 @@ export interface Page {
     useSocialMediaButtons?: boolean | null;
   };
   pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets';
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -2441,6 +2451,15 @@ export interface EventsSelect<T extends boolean = true> {
       };
   featured?: T;
   featuredHeroEyebrow?: T;
+  meta?:
+    | T
+    | {
+        overview?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+        preview?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -3061,6 +3080,15 @@ export interface PagesSelect<T extends boolean = true> {
         useSocialMediaButtons?: T;
       };
   pageTemplate?: T;
+  meta?:
+    | T
+    | {
+        overview?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+        preview?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
