@@ -106,3 +106,12 @@ img {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
 }
+
+input,
+textarea {
+  padding: 19px 12px;
+  border: 1px solid $gray-200;
+  color: $gray;
+
+  @include bodyBase;
+}

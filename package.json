@@ -24,6 +24,7 @@
   "dependencies": {
     "@faker-js/faker": "^9.0.1",
     "@formatjs/intl-localematcher": "^0.5.4",
+    "@formspree/react": "^2.5.1",
     "@next/bundle-analyzer": "^14.2.11",
     "@payloadcms/db-postgres": "^3.0.2",
     "@payloadcms/email-nodemailer": "^3.0.2",

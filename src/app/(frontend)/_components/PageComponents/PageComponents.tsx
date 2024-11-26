@@ -5,6 +5,7 @@ import ApplicationProcessBlock from 'src/app/(frontend)/_components/ApplicationP
 import BrandLogoRollBlock from 'src/app/(frontend)/_components/BrandLogoRollBlock'
 import CodeCTABlock from '@/src/app/(frontend)/_components/CodeCTABlock'
 import Columns from 'src/app/(frontend)/_components/Columns'
+import ContactFormBlock from '@/src/app/(frontend)/_components/ContactFormBlock'
 import DecentralizedPanel from 'src/app/(frontend)/_components/DecentralizedPanel'
 import DevGuideGrid from 'src/app/(frontend)/_components/DevGuideGrid'
 import ImageTextGridBlock from 'src/app/(frontend)/_components/ImageTextGridBlock'
@@ -348,6 +349,10 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
 
                 case 'flareDropDates':
                   componentToRender = <FlareDropDates key={component.id} {...component} className={componentClass} />
+                  break
+
+                case 'contactForm':
+                  componentToRender = <ContactFormBlock key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'imageTextGrid':
