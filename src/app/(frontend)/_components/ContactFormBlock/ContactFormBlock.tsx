@@ -27,7 +27,7 @@ export default function ContactFormBlock({ title, className }: ContactFormBlockP
             <div className={cx(styles.formSection, styles.formSection__partial)}>
               <label htmlFor={`email${formId}`}>
                 <span className={styles.label}>Your email:</span>
-                <input placeholder='Your email' id={`email${formId}`} type='email' name='email' />
+                <input placeholder='Your email' id={`email${formId}`} type='email' name='email' aria-required='true' />
               </label>
               <ValidationError field='email' prefix='Email' errors={state.errors} className={styles.error} />
             </div>
