@@ -1153,6 +1153,8 @@ export interface Page {
         | IFastPanel
         | IDecentralizedPanel
         | ISecurePanel
+        | IEventsWidget
+        | IContactFormBlock
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -1924,6 +1926,7 @@ export interface FlareDropDates {
  * via the `definition` "ITwoColumnCta".
  */
 export interface ITwoColumnCta {
+  variation?: ('standard' | 'alternate') | null;
   image?: (number | null) | Media;
   eyebrow?: string | null;
   header?: string | null;
@@ -2298,6 +2301,36 @@ export interface ISecurePanel {
   id?: string | null;
   blockName?: string | null;
   blockType: 'securePanel';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IEventsWidget".
+ */
+export interface IEventsWidget {
+  titleOverride?: string | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'eventsWidget';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IContactFormBlock".
+ */
+export interface IContactFormBlock {
+  title?: string | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactForm';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2859,6 +2892,7 @@ export interface PagesSelect<T extends boolean = true> {
         twoColumnCta?:
           | T
           | {
+              variation?: T;
               image?: T;
               eyebrow?: T;
               header?: T;
@@ -3055,6 +3089,30 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               text?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        eventsWidget?:
+          | T
+          | {
+              titleOverride?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contactForm?:
+          | T
+          | {
+              title?: T;
               createSideNavLink?: T;
               linkText?: T;
               blockMarginSettings?: T;
