@@ -266,7 +266,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
           <DevGuideGrid devHubProducts={devHubProducts} />
           {linkBandComponent}
           {bugBountyCtaComponent}
-          <EventsWidget />
+          <EventsWidget blockType='eventsWidget' hasContainerClass />
           {pastEventsComponent}
         </>
       )}
@@ -318,6 +318,17 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
                 case 'decentralizedPanel':
                   componentToRender = (
                     <DecentralizedPanel key={component.id} {...component} className={componentClass} />
+                  )
+                  break
+
+                case 'eventsWidget':
+                  componentToRender = (
+                    <EventsWidget
+                      key={component.id}
+                      {...component}
+                      className={componentClass}
+                      hasContainerClass={false}
+                    />
                   )
                   break
 
