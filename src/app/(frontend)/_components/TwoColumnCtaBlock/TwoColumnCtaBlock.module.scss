@@ -122,6 +122,10 @@
     grid-column: span 4;
   }
 
+  .eyebrow {
+    display: none;
+  }
+
   .header {
     @include headerH3;
 
