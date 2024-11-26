@@ -1,0 +1,63 @@
+@use "../../_styles/colors" as *;
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/spacing" as *;
+
+.wrap {
+  @include containerGrid;
+
+  padding-top: to-rem(112px);
+  padding-bottom: to-rem(160px);
+
+  @include media-breakpoint-down(md) {
+    row-gap: to-rem($spacing-xxx-large);
+  }
+}
+
+.imageWrap {
+  @include columns(2, 6);
+
+  @include media-breakpoint-down(lg) {
+    @include columns(2, 5);
+  }
+
+  @include media-breakpoint-down(md) {
+    @include columns(2, 4, false);
+  }
+}
+
+.contentWrap {
+  @include columns(7, 12);
+
+  align-content: center;
+
+  @include media-breakpoint-down(lg) {
+    @include columns(5, 8);
+  }
+
+  @include media-breakpoint-down(md) {
+    @include columns(1, -1);
+
+    text-align: center;
+  }
+}
+
+.title,
+.subhead,
+.text {
+  margin-bottom: to-rem($spacing-x-small);
+}
+
+.title {
+  @include headerH1;
+}
+
+.subhead {
+  @include headerH3;
+
+  color: $dev-hub-gray;
+}
+
+.text {
+  color: $dev-hub-gray;
+}
