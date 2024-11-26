@@ -40,6 +40,7 @@ export default async function PageFooterCTA({
     <section className={cx(styles.Wrap, { [styles.Wrap__hasSocialMediaButtons]: useSocialMediaButtons }, className)}>
       <div className={cx(
         styles.content,
+        { [styles.content__noBackgroundImage]: !backgroundImage },
         { [styles.content__hasSecondary]: buttonSecondaryLink && buttonSecondaryText && !useSocialMediaButtons },
         { [styles.content__hasSocialMediaButtons]: useSocialMediaButtons },
       )}
