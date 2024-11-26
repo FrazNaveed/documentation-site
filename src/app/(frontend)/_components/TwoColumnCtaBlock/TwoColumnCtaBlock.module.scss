@@ -108,7 +108,7 @@
     order: 2;
 
     @include media-breakpoint-down(md) {
-      padding-left: to-rem($spacing-medium);
+      @include columns(1, -1);
     }
   }
 
