@@ -1149,6 +1149,7 @@ export interface Page {
         | IDecentralizedPanel
         | ISecurePanel
         | IEventsWidget
+        | IContactFormBlock
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -2308,6 +2309,21 @@ export interface IEventsWidget {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IContactFormBlock".
+ */
+export interface IContactFormBlock {
+  title?: string | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactForm';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "developerGuides".
  */
 export interface DeveloperGuide {
@@ -3068,6 +3084,18 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               titleOverride?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contactForm?:
+          | T
+          | {
+              title?: T;
               createSideNavLink?: T;
               linkText?: T;
               blockMarginSettings?: T;

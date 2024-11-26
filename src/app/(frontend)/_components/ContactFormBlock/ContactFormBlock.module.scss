@@ -1,0 +1,59 @@
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/mixins" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.grid {
+  @include grid;
+}
+
+.formBlockTitle,
+.formWrap {
+  @include columns(1, 9);
+
+  @include media-breakpoint-down(lg) {
+    @include columns(1, -1);
+  }
+}
+
+.formBlockTitle {
+  @include headerH5;
+
+  margin-bottom: to-rem($spacing-standard);
+
+  @include media-breakpoint-down(lg) {
+    margin-bottom: to-rem($spacing-small);
+  }
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-standard $grid-column-gap;
+}
+
+.formSection {
+  * {
+    width: 100%;
+  }
+
+  &__partial {
+    flex: 0 0 calc(50% - ($grid-column-gap / 2));
+  }
+
+  &__full {
+    flex: 0 0 100%;
+  }
+}
+
+.label {
+  @include utils.srOnly;
+}
+
+.error {
+  margin-top: $spacing-x-small;
+  color: $error-red;
+
+  @include paragraphSmFont;
+}

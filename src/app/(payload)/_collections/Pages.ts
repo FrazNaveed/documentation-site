@@ -55,6 +55,7 @@ import { FastPanelBlock } from '../_blocks/FastPanelBlock'
 import { DecentralizedPanelBlock } from '../_blocks/DecentralizedPanelBlock'
 import { SecurePanelBlock } from '../_blocks/SecurePanelBlock'
 import { EventsWidgetBlock } from '../_blocks/EventsWidgetBlock'
+import { ContactFormBlock } from '../_blocks/ContactFormBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -211,6 +212,7 @@ export const Pages: CollectionConfig = {
         DecentralizedPanelBlock,
         SecurePanelBlock,
         EventsWidgetBlock,
+        ContactFormBlock,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
