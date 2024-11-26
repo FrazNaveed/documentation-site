@@ -1916,6 +1916,7 @@ export interface FlareDropDates {
  * via the `definition` "ITwoColumnCta".
  */
 export interface ITwoColumnCta {
+  variation?: ('standard' | 'alternate') | null;
   image?: (number | null) | Media;
   eyebrow?: string | null;
   header?: string | null;
@@ -2874,6 +2875,7 @@ export interface PagesSelect<T extends boolean = true> {
         twoColumnCta?:
           | T
           | {
+              variation?: T;
               image?: T;
               eyebrow?: T;
               header?: T;

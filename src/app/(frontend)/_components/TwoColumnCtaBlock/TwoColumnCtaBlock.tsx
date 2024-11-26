@@ -19,10 +19,11 @@ export default function TwoColumnCtaBlock({
   primaryButtonLink,
   secondaryButtonText,
   secondaryButtonLink,
+  variation,
   className,
 }: TwoColumnCtaProps) {
   return (
-    <section className={cx(styles.twoColumnCta, className)}>
+    <section className={cx(styles.twoColumnCta, { [styles[`twoColumnCta__${variation}`]]: variation }, className)}>
       <div className={styles.wrap}>
         {image && typeof image === 'object' && image.url && image.alt
           && (

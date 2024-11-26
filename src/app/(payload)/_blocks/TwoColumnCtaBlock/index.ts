@@ -13,17 +13,35 @@ export const TwoColumnCtaBlock: Block = {
   },
   fields: [
     {
+      name: 'variation',
+      type: 'select',
+      defaultValue: 'standard',
+      options: [
+        {
+          label: 'Standard',
+          value: 'standard',
+        },
+        {
+          label: 'Alternate - columns flipped, gray background',
+          value: 'alternate',
+        },
+      ],
+    },
+    {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
       admin: {
-        description: 'Appears in left column',
+        description: 'Appears in left column. Appears in right column in Alternate variation.',
       },
     },
     {
       name: 'eyebrow',
       type: 'text',
       localized: true,
+      admin: {
+        condition: (data, siblingData, { user }) => siblingData.variation === 'standard',
+      },
     },
     {
       name: 'header',
