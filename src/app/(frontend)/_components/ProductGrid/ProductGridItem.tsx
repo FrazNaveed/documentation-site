@@ -8,7 +8,7 @@ export default function ProductGrid({
   slug, id, icon, titleOverride, title, shortDescription,
 }: Product) {
   return (
-    <Link href={slug} key={id} className={styles.productWrap}>
+    <Link href={`/${slug}`} key={id} className={styles.productWrap}>
       <div className={styles.product}>
         <div className={styles.productHeader}>
           <div className={styles.productInfo}>

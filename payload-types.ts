@@ -1148,6 +1148,7 @@ export interface Page {
         | IFastPanel
         | IDecentralizedPanel
         | ISecurePanel
+        | IEventsWidget
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -2292,6 +2293,21 @@ export interface ISecurePanel {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IEventsWidget".
+ */
+export interface IEventsWidget {
+  titleOverride?: string | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'eventsWidget';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "developerGuides".
  */
 export interface DeveloperGuide {
@@ -3040,6 +3056,18 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               text?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        eventsWidget?:
+          | T
+          | {
+              titleOverride?: T;
               createSideNavLink?: T;
               linkText?: T;
               blockMarginSettings?: T;

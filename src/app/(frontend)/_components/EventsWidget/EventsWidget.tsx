@@ -5,9 +5,15 @@ import EventsList from 'src/app/(frontend)/_components/EventsList'
 import { getFeaturedEvent } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
+import { IEventsWidget } from '@/payload-types'
 import styles from './EventsWidget.module.scss'
 
-export default async function EventsWidget() {
+export type EventsWidgetProps = IEventsWidget & {
+  className?: string,
+  hasContainerClass?: boolean,
+}
+
+export default async function EventsWidget({ titleOverride, hasContainerClass, className }: EventsWidgetProps) {
   const eventsPageLink = getCollectionPath('events')
   const eventsPageSlug = eventsPageLink.replace(/^\/|\/$/g, '')
   const featuredEvent = await getFeaturedEvent()
@@ -23,11 +29,11 @@ export default async function EventsWidget() {
     />
   )
   return (
-    <div className={styles.wrap}>
-      <div className={styles.container}>
+    <div className={cx(styles.wrap, className)}>
+      <div className={cx({ [styles.container]: hasContainerClass })}>
         <div className={styles.intro}>
           <h2 className={styles.header}>
-            Upcoming Events
+            {titleOverride || 'Upcoming Events'}
           </h2>
           {eventsLink()}
         </div>
