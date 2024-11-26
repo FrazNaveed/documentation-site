@@ -39,6 +39,9 @@ export const TwoColumnCtaBlock: Block = {
       name: 'eyebrow',
       type: 'text',
       localized: true,
+      admin: {
+        condition: (data, siblingData, { user }) => siblingData.variation === 'standard',
+      },
     },
     {
       name: 'header',
