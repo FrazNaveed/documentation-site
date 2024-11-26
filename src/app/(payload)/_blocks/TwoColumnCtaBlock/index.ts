@@ -32,7 +32,7 @@ export const TwoColumnCtaBlock: Block = {
       type: 'upload',
       relationTo: 'media',
       admin: {
-        description: 'Appears in left column',
+        description: 'Appears in left column. Appears in right column in Alternate variation.',
       },
     },
     {
