@@ -56,6 +56,7 @@ import { DecentralizedPanelBlock } from '../_blocks/DecentralizedPanelBlock'
 import { SecurePanelBlock } from '../_blocks/SecurePanelBlock'
 import { EventsWidgetBlock } from '../_blocks/EventsWidgetBlock'
 import { ContactFormBlock } from '../_blocks/ContactFormBlock'
+import { PageTeaserGrid } from '../_blocks/PageTeaserGridBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -213,6 +214,7 @@ export const Pages: CollectionConfig = {
         SecurePanelBlock,
         EventsWidgetBlock,
         ContactFormBlock,
+        PageTeaserGrid,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
@@ -236,6 +238,34 @@ export const Pages: CollectionConfig = {
       }
     },
     ...PageFooterCTA,
+    {
+      name: 'pageTeaser',
+      type: 'group',
+      interfaceName: 'IPageTeaser',
+      admin: {
+        description: 'Options for page\'s teaser, for example in the PageGrid block.',
+      },
+      fields: [
+        {
+          name: 'icon',
+          type: 'upload',
+          relationTo: 'media',
+        },
+        {
+          name: 'shortDescription',
+          type: 'text',
+          localized: true,
+        },
+        {
+          name: 'titleOverride',
+          type: 'text',
+          localized: true,
+          admin: {
+            description: 'Override the page title in teasers.',
+          },
+        },
+      ],
+    },
     {
       name: 'pageTemplate',
       type: 'select',
