@@ -3,6 +3,7 @@ import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+import { seoPlugin } from '@payloadcms/plugin-seo'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -113,6 +114,12 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
+    seoPlugin({
+      collections: ['pages', 'news'],
+      uploadsCollection: 'media',
+      generateTitle: ({ doc }) => `${doc.title}`,
+      generateDescription: ({ doc }) => doc.excerpt,
+    }),
     vercelBlobStorage({
       enabled: !!process.env.VERCEL,
       collections: {

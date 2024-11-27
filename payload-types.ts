@@ -1166,6 +1166,11 @@ export interface Page {
   };
   pageTeaser?: IPageTeaser;
   pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets';
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -2055,6 +2060,11 @@ export interface News {
     };
     [k: string]: unknown;
   } | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -3166,6 +3176,13 @@ export interface PagesSelect<T extends boolean = true> {
         titleOverride?: T;
       };
   pageTemplate?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -3228,6 +3245,13 @@ export interface NewsSelect<T extends boolean = true> {
       };
   featured?: T;
   content?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
