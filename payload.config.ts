@@ -115,7 +115,7 @@ export default buildConfig({
   sharp,
   plugins: [
     seoPlugin({
-      collections: ['pages', 'events'],
+      collections: ['pages', 'news'],
       uploadsCollection: 'media',
       generateTitle: ({ doc }) => `flare.network - ${doc.title}`,
       generateDescription: ({ doc }) => doc.excerpt,
