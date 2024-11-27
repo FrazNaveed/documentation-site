@@ -117,7 +117,7 @@ export default buildConfig({
     seoPlugin({
       collections: ['pages', 'news'],
       uploadsCollection: 'media',
-      generateTitle: ({ doc }) => `flare.network - ${doc.title}`,
+      generateTitle: ({ doc }) => `${doc.title}`,
       generateDescription: ({ doc }) => doc.excerpt,
     }),
     vercelBlobStorage({
