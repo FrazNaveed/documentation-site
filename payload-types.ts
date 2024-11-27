@@ -1150,6 +1150,7 @@ export interface Page {
         | ISecurePanel
         | IEventsWidget
         | IContactFormBlock
+        | IPageTeaserGrid
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -1163,6 +1164,7 @@ export interface Page {
     backgroundImageStyle?: ('flipped' | 'offset') | null;
     useSocialMediaButtons?: boolean | null;
   };
+  pageTeaser?: IPageTeaser;
   pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets';
   updatedAt: string;
   createdAt: string;
@@ -2324,6 +2326,31 @@ export interface IContactFormBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IPageTeaserGrid".
+ */
+export interface IPageTeaserGrid {
+  title?: string | null;
+  teasers: (number | Page)[];
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pageTeaserGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IPageTeaser".
+ */
+export interface IPageTeaser {
+  icon?: (number | null) | Media;
+  shortDescription?: string | null;
+  titleOverride?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "developerGuides".
  */
 export interface DeveloperGuide {
@@ -3104,6 +3131,19 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        pageTeaserGrid?:
+          | T
+          | {
+              title?: T;
+              teasers?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   relatedNewsType?: T;
   pageFooterCTA?: T;
@@ -3117,6 +3157,13 @@ export interface PagesSelect<T extends boolean = true> {
         backgroundImage?: T;
         backgroundImageStyle?: T;
         useSocialMediaButtons?: T;
+      };
+  pageTeaser?:
+    | T
+    | {
+        icon?: T;
+        shortDescription?: T;
+        titleOverride?: T;
       };
   pageTemplate?: T;
   updatedAt?: T;

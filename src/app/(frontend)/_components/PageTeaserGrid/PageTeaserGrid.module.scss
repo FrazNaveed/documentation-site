@@ -1,0 +1,103 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "../../_styles/transitions" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.teaserGrid {
+  @include container;
+  @include pageComponentSpacing;
+
+  &_Wrap {
+    @include grid;
+
+    grid-auto-rows: 1fr;
+    row-gap: $grid-column-gap;
+
+    @include media-breakpoint-down(lg) {
+      row-gap: $spacing-standard;
+    }
+  }
+
+  &_Title {
+    text-align: center;
+
+    @include sectionHeaderFont;
+    @include sectionHeaderMargin;
+  }
+}
+
+.teaserWrap {
+  transition: all $transition-snappy;
+  grid-column: span 3;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.03);
+  }
+
+  @include media-breakpoint-down(lg) {
+    grid-column: span 4;
+  }
+}
+
+$title-color: $pink-600;
+
+.teaser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: to-rem($spacing-standard);
+  border-radius: 10px;
+  background-color: $pink-50;
+  gap: $spacing-small;
+
+  &_IconWrap {
+    position: relative;
+    width: min(100%, 250px);
+    aspect-ratio: 1;
+  }
+
+  &_Icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  &_TitleWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: to-rem($spacing-x-small);
+  }
+
+  &_Title {
+    @include headerH6;
+
+    margin-bottom: 0;
+    color: $title-color;
+  }
+
+  &_Arrow {
+    flex-shrink: 0;
+    width: 1em;
+    height: auto;
+
+    path {
+      fill: $title-color;
+    }
+  }
+
+  &_Description {
+    @include paragraphXSmFont;
+
+    margin-bottom: 0;
+    color: $body-text-color;
+  }
+}
