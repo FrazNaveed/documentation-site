@@ -12,7 +12,7 @@ export default function PageTeaserGridItem({
     <Link href={`/${slug}`} key={id} className={styles.teaserWrap}>
       <div className={styles.teaser}>
         <div className={styles.teaser_IconWrap}>
-          {icon && typeof icon === 'object' && icon?.url && icon?.alt && (
+          {icon && typeof icon === 'object' && icon?.url && (
             <Image
               className={styles.teaser_Icon}
               src={icon.url}

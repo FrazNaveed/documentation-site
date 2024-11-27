@@ -13,7 +13,7 @@ export default function PageTeaserGrid({ title, teasers }: PageTeaserGridProps) 
       <div className={styles.teaserGrid_Wrap}>
         {teasers?.map((teaser) => (
           typeof teaser === 'object'
-            ? <PageTeaserGridItem {...teaser} />
+            ? <PageTeaserGridItem key={teaser.id} {...teaser} />
             : null
         ))}
       </div>
