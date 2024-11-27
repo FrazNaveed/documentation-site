@@ -23,6 +23,7 @@ import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
 import PageHero from 'src/app/(frontend)/_components/PageHero'
 import PageHeroCentered from 'src/app/(frontend)/_components/PageHeroCentered'
+import PageTeaserGrid from 'src/app/(frontend)/_components/PageTeaserGrid'
 import PastFeaturedGrantsGridBlock from 'src/app/(frontend)/_components/PastFeaturedGrantsGridBlock'
 import PrevNextLinks from 'src/app/(frontend)/_components/PrevNextLinks'
 import ProductGrid from 'src/app/(frontend)/_components/ProductGrid'
@@ -378,6 +379,10 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
                       lang={lang}
                     />
                   )
+                  break
+
+                case 'pageTeaserGrid':
+                  componentToRender = <PageTeaserGrid key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'pastFeaturedGrantsGrid':
