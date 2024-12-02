@@ -11,15 +11,19 @@ import { i18n } from '@/src/app/i18n-config'
 import styles from './SubscriptionBannerCTA.module.scss'
 
 export type CTAProps = {
-  header: string
-  text: string
-  placeholder: string | ''
-  buttonText: string
+  header?: string
+  text?: string
+  placeholder?: string | ''
+  buttonText?: string
   className?: string
 }
 
 export default function SubscriptionBannerCTA({
-  header, text, placeholder, buttonText, className,
+  header = 'Subscribe to the Flare Newsletter',
+  text = 'Join over 20,000 fellow blockchain enthusiasts. Sign up to our newsletter today to receive our exclusive web3 insights and be informed of our latest product releases.',
+  placeholder = 'Type your email here|',
+  buttonText = 'Subscribe',
+  className,
 }: CTAProps) {
   const [disabled, setDisabled] = useState(true)
   const [isFocused, setIsFocused] = useState(false)

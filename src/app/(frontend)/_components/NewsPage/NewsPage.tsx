@@ -5,6 +5,7 @@ import { getNewsArchive, getNewsFeatured } from 'src/app/(frontend)/_lib/payload
 import NewsFilter from 'src/app/(frontend)/_components/NewsFilter'
 import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
 import LoadMoreGrid from 'src/app/(frontend)/_components/LoadMoreGrid'
+import SubscriptionBannerCTA from 'src/app/(frontend)/_components/SubscriptionBannerCTA'
 import styles from './NewsPage.module.scss'
 
 type NewsPageProps = {
@@ -74,6 +75,7 @@ export default async function NewsPage({ type }: NewsPageProps) {
         </div>
       )}
       {hasNextPage && <LoadMoreGrid fetchFn={getNewsArchive} excludeIds={allFetchedIds} type={type} />}
+      <SubscriptionBannerCTA />
     </div>
   )
 }
