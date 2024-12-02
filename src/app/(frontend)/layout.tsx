@@ -12,10 +12,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <head>
-        <GoogleTagManager gtmId='GTM-WX2D2TR' />
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
       </head>
       <body className={satoshi.variable}>
-        <GoogleTagManagerNoscript gtmId='GTM-WX2D2TR' />
+        <GoogleTagManagerNoscript gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
         <a className='skipToMainContentLink' href='#mainContent'>
           Skip to content
         </a>

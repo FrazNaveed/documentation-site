@@ -2,7 +2,7 @@ import React from 'react'
 import Script from 'next/script'
 
 interface GoogleTagManagerProps {
-  gtmId: string
+  gtmId?: string
 }
 
 const GoogleTagManager: React.FC<GoogleTagManagerProps> = ({ gtmId }) => {
