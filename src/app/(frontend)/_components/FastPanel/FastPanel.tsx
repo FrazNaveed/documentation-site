@@ -25,7 +25,8 @@ type FastPanelProps = IFastPanel & {
 
 export default async function FastPanel({ text, className }: FastPanelProps) {
   const { abt, transactionCount } = await fetchData()
-  const roundedTimeTenths = Math.round(abt.avg_ms / 100) / 10
+  const averageTimeInSeconds = (abt.avg_ms / 1000).toFixed(1)
+
   return (
     <section className={cx(styles.wrap, className)}>
       <FastVideo videoSrc='/en/video/home_fast_desktop.webm' mobileVideoSrc='/en/video/home_fast_mobile.webm' />
@@ -35,7 +36,7 @@ export default async function FastPanel({ text, className }: FastPanelProps) {
           <FastCounter start={transactionCount.count} rate={abt.avg_ms} />
           <br />
           <p className={styles.text}>
-            {roundedTimeTenths}
+            {averageTimeInSeconds}
             s
             {text && ` ${text}`}
           </p>
