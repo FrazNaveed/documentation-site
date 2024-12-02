@@ -122,7 +122,7 @@ export const getNewsTypeBySlug = async (slug: string) => {
 
     return newsTypes
   } catch (error) {
-    console.error(`Error fetching getNewsBySlug for ${slug}:`, error)
+    console.error(`Error fetching getNewsTypeBySlug for ${slug}:`, error)
   }
   return []
 }
