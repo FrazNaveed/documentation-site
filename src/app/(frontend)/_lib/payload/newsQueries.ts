@@ -2,15 +2,15 @@
 
 import { getPayload } from 'payload'
 import config from '@payload-config'
-import type { News } from '@/payload-types'
+import type { News, NewsType } from '@/payload-types'
 
 const payload = await getPayload({ config })
 
 const buildWhereClause = (
-  type: string | null,
+  type: number | null,
   additionalConditions: object = {},
 ) => {
-  const typeCondition = type ? { 'type.slug': { equals: type } } : undefined
+  const typeCondition = type ? { type: { equals: type } } : undefined
   return { ...typeCondition, ...additionalConditions }
 }
 
@@ -18,7 +18,7 @@ export const getNewsArchive = async (
   limit = 10,
   page = 1,
   excludedIds: number[] = [],
-  type: string | null = null,
+  type: number | null = null,
 ) => {
   try {
     const newsData = await payload.find({
@@ -41,7 +41,7 @@ export const getNewsArchive = async (
 
 export const getNewsFeatured = async (
   limit = 4,
-  type: string | null | undefined = null,
+  type: number | null | undefined = null,
 ) => {
   try {
     const newsData = await payload.find({
@@ -99,6 +99,28 @@ export const getNewsBySlug = async (slug: string) => {
     const news: News[] = newsData.docs
 
     return news
+  } catch (error) {
+    console.error(`Error fetching getNewsBySlug for ${slug}:`, error)
+  }
+  return []
+}
+
+export const getNewsTypeBySlug = async (slug: string) => {
+  try {
+    const newsData = await payload.find({
+      collection: 'news-types',
+      limit: 1,
+      depth: 3,
+      where: {
+        slug: {
+          equals: slug,
+        },
+      },
+    })
+
+    const newsTypes: NewsType[] = newsData.docs
+
+    return newsTypes
   } catch (error) {
     console.error(`Error fetching getNewsBySlug for ${slug}:`, error)
   }
