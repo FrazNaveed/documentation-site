@@ -8,11 +8,13 @@ export type BrandLogoRollBlockProps = IBrandLogoRoll & {
   className?: string
 }
 
-export default function BrandLogoRollBlock({ header, logos, className }: BrandLogoRollBlockProps) {
+export default function BrandLogoRollBlock({
+  header, logos, alignLeft, className,
+}: BrandLogoRollBlockProps) {
   return (
     <section className={cx(styles.wrap, className)}>
       {header && <h2 className={styles.header}>{header}</h2>}
-      <div className={styles.logoWrap}>
+      <div className={cx(styles.logoWrap, { [styles.logoWrap__alignLeft]: alignLeft })}>
         {logos?.map((logo) => {
           const { id, image, link } = logo
           const imageComponent = (
