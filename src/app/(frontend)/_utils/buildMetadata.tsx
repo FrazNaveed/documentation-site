@@ -43,6 +43,13 @@ export const defaultMetadata: Metadata = {
 
 const buildMetadata = (seoData?: SEO, pageTitle?: string | null, slug?: string) => {
   const seoDataImage = (seoData?.image && typeof seoData.image === 'object') ? seoData.image : undefined
+  const imageMetadata = {
+    url: seoDataImage?.url || fallbackImageMeta.url,
+    width: seoDataImage?.width || fallbackImageMeta.width,
+    height: seoDataImage?.height || fallbackImageMeta.height,
+    alt: seoDataImage?.alt || fallbackImageMeta.alt,
+  }
+
   return {
     title: seoData?.title || pageTitle || defaultMetadata.title,
     description: seoData?.description || defaultMetadata.description,
@@ -59,12 +66,7 @@ const buildMetadata = (seoData?: SEO, pageTitle?: string | null, slug?: string) 
       title: seoData?.title || pageTitle,
       description: seoData?.description || defaultMetadata.description,
       images: [
-        {
-          url: seoDataImage?.url || fallbackImageMeta.url,
-          width: seoDataImage?.width || fallbackImageMeta.width,
-          height: seoDataImage?.height || fallbackImageMeta.height,
-          alt: seoDataImage?.alt || fallbackImageMeta.alt,
-        },
+        imageMetadata,
       ],
       siteName,
     },
@@ -75,12 +77,7 @@ const buildMetadata = (seoData?: SEO, pageTitle?: string | null, slug?: string) 
       title: seoData?.title || pageTitle,
       description: seoData?.description || defaultMetadata.description,
       images: [
-        {
-          url: seoDataImage?.url || fallbackImageMeta.url,
-          width: seoDataImage?.width || fallbackImageMeta.width,
-          height: seoDataImage?.height || fallbackImageMeta.height,
-          alt: seoDataImage?.alt || fallbackImageMeta.alt,
-        },
+        imageMetadata,
       ],
     },
   }
