@@ -14,6 +14,7 @@ import convertToDate from 'src/app/(frontend)/_utils/convertToDate'
 import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
 import type { Media, News } from '@/payload-types'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
+import buildMetadata from 'src/app/(frontend)/_utils/buildMetadata'
 import styles from './page.module.scss'
 
 export const dynamic = 'force-dynamic'
@@ -24,14 +25,25 @@ type PageProps = {
   }>
 }
 
-export default async function Page({ params }: PageProps) {
-  const { slug } = await params
+async function getNewsPostData(slug: string) {
   const news = await getNewsBySlug(slug)
-
   const newsPost = news[0]
   if (!newsPost) {
     notFound()
   }
+  return newsPost
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params
+  const newsPost = await getNewsPostData(slug)
+  const metadata = buildMetadata(newsPost.meta, newsPost.title, slug)
+  return metadata
+}
+
+export default async function Page({ params }: PageProps) {
+  const { slug } = await params
+  const newsPost = await getNewsPostData(slug)
   const {
     id,
     title,
