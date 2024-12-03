@@ -9,13 +9,14 @@ import SubscriptionBannerCTA from 'src/app/(frontend)/_components/SubscriptionBa
 import styles from './NewsPage.module.scss'
 
 type NewsPageProps = {
-  type?: string | null
+  typeSlug?: string | null
+  typeId?: number | null
 }
 
-export default async function NewsPage({ type }: NewsPageProps) {
-  const featuredNews = await getNewsFeatured(4, type)
+export default async function NewsPage({ typeSlug, typeId }: NewsPageProps) {
+  const featuredNews = await getNewsFeatured(4, typeId)
   const featuredNewsIds = featuredNews.map((featuredNewsItem) => featuredNewsItem.id)
-  const news = await getNewsArchive(12, 0, featuredNewsIds, type)
+  const news = await getNewsArchive(12, 0, featuredNewsIds, typeId)
   const newsDocs = news?.docs || []
   const allFetchedIds = featuredNewsIds.concat(newsDocs.map((newsItem) => newsItem.id))
   const hasNextPage = news?.hasNextPage
@@ -65,7 +66,7 @@ export default async function NewsPage({ type }: NewsPageProps) {
         {...(typeof featuredPostTeaserThumbnail === 'object' ? { thumbnail: featuredPostTeaserThumbnail } : {})}
       />
       <h1 className={styles.pageTitle}>Flare News</h1>
-      <NewsFilter navLinks={latestNewsNav} currentType={type} />
+      <NewsFilter navLinks={latestNewsNav} currentType={typeSlug} />
       <div className={styles.featuredTeaserGrid}>
         <TeaserGrid teasers={featuredNews.slice(1, 4)} gridStyle='wide' />
       </div>
@@ -74,7 +75,7 @@ export default async function NewsPage({ type }: NewsPageProps) {
           <TeaserGrid teasers={news.docs} />
         </div>
       )}
-      {hasNextPage && <LoadMoreGrid fetchFn={getNewsArchive} excludeIds={allFetchedIds} type={type} />}
+      {hasNextPage && <LoadMoreGrid fetchFn={getNewsArchive} excludeIds={allFetchedIds} type={typeId} />}
       <SubscriptionBannerCTA />
     </div>
   )
