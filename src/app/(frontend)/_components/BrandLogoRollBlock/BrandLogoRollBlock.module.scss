@@ -31,6 +31,10 @@
     padding-top: to-rem($spacing-standard);
     gap: to-rem($spacing-standard) to-rem($spacing-small);
   }
+
+  &__alignLeft {
+    justify-content: flex-start;
+  }
 }
 
 .logo {
