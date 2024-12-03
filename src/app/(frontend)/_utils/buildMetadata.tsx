@@ -23,7 +23,6 @@ export const defaultMetadata: Metadata = {
   },
   description,
   manifest: '/en/site.webmanifest',
-  themeColor: '#ffffff',
   openGraph: {
     description,
     images: [
