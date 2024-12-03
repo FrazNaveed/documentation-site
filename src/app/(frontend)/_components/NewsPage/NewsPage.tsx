@@ -70,13 +70,13 @@ export default async function NewsPage({ typeSlug, typeId }: NewsPageProps) {
       <div className={styles.featuredTeaserGrid}>
         <TeaserGrid teasers={featuredNews.slice(1, 4)} gridStyle='wide' />
       </div>
+      <SubscriptionBannerCTA />
       {news?.docs && (
         <div className={styles.teaserGrid}>
           <TeaserGrid teasers={news.docs} />
         </div>
       )}
       {hasNextPage && <LoadMoreGrid fetchFn={getNewsArchive} excludeIds={allFetchedIds} type={typeId} />}
-      <SubscriptionBannerCTA />
     </div>
   )
 }
