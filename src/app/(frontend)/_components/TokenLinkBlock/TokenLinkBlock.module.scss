@@ -1,0 +1,38 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.link {
+  display: flex;
+  align-items: center;
+  padding: to-rem(14px);
+  border-radius: 10px;
+  background-color: $pink-50;
+  grid-column: span 3;
+
+  @include media-breakpoint-down(lg) {
+    grid-column: span 4;
+  }
+
+  &Wrap {
+    @include grid(10);
+
+    row-gap: to-rem($spacing-small);
+  }
+
+  &Icon {
+    width: to-rem(90px);
+    height: to-rem(90px);
+    margin-right: to-rem($spacing-small);
+  }
+
+  &Text {
+    grid-column: span 1;
+  }
+
+  svg {
+    transform: rotate(45deg);
+  }
+}
