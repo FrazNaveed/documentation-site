@@ -57,6 +57,7 @@ import { SecurePanelBlock } from '../_blocks/SecurePanelBlock'
 import { EventsWidgetBlock } from '../_blocks/EventsWidgetBlock'
 import { ContactFormBlock } from '../_blocks/ContactFormBlock'
 import { PageTeaserGrid } from '../_blocks/PageTeaserGridBlock'
+import { TokenLinkBlock } from '../_blocks/TokenLinkBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -215,6 +216,7 @@ export const Pages: CollectionConfig = {
         EventsWidgetBlock,
         ContactFormBlock,
         PageTeaserGrid,
+        TokenLinkBlock,
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
