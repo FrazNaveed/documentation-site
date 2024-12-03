@@ -25,27 +25,25 @@ type PageProps = {
   }>
 }
 
-export async function generateMetadata({ params }: PageProps) {
-  const { slug } = await params
+async function getNewsPostData(slug: string) {
   const news = await getNewsBySlug(slug)
-
   const newsPost = news[0]
   if (!newsPost) {
     notFound()
   }
+  return newsPost
+}
 
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params
+  const newsPost = await getNewsPostData(slug)
   const metadata = buildMetadata(newsPost.meta, newsPost.title, slug)
   return metadata
 }
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params
-  const news = await getNewsBySlug(slug)
-
-  const newsPost = news[0]
-  if (!newsPost) {
-    notFound()
-  }
+  const newsPost = await getNewsPostData(slug)
   const {
     id,
     title,
