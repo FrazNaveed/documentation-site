@@ -30,6 +30,14 @@ export const BrandLogoRollBlock: Block = {
         },
       ],
     },
+    {
+      name: 'alignLeft',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        description: 'Align logos to the left',
+      },
+    },
     ...CreateSideNavLinkFields,
     ...BlockMarginSettings,
   ],
