@@ -39,6 +39,7 @@ import TableDrawers from 'src/app/(frontend)/_components/TableDrawers'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import TallCta from 'src/app/(frontend)/_components/TallCTA/TallCta'
 import TeamGridBlock from 'src/app/(frontend)/_components/TeamGridBlock'
+import TokenLinkBlock from 'src/app/(frontend)/_components/TokenLinkBlock'
 import TwoColumnBlock from 'src/app/(frontend)/_components/TwoColumnBlock'
 import TwoColumnCtaBlock from 'src/app/(frontend)/_components/TwoColumnCtaBlock/TwoColumnCtaBlock'
 import VideoBlock from 'src/app/(frontend)/_components/VideoBlock'
@@ -448,6 +449,10 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
 
                 case 'talkingPoints':
                   componentToRender = <TalkingPoints key={component.id} {...component} className={componentClass} />
+                  break
+
+                case 'tokenLink':
+                  componentToRender = <TokenLinkBlock />
                   break
 
                 case 'twoColumn':
