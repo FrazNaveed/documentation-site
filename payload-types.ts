@@ -2371,7 +2371,7 @@ export interface ITokenLinkBlock {
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'token-link';
+  blockType: 'tokenLink';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -3177,7 +3177,7 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        'token-link'?:
+        tokenLink?:
           | T
           | {
               tokenLinks?:
