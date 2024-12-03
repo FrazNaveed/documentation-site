@@ -1151,6 +1151,7 @@ export interface Page {
         | IEventsWidget
         | IContactFormBlock
         | IPageTeaserGrid
+        | ITokenLinkBlock
       )[]
     | null;
   relatedNewsType?: (number | null) | NewsType;
@@ -2353,6 +2354,28 @@ export interface IPageTeaserGrid {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ITokenLinkBlock".
+ */
+export interface ITokenLinkBlock {
+  tokenLinks?:
+    | {
+        title?: string | null;
+        link?: string | null;
+        icon?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'tokenLink';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "IPageTeaser".
  */
 export interface IPageTeaser {
@@ -3148,6 +3171,25 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               title?: T;
               teasers?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        tokenLink?:
+          | T
+          | {
+              tokenLinks?:
+                | T
+                | {
+                    title?: T;
+                    link?: T;
+                    icon?: T;
+                    id?: T;
+                  };
               createSideNavLink?: T;
               linkText?: T;
               blockMarginSettings?: T;
