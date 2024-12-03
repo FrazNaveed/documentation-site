@@ -39,6 +39,14 @@ export const defaultMetadata: Metadata = {
       fallbackImageMeta,
     ],
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 }
 
 const buildMetadata = (seoData?: SEO, pageTitle?: string | null, slug?: string) => {
