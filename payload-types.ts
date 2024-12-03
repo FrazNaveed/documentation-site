@@ -2125,6 +2125,7 @@ export interface IBrandLogoRoll {
         id?: string | null;
       }[]
     | null;
+  alignLeft?: boolean | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
@@ -2984,6 +2985,7 @@ export interface PagesSelect<T extends boolean = true> {
                     link?: T;
                     id?: T;
                   };
+              alignLeft?: T;
               createSideNavLink?: T;
               linkText?: T;
               blockMarginSettings?: T;
