@@ -47,7 +47,7 @@ export default async function Page({ params }: PageProps) {
   const relatedNews = relatedPosts as News[] | null | undefined
 
   if (relatedBackfill && relatedBackfill > 0) {
-    const related = await getNewsArchive(relatedBackfill, 1, [id], typeof type === 'object' ? type?.slug : undefined)
+    const related = await getNewsArchive(relatedBackfill, 1, [id], typeof type === 'object' ? type.id : undefined)
     if (related) {
       relatedNews?.push(...related.docs)
     }
