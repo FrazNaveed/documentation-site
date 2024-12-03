@@ -10,9 +10,9 @@ import CookieYes from '../_components/CookieYes/CookieYes'
 
 type LayoutProps = {
   children: React.ReactNode
-  params: {
+  params: Promise<{
     lang: Locale
-  }
+  }>
 }
 
 export const viewport: Viewport = {
@@ -23,8 +23,8 @@ export const viewport: Viewport = {
 
 export const metadata = defaultMetadata
 
-export default function RootLayout({ children, params }: LayoutProps) {
-  const { lang } = params
+export default async function RootLayout({ children, params }: LayoutProps) {
+  const { lang } = await params
   return (
     <html lang={lang}>
       <head>
