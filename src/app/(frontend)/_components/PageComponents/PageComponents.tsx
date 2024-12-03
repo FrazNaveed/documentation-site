@@ -452,7 +452,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
                   break
 
                 case 'tokenLink':
-                  componentToRender = <TokenLinkBlock />
+                  componentToRender = <TokenLinkBlock key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'twoColumn':
