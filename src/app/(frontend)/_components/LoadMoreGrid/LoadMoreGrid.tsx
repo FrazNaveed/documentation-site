@@ -11,11 +11,11 @@ export type LoadMoreGridProps = {
   limit?: number,
   excludeIds?: number[]
   // eslint-disable-next-line no-unused-vars
-  fetchFn: (limit: number, pageNumber: number, onPageIds: number[], type?: string | null) => (
+  fetchFn: (limit: number, pageNumber: number, onPageIds: number[], type?: number | null) => (
     Promise<PaginatedDocs<News> | null>
   )
   buttonText?: string
-  type?: string | null
+  type?: number | null
 }
 
 export default function LoadMoreGrid({

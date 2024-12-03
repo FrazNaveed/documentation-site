@@ -2,7 +2,7 @@ import type { MainNavigation, SecondaryNavigation } from '../MainNav/MainNav'
 
 export const mainNavData: MainNavigation = [
   {
-    title: 'Products',
+    title: 'Participate',
     subNavSections: [
       {
         _key: '1',
@@ -64,7 +64,7 @@ export const mainNavData: MainNavigation = [
     ],
   },
   {
-    title: 'Participate',
+    title: 'Products',
     subNavSections: [
       {
         _key: '3',

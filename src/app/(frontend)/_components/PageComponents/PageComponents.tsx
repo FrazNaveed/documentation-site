@@ -46,7 +46,7 @@ import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
 import { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
 import { getFeaturedEvent } from 'src/app/(frontend)/_lib/payload/eventsQueries'
-import { getNewsArchive } from 'src/app/(frontend)/_lib/payload/newsQueries'
+import { getNewsArchive, getNewsTypeBySlug } from 'src/app/(frontend)/_lib/payload/newsQueries'
 import type {
   Page,
   Person,
@@ -199,17 +199,21 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
   if (pageTemplate === 'devHub') {
     const pastEventsLimit = 3
     const newsType = 'past-events'
-    const pastEventsPosts = await getNewsArchive(pastEventsLimit, 1, [], newsType)
-    pastEventsComponent = (
-      pastEventsPosts && pastEventsPosts.docs.length > 0 && (
-        <RelatedPosts
-          header='Past Events'
-          linkText='View all past events'
-          linkUrl={`${getCollectionPath('news-types')}${newsType}`}
-          posts={pastEventsPosts.docs}
-        />
+    const newsTypeQuery = await getNewsTypeBySlug(newsType)
+    const newsTypeData = newsTypeQuery[0]
+    if (newsTypeData) {
+      const pastEventsPosts = await getNewsArchive(pastEventsLimit, 1, [], newsTypeData.id)
+      pastEventsComponent = (
+        pastEventsPosts && pastEventsPosts.docs.length > 0 && (
+          <RelatedPosts
+            header='Past Events'
+            linkText='View all past events'
+            linkUrl={`${getCollectionPath('news-types')}${newsType}`}
+            posts={pastEventsPosts.docs}
+          />
+        )
       )
-    )
+    }
   }
 
   let teamGridComponent
@@ -250,7 +254,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
 
   let relatedNewsPosts
   if (relatedNewsType && typeof relatedNewsType === 'object') {
-    relatedNewsPosts = await getNewsArchive(3, 1, [], relatedNewsType.slug)
+    relatedNewsPosts = await getNewsArchive(3, 1, [], relatedNewsType.id)
   }
 
   const pageFooterCtaSocialChannels = await getPageFooterCtaSocialChannels(lang)
