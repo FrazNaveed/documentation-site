@@ -6,7 +6,7 @@ import { array } from 'payload/shared'
 import validateTextFieldUrl from '../../_utils/validateTextFieldUrl'
 
 export const TokenLinkBlock: Block = {
-  slug: 'token-link',
+  slug: 'tokenLink',
   interfaceName: 'ITokenLinkBlock',
   dbName: 'tokenLink',
   fields: [
