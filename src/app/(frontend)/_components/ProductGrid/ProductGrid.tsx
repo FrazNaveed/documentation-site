@@ -12,7 +12,7 @@ export default function ProductGrid({ title, products }: ProductGridProps) {
     <section className={styles.productGrid}>
       <h2 className={styles.productGridTitle}>{title}</h2>
       <div className={styles.productGridWrap}>
-        {products?.map((product: Product) => <ProductGridItem {...product} />)}
+        {products?.map((product: Product) => <ProductGridItem key={product.id} {...product} />)}
       </div>
     </section>
   )
