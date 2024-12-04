@@ -188,7 +188,7 @@ export const HeroFields: Field[] = [
                 type: 'relationship',
                 relationTo: 'media',
                 admin: {
-                  width: '20%',
+                  width: '50%',
                 },
               },
               {
@@ -196,7 +196,7 @@ export const HeroFields: Field[] = [
                 label: 'Override label - defaults to "Data Providers"',
                 type: 'text',
                 admin: {
-                  width: '26%',
+                  width: '50%',
                 },
               },
               {
@@ -204,7 +204,7 @@ export const HeroFields: Field[] = [
                 label: 'Provider Count',
                 type: 'number',
                 admin: {
-                  width: '26%',
+                  width: '50%',
                 },
               },
               {
@@ -212,7 +212,7 @@ export const HeroFields: Field[] = [
                 label: 'Add optional unit',
                 type: 'text',
                 admin: {
-                  width: '26%',
+                  width: '50%',
                 },
               },
             ],
@@ -226,7 +226,7 @@ export const HeroFields: Field[] = [
                 type: 'relationship',
                 relationTo: 'media',
                 admin: {
-                  width: '20%',
+                  width: '50%',
                 },
               },
               {
@@ -234,7 +234,7 @@ export const HeroFields: Field[] = [
                 label: 'Override label - defaults to "Live Feeds"',
                 type: 'text',
                 admin: {
-                  width: '40%',
+                  width: '50%',
                 },
               },
               {
@@ -242,7 +242,7 @@ export const HeroFields: Field[] = [
                 label: 'Feed Count',
                 type: 'number',
                 admin: {
-                  width: '40%',
+                  width: '50%',
                 },
               },
             ],
@@ -256,7 +256,7 @@ export const HeroFields: Field[] = [
                 type: 'relationship',
                 relationTo: 'media',
                 admin: {
-                  width: '20%',
+                  width: '50%',
                 },
               },
               {
@@ -264,14 +264,14 @@ export const HeroFields: Field[] = [
                 label: 'Override label - defaults to "Flare Staked"',
                 type: 'text',
                 admin: {
-                  width: '26%',
+                  width: '50%',
                 },
               },
               {
                 name: 'stakeTokens',
                 type: 'number',
                 admin: {
-                  width: '26%',
+                  width: '50%',
                 },
               },
               {
@@ -279,7 +279,7 @@ export const HeroFields: Field[] = [
                 label: 'Stake Value in USD',
                 type: 'number',
                 admin: {
-                  width: '26%',
+                  width: '50%',
                 },
               },
             ],
@@ -293,7 +293,7 @@ export const HeroFields: Field[] = [
                 type: 'relationship',
                 relationTo: 'media',
                 admin: {
-                  width: '20%',
+                  width: '50%',
                 },
               },
               {
@@ -301,7 +301,7 @@ export const HeroFields: Field[] = [
                 label: 'Override label - defaults to "Average Block Time"',
                 type: 'text',
                 admin: {
-                  width: '26%',
+                  width: '50%',
                 },
               },
               {
@@ -309,7 +309,7 @@ export const HeroFields: Field[] = [
                 label: 'Average Block Time (in seconds)',
                 type: 'number',
                 admin: {
-                  width: '26%',
+                  width: '50%',
                 },
               },
               {
@@ -317,7 +317,7 @@ export const HeroFields: Field[] = [
                 label: 'Override unit - defaults to "s"',
                 type: 'text',
                 admin: {
-                  width: '26%',
+                  width: '50%',
                 },
               },
             ],
