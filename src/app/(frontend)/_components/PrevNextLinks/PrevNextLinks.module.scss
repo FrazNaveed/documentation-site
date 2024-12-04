@@ -25,6 +25,7 @@
 
   .title {
     margin: 0;
+    color: $pink-600;
 
     &::before,
     &::after {
@@ -35,7 +36,7 @@
 
   &.prev .title::before {
     margin-right: 4px;
-    content: url($svg-left-arrow-pink-700);
+    content: url($svg-left-arrow-pink-600);
   }
 
   &.next {
@@ -44,7 +45,15 @@
 
     .title::after {
       margin-left: 4px;
-      content: url($svg-right-arrow-pink-700);
+      content: url($svg-right-arrow-pink-600);
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    .title {
+      color: $pink-900;
     }
   }
 
