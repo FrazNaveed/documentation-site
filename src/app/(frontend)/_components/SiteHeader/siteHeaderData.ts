@@ -208,7 +208,7 @@ export const mainNavData: MainNavigation = [
           {
             _key: '1',
             title: 'Network configuration',
-            url: 'https://dev.flare.network/network-configuration',
+            url: 'https://dev.flare.network/network/overview#configuration',
           },
           {
             _key: '2',
