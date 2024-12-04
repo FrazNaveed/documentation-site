@@ -138,7 +138,8 @@ export default function PageHeroCentered({
   const videoMarkup = (modiferClas?: string) => (showBackgroundVideo ? (
     <div className={cx(styles.videoWrap, styles[`videoWrap__${modiferClas}`])}>
       <video className={cx(styles.video, styles[`video__${modiferClas}`])} autoPlay loop muted>
-        <source src='/en/video/home_hero_left.mp4' type='video/mp4' />
+        <source src='/en/video/home_hero.mov' type='video/mp4; codecs="hvc1"' />
+        <source src='/en/video/home_hero.webm' type='video/webm' />
       </video>
     </div>
   ) : null)
