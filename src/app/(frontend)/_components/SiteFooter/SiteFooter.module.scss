@@ -113,6 +113,16 @@
     svg {
       display: block;
     }
+
+    &:hover,
+    &:focus,
+    &:active {
+      svg {
+        path {
+          fill: $pink-600;
+        }
+      }
+    }
   }
 }
 
