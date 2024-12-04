@@ -2,6 +2,7 @@ import Image from 'next/image'
 import cx from 'classnames'
 import type { PageHeroProtocolInfo, PageHero, Media } from '@/payload-types'
 import Button from 'src/app/(frontend)/_components/Button'
+import Link from 'src/app/(frontend)/_components/Link'
 import FlareLogo from 'src/app/(frontend)/_components/svgs/FlareLogo'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
@@ -20,6 +21,10 @@ export type PageHeroCenteredProps = {
     link: string
   }
   ctaSecondary?: {
+    text: string
+    link: string
+  }
+  ctaText?: {
     text: string
     link: string
   }
@@ -57,6 +62,7 @@ export default function PageHeroCentered({
   hideEyebrow,
   cta,
   ctaSecondary,
+  ctaText,
   logo,
   text,
   protocolInfo,
@@ -82,7 +88,7 @@ export default function PageHeroCentered({
       averageBlockTime,
       averageBlockTimeUnit,
     } = protocolInfo
-    hasProtocolInfo = typeof providers === 'number' || typeof feeds === 'number' || typeof stakeTokens === 'number' || typeof stakeValue === 'number' || typeof averageBlockTime === 'number'
+    hasProtocolInfo = heroStyle === 'protocol' && (typeof providers === 'number' || typeof feeds === 'number' || typeof stakeTokens === 'number' || typeof stakeValue === 'number' || typeof averageBlockTime === 'number')
     const blockTimeUnitDisplay = averageBlockTimeUnit || 's'
     const providerUnitDisplay = providersUnit || ''
     const stakeValueFormatted = stakeValue && formatNumber(stakeValue, lang, true)
@@ -150,6 +156,7 @@ export default function PageHeroCentered({
         <div className={styles.buttons}>
           {cta && <Button text={cta.text} link={cta.link} />}
           {ctaSecondary && <Button text={ctaSecondary.text} link={ctaSecondary.link} buttonStyle='secondary' />}
+          {ctaText && <Link href={ctaText.link} className={styles.buttons_TextLink}>{ctaText.text}</Link>}
         </div>
       )}
     </>

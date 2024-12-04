@@ -1,6 +1,7 @@
 import type { Field } from 'payload'
 import { ButtonFields } from './ButtonFields'
 import countryArray from '../_utils/countryArray'
+import validateTextFieldUrl from '../_utils/validateTextFieldUrl'
 
 export const HeroFields: Field[] = [
   {
@@ -61,6 +62,33 @@ export const HeroFields: Field[] = [
         },
       },
       ...ButtonFields(true),
+      {
+        type: 'row',
+        fields: [
+          {
+            name: 'textLinkText',
+            type: 'text',
+            localized: true,
+            admin: {
+              width: '25%',
+            },
+          },
+          {
+            name: 'textLinkButton',
+            type: 'text',
+            localized: true,
+            validate: validateTextFieldUrl,
+            admin: {
+              width: '75%',
+            }
+          },
+        ],
+        admin: {
+          condition: (data, siblingData, { user }) => {
+            return siblingData.style === 'protocol' || siblingData.style === 'centered'
+          },
+        },
+      },
       {
         name: 'backgroundImage',
         type: 'relationship',

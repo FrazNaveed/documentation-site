@@ -1187,6 +1187,8 @@ export interface PageHero {
   buttonLink?: string | null;
   buttonSecondaryText?: string | null;
   buttonSecondaryLink?: string | null;
+  textLinkText?: string | null;
+  textLinkButton?: string | null;
   backgroundImage?: (number | null) | Media;
   showBackgroundVideo?: boolean | null;
   logo?: (number | null) | Media;
@@ -2574,6 +2576,8 @@ export interface PagesSelect<T extends boolean = true> {
         buttonLink?: T;
         buttonSecondaryText?: T;
         buttonSecondaryLink?: T;
+        textLinkText?: T;
+        textLinkButton?: T;
         backgroundImage?: T;
         showBackgroundVideo?: T;
         logo?: T;

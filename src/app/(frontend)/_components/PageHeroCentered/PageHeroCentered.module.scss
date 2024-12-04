@@ -152,8 +152,13 @@ $centerd-style-mobile-vertical-padding: to-rem($spacing-7x-large);
 .buttons {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
   gap: to-rem($spacing-small);
+
+  &_TextLink {
+    @include paragraphSmFont;
+  }
 }
 
 .bgImg {
