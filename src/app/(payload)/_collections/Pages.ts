@@ -2,7 +2,6 @@ import type { CollectionConfig, FieldHook } from 'payload'
 import { HeroFields } from '../_fields/HeroFields'
 import { PageFooterCTA } from '../_fields/PageFooterCTA'
 import { ColumnsBlock } from '../_blocks/ColumnsBlock'
-import { ImageBlock } from '../_blocks/ImageBlock'
 import { ImageTextGridBlock } from '../_blocks/ImageTextGridBlock'
 import { RichTextBlockWithSideNavLink } from 'src/app/(payload)/_blocks/RichTextBlockWithSideNavLink'
 import { getSiblingData } from 'payload/shared'
@@ -189,7 +188,6 @@ export const Pages: CollectionConfig = {
       type: 'blocks',
       blocks: [
         ColumnsBlock,
-        ImageBlock,
         ImageTextGridBlock,
         RichTextBlockWithSideNavLink,
         PastFeaturedGrantsGridBlock,
