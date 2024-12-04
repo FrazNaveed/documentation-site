@@ -12,6 +12,7 @@ const convertToDate = (
     short: {
       month: 'short',
       day: 'numeric',
+      year: 'numeric',
     },
   }
   const formattedDate = new Date(timestamp).toLocaleDateString(

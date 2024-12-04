@@ -3,6 +3,11 @@
 @use "../../_styles/colors" as *;
 @use "../../_styles/spacing" as *;
 
+.wrap {
+  @include container;
+  @include pageComponentSpacing;
+}
+
 .banner {
   display: flex;
   justify-content: space-between;
@@ -34,6 +39,10 @@
 
     span {
       color: $pink-700;
+    }
+
+    svg {
+      display: none;
     }
   }
 }

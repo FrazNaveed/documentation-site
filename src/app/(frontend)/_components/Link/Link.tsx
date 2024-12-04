@@ -8,6 +8,7 @@ interface LinkProps extends NextLinkProps {
   href: string
   rel?: string
   target?: string
+  className?: string
   style?: CSSProperties
 }
 

@@ -46,3 +46,5 @@ out
 build
 public/admin
 media
+*.sql
+*.gz
