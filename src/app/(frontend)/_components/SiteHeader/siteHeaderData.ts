@@ -213,12 +213,12 @@ export const mainNavData: MainNavigation = [
           {
             _key: '2',
             title: 'Run an Observer Node',
-            url: 'https://dev.flare.network/run-an-observer-node',
+            url: 'https://dev.flare.network/run-node/rpc-node',
           },
           {
             _key: '3',
             title: 'Run a Validator Node',
-            url: 'https://dev.flare.network/run-a-validator-node',
+            url: 'https://dev.flare.network/run-node/validator-node',
           },
         ],
       },
