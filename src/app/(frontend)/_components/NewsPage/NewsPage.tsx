@@ -6,6 +6,7 @@ import NewsFilter from 'src/app/(frontend)/_components/NewsFilter'
 import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
 import LoadMoreGrid from 'src/app/(frontend)/_components/LoadMoreGrid'
 import SubscriptionBannerCTA from 'src/app/(frontend)/_components/SubscriptionBannerCTA'
+import BannerCTA from '../BannerCTA'
 import styles from './NewsPage.module.scss'
 
 type NewsPageProps = {
@@ -70,13 +71,21 @@ export default async function NewsPage({ typeSlug, typeId }: NewsPageProps) {
       <div className={styles.featuredTeaserGrid}>
         <TeaserGrid teasers={featuredNews.slice(1, 4)} gridStyle='wide' />
       </div>
-      <SubscriptionBannerCTA />
+      <BannerCTA
+        header='[dev.sessions]'
+        text='Q+A  / Every Wednesday / 3pm UTC'
+        button={{
+          text: 'Join our Discord',
+          link: 'https://discord.com/invite/flarenetwork',
+        }}
+      />
       {news?.docs && (
         <div className={styles.teaserGrid}>
           <TeaserGrid teasers={news.docs} />
         </div>
       )}
       {hasNextPage && <LoadMoreGrid fetchFn={getNewsArchive} excludeIds={allFetchedIds} type={typeId} />}
+      <SubscriptionBannerCTA />
     </div>
   )
 }
