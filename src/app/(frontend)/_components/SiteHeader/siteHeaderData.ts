@@ -75,7 +75,7 @@ export const mainNavData: MainNavigation = [
             _key: '1',
             title: 'FAssets',
             url: '/products/fassets',
-            description: 'Lorem ipsum dolor sit',
+            description: 'Get your FAssets',
             icon: 'fassets',
           },
         ],
