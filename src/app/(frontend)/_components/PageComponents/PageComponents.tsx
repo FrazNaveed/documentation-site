@@ -95,6 +95,8 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
       buttonLink,
       buttonSecondaryText,
       buttonSecondaryLink,
+      textLinkText,
+      textLinkButton,
       backgroundImage,
       showBackgroundVideo,
       grantsInfo,
@@ -105,6 +107,9 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
     const heroCtaProps = (buttonText && buttonLink) ? { cta: { text: buttonText, link: buttonLink } } : {}
     const heroCtaSecondaryProps = (buttonSecondaryText && buttonSecondaryLink)
       ? { ctaSecondary: { text: buttonSecondaryText, link: buttonSecondaryLink } }
+      : {}
+    const heroCtaTextProps = (textLinkText && textLinkButton)
+      ? { ctaText: { text: textLinkText, link: textLinkButton } }
       : {}
     const heroBackgroundImageProps = (backgroundImage && typeof backgroundImage === 'object') ? { backgroundImage } : {}
     if (featuredEvent) {
@@ -123,6 +128,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
           hideEyebrow={hideEyebrow}
           {...heroCtaProps}
           {...heroCtaSecondaryProps}
+          {...heroCtaTextProps}
           {...heroBackgroundImageProps}
           showBackgroundVideo={showBackgroundVideo}
           logo={heroLogo}

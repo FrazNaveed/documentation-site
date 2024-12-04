@@ -152,8 +152,13 @@ $centerd-style-mobile-vertical-padding: to-rem($spacing-7x-large);
 .buttons {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
   gap: to-rem($spacing-small);
+
+  &_TextLink {
+    @include paragraphSmFont;
+  }
 }
 
 .bgImg {
@@ -303,7 +308,20 @@ $centerd-style-mobile-vertical-padding: to-rem($spacing-7x-large);
   &_SectionLabel {
     @include labelS;
 
+    display: flex;
+    align-items: center;
     margin-bottom: to-rem(4px);
+    gap: $spacing-x-small;
+  }
+
+  &_SectionLabelIcon {
+    flex-shrink: 0;
+    width: 21px;
+    height: auto;
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
   }
 
   &_Data {
