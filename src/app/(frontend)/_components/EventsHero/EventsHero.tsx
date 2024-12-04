@@ -6,7 +6,7 @@ import EventsLocation from 'src/app/(frontend)/_components/EventsLocation'
 import type { Event, Media } from '@/payload-types'
 import convertTimestampToMilitaryTime from 'src/app/(frontend)/_utils/convertTimestampToMilitaryTime'
 import getDateTimeLocale from 'src/app/(frontend)/_utils/getDateTimeLocale'
-import type { TLocales } from 'src/app/(frontend)/_utils/getDateTimeLocale'
+import type { TLocales } from 'src/app/(frontend)/_types/locales'
 import styles from './EventsHero.module.scss'
 
 export type EventsHeroProps = {

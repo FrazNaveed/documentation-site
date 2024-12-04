@@ -1,4 +1,4 @@
-export type TLocales = 'en' | 'es' | 'de'
+import type { TLocales } from '../_types/locales'
 
 const getDateTimeLocale = (
   locale: TLocales = 'en',
