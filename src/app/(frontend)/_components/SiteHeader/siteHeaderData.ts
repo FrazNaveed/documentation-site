@@ -8,11 +8,11 @@ export const mainNavData: MainNavigation = [
         _key: '1',
         title: 'Learning Center',
         links: [
-          {
-            _key: '1',
-            title: 'Learn About Flare',
-            url: '/learn-about-flare',
-          },
+          // {
+          //   _key: '1',
+          //   title: 'Learn About Flare',
+          //   url: '/learn-about-flare',
+          // },
           {
             _key: '2',
             title: 'Wallets',
