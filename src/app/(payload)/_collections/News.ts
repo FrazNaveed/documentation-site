@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
 import { richTextFieldCustomized } from '../_fields/RichText'
+import validateSlug from '../_utils/validateSlug'
 import { Video } from '../_blocks/VideoBlock'
 
 export const News: CollectionConfig = {
@@ -31,6 +32,7 @@ export const News: CollectionConfig = {
       type:'text',
       required: true,
       unique: true,
+      validate: validateSlug,
       admin: {
         description: slugAdminConfig.description,
       },

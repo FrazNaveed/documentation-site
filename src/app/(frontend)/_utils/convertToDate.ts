@@ -1,5 +1,5 @@
 import getDateTimeLocale from './getDateTimeLocale'
-import type { TLocales } from './getDateTimeLocale'
+import type { TLocales } from '../_types/locales'
 
 export type TDateFormat = 'short'
 

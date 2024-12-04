@@ -1124,7 +1124,6 @@ export interface Page {
   components?:
     | (
         | Columns
-        | Image
         | ImageTextGridBlock
         | RichTextBlock
         | PastFeaturedGrantsGridBlock
@@ -1373,21 +1372,6 @@ export interface RichText {
   id?: string | null;
   blockName?: string | null;
   blockType: 'richText';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Image".
- */
-export interface Image {
-  image?: (number | null) | Media;
-  createSideNavLink?: boolean | null;
-  linkText?: string | null;
-  blockMarginSettings?: boolean | null;
-  standardTopMargin?: boolean | null;
-  standardBottomMargin?: boolean | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'image';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2695,18 +2679,6 @@ export interface PagesSelect<T extends boolean = true> {
                           blockName?: T;
                         };
                   };
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        image?:
-          | T
-          | {
-              image?: T;
               createSideNavLink?: T;
               linkText?: T;
               blockMarginSettings?: T;
