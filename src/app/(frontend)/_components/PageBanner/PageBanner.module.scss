@@ -6,6 +6,10 @@
 .pageBanner {
   @include container;
 
+  margin-top: to-rem(-1px);
+  border-top: 1px solid $gray-100;
+  box-sizing: border-box;
+
   &Content {
     padding: to-rem($spacing-small) 0;
 
