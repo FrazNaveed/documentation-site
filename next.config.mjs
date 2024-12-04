@@ -9,7 +9,14 @@ const bundleAnalyzer = withBundleAnalyzer({
 const nextConfig = {
   output: 'standalone',
   sassOptions: {
-    silenceDeprecations: ['mixed-decls', 'legacy-js-api'],
+    silenceDeprecations: [
+      'mixed-decls',
+      'legacy-js-api',
+      'import',
+      'global-builtin',
+      'slash-div',
+      'color-functions',
+    ],
   },
   headers: async () => [
     {
