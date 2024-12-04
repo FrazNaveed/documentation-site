@@ -3,7 +3,7 @@ import { getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import type { Locale } from 'src/app/i18n-config'
 import PageComponents from 'src/app/(frontend)/_components/PageComponents'
 import buildMetadata from 'src/app/(frontend)/_utils/buildMetadata'
-import { homePageSlug } from '../page'
+import { HOME_PAGE_SLUG } from 'src/app/(frontend)/_constants'
 
 export const dynamic = 'force-dynamic'
 
@@ -17,7 +17,7 @@ type PageProps = {
 async function getPageData(slug: string[], lang: Locale) {
   const slugString = slug.join('/')
   // Using page with 'home' slug for home page
-  if (slugString === homePageSlug) {
+  if (slugString === HOME_PAGE_SLUG) {
     notFound()
   }
   const page = await getPageBySlug(slugString, lang)
