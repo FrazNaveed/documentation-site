@@ -66,54 +66,73 @@ export default function PageHeroCentered({
   let protocolMarkup
   if (protocolInfo) {
     const {
+      providersLabelIcon,
+      providersLabelOverride,
       providers,
+      providersUnit,
+      feedsLabelIcon,
+      feedsLabelOverride,
       feeds,
+      tokensLabelIcon,
+      tokensLabelOverride,
       stakeTokens,
       stakeValue,
+      averageBlockTimeLabelIcon,
+      averageBlockTimeLabelOverride,
       averageBlockTime,
+      averageBlockTimeUnit,
     } = protocolInfo
     hasProtocolInfo = typeof providers === 'number' || typeof feeds === 'number' || typeof stakeTokens === 'number' || typeof stakeValue === 'number' || typeof averageBlockTime === 'number'
+    const blockTimeUnitDisplay = averageBlockTimeUnit || 's'
+    const providerUnitDisplay = providersUnit || ''
+    const stakeValueFormatted = stakeValue && formatNumber(stakeValue, lang, true)
+    const getLabelMarkup = (label?: string | null, defaultLabel?: string, icon?: number | Media | null) => (
+      <p className={styles.protocol_SectionLabel}>
+        {icon && typeof icon === 'object' && icon.url && (
+          <Image
+            className={styles.protocol_SectionLabelIcon}
+            src={icon.url}
+            width={icon.width ?? 0}
+            height={icon.height ?? 0}
+            alt={icon.alt}
+          />
+        )}
+        {label || defaultLabel}
+      </p>
+    )
     protocolMarkup = (
       <>
         {providers && (
           <div className={styles.protocol_Section}>
-            <p className={styles.protocol_SectionLabel}>
-              Data Providers
-            </p>
-            <p className={styles.protocol_Data}>{providers}</p>
+            {getLabelMarkup(providersLabelOverride, 'Data Providers', providersLabelIcon)}
+            <p className={styles.protocol_Data}>{`${providers}${providerUnitDisplay}`}</p>
           </div>
         )}
         {feeds && (
           <div className={styles.protocol_Section}>
-            <p className={styles.protocol_SectionLabel}>
-              Live Feeds
-            </p>
-            <p className={styles.protocol_Data}>{feeds}</p>
+            {getLabelMarkup(feedsLabelOverride, 'Live Feeds', feedsLabelIcon)}
+            <p className={styles.protocol_Data}>{formatNumber(feeds, lang)}</p>
           </div>
         )}
         {(stakeTokens || stakeValue) && (
           <div className={cx(styles.protocol_Section, styles.protocol_Section__noShrink)}>
-            <p className={styles.protocol_SectionLabel}>
-              Flare Staked
-            </p>
+            {getLabelMarkup(tokensLabelOverride, 'Flare Staked', tokensLabelIcon)}
             <p className={styles.protocol_Data}>
               <span className={cx(styles.protocol_DataSpan, styles.protocol_DataSpan__dt)}>
                 <FlareLogo className={styles.protocol_DataLogo} />
                 {stakeTokens && `${formatNumber(stakeTokens, lang)} `}
-                {stakeValue && `(${formatNumber(stakeValue, lang, true)})`}
+                {(stakeValue && stakeTokens) ? `(${stakeValueFormatted})` : stakeValueFormatted}
               </span>
               <span className={styles.protocol_DataSpan__mobile}>
-                {stakeValue && formatNumber(stakeValue, lang, true)}
+                {stakeValue && stakeValueFormatted}
               </span>
             </p>
           </div>
         )}
         {averageBlockTime && (
           <div className={styles.protocol_Section}>
-            <p className={styles.protocol_SectionLabel}>
-              Average Block Time
-            </p>
-            <p className={styles.protocol_Data}>{`${averageBlockTime}s`}</p>
+            {getLabelMarkup(averageBlockTimeLabelOverride, 'Average Block Time', averageBlockTimeLabelIcon)}
+            <p className={styles.protocol_Data}>{`${averageBlockTime}${blockTimeUnitDisplay}`}</p>
           </div>
         )}
       </>

@@ -1222,11 +1222,21 @@ export interface PageHeroGrantsInfo {
  * via the `definition` "PageHeroProtocolInfo".
  */
 export interface PageHeroProtocolInfo {
+  providersLabelIcon?: (number | null) | Media;
+  providersLabelOverride?: string | null;
   providers?: number | null;
+  providersUnit?: string | null;
+  feedsLabelIcon?: (number | null) | Media;
+  feedsLabelOverride?: string | null;
   feeds?: number | null;
+  tokensLabelIcon?: (number | null) | Media;
+  tokensLabelOverride?: string | null;
   stakeTokens?: number | null;
   stakeValue?: number | null;
+  averageBlockTimeLabelIcon?: (number | null) | Media;
+  averageBlockTimeLabelOverride?: string | null;
   averageBlockTime?: number | null;
+  averageBlockTimeUnit?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2589,11 +2599,21 @@ export interface PagesSelect<T extends boolean = true> {
         protocolInfo?:
           | T
           | {
+              providersLabelIcon?: T;
+              providersLabelOverride?: T;
               providers?: T;
+              providersUnit?: T;
+              feedsLabelIcon?: T;
+              feedsLabelOverride?: T;
               feeds?: T;
+              tokensLabelIcon?: T;
+              tokensLabelOverride?: T;
               stakeTokens?: T;
               stakeValue?: T;
+              averageBlockTimeLabelIcon?: T;
+              averageBlockTimeLabelOverride?: T;
               averageBlockTime?: T;
+              averageBlockTimeUnit?: T;
             };
       };
   hideHero?: T;

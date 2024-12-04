@@ -152,28 +152,147 @@ export const HeroFields: Field[] = [
         type: 'group',
         fields: [
           {
-            name: 'providers',
-            label: 'Provider Count',
-            type: 'number',
+            type: 'row',
+            fields: [
+              {
+                name: 'providersLabelIcon',
+                label: 'Label Icon (optional)',
+                type: 'relationship',
+                relationTo: 'media',
+                admin: {
+                  width: '20%',
+                },
+              },
+              {
+                name: 'providersLabelOverride',
+                label: 'Override label - defaults to "Data Providers"',
+                type: 'text',
+                admin: {
+                  width: '26%',
+                },
+              },
+              {
+                name: 'providers',
+                label: 'Provider Count',
+                type: 'number',
+                admin: {
+                  width: '26%',
+                },
+              },
+              {
+                name: 'providersUnit',
+                label: 'Add optional unit',
+                type: 'text',
+                admin: {
+                  width: '26%',
+                },
+              },
+            ],
           },
           {
-            name: 'feeds',
-            label: 'Feed Count',
-            type: 'number',
+            type: 'row',
+            fields: [
+              {
+                name: 'feedsLabelIcon',
+                label: 'Label Icon (optional)',
+                type: 'relationship',
+                relationTo: 'media',
+                admin: {
+                  width: '20%',
+                },
+              },
+              {
+                name: 'feedsLabelOverride',
+                label: 'Override label - defaults to "Live Feeds"',
+                type: 'text',
+                admin: {
+                  width: '40%',
+                },
+              },
+              {
+                name: 'feeds',
+                label: 'Feed Count',
+                type: 'number',
+                admin: {
+                  width: '40%',
+                },
+              },
+            ],
           },
           {
-            name: 'stakeTokens',
-            type: 'number',
+            type: 'row',
+            fields: [
+              {
+                name: 'tokensLabelIcon',
+                label: 'Label Icon (optional)',
+                type: 'relationship',
+                relationTo: 'media',
+                admin: {
+                  width: '20%',
+                },
+              },
+              {
+                name: 'tokensLabelOverride',
+                label: 'Override label - defaults to "Flare Staked"',
+                type: 'text',
+                admin: {
+                  width: '26%',
+                },
+              },
+              {
+                name: 'stakeTokens',
+                type: 'number',
+                admin: {
+                  width: '26%',
+                },
+              },
+              {
+                name: 'stakeValue',
+                label: 'Stake Value in USD',
+                type: 'number',
+                admin: {
+                  width: '26%',
+                },
+              },
+            ],
           },
           {
-            name: 'stakeValue',
-            label: 'Stake Value in USD',
-            type: 'number',
-          },
-          {
-            name: 'averageBlockTime',
-            label: 'Average Block Time (in seconds)',
-            type: 'number',
+            type: 'row',
+            fields: [
+              {
+                name: 'averageBlockTimeLabelIcon',
+                label: 'Label Icon (optional)',
+                type: 'relationship',
+                relationTo: 'media',
+                admin: {
+                  width: '20%',
+                },
+              },
+              {
+                name: 'averageBlockTimeLabelOverride',
+                label: 'Override label - defaults to "Average Block Time"',
+                type: 'text',
+                admin: {
+                  width: '26%',
+                },
+              },
+              {
+                name: 'averageBlockTime',
+                label: 'Average Block Time (in seconds)',
+                type: 'number',
+                admin: {
+                  width: '26%',
+                },
+              },
+              {
+                name: 'averageBlockTimeUnit',
+                label: 'Override unit - defaults to "s"',
+                type: 'text',
+                admin: {
+                  width: '26%',
+                },
+              },
+            ],
           },
         ],
         admin: {
