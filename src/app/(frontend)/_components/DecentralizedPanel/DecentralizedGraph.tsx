@@ -112,7 +112,7 @@ export default function DecentralizedGraph() {
           className={cx(styles.highlight, styles.dataLine, {
             [styles.draw]: isDrawing,
           })}
-          d='M1394.5 91L944.589 184.106L498.67 330.556C496.906 331.136 495.1 331.578 493.267 331.878L49.7836 404.664C48.145 404.933 46.5409 405.381 45 406V406'
+          d='M45 406C46.5409 405.381 48.145 404.933 49.7836 404.664L493.267 331.878C495.1 331.578 496.906 331.136 498.67 330.556L944.589 184.106L1394.5 91'
           stroke='#FD6F8C'
           strokeWidth='4'
         />
