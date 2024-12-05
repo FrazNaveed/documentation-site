@@ -6,7 +6,6 @@ import * as flags from 'country-flag-icons/react/3x2'
 import type { Grant } from '@/payload-types'
 import Image from 'next/image'
 import ExternalLink from '../ExternalLink'
-import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import styles from './PastFeaturedGrantsGridBlock.module.scss'
 import LexicalRenderer from '../LexicalRenderer'
 
@@ -63,7 +62,7 @@ export default function PastFeaturedGrantsGridBlock({
                 </div>
               )}
               <div className={styles.grantDescription}>
-                {description && <LexicalRenderer content={description as PayloadLexicalReactRendererContent} />}
+                {description && <LexicalRenderer content={description} />}
               </div>
               <div className={styles.grantFooter}>
                 <div className={styles.grantFooterTags}>

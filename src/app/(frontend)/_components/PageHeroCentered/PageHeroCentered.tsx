@@ -5,7 +5,6 @@ import Button from 'src/app/(frontend)/_components/Button'
 import Link from 'src/app/(frontend)/_components/Link'
 import FlareLogo from 'src/app/(frontend)/_components/svgs/FlareLogo'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
-import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import type { Locale } from 'src/app/i18n-config'
 import styles from './PageHeroCentered.module.scss'
 
@@ -149,7 +148,7 @@ export default function PageHeroCentered({
       {header && <h1 className={styles.header}>{header}</h1>}
       {text && (
         <div className={styles.text}>
-          <LexicalRenderer content={text as PayloadLexicalReactRendererContent} />
+          <LexicalRenderer content={text} />
         </div>
       )}
       {(cta || ctaSecondary) && (

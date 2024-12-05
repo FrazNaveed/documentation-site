@@ -1,7 +1,6 @@
 import cx from 'classnames'
 import type { IStepsBlock } from '@/payload-types'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
-import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import styles from './StepsBlock.module.scss'
 
 export type StepsBlockProps = IStepsBlock & {
@@ -26,7 +25,7 @@ export default function StepsBlock({
                   </h3>
                   {description && (
                     <div className={styles.step_Descrip}>
-                      <LexicalRenderer content={description as PayloadLexicalReactRendererContent} />
+                      <LexicalRenderer content={description} />
                     </div>
                   )}
                 </div>

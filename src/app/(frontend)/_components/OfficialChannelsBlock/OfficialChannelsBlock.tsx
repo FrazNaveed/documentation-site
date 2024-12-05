@@ -1,6 +1,5 @@
 import cx from 'classnames'
 import type { OfficialChannelsBlock as OCBlock } from '@/payload-types'
-import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import { getGlobalSocialChannels } from '../../_lib/payload/pageQueries'
 import filterAndOrderSocialChannels, { IGlobalSocialChannels } from '../../_utils/filterAndOrderSocialChannels'
 import OfficialChannelsIcon from '../OfficialChannelsIcon'
@@ -28,7 +27,7 @@ export default async function OfficialChannelsBlock({
       {text
         && (
           <div className={styles.text}>
-            <LexicalRenderer content={text as PayloadLexicalReactRendererContent} />
+            <LexicalRenderer content={text} />
           </div>
         )}
       <div className={styles.channels} role='list'>

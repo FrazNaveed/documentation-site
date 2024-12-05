@@ -1,6 +1,5 @@
 import cx from 'classnames'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
-import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import type { RichText as IRichText } from 'payload-types'
 import styles from './RichTextBlock.module.scss'
 
@@ -16,7 +15,7 @@ export default function RichTextBlock({ richText, className }: RichTextBlockProp
   return (
     <div className={cx(styles.wrap, className)}>
       <div className={styles.cols}>
-        <LexicalRenderer content={richText as PayloadLexicalReactRendererContent} />
+        <LexicalRenderer content={richText} />
       </div>
     </div>
   )

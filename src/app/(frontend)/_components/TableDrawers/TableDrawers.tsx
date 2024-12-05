@@ -3,7 +3,6 @@
 import { Fragment, useState } from 'react'
 import { TableWithDrawers } from '@/payload-types'
 import cx from 'classnames'
-import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import LexicalRenderer from '../LexicalRenderer'
 import styles from './TableDrawers.module.scss'
 
@@ -91,11 +90,11 @@ export default function TableDrawers({ data, className }: TableWithDrawersProps)
                 </div>
                 <div className={cx(styles.cell)}>
                   <h3 className={cx(styles.sectionHeader, styles.hideOnTable)}>{column1Header}</h3>
-                  <LexicalRenderer content={column1Data as PayloadLexicalReactRendererContent} />
+                  <LexicalRenderer content={column1Data} />
                 </div>
                 <div className={cx(styles.cell)}>
                   <h3 className={cx(styles.sectionHeader, styles.hideOnTable)}>{column2Header}</h3>
-                  <LexicalRenderer content={column2Data as PayloadLexicalReactRendererContent} />
+                  <LexicalRenderer content={column2Data} />
                 </div>
               </div>
             ))}

@@ -44,7 +44,6 @@ import TwoColumnBlock from 'src/app/(frontend)/_components/TwoColumnBlock'
 import TwoColumnCtaBlock from 'src/app/(frontend)/_components/TwoColumnCtaBlock/TwoColumnCtaBlock'
 import VideoBlock from 'src/app/(frontend)/_components/VideoBlock'
 import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
-import { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
 import { getFeaturedEvent } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import { getNewsArchive, getNewsTypeBySlug } from 'src/app/(frontend)/_lib/payload/newsQueries'
@@ -248,7 +247,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
         wallets,
       } = walletsGrid
       const walletsGridProps = {
-        intro: walletsGridIntro as PayloadLexicalReactRendererContent,
+        intro: walletsGridIntro,
         wallets: (wallets || []).filter((wallet): wallet is Wallet => typeof wallet === 'object'),
       }
       walletsGridComponent = (

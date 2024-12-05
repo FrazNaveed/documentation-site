@@ -8,7 +8,7 @@ import throttle from 'lodash.throttle'
 import cx from 'classnames'
 import useIsBelowBreakpoint from 'src/app/(frontend)/_hooks/useIsBelowBreakpoint'
 import ExternalLink from '../ExternalLink'
-import SearchButton from './components/SearchButton'
+// import SearchButton from './components/SearchButton'
 import CaretDropdown from '../svgs/CaretDropdown'
 import Connector from '../svgs/Connector'
 import FAssets from '../svgs/FAssets'
@@ -171,7 +171,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
   return (
     <>
       <span className={styles.buttonsWrap}>
-        <SearchButton className={styles.searchButton__hideDesktop} />
+        {/* <SearchButton className={styles.searchButton__hideDesktop} /> */}
         <button
           className={cx(styles.mobileToggle, { [styles.mobileToggle__open]: mobileNavIsOpen })}
           onClick={toggleMobileNav}
@@ -326,7 +326,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
                   )
                 })}
               </ul>
-              <SearchButton className={styles.searchButton__hideMobile} />
+              {/* <SearchButton className={styles.searchButton__hideMobile} /> */}
             </>
           )}
           {secondaryNavData?.length && (
