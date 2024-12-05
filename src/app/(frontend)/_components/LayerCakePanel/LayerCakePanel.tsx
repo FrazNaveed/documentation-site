@@ -75,12 +75,15 @@ export default function LayerCakePanel({
         </div>
       </aside>
       <div className={cx(styles.layersWrap, styles.column__main, { [styles.animate]: isAnimating })}>
+        <div className={cx(styles.layer, styles.layer__bottomShadow)} />
         <div className={cx(styles.layer, styles.layer__bottom)}>
           <Image src={bottom} alt='bottom' />
         </div>
+        <div className={cx(styles.layer, styles.layer__middleShadow)} />
         <div className={cx(styles.layer, styles.layer__middle)}>
           <Image src={middle} alt='middle' />
         </div>
+        <div className={cx(styles.layer, styles.layer__topShadow)} />
         <div className={cx(styles.layer, styles.layer__top)}>
           <Image src={top} alt='top' />
         </div>

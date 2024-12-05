@@ -189,29 +189,59 @@
 
     &__top {
       top: 0;
+
+      &Shadow {
+        top: 23%;
+        left: 1%;
+        width: 98%;
+        height: 32%;
+        border-radius: 50%;
+        box-shadow: 0 10px 83.3px 0 #ff779c;
+      }
     }
 
     &__middle {
-      top: 32%;
+      top: 50%;
+
+      &Shadow {
+        top: 57%;
+        left: 1%;
+        width: 98%;
+        height: 28%;
+        border-radius: 50%;
+        box-shadow: 0 10px 83.3px 0 #ff779c;
+      }
     }
 
     &__bottom {
-      top: 40%;
+      top: 75%;
+
+      &Shadow {
+        top: 86%;
+        left: 1%;
+        width: 98%;
+        height: 30%;
+        border-radius: 50%;
+        box-shadow: 0 10px 83.3px 0 #ff779c;
+      }
     }
   }
   @include media-breakpoint-up(md) {
     &.animate {
       .layer {
-        &__top {
+        &__top,
+        &__topShadow {
           animation: fade-in-up 600ms ease-in-out forwards;
         }
 
-        &__middle {
+        &__middle,
+        &__middleShadow {
           animation: fade-in-up 800ms ease-in-out forwards;
           animation-delay: 500ms;
         }
 
-        &__bottom {
+        &__bottom,
+        &__bottomShadow {
           animation: fade-in-up 1000ms ease-in-out forwards;
           animation-delay: 1000ms;
         }
