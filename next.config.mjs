@@ -51,7 +51,7 @@ const nextConfig = {
       ],
     },
     {
-      source: '/admin/(.*)',
+      source: '/admin(.*)',
       headers: [
         { key: 'Content-Security-Policy', value: '' },
         { key: 'Strict-Transport-Security', value: '' },
