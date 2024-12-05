@@ -4,6 +4,21 @@
 @use "../../_styles/spacing" as *;
 @use "../../_styles/transitions" as *;
 
+.label {
+  transition: fill $transition-snappy;
+  fill: $black;
+}
+
+.ring {
+  transition: fill $transition-snappy;
+  fill: $pink-600;
+
+  &_light {
+    transition: fill $transition-snappy;
+    fill: $pink-50;
+  }
+}
+
 .wrap {
   @include fullWidthBreakout;
 
@@ -13,6 +28,18 @@
 
   &:hover {
     background-color: $pink-600;
+
+    .label {
+      fill: $white;
+    }
+
+    .ring {
+      fill: $pink-100;
+
+      &_light {
+        fill: $pink-400;
+      }
+    }
   }
 }
 
