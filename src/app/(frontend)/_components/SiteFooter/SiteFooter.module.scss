@@ -124,6 +124,22 @@
       }
     }
   }
+
+  &X {
+    &:hover,
+    &:focus,
+    &:active {
+      svg {
+        rect {
+          fill: $pink-600;
+        }
+
+        path {
+          fill: $white;
+        }
+      }
+    }
+  }
 }
 
 .secondaryNav {
