@@ -1,7 +1,6 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
-// import throttle from 'lodash.throttle'
 import styles from './FastPanel.module.scss'
 
 export default function FastVideo({ videoSrc, mobileVideoSrc }: { videoSrc: string; mobileVideoSrc?: string }) {
