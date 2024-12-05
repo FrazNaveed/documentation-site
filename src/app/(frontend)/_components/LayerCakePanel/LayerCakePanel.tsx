@@ -20,6 +20,7 @@ export default function LayerCakePanel({
 }: LayerCakeProps) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false)
 
   useEffect(() => {
     const observerOptions = {
@@ -31,8 +32,6 @@ export default function LayerCakePanel({
       entries.forEach((entry) => {
         if (entry.intersectionRatio >= 0.75 && entry.isIntersecting) {
           setIsAnimating(true)
-        } else if (entry.intersectionRatio === 0 && !entry.isIntersecting) {
-          setIsAnimating(false)
         }
       })
     }
@@ -56,7 +55,11 @@ export default function LayerCakePanel({
       <div className={styles.logoWrap}>
         <FlareMarkOnly />
       </div>
-      <aside className={styles.column__primary}>
+      <aside
+        className={styles.column__primary}
+        onMouseEnter={() => setIsExpanded(true)}
+        onMouseLeave={() => setIsExpanded(false)}
+      >
         {primaryColumnLabel && <h3 className={styles.label}>{primaryColumnLabel}</h3>}
         <div className={cx(styles.textLayers, { [styles.animate]: isAnimating })}>
           {layers?.map((layer, index) => {
@@ -74,7 +77,13 @@ export default function LayerCakePanel({
           })}
         </div>
       </aside>
-      <div className={cx(styles.layersWrap, styles.column__main, { [styles.animate]: isAnimating })}>
+      <div
+        className={cx(
+          styles.layersWrap,
+          styles.column__main,
+          { [styles.animate]: isAnimating, [styles.expanded]: isExpanded },
+        )}
+      >
         <div className={cx(styles.layer, styles.layer__bottomShadow)} />
         <div className={cx(styles.layer, styles.layer__bottom)}>
           <Image src={bottom} alt='bottom' />
