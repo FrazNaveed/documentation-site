@@ -15,7 +15,6 @@ import type { CollectionPathContentTypes } from '../../_utils/getCollectionPath'
 import styles from './LexicalRenderer.module.scss'
 
 const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => {
-  console.log('defaultConverters: ', defaultConverters)
   return {
     ...defaultConverters,
     autolink: ({ node, nodesToJSX }) => {
