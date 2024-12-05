@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import cx from 'classnames'
 import { navData, secondaryNavLabel, secondaryNavData } from './siteFooterData'
 import ExternalLink from '../ExternalLink'
 import FooterLogoTagline from '../svgs/FooterLogoTagline'
@@ -50,7 +51,11 @@ export default async function SiteFooter() {
           <ul className={styles.socialIcons}>
             {socialLinks.map(({ href, label, Icon }) => (
               <li key={label} className={styles.socialIcons_Item}>
-                <Link href={href} className={styles.socialIcons_Link} aria-label={label}>
+                <Link
+                  href={href}
+                  className={cx(styles.socialIcons_Link, styles[`socialIcons${label}`])}
+                  aria-label={label}
+                >
                   <Icon />
                 </Link>
               </li>
