@@ -2,7 +2,6 @@ import cx from 'classnames'
 import type { TwoColumns } from '@/payload-types'
 import Image from 'next/image'
 import LexicalRenderer from '../LexicalRenderer'
-import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import styles from './TwoColumnBlock.module.scss'
 
 export type TwoColumnsProps = TwoColumns & {
@@ -67,8 +66,8 @@ export default function TwoColumnBlock({
                 />
               </div>
               )}
-            {column.contentType === 'text'
-              && <LexicalRenderer content={column.text as PayloadLexicalReactRendererContent} />}
+            {column.contentType === 'text' && column.text
+              && <LexicalRenderer content={column.text} />}
           </div>
         )
       })}

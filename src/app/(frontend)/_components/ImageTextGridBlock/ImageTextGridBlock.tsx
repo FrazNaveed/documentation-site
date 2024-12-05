@@ -3,7 +3,6 @@ import Image from 'next/image'
 import type { ImageTextCards } from '@/payload-types'
 import LexicalRenderer from '../LexicalRenderer'
 import styles from './ImageTextGridBlock.module.scss'
-import { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 
 export type ImageTextGridBlockProps = {
   imageTextGridTitle?: string | null
@@ -39,7 +38,7 @@ export default function ImageTextGridBlock({
                 </div>
                 )}
                 {cardHeader && <h3 className={styles.imageTextGridCardHeader}>{cardHeader}</h3>}
-                {cardText && <LexicalRenderer content={cardText as PayloadLexicalReactRendererContent} />}
+                {cardText && <LexicalRenderer content={cardText} />}
               </li>
               )
             )

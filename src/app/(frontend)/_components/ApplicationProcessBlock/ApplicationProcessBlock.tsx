@@ -1,7 +1,6 @@
 import cx from 'classnames'
 import type { ApplicationProcess } from '@/payload-types'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
-import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import styles from './ApplicationProcessBlock.module.scss'
 
 export type ApplicationProcessProps = ApplicationProcess & {
@@ -34,7 +33,7 @@ export default function ApplicationProcessBlock({
           </h3>
           {description && (
             <div className={styles.step_Descrip}>
-              <LexicalRenderer content={description as PayloadLexicalReactRendererContent} />
+              <LexicalRenderer content={description} />
             </div>
           )}
         </div>

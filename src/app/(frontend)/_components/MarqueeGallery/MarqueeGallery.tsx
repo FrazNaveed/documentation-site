@@ -10,7 +10,6 @@ import { getFeaturedEvent, getEventGlobalSettings } from 'src/app/(frontend)/_li
 import { getGlobalSocialChannels, getPageBySlug } from 'src/app/(frontend)/_lib/payload/pageQueries'
 import type { IMarqueeGallery } from '@/payload-types'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
-import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
 import isValidSocialSlotInMarquee from 'src/app/(frontend)/_utils/isValidSocialSlotInMarquee'
 import MarqueeGallerySection from './MarqueeGallerySection'
@@ -161,7 +160,7 @@ export default async function MarqueeGallery({
                     },
                   )}
                 >
-                  <LexicalRenderer content={textOverlay as PayloadLexicalReactRendererContent} />
+                  <LexicalRenderer content={textOverlay} />
                 </div>
               )}
             </figcaption>

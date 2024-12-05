@@ -1,533 +1,131 @@
 /* eslint-disable */
-// Modified from https://www.npmjs.com/package/@atelier-disko/payload-lexical-react-renderer
-import React, { CSSProperties } from 'react'
+import {
+  type JSXConvertersFunction,
+  RichText,
+} from '@payloadcms/richtext-lexical/react'
+import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+import type { FileData, FileSize, TypeWithID } from 'payload'
 import Image from 'next/image'
+import type { Media, News, Page, Subheader } from 'payload-types'
 import cx from 'classnames'
-import type { News, Page } from '@/payload-types'
-import Link from '../../_components/Link'
-import VideoEmbed from '../../_components/VideoEmbed'
+import Link from '../Link'
+import VideoEmbed from '../VideoEmbed'
 import getCollectionPath from '../../_utils/getCollectionPath'
 import type { CollectionPathContentTypes } from '../../_utils/getCollectionPath'
 import styles from './LexicalRenderer.module.scss'
 
-export type AbstractNode<Type extends string> = {
-    format?: '' | 'start' | 'center' | 'right' | 'justify' | number;
-    type: Type;
-    version: number;
-};
-
-export type AbstractElementNode<Type extends string> = {
-    direction: 'ltr' | 'rtl' | null;
-    indent: number;
-} & AbstractNode<Type>;
-
-export type AbstractTextNode<Type extends string> = {
-    detail: number; // what is this
-    format: '' | number;
-    mode: 'normal'; // what is this
-    style: string;
-    text: string;
-} & AbstractNode<Type>;
-
-export type BlockNode<
-    BlockData extends Record<string, unknown>,
-    BlockType extends string,
-> = {
-    fields: {
-        id: string;
-        blockName: string;
-        blockType: BlockType;
-    } & BlockData;
-} & AbstractElementNode<'block'>;
-
-type UnknownBlockNode = {
-    fields: {
-        id: string;
-        blockName: string;
-        blockType: string;
-        [key: string]: unknown;
-    };
-} & AbstractNode<'block'>;
-
-export type Root = {
-    children: Node[];
-} & AbstractElementNode<'root'>;
-
-export type Mark = {
-    text: string;
-    bold?: boolean;
-    italic?: boolean;
-    underline?: boolean;
-    strikethrough?: boolean;
-    code?: boolean;
-    subscript?: boolean;
-    superscript?: boolean;
-    highlight?: boolean;
-};
-
-export type HorizontalRule = AbstractTextNode<'horizontalrule'>;
-export type TextNode = AbstractTextNode<'text'>;
-export type Linebreak = AbstractNode<'linebreak'>;
-export type Tab = AbstractTextNode<'tab'>;
-
-export type LinkNode = {
-    children: TextNode[];
-    fields:
-        | {
-        linkType: 'custom';
-        newTab: boolean;
-        url: string;
-    }
-        | {
-        doc: {
-            relationTo: string;
-            value: | News | Page;
-        };
-        linkType: 'internal';
-        newTab: boolean;
-        url: string;
-    };
-} & AbstractElementNode<'link'>;
-
-export type AutoLinkNode = {
-    children: TextNode[];
-    fields: {
-        linkType: 'custom';
-        newTab?: boolean;
-        url: string;
-    };
-} & AbstractElementNode<'autolink'>;
-
-export type HeadingNode = {
-    tag: string;
-    children: TextNode[];
-} & AbstractElementNode<'heading'>;
-
-export type ParagraphNode = {
-    children: (TextNode | Linebreak | Tab | LinkNode | AutoLinkNode)[];
-} & AbstractElementNode<'paragraph'>;
-
-export type ListItemNode = {
-    children: (TextNode | ListNode)[];
-    value: number;
-} & AbstractElementNode<'listitem'>;
-
-export type ListNode = {
-    tag: string;
-    listType: 'number' | 'bullet' | 'check';
-    start: number;
-    children: ListItemNode[];
-} & AbstractElementNode<'list'>;
-
-export type QuoteNode = {
-    children: TextNode[];
-} & AbstractElementNode<'quote'>;
-
-export type UploadNode<
-    MediaType = {
-        id: string;
-        alt: string;
-        updatedAt: string;
-        createdAt: string;
-        url?: string;
-        filename?: string;
-        mimeType?: string;
-        filesize?: number;
-        width?: number;
-        height?: number;
-    },
-> = {
-    fields: {
-      caption?: string | null
-      float?: ('left' | 'right') | null
-    } | null;
-    relationTo: 'media';
-    value: MediaType;
-} & AbstractElementNode<'upload'>;
-
-export type SubheaderNode = {
-  subheader: string
-} & AbstractNode<'subheader'>
-
-export type VideoNode = {
-  url: string
-} & AbstractNode<'video'>
-
-export type Node =
-    | HeadingNode
-    | ParagraphNode
-    | UploadNode
-    | TextNode
-    | ListNode
-    | ListItemNode
-    | QuoteNode
-    | HorizontalRule
-    | Linebreak
-    | Tab
-    | LinkNode
-    | UnknownBlockNode
-    | AutoLinkNode;
-
-  export type BlockRenderers<Blocks extends { [key: string]: any }> = {
-    [BlockName in Extract<keyof Blocks, string>]?: (props: BlockNode<Blocks[BlockName], BlockName>) => React.ReactNode;
-  }
-
-export type ElementRenderers = {
-    heading: (
-        props: { children: React.ReactNode } & Omit<HeadingNode, 'children'>
-    ) => React.ReactNode;
-    list: (
-        props: { children: React.ReactNode } & Omit<ListNode, 'children'>
-    ) => React.ReactNode;
-    listItem: (
-        props: { children: React.ReactNode } & Omit<ListItemNode, 'children'>
-    ) => React.ReactNode;
-    paragraph: (
-        props: { children: React.ReactNode } & Omit<ParagraphNode, 'children'>
-    ) => React.ReactNode;
-    quote: (
-        props: { children: React.ReactNode } & Omit<QuoteNode, 'children'>
-    ) => React.ReactNode;
-    link: (
-        props: { children: React.ReactNode } & Omit<LinkNode, 'children'>
-    ) => React.ReactNode;
-    autolink: (
-        props: { children: React.ReactNode } & Omit<AutoLinkNode, 'children'>
-    ) => React.ReactNode;
-    horizontalrule: () => React.ReactNode;
-    linebreak: () => React.ReactNode;
-    tab: () => React.ReactNode;
-    upload: (props: UploadNode) => React.ReactNode;
-};
-
-export type RenderMark = (mark: Mark) => React.ReactNode;
-
-export type PayloadLexicalReactRendererContent = {
-    root: Root;
-};
-
-export type PayloadLexicalReactRendererProps<
-    Blocks extends { [key: string]: any },
-> = {
-    content: PayloadLexicalReactRendererContent;
-    elementRenderers?: ElementRenderers;
-    renderMark?: RenderMark;
-    blockRenderers?: {
-        [BlockName in Extract<keyof Blocks, string>]?: (
-            props: BlockNode<Blocks[BlockName], BlockName>
-        ) => React.ReactNode;
-    };
-};
-
-// This copy-and-pasted from somewhere in lexical here: https://github.com/facebook/lexical/blob/c2ceee223f46543d12c574e62155e619f9a18a5d/packages/lexical/src/LexicalConstants.ts
-const IS_BOLD = 1
-const IS_ITALIC = 1 << 1
-const IS_STRIKETHROUGH = 1 << 2
-const IS_UNDERLINE = 1 << 3
-const IS_CODE = 1 << 4
-const IS_SUBSCRIPT = 1 << 5
-const IS_SUPERSCRIPT = 1 << 6
-const IS_HIGHLIGHT = 1 << 7
-
-function getElementStyle<Type extends string>({
-  indent,
-  format,
-}: AbstractElementNode<Type>): CSSProperties {
-  const style: CSSProperties = {}
-
-  if (indent > 0) {
-    style.marginLeft = `${indent * 20}px`
-  }
-
-  if (format === 'right' || format === 'center' || format === 'justify') {
-    style.textAlign = format
-  }
-
-  return style
-}
-
-export const defaultBlockRenderers: BlockRenderers<{ subheader: SubheaderNode, video: VideoNode }> = {
-  subheader: (element) => {
-    return (
-      <div
-        className={styles.subheaderBlock}
-        dangerouslySetInnerHTML={{ __html: element.fields.subheader }}
-      />
-    )
-  },
-  video: (element) => {
-    return (
-      <div className={styles.video}>
-        <VideoEmbed url={element.fields.url} />
-      </div>
-    )
-  },
-}
-
-export const defaultElementRenderers: ElementRenderers = {
-  heading: (element) => React.createElement(
-    element.tag,
-    {
-      style: getElementStyle<'heading'>(element),
-    },
-    element.children,
-  ),
-  list: (element) => React.createElement(
-    element.tag,
-    {
-      style: getElementStyle<'list'>(element),
-    },
-    element.children,
-  ),
-  listItem: (element) => (
-    <li style={getElementStyle<'listitem'>(element)}>{element.children}</li>
-  ),
-  paragraph: (element) => (
-    <p style={getElementStyle<'paragraph'>(element)}>{element.children}</p>
-  ),
-  link: (element) => (
-    <Link
-      href={element.fields.linkType === 'internal'
-        ? `${getCollectionPath(element.fields.doc.relationTo as CollectionPathContentTypes)}${element.fields.doc.value.slug}`
-        : element.fields.url}
-      target={element.fields.newTab ? '_blank' : '_self'}
-      style={getElementStyle<'link'>(element)}
-      rel='noreferrer'
-    >
-      {element.children}
-    </Link>
-  ),
-  autolink: (element) => (
-    <Link
-      href={element.fields.url}
-      target={element.fields.newTab ? '_blank' : '_self'}
-      style={getElementStyle<'autolink'>(element)}
-      rel='noreferrer'
-    >
-      {element.children}
-    </Link>
-  ),
-  quote: (element) => (
-    <blockquote style={getElementStyle<'quote'>(element)}>
-      {element.children}
-    </blockquote>
-  ),
-  horizontalrule: () => <hr />,
-  linebreak: () => <br />,
-  tab: () => <br />,
-  upload: (element) => {
-    if (element.value.mimeType?.includes('image') && element.value.url) {
-      return (
-        <figure className={cx(styles.figure, styles[`figure__${element.fields?.float}`])}>
-          <Image
-            className={styles.figureImg}
-            src={element.value.url}
-            width={element.value.width ?? 0}
-            height={element.value.height ?? 0}
-            alt={element.value.alt}
-            priority
-          />
-          {element.fields?.caption && <figcaption className={styles.figcaption}>{element.fields.caption}</figcaption>}
-        </figure>
-      )
-    }
-  },
-}
-
-export const defaultRenderMark: RenderMark = (mark) => {
-  const style: CSSProperties = {}
-
-  if (mark.bold) {
-    style.fontWeight = 'bold'
-  }
-
-  if (mark.italic) {
-    style.fontStyle = 'italic'
-  }
-
-  if (mark.underline) {
-    style.textDecoration = 'underline'
-  }
-
-  if (mark.strikethrough) {
-    style.textDecoration = 'line-through'
-  }
-
-  if (mark.code) {
-    return <code>{mark.text}</code>
-  }
-
-  if (mark.highlight) {
-    return <mark style={style}>{mark.text}</mark>
-  }
-
-  if (mark.subscript) {
-    return <sub style={style}>{mark.text}</sub>
-  }
-
-  if (mark.superscript) {
-    return <sup style={style}>{mark.text}</sup>
-  }
-
-  if (Object.keys(style).length === 0) {
-    return <>{mark.text}</>
-  }
-
-  return <span style={style}>{mark.text}</span>
-}
-
-export default function PayloadLexicalReactRenderer<
-    Blocks extends { [key: string]: any },
->({
-  content,
-  elementRenderers = defaultElementRenderers,
-  renderMark = defaultRenderMark,
-  blockRenderers = defaultBlockRenderers,
-}: PayloadLexicalReactRendererProps<Blocks>) {
-  const renderElement = React.useCallback(
-    (node: Node, children?: React.ReactNode) => {
-      if (!elementRenderers) {
-        throw new Error('"elementRenderers" prop not provided.')
-      }
-
-      if (node.type === 'link' && node.fields) {
-        return elementRenderers.link({
-          ...node,
-          children,
-        })
-      }
-
-      if (node.type === 'autolink' && node.fields) {
-        return elementRenderers.autolink({
-          ...node,
-          children,
-        })
-      }
-
-      if (node.type === 'heading') {
-        return elementRenderers.heading({
-          ...node,
-          children,
-        })
-      }
-
-      if (node.type === 'paragraph') {
-        return elementRenderers.paragraph({
-          ...node,
-          children,
-        })
-      }
-
-      if (node.type === 'list') {
-        return elementRenderers.list({
-          ...node,
-          children,
-        })
-      }
-
-      if (node.type === 'listitem') {
-        return elementRenderers.listItem({
-          ...node,
-          children,
-        })
-      }
-
-      if (node.type === 'quote') {
-        return elementRenderers.quote({
-          ...node,
-          children,
-        })
-      }
-
-      if (node.type === 'horizontalrule') {
-        return elementRenderers.horizontalrule()
-      }
-
-      if (node.type === 'linebreak') {
-        return elementRenderers.linebreak()
-      }
-
-      if (node.type === 'tab') {
-        return elementRenderers.tab()
-      }
-
-      if (node.type === 'upload') {
-        return elementRenderers.upload(node)
-      }
-
-      throw new Error(`Missing element renderer for node type '${node.type}'`)
-    },
-    [elementRenderers],
-  )
-
-  const renderText = React.useCallback(
-    (node: TextNode): React.ReactNode | null => {
-      if (!renderMark) {
-        throw new Error('"renderMark" prop not provided.')
-      }
-
-      if (!node.format) {
-        return renderMark({
-          text: node.text,
-        })
-      }
-
-      return renderMark({
-        text: node.text,
-        bold: (node.format & IS_BOLD) > 0,
-        italic: (node.format & IS_ITALIC) > 0,
-        underline: (node.format & IS_UNDERLINE) > 0,
-        strikethrough: (node.format & IS_STRIKETHROUGH) > 0,
-        code: (node.format & IS_CODE) > 0,
-        subscript: (node.format & IS_SUBSCRIPT) > 0,
-        superscript: (node.format & IS_SUPERSCRIPT) > 0,
-        highlight: (node.format & IS_HIGHLIGHT) > 0,
+const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => {
+  return {
+    ...defaultConverters,
+    autolink: ({ node, nodesToJSX }) => {
+      const children = nodesToJSX({
+        nodes: node.children,
       })
+  
+      const rel: string | undefined = node.fields.newTab ? 'noopener noreferrer' : undefined
+      const target: string | undefined = node.fields.newTab ? '_blank' : undefined
+  
+      return (
+        <Link href={node.fields.url} {...{ rel, target }}>
+          {children}
+        </Link>
+      )
     },
-    [renderMark],
-  )
+    link: ({ node, nodesToJSX }) => {
+      const children = nodesToJSX({
+        nodes: node.children,
+      })
+  
+      const rel: string | undefined = node.fields.newTab ? 'noopener noreferrer' : undefined
+      const target: string | undefined = node.fields.newTab ? '_blank' : undefined
+  
+      let href: string = node.fields.url
+      if (node.fields.linkType === 'internal') {
+        type TRelatedDocs = News | Page
+        const relatedDocValue = node.fields.doc?.value
+        if (typeof relatedDocValue === 'object') {
+          href = `${getCollectionPath(node.fields.doc?.relationTo as CollectionPathContentTypes)}${(relatedDocValue as unknown as TRelatedDocs)?.slug}`
+        }
+      }
+  
+      return (
+        <Link href={href} {...{ rel, target }}>
+          {children}
+        </Link>
+      )
+    },
+    upload: ({ node }) => {
+      const uploadDocument: {
+        value?: FileData & TypeWithID & Media
+      } = node as any
 
-  const serialize = React.useCallback(
-    (children: Node[]): React.ReactNode[] | null => children?.map((node, index) => {
-      if (node.type === 'text') {
+      const url = uploadDocument?.value?.url
+
+      /**
+       * If the upload is not an image, return a link to the upload
+       */
+      if (!uploadDocument?.value?.mimeType?.startsWith('image') && url) {
         return (
-          <React.Fragment key={index}>{renderText(node)}</React.Fragment>
+          <Link href={url} rel="noopener noreferrer">
+            {uploadDocument.value?.filename}
+          </Link>
         )
       }
 
-      if (node.type === 'block') {
-        const renderer = blockRenderers[node.fields.blockType] as (
-                        props: unknown
-                    ) => React.ReactNode
-
-        if (typeof renderer !== 'function') {
-          throw new Error(
-            `Missing block renderer for block type '${node.fields.blockType}'`,
+      if (url) {
+        return (
+          <figure className={cx(styles.figure, styles[`figure__${node.fields?.float}`])}>
+            <Image
+              className={styles.figureImg}
+              src={url}
+              width={uploadDocument?.value?.width ?? 0}
+              height={uploadDocument?.value?.height ?? 0}
+              alt={uploadDocument?.value?.alt ?? ''}
+              priority
+            />
+            {node.fields?.caption && <figcaption className={styles.figcaption}>{node.fields.caption}</figcaption>}
+          </figure>
+        )
+      }
+    },
+    blocks: {
+      subheader: ({ node }) => {
+        const nodeFields = node.fields as Subheader
+        if (nodeFields.subheader) {
+          return (
+            <div
+              className={styles.subheaderBlock}
+              dangerouslySetInnerHTML={{ __html: nodeFields.subheader }}
+            />
           )
         }
-
-        return <React.Fragment key={index}>{renderer(node)}</React.Fragment>
-      }
-
-      if (
-        node.type === 'horizontalrule'
-                    || node.type === 'linebreak'
-                    || node.type === 'tab'
-                    || node.type === 'upload'
-      ) {
-        return (
-          <React.Fragment key={index}>{renderElement(node)}</React.Fragment>
-        )
-      }
-
-      return (
-        <React.Fragment key={index}>
-          {renderElement(node, serialize(node.children))}
-        </React.Fragment>
-      )
-    }),
-    [renderElement, renderText, blockRenderers],
-  )
-
-  return <div className={styles.content}>{serialize(content.root.children)}</div>
+        return null
+      },
+      video: ({ node }) => {
+        type TVideo = {
+          url?: string | null
+        } 
+        const nodeFields = node.fields as TVideo
+        if (nodeFields.url) {
+          return (
+            <div className={styles.video}>
+              <VideoEmbed url={nodeFields.url} />
+            </div>
+          )
+        }
+        return null
+      },
+    },
+  }
 }
+
+const LexicalRenderer = ({ content }: { content: SerializedEditorState }) => (
+  <div className={styles.content}>
+    <RichText
+      converters={jsxConverters}
+      data={content}
+    />
+  </div>
+)
+
+export default LexicalRenderer

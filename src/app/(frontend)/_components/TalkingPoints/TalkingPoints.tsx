@@ -2,7 +2,6 @@ import cx from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { ITalkingPoints } from '@/payload-types'
-import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import LexicalRenderer from '../LexicalRenderer'
 import styles from './TalkingPoints.module.scss'
 
@@ -56,7 +55,7 @@ export default function TalkingPoints({
                 </div>
                 {text && (
                   <div className={styles.point_Text}>
-                    <LexicalRenderer content={text as PayloadLexicalReactRendererContent} />
+                    <LexicalRenderer content={text} />
                   </div>
                 )}
                 {addLogos && logos && logos.length > 0

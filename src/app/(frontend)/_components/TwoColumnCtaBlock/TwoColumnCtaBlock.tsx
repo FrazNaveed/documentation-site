@@ -3,7 +3,6 @@ import Image from 'next/image'
 import type { ITwoColumnCta } from '@/payload-types'
 import Button from '../Button'
 import LexicalRenderer from '../LexicalRenderer'
-import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import styles from './TwoColumnCtaBlock.module.scss'
 
 export type TwoColumnCtaProps = ITwoColumnCta & {
@@ -47,7 +46,7 @@ export default function TwoColumnCtaBlock({
           {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
           {header && <h2 className={styles.header}>{header}</h2>}
           <div className={styles.text}>
-            {text && <LexicalRenderer content={text as PayloadLexicalReactRendererContent} />}
+            {text && <LexicalRenderer content={text} />}
           </div>
           <div className={styles.buttonsWrap}>
             {primaryButtonText && primaryButtonLink

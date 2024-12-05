@@ -1,7 +1,6 @@
 import cx from 'classnames'
 import type { Stats } from '@/payload-types'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
-import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import styles from './StatsBlock.module.scss'
 
 export type StatsProps = Stats & {
@@ -56,7 +55,7 @@ export default async function StatsBlock({
         ))}
       </div>
       <div className={styles.captionWrap}>
-        {caption && <LexicalRenderer content={caption as PayloadLexicalReactRendererContent} />}
+        {caption && <LexicalRenderer content={caption} />}
       </div>
     </section>
   )

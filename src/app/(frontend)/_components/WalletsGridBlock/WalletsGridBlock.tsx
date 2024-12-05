@@ -1,18 +1,17 @@
 import cx from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
-import type { Wallet } from '@/payload-types'
+import type { Wallet, WalletsGrid } from '@/payload-types'
 import DiagonalArrowSquare from '../svgs/DiagonalArrowSquare'
 import FlareLogo from '../svgs/FlareLogo'
 import Platform from '../svgs/Platform'
 import WalletConnect from '../svgs/WalletConnect'
 import WalletConnectBlue from '../svgs/WalletConnectBlue'
-import type { PayloadLexicalReactRendererContent } from '../LexicalRenderer/LexicalRenderer'
 import styles from './WalletsGridBlock.module.scss'
 import LexicalRenderer from '../LexicalRenderer'
 
 export type WalletsGridBlockProps = {
-  intro?: PayloadLexicalReactRendererContent | null
+  intro?: WalletsGrid['walletsGridIntro']
   wallets?: Wallet[] | null
 }
 
@@ -20,7 +19,7 @@ export default function WalletsGridBlock({ intro, wallets }: WalletsGridBlockPro
   return (
     <div className={styles.walletsGridBlock}>
       <div className={styles.walletsGridIntro}>
-        {intro && <LexicalRenderer content={intro as PayloadLexicalReactRendererContent} />}
+        {intro && <LexicalRenderer content={intro} />}
       </div>
       <ul className={styles.walletsGridWrap}>
         {wallets?.map((wallet: Wallet) => {
