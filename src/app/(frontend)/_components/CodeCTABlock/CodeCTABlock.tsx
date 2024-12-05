@@ -7,7 +7,6 @@ import cx from 'classnames'
 import type { ICodeCta } from '@/payload-types'
 import Button from 'src/app/(frontend)/_components/Button'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
-import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import CodeCTATabs from './CodeCTATabs'
 import CodeCTACopyButton from './CodeCTACopyButton'
 import codeExamples from './codeExamples'
@@ -49,7 +48,7 @@ export default async function CodeCTABlock({
             {header && <h3 className={styles.header}>{header}</h3>}
             {text && (
               <div className={styles.text}>
-                <LexicalRenderer content={text as PayloadLexicalReactRendererContent} />
+                <LexicalRenderer content={text} />
               </div>
             )}
             {(hasButton || hasSecondaryButton) && (

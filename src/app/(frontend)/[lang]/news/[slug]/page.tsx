@@ -13,7 +13,6 @@ import { getNewsArchive, getNewsBySlug } from 'src/app/(frontend)/_lib/payload/n
 import convertToDate from 'src/app/(frontend)/_utils/convertToDate'
 import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
 import type { Media, News } from '@/payload-types'
-import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import buildMetadata from 'src/app/(frontend)/_utils/buildMetadata'
 import styles from './page.module.scss'
 
@@ -104,7 +103,7 @@ export default async function Page({ params }: PageProps) {
             </div>
           </div>
           <div className={styles.contentCol}>
-            {content && <LexicalRenderer content={content as PayloadLexicalReactRendererContent} />}
+            {content && <LexicalRenderer content={content} />}
           </div>
         </div>
       </div>

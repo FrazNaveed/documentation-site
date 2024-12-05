@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import cx from 'classnames'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
-import type { PayloadLexicalReactRendererContent } from 'src/app/(frontend)/_components/LexicalRenderer/LexicalRenderer'
 import type { Columns as TColumns } from 'payload-types'
 import styles from './Columns.module.scss'
 
@@ -39,7 +38,7 @@ export default function Columns({
         }
 
         case 'richText':
-          return block.richText && <LexicalRenderer content={block.richText as PayloadLexicalReactRendererContent} />
+          return block.richText && <LexicalRenderer content={block.richText} />
 
         default:
           return null
