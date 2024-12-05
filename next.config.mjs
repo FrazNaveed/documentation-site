@@ -32,6 +32,12 @@ const nextConfig = {
       ],
     },
     {
+      source: '/admin(.*)',
+      headers: [
+        { key: 'Cache-Control', value: 'private, no-cache, no-store, max-age=0, must-revalidate' },
+      ],
+    },
+    {
       source: '/_next/static/(.*)',
       headers: [
         { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
@@ -40,7 +46,8 @@ const nextConfig = {
     {
       source: '/(.*)',
       headers: [
-        { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn-cookieyes.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://flare-internal-lts-api.aflabs.org; frame-src 'self' https://www.googletagmanager.com;" },
+        // eslint-disable-next-line max-len
+        // { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn-cookieyes.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://flare-internal-lts-api.aflabs.org; frame-src 'self' https://www.googletagmanager.com;" },
         { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
         { key: 'X-Content-Type-Options', value: 'nosniff' },
         { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
@@ -51,9 +58,9 @@ const nextConfig = {
       ],
     },
     {
-      source: '/admin/(.*)',
+      source: '/admin(.*)',
       headers: [
-        { key: 'Content-Security-Policy', value: '' },
+        // { key: 'Content-Security-Policy', value: '' },
         { key: 'Strict-Transport-Security', value: '' },
         { key: 'X-Content-Type-Options', value: '' },
         { key: 'X-Frame-Options', value: '' },
