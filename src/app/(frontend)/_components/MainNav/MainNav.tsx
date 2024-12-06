@@ -129,12 +129,14 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === 'Escape') {
-        if (openSubmenuIndex === null && mobileNavIsOpen) {
-          setMobileNavIsOpen(false)
-        } else if (openSubmenuIndex !== null) {
-          setOpenSubmenuIndex(null)
-        }
+      if (event.key !== 'Escape') return
+
+      if (openSubmenuIndex !== null) {
+        setOpenSubmenuIndex(null)
+      }
+
+      if (mobileNavIsOpen) {
+        setMobileNavIsOpen(false)
       }
     }
 
