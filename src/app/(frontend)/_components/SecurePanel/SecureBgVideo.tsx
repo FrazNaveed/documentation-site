@@ -21,7 +21,6 @@ export default function SecureVideo({ videoSrc, mobileVideoSrc }: { videoSrc: st
 
   useEffect(() => {
     if (videoRef.current && currentSrc) {
-      videoRef.current.src = currentSrc // Update the video source directly
       videoRef.current.load() // Reload video to ensure it reflects the new source
     }
   }, [currentSrc])
@@ -44,7 +43,8 @@ export default function SecureVideo({ videoSrc, mobileVideoSrc }: { videoSrc: st
       onMouseLeave={handleOnMouseLeave}
     >
       <video ref={videoRef} className={styles.bgVideo} loop muted playsInline>
-        <source src={currentSrc} type='video/mp4' />
+        <source src={`${currentSrc}_compressed.mov`} type='video/mp4; codecs="hvc1"' />
+        <source src={`${currentSrc}.webm`} type='video/webm' />
         Your browser does not support the video tag.
       </video>
     </div>

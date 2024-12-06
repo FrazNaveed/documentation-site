@@ -10,7 +10,7 @@ type SecurePanelProps = ISecurePanel & {
 export default async function SecurePanel({ text, className }: SecurePanelProps) {
   return (
     <section className={cx(styles.wrap, className)}>
-      <SecureVideo videoSrc='/en/video/home_secure_desktop.webm' mobileVideoSrc='/en/video/home_security_mobile.webm' />
+      <SecureVideo videoSrc='/en/video/home_secure_desktop' mobileVideoSrc='/en/video/home_secure_mobile' />
       <div className={styles.container}>
         <div className={styles.content}>
           <h1 className={styles.header}>Secure</h1>

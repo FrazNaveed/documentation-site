@@ -29,7 +29,7 @@ export default async function FastPanel({ text, className }: FastPanelProps) {
 
   return (
     <section className={cx(styles.wrap, className)}>
-      <FastVideo videoSrc='/en/video/home_fast_desktop.webm' mobileVideoSrc='/en/video/home_fast_mobile.webm' />
+      <FastVideo videoSrc='/en/video/home_fast_desktop' mobileVideoSrc='/en/video/home_fast_mobile' />
       <div className={styles.container}>
         <div className={styles.content}>
           <h1 className={styles.header}>Fast</h1>
