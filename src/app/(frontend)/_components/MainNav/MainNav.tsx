@@ -1,6 +1,8 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import {
+  useCallback, useEffect, useRef, useState,
+} from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { RemoveScroll } from 'react-remove-scroll'
@@ -63,6 +65,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
   const [navWidth, setNavWidth] = useState<string>('100%')
   const [windowWidth, setWindowWidth] = useState<number | null>(null)
   const [siteHeaderHidden, setSiteHeaderHidden] = useState(false)
+  const buttonRef = useRef<HTMLButtonElement>(null)
   const headerHiddenClassName = 'siteHeader__flownAway'
   const bodyHiddenClassName = 'siteHeaderHidden'
   const siteHeaderId = 'siteHeader'
@@ -133,10 +136,15 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
 
       if (openSubmenuIndex !== null) {
         setOpenSubmenuIndex(null)
+        return
       }
 
       if (mobileNavIsOpen) {
         setMobileNavIsOpen(false)
+
+        if (buttonRef.current) {
+          buttonRef.current.focus()
+        }
       }
     }
 
@@ -193,6 +201,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
       <span className={styles.buttonsWrap}>
         <SearchButton className={styles.searchButton__hideDesktop} />
         <button
+          ref={buttonRef}
           className={cx(styles.mobileToggle, { [styles.mobileToggle__open]: mobileNavIsOpen })}
           onClick={toggleMobileNav}
           type='button'
