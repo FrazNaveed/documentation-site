@@ -2,6 +2,7 @@
 @use "../../_styles/mixins" as *;
 @use "../../_styles/typography" as *;
 @use "../../_styles/spacing" as *;
+@use "../../_styles/transitions" as *;
 
 .wrap {
   padding-bottom: $spacing-7x-large;
@@ -137,10 +138,22 @@
 .textLayers {
   .textLayer {
     margin-bottom: $spacing-medium;
+    padding: $spacing-small 0;
+    border-radius: 10px;
 
     @include media-breakpoint-up(md) {
       margin-bottom: $spacing-4x-large;
       opacity: 0;
+    }
+
+    &:hover {
+      padding: $spacing-small;
+      background-color: $gray-50;
+      cursor: pointer;
+
+      .primaryHeader {
+        text-decoration: underline;
+      }
     }
   }
 
@@ -184,6 +197,7 @@
 
     @include media-breakpoint-up(md) {
       transform: translateY(40px);
+      transition: opacity $transition-snappy;
       opacity: 0;
     }
 
@@ -194,10 +208,10 @@
       transform: translate(-50%, 40px);
 
       &Shadow {
-        top: 23%;
-        left: 1%;
-        width: 98%;
-        height: 32%;
+        top: 12.5%;
+        left: 5.5%;
+        width: 89%;
+        height: 29.5%;
         border-radius: 50%;
         box-shadow: 0 10px 83.3px 0 #ff779c;
       }
@@ -207,7 +221,7 @@
       top: 50%;
 
       &Shadow {
-        top: 57%;
+        top: 52%;
         left: 1%;
         width: 98%;
         height: 28%;
@@ -220,7 +234,7 @@
       top: 75%;
 
       &Shadow {
-        top: 86%;
+        top: 89%;
         left: 1%;
         width: 98%;
         height: 30%;
@@ -228,11 +242,16 @@
         box-shadow: 0 10px 83.3px 0 #ff779c;
       }
     }
+
+    &.active {
+      transition: opacity $transition-snappy 200ms;
+      opacity: 1;
+    }
   }
 
   @include media-breakpoint-up(md) {
     img {
-      transition: transform 200ms ease-in-out;
+      transition: transform $transition-snappy 200ms;
     }
 
     &.animate {
@@ -254,6 +273,10 @@
     }
 
     &.expanded {
+      img {
+        transition: transform $transition-snappy;
+      }
+
       .layer {
         &__middle img {
           transform: translateY(57%);

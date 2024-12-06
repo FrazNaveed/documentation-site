@@ -21,6 +21,7 @@ export default function LayerCakePanel({
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [isAnimating, setIsAnimating] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
+  const [activeHovers, setActiveHovers] = useState<number[] | false>(false)
 
   useEffect(() => {
     const observerOptions = {
@@ -32,6 +33,8 @@ export default function LayerCakePanel({
       entries.forEach((entry) => {
         if (entry.intersectionRatio >= 0.75 && entry.isIntersecting) {
           setIsAnimating(true)
+        } else if (entry.intersectionRatio === 0 && !entry.isIntersecting) {
+          setIsAnimating(false)
         }
       })
     }
@@ -65,7 +68,12 @@ export default function LayerCakePanel({
           {layers?.map((layer, index) => {
             const { id, header, text } = layer
             return (
-              <div key={id} className={cx(styles.textLayer, styles[`textLayer__${index}`])}>
+              <div
+                key={id}
+                className={cx(styles.textLayer, styles[`textLayer__${index}`])}
+                onMouseEnter={() => setActiveHovers([index])}
+                onMouseLeave={() => setActiveHovers(false)}
+              >
                 {header && <h4 className={styles.primaryHeader}>{header}</h4>}
                 {text && (
                   <p className={styles.primaryText}>
@@ -84,15 +92,42 @@ export default function LayerCakePanel({
           { [styles.animate]: isAnimating, [styles.expanded]: isExpanded },
         )}
       >
-        <div className={cx(styles.layer, styles.layer__bottomShadow)} />
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className={cx(
+              styles.layer,
+              styles.layer__bottomShadow,
+              { [styles.active]: activeHovers && activeHovers.includes(2) },
+            )}
+          />
+        ))}
         <div className={cx(styles.layer, styles.layer__bottom)}>
           <Image src={bottom} alt='bottom' />
         </div>
-        <div className={cx(styles.layer, styles.layer__middleShadow)} />
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className={cx(
+              styles.layer,
+              styles.layer__middleShadow,
+              { [styles.active]: activeHovers && activeHovers.includes(1) },
+            )}
+          />
+        ))}
         <div className={cx(styles.layer, styles.layer__middle)}>
           <Image src={middle} alt='middle' />
         </div>
-        <div className={cx(styles.layer, styles.layer__topShadow)} />
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className={cx(
+              styles.layer,
+              styles.layer__topShadow,
+              { [styles.active]: activeHovers && activeHovers.includes(0) },
+            )}
+          />
+        ))}
         <div className={cx(styles.layer, styles.layer__top)}>
           <Image src={top} alt='top' />
         </div>
