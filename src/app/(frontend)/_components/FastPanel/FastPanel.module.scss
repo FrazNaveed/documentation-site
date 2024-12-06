@@ -2,13 +2,18 @@
 @use "../../_styles/mixins" as *;
 @use "../../_styles/typography" as *;
 // @use "../../_styles/spacing" as *;
-// @use "../../_styles/transitions" as *;
+@use "../../_styles/transitions" as *;
 
 .wrap {
   @include fullWidthBreakout;
 
-  background-color: $pink-600;
+  transition: background-color $transition-snappy;
+  background-color: transparent;
   overflow: hidden;
+
+  &:hover {
+    background-color: $pink-600;
+  }
 }
 
 .container {
@@ -23,16 +28,26 @@
   flex-direction: column;
   justify-content: center;
   min-height: 547px;
-  color: $white;
+  transition: color $transition-snappy;
+  color: $black;
   pointer-events: none;
 
   @include columns(8, -1);
+
+  .wrap:hover & {
+    color: $white;
+  }
 }
 
 .header {
-  color: $white;
+  transition: color $transition-snappy;
+  color: $black;
 
   @include hugeHeader;
+
+  .wrap:hover & {
+    color: $white;
+  }
 }
 
 .counter {

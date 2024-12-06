@@ -20,6 +20,8 @@ export default function LayerCakePanel({
 }: LayerCakeProps) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false)
+  const [activeHovers, setActiveHovers] = useState<number[] | false>(false)
 
   useEffect(() => {
     const observerOptions = {
@@ -56,13 +58,22 @@ export default function LayerCakePanel({
       <div className={styles.logoWrap}>
         <FlareMarkOnly />
       </div>
-      <aside className={styles.column__primary}>
+      <aside
+        className={styles.column__primary}
+        onMouseEnter={() => setIsExpanded(true)}
+        onMouseLeave={() => setIsExpanded(false)}
+      >
         {primaryColumnLabel && <h3 className={styles.label}>{primaryColumnLabel}</h3>}
         <div className={cx(styles.textLayers, { [styles.animate]: isAnimating })}>
           {layers?.map((layer, index) => {
             const { id, header, text } = layer
             return (
-              <div key={id} className={cx(styles.textLayer, styles[`textLayer__${index}`])}>
+              <div
+                key={id}
+                className={cx(styles.textLayer, styles[`textLayer__${index}`])}
+                onMouseEnter={() => setActiveHovers([index])}
+                onMouseLeave={() => setActiveHovers(false)}
+              >
                 {header && <h4 className={styles.primaryHeader}>{header}</h4>}
                 {text && (
                   <p className={styles.primaryText}>
@@ -74,13 +85,49 @@ export default function LayerCakePanel({
           })}
         </div>
       </aside>
-      <div className={cx(styles.layersWrap, styles.column__main, { [styles.animate]: isAnimating })}>
+      <div
+        className={cx(
+          styles.layersWrap,
+          styles.column__main,
+          { [styles.animate]: isAnimating, [styles.expanded]: isExpanded },
+        )}
+      >
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className={cx(
+              styles.layer,
+              styles.layer__bottomShadow,
+              { [styles.active]: activeHovers && activeHovers.includes(2) },
+            )}
+          />
+        ))}
         <div className={cx(styles.layer, styles.layer__bottom)}>
           <Image src={bottom} alt='bottom' />
         </div>
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className={cx(
+              styles.layer,
+              styles.layer__middleShadow,
+              { [styles.active]: activeHovers && activeHovers.includes(1) },
+            )}
+          />
+        ))}
         <div className={cx(styles.layer, styles.layer__middle)}>
           <Image src={middle} alt='middle' />
         </div>
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className={cx(
+              styles.layer,
+              styles.layer__topShadow,
+              { [styles.active]: activeHovers && activeHovers.includes(0) },
+            )}
+          />
+        ))}
         <div className={cx(styles.layer, styles.layer__top)}>
           <Image src={top} alt='top' />
         </div>

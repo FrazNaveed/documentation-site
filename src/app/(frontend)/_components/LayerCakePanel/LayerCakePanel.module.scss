@@ -2,6 +2,7 @@
 @use "../../_styles/mixins" as *;
 @use "../../_styles/typography" as *;
 @use "../../_styles/spacing" as *;
+@use "../../_styles/transitions" as *;
 
 .wrap {
   padding-bottom: $spacing-7x-large;
@@ -137,10 +138,22 @@
 .textLayers {
   .textLayer {
     margin-bottom: $spacing-medium;
+    padding: $spacing-small 0;
+    border-radius: 10px;
 
     @include media-breakpoint-up(md) {
       margin-bottom: $spacing-4x-large;
       opacity: 0;
+    }
+
+    &:hover {
+      padding: $spacing-small;
+      background-color: $gray-50;
+      cursor: pointer;
+
+      .primaryHeader {
+        text-decoration: underline;
+      }
     }
   }
 
@@ -148,16 +161,16 @@
     &.animate {
       .textLayer {
         &__0 {
-          animation: fade-in 600ms ease-in-out forwards;
+          animation: fade-in 600ms ease-in-out both;
         }
 
         &__1 {
-          animation: fade-in 800ms ease-in-out forwards;
+          animation: fade-in 800ms ease-in-out both;
           animation-delay: 500ms;
         }
 
         &__2 {
-          animation: fade-in 1000ms ease-in-out forwards;
+          animation: fade-in 1000ms ease-in-out both;
           animation-delay: 1000ms;
         }
       }
@@ -184,36 +197,93 @@
 
     @include media-breakpoint-up(md) {
       transform: translateY(40px);
+      transition: opacity $transition-snappy;
       opacity: 0;
     }
 
     &__top {
       top: 0;
+      left: 50%;
+      width: 91%;
+      transform: translate(-50%, 40px);
+
+      &Shadow {
+        top: 12.5%;
+        left: 5.5%;
+        width: 89%;
+        height: 29.5%;
+        border-radius: 50%;
+        box-shadow: 0 10px 83.3px 0 #ff779c;
+      }
     }
 
     &__middle {
-      top: 32%;
+      top: 50%;
+
+      &Shadow {
+        top: 52%;
+        left: 1%;
+        width: 98%;
+        height: 28%;
+        border-radius: 50%;
+        box-shadow: 0 10px 83.3px 0 #ff779c;
+      }
     }
 
     &__bottom {
-      top: 40%;
+      top: 75%;
+
+      &Shadow {
+        top: 89%;
+        left: 1%;
+        width: 98%;
+        height: 30%;
+        border-radius: 50%;
+        box-shadow: 0 10px 83.3px 0 #ff779c;
+      }
+    }
+
+    &.active {
+      transition: opacity $transition-snappy 200ms;
+      opacity: 1;
     }
   }
+
   @include media-breakpoint-up(md) {
+    img {
+      transition: transform $transition-snappy 200ms;
+    }
+
     &.animate {
       .layer {
         &__top {
-          animation: fade-in-up 600ms ease-in-out forwards;
+          animation: fade-in-up 400ms ease-in-out both;
         }
 
         &__middle {
-          animation: fade-in-up 800ms ease-in-out forwards;
-          animation-delay: 500ms;
+          animation: fade-in-up-middle 1000ms ease-in-out both;
+          animation-delay: 200ms;
         }
 
         &__bottom {
-          animation: fade-in-up 1000ms ease-in-out forwards;
-          animation-delay: 1000ms;
+          animation: fade-in-up-bottom 800ms ease-in-out both;
+          animation-delay: 400ms;
+        }
+      }
+    }
+
+    &.expanded {
+      img {
+        transition: transform $transition-snappy;
+      }
+
+      .layer {
+        &__middle img {
+          transform: translateY(57%);
+        }
+
+        &__bottom img {
+          transform: translateY(100%);
         }
       }
     }
@@ -222,11 +292,63 @@
 
 @keyframes fade-in-up {
   0% {
-    transform: translateY(40px);
+    transform: translate(-50%, 40px);
     opacity: 0;
   }
 
   100% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up-middle {
+  0% {
+    top: 57%;
+    transform: translateY(40px);
+    opacity: 0;
+  }
+
+  45% {
+    top: 57%;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  75% {
+    top: 57%;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    top: 26%;
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up-bottom {
+  0% {
+    top: 85%;
+    transform: translateY(40px);
+    opacity: 0;
+  }
+
+  45% {
+    top: 85%;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  75% {
+    top: 85%;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    top: 33%;
     transform: translateY(0);
     opacity: 1;
   }

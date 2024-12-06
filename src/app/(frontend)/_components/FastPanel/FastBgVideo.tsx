@@ -1,7 +1,6 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
-import throttle from 'lodash.throttle'
 import styles from './FastPanel.module.scss'
 
 export default function FastVideo({ videoSrc, mobileVideoSrc }: { videoSrc: string; mobileVideoSrc?: string }) {
@@ -27,59 +26,23 @@ export default function FastVideo({ videoSrc, mobileVideoSrc }: { videoSrc: stri
     }
   }, [currentSrc])
 
-  useEffect(() => {
-    const handleScroll = throttle(() => {
-      if (!containerRef.current || !videoRef.current) return
+  function handleOnMouseEnter() {
+    if (!containerRef.current || !videoRef.current) return
+    videoRef.current.play()
+  }
 
-      const rect = containerRef.current.getBoundingClientRect()
-      const elementTop = rect.top
-      const elementBottom = rect.bottom
-
-      const isWithinThreshold = elementTop <= window.innerHeight * 0.2
-      const isOutOfViewportBelow = elementBottom < 0
-
-      if (isWithinThreshold && !isOutOfViewportBelow) {
-        videoRef.current.play()
-      } else if (isOutOfViewportBelow) {
-        videoRef.current.pause()
-      }
-    }, 200) // Throttle to run at most once every 200ms
-
-    const observerOptions = {
-      root: null,
-      threshold: 0, // Trigger when the element enters or exits the viewport
-    }
-
-    const handleIntersect: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Attach the scroll listener when the element enters the viewport
-          window.addEventListener('scroll', handleScroll, { passive: true })
-          handleScroll() // Run immediately to handle the current position
-        } else {
-          // Remove the scroll listener when the element exits the viewport
-          window.removeEventListener('scroll', handleScroll)
-          if (videoRef.current) videoRef.current.pause() // Pause when out of view
-        }
-      })
-    }
-
-    const observer = new IntersectionObserver(handleIntersect, observerOptions)
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current)
-    }
-
-    return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current)
-      }
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+  function handleOnMouseLeave() {
+    if (!containerRef.current || !videoRef.current) return
+    videoRef.current.pause()
+  }
 
   return (
-    <div className={styles.bgVideoWrap} ref={containerRef}>
+    <div
+      className={styles.bgVideoWrap}
+      ref={containerRef}
+      onMouseEnter={handleOnMouseEnter}
+      onMouseLeave={handleOnMouseLeave}
+    >
       <video ref={videoRef} className={styles.bgVideo} loop muted playsInline>
         <source src={currentSrc} type='video/mp4' />
         Your browser does not support the video tag.
