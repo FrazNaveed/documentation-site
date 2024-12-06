@@ -52,7 +52,7 @@ export const mainNavData: MainNavigation = [
           {
             _key: '3',
             title: 'Community Resources',
-            url: '/community-resources',
+            url: '/community',
           },
           {
             _key: '4',
