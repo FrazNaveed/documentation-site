@@ -127,6 +127,24 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
     return () => window.removeEventListener('resize', handleResize)
   }, [windowWidth, getHeaderBottomPos, getNavPos])
 
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        if (openSubmenuIndex === null && mobileNavIsOpen) {
+          setMobileNavIsOpen(false)
+        } else if (openSubmenuIndex !== null) {
+          setOpenSubmenuIndex(null)
+        }
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [openSubmenuIndex, mobileNavIsOpen])
+
   // Close desktop submenus when clicking outside nav
   useEffect(() => {
     const wrapper = document.getElementById(mainNavId)
