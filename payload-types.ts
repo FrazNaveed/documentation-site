@@ -3567,6 +3567,18 @@ export interface Subheader {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IHeadingWithButton".
+ */
+export interface IHeadingWithButton {
+  heading?: string | null;
+  buttonText?: string | null;
+  buttonLink?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'headingWithButton';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
