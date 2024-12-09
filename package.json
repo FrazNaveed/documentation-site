@@ -55,7 +55,7 @@
   "devDependencies": {
     "@aleph/eslint-config-nought": "^1.1.10",
     "@aleph/nought-sass-mixins": "^2.0.0",
-    "@next/eslint-plugin-next": "^15.0.0-canary.104",
+    "@next/eslint-plugin-next": "^15.0.4",
     "@types/lodash.throttle": "^4.1.9",
     "@types/negotiator": "^0.6.3",
     "@types/node": "22.5.4",
@@ -65,7 +65,7 @@
     "@typescript-eslint/parser": "^8.5.0",
     "eslint": "^8",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-next": "15.0.0-canary.104",
+    "eslint-config-next": "^15.0.4",
     "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-jsx-a11y": "^6.10.0",
     "eslint-plugin-react": "^7.36.1",
