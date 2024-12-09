@@ -25,7 +25,7 @@ export const mainNavData: MainNavigation = [
           },
           {
             _key: '4',
-            title: 'Delegate & Stake',
+            title: 'Delegating & Staking',
             url: '/delegate-and-stake',
           },
           {
