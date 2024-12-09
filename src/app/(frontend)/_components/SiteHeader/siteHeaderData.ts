@@ -212,7 +212,7 @@ export const mainNavData: MainNavigation = [
           },
           {
             _key: '2',
-            title: 'Run an Observer Node',
+            title: 'Run an RPC Node',
             url: 'https://dev.flare.network/run-node/rpc-node',
           },
           {
