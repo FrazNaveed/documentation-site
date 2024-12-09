@@ -1,6 +1,8 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import {
+  useCallback, useEffect, useRef, useState,
+} from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { RemoveScroll } from 'react-remove-scroll'
@@ -63,6 +65,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
   const [navWidth, setNavWidth] = useState<string>('100%')
   const [windowWidth, setWindowWidth] = useState<number | null>(null)
   const [siteHeaderHidden, setSiteHeaderHidden] = useState(false)
+  const buttonRef = useRef<HTMLButtonElement>(null)
   const headerHiddenClassName = 'siteHeader__flownAway'
   const bodyHiddenClassName = 'siteHeaderHidden'
   const siteHeaderId = 'siteHeader'
@@ -127,6 +130,31 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
     return () => window.removeEventListener('resize', handleResize)
   }, [windowWidth, getHeaderBottomPos, getNavPos])
 
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key !== 'Escape') return
+
+      if (openSubmenuIndex !== null) {
+        setOpenSubmenuIndex(null)
+        return
+      }
+
+      if (mobileNavIsOpen) {
+        setMobileNavIsOpen(false)
+
+        if (buttonRef.current) {
+          buttonRef.current.focus()
+        }
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [openSubmenuIndex, mobileNavIsOpen])
+
   // Close desktop submenus when clicking outside nav
   useEffect(() => {
     const wrapper = document.getElementById(mainNavId)
@@ -173,6 +201,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
       <span className={styles.buttonsWrap}>
         {/* <SearchButton className={styles.searchButton__hideDesktop} /> */}
         <button
+          ref={buttonRef}
           className={cx(styles.mobileToggle, { [styles.mobileToggle__open]: mobileNavIsOpen })}
           onClick={toggleMobileNav}
           type='button'
