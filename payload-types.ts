@@ -1259,6 +1259,7 @@ export interface Product {
   id: number;
   title: string;
   slug: string;
+  link?: string | null;
   icon?: (number | null) | Media;
   shortDescription?: string | null;
   titleOverride?: string | null;
@@ -3358,6 +3359,7 @@ export interface DeveloperGuideTagsSelect<T extends boolean = true> {
 export interface ProductsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  link?: T;
   icon?: T;
   shortDescription?: T;
   titleOverride?: T;
