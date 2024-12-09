@@ -183,19 +183,19 @@ export const mainNavData: MainNavigation = [
           {
             _key: '1',
             title: 'Flarescan',
-            url: 'https://dev.flare.network/flarescan',
+            url: 'https://flarescan.com/',
             isExternal: true,
           },
           {
             _key: '2',
             title: 'Flare Block Explorer',
-            url: 'https://dev.flare.network/flare-block-explorer',
+            url: 'https://flare-explorer.flare.network/',
             isExternal: true,
           },
           {
             _key: '3',
             title: 'FTSO Monitor',
-            url: 'https://dev.flare.network/ftso-monitor',
+            url: 'https://flare-systems-explorer.flare.network/',
             isExternal: true,
           },
         ],
