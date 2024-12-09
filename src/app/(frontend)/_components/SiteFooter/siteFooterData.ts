@@ -36,13 +36,13 @@ export const secondaryNavData: SecondaryNavigation = [
   {
     _key: '1',
     title: 'Flarescan',
-    url: 'https://dev.flare.network/flarescan',
+    url: 'https://flarescan.com/',
     isExternal: true,
   },
   {
     _key: '2',
     title: 'FTSO Monitor',
-    url: 'https://dev.flare.network/ftso-monitor',
+    url: 'https://flare-systems-explorer.flare.network/',
     isExternal: true,
   },
   {
