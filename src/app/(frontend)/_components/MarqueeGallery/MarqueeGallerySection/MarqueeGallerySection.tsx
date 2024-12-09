@@ -1,6 +1,11 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import styles from '../MarqueeGallery.module.scss'
 
 export default function MarqueeGallerySection({ children }: React.PropsWithChildren) {
@@ -52,19 +57,23 @@ export default function MarqueeGallerySection({ children }: React.PropsWithChild
   }
 
   // Convert children to an array and repeat the content accordingly
-  const childrenArray = React.Children.toArray(children)
+  // Memoize to avoid unnecessary recalculations
+  const marqueeContent = useMemo(() => {
+    const childrenArray = React.Children.toArray(children)
+    const content: React.ReactNode[] = []
 
-  const marqueeContent: React.ReactNode[] = []
-  for (let repeatIndex = 0; repeatIndex < repeatCount; repeatIndex += 1) {
-    childrenArray.forEach((child, index) => {
-      // Ensure child is typed as ReactElement
-      if (React.isValidElement(child)) {
-        marqueeContent.push(React.cloneElement(child, {
-          key: `${child.key || index}-${repeatIndex}`, // Unique key for each child in each repeat
-        }))
-      }
-    })
-  }
+    for (let repeatIndex = 0; repeatIndex < repeatCount; repeatIndex += 1) {
+      childrenArray.forEach((child, index) => {
+        if (React.isValidElement(child)) {
+          content.push(React.cloneElement(child, {
+            key: `${child.key || index}-${repeatIndex}`, // Unique key for each child in each repeat
+          }))
+        }
+      })
+    }
+
+    return content
+  }, [children, repeatCount]) // Recompute only if children or repeatCount change
 
   return (
     <div className={styles.marquee} style={{ animationDuration: calculateAnimationDuration() }}>
