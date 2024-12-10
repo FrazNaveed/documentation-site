@@ -60,7 +60,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
   const [isBelowBreakpoint] = useIsBelowBreakpoint()
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false)
   const [openSubmenuIndex, setOpenSubmenuIndex] = useState<number | null>(null)
-  const [headerBottomPos, setHeaderBottomPos] = useState<number>(120)
+  const [headerBottomPos, setHeaderBottomPos] = useState<number>(125)
   const [navLeftPos, setNavLeftPos] = useState<string>('50%')
   const [navWidth, setNavWidth] = useState<string>('100%')
   const [windowWidth, setWindowWidth] = useState<number | null>(null)
@@ -88,8 +88,8 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
   const getHeaderBottomPos = useCallback(() => {
     const headerRect = document.getElementById(siteHeaderId)?.getBoundingClientRect()
     if (headerRect) {
-      const { y, height } = headerRect
-      setHeaderBottomPos(y + height)
+      const { height } = headerRect
+      setHeaderBottomPos(height)
     }
   }, [])
 
