@@ -11,6 +11,7 @@
 }
 
 .mainContent {
+  overflow: hidden;
   @include columns(3, -1);
 
   &__fullWidth {

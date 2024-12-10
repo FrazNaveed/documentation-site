@@ -20,26 +20,50 @@ export default function LayerCakePanel({
 }: LayerCakeProps) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [animationComplete, setAnimationComplete] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
   const [activeHovers, setActiveHovers] = useState<number[] | false>(false)
 
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      threshold: [0, 0.75],
-    }
+    let scrollListener: () => void
 
     const handleIntersect: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
-        if (entry.intersectionRatio >= 0.75 && entry.isIntersecting) {
-          setIsAnimating(true)
-        } else if (entry.intersectionRatio === 0 && !entry.isIntersecting) {
+        if (entry.isIntersecting) {
+          // Attach scroll listener
+          scrollListener = () => {
+            if (containerRef.current) {
+              const rect = containerRef.current.getBoundingClientRect()
+              const viewportHeight = window.innerHeight
+
+              if (rect.top <= viewportHeight * 0.25 && rect.bottom >= 0) {
+                setIsAnimating(true)
+                setTimeout(() => {
+                  setAnimationComplete(true)
+                }, 1000)
+              } else {
+                setIsAnimating(false)
+                setAnimationComplete(false)
+              }
+            }
+          }
+
+          window.addEventListener('scroll', scrollListener)
+        } else {
+          // Cleanup scroll listener when element is out of view
+          if (scrollListener) {
+            window.removeEventListener('scroll', scrollListener)
+          }
           setIsAnimating(false)
+          setAnimationComplete(false) // Reset animation state
         }
       })
     }
 
-    const observer = new IntersectionObserver(handleIntersect, observerOptions)
+    const observer = new IntersectionObserver(handleIntersect, {
+      root: null, // Observe relative to the viewport
+      threshold: 0, // Trigger as soon as any part of the element is visible
+    })
 
     if (containerRef.current) {
       observer.observe(containerRef.current)
@@ -48,6 +72,9 @@ export default function LayerCakePanel({
     return () => {
       if (containerRef.current) {
         observer.unobserve(containerRef.current)
+      }
+      if (scrollListener) {
+        window.removeEventListener('scroll', scrollListener)
       }
     }
   }, [])
@@ -60,7 +87,7 @@ export default function LayerCakePanel({
       </div>
       <aside
         className={styles.column__primary}
-        onMouseEnter={() => setIsExpanded(true)}
+        onMouseEnter={() => setIsExpanded(animationComplete)}
         onMouseLeave={() => setIsExpanded(false)}
       >
         {primaryColumnLabel && <h3 className={styles.label}>{primaryColumnLabel}</h3>}
@@ -71,7 +98,14 @@ export default function LayerCakePanel({
               <div
                 key={id}
                 className={cx(styles.textLayer, styles[`textLayer__${index}`])}
-                onMouseEnter={() => setActiveHovers([index])}
+                onMouseEnter={() => {
+                  if (animationComplete) {
+                    setActiveHovers([index])
+                    if (!isExpanded) {
+                      setIsExpanded(true)
+                    }
+                  }
+                }}
                 onMouseLeave={() => setActiveHovers(false)}
               >
                 {header && <h4 className={styles.primaryHeader}>{header}</h4>}
@@ -92,11 +126,12 @@ export default function LayerCakePanel({
           { [styles.animate]: isAnimating, [styles.expanded]: isExpanded },
         )}
       >
-        {[1, 2, 3].map((i) => (
+        {[1, 2].map((i) => (
           <div
             key={i}
             className={cx(
               styles.layer,
+              styles.shadowLayer,
               styles.layer__bottomShadow,
               { [styles.active]: activeHovers && activeHovers.includes(2) },
             )}
@@ -105,11 +140,12 @@ export default function LayerCakePanel({
         <div className={cx(styles.layer, styles.layer__bottom)}>
           <Image src={bottom} alt='bottom' />
         </div>
-        {[1, 2, 3].map((i) => (
+        {[1, 2].map((i) => (
           <div
             key={i}
             className={cx(
               styles.layer,
+              styles.shadowLayer,
               styles.layer__middleShadow,
               { [styles.active]: activeHovers && activeHovers.includes(1) },
             )}
@@ -118,11 +154,12 @@ export default function LayerCakePanel({
         <div className={cx(styles.layer, styles.layer__middle)}>
           <Image src={middle} alt='middle' />
         </div>
-        {[1, 2, 3].map((i) => (
+        {[1, 2].map((i) => (
           <div
             key={i}
             className={cx(
               styles.layer,
+              styles.shadowLayer,
               styles.layer__topShadow,
               { [styles.active]: activeHovers && activeHovers.includes(0) },
             )}
@@ -131,9 +168,9 @@ export default function LayerCakePanel({
         <div className={cx(styles.layer, styles.layer__top)}>
           <Image src={top} alt='top' />
         </div>
-        {['ftso', 'fdc', 'fassets', 'fpo1', 'fpo2', 'fpo3'].map((dotName) => (
+        {['FTSO', 'Enshrined Data Protocols', 'Fassets', 'FDC', 'Ethereum Virtual Machine', 'FlareStake'].map((dotName, i) => (
           // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
-          <div key={dotName} className={cx(styles.flareDot, styles[`flareDot__${dotName}`])} onClick={() => false}>
+          <div key={dotName} className={cx(styles.flareDot, styles[`flareDot__${i}`])} onClick={() => false}>
             <span className={styles.flareDotText}>{dotName}</span>
           </div>
         ))}

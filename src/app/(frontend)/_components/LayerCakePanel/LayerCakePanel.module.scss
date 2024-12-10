@@ -141,23 +141,23 @@
     padding: $spacing-small 0;
     border-radius: 10px;
 
-    @include media-breakpoint-up(md) {
-      margin-bottom: $spacing-4x-large;
+    @include media-breakpoint-up(lg) {
+      margin-bottom: $spacing-small;
       opacity: 0;
-    }
 
-    &:hover {
-      padding: $spacing-small;
-      background-color: $gray-50;
-      cursor: pointer;
+      &:hover {
+        padding: $spacing-small;
+        background-color: $gray-50;
+        cursor: pointer;
 
-      .primaryHeader {
-        text-decoration: underline;
+        .primaryHeader {
+          text-decoration: underline;
+        }
       }
     }
   }
 
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     &.animate {
       .textLayer {
         &__0 {
@@ -192,10 +192,17 @@
   position: relative;
   aspect-ratio: 6/5;
 
+  .shadowLayer {
+    height: 25%;
+    border-radius: 70%;
+    box-shadow: 0 10px 83.3px 0 #ff779c;
+    opacity: 0;
+  }
+
   .layer {
     position: absolute;
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(lg) {
       transform: translateY(40px);
       transition: opacity $transition-snappy;
       opacity: 0;
@@ -207,49 +214,56 @@
       width: 91%;
       transform: translate(-50%, 40px);
 
+      @include media-breakpoint-down(lg) {
+        transform: translate(-50%, 0);
+      }
+
       &Shadow {
-        top: 12.5%;
+        top: 14%;
         left: 5.5%;
         width: 89%;
-        height: 29.5%;
-        border-radius: 50%;
-        box-shadow: 0 10px 83.3px 0 #ff779c;
       }
     }
 
     &__middle {
       top: 50%;
 
+      @include media-breakpoint-down(lg) {
+        top: 26%;
+      }
+
       &Shadow {
-        top: 52%;
+        top: 53%;
         left: 1%;
         width: 98%;
-        height: 28%;
-        border-radius: 50%;
-        box-shadow: 0 10px 83.3px 0 #ff779c;
+        height: 23%;
       }
     }
 
     &__bottom {
       top: 75%;
 
+      @include media-breakpoint-down(lg) {
+        top: 33%;
+      }
+
       &Shadow {
-        top: 89%;
+        top: 90.5%;
         left: 1%;
         width: 98%;
-        height: 30%;
-        border-radius: 50%;
-        box-shadow: 0 10px 83.3px 0 #ff779c;
+        height: 23%;
       }
     }
 
-    &.active {
-      transition: opacity $transition-snappy 200ms;
-      opacity: 1;
+    @include media-breakpoint-up(lg) {
+      &.active {
+        transition: opacity $transition-snappy 200ms;
+        opacity: 1;
+      }
     }
   }
 
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     img {
       transition: transform $transition-snappy 200ms;
     }
@@ -384,6 +398,7 @@
     margin-bottom: 0;
     padding-left: 0;
     transition: all 0.3s ease-in-out;
+    white-space: nowrap;
     opacity: 0;
   }
 
@@ -391,39 +406,39 @@
   &:active,
   &:focus {
     .flareDotText {
-      max-width: 200px;
+      max-width: 250px;
       padding-left: 6px;
       opacity: 1;
     }
   }
 
-  &__ftso {
-    top: 40%;
-    left: 5%;
+  &__0 {
+    top: 34%;
+    left: 8%;
   }
 
-  &__fdc {
+  &__1 {
     top: 5%;
+    left: 20%;
+  }
+
+  &__2 {
+    top: 25%;
+    left: 69.5%;
+  }
+
+  &__3 {
+    top: 49%;
     left: 48.5%;
   }
 
-  &__fassets {
-    top: 35%;
-    left: 76.5%;
-  }
-
-  &__fpo1 {
+  &__4 {
     top: 55%;
-    left: 48.5%;
+    left: 26.5%;
   }
 
-  &__fpo2 {
-    top: 68%;
-    left: 48.5%;
-  }
-
-  &__fpo3 {
-    top: 82%;
+  &__5 {
+    top: 76%;
     left: 48.5%;
   }
 }
