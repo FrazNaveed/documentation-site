@@ -37,9 +37,9 @@ export default async function RootLayout({ children, params }: LayoutProps) {
           Skip to content
         </a>
         <SiteHeader />
-        <div id='mainContent'>
+        <main id='mainContent'>
           {children}
-        </div>
+        </main>
         <SiteFooter />
       </body>
     </html>
