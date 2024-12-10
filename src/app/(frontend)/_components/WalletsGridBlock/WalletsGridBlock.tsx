@@ -59,7 +59,7 @@ export default function WalletsGridBlock({ intro, wallets }: WalletsGridBlockPro
                   <p>FLR Functionality</p>
                 </span>
                 )}
-                {tags && (
+                {tags && tags.length > 0 && (
                 <div className={styles.walletTagsWrap}>
                   {tags.map((tag: string) => (
                     <p key={tag} className={styles.walletTag}>{tag}</p>
