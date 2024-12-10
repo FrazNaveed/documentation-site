@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
+import validateTextFieldUrl from '../_utils/validateTextFieldUrl'
 
 export const Products: CollectionConfig = {
   slug: 'products',
@@ -35,6 +36,14 @@ export const Products: CollectionConfig = {
       },
       hooks: {
         beforeValidate: [setSlugFromTitle],
+      },
+    },
+    {
+      name: 'link',
+      type: 'text',
+      validate: validateTextFieldUrl,
+      admin: {
+        description: 'External link'
       },
     },
     {

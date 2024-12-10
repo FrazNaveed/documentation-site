@@ -21,11 +21,11 @@ export const mainNavData: MainNavigation = [
           {
             _key: '3',
             title: 'Get FlareDrops',
-            url: '/flaredrop-and-rewards',
+            url: '/flaredrops',
           },
           {
             _key: '4',
-            title: 'Delegate & Stake',
+            title: 'Delegating & Staking',
             url: '/delegate-and-stake',
           },
           {
@@ -183,19 +183,19 @@ export const mainNavData: MainNavigation = [
           {
             _key: '1',
             title: 'Flarescan',
-            url: 'https://dev.flare.network/flarescan',
+            url: 'https://flarescan.com/',
             isExternal: true,
           },
           {
             _key: '2',
             title: 'Flare Block Explorer',
-            url: 'https://dev.flare.network/flare-block-explorer',
+            url: 'https://flare-explorer.flare.network/',
             isExternal: true,
           },
           {
             _key: '3',
             title: 'FTSO Monitor',
-            url: 'https://dev.flare.network/ftso-monitor',
+            url: 'https://flare-systems-explorer.flare.network/',
             isExternal: true,
           },
         ],
@@ -212,7 +212,7 @@ export const mainNavData: MainNavigation = [
           },
           {
             _key: '2',
-            title: 'Run an Observer Node',
+            title: 'Run an RPC Node',
             url: 'https://dev.flare.network/run-node/rpc-node',
           },
           {

@@ -5,10 +5,10 @@ import RightArrow from '../svgs/RightArrow'
 import styles from './ProductGrid.module.scss'
 
 export default function ProductGrid({
-  slug, icon, titleOverride, title, shortDescription,
+  slug, link, icon, titleOverride, title, shortDescription,
 }: Product) {
   return (
-    <Link href={`/${slug}`} className={styles.productWrap}>
+    <Link href={link || `/${slug}`} className={styles.productWrap}>
       <div className={styles.product}>
         <div className={styles.productHeader}>
           <div className={styles.productInfo}>
