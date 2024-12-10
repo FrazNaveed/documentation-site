@@ -79,6 +79,13 @@
   gap: to-rem($spacing-small) to-rem(5px);
 }
 
+.filterIcon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
 .filterButton {
   @include utils.buttonReset;
   @include paragraphSmFont;
@@ -155,7 +162,8 @@
   &_Icon {
     display: block;
     width: 35px;
-    height: auto;
+    height: 35px;
+    object-fit: contain;
     filter: brightness(0);
   }
 

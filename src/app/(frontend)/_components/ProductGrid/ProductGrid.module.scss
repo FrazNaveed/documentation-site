@@ -71,6 +71,10 @@
     height: to-rem(48px);
   }
 
+  &Icon {
+    object-fit: contain;
+  }
+
   &Title {
     @include headerH6;
 

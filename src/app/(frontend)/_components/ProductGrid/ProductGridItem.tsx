@@ -19,6 +19,7 @@ export default function ProductGrid({
                 alt={icon.alt}
                 width={48}
                 height={48}
+                className={styles.productIcon}
               />
               )}
             </div>
