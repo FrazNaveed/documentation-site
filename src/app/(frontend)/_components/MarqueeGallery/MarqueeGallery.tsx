@@ -119,6 +119,17 @@ export default async function MarqueeGallery({
       )
     } else if (imageCard) {
       const { image, titleOverlay, textOverlay } = imageCard
+      // If content had been entered and deleted,
+      // textOverlay will no longer be null, but rather a root element with an empty paragraph child
+      // Check for this so empty hover state isn't rendered
+      let textOverlayIsEmpty
+      if (!textOverlay) {
+        textOverlayIsEmpty = true
+      } else {
+        const textOverlayRootChildren = textOverlay?.root?.children
+        textOverlayIsEmpty = textOverlayRootChildren?.length === 1
+          && Array.isArray(textOverlayRootChildren[0]?.children) && textOverlayRootChildren[0]?.children.length === 0
+      }
       output = (
         <figure
           key={id}
@@ -139,7 +150,7 @@ export default async function MarqueeGallery({
               alt={image.alt}
             />
           )}
-          {(titleOverlay || textOverlay) && (
+          {(titleOverlay || (textOverlay && !textOverlayIsEmpty)) && (
             <figcaption
               className={cx(
                 styles.hoverContent,
@@ -162,7 +173,7 @@ export default async function MarqueeGallery({
                   {titleOverlay}
                 </h3>
               )}
-              {textOverlay && (
+              {(textOverlay && !textOverlayIsEmpty) && (
                 <div
                   className={cx(
                     styles.overlayText,
