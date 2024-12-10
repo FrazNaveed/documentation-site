@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import cx from 'classnames'
 import type { Locale } from 'src/app/i18n-config'
+import FlareLink from 'src/app/(frontend)/_components/Link'
 import EventsAllLink from 'src/app/(frontend)/_components/EventsAllLink'
 import EventsFeaturedLabel from 'src/app/(frontend)/_components/EventsFeaturedLabel'
 import EventsLocation from 'src/app/(frontend)/_components/EventsLocation'
@@ -37,6 +38,7 @@ export default async function MarqueeGallery({
     ? (featuredEvent.featuredHeroEyebrow || featuredEvent.flareInvolvement)
     : eventGlobalSettings?.eventCardEyebrow
   const eventHeader = featuredEvent ? featuredEvent.title : eventGlobalSettings?.eventCardTitle
+  const featuredEventLink = featuredEvent?.eventLink || featuredEvent?.button?.link
   const eventsCard = (
     <div key='eventsCard' className={cx(styles.card, styles.card__md, styles.card__events)}>
       <div className={cx(styles.eventContent, { [styles.eventContent__default]: !featuredEvent })}>
@@ -64,9 +66,19 @@ export default async function MarqueeGallery({
           />
         </div>
       )}
-      {!featuredEvent && (
+      {(!featuredEvent || featuredEventLink) && (
         <div className={styles.hoverContent}>
-          <EventsAllLink className={styles.eventLink} iconClassName={styles.eventLink_Icon} />
+          {!featuredEvent && <EventsAllLink className={styles.eventLink} iconClassName={styles.eventLink_Icon} />}
+          {featuredEvent && featuredEventLink && (
+            <FlareLink
+              href={featuredEventLink}
+              className={styles.eventLink}
+              iconClassName={styles.eventLink_Icon}
+              includeRightArrow
+            >
+              View Featured Event
+            </FlareLink>
+          )}
         </div>
       )}
     </div>
@@ -107,6 +119,17 @@ export default async function MarqueeGallery({
       )
     } else if (imageCard) {
       const { image, titleOverlay, textOverlay } = imageCard
+      // If content had been entered and deleted,
+      // textOverlay will no longer be null, but rather a root element with an empty paragraph child
+      // Check for this so empty hover state isn't rendered
+      let textOverlayIsEmpty
+      if (!textOverlay) {
+        textOverlayIsEmpty = true
+      } else {
+        const textOverlayRootChildren = textOverlay?.root?.children
+        textOverlayIsEmpty = textOverlayRootChildren?.length === 1
+          && Array.isArray(textOverlayRootChildren[0]?.children) && textOverlayRootChildren[0]?.children.length === 0
+      }
       output = (
         <figure
           key={id}
@@ -127,7 +150,7 @@ export default async function MarqueeGallery({
               alt={image.alt}
             />
           )}
-          {(titleOverlay || textOverlay) && (
+          {(titleOverlay || (textOverlay && !textOverlayIsEmpty)) && (
             <figcaption
               className={cx(
                 styles.hoverContent,
@@ -150,7 +173,7 @@ export default async function MarqueeGallery({
                   {titleOverlay}
                 </h3>
               )}
-              {textOverlay && (
+              {(textOverlay && !textOverlayIsEmpty) && (
                 <div
                   className={cx(
                     styles.overlayText,
