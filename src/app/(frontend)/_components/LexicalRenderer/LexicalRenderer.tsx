@@ -6,9 +6,10 @@ import {
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 import type { FileData, FileSize, TypeWithID } from 'payload'
 import Image from 'next/image'
-import type { Media, News, Page, Subheader } from 'payload-types'
+import type { IHeadingWithButton, Media, News, Page, Subheader } from 'payload-types'
 import cx from 'classnames'
 import Link from '../Link'
+import HeadingWithButtonBlock from '../HeadingWithButtonBlock'
 import VideoEmbed from '../VideoEmbed'
 import getCollectionPath from '../../_utils/getCollectionPath'
 import type { CollectionPathContentTypes } from '../../_utils/getCollectionPath'
@@ -89,6 +90,13 @@ const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => {
       }
     },
     blocks: {
+      headingWithButton: ({ node }) => {
+        const nodeFields = node.fields as IHeadingWithButton
+        if (nodeFields.heading || (nodeFields.buttonText && nodeFields.buttonLink)) {
+          return <HeadingWithButtonBlock className={styles.headingWithButton} {...nodeFields} />
+        }
+        return null
+      },
       subheader: ({ node }) => {
         const nodeFields = node.fields as Subheader
         if (nodeFields.subheader) {

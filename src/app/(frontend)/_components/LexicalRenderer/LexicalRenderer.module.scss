@@ -9,8 +9,16 @@
   h2 {
     @include h4;
 
-    margin-bottom: to-rem($spacing-standard);
     letter-spacing: 0;
+  }
+
+  h2,
+  .headingWithButton {
+    margin-bottom: to-rem($spacing-standard);
+  }
+
+  .headingWithButton h2 {
+    margin-bottom: 0;
   }
 
   h3 {

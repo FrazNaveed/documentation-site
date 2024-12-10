@@ -21,6 +21,7 @@ import {
   UnorderedListFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
+import { HeadingWithButtonBlock } from '../_blocks/HeadingWithButtonBlock'
 import { SubheaderBlock } from '../_blocks/SubheaderBlock'
 import { Video } from '../_blocks/VideoBlock'
 import { CreateSideNavLinkFields } from '../_fields/CreateSideNavLink'
@@ -76,7 +77,7 @@ export const RichTextField: Field = {
         },
       }),
       BlocksFeature({
-        blocks: [SubheaderBlock, Video],
+        blocks: [SubheaderBlock, Video, HeadingWithButtonBlock],
       }),
     ],
   }),
