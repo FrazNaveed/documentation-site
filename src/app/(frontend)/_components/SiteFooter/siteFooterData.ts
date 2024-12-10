@@ -28,6 +28,11 @@ export const navData: FooterNavigation = [
   //   title: 'Audits',
   //   url: '/audits',
   // },
+  {
+    _key: '4',
+    title: 'Terms & Conditions',
+    url: '/privacy-policy',
+  },
 ]
 
 export const secondaryNavLabel = 'Dev Links'
