@@ -12,7 +12,7 @@ export type FlareDropDatesProps = {
 }
 
 export default function FlareDropDates({
-  title = 'FlareDrop Dates',
+  title = 'FlareDrops Dates',
   className,
 }: FlareDropDatesProps) {
   const awarded = calculateAwardTotals(dropDateData).awarded * 1000000
