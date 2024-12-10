@@ -102,6 +102,7 @@ $mobile-padding: to-rem($spacing-standard);
 .buttons {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: to-rem($spacing-small);
 }
 

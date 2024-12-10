@@ -94,14 +94,6 @@
     color: $black;
   }
 
-  &.large {
-    padding: to-rem(8px) to-rem(22px);
-  }
-
-  &.small {
-    padding: to-rem(6px) to-rem(14px);
-  }
-
   &[disabled] {
     border: 1px solid $gray-50;
     background-color: $white;
