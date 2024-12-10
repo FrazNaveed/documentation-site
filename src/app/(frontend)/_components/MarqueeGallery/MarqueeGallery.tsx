@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import cx from 'classnames'
 import type { Locale } from 'src/app/i18n-config'
+import FlareLink from 'src/app/(frontend)/_components/Link'
 import EventsAllLink from 'src/app/(frontend)/_components/EventsAllLink'
 import EventsFeaturedLabel from 'src/app/(frontend)/_components/EventsFeaturedLabel'
 import EventsLocation from 'src/app/(frontend)/_components/EventsLocation'
@@ -37,6 +38,7 @@ export default async function MarqueeGallery({
     ? (featuredEvent.featuredHeroEyebrow || featuredEvent.flareInvolvement)
     : eventGlobalSettings?.eventCardEyebrow
   const eventHeader = featuredEvent ? featuredEvent.title : eventGlobalSettings?.eventCardTitle
+  const featuredEventLink = featuredEvent?.eventLink || featuredEvent?.button?.link
   const eventsCard = (
     <div key='eventsCard' className={cx(styles.card, styles.card__md, styles.card__events)}>
       <div className={cx(styles.eventContent, { [styles.eventContent__default]: !featuredEvent })}>
@@ -64,9 +66,19 @@ export default async function MarqueeGallery({
           />
         </div>
       )}
-      {!featuredEvent && (
+      {(!featuredEvent || featuredEventLink) && (
         <div className={styles.hoverContent}>
-          <EventsAllLink className={styles.eventLink} iconClassName={styles.eventLink_Icon} />
+          {!featuredEvent && <EventsAllLink className={styles.eventLink} iconClassName={styles.eventLink_Icon} />}
+          {featuredEvent && featuredEventLink && (
+            <FlareLink
+              href={featuredEventLink}
+              className={styles.eventLink}
+              iconClassName={styles.eventLink_Icon}
+              includeRightArrow
+            >
+              View Featured Event
+            </FlareLink>
+          )}
         </div>
       )}
     </div>
