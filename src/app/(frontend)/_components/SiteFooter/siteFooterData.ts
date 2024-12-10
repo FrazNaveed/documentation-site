@@ -39,12 +39,12 @@ export const secondaryNavData: SecondaryNavigation = [
     url: 'https://flarescan.com/',
     isExternal: true,
   },
-  {
-    _key: '2',
-    title: 'FTSO Monitor',
-    url: 'https://flare-systems-explorer.flare.network/',
-    isExternal: true,
-  },
+  // {
+  //   _key: '2',
+  //   title: 'FTSO Monitor',
+  //   url: 'https://flare-systems-explorer.flare.network/',
+  //   isExternal: true,
+  // },
   // {
   //   _key: '3',
   //   title: 'Brand Assets',
