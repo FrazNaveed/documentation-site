@@ -127,8 +127,10 @@
 
   &Footer {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     margin-top: auto;
+    row-gap: to-rem($spacing-x-small);
   }
 
   &ConnectWrap {
