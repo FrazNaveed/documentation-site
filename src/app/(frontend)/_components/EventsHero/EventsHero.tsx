@@ -63,7 +63,7 @@ export default function EventsHero({ event, backgroundImage, noDesktopContainerP
           {displayDayRange(startDate, endDate)}
           {startTime && ` / ${convertTimestampToMilitaryTime(startTime)}`}
           {startYear && ` / ${startYear}`}
-          {endYear && ` - ${endYear}`}
+          {(endYear && endYear !== startYear) && ` - ${endYear}`}
         </p>
         <EventsLocation location={location} country={country} className={styles.location} iconSmall />
         {button?.link && (
