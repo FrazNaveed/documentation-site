@@ -16,17 +16,22 @@ export const navData: FooterNavigation = [
   {
     _key: '1',
     title: 'Contact',
-    url: '/contact',
+    url: '/resources/developer-support',
   },
+  // {
+  //   _key: '2',
+  //   title: 'Terminology',
+  //   url: '/terminology',
+  // },
+  // {
+  //   _key: '3',
+  //   title: 'Audits',
+  //   url: '/audits',
+  // },
   {
-    _key: '2',
-    title: 'Terminology',
-    url: '/terminology',
-  },
-  {
-    _key: '3',
-    title: 'Audits',
-    url: '/audits',
+    _key: '4',
+    title: 'Terms & Conditions',
+    url: '/privacy-policy',
   },
 ]
 
@@ -39,17 +44,17 @@ export const secondaryNavData: SecondaryNavigation = [
     url: 'https://flarescan.com/',
     isExternal: true,
   },
-  {
-    _key: '2',
-    title: 'FTSO Monitor',
-    url: 'https://flare-systems-explorer.flare.network/',
-    isExternal: true,
-  },
-  {
-    _key: '3',
-    title: 'Brand Assets',
-    url: '/brand-assets',
-  },
+  // {
+  //   _key: '2',
+  //   title: 'FTSO Monitor',
+  //   url: 'https://flare-systems-explorer.flare.network/',
+  //   isExternal: true,
+  // },
+  // {
+  //   _key: '3',
+  //   title: 'Brand Assets',
+  //   url: '/brand-assets',
+  // },
   {
     _key: '4',
     title: 'Flare Systems Explorer',
