@@ -3,10 +3,11 @@
 import { Fragment, useState } from 'react'
 import { TableWithDrawers } from '@/payload-types'
 import cx from 'classnames'
+import PlusSign from 'src/app/(frontend)/_components/svgs/PlusSign'
+import MinusSign from 'src/app/(frontend)/_components/svgs/MinusSign'
 import LexicalRenderer from '../LexicalRenderer'
 import styles from './TableDrawers.module.scss'
 
-// TODO: Replace with SVG or standard icon for plus/minus
 const ShowHideBtn = ({ onClick, collapsed = false }: {onClick: () => void, collapsed: boolean}) => (
   <button
     type='button'
@@ -14,7 +15,7 @@ const ShowHideBtn = ({ onClick, collapsed = false }: {onClick: () => void, colla
     className={cx(styles.showHideBtn, styles.hideOnTable, { [styles.showHideBtn__open]: !collapsed })}
     onClick={onClick}
   >
-    {collapsed ? '+' : '-'}
+    {collapsed ? <PlusSign /> : <MinusSign />}
   </button>
 )
 
