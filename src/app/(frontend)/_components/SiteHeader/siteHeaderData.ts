@@ -39,11 +39,11 @@ export const mainNavData: MainNavigation = [
         _key: '2',
         title: 'Community',
         links: [
-          {
-            _key: '1',
-            title: 'Ecosystem Partners',
-            url: '/ecosystem-partners',
-          },
+          // {
+          //   _key: '1',
+          //   title: 'Ecosystem Partners',
+          //   url: '/ecosystem-partners',
+          // },
           {
             _key: '2',
             title: 'Ambassador Program',
@@ -127,12 +127,12 @@ export const mainNavData: MainNavigation = [
             title: 'Grants',
             url: '/resources/grants',
           },
-          {
-            _key: '3',
-            title: 'Bug Bounty',
-            url: 'https://immunefi.com/bug-bounty/flarenetwork/information/',
-            isExternal: true,
-          },
+          // {
+          //   _key: '3',
+          //   title: 'Bug Bounty',
+          //   url: 'https://immunefi.com/bug-bounty/flarenetwork/information/',
+          //   isExternal: true,
+          // },
           {
             _key: '4',
             title: 'Developer Support',
@@ -207,7 +207,7 @@ export const mainNavData: MainNavigation = [
         links: [
           {
             _key: '1',
-            title: 'Network configuration',
+            title: 'Network Configuration',
             url: 'https://dev.flare.network/network/overview#configuration',
           },
           {
