@@ -1,5 +1,6 @@
 import { withPayload } from '@payloadcms/next/withPayload'
 import withBundleAnalyzer from '@next/bundle-analyzer'
+import manualRedirects from './manualRedirects.js'
 
 const bundleAnalyzer = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -69,6 +70,9 @@ const nextConfig = {
         { key: 'Permissions-Policy', value: '' },
       ],
     },
+  ],
+  redirects: async () => [
+    ...manualRedirects,
   ],
 }
 
