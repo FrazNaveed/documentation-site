@@ -21,7 +21,7 @@ export const mainNavData: MainNavigation = [
           {
             _key: '3',
             title: 'Get FlareDrops',
-            url: '/flaredrop-and-rewards',
+            url: '/flaredrops',
           },
           {
             _key: '4',
