@@ -44,11 +44,11 @@ export const mainNavData: MainNavigation = [
           //   title: 'Ecosystem Partners',
           //   url: '/ecosystem-partners',
           // },
-          {
-            _key: '2',
-            title: 'Ambassador Program',
-            url: '/ambassador-program',
-          },
+          // {
+          //   _key: '2',
+          //   title: 'Ambassador Program',
+          //   url: '/ambassador-program',
+          // },
           {
             _key: '3',
             title: 'Community Resources',
