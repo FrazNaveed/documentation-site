@@ -116,7 +116,7 @@ export default function SideNav({ components, jumpLinkAnchorGlobalClass }: SideN
         <button
           type='button'
           onClick={toggleOpen}
-          className={cx(styles.header, styles.button)}
+          className={cx(styles.header, styles.button, { [styles.button__open]: isOpen })}
           data-content={isOpen ? '-' : '+'}
         >
           {headerLabelText}

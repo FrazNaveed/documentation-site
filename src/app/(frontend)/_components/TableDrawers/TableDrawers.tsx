@@ -11,7 +11,7 @@ const ShowHideBtn = ({ onClick, collapsed = false }: {onClick: () => void, colla
   <button
     type='button'
     aria-label='Show/Hide'
-    className={cx(styles.showHideBtn, styles.hideOnTable)}
+    className={cx(styles.showHideBtn, styles.hideOnTable, { [styles.showHideBtn__open]: !collapsed })}
     onClick={onClick}
   >
     {collapsed ? '+' : '-'}
@@ -79,7 +79,7 @@ export default function TableDrawers({ data, className }: TableWithDrawersProps)
               rowLabel, column1Data, column2Data, id,
             }, rowIndex) => (
               <div
-                className={cx(styles.row, {
+                className={cx(styles.row, styles.nonHeaderRow, {
                   [styles.rowLast]: rowIndex === rows.length - 1,
                   [styles.collapsed]: collapsedDrawers.includes(index),
                 })}

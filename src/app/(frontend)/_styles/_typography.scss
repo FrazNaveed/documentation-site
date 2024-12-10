@@ -301,15 +301,20 @@ $font-family-sathoshi: var(--satoshi);
   }
 }
 
-@mixin label($breakpoint: lg) {
+@mixin labelDesktopFont {
   @include fontStyle(14, 18.9);
 
-  margin-top: 0;
-  margin-bottom: to-rem(12px);
   font-family: $font-family-sathoshi;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+@mixin label($breakpoint: lg) {
+  @include labelDesktopFont;
+
+  margin-top: 0;
+  margin-bottom: to-rem(12px);
 
   @include media-breakpoint-down($breakpoint) {
     @include fontStyle(12, 16.2);
@@ -353,4 +358,20 @@ $font-family-sathoshi: var(--satoshi);
   @include media-breakpoint-down(lg) {
     @include fontStyle(120, 120);
   }
+}
+
+@mixin openCloseButton {
+  @include bodyBaseDesktop;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 23px;
+  height: 23px;
+  border: 1px solid $gray;
+  border-radius: 6px;
+  background-color: $gray-50;
+  color: $body-text-color;
+  line-height: 1;
+  box-sizing: border-box;
 }
