@@ -73,8 +73,7 @@ $mobile-padding: to-rem($spacing-standard);
   }
 
   @include media-breakpoint-down(md) {
-    padding-right: $mobile-padding;
-    padding-left: $mobile-padding;
+    display: none;
   }
 }
 
@@ -158,15 +157,21 @@ $mobile-padding: to-rem($spacing-standard);
     counter-reset: line;
     counter-increment: line 0;
 
-    :global(.line)::before {
+    :global(.line) {
       display: inline-block;
-      width: 1rem;
-      margin-right: 1.5rem;
-      color: rgba(0 0 0 / 40%);
-      font-weight: 400;
-      text-align: right;
-      content: counter(line);
-      counter-increment: line;
+      padding-left: 5em;
+      text-indent: -5em;
+
+      &::before {
+        display: inline-block;
+        width: 1rem;
+        margin-right: 1.5rem;
+        color: rgba(0 0 0 / 40%);
+        font-weight: 400;
+        text-align: right;
+        content: counter(line);
+        counter-increment: line;
+      }
     }
   }
 }
