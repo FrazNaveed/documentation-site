@@ -123,8 +123,7 @@
 
     color: $black;
 
-    &:focus,
-    &:focus-visible {
+    &:focus {
       outline: none;
     }
 
