@@ -77,18 +77,15 @@ $mobile-border: 1px solid $gray-100;
   }
 
   &::after {
-    @include bodyBaseDesktop;
+    @include openCloseButton;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 22px;
-    border: 1px solid $gray;
-    border-radius: 6px;
-    background-color: $gray-50;
-    line-height: 1;
+    padding-bottom: 1px;
+    padding-left: 1px;
     content: attr(data-content);
+  }
+
+  &__open::after {
+    padding-bottom: 3px;
   }
 }
 
