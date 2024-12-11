@@ -24,11 +24,17 @@ $side-nav-bg-color: $white;
     z-index: 99;
 
     :global(.siteHeaderHidden) & {
-      top: 0;
-      transform: translateY(-100%);
+      top: -1px;
       transition:
         top $transition-default,
         transform $transition-speed-default ease $transition-speed-default;
+
+      &__pinned {
+        transform: translateY(-100%);
+        transition:
+          top $transition-default,
+          transform $transition-speed-default ease;
+      }
     }
   }
 }

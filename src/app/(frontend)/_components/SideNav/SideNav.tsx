@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import cx from 'classnames'
 import type { Page } from '@/payload-types'
@@ -13,6 +13,8 @@ export type SideNavProps = {
 }
 
 export default function SideNav({ components, jumpLinkAnchorGlobalClass }: SideNavProps) {
+  const stickyNav = useRef(null)
+  const [navIsPinned, setNavIsPinned] = useState(false)
   const [initialActiveStateSet, setInitialActiveStateSet] = useState(false)
   const [activeNavLinkIndex, setActiveNavLinkIndex] = useState(0)
   const [isOpen, setIsOpen] = useState(false)
@@ -30,6 +32,25 @@ export default function SideNav({ components, jumpLinkAnchorGlobalClass }: SideN
   const closeOpen = () => {
     setIsOpen(false)
   }
+
+  // Observe sticky nav to set class when pinned
+  useEffect(() => {
+    const stickyNavCurrent = stickyNav.current
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setNavIsPinned(entry.intersectionRatio < 1)
+      },
+      { threshold: [1] },
+    )
+    if (stickyNavCurrent) {
+      observer.observe(stickyNavCurrent)
+    }
+    return () => {
+      if (stickyNavCurrent) {
+        observer.unobserve(stickyNavCurrent)
+      }
+    }
+  }, [])
 
   // Set initial active anchor link on page load
   useEffect(() => {
@@ -110,7 +131,7 @@ export default function SideNav({ components, jumpLinkAnchorGlobalClass }: SideN
   }
 
   return (
-    <div className={styles.sideNav}>
+    <div ref={stickyNav} className={cx(styles.sideNav, { [styles.sideNav__pinned]: navIsPinned })}>
       <div className={styles.wrap}>
         <p className={cx(styles.header, styles.header__dtOnly)}>{headerLabelText}</p>
         <button
