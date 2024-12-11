@@ -68,12 +68,6 @@ $bottom-padding: $spacing-x-large;
     display: flex;
     align-items: center;
     grid-row: 1;
-
-    a {
-      svg {
-        display: none;
-      }
-    }
   }
 
   &__default {
