@@ -88,6 +88,14 @@
     margin-bottom: to-rem($spacing-standard);
   }
 
+  &LogoWrap {
+    max-width: 75%;
+  }
+
+  &Arrow {
+    flex-shrink: 0;
+  }
+
   &FlrFunctionalityWrap {
     display: flex;
     align-items: normal;
