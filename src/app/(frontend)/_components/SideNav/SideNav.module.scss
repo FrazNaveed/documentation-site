@@ -17,12 +17,18 @@ $side-nav-bg-color: $white;
     margin-left: -$container-padding-md;
     padding-top: $spacing-small;
     padding-bottom: $spacing-small;
-    transition: top $transition-default;
+    transition:
+      top $transition-default,
+      transform $transition-speed-default ease;
     background-color: $side-nav-bg-color;
     z-index: 99;
 
     :global(.siteHeaderHidden) & {
       top: 0;
+      transform: translateY(-100%);
+      transition:
+        top $transition-default,
+        transform $transition-speed-default ease $transition-speed-default;
     }
   }
 }
