@@ -11,7 +11,7 @@
   }
 
   &:hover,
-  &:focus,
+  &:focus-visible,
   &:active {
     .arrow path {
       fill: $link-hover-color;

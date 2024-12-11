@@ -81,7 +81,7 @@
     }
 
     &:hover,
-    &:focus {
+    &:focus-visible {
       color: $pink-600;
     }
 
@@ -92,7 +92,7 @@
     &,
     &:visited,
     &:hover,
-    &:focus,
+    &:focus-visible,
     &:active {
       &::after {
         color: $gray;
@@ -115,7 +115,7 @@
     }
 
     &:hover,
-    &:focus,
+    &:focus-visible,
     &:active {
       svg {
         path {
@@ -127,7 +127,7 @@
 
   &X {
     &:hover,
-    &:focus,
+    &:focus-visible,
     &:active {
       svg {
         rect {
@@ -170,7 +170,7 @@
     }
 
     &:hover,
-    &:focus {
+    &:focus-visible {
       color: $link-hover-color;
 
       svg.secondaryNav_LinkExternalIcon path {
@@ -189,7 +189,7 @@
     &,
     &:visited,
     &:hover,
-    &:focus,
+    &:focus-visible,
     &:active {
       &::after {
         color: $gray;

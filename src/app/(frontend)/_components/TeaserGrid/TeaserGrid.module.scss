@@ -52,7 +52,7 @@
   }
 
   &:hover,
-  &:focus,
+  &:focus-visible,
   &:active {
     color: $link-hover-color;
   }
@@ -76,7 +76,7 @@
   aspect-ratio: 1.5;
 
   &:hover,
-  &:focus,
+  &:focus-visible,
   &:active {
     + .text .titleLink {
       color: $link-hover-color;

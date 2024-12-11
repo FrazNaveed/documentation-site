@@ -102,7 +102,7 @@
   gap: to-rem(4px);
 
   &:hover,
-  &:focus,
+  &:focus-visible,
   &:active,
   &.active {
     background-color: $pink-900;
@@ -134,7 +134,7 @@
   &,
   &:visited,
   &:hover,
-  &:focus,
+  &:focus-visible,
   &:active {
     color: inherit;
   }

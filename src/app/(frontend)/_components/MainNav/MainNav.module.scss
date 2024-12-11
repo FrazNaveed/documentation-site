@@ -416,7 +416,7 @@ $mobile-link-margin-bottom: to-rem($spacing-standard);
   }
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     color: $link-hover-color;
 
     svg.submenuLink_ExternalIcon path {
@@ -536,7 +536,7 @@ $mobile-link-margin-bottom: to-rem($spacing-standard);
     }
 
     &:hover,
-    &:focus {
+    &:focus-visible {
       color: $pink-600;
     }
 
@@ -547,7 +547,7 @@ $mobile-link-margin-bottom: to-rem($spacing-standard);
     &,
     &:visited,
     &:hover,
-    &:focus,
+    &:focus-visible,
     &:active {
       &::after {
         color: $gray;

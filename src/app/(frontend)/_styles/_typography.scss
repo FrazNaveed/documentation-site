@@ -340,7 +340,7 @@ $font-family-sathoshi: var(--satoshi);
   }
 
   &:hover,
-  &:focus,
+  &:focus-visible,
   &:active {
     color: $link-hover-color;
   }

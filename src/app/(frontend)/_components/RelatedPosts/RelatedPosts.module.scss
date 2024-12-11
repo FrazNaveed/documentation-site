@@ -54,7 +54,7 @@
 
     &:active,
     &:hover,
-    &:focus {
+    &:focus-visible {
       svg {
         path {
           fill: $pink-900;

@@ -77,13 +77,13 @@ sup {
   &,
   &:visited,
   &:hover,
-  &:focus,
+  &:focus-visible,
   &:active {
     color: $body-text-color;
     text-decoration: none;
   }
 
-  &:focus {
+  &:focus-visible {
     transform: translate(-50%, 0%);
     -webkit-clip-path: none;
     clip-path: none;

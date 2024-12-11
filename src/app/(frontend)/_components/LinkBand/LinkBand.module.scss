@@ -12,7 +12,7 @@
     color: $white;
 
     &:active,
-    &:focus,
+    &:focus-visible,
     &:hover,
     &:visited {
       color: $white;
