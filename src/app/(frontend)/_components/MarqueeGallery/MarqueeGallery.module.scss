@@ -145,6 +145,7 @@ $marquee-grid-gap-mobile: $spacing-x-small;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color $transition-default;
     background-color: $pink-600;
 
     &,
@@ -153,6 +154,12 @@ $marquee-grid-gap-mobile: $spacing-x-small;
     &:focus,
     &:active {
       color: $white;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $pink-700;
     }
   }
 
