@@ -1,0 +1,43 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
+@use "../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.social {
+  @include columns(3, 4);
+
+  @include media-breakpoint-down(lg) {
+    @include columns(2, 3);
+  }
+}
+
+$social-padding: 8px;
+$social-padding-inline: 20px;
+
+.socialInner {
+  display: inline-flex;
+  align-items: center;
+  padding: $social-padding $social-padding-inline;
+  border-radius: 20px;
+  background-color: $white;
+  box-shadow: 1px 3px 5px rgba(0 0 0 / 15%);
+  gap: $spacing-small;
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: to-rem($spacing-medium);
+  }
+
+  @include media-breakpoint-up(md) {
+    flex-direction: column;
+    margin-top: 5px;
+    padding: $social-padding-inline $social-padding;
+  }
+
+  svg {
+    display: block;
+    width: 22px;
+    height: auto;
+  }
+}

@@ -3,9 +3,7 @@ import { notFound } from 'next/navigation'
 import Hero from 'src/app/(frontend)/_components/Hero'
 import Calendar from 'src/app/(frontend)/_components/svgs/Calendar'
 import LeftArrow from 'src/app/(frontend)/_components/svgs/LeftArrow'
-import Discord from 'src/app/(frontend)/_components/svgs/Discord'
-import TelegramCircle from 'src/app/(frontend)/_components/svgs/TelegramCircle'
-import XSocial from 'src/app/(frontend)/_components/svgs/XSocial'
+import SocialShare from 'src/app/(frontend)/_components/SocialShare'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import Pill from 'src/app/(frontend)/_components/Pill'
 import RelatedPosts from 'src/app/(frontend)/_components/RelatedPosts'
@@ -95,13 +93,7 @@ export default async function Page({ params }: PageProps) {
               )}
             </div>
           </header>
-          <div className={styles.social}>
-            <div className={styles.socialInner}>
-              <XSocial />
-              <Discord />
-              <TelegramCircle />
-            </div>
-          </div>
+          <SocialShare slug={slug} title={title} />
           <div className={styles.contentCol}>
             {content && <LexicalRenderer content={content} />}
           </div>
