@@ -42,16 +42,16 @@ export default function WalletsGridBlock({ intro, wallets }: WalletsGridBlockPro
                   <p className='visuallyHidden'>{name}</p>
                   {logo && typeof logo === 'object' && logo.url
                   && (
-                  <div>
+                  <div className={styles.walletLogoWrap}>
                     <Image
                       src={logo.url}
                       alt={logo.alt}
-                      width={110}
-                      height={60}
+                      width={logo.width ?? 0}
+                      height={logo.height ?? 0}
                     />
                   </div>
                   )}
-                  <DiagonalArrowSquare />
+                  <DiagonalArrowSquare className={styles.walletArrow} />
                 </div>
                 {flrFunctionality && (
                 <span className={styles.walletFlrFunctionalityWrap}>
