@@ -1,7 +1,6 @@
 // To create a redirect, just add the source and destination to the array, comma separated string
 const redirectList = [
   '/flare-101,/',
-  '/flaredrops,/',
   '/songbird,/',
   '/education-videos,/',
   '/faqs,/',
