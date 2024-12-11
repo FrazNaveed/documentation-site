@@ -239,7 +239,7 @@ export const mainNavData: MainNavigation = [
           {
             _key: '2',
             title: 'Past Events',
-            url: '/past-events',
+            url: '/news/category/past-events',
           },
           {
             _key: '3',
