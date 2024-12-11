@@ -64,7 +64,7 @@
   }
 
   &LogoWrap {
-    width: 90px;
+    width: 130px;
     height: auto;
   }
 
@@ -126,6 +126,8 @@
   @include h5;
 
   margin-bottom: 0;
+
+  @include utils.srOnly;
 }
 
 .flag {
