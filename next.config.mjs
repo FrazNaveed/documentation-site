@@ -1,5 +1,7 @@
 import { withPayload } from '@payloadcms/next/withPayload'
 import withBundleAnalyzer from '@next/bundle-analyzer'
+// eslint-disable-next-line import/extensions
+import manualRedirects from './manualRedirects.js'
 
 const bundleAnalyzer = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -70,6 +72,11 @@ const nextConfig = {
       ],
     },
   ],
+  async redirects() {
+    return [
+      ...manualRedirects,
+    ]
+  },
 }
 
 export default bundleAnalyzer(withPayload(nextConfig))
