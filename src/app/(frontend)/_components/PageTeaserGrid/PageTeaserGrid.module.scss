@@ -33,7 +33,7 @@
   grid-column: span 3;
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     transform: scale(1.03);
   }
 

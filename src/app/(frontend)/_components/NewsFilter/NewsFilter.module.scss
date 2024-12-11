@@ -107,7 +107,7 @@ a.text {
 
   &:hover,
   &:active,
-  &:focus {
+  &:focus-visible {
     transition: background-color $transition-speed-default;
     border-radius: $pill-border-radius;
     background-color: $pink-900;

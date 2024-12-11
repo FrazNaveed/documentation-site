@@ -404,7 +404,7 @@
 
   &:hover,
   &:active,
-  &:focus {
+  &:focus-visible {
     .flareDotText {
       max-width: 250px;
       padding-left: 6px;

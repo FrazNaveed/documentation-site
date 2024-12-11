@@ -94,7 +94,7 @@ $footer-min-height: 200px;
     background-color: $white;
 
     &:hover,
-    &:focus {
+    &:focus-visible {
       background-color: $gray-50;
     }
   }
