@@ -194,7 +194,7 @@ export const mainNavData: MainNavigation = [
           },
           {
             _key: '3',
-            title: 'FTSO Monitor',
+            title: 'Flare Systems Explorer',
             url: 'https://flare-systems-explorer.flare.network/',
             isExternal: true,
           },
