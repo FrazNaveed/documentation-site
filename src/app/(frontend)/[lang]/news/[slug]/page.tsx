@@ -93,7 +93,7 @@ export default async function Page({ params }: PageProps) {
               )}
             </div>
           </header>
-          <SocialShare slug={slug} />
+          <SocialShare slug={slug} title={title} />
           <div className={styles.contentCol}>
             {content && <LexicalRenderer content={content} />}
           </div>
