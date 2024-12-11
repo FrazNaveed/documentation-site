@@ -44,6 +44,8 @@
 }
 
 .header {
+  position: relative;
+  left: -12px;
   margin-bottom: 0;
   transition: color $transition-snappy;
   color: $black;

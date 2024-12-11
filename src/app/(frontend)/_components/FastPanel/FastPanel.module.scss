@@ -1,7 +1,7 @@
 @use "../../_styles/colors" as *;
 @use "../../_styles/mixins" as *;
 @use "../../_styles/typography" as *;
-// @use "../../_styles/spacing" as *;
+@use "../../_styles/spacing" as *;
 @use "../../_styles/transitions" as *;
 
 .wrap {
@@ -40,10 +40,13 @@
 }
 
 .header {
+  @include hugeHeader;
+
+  position: relative;
+  left: -12px;
+  margin-bottom: 0;
   transition: color $transition-snappy;
   color: $black;
-
-  @include hugeHeader;
 
   .wrap:hover & {
     color: $white;

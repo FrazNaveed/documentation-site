@@ -67,7 +67,9 @@
 }
 
 .header {
-  margin-bottom: $spacing-medium;
+  position: relative;
+  left: -6px;
+  margin-bottom: $spacing-x-small;
   transition: color $transition-snappy;
   color: $black;
 
