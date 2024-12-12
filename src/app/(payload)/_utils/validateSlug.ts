@@ -5,10 +5,10 @@ const validateSlug = (value: string | null | undefined) => {
     return 'Slug must not contain leading or trailing slashes'
   }
 
-  const disallowedSpecialChars = /[^A-Za-z0-9-]/g // Only allow alphanumeric characters and hyphens
+  const disallowedSpecialChars = /[^a-z0-9-]/g // Only allow alphanumeric characters and hyphens
   const disAllowedMatches = value?.match(disallowedSpecialChars)
   if (value && disAllowedMatches !== null) {
-    return 'Special characters and spaces are not allowed. Please use only letters, numbers, and hyphens.'
+    return 'Slug must contain only letters (a-z), numbers (0-9), and hyphens (-). Special characters and spaces are not allowed.'
   }
 
   return true
