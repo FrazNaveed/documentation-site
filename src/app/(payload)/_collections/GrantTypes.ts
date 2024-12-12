@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
+import validateSlug from '../_utils/validateSlug'
 import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
 
 export const GrantTypes: CollectionConfig = {
@@ -21,6 +22,7 @@ export const GrantTypes: CollectionConfig = {
       required: true,
       unique: true,
       localized: true,
+      validate: validateSlug,
       admin: {
         description: slugAdminConfig.description,
       },

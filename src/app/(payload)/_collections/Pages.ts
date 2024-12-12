@@ -30,6 +30,7 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { StatsBlock } from '../_blocks/StatsBlock'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
+import validateSlug from '../_utils/validateSlug'
 import { ApplicationProcess } from '../_blocks/ApplicationProcessBlock'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
 import { DevHub } from '../_fields/DevHub'
@@ -80,6 +81,7 @@ export const Pages: CollectionConfig = {
       type: 'text',
       required: true,
       unique: true,
+      validate: validateSlug,
       admin: {
         description: slugAdminConfig.description,
       },

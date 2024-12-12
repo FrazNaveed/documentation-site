@@ -7,7 +7,7 @@ const setSlugFromTitle: FieldHook = ({ data, originalDoc }) => {
   }
 
   if (data?.title) {
-    return slugify(data.title, { lower: true })
+    return slugify(data.title, { lower: true, strict: true, })
   }
 
   return originalDoc?.slug || ''

@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import setSlugFromTitle from '../_utils/setSlugFromTitle'
+import validateSlug from '../_utils/validateSlug'
 import { slugAdminConfig } from '../_utils/SlugDescriptionConfig'
 import validateTextFieldUrl from '../_utils/validateTextFieldUrl'
 
@@ -31,6 +32,7 @@ export const Products: CollectionConfig = {
       required: true,
       unique: true,
       localized: true,
+      validate: validateSlug,
       admin: {
         description: slugAdminConfig.description,
       },
