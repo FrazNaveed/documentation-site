@@ -94,6 +94,10 @@
 
   &Arrow {
     flex-shrink: 0;
+
+    path {
+      fill: $pink-on-pink-link-color;
+    }
   }
 
   &FlrFunctionalityWrap {

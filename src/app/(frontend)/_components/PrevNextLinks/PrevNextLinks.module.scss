@@ -25,7 +25,7 @@
 
   .title {
     margin: 0;
-    color: $pink-600;
+    color: $pink-on-pink-link-color;
 
     &::before,
     &::after {
@@ -36,7 +36,7 @@
 
   &.prev .title::before {
     margin-right: 4px;
-    content: url($svg-left-arrow-pink-600);
+    content: url($pink-on-pink-svg-left-arrow);
   }
 
   &.next {
@@ -45,7 +45,7 @@
 
     .title::after {
       margin-left: 4px;
-      content: url($svg-right-arrow-pink-600);
+      content: url($pink-on-pink-svg-right-arrow);
     }
   }
 
@@ -53,7 +53,7 @@
   &:focus-visible,
   &:active {
     .title {
-      color: $pink-900;
+      color: $pink-on-pink-link-hover-color;
     }
   }
 
@@ -61,13 +61,13 @@
   &:focus-visible {
     &.prev {
       .title::before {
-        content: url($svg-left-arrow-pink-900);
+        content: url($pink-on-pink-hover-svg-left-arrow);
       }
     }
 
     &.next {
       .title::after {
-        content: url($svg-right-arrow-pink-900);
+        content: url($pink-on-pink-hover-svg-right-arrow);
       }
     }
   }

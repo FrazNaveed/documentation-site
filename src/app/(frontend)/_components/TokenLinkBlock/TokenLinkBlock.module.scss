@@ -29,10 +29,18 @@
   }
 
   &Text {
+    color: $pink-on-pink-link-color;
     grid-column: span 1;
   }
 
-  svg {
-    transform: rotate(45deg);
+  &Arrow {
+    flex-shrink: 0;
+    width: 0.8em;
+    height: auto;
+    margin-left: $spacing-x-small;
+
+    path {
+      fill: $pink-on-pink-link-color;
+    }
   }
 }

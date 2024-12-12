@@ -47,6 +47,7 @@ export default async function OfficialChannelsBlock({
               href={url}
               key={key}
               className={styles.channel}
+              iconClassName={styles.channelArrow}
               aria-label={`Visit our ${channelTitle} channel`}
             >
               <div className={styles.card} role='listitem'>

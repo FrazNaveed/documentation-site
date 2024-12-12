@@ -49,12 +49,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: to-rem($spacing-standard);
+    margin-bottom: to-rem($spacing-small);
 
-    svg {
-      flex-shrink: 0;
-      width: 15px;
-      height: 15px;
+    &__small {
+      margin-bottom: to-rem($spacing-x-small);
+    }
+  }
+
+  &Arrow {
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+
+    path {
+      fill: $pink-on-pink-link-color;
     }
   }
 
@@ -67,8 +75,8 @@
   &IconWrap {
     display: flex;
     flex-shrink: 0;
-    width: to-rem(48px);
-    height: to-rem(48px);
+    width: to-rem(32px);
+    height: to-rem(32px);
   }
 
   &Icon {
@@ -79,7 +87,13 @@
     @include headerH6;
 
     margin-bottom: 0;
-    color: $pink-900;
+    color: $pink-on-pink-link-color;
+
+    &__small {
+      @include headerH7;
+
+      letter-spacing: 0;
+    }
   }
 
   &Description {

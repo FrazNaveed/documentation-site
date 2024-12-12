@@ -36,6 +36,8 @@
   &Title {
     @include bodyBaseMobile;
 
+    color: $pink-on-pink-link-color;
+
     @include media-breakpoint-down(lg) {
       display: none;
     }
@@ -49,12 +51,28 @@
     margin-right: to-rem($spacing-x-small);
   }
 
+  &,
+  &:visited {
+    svg,
+    svg.channelArrow {
+      path {
+        fill: $pink-on-pink-link-color;
+      }
+    }
+  }
+
   &:hover,
   &:focus-visible,
   &:active {
-    svg {
+    .channelTitle {
+      color: $pink-on-pink-link-hover-color;
+    }
+
+    svg,
+    svg.channelArrow {
+      /* stylelint-disable-next-line no-descending-specificity */
       path {
-        fill: $pink-900;
+        fill: $pink-on-pink-link-hover-color;
       }
     }
   }

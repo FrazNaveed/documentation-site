@@ -181,7 +181,7 @@ $root-font-size: $root-font-size-number * 1px;
   }
 }
 
-@mixin officialChannelsIcon($fill-color: $pink-700) {
+@mixin officialChannelsIcon($fill-color: $pink-on-pink-link-color) {
   svg {
     width: 100%;
     height: auto;

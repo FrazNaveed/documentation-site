@@ -2,7 +2,7 @@ import Discord from '../svgs/Discord'
 import GitHub from '../svgs/GitHub'
 import LinkedIn from '../svgs/LinkedIn'
 import Medium from '../svgs/Medium'
-import Telegram from '../svgs/Telegram'
+import TelegramCircle from '../svgs/TelegramCircle'
 import XSocialSymbol from '../svgs/XSocialSymbol'
 import YouTube from '../svgs/YouTube'
 
@@ -15,7 +15,7 @@ const iconMap = {
   github: GitHub,
   linkedin: LinkedIn,
   medium: Medium,
-  telegram: Telegram,
+  telegram: TelegramCircle,
   x: XSocialSymbol,
   youtube: YouTube,
 }
