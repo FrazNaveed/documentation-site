@@ -64,12 +64,8 @@
 .label {
   @include labelS;
 
-  margin-bottom: $spacing-medium;
+  margin-bottom: $spacing-small;
   color: $gray;
-
-  @include media-breakpoint-down(lg) {
-    margin-bottom: $spacing-small;
-  }
 }
 
 .product {

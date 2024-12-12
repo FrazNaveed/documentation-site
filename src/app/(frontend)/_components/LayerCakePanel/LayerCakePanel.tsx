@@ -187,7 +187,7 @@ export default function LayerCakePanel({
                 }
                 return (
                   <div key={product.id} className={styles.product}>
-                    <ProductGridItem {...product} />
+                    <ProductGridItem {...product} cardStyle='small' />
                   </div>
                 )
               })}

@@ -1,16 +1,21 @@
+import cx from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Product } from '@/payload-types'
 import RightArrow from '../svgs/RightArrow'
 import styles from './ProductGrid.module.scss'
 
-export default function ProductGrid({
-  slug, link, icon, titleOverride, title, shortDescription,
-}: Product) {
+type ProductGridItemProps = Product & {
+  cardStyle?: 'standard' | 'small'
+}
+
+export default function ProductGridItem({
+  slug, link, icon, titleOverride, title, shortDescription, cardStyle = 'standard',
+}: ProductGridItemProps) {
   return (
     <Link href={link || `/${slug}`} className={styles.productWrap}>
       <div className={styles.product}>
-        <div className={styles.productHeader}>
+        <div className={cx(styles.productHeader, styles[`productHeader__${cardStyle}`])}>
           <div className={styles.productInfo}>
             <div className={styles.productIconWrap}>
               {icon && typeof icon === 'object' && icon?.url && icon?.alt && (
@@ -23,9 +28,9 @@ export default function ProductGrid({
               />
               )}
             </div>
-            <h3 className={styles.productTitle}>{titleOverride || title}</h3>
+            <h3 className={cx(styles.productTitle, styles[`productTitle__${cardStyle}`])}>{titleOverride || title}</h3>
           </div>
-          <RightArrow />
+          <RightArrow className={styles.productArrow} />
         </div>
         <p className={styles.productDescription}>{shortDescription}</p>
       </div>

@@ -1,7 +1,8 @@
 import cx from 'classnames'
 import { ITokenLinkBlock } from '@/payload-types'
 import Image from 'next/image'
-import Link from '../ExternalLink'
+import Link from 'next/link'
+import RightArrow from '../svgs/RightArrow'
 import styles from './TokenLinkBlock.module.scss'
 
 export type TokenLinkBlockProps = ITokenLinkBlock & {
@@ -41,6 +42,7 @@ export default function TokenLinkBlock({
               <div className={styles.linkText}>
                 {title}
               </div>
+              <RightArrow className={styles.linkArrow} />
             </Link>
             )
           )

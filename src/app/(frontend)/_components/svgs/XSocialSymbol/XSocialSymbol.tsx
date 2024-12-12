@@ -1,7 +1,8 @@
 const XSocialSymbol = (): React.JSX.Element => (
-  <svg width='23' height='21' viewBox='0 0 23 21' fill='none' xmlns='http://www.w3.org/2000/svg' aria-label='X'>
-    <path id='Vector' d='M18.1138 0H21.6407L13.9356 8.89539L23 21H15.9027L10.3438 13.6586L3.98313 21H0.454179L8.6955 11.4854L0 0H7.27752L12.3023 6.71031L18.1138 0ZM16.876 18.8677H18.8303L6.21564 2.02031H4.11853L16.876 18.8677Z' fill='#C10F45' />
+  <svg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg' aria-label='X'>
+    <path d='M22.1138 4H25.6407L17.9356 12.8954L27 25H19.9027L14.3438 17.6586L7.98313 25H4.45418L12.6955 15.4854L4 4H11.2775L16.3023 10.7103L22.1138 4ZM20.876 22.8677H22.8303L10.2156 6.02031H8.11853L20.876 22.8677Z' fill='#E62058' />
   </svg>
+
 )
 
 export default XSocialSymbol
