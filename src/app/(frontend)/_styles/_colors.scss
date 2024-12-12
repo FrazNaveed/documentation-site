@@ -38,3 +38,7 @@ $svg-left-arrow-pink-700: "data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/
 $svg-right-arrow-pink-700: "data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23C10F45%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 class=%22feather feather-arrow-right%22%3E%3Cline x1=%225%22 y1=%2212%22 x2=%2219%22 y2=%2212%22/%3E%3Cpolyline points=%2212 5 19 12 12 19%22/%3E%3C/svg%3E";
 $svg-left-arrow-pink-900: "data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%238a113e%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 class=%22feather feather-arrow-left%22%3E%3Cline x1=%2219%22 y1=%2212%22 x2=%225%22 y2=%2212%22/%3E%3Cpolyline points=%2212 19 5 12 12 5%22/%3E%3C/svg%3E";
 $svg-right-arrow-pink-900: "data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%238a113e%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 class=%22feather feather-arrow-right%22%3E%3Cline x1=%225%22 y1=%2212%22 x2=%2219%22 y2=%2212%22/%3E%3Cpolyline points=%2212 5 19 12 12 19%22/%3E%3C/svg%3E";
+$pink-on-pink-svg-left-arrow: $svg-left-arrow-pink-600;
+$pink-on-pink-svg-right-arrow: $svg-right-arrow-pink-600;
+$pink-on-pink-hover-svg-left-arrow: $svg-left-arrow-pink-900;
+$pink-on-pink-hover-svg-right-arrow: $svg-right-arrow-pink-900;
