@@ -46,8 +46,8 @@
   &Icon {
     @include officialChannelsIcon;
 
-    width: to-rem(32px);
-    height: to-rem(32px);
+    width: to-rem(30px);
+    height: to-rem(30px);
     margin-right: to-rem($spacing-x-small);
   }
 
