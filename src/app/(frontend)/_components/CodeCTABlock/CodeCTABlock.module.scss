@@ -250,7 +250,6 @@ $tab-border-radius: 6px;
 }
 
 .copyButton {
-  @include utils.buttonReset;
   @include paragraphXSmFont;
 
   position: absolute;
