@@ -1149,6 +1149,7 @@ export interface Page {
         | ISecurePanel
         | IEventsWidget
         | IContactFormBlock
+        | INewsletterSignupFormBlock
         | IPageTeaserGrid
         | ITokenLinkBlock
       )[]
@@ -2340,6 +2341,21 @@ export interface IContactFormBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "INewsletterSignupFormBlock".
+ */
+export interface INewsletterSignupFormBlock {
+  title?: string | null;
+  createSideNavLink?: boolean | null;
+  linkText?: string | null;
+  blockMarginSettings?: boolean | null;
+  standardTopMargin?: boolean | null;
+  standardBottomMargin?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'newsletterSignupForm';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "IPageTeaserGrid".
  */
 export interface IPageTeaserGrid {
@@ -3162,6 +3178,18 @@ export interface PagesSelect<T extends boolean = true> {
               blockName?: T;
             };
         contactForm?:
+          | T
+          | {
+              title?: T;
+              createSideNavLink?: T;
+              linkText?: T;
+              blockMarginSettings?: T;
+              standardTopMargin?: T;
+              standardBottomMargin?: T;
+              id?: T;
+              blockName?: T;
+            };
+        newsletterSignupForm?:
           | T
           | {
               title?: T;
