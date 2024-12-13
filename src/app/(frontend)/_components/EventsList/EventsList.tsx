@@ -46,7 +46,8 @@ type EventsListProps = {
 }
 
 export default async function EventsList({ eventListStyle = 'standard' }: EventsListProps) {
-  const eventsData = await getUpcomingEvents()
+  const eventCountToShow = eventListStyle === 'minimal' ? 6 : undefined // Use query default for standard style
+  const eventsData = await getUpcomingEvents(eventCountToShow)
   const events = eventsData?.docs
   const upcomingEventsExist = events && events.length > 0
   return (
