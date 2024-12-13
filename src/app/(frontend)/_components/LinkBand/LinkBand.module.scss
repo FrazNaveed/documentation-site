@@ -183,7 +183,6 @@ $hover-color: $pink-950;
       @include media-breakpoint-down(sm) {
         &::after {
           display: block;
-          // transform: translateX(to-rem(-$spacing-small));
           background-color: $white;
         }
       }
