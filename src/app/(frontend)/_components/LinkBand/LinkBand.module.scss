@@ -36,7 +36,7 @@
       left: 0;
       width: 100vw;
       height: 1px;
-      background-color: $white;
+      background-color: $pink-300;
       content: "";
     }
   }
@@ -83,12 +83,12 @@
       width: 100vw;
       height: 1px;
       transform: translateX(-50%);
-      background-color: $white;
+      background-color: $pink-300;
       content: "";
 
       @include media-breakpoint-down(sm) {
         transform: translateX(to-rem(-$spacing-small));
-        background-color: $white;
+        background-color: $pink-300;
       }
     }
 
@@ -109,7 +109,7 @@
     &:nth-child(odd) {
       padding-right: to-rem($spacing-standard);
       padding-left: to-rem($container-padding-flare);
-      border-right: 1px solid $white;
+      border-right: 1px solid $pink-300;
 
       @include media-breakpoint-down(lg) {
         padding-left: to-rem($container-padding-lg);
