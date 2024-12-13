@@ -52,13 +52,9 @@
     display: flex;
     flex-wrap: wrap;
 
-    // containerizing makes Links match document margins,
-    // but hover color will not extend past container.
-    // without container, entire Link will change color on hover,
-    // but at lg sizes and up, the Link text will stay 24px away from screen edge.
-    // @include media-breakpoint-up(lg) {
-    //   @include container;
-    // }
+    @include media-breakpoint-up(lg) {
+      @include container;
+    }
   }
 
   &Link {
@@ -71,16 +67,33 @@
     justify-content: space-between;
     padding-top: to-rem($spacing-medium);
     padding-bottom: to-rem($spacing-medium);
+    z-index: 1;
     box-sizing: border-box;
 
     @include media-breakpoint-down(sm) {
       flex: 1 1 100%;
     }
 
+    &::before {
+      position: absolute;
+      width: 50vw;
+      transform: translateX(-50vw);
+      background-color: $pink-950;
+      content: "";
+      opacity: 0;
+      z-index: -1;
+      inset: 0 50%;
+      pointer-events: none;
+    }
+
     &:active,
     &:focus,
     &:hover {
       background-color: $pink-950;
+
+      &::before {
+        opacity: 1;
+      }
     }
 
     &::after {
@@ -111,6 +124,12 @@
       @include media-breakpoint-down(md) {
         padding-right: to-rem($container-padding-md);
         padding-left: to-rem($container-padding-md);
+      }
+
+      &::before {
+        right: auto;
+        left: 0;
+        transform: none;
       }
     }
 
