@@ -73,20 +73,30 @@ $hover-color: $pink-950;
     z-index: 1;
     box-sizing: border-box;
 
-    @include media-breakpoint-down(sm) {
-      flex: 1 1 100%;
+    @include media-breakpoint-up(lg) {
+      &::before {
+        position: absolute;
+        width: 50vw;
+        transform: translateX(-50vw);
+        background-color: $hover-color;
+        content: "";
+        opacity: 0;
+        z-index: -1;
+        inset: 0 50%;
+        pointer-events: none;
+      }
+
+      &:nth-child(even) {
+        &::before {
+          right: auto;
+          left: 0;
+          transform: none;
+        }
+      }
     }
 
-    &::before {
-      position: absolute;
-      width: 50vw;
-      transform: translateX(-50vw);
-      background-color: $hover-color;
-      content: "";
-      opacity: 0;
-      z-index: -1;
-      inset: 0 50%;
-      pointer-events: none;
+    @include media-breakpoint-down(sm) {
+      flex: 1 1 100%;
     }
 
     &:active,
@@ -94,8 +104,10 @@ $hover-color: $pink-950;
     &:hover {
       background-color: $hover-color;
 
-      &::before {
-        opacity: 1;
+      @include media-breakpoint-up(lg) {
+        &::before {
+          opacity: 1;
+        }
       }
     }
 
@@ -127,12 +139,6 @@ $hover-color: $pink-950;
       @include media-breakpoint-down(md) {
         padding-right: to-rem($container-padding-md);
         padding-left: to-rem($container-padding-md);
-      }
-
-      &::before {
-        right: auto;
-        left: 0;
-        transform: none;
       }
     }
 
