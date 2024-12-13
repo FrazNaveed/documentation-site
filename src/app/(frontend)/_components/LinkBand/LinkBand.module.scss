@@ -5,6 +5,9 @@
 @use "../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
+$border-color: $pink-100;
+$hover-color: $pink-950;
+
 .linkBand {
   background-color: $pink-900;
 
@@ -36,7 +39,7 @@
       left: 0;
       width: 100vw;
       height: 1px;
-      background-color: $pink-300;
+      background-color: $border-color;
       content: "";
     }
   }
@@ -78,7 +81,7 @@
       position: absolute;
       width: 50vw;
       transform: translateX(-50vw);
-      background-color: $pink-950;
+      background-color: $hover-color;
       content: "";
       opacity: 0;
       z-index: -1;
@@ -89,7 +92,7 @@
     &:active,
     &:focus,
     &:hover {
-      background-color: $pink-950;
+      background-color: $hover-color;
 
       &::before {
         opacity: 1;
@@ -104,12 +107,12 @@
       width: 100vw;
       height: 1px;
       transform: translateX(-50%);
-      background-color: $pink-300;
+      background-color: $border-color;
       content: "";
 
       @include media-breakpoint-down(sm) {
         transform: translateX(to-rem(-$spacing-small));
-        background-color: $pink-300;
+        background-color: $border-color;
       }
     }
 
@@ -136,7 +139,7 @@
     &:nth-child(odd) {
       padding-right: to-rem($spacing-standard);
       padding-left: to-rem($container-padding-flare);
-      border-right: 1px solid $pink-300;
+      border-right: 1px solid $border-color;
 
       @include media-breakpoint-up(lg) {
         padding-left: 0;
