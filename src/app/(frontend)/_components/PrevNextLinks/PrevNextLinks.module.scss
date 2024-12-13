@@ -15,7 +15,7 @@
   display: block;
   padding: $spacing-standard;
   border-radius: 10px;
-  background-color: $pink-100;
+  background-color: $pink-card-bg-color;
 
   .label {
     @include labelS;

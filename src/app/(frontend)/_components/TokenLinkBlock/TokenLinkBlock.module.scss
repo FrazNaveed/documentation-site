@@ -9,7 +9,7 @@
   align-items: center;
   padding: to-rem(14px);
   border-radius: 10px;
-  background-color: $pink-50;
+  background-color: $pink-card-bg-color;
   grid-column: span 3;
 
   @include media-breakpoint-down(lg) {

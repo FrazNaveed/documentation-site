@@ -26,7 +26,7 @@
   justify-content: space-between;
   padding: to-rem($spacing-standard) to-rem($spacing-medium);
   border-radius: 11px;
-  background-color: $pink-50;
+  background-color: $pink-card-bg-color;
   grid-column: span 3;
 
   @include media-breakpoint-down(lg) {
