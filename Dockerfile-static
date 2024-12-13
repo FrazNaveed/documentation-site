@@ -29,14 +29,18 @@ RUN chown -R nextjs:nodejs /app
 
 USER nextjs
 
-
-COPY ./docker/entrypoint.d/ /docker-entrypoint.d
-COPY ./docker/entrypoint.sh /docker-entrypoint.sh
+RUN npm run build
 
 WORKDIR /runtime
+
+RUN cp -r /app/.next/standalone/. /runtime && \
+    cp -r /app/public/. /runtime/public && \
+    mkdir -p /runtime/.next  && \
+    cp -r /app/.next/static/. /runtime/.next/static
+
 EXPOSE 3000
 ENV HOSTNAME=0.0.0.0
 HEALTHCHECK --start-period=120s --interval=15s --timeout=2s \
     CMD curl -f http://localhost:3000/api/healthz || exit 1
-ENTRYPOINT [ "/docker-entrypoint.sh" ]
+
 CMD ["node", "server.js"]
