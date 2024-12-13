@@ -19,10 +19,6 @@
     }
   }
 
-  // &Header,
-  // &Links {
-  //   @include container; // remove from Links to make bg color work on hover
-  // }
   &Header {
     @include container;
 
@@ -100,8 +96,13 @@
       padding-right: to-rem($container-padding-flare);
       padding-left: to-rem($spacing-standard);
 
-      @include media-breakpoint-down(sm) {
-        padding-left: 0;
+      @include media-breakpoint-down(lg) {
+        padding-right: to-rem($container-padding-lg);
+      }
+
+      @include media-breakpoint-down(md) {
+        padding-right: to-rem($container-padding-md);
+        padding-left: to-rem($container-padding-md);
       }
     }
 
@@ -110,8 +111,16 @@
       padding-left: to-rem($container-padding-flare);
       border-right: 1px solid $white;
 
+      @include media-breakpoint-down(lg) {
+        padding-left: to-rem($container-padding-lg);
+      }
+
+      @include media-breakpoint-down(md) {
+        padding-right: to-rem($container-padding-md);
+        padding-left: to-rem($container-padding-md);
+      }
+
       @include media-breakpoint-down(sm) {
-        padding-right: 0;
         border-right: none;
       }
     }
