@@ -19,9 +19,14 @@
     }
   }
 
-  &Header,
-  &Links {
+  // &Header,
+  // &Links {
+  //   @include container; // remove from Links to make bg color work on hover
+  // }
+  &Header {
     @include container;
+
+    padding-top: to-rem($spacing-xx-large);
   }
 
   &HeaderWrap {
@@ -38,10 +43,6 @@
       background-color: $white;
       content: "";
     }
-  }
-
-  &Header {
-    padding-top: to-rem($spacing-xx-large);
   }
 
   &Title {
@@ -72,6 +73,12 @@
       flex: 1 1 100%;
     }
 
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: $pink-950;
+    }
+
     &::after {
       position: absolute;
       right: 0;
@@ -90,6 +97,7 @@
     }
 
     &:nth-child(even) {
+      padding-right: to-rem($container-padding-flare);
       padding-left: to-rem($spacing-standard);
 
       @include media-breakpoint-down(sm) {
@@ -99,6 +107,7 @@
 
     &:nth-child(odd) {
       padding-right: to-rem($spacing-standard);
+      padding-left: to-rem($container-padding-flare);
       border-right: 1px solid $white;
 
       @include media-breakpoint-down(sm) {
