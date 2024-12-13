@@ -10,6 +10,7 @@ $hover-color: $pink-950;
 
 .linkBand {
   background-color: $pink-900;
+  overflow: hidden;
 
   a {
     color: $white;
