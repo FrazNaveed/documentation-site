@@ -5,8 +5,12 @@
 @use "../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
+$border-color: $pink-200;
+$hover-color: $pink-950;
+
 .linkBand {
   background-color: $pink-900;
+  overflow: hidden;
 
   a {
     color: $white;
@@ -19,9 +23,10 @@
     }
   }
 
-  &Header,
-  &Links {
+  &Header {
     @include container;
+
+    padding-top: to-rem($spacing-xx-large);
   }
 
   &HeaderWrap {
@@ -35,13 +40,9 @@
       left: 0;
       width: 100vw;
       height: 1px;
-      background-color: $white;
+      background-color: $border-color;
       content: "";
     }
-  }
-
-  &Header {
-    padding-top: to-rem($spacing-xx-large);
   }
 
   &Title {
@@ -54,6 +55,10 @@
   &Links {
     display: flex;
     flex-wrap: wrap;
+
+    @include media-breakpoint-up(lg) {
+      @include container;
+    }
   }
 
   &Link {
@@ -66,43 +71,98 @@
     justify-content: space-between;
     padding-top: to-rem($spacing-medium);
     padding-bottom: to-rem($spacing-medium);
+    z-index: 1;
     box-sizing: border-box;
+
+    @include media-breakpoint-up(lg) {
+      &::before {
+        position: absolute;
+        width: 50vw;
+        transform: translateX(-50vw);
+        background-color: $hover-color;
+        content: "";
+        opacity: 0;
+        z-index: -1;
+        inset: 0 50%;
+        pointer-events: none;
+      }
+
+      &:nth-child(even) {
+        &::before {
+          right: auto;
+          left: 0;
+          transform: none;
+        }
+      }
+    }
 
     @include media-breakpoint-down(sm) {
       flex: 1 1 100%;
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: $hover-color;
+
+      @include media-breakpoint-up(lg) {
+        &::before {
+          opacity: 1;
+        }
+      }
     }
 
     &::after {
       position: absolute;
       right: 0;
       bottom: 0;
-      left: 0;
+      left: 50%;
       width: 100vw;
       height: 1px;
       transform: translateX(-50%);
-      background-color: $white;
+      background-color: $border-color;
       content: "";
 
       @include media-breakpoint-down(sm) {
-        transform: translateX(to-rem(-$spacing-small));
-        background-color: $white;
+        left: 0;
+        transform: none;
+        background-color: $border-color;
       }
     }
 
     &:nth-child(even) {
+      padding-right: to-rem($container-padding-flare);
       padding-left: to-rem($spacing-standard);
 
-      @include media-breakpoint-down(sm) {
-        padding-left: 0;
+      @include media-breakpoint-down(lg) {
+        padding-right: to-rem($container-padding-lg);
+      }
+
+      @include media-breakpoint-down(md) {
+        padding-right: to-rem($container-padding-md);
+        padding-left: to-rem($container-padding-md);
       }
     }
 
     &:nth-child(odd) {
       padding-right: to-rem($spacing-standard);
-      border-right: 1px solid $white;
+      padding-left: to-rem($container-padding-flare);
+      border-right: 1px solid $border-color;
+
+      @include media-breakpoint-up(lg) {
+        padding-left: 0;
+      }
+
+      @include media-breakpoint-down(lg) {
+        padding-left: to-rem($container-padding-lg);
+      }
+
+      @include media-breakpoint-down(md) {
+        padding-right: to-rem($container-padding-md);
+        padding-left: to-rem($container-padding-md);
+      }
 
       @include media-breakpoint-down(sm) {
-        padding-right: 0;
         border-right: none;
       }
     }
@@ -123,7 +183,6 @@
       @include media-breakpoint-down(sm) {
         &::after {
           display: block;
-          transform: translateX(to-rem(-$spacing-small));
           background-color: $white;
         }
       }
