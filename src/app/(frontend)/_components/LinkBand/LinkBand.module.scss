@@ -138,6 +138,10 @@
       padding-left: to-rem($container-padding-flare);
       border-right: 1px solid $pink-300;
 
+      @include media-breakpoint-up(lg) {
+        padding-left: 0;
+      }
+
       @include media-breakpoint-down(lg) {
         padding-left: to-rem($container-padding-lg);
       }
