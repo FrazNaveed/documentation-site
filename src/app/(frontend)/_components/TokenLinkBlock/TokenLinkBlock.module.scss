@@ -2,15 +2,22 @@
 @use "../../_styles/typography" as *;
 @use "../../_styles/colors" as *;
 @use "../../_styles/spacing" as *;
+@use "../../_styles/transitions" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .link {
   display: flex;
   align-items: center;
   padding: to-rem(14px);
+  transition: background-color $transition-snappy;
   border-radius: 10px;
   background-color: $pink-card-bg-color;
   grid-column: span 3;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $pink-card-bg-hover-color;
+  }
 
   @include media-breakpoint-down(lg) {
     grid-column: span 4;
@@ -26,6 +33,18 @@
     width: to-rem(90px);
     height: to-rem(90px);
     margin-right: to-rem($spacing-small);
+  }
+
+  &TextArrowWrap {
+    display: flex;
+    align-items: center;
+    transition: border-color $transition-snappy;
+    border-bottom: 2px solid transparent;
+
+    .link:hover &,
+    .link:focus-visible & {
+      border-color: $pink-on-pink-link-color;
+    }
   }
 
   &Text {

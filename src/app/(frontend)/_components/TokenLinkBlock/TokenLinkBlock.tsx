@@ -39,10 +39,12 @@ export default function TokenLinkBlock({
                   className={styles.linkIcon}
                 />
               )}
-              <div className={styles.linkText}>
-                {title}
+              <div className={styles.linkTextArrowWrap}>
+                <div className={styles.linkText}>
+                  {title}
+                </div>
+                <RightArrow className={styles.linkArrow} />
               </div>
-              <RightArrow className={styles.linkArrow} />
             </Link>
             )
           )

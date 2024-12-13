@@ -2,6 +2,7 @@
 @use "../../_styles/typography" as *;
 @use "../../_styles/colors" as *;
 @use "../../_styles/spacing" as *;
+@use "../../_styles/transitions" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .title {
@@ -25,9 +26,15 @@
   align-items: center;
   justify-content: space-between;
   padding: to-rem($spacing-standard) to-rem($spacing-medium);
+  transition: background-color $transition-snappy;
   border-radius: 11px;
   background-color: $pink-card-bg-color;
   grid-column: span 3;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $pink-card-bg-hover-color;
+  }
 
   @include media-breakpoint-down(lg) {
     grid-column: span 2;
@@ -36,7 +43,14 @@
   &Title {
     @include bodyBaseMobile;
 
+    transition: border-color $transition-snappy;
+    border-bottom: 2px solid transparent;
     color: $pink-on-pink-link-color;
+
+    .channel:hover &,
+    .channel:focus-visible & {
+      border-color: $pink-on-pink-link-color;
+    }
 
     @include media-breakpoint-down(lg) {
       display: none;
@@ -64,15 +78,11 @@
   &:hover,
   &:focus-visible,
   &:active {
-    .channelTitle {
-      color: $pink-on-pink-link-hover-color;
-    }
-
     svg,
     svg.channelArrow {
       /* stylelint-disable-next-line no-descending-specificity */
       path {
-        fill: $pink-on-pink-link-hover-color;
+        fill: $pink-on-pink-link-color;
       }
     }
   }

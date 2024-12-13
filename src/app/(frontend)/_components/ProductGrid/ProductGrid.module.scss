@@ -25,8 +25,14 @@
 .product {
   height: 100%;
   padding: to-rem($spacing-standard);
+  transition: background-color $transition-snappy;
   border-radius: 10px;
   background-color: $pink-card-bg-color;
+
+  .productWrap:hover &,
+  .productWrap:focus-visible & {
+    background-color: $pink-card-bg-hover-color;
+  }
 
   &Wrap {
     transition: all $transition-snappy;
@@ -48,11 +54,28 @@
   &Header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: to-rem($spacing-small);
+    column-gap: to-rem($spacing-x-small);
+
+    &__standard {
+      justify-content: space-between;
+    }
 
     &__small {
       margin-bottom: to-rem($spacing-x-small);
+    }
+  }
+
+  &TitleArrowWrap {
+    display: flex;
+    align-items: center;
+    column-gap: to-rem(6px);
+    transition: border-color $transition-snappy;
+    border-bottom: 2px solid transparent;
+
+    .productWrap:hover &,
+    .productWrap:focus-visible & {
+      border-color: $pink-on-pink-link-color;
     }
   }
 
@@ -88,6 +111,16 @@
 
     margin-bottom: 0;
     color: $pink-on-pink-link-color;
+
+    &__standard {
+      transition: border-color $transition-snappy;
+      border-bottom: 2px solid transparent;
+
+      .productWrap:hover &,
+      .productWrap:focus-visible & {
+        border-color: $pink-on-pink-link-color;
+      }
+    }
 
     &__small {
       @include headerH7;

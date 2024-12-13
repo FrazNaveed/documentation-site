@@ -50,10 +50,16 @@ $title-color: $pink-on-pink-link-color;
   align-items: center;
   height: 100%;
   padding: to-rem($spacing-standard);
+  transition: background-color $transition-snappy;
   border-radius: 10px;
   background-color: $pink-card-bg-color;
   text-align: center;
   gap: $spacing-small;
+
+  .teaserWrap:hover &,
+  .teaserWrap:focus-visible & {
+    background-color: $pink-card-bg-hover-color;
+  }
 
   &_IconWrap {
     position: relative;
@@ -75,7 +81,14 @@ $title-color: $pink-on-pink-link-color;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: border-color $transition-snappy;
+    border-bottom: 2px solid transparent;
     gap: to-rem($spacing-x-small);
+
+    .teaserWrap:hover &,
+    .teaserWrap:focus-visible & {
+      border-color: $title-color;
+    }
   }
 
   &_Title {
