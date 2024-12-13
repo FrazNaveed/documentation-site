@@ -51,6 +51,14 @@
   &Links {
     display: flex;
     flex-wrap: wrap;
+
+    // containerizing makes Links match document margins,
+    // but hover color will not extend past container.
+    // without container, entire Link will change color on hover,
+    // but at lg sizes and up, the Link text will stay 24px away from screen edge.
+    // @include media-breakpoint-up(lg) {
+    //   @include container;
+    // }
   }
 
   &Link {
