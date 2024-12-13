@@ -2,6 +2,7 @@
 @use "../../_styles/typography" as *;
 @use "../../_styles/colors" as *;
 @use "../../_styles/spacing" as *;
+@use "../../_styles/transitions" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .walletsGrid {
@@ -52,8 +53,6 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  border-radius: 6px;
-  background-color: $pink-card-bg-color;
   grid-column: span 5;
 
   @include media-breakpoint-down(lg) {
@@ -79,6 +78,14 @@
     flex-direction: column;
     height: 100%;
     padding: to-rem($spacing-standard);
+    transition: background-color $transition-snappy;
+    border-radius: 6px;
+    background-color: $pink-card-bg-color;
+
+    &:hover,
+    &:focus-visible {
+      background-color: $pink-card-bg-hover-color;
+    }
   }
 
   &Header {

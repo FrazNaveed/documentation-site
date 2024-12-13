@@ -2,6 +2,7 @@
 @use "../../_styles/spacing" as *;
 @use "../../_styles/typography" as *;
 @use "../../_styles/colors" as *;
+@use "../../_styles/transitions" as *;
 
 .wrap {
   @include container;
@@ -14,8 +15,14 @@
 .link {
   display: block;
   padding: $spacing-standard;
+  transition: background-color $transition-snappy;
   border-radius: 10px;
   background-color: $pink-card-bg-color;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $pink-card-bg-hover-color;
+  }
 
   .label {
     @include labelS;
@@ -24,7 +31,10 @@
   }
 
   .title {
+    display: inline-block;
     margin: 0;
+    transition: border-color $transition-snappy;
+    border-bottom: 2px solid transparent;
     color: $pink-on-pink-link-color;
 
     &::before,
@@ -32,6 +42,11 @@
       display: inline-block;
       width: $spacing-small;
     }
+  }
+
+  &:hover .title,
+  &:focus-visible .title {
+    border-color: $pink-on-pink-link-color;
   }
 
   &.prev .title::before {
@@ -46,29 +61,6 @@
     .title::after {
       margin-left: 4px;
       content: url($pink-on-pink-svg-right-arrow);
-    }
-  }
-
-  &:hover,
-  &:focus-visible,
-  &:active {
-    .title {
-      color: $pink-on-pink-link-hover-color;
-    }
-  }
-
-  &:hover,
-  &:focus-visible {
-    &.prev {
-      .title::before {
-        content: url($pink-on-pink-hover-svg-left-arrow);
-      }
-    }
-
-    &.next {
-      .title::after {
-        content: url($pink-on-pink-hover-svg-right-arrow);
-      }
     }
   }
 }

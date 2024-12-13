@@ -12,6 +12,11 @@ type ProductGridItemProps = Product & {
 export default function ProductGridItem({
   slug, link, icon, titleOverride, title, shortDescription, cardStyle = 'standard',
 }: ProductGridItemProps) {
+  const cardTitleMarkup = (
+    <h3 className={cx(styles.productTitle, styles[`productTitle__${cardStyle}`])}>
+      {titleOverride || title}
+    </h3>
+  )
   return (
     <Link href={link || `/${slug}`} className={styles.productWrap}>
       <div className={styles.product}>
@@ -28,9 +33,14 @@ export default function ProductGridItem({
               />
               )}
             </div>
-            <h3 className={cx(styles.productTitle, styles[`productTitle__${cardStyle}`])}>{titleOverride || title}</h3>
+            {cardStyle === 'small' ? (
+              <div className={styles.productTitleArrowWrap}>
+                {cardTitleMarkup}
+                <RightArrow className={styles.productArrow} />
+              </div>
+            ) : cardTitleMarkup}
           </div>
-          <RightArrow className={styles.productArrow} />
+          {cardStyle === 'standard' && <RightArrow className={styles.productArrow} />}
         </div>
         <p className={styles.productDescription}>{shortDescription}</p>
       </div>
