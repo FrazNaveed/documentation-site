@@ -63,3 +63,25 @@
 
   @include paragraphSmFont;
 }
+
+.customSelect {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    border-top: 0.4rem solid $gray;
+    border-right: 0.3rem solid transparent;
+    border-left: 0.3rem solid transparent;
+    content: "";
+    pointer-events: none;
+  }
+
+  select {
+    width: 100%;
+    cursor: pointer;
+    appearance: none;
+  }
+}
