@@ -5,11 +5,15 @@
 @use "../../_styles/spacing" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
+$button-padding: to-rem(10px) to-rem(20px);
+$button-lg-padding: to-rem(10px) to-rem(24px);
+$button-sm-padding: to-rem(8px) to-rem(16px);
+
 .Button {
   @include utils.buttonReset;
 
   display: inline-block;
-  padding: to-rem(10px) to-rem(20px);
+  padding: $button-padding;
   transition: all $transition-snappy;
   border-radius: 10px;
   background-color: $pink-700;
@@ -56,13 +60,13 @@
   @include bodyBaseDesktop;
 
   max-width: 100%;
-  padding: to-rem(10px) to-rem(24px);
+  padding: $button-lg-padding;
 }
 
 .small {
   @include fontStyle(14, 20);
 
-  padding: 8px to-rem(16px);
+  padding: $button-sm-padding;
 }
 
 .black {
@@ -92,6 +96,14 @@
 
   .text {
     color: $black;
+  }
+
+  &.large {
+    padding: $button-lg-padding;
+  }
+
+  &.small {
+    padding: $button-sm-padding;
   }
 
   &[disabled] {
