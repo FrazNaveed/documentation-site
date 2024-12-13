@@ -115,7 +115,7 @@ $hover-color: $pink-950;
       position: absolute;
       right: 0;
       bottom: 0;
-      left: 0;
+      left: 50%;
       width: 100vw;
       height: 1px;
       transform: translateX(-50%);
@@ -123,8 +123,8 @@ $hover-color: $pink-950;
       content: "";
 
       @include media-breakpoint-down(sm) {
-        width: calc(100vw + $spacing-small);
-        transform: translateX(to-rem(-$spacing-small));
+        left: 0;
+        transform: none;
         background-color: $border-color;
       }
     }
@@ -182,7 +182,7 @@ $hover-color: $pink-950;
       @include media-breakpoint-down(sm) {
         &::after {
           display: block;
-          transform: translateX(to-rem(-$spacing-small));
+          // transform: translateX(to-rem(-$spacing-small));
           background-color: $white;
         }
       }
