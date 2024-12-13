@@ -1995,6 +1995,11 @@ export interface ICodeCta {
   buttonSecondaryText?: string | null;
   buttonSecondaryLink?: string | null;
   hideCode?: boolean | null;
+  codeSolidity?: string | null;
+  codeJs?: string | null;
+  codePython?: string | null;
+  codeRust?: string | null;
+  codeGo?: string | null;
   image?: (number | null) | Media;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
@@ -2973,6 +2978,11 @@ export interface PagesSelect<T extends boolean = true> {
               buttonSecondaryText?: T;
               buttonSecondaryLink?: T;
               hideCode?: T;
+              codeSolidity?: T;
+              codeJs?: T;
+              codePython?: T;
+              codeRust?: T;
+              codeGo?: T;
               image?: T;
               createSideNavLink?: T;
               linkText?: T;

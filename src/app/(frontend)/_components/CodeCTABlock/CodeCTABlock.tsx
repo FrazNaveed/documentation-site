@@ -9,7 +9,6 @@ import Button from 'src/app/(frontend)/_components/Button'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import CodeCTATabs from './CodeCTATabs'
 import CodeCTACopyButton from './CodeCTACopyButton'
-import codeExamples from './codeExamples'
 import styles from './CodeCTABlock.module.scss'
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -22,6 +21,12 @@ export type CodeCTABlockProps = ICodeCta & {
   className?: string
 }
 
+type ValidCodeExample = {
+  language: string
+  languageId: string
+  code: string
+}
+
 export default async function CodeCTABlock({
   header,
   text,
@@ -30,6 +35,11 @@ export default async function CodeCTABlock({
   buttonSecondaryText,
   buttonSecondaryLink,
   hideCode,
+  codeSolidity,
+  codeJs,
+  codePython,
+  codeRust,
+  codeGo,
   image,
   className,
 }: CodeCTABlockProps) {
@@ -40,6 +50,35 @@ export default async function CodeCTABlock({
   if (!hasTextContent && hideCode && !showImage) {
     return null
   }
+  const codeExamplesUnfiltered = [
+    {
+      language: 'On-Chain',
+      languageId: 'solidity',
+      code: codeSolidity,
+    },
+    {
+      language: 'Javascript',
+      languageId: 'js',
+      code: codeJs,
+    },
+    {
+      language: 'Python',
+      languageId: 'py',
+      code: codePython,
+    },
+    {
+      language: 'Rust',
+      languageId: 'rs',
+      code: codeRust,
+    },
+    {
+      language: 'Go',
+      languageId: 'go',
+      code: codeGo,
+    },
+  ]
+  const codeExamples = codeExamplesUnfiltered.filter((codeExample): codeExample is ValidCodeExample => (
+    codeExample.code !== null && codeExample.code !== undefined && codeExample.code !== ''))
   return (
     <section className={cx(styles.wrap, className)}>
       <div className={cx(styles.grid, { [styles.grid__withImage]: showImage })}>

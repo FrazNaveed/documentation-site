@@ -33,6 +33,61 @@ export const CodeCtaBlock: Block = {
       },
     },
     {
+      name: 'codeSolidity',
+      label: 'Solidity Code',
+      type: 'code',
+      admin: {
+        language: 'solidity',
+        condition: (data, siblingData, { user }) => {
+          return !siblingData.hideCode
+        },
+      },
+    },
+    {
+      name: 'codeJs',
+      label: 'JavaScript Code',
+      type: 'code',
+      admin: {
+        language: 'javascript',
+        condition: (data, siblingData, { user }) => {
+          return !siblingData.hideCode
+        },
+      },
+    },
+    {
+      name: 'codePython',
+      label: 'Python Code',
+      type: 'code',
+      admin: {
+        language: 'python',
+        condition: (data, siblingData, { user }) => {
+          return !siblingData.hideCode
+        },
+      },
+    },
+    {
+      name: 'codeRust',
+      label: 'Rust Code',
+      type: 'code',
+      admin: {
+        language: 'rust',
+        condition: (data, siblingData, { user }) => {
+          return !siblingData.hideCode
+        },
+      },
+    },
+    {
+      name: 'codeGo',
+      label: 'Go Code',
+      type: 'code',
+      admin: {
+        language: 'go',
+        condition: (data, siblingData, { user }) => {
+          return !siblingData.hideCode
+        },
+      },
+    },
+    {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
