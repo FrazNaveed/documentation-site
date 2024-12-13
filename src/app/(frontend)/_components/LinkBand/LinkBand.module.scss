@@ -123,6 +123,7 @@ $hover-color: $pink-950;
       content: "";
 
       @include media-breakpoint-down(sm) {
+        width: calc(100vw + $spacing-small);
         transform: translateX(to-rem(-$spacing-small));
         background-color: $border-color;
       }
