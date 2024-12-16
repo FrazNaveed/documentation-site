@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { ValidationError, useForm } from '@formspree/react'
 import cx from 'classnames'
 import Button from 'src/app/(frontend)/_components/Button'
@@ -13,6 +14,19 @@ export type NewsletterSignupFormBlockProps = INewsletterSignupFormBlock & {
 export default function NewsletterSignupFormBlock({ title, className }: NewsletterSignupFormBlockProps) {
   const formId = 'xxxxxxxx' // TODO: Get Form ID and field names
   const [state, handleSubmit, reset] = useForm(formId)
+  const [profileValue, setProfileValue] = useState<string>('')
+  const handleProfileChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setProfileValue(e.target.value)
+  }
+  const sepcifyProfileHidden = profileValue !== 'Other'
+  const companyHidden = !(
+    profileValue === 'Web developer'
+    || profileValue === 'Web3 infrastructure provider'
+    || profileValue === 'Web3 VC / professional investor'
+    || profileValue === 'Journalist'
+  )
+  const companySizeHidden = profileValue !== 'Web developer'
+  const industryHidden = profileValue !== 'Web developer'
   return (
     <section className={className}>
       <div className={styles.grid}>
@@ -658,11 +672,11 @@ export default function NewsletterSignupFormBlock({ title, className }: Newslett
             </p>
             <div className={cx(styles.formSection, styles.formSection__col1)}>
               <label htmlFor={`profile${formId}`}>
-                <span className={styles.label}>Country*:</span>
+                <span className={styles.label}>Profile type*:</span>
                 <div className={styles.customSelect}>
-                  <select name='profile' id={`profile${formId}`} aria-required='true' defaultValue=''>
+                  <select onChange={handleProfileChange} name='profile' id={`profile${formId}`} aria-required='true' defaultValue=''>
                     <option value=''>
-                      Profile type
+                      Profile type*
                     </option>
                     <option value='Web developer'>
                       Web developer
@@ -690,18 +704,18 @@ export default function NewsletterSignupFormBlock({ title, className }: Newslett
               </label>
               <ValidationError field='profile' prefix='Profile' errors={state.errors} className={styles.error} />
             </div>
-            <div className={cx(styles.formSection, styles.formSection__col2)}>
+            <div className={cx(styles.formSection, styles.formSection__col2, { [styles.hide]: companyHidden })}>
               <label htmlFor={`company${formId}`}>
-                <span className={styles.label}>Last name*:</span>
-                <input placeholder='Company' id={`company${formId}`} type='text' name='company' />
+                <span className={styles.label}>Company:</span>
+                <input placeholder='Company' id={`company${formId}`} type='text' name='company' disabled={companyHidden} />
               </label>
               <ValidationError field='company' prefix='Company' errors={state.errors} className={styles.error} />
             </div>
-            <div className={cx(styles.formSection, styles.formSection__col1)}>
+            <div className={cx(styles.formSection, styles.formSection__col1, { [styles.hide]: companySizeHidden })}>
               <label htmlFor={`companySize${formId}`}>
-                <span className={styles.label}>Country*:</span>
+                <span className={styles.label}>Company Size:</span>
                 <div className={styles.customSelect}>
-                  <select name='companySize' id={`companySize${formId}`} defaultValue=''>
+                  <select name='companySize' id={`companySize${formId}`} defaultValue='' disabled={companySizeHidden}>
                     <option value=''>
                       Company Size
                     </option>
@@ -725,11 +739,11 @@ export default function NewsletterSignupFormBlock({ title, className }: Newslett
               </label>
               <ValidationError field='companySize' prefix='Company Size' errors={state.errors} className={styles.error} />
             </div>
-            <div className={cx(styles.formSection, styles.formSection__col2)}>
+            <div className={cx(styles.formSection, styles.formSection__col2, { [styles.hide]: industryHidden })}>
               <label htmlFor={`industry${formId}`}>
-                <span className={styles.label}>Country*:</span>
+                <span className={styles.label}>Industry:</span>
                 <div className={styles.customSelect}>
-                  <select name='industry' id={`industry${formId}`} defaultValue=''>
+                  <select name='industry' id={`industry${formId}`} defaultValue='' disabled={industryHidden}>
                     <option value=''>
                       Industry
                     </option>
@@ -780,10 +794,10 @@ export default function NewsletterSignupFormBlock({ title, className }: Newslett
               </label>
               <ValidationError field='industry' prefix='Industry' errors={state.errors} className={styles.error} />
             </div>
-            <div className={cx(styles.formSection, styles.formSection__col2)}>
+            <div className={cx(styles.formSection, styles.formSection__col2, { [styles.hide]: sepcifyProfileHidden })}>
               <label htmlFor={`specifyProfile${formId}`}>
-                <span className={styles.label}>Last name*:</span>
-                <input placeholder='Specify Profile' id={`specifyProfile${formId}`} type='text' name='specifyProfile' />
+                <span className={styles.label}>Specify Profile:</span>
+                <input placeholder='Specify Profile' id={`specifyProfile${formId}`} type='text' name='specifyProfile' disabled={sepcifyProfileHidden} />
               </label>
               <ValidationError field='specifyProfile' prefix='Specify Profile' errors={state.errors} className={styles.error} />
             </div>

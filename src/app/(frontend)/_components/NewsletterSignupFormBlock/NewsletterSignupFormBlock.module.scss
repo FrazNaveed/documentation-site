@@ -33,7 +33,7 @@
 
 .sectionLabel {
   @include columns(1, 9);
-  @include paragraphSm;
+  @include paragraphSmFont;
 
   margin-top: to-rem($spacing-small);
   margin-bottom: 0;
@@ -59,6 +59,10 @@
     @include columns(1, 9);
 
     margin-top: to-rem($spacing-x-large);
+
+    @include media-breakpoint-down(lg) {
+      margin-top: to-rem($spacing-standard);
+    }
   }
 
   &__full {
@@ -105,7 +109,7 @@ $checkbox-inner-checked-width: $checkbox-width - 12px;
 }
 
 .consentText {
-  @include paragraphSm;
+  @include paragraphSmFont;
 
   margin-bottom: 0;
   color: $black;
@@ -121,6 +125,10 @@ $checkbox-inner-checked-width: $checkbox-width - 12px;
   @include columns(1, -1);
 
   margin-top: to-rem($spacing-medium);
+
+  @include media-breakpoint-down(lg) {
+    margin-top: to-rem($spacing-small);
+  }
 }
 
 .label {
@@ -154,4 +162,8 @@ $checkbox-inner-checked-width: $checkbox-width - 12px;
     cursor: pointer;
     appearance: none;
   }
+}
+
+.hide {
+  display: none;
 }
