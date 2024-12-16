@@ -112,7 +112,7 @@ select,
 textarea {
   padding: 19px 12px;
   border: 1px solid $gray-200;
-  background-color: #fff;
+  background-color: $white;
   color: $gray;
 
   @include bodyBase;
