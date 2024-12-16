@@ -31,8 +31,19 @@
   row-gap: $spacing-standard;
 }
 
+.sectionLabel {
+  @include columns(1, 9);
+  @include paragraphSm;
+
+  margin-top: to-rem($spacing-small);
+  margin-bottom: 0;
+  color: $black;
+}
+
 .formSection {
-  * {
+  input:not([type="checkbox"]),
+  select,
+  textarea {
     width: 100%;
   }
 
@@ -44,13 +55,72 @@
     @include columns(5, 9);
   }
 
+  &__colWide {
+    @include columns(1, 9);
+
+    margin-top: to-rem($spacing-x-large);
+  }
+
   &__full {
     @include columns(1, -1);
   }
 }
 
+.fieldset {
+  padding: 0;
+  border: 0;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: to-rem(12px);
+}
+
+$checkbox-width: 28px;
+$checkbox-inner-checked-width: $checkbox-width - 12px;
+
+.checkbox {
+  position: relative;
+  flex-shrink: 0;
+  width: $checkbox-width;
+  height: $checkbox-width;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  border-color: $gray-200;
+  appearance: none;
+
+  &:checked::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $checkbox-inner-checked-width;
+    height: $checkbox-inner-checked-width;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: $black;
+    content: "";
+  }
+}
+
+.consentText {
+  @include paragraphSm;
+
+  margin-bottom: 0;
+  color: $black;
+}
+
+.consentNotice {
+  @include paragraphXSmFont;
+
+  margin-bottom: 0;
+}
+
 .submitWrap {
   @include columns(1, -1);
+
+  margin-top: to-rem($spacing-medium);
 }
 
 .label {

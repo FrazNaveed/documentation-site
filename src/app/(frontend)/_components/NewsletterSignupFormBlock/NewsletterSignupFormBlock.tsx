@@ -28,6 +28,9 @@ export default function NewsletterSignupFormBlock({ title, className }: Newslett
           </div>
         ) : (
           <form onSubmit={handleSubmit} className={cx(styles.grid, styles.form)}>
+            <p className={styles.sectionLabel}>
+              Your Contact Info
+            </p>
             <div className={cx(styles.formSection, styles.formSection__col1)}>
               <label htmlFor={`fname${formId}`}>
                 <span className={styles.label}>First name*:</span>
@@ -648,8 +651,11 @@ export default function NewsletterSignupFormBlock({ title, className }: Newslett
                   </select>
                 </div>
               </label>
-              <ValidationError field='email' prefix='Email' errors={state.errors} className={styles.error} />
+              <ValidationError field='country' prefix='Country' errors={state.errors} className={styles.error} />
             </div>
+            <p className={styles.sectionLabel}>
+              Flare interests
+            </p>
             <div className={cx(styles.formSection, styles.formSection__col1)}>
               <label htmlFor={`profile${formId}`}>
                 <span className={styles.label}>Country*:</span>
@@ -682,7 +688,7 @@ export default function NewsletterSignupFormBlock({ title, className }: Newslett
                   </select>
                 </div>
               </label>
-              <ValidationError field='country' prefix='Country' errors={state.errors} className={styles.error} />
+              <ValidationError field='profile' prefix='Profile' errors={state.errors} className={styles.error} />
             </div>
             <div className={cx(styles.formSection, styles.formSection__col2)}>
               <label htmlFor={`company${formId}`}>
@@ -780,6 +786,21 @@ export default function NewsletterSignupFormBlock({ title, className }: Newslett
                 <input placeholder='Specify Profile' id={`specifyProfile${formId}`} type='text' name='specifyProfile' />
               </label>
               <ValidationError field='specifyProfile' prefix='Specify Profile' errors={state.errors} className={styles.error} />
+            </div>
+            <div className={cx(styles.formSection, styles.formSection__colWide)}>
+              <fieldset className={styles.fieldset}>
+                <legend className={styles.label}>
+                  Consent*
+                </legend>
+                <label htmlFor={`consent${formId}`} className={styles.checkboxLabel}>
+                  <input id={`consent${formId}`} type='checkbox' name='consent' aria-required='true' className={styles.checkbox} />
+                  <div>
+                    <p className={styles.consentText}>Yes, I agree to receive email communications from Flare.*</p>
+                    <p className={styles.consentNotice}>We will never share your email address with anyone else.</p>
+                  </div>
+                </label>
+              </fieldset>
+              <ValidationError field='consent' prefix='Consent' errors={state.errors} className={styles.error} />
             </div>
             <div className={cx(styles.submitWrap)}>
               <Button type='submit' disabled={state.submitting} text={state.submitting ? 'Sending...' : 'Send'} />
