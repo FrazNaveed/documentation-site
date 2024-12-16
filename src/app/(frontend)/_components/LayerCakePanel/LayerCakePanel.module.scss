@@ -5,8 +5,6 @@
 @use "../../_styles/transitions" as *;
 
 .wrap {
-  padding-bottom: $spacing-7x-large;
-
   @include grid;
 }
 
@@ -128,6 +126,10 @@
 
   &Text {
     @include paragraphSm;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -139,10 +141,9 @@
 
     @include media-breakpoint-up(lg) {
       margin-bottom: $spacing-small;
-      opacity: 0;
+      padding: $spacing-small;
 
       &:hover {
-        padding: $spacing-small;
         background-color: $gray-50;
         cursor: pointer;
 
@@ -152,36 +153,6 @@
       }
     }
   }
-
-  @include media-breakpoint-up(lg) {
-    &.animate {
-      .textLayer {
-        &__0 {
-          animation: fade-in 600ms ease-in-out both;
-        }
-
-        &__1 {
-          animation: fade-in 800ms ease-in-out both;
-          animation-delay: 500ms;
-        }
-
-        &__2 {
-          animation: fade-in 1000ms ease-in-out both;
-          animation-delay: 1000ms;
-        }
-      }
-    }
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
 
 .layersWrap {
@@ -190,6 +161,7 @@
 
   .shadowLayer {
     height: 25%;
+    transition: opacity $transition-snappy;
     border-radius: 70%;
     box-shadow: 0 10px 83.3px 0 #ff779c;
     opacity: 0;
@@ -199,37 +171,31 @@
     position: absolute;
 
     @include media-breakpoint-up(lg) {
-      transform: translateY(40px);
-      transition: opacity $transition-snappy;
-      opacity: 0;
+      transition: top 600ms ease-in-out;
     }
 
     &__top {
       top: 0;
       left: 50%;
       width: 91%;
-      transform: translate(-50%, 40px);
-
-      @include media-breakpoint-down(lg) {
-        transform: translate(-50%, 0);
-      }
+      transform: translate(-50%);
 
       &Shadow {
-        top: 14%;
+        top: 21%;
         left: 5.5%;
         width: 89%;
       }
     }
 
     &__middle {
-      top: 50%;
+      top: 37%;
 
       @include media-breakpoint-down(lg) {
         top: 26%;
       }
 
       &Shadow {
-        top: 53%;
+        top: 49.5%;
         left: 1%;
         width: 98%;
         height: 23%;
@@ -237,14 +203,14 @@
     }
 
     &__bottom {
-      top: 75%;
+      top: 60%;
 
       @include media-breakpoint-down(lg) {
         top: 33%;
       }
 
       &Shadow {
-        top: 90.5%;
+        top: 76%;
         left: 1%;
         width: 98%;
         height: 23%;
@@ -253,7 +219,7 @@
 
     @include media-breakpoint-up(lg) {
       &.active {
-        transition: opacity $transition-snappy 200ms;
+        transition: opacity $transition-snappy 600ms;
         opacity: 1;
       }
     }
@@ -266,101 +232,32 @@
 
     &.animate {
       .layer {
-        &__top {
-          animation: fade-in-up 400ms ease-in-out both;
-        }
-
         &__middle {
-          animation: fade-in-up-middle 1000ms ease-in-out both;
-          animation-delay: 200ms;
+          top: 26%;
         }
 
         &__bottom {
-          animation: fade-in-up-bottom 800ms ease-in-out both;
-          animation-delay: 400ms;
+          top: 33%;
+          transition: top 800ms ease-in-out 300ms;
         }
       }
     }
 
     &.expanded {
       img {
-        transition: transform $transition-snappy;
+        transition: transform 600ms ease-in-out;
       }
 
       .layer {
         &__middle img {
-          transform: translateY(57%);
+          transform: translateY(28%);
         }
 
         &__bottom img {
-          transform: translateY(100%);
+          transform: translateY(50%);
         }
       }
     }
-  }
-}
-
-@keyframes fade-in-up {
-  0% {
-    transform: translate(-50%, 40px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translate(-50%, 0);
-    opacity: 1;
-  }
-}
-
-@keyframes fade-in-up-middle {
-  0% {
-    top: 57%;
-    transform: translateY(40px);
-    opacity: 0;
-  }
-
-  45% {
-    top: 57%;
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  75% {
-    top: 57%;
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  100% {
-    top: 26%;
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes fade-in-up-bottom {
-  0% {
-    top: 85%;
-    transform: translateY(40px);
-    opacity: 0;
-  }
-
-  45% {
-    top: 85%;
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  75% {
-    top: 85%;
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  100% {
-    top: 33%;
-    transform: translateY(0);
-    opacity: 1;
   }
 }
 

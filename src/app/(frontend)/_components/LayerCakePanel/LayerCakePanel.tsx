@@ -36,7 +36,7 @@ export default function LayerCakePanel({
               const rect = containerRef.current.getBoundingClientRect()
               const viewportHeight = window.innerHeight
 
-              if (rect.top <= viewportHeight * 0.25 && rect.bottom >= 0) {
+              if (rect.top <= viewportHeight * 0.15 && rect.bottom >= 0) {
                 setIsAnimating(true)
                 setTimeout(() => {
                   setAnimationComplete(true)

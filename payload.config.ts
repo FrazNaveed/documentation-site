@@ -100,7 +100,7 @@ export default buildConfig({
     migrationDir: './migrations',
   }),
 
-  email: nodemailerAdapter({
+  email: process.env.SMTP_USER ? nodemailerAdapter({
     defaultFromAddress: 'donotreply@flare.network',
     defaultFromName: 'Flare',
     transportOptions: {
@@ -111,7 +111,7 @@ export default buildConfig({
         pass: process.env.SMTP_PASS,
       },
     },
-  }),
+  }) : undefined,
   sharp,
   plugins: [
     seoPlugin({
