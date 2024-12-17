@@ -41,7 +41,8 @@
     margin: to-rem($p-margin-bottom) auto;
   }
 
-  > :last-child {
+  > :last-child,
+  :global(.payload-richtext) > :last-child {
     margin-bottom: 0;
   }
 }
