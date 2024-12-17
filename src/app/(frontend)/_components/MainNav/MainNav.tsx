@@ -71,9 +71,13 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
   const siteHeaderId = 'siteHeader'
   const mainNavId = 'mainNav'
 
-  useEffect(() => {
+  const closeMenus = () => {
     setOpenSubmenuIndex(null)
     setMobileNavIsOpen(false)
+  }
+
+  useEffect(() => {
+    closeMenus()
   }, [pathname])
 
   const toggleSubmenuOpen = (index: number) => {
@@ -312,6 +316,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
                                     <li key={link._key} className={styles.linkGroupItem}>
                                       <LinkComponent
                                         href={link.url}
+                                        onClick={closeMenus}
                                         className={cx(
                                           styles.submenuLink,
                                           {
@@ -362,7 +367,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
             <ul className={styles.secondaryMenu}>
               {secondaryNavData.map((link) => (
                 <li key={link._key} className={styles.secondaryMenu_Item}>
-                  <Link href={link.url} className={styles.secondaryMenu_Link}>
+                  <Link href={link.url} className={styles.secondaryMenu_Link} onClick={closeMenus}>
                     {link.title}
                   </Link>
                 </li>
