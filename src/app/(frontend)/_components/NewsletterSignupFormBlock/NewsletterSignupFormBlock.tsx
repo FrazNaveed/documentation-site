@@ -18,7 +18,7 @@ export default function NewsletterSignupFormBlock({ title, className }: Newslett
   const handleProfileChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setProfileValue(e.target.value)
   }
-  const sepcifyProfileHidden = profileValue !== 'Other'
+  const specifyProfileHidden = profileValue !== 'Other'
   const companyHidden = !(
     profileValue === 'Web developer'
     || profileValue === 'Web3 infrastructure provider'
@@ -794,10 +794,10 @@ export default function NewsletterSignupFormBlock({ title, className }: Newslett
               </label>
               <ValidationError field='industry' prefix='Industry' errors={state.errors} className={styles.error} />
             </div>
-            <div className={cx(styles.formSection, styles.formSection__col2, { [styles.hide]: sepcifyProfileHidden })}>
+            <div className={cx(styles.formSection, styles.formSection__col2, { [styles.hide]: specifyProfileHidden })}>
               <label htmlFor={`specifyProfile${formId}`}>
                 <span className={styles.label}>Specify Profile:</span>
-                <input placeholder='Specify Profile' id={`specifyProfile${formId}`} type='text' name='specifyProfile' disabled={sepcifyProfileHidden} />
+                <input placeholder='Specify Profile' id={`specifyProfile${formId}`} type='text' name='specifyProfile' disabled={specifyProfileHidden} />
               </label>
               <ValidationError field='specifyProfile' prefix='Specify Profile' errors={state.errors} className={styles.error} />
             </div>
