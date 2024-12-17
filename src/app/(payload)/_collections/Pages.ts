@@ -56,6 +56,7 @@ import { DecentralizedPanelBlock } from '../_blocks/DecentralizedPanelBlock'
 import { SecurePanelBlock } from '../_blocks/SecurePanelBlock'
 import { EventsWidgetBlock } from '../_blocks/EventsWidgetBlock'
 import { ContactFormBlock } from '../_blocks/ContactFormBlock'
+import { NewsletterSignupFormBlock } from '../_blocks/NewsletterSignupFormBlock'
 import { PageTeaserGrid } from '../_blocks/PageTeaserGridBlock'
 import { TokenLinkBlock } from '../_blocks/TokenLinkBlock'
 
@@ -215,6 +216,7 @@ export const Pages: CollectionConfig = {
         SecurePanelBlock,
         EventsWidgetBlock,
         ContactFormBlock,
+        NewsletterSignupFormBlock,
         PageTeaserGrid,
         TokenLinkBlock,
       ],

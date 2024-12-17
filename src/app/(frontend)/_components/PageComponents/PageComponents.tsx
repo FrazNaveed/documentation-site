@@ -18,6 +18,7 @@ import FlareDropDates from 'src/app/(frontend)/_components/FlaredropDates'
 import LayerCakePanel from 'src/app/(frontend)/_components/LayerCakePanel'
 import LinkBand from 'src/app/(frontend)/_components/LinkBand'
 import MarqueeGallery from 'src/app/(frontend)/_components/MarqueeGallery'
+import NewsletterSignupFormBlock from '@/src/app/(frontend)/_components/NewsletterSignupFormBlock'
 import OfficialChannelsBlock from 'src/app/(frontend)/_components/OfficialChannelsBlock'
 import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
@@ -378,6 +379,12 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
 
                 case 'layerCake':
                   componentToRender = <LayerCakePanel key={component.id} {...component} className={componentClass} />
+                  break
+
+                case 'newsletterSignupForm':
+                  componentToRender = (
+                    <NewsletterSignupFormBlock key={component.id} {...component} className={componentClass} />
+                  )
                   break
 
                 case 'officialChannels':
