@@ -12,7 +12,7 @@ export type NewsletterSignupFormBlockProps = INewsletterSignupFormBlock & {
 }
 
 export default function NewsletterSignupFormBlock({ title, className }: NewsletterSignupFormBlockProps) {
-  const formId = 'xxxxxxxx' // TODO: Get Form ID and field names
+  const formId = 'xeqvarae' // TODO: Get field names
   const [state, handleSubmit, reset] = useForm(formId)
   const [profileValue, setProfileValue] = useState<string>('')
   const handleProfileChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
