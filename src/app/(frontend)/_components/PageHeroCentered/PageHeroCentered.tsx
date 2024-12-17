@@ -160,7 +160,8 @@ export default function PageHeroCentered({
       )}
     </>
   )
-  const mobileVideoMarkup = (modifierClass?: string) => (showBackgroundVideo ? (
+  const showVideos = (showBackgroundVideo && heroStyle === 'centered')
+  const mobileVideoMarkup = (modifierClass?: string) => (showVideos ? (
     <div className={cx(styles.videoWrap, styles[`videoWrap__${modifierClass}`])}>
       <video className={cx(styles.video, styles[`video__${modifierClass}`])} autoPlay loop muted playsInline>
         <source src='/en/video/home_hero.mov' type='video/quicktime' />
@@ -171,9 +172,11 @@ export default function PageHeroCentered({
   return (
     <div className={cx(styles.container, { [styles.container__fullWidthMobile]: heroStyle === 'centered' })}>
       <div className={cx(styles.wrap, { [styles.wrap__hasProtocol]: hasProtocolInfo, [styles.wrap__centeredStyle]: heroStyle === 'centered' })}>
-        <video className={cx(styles.video, styles.video__desktop)} autoPlay loop muted playsInline>
-          <source src='/en/video/home_hero_desktop.mp4' type='video/MP4' />
-        </video>
+        {showVideos && (
+          <video className={cx(styles.video, styles.video__desktop)} autoPlay loop muted playsInline>
+            <source src='/en/video/home_hero_desktop.mp4' type='video/MP4' />
+          </video>
+        )}
         <div className={styles.grid}>
           {mobileVideoMarkup('top')}
           {backgroundImage?.url && (
