@@ -22,6 +22,7 @@ $centerd-style-mobile-vertical-padding: to-rem($spacing-7x-large);
   background-color: $gray-100;
 
   &__centeredStyle {
+    position: relative;
     overflow: hidden;
   }
 
@@ -178,7 +179,7 @@ $centerd-style-mobile-vertical-padding: to-rem($spacing-7x-large);
   overflow: hidden;
   grid-row: 1;
 
-  &__left {
+  &__top {
     @include columns(1, 4);
 
     @include media-breakpoint-down(lg) {
@@ -186,7 +187,7 @@ $centerd-style-mobile-vertical-padding: to-rem($spacing-7x-large);
     }
   }
 
-  &__right {
+  &__bottom {
     @include columns(10, -1);
 
     @include media-breakpoint-down(lg) {
@@ -208,10 +209,18 @@ $centerd-style-mobile-vertical-padding: to-rem($spacing-7x-large);
     height: auto;
   }
 
-  &__left {
+  &__desktop {
+    width: 100%;
+    object-fit: cover;
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+
+  &__top {
     @include media-breakpoint-up(md) {
-      right: -2px; // Instead of 0 to hide black line on edge of video
-      bottom: 0;
+      display: none;
     }
 
     @include media-breakpoint-down(md) {
@@ -225,11 +234,9 @@ $centerd-style-mobile-vertical-padding: to-rem($spacing-7x-large);
     }
   }
 
-  &__right {
+  &__bottom {
     @include media-breakpoint-up(md) {
-      top: 0;
-      left: -2px; // Instead of 0 to hide black line on edge of video
-      transform: scaleX(-1) scaleY(-1);
+      display: none;
     }
 
     @include media-breakpoint-down(md) {
