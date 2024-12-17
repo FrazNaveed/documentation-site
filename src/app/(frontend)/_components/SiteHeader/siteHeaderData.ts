@@ -255,12 +255,7 @@ export const mainNavData: MainNavigation = [
 export const secondaryNavData: SecondaryNavigation = [
   {
     _key: '1',
-    title: 'privacy policy',
-    url: '/privacy-policy',
-  },
-  {
-    _key: '2',
     title: 'terms and conditions',
-    url: '/terms-and-conditions',
+    url: '/privacy-policy',
   },
 ]
