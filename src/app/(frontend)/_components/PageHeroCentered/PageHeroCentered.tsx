@@ -160,7 +160,7 @@ export default function PageHeroCentered({
       )}
     </>
   )
-  const showVideos = (showBackgroundVideo && heroStyle === 'centered')
+  const showVideos = showBackgroundVideo && heroStyle === 'centered'
   const mobileVideoMarkup = (modifierClass?: string) => (showVideos ? (
     <div className={cx(styles.videoWrap, styles[`videoWrap__${modifierClass}`])}>
       <video className={cx(styles.video, styles[`video__${modifierClass}`])} autoPlay loop muted playsInline>
