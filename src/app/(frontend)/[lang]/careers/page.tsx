@@ -1,4 +1,5 @@
 import buildMetadata from 'src/app/(frontend)/_utils/buildMetadata'
+import CareersPage from '../../_components/CareersPage'
 
 export const dynamic = 'force-dynamic'
 
@@ -8,5 +9,5 @@ export async function generateMetadata() {
 }
 
 export default async function Page() {
-  return 'HI Careers landing page'
+  return <CareersPage />
 }
