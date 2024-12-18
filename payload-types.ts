@@ -451,6 +451,7 @@ export interface Config {
     products: Product;
     wallets: Wallet;
     careers: Career;
+    'product-teams': ProductTeam;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -472,6 +473,7 @@ export interface Config {
     products: ProductsSelect<false> | ProductsSelect<true>;
     wallets: WalletsSelect<false> | WalletsSelect<true>;
     careers: CareersSelect<false> | CareersSelect<true>;
+    'product-teams': ProductTeamsSelect<false> | ProductTeamsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -2435,7 +2437,7 @@ export interface DeveloperGuideTag {
 export interface Career {
   id: number;
   jobTitle: string;
-  productTeam: number | Event;
+  productTeam: number | ProductTeam;
   locations?: {
     locationsRemote?: boolean | null;
     locationsEurope?: boolean | null;
@@ -2457,6 +2459,16 @@ export interface Career {
     };
     [k: string]: unknown;
   } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-teams".
+ */
+export interface ProductTeam {
+  id: number;
+  teamTitle: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -2526,6 +2538,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'careers';
         value: number | Career;
+      } | null)
+    | ({
+        relationTo: 'product-teams';
+        value: number | ProductTeam;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -3473,6 +3489,15 @@ export interface CareersSelect<T extends boolean = true> {
         locationsAmericas?: T;
       };
   description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-teams_select".
+ */
+export interface ProductTeamsSelect<T extends boolean = true> {
+  teamTitle?: T;
   updatedAt?: T;
   createdAt?: T;
 }
