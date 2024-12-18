@@ -241,12 +241,8 @@ $centerd-style-mobile-vertical-padding: to-rem($spacing-7x-large);
 
     @include media-breakpoint-down(md) {
       bottom: 0;
-      left: 50%;
-      transform: translate(
-          -50%,
-          calc(100% - $centerd-style-mobile-vertical-padding - 8px)
-        )
-        rotate(-90deg);
+      width: 100%;
+      height: auto;
     }
   }
 }
