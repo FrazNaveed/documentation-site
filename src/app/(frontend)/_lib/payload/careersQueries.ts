@@ -17,7 +17,7 @@ const getCareersListings = unstable_cache(
         collection: 'careers',
         limit,
         page,
-        sort: '-title',
+        sort: 'jobTitle',
       })
       return careersData
     } catch (error) {
