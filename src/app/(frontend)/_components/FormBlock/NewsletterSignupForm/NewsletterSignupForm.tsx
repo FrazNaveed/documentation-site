@@ -32,20 +32,6 @@ export default function NewsletterSignupForm({ formId, state }: NewsletterSignup
         Your Contact Info
       </p>
       <div className={cx(styles.formSection, styles.formSection__col1)}>
-        <label htmlFor={`fname${formId}`}>
-          <span className={styles.label}>First name*:</span>
-          <input placeholder='First Name*' id={`fname${formId}`} type='text' name='fname' aria-required='true' required />
-        </label>
-        <ValidationError field='fname' prefix='First Name' errors={state.errors} className={styles.error} />
-      </div>
-      <div className={cx(styles.formSection, styles.formSection__col2)}>
-        <label htmlFor={`lname${formId}`}>
-          <span className={styles.label}>Last name*:</span>
-          <input placeholder='Last Name*' id={`lname${formId}`} type='text' name='lname' aria-required='true' required />
-        </label>
-        <ValidationError field='lname' prefix='Last Name' errors={state.errors} className={styles.error} />
-      </div>
-      <div className={cx(styles.formSection, styles.formSection__col1)}>
         <label htmlFor={`email${formId}`}>
           <span className={styles.label}>Your email*:</span>
           <input placeholder='Your email*' id={`email${formId}`} type='email' name='email' aria-required='true' required />
