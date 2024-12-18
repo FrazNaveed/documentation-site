@@ -1,5 +1,4 @@
 import type { CollectionConfig } from 'payload'
-import validateTextFieldUrl from '../_utils/validateTextFieldUrl'
 
 export const Careers: CollectionConfig = {
   slug: 'careers',
