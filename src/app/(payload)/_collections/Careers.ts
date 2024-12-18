@@ -56,6 +56,12 @@ export const Careers: CollectionConfig = {
           label: 'Americas',
         },
       ],
+      validate: (value) => {
+        if (!value || !Object.values(value).some(Boolean)) {
+          return 'Please select at least one location'
+        }
+        return true
+      },
       admin: {
         position: 'sidebar',
       },
