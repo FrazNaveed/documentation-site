@@ -1,7 +1,9 @@
 import cx from 'classnames'
 import Link from 'next/link'
 import type { LinkBandLinks } from 'payload-types'
+import isUrlExternal from 'src/app/(frontend)/_utils/isUrlExternal'
 import DiagonalArrowSquare from '../svgs/DiagonalArrowSquare'
+import RightArrow from '../svgs/RightArrow'
 import styles from './LinkBand.module.scss'
 
 export type LinkBandProps = {
@@ -30,7 +32,7 @@ export default function LinkBand({ title, links }: LinkBandProps) {
             )}
           >
             {link.linkText}
-            <DiagonalArrowSquare />
+            {isUrlExternal(link.linkUrl) ? <DiagonalArrowSquare /> : <RightArrow />}
           </Link>
           )))}
       </div>
