@@ -73,7 +73,7 @@ export default function ContactForm({ formId, state }: ContactFormProps) {
         <ValidationError field='productType' prefix='Product Type' errors={state.errors} className={styles.error} />
       </div>
       <div className={cx(styles.formSection, styles.formSection__col2)}>
-        <label htmlFor={`Estimated Launch${formId}`}>
+        <label htmlFor={`estimatedLaunch${formId}`}>
           <span className={styles.label}>Estimated Launch:</span>
           <div className='customSelect'>
             <select name='estimatedLaunch' id={`estimatedLaunch${formId}`} defaultValue=''>
