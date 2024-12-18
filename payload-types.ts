@@ -2468,7 +2468,7 @@ export interface Career {
  */
 export interface ProductTeam {
   id: number;
-  teamTitle: string;
+  teamName: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -3497,7 +3497,7 @@ export interface CareersSelect<T extends boolean = true> {
  * via the `definition` "product-teams_select".
  */
 export interface ProductTeamsSelect<T extends boolean = true> {
-  teamTitle?: T;
+  teamName?: T;
   updatedAt?: T;
   createdAt?: T;
 }
