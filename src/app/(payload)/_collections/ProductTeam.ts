@@ -10,11 +10,11 @@ export const ProductTeams: CollectionConfig = {
     plural: 'Product Teams',
   },
   admin: {
-    useAsTitle: 'teamTitle',
+    useAsTitle: 'teamName',
   },
   fields: [
     {
-      name: 'teamTitle',
+      name: 'teamName',
       type: 'text',
       localized: true,
       required: true,
