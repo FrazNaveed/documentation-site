@@ -5,9 +5,9 @@ import ApplicationProcessBlock from 'src/app/(frontend)/_components/ApplicationP
 import BrandLogoRollBlock from 'src/app/(frontend)/_components/BrandLogoRollBlock'
 import CodeCTABlock from '@/src/app/(frontend)/_components/CodeCTABlock'
 import Columns from 'src/app/(frontend)/_components/Columns'
-import ContactFormBlock from '@/src/app/(frontend)/_components/ContactFormBlock'
 import DecentralizedPanel from 'src/app/(frontend)/_components/DecentralizedPanel'
 import DevGuideGrid from 'src/app/(frontend)/_components/DevGuideGrid'
+import FormBlock from '@/src/app/(frontend)/_components/FormBlock'
 import ImageTextGridBlock from 'src/app/(frontend)/_components/ImageTextGridBlock'
 import JumpLinkAnchor from 'src/app/(frontend)/_components/SideNav/JumpLinkAnchor'
 import EventsHero from 'src/app/(frontend)/_components/EventsHero'
@@ -18,7 +18,6 @@ import FlareDropDates from 'src/app/(frontend)/_components/FlaredropDates'
 import LayerCakePanel from 'src/app/(frontend)/_components/LayerCakePanel'
 import LinkBand from 'src/app/(frontend)/_components/LinkBand'
 import MarqueeGallery from 'src/app/(frontend)/_components/MarqueeGallery'
-import NewsletterSignupFormBlock from '@/src/app/(frontend)/_components/NewsletterSignupFormBlock'
 import OfficialChannelsBlock from 'src/app/(frontend)/_components/OfficialChannelsBlock'
 import PageBanner from 'src/app/(frontend)/_components/PageBanner'
 import PageFooterCTA from 'src/app/(frontend)/_components/PageFooterCTA'
@@ -364,7 +363,8 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
                   break
 
                 case 'contactForm':
-                  componentToRender = <ContactFormBlock key={component.id} {...component} className={componentClass} />
+                case 'newsletterSignupForm':
+                  componentToRender = <FormBlock key={component.id} {...component} className={componentClass} />
                   break
 
                 case 'imageTextGrid':
@@ -379,12 +379,6 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
 
                 case 'layerCake':
                   componentToRender = <LayerCakePanel key={component.id} {...component} className={componentClass} />
-                  break
-
-                case 'newsletterSignupForm':
-                  componentToRender = (
-                    <NewsletterSignupFormBlock key={component.id} {...component} className={componentClass} />
-                  )
                   break
 
                 case 'officialChannels':
