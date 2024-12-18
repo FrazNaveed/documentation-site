@@ -34,21 +34,21 @@ export default function NewsletterSignupForm({ formId, state }: NewsletterSignup
       <div className={cx(styles.formSection, styles.formSection__col1)}>
         <label htmlFor={`fname${formId}`}>
           <span className={styles.label}>First name*:</span>
-          <input placeholder='First Name*' id={`fname${formId}`} type='text' name='fname' aria-required='true' />
+          <input placeholder='First Name*' id={`fname${formId}`} type='text' name='fname' aria-required='true' required />
         </label>
         <ValidationError field='fname' prefix='First Name' errors={state.errors} className={styles.error} />
       </div>
       <div className={cx(styles.formSection, styles.formSection__col2)}>
         <label htmlFor={`lname${formId}`}>
           <span className={styles.label}>Last name*:</span>
-          <input placeholder='Last Name*' id={`lname${formId}`} type='text' name='lname' aria-required='true' />
+          <input placeholder='Last Name*' id={`lname${formId}`} type='text' name='lname' aria-required='true' required />
         </label>
         <ValidationError field='lname' prefix='Last Name' errors={state.errors} className={styles.error} />
       </div>
       <div className={cx(styles.formSection, styles.formSection__col1)}>
         <label htmlFor={`email${formId}`}>
           <span className={styles.label}>Your email*:</span>
-          <input placeholder='Your email*' id={`email${formId}`} type='email' name='email' aria-required='true' />
+          <input placeholder='Your email*' id={`email${formId}`} type='email' name='email' aria-required='true' required />
         </label>
         <ValidationError field='email' prefix='Email' errors={state.errors} className={styles.error} />
       </div>
@@ -56,7 +56,7 @@ export default function NewsletterSignupForm({ formId, state }: NewsletterSignup
         <label htmlFor={`country${formId}`}>
           <span className={styles.label}>Country*:</span>
           <div className='customSelect'>
-            <select name='country' id={`country${formId}`} aria-required='true' defaultValue=''>
+            <select name='country' id={`country${formId}`} aria-required='true' required defaultValue=''>
               {COUNTRY_OPTIONS.map((option) => (
                 <option key={option.value} value={option.value}>
                   {option.label}
@@ -72,11 +72,11 @@ export default function NewsletterSignupForm({ formId, state }: NewsletterSignup
       </p>
       <div className={cx(styles.formSection, styles.formSection__col1)}>
         <label htmlFor={`profile${formId}`}>
-          <span className={styles.label}>Profile type*:</span>
+          <span className={styles.label}>Profile type:</span>
           <div className='customSelect'>
-            <select onChange={handleProfileChange} name='profile' id={`profile${formId}`} aria-required='true' defaultValue=''>
+            <select onChange={handleProfileChange} name='profile' id={`profile${formId}`} defaultValue=''>
               <option value=''>
-                Profile type*
+                Profile type
               </option>
               <option value='Web developer'>
                 Web developer
@@ -207,7 +207,7 @@ export default function NewsletterSignupForm({ formId, state }: NewsletterSignup
             Consent*
           </legend>
           <label htmlFor={`consent${formId}`} className={styles.checkboxLabel}>
-            <input id={`consent${formId}`} type='checkbox' name='consent' aria-required='true' className={styles.checkbox} />
+            <input id={`consent${formId}`} type='checkbox' name='consent' aria-required='true' required className={styles.checkbox} />
             <div>
               <p className={styles.consentText}>Yes, I agree to receive email communications from Flare.*</p>
               <p className={styles.consentNotice}>We will never share your email address with anyone else.</p>

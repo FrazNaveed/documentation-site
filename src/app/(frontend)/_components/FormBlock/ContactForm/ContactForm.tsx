@@ -19,21 +19,21 @@ export default function ContactForm({ formId, state }: ContactFormProps) {
       <div className={cx(styles.formSection, styles.formSection__col1)}>
         <label htmlFor={`name${formId}`}>
           <span className={styles.label}>Your name*:</span>
-          <input placeholder='Your Name*' id={`name${formId}`} type='text' name='name' aria-required='true' />
+          <input placeholder='Your Name*' id={`name${formId}`} type='text' name='name' aria-required='true' required />
         </label>
         <ValidationError field='name' prefix='Your Name' errors={state.errors} className={styles.error} />
       </div>
       <div className={cx(styles.formSection, styles.formSection__col2)}>
         <label htmlFor={`projectOrTeam${formId}`}>
           <span className={styles.label}>Project or Team*:</span>
-          <input placeholder='Project or Team*' id={`projectOrTeam${formId}`} type='text' name='projectOrTeam' aria-required='true' />
+          <input placeholder='Project or Team*' id={`projectOrTeam${formId}`} type='text' name='projectOrTeam' aria-required='true' required />
         </label>
         <ValidationError field='projectOrTeam' prefix='Project or Team' errors={state.errors} className={styles.error} />
       </div>
       <div className={cx(styles.formSection, styles.formSection__col1)}>
         <label htmlFor={`email${formId}`}>
           <span className={styles.label}>Your email*:</span>
-          <input placeholder='Your email*' id={`email${formId}`} type='email' name='email' aria-required='true' />
+          <input placeholder='Your email*' id={`email${formId}`} type='email' name='email' aria-required='true' required />
         </label>
         <ValidationError field='email' prefix='Email' errors={state.errors} className={styles.error} />
       </div>
