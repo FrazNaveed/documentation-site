@@ -22,7 +22,7 @@ export const Careers: CollectionConfig = {
     {
       name: 'productTeam',
       type: 'relationship',
-      relationTo: 'events', // change to productTeam collection after creation
+      relationTo: 'product-teams',
       hasMany: false,
       required: true,
       localized: true,
