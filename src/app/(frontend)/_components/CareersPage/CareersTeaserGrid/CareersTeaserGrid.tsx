@@ -27,7 +27,7 @@ export default function CareersTeaserGrid({ careersListings, emptyListingsText }
           slug,
           productTeam: { teamName },
           title,
-          description,
+          excerpt,
           locations,
         } = career
         const link = `${getCollectionPath('careers')}${slug}`
@@ -40,10 +40,10 @@ export default function CareersTeaserGrid({ careersListings, emptyListingsText }
               <RightArrow />
             </div>
             <h2 className={styles.title}>{title}</h2>
-            {description && (
-              <div className={styles.description}>
-                <LexicalRenderer content={description} />
-              </div>
+            {excerpt && (
+              <p className={styles.excerpt}>
+                {excerpt}
+              </p>
             )}
             <div className={styles.locationsWrap}>
               {Object.entries(locations)
