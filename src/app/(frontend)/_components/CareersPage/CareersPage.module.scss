@@ -2,6 +2,12 @@
 @use "../../_styles/typography" as *;
 @use "../../_styles/colors" as *;
 @use "../../_styles/spacing" as *;
-@use "@aleph/nought-sass-mixins/sass/utils";
 
-// styles
+.wrap {
+  @include container;
+  @include pageComponentSpacing;
+}
+
+.header {
+  margin-bottom: to-rem($spacing-large);
+}
