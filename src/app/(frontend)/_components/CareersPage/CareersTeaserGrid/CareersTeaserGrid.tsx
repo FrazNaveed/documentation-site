@@ -11,7 +11,7 @@ type CareersTeaserGridProps = {
 
 export default function CareersTeaserGrid({ careersListings, emptyListingsText }: CareersTeaserGridProps) {
   const { docs } = careersListings
-  console.log('hello', docs)
+
   if (docs.length === 0) {
     return (
       <div>
@@ -20,34 +20,43 @@ export default function CareersTeaserGrid({ careersListings, emptyListingsText }
     )
   }
   return (
-    <div className={styles.careerTeaserGridWrap}>
+    <div className={styles.careersTeaserGridWrap}>
       {docs && docs.map((career: any) => {
         const {
           id,
           slug,
           productTeam: { teamName },
-          jobTitle,
+          title,
           description,
           locations,
         } = career
         const link = `${getCollectionPath('careers')}${slug}`
         return (
           <Link key={id} href={link} className={styles.careersTeaser}>
-            <div>
-              {teamName}
+            <div className={styles.header}>
+              <span className={styles.teamName}>
+                {teamName}
+              </span>
               <RightArrow />
             </div>
-            {jobTitle}
-            {description && <LexicalRenderer content={description} />}
-            {Object.entries(locations)
-              .filter(([, value]) => value === true)
-              .map(([key], index, array) => (
-                <span
-                  key={key}
-                >
-                  {`${key}${index === array.length - 1 ? '' : ' / '}`}
-                </span>
-              ))}
+            <h2 className={styles.title}>{title}</h2>
+            {description && (
+              <div className={styles.description}>
+                <LexicalRenderer content={description} />
+              </div>
+            )}
+            <div className={styles.locationsWrap}>
+              {Object.entries(locations)
+                .filter(([, value]) => value === true)
+                .map(([key], index, array) => (
+                  <span
+                    key={key}
+                    className={styles.location}
+                  >
+                    {`${key}${index === array.length - 1 ? '' : ' / '}`}
+                  </span>
+                ))}
+            </div>
           </Link>
         )
       })}
