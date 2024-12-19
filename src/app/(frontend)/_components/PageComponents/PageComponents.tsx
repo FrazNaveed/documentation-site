@@ -55,6 +55,7 @@ import type {
   Product,
   Wallet,
 } from '@/payload-types'
+import type { CareersListingsData } from '../CareersPage/CareersPage'
 import { getPageFooterCtaSocialChannels } from '../../_lib/payload/pageQueries'
 import FeaturedNewsCarouselBlock from '../FeaturedNewsCarouselBlock'
 import styles from './PageComponents.module.scss'
@@ -164,9 +165,14 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
   let careersComponent
   if (pageTemplate === 'careers') {
     const careersListingsData = await getCareersListings()
-    careersComponent = (
-      <CareersPage careersListingsData={careersListingsData} careersPageData={careers} />
-    )
+    if (careersListingsData) {
+      careersComponent = (
+        <CareersPage
+          careersListingsData={careersListingsData as CareersListingsData}
+          careersPageData={careers}
+        />
+      )
+    }
   }
 
   let productsGridComponent

@@ -1,8 +1,42 @@
+import type { Careers, ProductTeam } from '@/payload-types'
+import { PaginatedDocs } from 'payload'
 import CareersTeaserGrid from './CareersTeaserGrid'
 import LexicalRenderer from '../LexicalRenderer'
 import styles from './CareersPage.module.scss'
 
-export default async function CareersPage({ careersListingsData, careersPageData }: any) {
+export interface CareerListing {
+  id: string
+  slug: string
+  productTeam: {
+    teamName: string
+  } | ProductTeam
+  title: string
+  excerpt?: string
+  locations: {
+    Remote?: boolean
+    Europe?: boolean
+    Asia?: boolean
+    Americas?: boolean
+  }
+}
+
+export type CareersListingsData = PaginatedDocs<CareerListing>
+
+export interface CareersPageProps {
+  careersListingsData?: CareersListingsData | null | undefined
+  careersPageData?: Careers | null | undefined
+}
+
+export type CareersTeaserGridProps = {
+  careersListings: CareersListingsData
+  emptyListingsText?: Careers['emptyListingsText']
+}
+
+export default async function CareersPage({ careersListingsData, careersPageData }: CareersPageProps) {
+  if (!careersListingsData || !careersPageData) {
+    return null
+  }
+
   const {
     pageTitle,
     content,
@@ -13,7 +47,7 @@ export default async function CareersPage({ careersListingsData, careersPageData
     <div className={styles.wrap}>
       {(pageTitle || content) && (
         <div className={styles.header}>
-          {pageTitle && <h2>{pageTitle || 'Open Roles'}</h2>}
+          <h2>{pageTitle || 'Open Roles'}</h2>
           {content && <LexicalRenderer content={content} />}
         </div>
       )}

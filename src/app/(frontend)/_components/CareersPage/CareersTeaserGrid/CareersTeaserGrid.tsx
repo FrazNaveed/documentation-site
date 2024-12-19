@@ -1,30 +1,26 @@
 import cx from 'classnames'
+import type { CareersTeaserGridProps } from '../CareersPage'
 import LexicalRenderer from '../../LexicalRenderer'
 import Link from '../../Link'
 import RightArrow from '../../svgs/RightArrow'
 import getCollectionPath from '../../../_utils/getCollectionPath'
 import styles from './CareersTeaserGrid.module.scss'
 
-type CareersTeaserGridProps = {
-  careersListings: any
-  emptyListingsText: any
-}
-
 export default function CareersTeaserGrid({ careersListings, emptyListingsText }: CareersTeaserGridProps) {
   const { docs } = careersListings
 
   if (docs.length === 0) {
-    return (
+    return emptyListingsText ? (
       <div className={cx(styles.careersTeaserGridWrap, styles.careersTeaserGridWrap__empty)}>
         <div className={styles.emptyListingsWrap}>
           <LexicalRenderer content={emptyListingsText} />
         </div>
       </div>
-    )
+    ) : null
   }
   return (
     <div className={styles.careersTeaserGridWrap}>
-      {docs && docs.map((career: any) => {
+      {docs && docs.map((career) => {
         const {
           id,
           slug,
