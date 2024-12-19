@@ -54,11 +54,11 @@ export const mainNavData: MainNavigation = [
             title: 'Community Resources',
             url: '/community',
           },
-          {
-            _key: '4',
-            title: 'Team',
-            url: '/team',
-          },
+          // {
+          //   _key: '4',
+          //   title: 'Team',
+          //   url: '/team',
+          // },
         ],
       },
     ],
