@@ -8,7 +8,7 @@ export default async function CareersPage() {
   const careersListings = await getCareersListings()
   const careersPage = await getPageBySlug('careers')
   const careersPageData = careersPage[0] || {}
-  // console.log(careers)
+  // console.log(careersListings)
   // console.log('page: ', careersPageData)
   const {
     careers: {
