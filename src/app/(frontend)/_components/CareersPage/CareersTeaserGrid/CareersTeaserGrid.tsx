@@ -14,7 +14,7 @@ export default function CareersTeaserGrid({ careersListings, emptyListingsText }
 
   if (docs.length === 0) {
     return (
-      <div>
+      <div className={styles.careersTeaserGridWrap__empty}>
         <LexicalRenderer content={emptyListingsText} />
       </div>
     )
