@@ -45,6 +45,7 @@ import TwoColumnBlock from 'src/app/(frontend)/_components/TwoColumnBlock'
 import TwoColumnCtaBlock from 'src/app/(frontend)/_components/TwoColumnCtaBlock/TwoColumnCtaBlock'
 import VideoBlock from 'src/app/(frontend)/_components/VideoBlock'
 import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
+import getCareersListings from 'src/app/(frontend)/_lib/payload/careersQueries'
 import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
 import { getFeaturedEvent } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import { getNewsArchive, getNewsTypeBySlug } from 'src/app/(frontend)/_lib/payload/newsQueries'
@@ -157,6 +158,14 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
     const { bannerText } = pageBanner
     pageBannerComponent = (
       <PageBanner content={bannerText} />
+    )
+  }
+
+  let careersComponent
+  if (pageTemplate === 'careers') {
+    const careersListingsData = await getCareersListings()
+    careersComponent = (
+      <CareersPage careersListingsData={careersListingsData} careersPageData={careers} />
     )
   }
 
@@ -274,7 +283,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
     <div className={styles.wrap}>
       {pageBanner?.togglePageBanner && pageBannerComponent}
       {heroComponent}
-      {pageTemplate === 'careers' && <CareersPage careersPageData={careers} />}
+      {pageTemplate === 'careers' && careersComponent}
       {pageTemplate === 'devHub' && (
         <>
           {productsGridComponent}

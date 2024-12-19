@@ -1,10 +1,8 @@
-import getCareersListings from '../../_lib/payload/careersQueries'
 import CareersTeaserGrid from './CareersTeaserGrid'
 import LexicalRenderer from '../LexicalRenderer'
 import styles from './CareersPage.module.scss'
 
-export default async function CareersPage({ careersPageData }: any) {
-  const careersListingsData = await getCareersListings()
+export default async function CareersPage({ careersListingsData, careersPageData }: any) {
   const {
     pageTitle,
     content,
