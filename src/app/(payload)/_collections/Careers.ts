@@ -36,6 +36,14 @@ export const Careers: CollectionConfig = {
       },
     },
     {
+      name: 'excerpt',
+      type: 'textarea',
+      localized: true,
+      admin: {
+        description: 'Short description that displays in card'
+      },
+    },
+    {
       name: 'productTeam',
       type: 'relationship',
       relationTo: 'product-teams',
