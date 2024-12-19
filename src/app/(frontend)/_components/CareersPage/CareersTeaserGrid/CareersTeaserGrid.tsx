@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import { SerializedEditorState, SerializedLexicalNode } from '@payloadcms/richtext-lexical/lexical'
 import type { CareersTeaserGridProps } from '../CareersPage'
+import isLexicalEmpty from '../../../_utils/isLexicalEmpty'
 import LexicalRenderer from '../../LexicalRenderer'
 import Link from '../../Link'
 import RightArrow from '../../svgs/RightArrow'
@@ -9,11 +10,6 @@ import styles from './CareersTeaserGrid.module.scss'
 
 export default function CareersTeaserGrid({ careersListings, emptyListingsText }: CareersTeaserGridProps) {
   const { docs } = careersListings
-
-  // Using any as we're only checking the structure
-  const isLexicalEmpty = (content: any): boolean => content?.root?.children?.[0]?.type === 'paragraph'
-    && content?.root?.children?.[0]?.children?.length === 0
-    && content?.root?.children?.length === 1
 
   if (docs.length === 0) {
     return !isLexicalEmpty(emptyListingsText) ? (
