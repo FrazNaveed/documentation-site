@@ -120,7 +120,6 @@ const redirectList = [
   { source: '/ecosystem', destination: '/' }, // remove in V3
   { source: '/node-set-up', destination: 'https://dev.flare.network/category/run-a-node' },
   { source: '/become-a-data-provider', destination: 'https://dev.flare.network/run-node/ftso-data-provider' },
-  { source: '/sign-up', destination: '/news' },
   { source: '/contact', destination: '/resources/developer-support' },
   ...newsRedirects,
 ]
