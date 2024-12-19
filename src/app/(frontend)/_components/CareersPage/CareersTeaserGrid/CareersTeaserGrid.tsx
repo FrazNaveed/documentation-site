@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import LexicalRenderer from '../../LexicalRenderer'
 import Link from '../../Link'
 import RightArrow from '../../svgs/RightArrow'
@@ -14,8 +15,10 @@ export default function CareersTeaserGrid({ careersListings, emptyListingsText }
 
   if (docs.length === 0) {
     return (
-      <div className={styles.careersTeaserGridWrap__empty}>
-        <LexicalRenderer content={emptyListingsText} />
+      <div className={cx(styles.careersTeaserGridWrap, styles.careersTeaserGridWrap__empty)}>
+        <div className={styles.emptyListingsWrap}>
+          <LexicalRenderer content={emptyListingsText} />
+        </div>
       </div>
     )
   }

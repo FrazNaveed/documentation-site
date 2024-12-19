@@ -8,6 +8,25 @@
   @include grid;
 
   row-gap: to-rem($spacing-standard);
+
+  &__empty {
+    padding: to-rem($spacing-x-large) 0;
+    border: 1px solid $gray-200;
+    border-radius: 6px;
+  }
+}
+
+.emptyListingsWrap {
+  @include spanColumns(8, 3);
+
+  @include media-breakpoint-down(lg) {
+    @include spanColumns(6, 2);
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-right: to-rem($spacing-large);
+    padding-left: to-rem($spacing-large);
+  }
 }
 
 .careersTeaser {
@@ -15,7 +34,7 @@
 
   display: flex;
   flex-direction: column;
-  padding: $spacing-standard $spacing-small;
+  padding: to-rem($spacing-standard) to-rem($spacing-small);
   border: 1px solid $gray-200;
   border-radius: 6px;
 
