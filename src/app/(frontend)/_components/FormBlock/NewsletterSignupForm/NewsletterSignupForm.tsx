@@ -193,14 +193,14 @@ export default function NewsletterSignupForm({ formId, state }: NewsletterSignup
             Consent*
           </legend>
           <label htmlFor={`consent${formId}`} className={styles.checkboxLabel}>
-            <input id={`consent${formId}`} type='checkbox' name='consent' aria-required='true' required className={styles.checkbox} />
+            <input id={`consent${formId}`} type='checkbox' name='_optin' aria-required='true' required className={styles.checkbox} />
             <div>
               <p className={styles.consentText}>Yes, I agree to receive email communications from Flare.*</p>
               <p className={styles.consentNotice}>We will never share your email address with anyone else.</p>
             </div>
           </label>
         </fieldset>
-        <ValidationError field='consent' prefix='Consent' errors={state.errors} className={styles.error} />
+        <ValidationError field='_optin' prefix='Consent' errors={state.errors} className={styles.error} />
       </div>
     </>
   )

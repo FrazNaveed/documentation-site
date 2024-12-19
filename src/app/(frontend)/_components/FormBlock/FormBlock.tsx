@@ -25,7 +25,7 @@ export default function FormBlock({ title, blockType, className }: FormBlockProp
       formComponent: ContactForm,
     },
     newsletterSignupForm: {
-      id: 'xeqvarae',
+      id: 'xanyreaj',
       formComponent: NewsletterSignupForm,
     },
   }
