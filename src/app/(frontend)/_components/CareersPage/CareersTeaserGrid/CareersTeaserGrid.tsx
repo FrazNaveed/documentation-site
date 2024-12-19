@@ -1,3 +1,5 @@
+import LexicalRenderer from '../../LexicalRenderer'
+
 type CareersTeaserGridProps = {
   careers: any
   emptyListingsText: any
@@ -6,10 +8,7 @@ type CareersTeaserGridProps = {
 export default function CareersTeaserGrid({ careers, emptyListingsText }: CareersTeaserGridProps) {
   if (careers.length === 0) {
     return (
-      <div>
-        render in lexical:
-        {emptyListingsText}
-      </div>
+      <LexicalRenderer content={emptyListingsText} />
     )
   }
   return (
