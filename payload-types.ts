@@ -3493,6 +3493,7 @@ export interface WalletsSelect<T extends boolean = true> {
 export interface CareersSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  excerpt?: T;
   productTeam?: T;
   locations?:
     | T
