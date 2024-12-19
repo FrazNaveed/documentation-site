@@ -6,7 +6,7 @@ type CareersTeaserGridProps = {
 }
 
 export default function CareersTeaserGrid({ careers, emptyListingsText }: CareersTeaserGridProps) {
-  if (careers.length === 0) {
+  if (careers.docs.length === 0) {
     return (
       <LexicalRenderer content={emptyListingsText} />
     )
