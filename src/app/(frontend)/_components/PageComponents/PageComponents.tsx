@@ -79,6 +79,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
     linkType,
     teamGrid,
     devHub,
+    careers,
   } = pageData
   let featuredEvent
   if (pageTemplate === 'events') {
@@ -273,7 +274,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
     <div className={styles.wrap}>
       {pageBanner?.togglePageBanner && pageBannerComponent}
       {heroComponent}
-      {pageTemplate === 'careers' && <CareersPage />}
+      {pageTemplate === 'careers' && <CareersPage careersPageData={careers} />}
       {pageTemplate === 'devHub' && (
         <>
           {productsGridComponent}
