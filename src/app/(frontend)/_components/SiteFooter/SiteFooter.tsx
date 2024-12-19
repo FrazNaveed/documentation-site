@@ -41,7 +41,7 @@ export default async function SiteFooter() {
                   </li>
                 ))}
                 <li className={styles.footerNav_Item}>
-                  Copyright Flare
+                  &copy; Flare
                   {' '}
                   {(new Date().getFullYear())}
                 </li>

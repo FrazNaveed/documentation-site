@@ -18,18 +18,13 @@ export const navData: FooterNavigation = [
     title: 'Contact',
     url: '/resources/developer-support',
   },
-  // {
-  //   _key: '2',
-  //   title: 'Terminology',
-  //   url: '/terminology',
-  // },
-  // {
-  //   _key: '3',
-  //   title: 'Audits',
-  //   url: '/audits',
-  // },
   {
-    _key: '4',
+    _key: '2',
+    title: 'Our Team',
+    url: '/team',
+  },
+  {
+    _key: '3',
     title: 'Terms & Conditions',
     url: '/privacy-policy',
   },
