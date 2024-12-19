@@ -6,7 +6,6 @@
 @use "@aleph/nought-sass-mixins/sass/utils";
 
 .teaserGrid {
-  @include container;
   @include pageComponentSpacing;
 
   &_Wrap {
