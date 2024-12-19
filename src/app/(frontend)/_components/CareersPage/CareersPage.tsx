@@ -5,11 +5,9 @@ import LexicalRenderer from '../LexicalRenderer'
 import styles from './CareersPage.module.scss'
 
 export default async function CareersPage() {
-  const careersListings = await getCareersListings()
+  const careersListingsData = await getCareersListings()
   const careersPage = await getPageBySlug('careers')
   const careersPageData = careersPage[0] || {}
-  // console.log(careersListings)
-  // console.log('page: ', careersPageData)
   const {
     careers: {
       pageTitle,
@@ -26,7 +24,7 @@ export default async function CareersPage() {
           {content && <LexicalRenderer content={content} />}
         </div>
       )}
-      <CareersTeaserGrid careers={careersListings} emptyListingsText={emptyListingsText} />
+      <CareersTeaserGrid careersListings={careersListingsData} emptyListingsText={emptyListingsText} />
     </div>
   )
 }
