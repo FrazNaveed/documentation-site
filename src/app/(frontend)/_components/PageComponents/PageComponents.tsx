@@ -3,6 +3,7 @@ import cx from 'classnames'
 import type { Locale } from 'src/app/i18n-config'
 import ApplicationProcessBlock from 'src/app/(frontend)/_components/ApplicationProcessBlock'
 import BrandLogoRollBlock from 'src/app/(frontend)/_components/BrandLogoRollBlock'
+import CareersPage from '@/src/app/(frontend)/_components/CareersPage'
 import CodeCTABlock from '@/src/app/(frontend)/_components/CodeCTABlock'
 import Columns from 'src/app/(frontend)/_components/Columns'
 import DecentralizedPanel from 'src/app/(frontend)/_components/DecentralizedPanel'
@@ -272,6 +273,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
     <div className={styles.wrap}>
       {pageBanner?.togglePageBanner && pageBannerComponent}
       {heroComponent}
+      {pageTemplate === 'careers' && <CareersPage />}
       {pageTemplate === 'devHub' && (
         <>
           {productsGridComponent}
