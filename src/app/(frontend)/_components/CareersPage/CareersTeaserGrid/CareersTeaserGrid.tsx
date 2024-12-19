@@ -1,12 +1,14 @@
 type CareersTeaserGridProps = {
   careers: any
+  emptyListingsText: any
 }
 
-export default function CareersTeaserGrid({ careers }: CareersTeaserGridProps) {
+export default function CareersTeaserGrid({ careers, emptyListingsText }: CareersTeaserGridProps) {
   if (careers.length === 0) {
     return (
       <div>
-        get content from page template
+        render in lexical:
+        {emptyListingsText}
       </div>
     )
   }
