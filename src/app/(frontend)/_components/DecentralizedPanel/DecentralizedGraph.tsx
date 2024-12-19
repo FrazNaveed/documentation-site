@@ -12,13 +12,13 @@ export default function DecentralizedGraph() {
   useEffect(() => {
     const observerOptions = {
       root: null, // Use viewport as root
-      threshold: [0, 0.75], // Trigger when 75% visible
+      threshold: [0, 0.45], // Trigger when 45% visible
     }
 
     const handleIntersect: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
-        if (entry.intersectionRatio >= 0.75 && entry.isIntersecting) {
-          // Start drawing animation when 75% visible
+        if (entry.intersectionRatio >= 0.45 && entry.isIntersecting) {
+          // Start drawing animation when 45% visible
           setIsDrawing(true)
 
           // Trigger data points fade-in with staggered delays
