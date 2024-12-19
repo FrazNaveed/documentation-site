@@ -3491,15 +3491,16 @@ export interface WalletsSelect<T extends boolean = true> {
  * via the `definition` "careers_select".
  */
 export interface CareersSelect<T extends boolean = true> {
-  jobTitle?: T;
+  title?: T;
+  slug?: T;
   productTeam?: T;
   locations?:
     | T
     | {
-        locationsRemote?: T;
-        locationsEurope?: T;
-        locationsAsia?: T;
-        locationsAmericas?: T;
+        Remote?: T;
+        Europe?: T;
+        Asia?: T;
+        Americas?: T;
       };
   description?: T;
   updatedAt?: T;
