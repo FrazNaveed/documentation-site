@@ -42,7 +42,7 @@ export default function NewsletterSignupForm({ formId, state }: NewsletterSignup
         <label htmlFor={`country${formId}`}>
           <span className={styles.label}>Country*:</span>
           <div className='customSelect'>
-            <select name='country' id={`country${formId}`} aria-required='true' required defaultValue=''>
+            <select name='MMERGE16' id={`country${formId}`} aria-required='true' required defaultValue=''>
               {COUNTRY_OPTIONS.map((option) => (
                 <option key={option.value} value={option.value}>
                   {option.label}
@@ -51,7 +51,7 @@ export default function NewsletterSignupForm({ formId, state }: NewsletterSignup
             </select>
           </div>
         </label>
-        <ValidationError field='country' prefix='Country' errors={state.errors} className={styles.error} />
+        <ValidationError field='MMERGE16' prefix='Country' errors={state.errors} className={styles.error} />
       </div>
       <p className={styles.sectionLabel}>
         Flare interests
@@ -60,7 +60,7 @@ export default function NewsletterSignupForm({ formId, state }: NewsletterSignup
         <label htmlFor={`profile${formId}`}>
           <span className={styles.label}>Profile type:</span>
           <div className='customSelect'>
-            <select onChange={handleProfileChange} name='profile' id={`profile${formId}`} defaultValue=''>
+            <select onChange={handleProfileChange} name='EXPERIENCE' id={`profile${formId}`} defaultValue=''>
               <option value=''>
                 Profile type
               </option>
@@ -88,7 +88,7 @@ export default function NewsletterSignupForm({ formId, state }: NewsletterSignup
             </select>
           </div>
         </label>
-        <ValidationError field='profile' prefix='Profile' errors={state.errors} className={styles.error} />
+        <ValidationError field='EXPERIENCE' prefix='Profile' errors={state.errors} className={styles.error} />
       </div>
       <div className={cx(styles.formSection, styles.formSection__col2, { [styles.hide]: companyHidden })}>
         <label htmlFor={`company${formId}`}>
