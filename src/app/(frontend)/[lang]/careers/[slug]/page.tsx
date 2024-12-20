@@ -8,6 +8,8 @@ import styles from './page.module.scss'
 import isLexicalEmpty from '../../../_utils/isLexicalEmpty'
 import LexicalRenderer from '../../../_components/LexicalRenderer'
 
+export const dynamic = 'force-dynamic'
+
 type PageProps = {
   params: Promise<{
     slug: string
@@ -36,34 +38,40 @@ export default async function Page({ params }: PageProps) {
   } = listing
   return (
     <article className={styles.article}>
+      {/* <div className={styles.heroWrapper}> */}
       <Hero
         header={title}
         heroStyle='standard'
       />
+      {/* </div> */}
       <div className={styles.wrap}>
-        <header className={styles.header}>
-          <Link href={getCollectionPath('careers')} className={styles.backLink}>
-            <LeftArrow />
-            Back to All Careers
-          </Link>
-          {title && <h1 className={styles.title}>{title}</h1>}
-          <div className={styles.meta}>
-            {teamName}
-            {Object.entries(locations)
-              .filter(([, value]) => value === true)
-              .map(([key], index, array) => (
-                <span
-                  key={key}
-                  className={styles.location}
-                >
-                  {`${key}${index === array.length - 1 ? '' : ' / '}`}
-                </span>
-              ))}
-          </div>
-          <div className={styles.contentCol}>
-            {!isLexicalEmpty(description) && <LexicalRenderer content={description} />}
-          </div>
-        </header>
+        <div className={styles.grid}>
+          <header className={styles.header}>
+            <Link href={getCollectionPath('careers')} className={styles.backLink}>
+              <LeftArrow />
+              Back to All Careers
+            </Link>
+            {title && <h1 className={styles.title}>{title}</h1>}
+            <div className={styles.meta}>
+              <span className={styles.teamName}>{teamName}</span>
+              <div className={styles.locationsWrap}>
+                {Object.entries(locations)
+                  .filter(([, value]) => value === true)
+                  .map(([key], index, array) => (
+                    <span
+                      key={key}
+                      className={styles.location}
+                    >
+                      {`${key}${index === array.length - 1 ? '' : ' / '}`}
+                    </span>
+                  ))}
+              </div>
+            </div>
+            <div className={styles.contentCol}>
+              {!isLexicalEmpty(description) && <LexicalRenderer content={description} />}
+            </div>
+          </header>
+        </div>
       </div>
     </article>
   )
