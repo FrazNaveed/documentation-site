@@ -23,6 +23,7 @@ export type HeroProps = {
     text: string
     link?: string
   }
+  noMinHeight?: boolean
 }
 
 export default function Hero({
@@ -36,6 +37,7 @@ export default function Hero({
   timestamp,
   dateFormat,
   pill,
+  noMinHeight = false,
 }: HeroProps) {
   const innerMarkup = (
     <div
@@ -45,6 +47,7 @@ export default function Hero({
         {
           [styles.bg]: heroStyle === 'featuredNews',
           [styles.container]: heroStyle !== 'featuredNews',
+          [styles.grid__noMinHeight]: noMinHeight,
         },
       )}
     >

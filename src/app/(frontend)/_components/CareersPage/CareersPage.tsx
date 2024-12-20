@@ -20,7 +20,7 @@ export interface CareerListing {
     Asia?: boolean
     Americas?: boolean
   }
-  description: SerializedEditorState<SerializedLexicalNode>
+  description?: SerializedEditorState<SerializedLexicalNode> | null
 }
 
 export type CareersListingsData = PaginatedDocs<CareerListing>
@@ -50,8 +50,8 @@ export default async function CareersPage({ careersListingsData, careersPageData
     <div className={styles.wrap}>
       <div className={styles.header}>
         <h2>{pageTitle || 'Open Roles'}</h2>
-        {!isLexicalEmpty(content)
-          && <LexicalRenderer content={content as SerializedEditorState<SerializedLexicalNode>} />}
+        {content && !isLexicalEmpty(content)
+          && <LexicalRenderer content={content} />}
       </div>
       <CareersTeaserGrid careersListings={careersListingsData} emptyListingsText={emptyListingsText} />
     </div>

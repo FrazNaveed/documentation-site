@@ -39,10 +39,10 @@ export default async function Page({ params }: PageProps) {
   } = listing
   return (
     <article className={styles.article}>
-      {/* <div className={styles.heroWrapper}> */}
       <Hero
         header={title}
         heroStyle='standard'
+        noMinHeight
       />
       {/* </div> */}
       <div className={styles.wrap}>
@@ -58,7 +58,7 @@ export default async function Page({ params }: PageProps) {
               <CareersLocations locations={locations} />
             </div>
             <div className={styles.contentCol}>
-              {!isLexicalEmpty(description) && <LexicalRenderer content={description} />}
+              {description && !isLexicalEmpty(description) && <LexicalRenderer content={description} />}
             </div>
           </header>
         </div>

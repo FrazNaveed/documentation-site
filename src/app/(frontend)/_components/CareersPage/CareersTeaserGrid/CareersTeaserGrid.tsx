@@ -1,5 +1,4 @@
 import cx from 'classnames'
-import { SerializedEditorState, SerializedLexicalNode } from '@payloadcms/richtext-lexical/lexical'
 import type { CareersTeaserGridProps } from '../CareersPage'
 import isLexicalEmpty from '../../../_utils/isLexicalEmpty'
 import LexicalRenderer from '../../LexicalRenderer'
@@ -13,10 +12,10 @@ export default function CareersTeaserGrid({ careersListings, emptyListingsText }
   const { docs } = careersListings
 
   if (docs.length === 0) {
-    return !isLexicalEmpty(emptyListingsText) ? (
+    return (emptyListingsText && !isLexicalEmpty(emptyListingsText)) ? (
       <div className={cx(styles.careersTeaserGridWrap, styles.careersTeaserGridWrap__empty)}>
         <div className={styles.emptyListingsWrap}>
-          <LexicalRenderer content={emptyListingsText as SerializedEditorState<SerializedLexicalNode>} />
+          <LexicalRenderer content={emptyListingsText} />
         </div>
       </div>
     ) : null

@@ -12,6 +12,7 @@ import { getGlobalSocialChannels, getPageBySlug } from 'src/app/(frontend)/_lib/
 import type { IMarqueeGallery } from '@/payload-types'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
 import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
+import isLexicalEmpty from 'src/app/(frontend)/_utils/isLexicalEmpty'
 import isValidSocialSlotInMarquee from 'src/app/(frontend)/_utils/isValidSocialSlotInMarquee'
 import MarqueeGallerySection from './MarqueeGallerySection'
 import styles from './MarqueeGallery.module.scss'
@@ -119,17 +120,7 @@ export default async function MarqueeGallery({
       )
     } else if (imageCard) {
       const { image, titleOverlay, textOverlay } = imageCard
-      // If content had been entered and deleted,
-      // textOverlay will no longer be null, but rather a root element with an empty paragraph child
-      // Check for this so empty hover state isn't rendered
-      let textOverlayIsEmpty
-      if (!textOverlay) {
-        textOverlayIsEmpty = true
-      } else {
-        const textOverlayRootChildren = textOverlay?.root?.children
-        textOverlayIsEmpty = textOverlayRootChildren?.length === 1
-          && Array.isArray(textOverlayRootChildren[0]?.children) && textOverlayRootChildren[0]?.children.length === 0
-      }
+      const textOverlayIsEmpty = isLexicalEmpty(textOverlay)
       output = (
         <figure
           key={id}
