@@ -20,6 +20,7 @@ export interface CareerListing {
     Asia?: boolean
     Americas?: boolean
   }
+  description: SerializedEditorState<SerializedLexicalNode>
 }
 
 export type CareersListingsData = PaginatedDocs<CareerListing>
