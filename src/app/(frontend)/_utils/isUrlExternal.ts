@@ -10,6 +10,9 @@ const isUrlExternal = (url?: string | null): boolean => {
   if (url.startsWith('/')) {
     return false
   }
+  if (url.startsWith('mailto:')) {
+    return false
+  }
   return true
 }
 
