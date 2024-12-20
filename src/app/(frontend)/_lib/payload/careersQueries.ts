@@ -4,10 +4,11 @@
 import { unstable_cache } from 'next/cache'
 import { getPayload } from 'payload'
 import config from '@payload-config'
+import { CareerListing } from '../../_components/CareersPage/CareersPage'
 
 const payload = await getPayload({ config })
 
-const getCareersListings = unstable_cache(
+export const getCareersListings = unstable_cache(
   async (
     limit = 100,
     page = 1,
@@ -32,4 +33,31 @@ const getCareersListings = unstable_cache(
   },
 )
 
-export default getCareersListings
+export const getCareerListingBySlug = unstable_cache(
+  async (slug: string) => {
+    try {
+      const careerListingData = await payload.find({
+        collection: 'careers',
+        limit: 1,
+        depth: 2,
+        where: {
+          slug: {
+            equals: slug,
+          },
+        },
+      })
+
+      const [careerListing] = careerListingData.docs as unknown as CareerListing[]
+
+      return careerListing ? [careerListing] : []
+    } catch (error) {
+      console.error(`Error fetching getCareerListingBySlug for ${slug}:`, error)
+    }
+    return [] as CareerListing[]
+  },
+  [],
+  {
+    tags: ['careerListingBySlug'],
+    revalidate: 60,
+  },
+)

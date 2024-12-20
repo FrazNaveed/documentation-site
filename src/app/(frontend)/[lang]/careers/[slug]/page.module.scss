@@ -1,0 +1,64 @@
+@use "../../../_styles/colors" as *;
+@use "../../../_styles/mixins" as *;
+@use "../../../_styles/typography" as *;
+@use "../../../_styles/spacing" as *;
+
+// .heroWrapper {
+//   margin-bottom: to-rem($spacing-x-large);
+// }
+
+.wrap {
+  @include pageWrap;
+  @include pageComponentSpacing;
+}
+
+.grid {
+  @include containerGrid;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: to-rem($spacing-4x-large);
+  gap: to-rem($spacing-x-small);
+
+  svg {
+    display: block;
+  }
+
+  &:hover,
+  &:focus-visible,
+  &:active {
+    svg path {
+      fill: $link-hover-color;
+    }
+  }
+}
+
+.header {
+  @include columns(3, 10);
+
+  @include media-breakpoint-down(lg) {
+    @include columns(2, 8);
+  }
+}
+
+.title {
+  @include sectionHeaderFont;
+
+  margin-bottom: to-rem($spacing-standard);
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: to-rem($spacing-xx-large);
+  row-gap: to-rem(20px);
+}
+
+.teamName {
+  @include labelL;
+
+  margin-bottom: 0;
+  letter-spacing: to-rem(2px);
+}
