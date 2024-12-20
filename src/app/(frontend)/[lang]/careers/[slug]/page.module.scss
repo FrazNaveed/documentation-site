@@ -3,10 +3,6 @@
 @use "../../../_styles/typography" as *;
 @use "../../../_styles/spacing" as *;
 
-// .heroWrapper {
-//   margin-bottom: to-rem($spacing-x-large);
-// }
-
 .wrap {
   @include pageWrap;
   @include pageComponentSpacing;

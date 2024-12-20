@@ -42,6 +42,10 @@
       min-height: 594px;
     }
   }
+
+  &__noMinHeight {
+    min-height: unset;
+  }
 }
 
 .content,

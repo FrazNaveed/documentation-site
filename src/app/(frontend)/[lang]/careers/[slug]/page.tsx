@@ -39,10 +39,10 @@ export default async function Page({ params }: PageProps) {
   } = listing
   return (
     <article className={styles.article}>
-      {/* <div className={styles.heroWrapper}> */}
       <Hero
         header={title}
         heroStyle='standard'
+        noMinHeight
       />
       {/* </div> */}
       <div className={styles.wrap}>
