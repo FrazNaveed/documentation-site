@@ -1,0 +1,18 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+
+.locationsWrap {
+  margin-top: auto; // careers teaser grid only
+}
+
+.location {
+  @include labelDesktopFont;
+
+  color: $gray;
+
+  &__small {
+    @include labelS;
+  }
+}
