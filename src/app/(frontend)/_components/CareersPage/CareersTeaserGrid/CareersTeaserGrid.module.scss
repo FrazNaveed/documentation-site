@@ -1,0 +1,83 @@
+@use "../../../_styles/mixins" as *;
+@use "../../../_styles/typography" as *;
+@use "../../../_styles/colors" as *;
+@use "../../../_styles/spacing" as *;
+@use "@aleph/nought-sass-mixins/sass/utils";
+
+.careersTeaserGridWrap {
+  @include grid;
+
+  row-gap: to-rem($spacing-standard);
+
+  &__empty {
+    padding: to-rem($spacing-x-large) 0;
+    border: 1px solid $gray-200;
+    border-radius: 6px;
+  }
+}
+
+.emptyListingsWrap {
+  @include spanColumns(8, 3);
+
+  @include media-breakpoint-down(lg) {
+    @include spanColumns(6, 2);
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-right: to-rem($spacing-large);
+    padding-left: to-rem($spacing-large);
+  }
+}
+
+.careersTeaser {
+  @include spanColumns(4);
+
+  display: flex;
+  flex-direction: column;
+  padding: to-rem($spacing-standard) to-rem($spacing-small);
+  border: 1px solid $gray-200;
+  border-radius: 6px;
+
+  &:focus,
+  &:hover,
+  &:active {
+    background-color: $gray-50;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.teamName {
+  @include labelDesktopFont;
+
+  margin-bottom: 0;
+  color: $black;
+}
+
+.title {
+  @include headerDesktopH5;
+
+  margin-bottom: to-rem($spacing-standard);
+}
+
+.excerpt,
+.location {
+  color: $gray;
+}
+
+.excerpt {
+  @include paragraphXSmFont;
+
+  margin-bottom: 0;
+}
+
+.locationsWrap {
+  margin-top: auto;
+}
+
+.location {
+  @include labelS;
+}

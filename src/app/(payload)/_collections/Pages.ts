@@ -33,6 +33,7 @@ import setSlugFromTitle from '../_utils/setSlugFromTitle'
 import validateSlug from '../_utils/validateSlug'
 import { ApplicationProcess } from '../_blocks/ApplicationProcessBlock'
 import { TableDrawersBlock } from '../_blocks/TableDrawersBlock'
+import { Careers } from '../_fields/Careers'
 import { DevHub } from '../_fields/DevHub'
 import { RegionalLinkGrid } from '../_blocks/RegionalLinkGridBlock'
 import { MarqueeGallery } from '../_blocks/MarqueeGallery'
@@ -186,6 +187,7 @@ export const Pages: CollectionConfig = {
     ...DevHub,
     ...TeamGrid,
     ...WalletsGrid,
+    ...Careers,
     {
       name: 'components',
       type: 'blocks',
@@ -222,7 +224,7 @@ export const Pages: CollectionConfig = {
       ],
       admin: {
         condition: (data, siblingData, { user }) => {
-          const pageTemplatesWithNoComponents = [ 'devHub', 'events', 'team', 'wallets', ]
+          const pageTemplatesWithNoComponents = [ 'careers', 'devHub', 'events', 'team', 'wallets', ]
           if (pageTemplatesWithNoComponents.includes(siblingData.pageTemplate)) {
             return false
           } else {
@@ -284,6 +286,7 @@ export const Pages: CollectionConfig = {
         { label: 'Full-width', value: 'fullWidth', },
         { label: 'Team', value: 'team' },
         { label: 'Wallets', value: 'wallets', },
+        { label: 'Careers', value: 'careers'},
       ],
       admin: {
         position: 'sidebar',

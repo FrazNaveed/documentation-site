@@ -1,4 +1,5 @@
 export type CollectionPathContentTypes =
+  | 'careers'
   | 'events'
   | 'news'
   | 'news-types'
@@ -6,6 +7,7 @@ export type CollectionPathContentTypes =
 function getCollectionPath(contentType: CollectionPathContentTypes) {
   const newsPath = '/news/'
   const contentUrlPathPrefixes = {
+    careers: '/careers/',
     events: '/events/',
     news: newsPath,
     'news-types': `${newsPath}category/`,

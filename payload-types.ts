@@ -450,7 +450,7 @@ export interface Config {
     developerGuideTags: DeveloperGuideTag;
     products: Product;
     wallets: Wallet;
-    careers: Career;
+    careers: Careers;
     'product-teams': ProductTeam;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -1125,6 +1125,7 @@ export interface Page {
   devHub?: DevHub;
   teamGrid?: TeamGrid;
   walletsGrid?: WalletsGrid;
+  careers?: Careers;
   components?:
     | (
         | Columns
@@ -1170,7 +1171,7 @@ export interface Page {
     useSocialMediaButtons?: boolean | null;
   };
   pageTeaser?: IPageTeaser;
-  pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets';
+  pageTemplate: 'default' | 'devHub' | 'events' | 'fullWidth' | 'team' | 'wallets' | 'careers';
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -1328,6 +1329,43 @@ export interface Wallet {
   platforms?: ('iOS' | 'Android' | 'Hardware')[] | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "careers".
+ */
+export interface Careers {
+  pageTitle?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  emptyListingsText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2432,38 +2470,6 @@ export interface DeveloperGuideTag {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "careers".
- */
-export interface Career {
-  id: number;
-  jobTitle: string;
-  productTeam: number | ProductTeam;
-  locations?: {
-    locationsRemote?: boolean | null;
-    locationsEurope?: boolean | null;
-    locationsAsia?: boolean | null;
-    locationsAmericas?: boolean | null;
-  };
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-teams".
  */
 export interface ProductTeam {
@@ -2537,7 +2543,7 @@ export interface PayloadLockedDocument {
       } | null)
     | ({
         relationTo: 'careers';
-        value: number | Career;
+        value: number | Careers;
       } | null)
     | ({
         relationTo: 'product-teams';
@@ -2734,6 +2740,13 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         walletsGridIntro?: T;
         wallets?: T;
+      };
+  careers?:
+    | T
+    | {
+        pageTitle?: T;
+        content?: T;
+        emptyListingsText?: T;
       };
   components?:
     | T
@@ -3478,15 +3491,17 @@ export interface WalletsSelect<T extends boolean = true> {
  * via the `definition` "careers_select".
  */
 export interface CareersSelect<T extends boolean = true> {
-  jobTitle?: T;
+  title?: T;
+  slug?: T;
+  excerpt?: T;
   productTeam?: T;
   locations?:
     | T
     | {
-        locationsRemote?: T;
-        locationsEurope?: T;
-        locationsAsia?: T;
-        locationsAmericas?: T;
+        Remote?: T;
+        Europe?: T;
+        Asia?: T;
+        Americas?: T;
       };
   description?: T;
   updatedAt?: T;

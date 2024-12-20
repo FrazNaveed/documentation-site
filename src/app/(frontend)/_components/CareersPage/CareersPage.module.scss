@@ -1,0 +1,13 @@
+@use "../../_styles/mixins" as *;
+@use "../../_styles/typography" as *;
+@use "../../_styles/colors" as *;
+@use "../../_styles/spacing" as *;
+
+.wrap {
+  @include container;
+  @include pageComponentSpacing;
+}
+
+.header {
+  margin-bottom: to-rem($spacing-large);
+}

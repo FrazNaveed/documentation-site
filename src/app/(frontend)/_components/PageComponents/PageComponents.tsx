@@ -3,6 +3,7 @@ import cx from 'classnames'
 import type { Locale } from 'src/app/i18n-config'
 import ApplicationProcessBlock from 'src/app/(frontend)/_components/ApplicationProcessBlock'
 import BrandLogoRollBlock from 'src/app/(frontend)/_components/BrandLogoRollBlock'
+import CareersPage from '@/src/app/(frontend)/_components/CareersPage'
 import CodeCTABlock from '@/src/app/(frontend)/_components/CodeCTABlock'
 import Columns from 'src/app/(frontend)/_components/Columns'
 import DecentralizedPanel from 'src/app/(frontend)/_components/DecentralizedPanel'
@@ -44,6 +45,7 @@ import TwoColumnBlock from 'src/app/(frontend)/_components/TwoColumnBlock'
 import TwoColumnCtaBlock from 'src/app/(frontend)/_components/TwoColumnCtaBlock/TwoColumnCtaBlock'
 import VideoBlock from 'src/app/(frontend)/_components/VideoBlock'
 import WalletsGridBlock from 'src/app/(frontend)/_components/WalletsGridBlock'
+import getCareersListings from 'src/app/(frontend)/_lib/payload/careersQueries'
 import getCollectionPath from 'src/app/(frontend)/_utils/getCollectionPath'
 import { getFeaturedEvent } from 'src/app/(frontend)/_lib/payload/eventsQueries'
 import { getNewsArchive, getNewsTypeBySlug } from 'src/app/(frontend)/_lib/payload/newsQueries'
@@ -53,6 +55,7 @@ import type {
   Product,
   Wallet,
 } from '@/payload-types'
+import type { CareersListingsData } from '../CareersPage/CareersPage'
 import { getPageFooterCtaSocialChannels } from '../../_lib/payload/pageQueries'
 import FeaturedNewsCarouselBlock from '../FeaturedNewsCarouselBlock'
 import styles from './PageComponents.module.scss'
@@ -78,6 +81,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
     linkType,
     teamGrid,
     devHub,
+    careers,
   } = pageData
   let featuredEvent
   if (pageTemplate === 'events') {
@@ -156,6 +160,19 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
     pageBannerComponent = (
       <PageBanner content={bannerText} />
     )
+  }
+
+  let careersComponent
+  if (pageTemplate === 'careers') {
+    const careersListingsData = await getCareersListings()
+    if (careersListingsData) {
+      careersComponent = (
+        <CareersPage
+          careersListingsData={careersListingsData as CareersListingsData}
+          careersPageData={careers}
+        />
+      )
+    }
   }
 
   let productsGridComponent
@@ -272,6 +289,7 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
     <div className={styles.wrap}>
       {pageBanner?.togglePageBanner && pageBannerComponent}
       {heroComponent}
+      {pageTemplate === 'careers' && careersComponent}
       {pageTemplate === 'devHub' && (
         <>
           {productsGridComponent}

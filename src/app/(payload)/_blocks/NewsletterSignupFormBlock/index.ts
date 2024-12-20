@@ -6,6 +6,7 @@ import { BlockMarginSettings } from '../../_fields/BlockMarginSettings'
 export const NewsletterSignupFormBlock: Block = {
   slug: 'newsletterSignupForm',
   interfaceName: 'INewsletterSignupFormBlock',
+  dbName: 'newsletterForm',
   fields: [
     {
       name: 'title',
