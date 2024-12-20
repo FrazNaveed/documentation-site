@@ -9,6 +9,7 @@
 
 .wrap {
   @include pageWrap;
+  @include pageComponentSpacing;
 }
 
 .grid {
