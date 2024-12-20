@@ -450,6 +450,8 @@ export interface Config {
     developerGuideTags: DeveloperGuideTag;
     products: Product;
     wallets: Wallet;
+    careers: Career;
+    'product-teams': ProductTeam;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -470,6 +472,8 @@ export interface Config {
     developerGuideTags: DeveloperGuideTagsSelect<false> | DeveloperGuideTagsSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
     wallets: WalletsSelect<false> | WalletsSelect<true>;
+    careers: CareersSelect<false> | CareersSelect<true>;
+    'product-teams': ProductTeamsSelect<false> | ProductTeamsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -2428,6 +2432,48 @@ export interface DeveloperGuideTag {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "careers".
+ */
+export interface Career {
+  id: number;
+  jobTitle: string;
+  productTeam: number | ProductTeam;
+  locations?: {
+    locationsRemote?: boolean | null;
+    locationsEurope?: boolean | null;
+    locationsAsia?: boolean | null;
+    locationsAmericas?: boolean | null;
+  };
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-teams".
+ */
+export interface ProductTeam {
+  id: number;
+  teamName: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -2488,6 +2534,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'wallets';
         value: number | Wallet;
+      } | null)
+    | ({
+        relationTo: 'careers';
+        value: number | Career;
+      } | null)
+    | ({
+        relationTo: 'product-teams';
+        value: number | ProductTeam;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -3416,6 +3470,34 @@ export interface WalletsSelect<T extends boolean = true> {
   walletConnect?: T;
   tags?: T;
   platforms?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "careers_select".
+ */
+export interface CareersSelect<T extends boolean = true> {
+  jobTitle?: T;
+  productTeam?: T;
+  locations?:
+    | T
+    | {
+        locationsRemote?: T;
+        locationsEurope?: T;
+        locationsAsia?: T;
+        locationsAmericas?: T;
+      };
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-teams_select".
+ */
+export interface ProductTeamsSelect<T extends boolean = true> {
+  teamName?: T;
   updatedAt?: T;
   createdAt?: T;
 }

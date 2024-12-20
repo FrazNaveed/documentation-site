@@ -25,6 +25,8 @@ import { Wallets } from './src/app/(payload)/_collections/Wallets'
 import { People } from './src/app/(payload)/_collections/People'
 import { Grants } from './src/app/(payload)/_collections/Grants'
 import { GrantTypes } from './src/app/(payload)/_collections/GrantTypes'
+import { Careers } from './src/app/(payload)/_collections/Careers'
+import { ProductTeams } from './src/app/(payload)/_collections/ProductTeam'
 import { SelectPageFooterCtaSocialChannels } from './src/app/(payload)/_globals/PageFooterCtaSocialChannels'
 
 const filename = fileURLToPath(import.meta.url)
@@ -52,6 +54,8 @@ export default buildConfig({
     DeveloperGuideTags,
     Products,
     Wallets,
+    Careers,
+    ProductTeams,
   ],
   globals: [
     EventSettings,
