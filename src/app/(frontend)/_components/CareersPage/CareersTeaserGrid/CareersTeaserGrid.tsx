@@ -6,6 +6,7 @@ import LexicalRenderer from '../../LexicalRenderer'
 import Link from '../../Link'
 import RightArrow from '../../svgs/RightArrow'
 import getCollectionPath from '../../../_utils/getCollectionPath'
+import CareersLocations from '../../CareerLocations'
 import styles from './CareersTeaserGrid.module.scss'
 
 export default function CareersTeaserGrid({ careersListings, emptyListingsText }: CareersTeaserGridProps) {
@@ -46,18 +47,7 @@ export default function CareersTeaserGrid({ careersListings, emptyListingsText }
                 {excerpt}
               </p>
             )}
-            <div className={styles.locationsWrap}>
-              {Object.entries(locations)
-                .filter(([, value]) => value === true)
-                .map(([key], index, array) => (
-                  <span
-                    key={key}
-                    className={styles.location}
-                  >
-                    {`${key}${index === array.length - 1 ? '' : ' / '}`}
-                  </span>
-                ))}
-            </div>
+            <CareersLocations locations={locations} size='small' />
           </Link>
         )
       })}

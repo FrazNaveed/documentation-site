@@ -4,6 +4,7 @@ import getCollectionPath from '../../../_utils/getCollectionPath'
 import { getCareerListingBySlug } from '../../../_lib/payload/careersQueries'
 import Hero from '../../../_components/Hero'
 import LeftArrow from '../../../_components/svgs/LeftArrow'
+import CareersLocations from '../../../_components/CareerLocations'
 import styles from './page.module.scss'
 import isLexicalEmpty from '../../../_utils/isLexicalEmpty'
 import LexicalRenderer from '../../../_components/LexicalRenderer'
@@ -54,18 +55,7 @@ export default async function Page({ params }: PageProps) {
             {title && <h1 className={styles.title}>{title}</h1>}
             <div className={styles.meta}>
               <span className={styles.teamName}>{teamName}</span>
-              <div className={styles.locationsWrap}>
-                {Object.entries(locations)
-                  .filter(([, value]) => value === true)
-                  .map(([key], index, array) => (
-                    <span
-                      key={key}
-                      className={styles.location}
-                    >
-                      {`${key}${index === array.length - 1 ? '' : ' / '}`}
-                    </span>
-                  ))}
-              </div>
+              <CareersLocations locations={locations} />
             </div>
             <div className={styles.contentCol}>
               {!isLexicalEmpty(description) && <LexicalRenderer content={description} />}
