@@ -9,7 +9,7 @@ type TContent = SerializedEditorState | null | undefined
 
 // If content had been entered and deleted,
 // Lexical field will no longer be null, but rather a root element with an empty paragraph child
-// Check for this so to determine if there is Lexical content or not
+// Check for this to determine if there is Lexical content or not
 export default function isLexicalEmpty(content: TContent): boolean {
   if (!content) {
     return true
