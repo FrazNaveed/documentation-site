@@ -14,8 +14,8 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
 1. Install dependencies with `npm i --legacy-peer-deps`.
 1. Create a `.env` file in the root of this project and add the following environment variables and respective values:
     ```
-    POSTGRES_URL=postgres://postgres:postgres@127.0.0.1:5432/postgres
-    PAYLOAD_SECRET=payload
+   POSTGRES_URL=postgres://postgres:postgres@127.0.0.1:5432/flarepayload
+   PAYLOAD_SECRET=flarepayload
     ```
 1. In a terminal window, run `npm run db:up` from this project's root directory. This will bootstrap a Postgres database in Docker locally.
 1. In a different window, run `npm run payload migrate` which will run any database migrations for the CMS.
