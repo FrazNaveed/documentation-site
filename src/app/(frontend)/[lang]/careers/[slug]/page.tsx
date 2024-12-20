@@ -8,8 +8,6 @@ import styles from './page.module.scss'
 import isLexicalEmpty from '../../../_utils/isLexicalEmpty'
 import LexicalRenderer from '../../../_components/LexicalRenderer'
 
-export const dynamic = 'force-dynamic'
-
 type PageProps = {
   params: Promise<{
     slug: string
