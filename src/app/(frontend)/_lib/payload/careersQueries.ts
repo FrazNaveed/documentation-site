@@ -39,7 +39,7 @@ export const getCareerListingBySlug = unstable_cache(
       const careerListingData = await payload.find({
         collection: 'careers',
         limit: 1,
-        depth: 1,
+        depth: 2,
         where: {
           slug: {
             equals: slug,
