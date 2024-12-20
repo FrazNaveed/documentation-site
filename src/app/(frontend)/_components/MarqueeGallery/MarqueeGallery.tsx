@@ -120,9 +120,6 @@ export default async function MarqueeGallery({
       )
     } else if (imageCard) {
       const { image, titleOverlay, textOverlay } = imageCard
-      // If content had been entered and deleted,
-      // textOverlay will no longer be null, but rather a root element with an empty paragraph child
-      // Check for this so empty hover state isn't rendered
       const textOverlayIsEmpty = isLexicalEmpty(textOverlay)
       output = (
         <figure

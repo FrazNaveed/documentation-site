@@ -58,7 +58,7 @@ export default async function Page({ params }: PageProps) {
               <CareersLocations locations={locations} />
             </div>
             <div className={styles.contentCol}>
-              {!isLexicalEmpty(description) && <LexicalRenderer content={description} />}
+              {description && !isLexicalEmpty(description) && <LexicalRenderer content={description} />}
             </div>
           </header>
         </div>
