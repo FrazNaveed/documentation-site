@@ -23,6 +23,12 @@
   &:global(.siteHeader__flownAway) {
     transform: translateY(-100%);
   }
+
+  @include media-breakpoint-up(md) {
+    body[data-scroll-locked="1"] & {
+      overflow: visible;
+    }
+  }
 }
 
 .container {
