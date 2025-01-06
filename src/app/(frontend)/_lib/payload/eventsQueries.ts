@@ -20,7 +20,7 @@ export const getUpcomingEvents = unstable_cache(
         collection: 'events',
         limit,
         page,
-        sort: '-startDate',
+        sort: 'startDate',
         where: {
           or: [
             {
@@ -59,7 +59,7 @@ export const getFeaturedEvent = unstable_cache(
         collection: 'events',
         limit,
         page,
-        sort: '-startDate',
+        sort: 'startDate',
         where: {
           and: [
             {
