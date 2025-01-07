@@ -7,18 +7,21 @@ import styles from './ProductGrid.module.scss'
 
 type ProductGridItemProps = Product & {
   cardStyle?: 'standard' | 'small'
+  useSlugForLink?: boolean
 }
 
 export default function ProductGridItem({
-  slug, link, icon, titleOverride, title, shortDescription, cardStyle = 'standard',
+  slug, link, icon, titleOverride, title, shortDescription, cardStyle = 'standard', useSlugForLink = false,
 }: ProductGridItemProps) {
   const cardTitleMarkup = (
     <h3 className={cx(styles.productTitle, styles[`productTitle__${cardStyle}`])}>
       {titleOverride || title}
     </h3>
   )
+  const productSlugLink = `/${slug}`
+  const productLink = useSlugForLink ? productSlugLink : (link || productSlugLink)
   return (
-    <Link href={link || `/${slug}`} className={styles.productWrap}>
+    <Link href={productLink} className={styles.productWrap}>
       <div className={styles.product}>
         <div className={cx(styles.productHeader, styles[`productHeader__${cardStyle}`])}>
           <div className={styles.productInfo}>

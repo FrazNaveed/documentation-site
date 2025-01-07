@@ -45,7 +45,7 @@ export const Products: CollectionConfig = {
       type: 'text',
       validate: validateTextFieldUrl,
       admin: {
-        description: 'External link'
+        description: 'External Link field will override internal Slug field on the Developer Hub page. Layer Cake component will link to internal Slug.'
       },
     },
     {
