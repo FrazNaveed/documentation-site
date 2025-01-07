@@ -1,3 +1,4 @@
+import { flareWebsiteApiBase } from '@/src/environment'
 import cx from 'classnames'
 import type { Stats } from '@/payload-types'
 import LexicalRenderer from 'src/app/(frontend)/_components/LexicalRenderer'
@@ -17,8 +18,8 @@ async function fetchStats() {
     const [delegationApr, stakingApr] = await Promise.all([
       /* TODO: Need actual FlareDrop APR endpoint */
       //  fetch('https://flare-internal-lts-api.aflabs.org/api/v0/webpage/delegation_apr').then((res) => res.json()),
-      fetch('https://flare-internal-lts-api.aflabs.org/api/v0/webpage/delegation_apr').then((res) => res.json()),
-      fetch('https://flare-internal-lts-api.aflabs.org/api/v0/webpage/staking_apr').then((res) => res.json()),
+      fetch(`${flareWebsiteApiBase}webpage/delegation_apr`).then((res) => res.json()),
+      fetch(`${flareWebsiteApiBase}webpage/staking_apr`).then((res) => res.json()),
     ])
 
     const fdApr = { apr_bips: 2418 } // base Flaredrop APR hardcoded for now
