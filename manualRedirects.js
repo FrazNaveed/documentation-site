@@ -100,6 +100,7 @@ const newsRedirects = [
   { source: '/public-staking-on-flare-is-live', destination: '/news/public-staking-on-flare-is-live' },
   { source: '/webx-in-tokyo', destination: '/news/webx-in-tokyo' },
   { source: '/join-flare-in-paris', destination: '/news/join-flare-in-paris' },
+  { source: '/category/careers', destination: '/careers' },
 ]
 
 const redirectList = [
