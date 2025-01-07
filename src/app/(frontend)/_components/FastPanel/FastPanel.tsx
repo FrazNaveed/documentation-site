@@ -49,7 +49,10 @@ type FastPanelProps = IFastPanel & {
 
 export default async function FastPanel({ text, className }: FastPanelProps) {
   const { abt, transactionCount } = await fetchData()
-  if (!abt?.avg_ms || !transactionCount?.count) {
+  if (
+    abt?.avg_ms === null || abt?.avg_ms === undefined
+    || transactionCount?.count === null || transactionCount?.count === undefined
+  ) {
     return null
   }
   const averageTimeInSeconds = (abt.avg_ms / 1000).toFixed(1)
