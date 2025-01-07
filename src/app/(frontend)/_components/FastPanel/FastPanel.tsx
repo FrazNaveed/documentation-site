@@ -5,17 +5,41 @@ import FastCounter from './FastCounter'
 import styles from './FastPanel.module.scss'
 import FastVideo from './FastBgVideo'
 
-async function fetchData(): Promise<{abt: { avg_ms: number}, transactionCount: {count: number}}> {
+type BlockTimeResponse = {
+  avg_ms?: number
+}
+
+type TransactionCountResponse = {
+  count?: number
+}
+
+type APIData = {
+  abt: BlockTimeResponse | null
+  transactionCount: TransactionCountResponse | null
+}
+
+async function fetchWithErrorHandling<T>(url: string): Promise<T | null> {
+  const res = await fetch(url)
+
+  if (!res.ok) {
+    const errorData = await res.json() as { error: string }
+    throw new Error(`status ${res.status} - ${errorData?.error || 'No error message returned from API'}`)
+  }
+
+  return res.json()
+}
+
+async function fetchData(): Promise<APIData> {
   try {
     const [abt, transactionCount] = await Promise.all([
-      fetch(`${flareWebsiteApiBase}webpage/avrage_block_time`).then((res) => res.json()),
-      fetch(`${flareWebsiteApiBase}webpage/transaction_count`).then((res) => res.json()),
+      fetchWithErrorHandling<BlockTimeResponse>(`${flareWebsiteApiBase}webpage/avrage_block_time`),
+      fetchWithErrorHandling<TransactionCountResponse>(`${flareWebsiteApiBase}webpage/transaction_count`),
     ])
     return { abt, transactionCount }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Error fetching stats:', error)
-    return { abt: { avg_ms: 1600 }, transactionCount: { count: 130137180 } }
+    return { abt: { avg_ms: undefined }, transactionCount: { count: undefined } }
   }
 }
 
@@ -25,6 +49,12 @@ type FastPanelProps = IFastPanel & {
 
 export default async function FastPanel({ text, className }: FastPanelProps) {
   const { abt, transactionCount } = await fetchData()
+  if (
+    abt?.avg_ms === null || abt?.avg_ms === undefined
+    || transactionCount?.count === null || transactionCount?.count === undefined
+  ) {
+    return null
+  }
   const averageTimeInSeconds = (abt.avg_ms / 1000).toFixed(1)
 
   return (
