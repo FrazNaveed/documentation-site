@@ -27,7 +27,7 @@ export default async function NewsPage({ typeSlug, typeId }: NewsPageProps) {
     { text: 'AMA & Interviews', link: 'ama-interviews', id: 2 },
     { text: 'Past Events', link: 'past-events', id: 3 },
     { text: 'Ecosystem', link: 'ecosystem', id: 4 },
-    { text: 'Defi 101', link: 'defi-101', id: 5 },
+    { text: '101', link: '101-series', id: 5 },
   ]
 
   const featuredPost = featuredNews[0] || news?.docs[0]
