@@ -36,6 +36,7 @@ import SecurePanel from 'src/app/(frontend)/_components/SecurePanel'
 import SideNav from 'src/app/(frontend)/_components/SideNav'
 import Stats from 'src/app/(frontend)/_components/Stats'
 import StepsBlock from 'src/app/(frontend)/_components/StepsBlock'
+import SubscriptionBannerCTA from 'src/app/(frontend)/_components/SubscriptionBannerCTA'
 import TableDrawers from 'src/app/(frontend)/_components/TableDrawers'
 import TalkingPoints from 'src/app/(frontend)/_components/TalkingPoints'
 import TallCta from 'src/app/(frontend)/_components/TallCTA/TallCta'
@@ -63,9 +64,10 @@ import styles from './PageComponents.module.scss'
 export type PageComponentsProps = {
   pageData: Page
   lang: Locale
+  addSubscriptionBanner?: boolean
 }
 
-export default async function PageComponents({ pageData, lang }: PageComponentsProps) {
+export default async function PageComponents({ pageData, lang, addSubscriptionBanner }: PageComponentsProps) {
   const {
     title,
     hero,
@@ -542,6 +544,8 @@ export default async function PageComponents({ pageData, lang }: PageComponentsP
       <PrevNextLinks prevLink={previousPage} nextLink={nextPage} linkType={linkType} />
 
       {relatedNewsPosts && relatedNewsPosts.docs.length > 0 && <RelatedPosts posts={relatedNewsPosts.docs} />}
+
+      {addSubscriptionBanner && <SubscriptionBannerCTA />}
     </div>
   )
 }

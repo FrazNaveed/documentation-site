@@ -31,5 +31,5 @@ export default async function Page({ params }: PageProps) {
 
   const pageData = page[0] || {}
 
-  return <PageComponents pageData={pageData} lang={lang} />
+  return <PageComponents pageData={pageData} lang={lang} addSubscriptionBanner />
 }
