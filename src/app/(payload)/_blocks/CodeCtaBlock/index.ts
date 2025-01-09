@@ -33,6 +33,14 @@ export const CodeCtaBlock: Block = {
       },
     },
     {
+      name: 'solidityLabelOverride',
+      type: 'text',
+      localized: true,
+      admin: {
+        description: 'Code label will be "Solidity" by default. Override it here.',
+      },
+    },
+    {
       name: 'codeSolidity',
       label: 'Solidity Code',
       type: 'code',
@@ -41,6 +49,15 @@ export const CodeCtaBlock: Block = {
         condition: (data, siblingData, { user }) => {
           return !siblingData.hideCode
         },
+      },
+    },
+    {
+      name: 'javaScriptLabelOverride',
+      label: 'JavaScript Label Override',
+      type: 'text',
+      localized: true,
+      admin: {
+        description: 'Code label will be "JavaScript" by default. Override it here.',
       },
     },
     {
@@ -55,6 +72,14 @@ export const CodeCtaBlock: Block = {
       },
     },
     {
+      name: 'pythonLabelOverride',
+      type: 'text',
+      localized: true,
+      admin: {
+        description: 'Code label will be "Python" by default. Override it here.',
+      },
+    },
+    {
       name: 'codePython',
       label: 'Python Code',
       type: 'code',
@@ -66,6 +91,14 @@ export const CodeCtaBlock: Block = {
       },
     },
     {
+      name: 'rustLabelOverride',
+      type: 'text',
+      localized: true,
+      admin: {
+        description: 'Code label will be "Rust" by default. Override it here.',
+      },
+    },
+    {
       name: 'codeRust',
       label: 'Rust Code',
       type: 'code',
@@ -74,6 +107,14 @@ export const CodeCtaBlock: Block = {
         condition: (data, siblingData, { user }) => {
           return !siblingData.hideCode
         },
+      },
+    },
+    {
+      name: 'goLabelOverride',
+      type: 'text',
+      localized: true,
+      admin: {
+        description: 'Code label will be "Go" by default. Override it here.',
       },
     },
     {
