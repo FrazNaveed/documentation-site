@@ -40,6 +40,11 @@ export default async function CodeCTABlock({
   codePython,
   codeRust,
   codeGo,
+  solidityLabelOverride,
+  javaScriptLabelOverride,
+  pythonLabelOverride,
+  rustLabelOverride,
+  goLabelOverride,
   image,
   className,
 }: CodeCTABlockProps) {
@@ -52,27 +57,27 @@ export default async function CodeCTABlock({
   }
   const codeExamplesUnfiltered = [
     {
-      language: 'On-Chain',
+      language: solidityLabelOverride || 'Solidity',
       languageId: 'solidity',
       code: codeSolidity,
     },
     {
-      language: 'Javascript',
+      language: javaScriptLabelOverride || 'JavaScript',
       languageId: 'js',
       code: codeJs,
     },
     {
-      language: 'Python',
+      language: pythonLabelOverride || 'Python',
       languageId: 'py',
       code: codePython,
     },
     {
-      language: 'Rust',
+      language: rustLabelOverride || 'Rust',
       languageId: 'rs',
       code: codeRust,
     },
     {
-      language: 'Go',
+      language: goLabelOverride || 'Go',
       languageId: 'go',
       code: codeGo,
     },
@@ -108,7 +113,7 @@ export default async function CodeCTABlock({
                   theme: 'github-light',
                 })
                 return (
-                  <div key={codeExample.language} className={cx(styles.codeWrap, styles[`codeWrap__${i}`])}>
+                  <div key={codeExample.languageId} className={cx(styles.codeWrap, styles[`codeWrap__${i}`])}>
                     <div
                       id={`code-cta-tabpanel-${i}`}
                       className={cx(styles.code, ibmPlexMono.className)}
