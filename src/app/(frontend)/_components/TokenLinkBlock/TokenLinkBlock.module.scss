@@ -5,54 +5,53 @@
 @use "../../_styles/transitions" as *;
 @use "@aleph/nought-sass-mixins/sass/utils";
 
-.link {
+.introText {
+  margin-bottom: to-rem($spacing-small);
+}
+
+.cardsWrap {
+  @include grid(10);
+
+  row-gap: to-rem($grid-column-gap);
+
+  @include media-breakpoint-down(md) {
+    row-gap: to-rem($spacing-small);
+  }
+}
+
+.card {
   display: flex;
   align-items: center;
-  padding: to-rem(14px);
-  transition: background-color $transition-snappy;
   border-radius: 10px;
-  background-color: $pink-card-bg-color;
   grid-column: span 3;
-
-  &:hover,
-  &:focus-visible {
-    background-color: $pink-card-bg-hover-color;
-  }
 
   @include media-breakpoint-down(lg) {
     grid-column: span 4;
   }
 
-  &Wrap {
-    @include grid(10);
-
-    row-gap: to-rem($spacing-small);
-  }
-
-  &Icon {
+  &_Icon {
     width: to-rem(90px);
     height: to-rem(90px);
     margin-right: to-rem($spacing-small);
   }
 
-  &TextArrowWrap {
+  &_TextArrowWrap {
     display: flex;
     align-items: center;
     transition: border-color $transition-snappy;
     border-bottom: 2px solid transparent;
+  }
 
-    .link:hover &,
-    .link:focus-visible & {
-      border-color: $pink-on-pink-link-color;
+  &_Text {
+    grid-column: span 1;
+    overflow-wrap: anywhere;
+
+    &__link {
+      color: $pink-on-pink-link-color;
     }
   }
 
-  &Text {
-    color: $pink-on-pink-link-color;
-    grid-column: span 1;
-  }
-
-  &Arrow {
+  &_Arrow {
     flex-shrink: 0;
     width: 0.8em;
     height: auto;
@@ -60,6 +59,21 @@
 
     path {
       fill: $pink-on-pink-link-color;
+    }
+  }
+
+  &__link {
+    padding: to-rem(14px);
+    transition: background-color $transition-snappy;
+    background-color: $pink-card-bg-color;
+
+    &:hover,
+    &:focus-visible {
+      background-color: $pink-card-bg-hover-color;
+
+      .card_TextArrowWrap {
+        border-color: $pink-on-pink-link-color;
+      }
     }
   }
 }
