@@ -176,7 +176,7 @@ export default function MainNav({ navData, secondaryNavData }: MainNavProps) {
     const siteHeader = document.getElementById(siteHeaderId)
     let prevScroll = window.scrollY
     const toggleHeaderVisibilityOnScroll = throttle(() => {
-      if (prevScroll > window.scrollY || window.scrollY === 0) {
+      if (prevScroll > window.scrollY || window.scrollY <= 0) {
         if (siteHeaderHidden) {
           // Showing site header
           setSiteHeaderHidden(false)
