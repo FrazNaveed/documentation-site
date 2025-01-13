@@ -13,7 +13,7 @@ export type CTAProps = {
 
 export default function SubscriptionBannerCTA({
   header = 'Subscribe to the Flare Newsletter',
-  text = 'Join over 20,000 fellow blockchain enthusiasts. Sign up to our newsletter today to receive our exclusive web3 insights and be informed of our latest product releases.',
+  text = 'Join over 30,000 Flare community members. Sign up to the Flare newsletter today to hear the latest on product releases, ecosystem announcements and global events.',
   buttonText = 'Subscribe',
   className,
 }: CTAProps) {
