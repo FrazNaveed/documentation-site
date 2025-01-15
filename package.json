@@ -7,6 +7,7 @@
   "scripts": {
     "build": "cross-env next build",
     "db:down": "docker compose down postgres",
+    "db:import": "docker compose exec -T postgres psql -U postgres -d flarepayload < dump.sql",
     "db:up": "docker compose up postgres",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",

@@ -18,10 +18,21 @@ This repository contains the [Next.js](https://nextjs.org/docs) front end and [P
    PAYLOAD_SECRET=flarepayload
     ```
 1. In a terminal window, run `npm run db:up` from this project's root directory. This will bootstrap a Postgres database in Docker locally.
-1. In a different window, run `npm run payload migrate` which will run any database migrations for the CMS.
+1. If you have a recent Postgres dump, put it in the project root and name it `dump.sql`, then in a new terminal run `npm run db:import`.
+1. Also in a new terminal, run `npm run payload migrate` which will run any database migrations for the CMS.
 1. Run `npm run dev` to start the Next.js front end and Payload CMS with a fresh DB.
 
 You will see the local dev build at [http://localhost:3000](http://localhost:3000). You can log into Payload at [http://localhost:3000/admin](http://localhost:3000/admin), create your first user, and start using Payload immediately. 
+
+### Database and Media Imports
+At any time, you can wipe your existing local DB with a `npm run docker:clean` and import the latest dump from Postgres that you
+have by naming it `dump.sql` and placing it in your project root, then running `npm run db:up` to get a blank DB running. After that
+you can run `npm run db:import` to get your latest dump imported. Note that you will likely see a few error messages about a user not
+existing. This shouldn't affect the actual local import. 
+
+From here, you'll want to get the latest uploads from the remote server. This will generaly be a large archive of files that you should
+then place in a directory called `media` in your project root. From there, you should see a clone of the environment you've just imported
+from on your local machine.  
 
 ### Full Local Docker Stack
 1. If you'd like to run the whole stack in a Docker-based production build, you can just run `docker-compose up`. This will bring up a Postgres database in Docker,
@@ -36,6 +47,7 @@ of the environment individually. Here's a list of the commands we've created to 
 To use them, prefix with `npm run`:
 - `dev`: Runs NextJS/Payload in development mode. Requires a Postgres DB running somewhere.
 - `db:up`: Starts Postgres in a Docker container accessible on the local network. 
+- `db:import`: Will import a file named `dump.sql` from the project root to a running Postgres instance via Docker Compose.
 - `db:down`: Stops the Postgres Docker container.
 - `docker:clean`: Nukes the Postgres Docker container and removes the associated volume. This will delete your data!
 - `build`: Builds the NextJS/Payload app in production mode. Requires a Postgres DB running somewhere.
