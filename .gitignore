@@ -48,3 +48,5 @@ public/admin
 media
 *.sql
 *.gz
+
+.content-collections

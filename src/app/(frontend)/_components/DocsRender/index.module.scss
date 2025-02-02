@@ -1,0 +1,50 @@
+.docsPage {
+  display: flex;
+  min-height: 100vh;
+}
+
+.mainContent {
+  flex-grow: 1;
+  padding: 2rem;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.pageDescription {
+  color: #4a4a4a;
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.sectionContent {
+  margin-bottom: 1rem;
+}
+
+.subsectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.subsectionContent {
+  margin-bottom: 1rem;
+}
+
+.subsubsectionTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.subsubsectionContent {
+  margin-bottom: 1rem;
+}

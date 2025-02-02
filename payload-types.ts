@@ -425,7 +425,13 @@ export type ApplicationProcessSteps =
         };
         [k: string]: unknown;
       } | null;
+      /**
+       * Graphic step titles will use the title field by default. Override it here.
+       */
       graphicTitle?: string | null;
+      /**
+       * This will appear inside the colored area of the step in the graphic.
+       */
       graphicText?: string | null;
       id?: string | null;
     }[]
@@ -783,6 +789,9 @@ export interface Event {
     link?: string | null;
   };
   featured?: boolean | null;
+  /**
+   * This will override Flare Involvement as the eyebrow in the featured event hero
+   */
   featuredHeroEyebrow?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -1087,6 +1096,9 @@ export interface Media {
 export interface GrantType {
   id: number;
   title: string;
+  /**
+   * Slug is automatically generated from the Title on initial save
+   */
   slug: string;
   updatedAt: string;
   createdAt: string;
@@ -1098,11 +1110,23 @@ export interface GrantType {
 export interface Page {
   id: number;
   title?: string | null;
+  /**
+   * Slug is automatically generated from the Title on initial save
+   */
   slug: string;
   hero?: PageHero;
   hideHero?: boolean | null;
+  /**
+   * Select a page and it will be linked to as the previous page in the footer.
+   */
   previousPage?: (number | null) | Page;
+  /**
+   * Select a page to be linked as the next page in the footer.
+   */
   nextPage?: (number | null) | Page;
+  /**
+   * Optionally specify what type of next or previous link this is. Defaults to "Guide" but could be something like "Page", "Article", etc.
+   */
   linkType?: string | null;
   pageBanner?: {
     togglePageBanner?: boolean | null;
@@ -1159,6 +1183,9 @@ export interface Page {
         | ITokenLinkBlock
       )[]
     | null;
+  /**
+   * Select a news type to display related posts on this page.
+   */
   relatedNewsType?: (number | null) | NewsType;
   pageFooterCTA?: boolean | null;
   pageFooterCTAButton?: {
@@ -1167,7 +1194,13 @@ export interface Page {
     buttonSecondaryText?: string | null;
     buttonSecondaryLink?: string | null;
     backgroundImage?: (number | null) | Media;
+    /**
+     * Choose how the background image is displayed
+     */
     backgroundImageStyle?: ('flipped' | 'offset') | null;
+    /**
+     * Display Social Channels as buttons instead of CTA buttons. Manage in Globals under Page Footer CTA Social Channels.
+     */
     useSocialMediaButtons?: boolean | null;
   };
   pageTeaser?: IPageTeaser;
@@ -1175,6 +1208,9 @@ export interface Page {
   meta?: {
     title?: string | null;
     description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
     image?: (number | null) | Media;
   };
   updatedAt: string;
@@ -1187,6 +1223,9 @@ export interface Page {
 export interface PageHero {
   style: 'standard' | 'protocol' | 'grants' | 'centered';
   headline: string;
+  /**
+   * Defaults to Page Title if empty.
+   */
   eyebrow?: string | null;
   hideEyebrow?: boolean | null;
   buttonText?: string | null;
@@ -1247,12 +1286,17 @@ export interface PageHeroProtocolInfo {
   averageBlockTimeUnit?: string | null;
 }
 /**
+ * Settings for the Dev Hub Page Template. Manage content using the Products Collection.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "DevHub".
  */
 export interface DevHub {
   productsGrid?: (number | Product)[] | null;
   linkBand?: {
+    /**
+     * Fill in to override default title "Explorers & Resources"
+     */
     linkBandTitle?: string | null;
     links?: LinkBandLinks;
   };
@@ -1264,15 +1308,26 @@ export interface DevHub {
 export interface Product {
   id: number;
   title: string;
+  /**
+   * Slug is automatically generated from the Title on initial save
+   */
   slug: string;
+  /**
+   * External Link field will override internal Slug field on the Developer Hub page. Layer Cake component will link to internal Slug.
+   */
   link?: string | null;
   icon?: (number | null) | Media;
   shortDescription?: string | null;
+  /**
+   * Title override for the Explore section
+   */
   titleOverride?: string | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Add title text above the Team Grid. Manage Team members using the People Collection.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TeamGrid".
  */
@@ -1293,6 +1348,8 @@ export interface Person {
   createdAt: string;
 }
 /**
+ * Add intro text above Wallets Grid. Manage Wallets using the Wallets Collection.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "WalletsGrid".
  */
@@ -1312,6 +1369,9 @@ export interface WalletsGrid {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Select the wallets to display in a grid. Manage Wallets using the Wallets Collection.
+   */
   wallets?: (number | Wallet)[] | null;
 }
 /**
@@ -1331,11 +1391,19 @@ export interface Wallet {
   createdAt: string;
 }
 /**
+ * Settings for the Careers Page Template. Manage listings using the Careers Collection.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "careers".
  */
 export interface Careers {
+  /**
+   * Override default title "Open Roles"
+   */
   pageTitle?: string | null;
+  /**
+   * Displays above career listings
+   */
   content?: {
     root: {
       type: string;
@@ -1351,6 +1419,9 @@ export interface Careers {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Displays when no open roles are available
+   */
   emptyListingsText?: {
     root: {
       type: string;
@@ -1373,7 +1444,13 @@ export interface Careers {
  */
 export interface Columns {
   layout?: ('equal' | 'wideLeft' | 'wideRight') | null;
+  /**
+   * Align both columns to top of block. Default is centered vertically.
+   */
   alignColumns?: boolean | null;
+  /**
+   * Add image or text to this column
+   */
   leftColumnBlock?:
     | (
         | {
@@ -1385,6 +1462,9 @@ export interface Columns {
         | RichText
       )[]
     | null;
+  /**
+   * Add image or text to this column
+   */
   rightColumnBlock?:
     | (
         | {
@@ -1399,7 +1479,13 @@ export interface Columns {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -1439,7 +1525,13 @@ export interface ImageTextGridBlock {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -1468,7 +1560,13 @@ export interface RichTextBlock {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -1484,7 +1582,13 @@ export interface PastFeaturedGrantsGridBlock {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -1495,6 +1599,9 @@ export interface PastFeaturedGrantsGridBlock {
  * via the `definition` "Stats".
  */
 export interface Stats {
+  /**
+   * If checked, stats will be pulled automatically from an API endpoint for Flaredrop APR, Delegating APR and Staking APR.
+   */
   pullFromApi?: boolean | null;
   stats?: StatsList;
   caption?: {
@@ -1515,7 +1622,13 @@ export interface Stats {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -1532,7 +1645,13 @@ export interface TableWithDrawers {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -1548,7 +1667,13 @@ export interface ITalkingPoints {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -1605,7 +1730,13 @@ export interface TwoColumns {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -1621,7 +1752,13 @@ export interface ApplicationProcess {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -1652,7 +1789,13 @@ export interface OfficialChannelsBlock {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -1939,7 +2082,13 @@ export interface IRegionalLinkGrid {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -1953,7 +2102,13 @@ export interface FlareDropDates {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -1965,6 +2120,9 @@ export interface FlareDropDates {
  */
 export interface ITwoColumnCta {
   variation?: ('standard' | 'alternate') | null;
+  /**
+   * Appears in left column. Appears in right column in Alternate variation.
+   */
   image?: (number | null) | Media;
   eyebrow?: string | null;
   header?: string | null;
@@ -1990,7 +2148,13 @@ export interface ITwoColumnCta {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2006,7 +2170,13 @@ export interface VideoEmbedBlock {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2037,22 +2207,49 @@ export interface ICodeCta {
   buttonLink?: string | null;
   buttonSecondaryText?: string | null;
   buttonSecondaryLink?: string | null;
+  /**
+   * Hide the code examples with the option of using an image instead.
+   */
   hideCode?: boolean | null;
+  /**
+   * Code label will be "Solidity" by default. Override it here.
+   */
   solidityLabelOverride?: string | null;
   codeSolidity?: string | null;
+  /**
+   * Code label will be "JavaScript" by default. Override it here.
+   */
   javaScriptLabelOverride?: string | null;
   codeJs?: string | null;
+  /**
+   * Code label will be "Python" by default. Override it here.
+   */
   pythonLabelOverride?: string | null;
   codePython?: string | null;
+  /**
+   * Code label will be "Rust" by default. Override it here.
+   */
   rustLabelOverride?: string | null;
   codeRust?: string | null;
+  /**
+   * Code label will be "Go" by default. Override it here.
+   */
   goLabelOverride?: string | null;
   codeGo?: string | null;
+  /**
+   * Used in place of code examples.
+   */
   image?: (number | null) | Media;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2067,7 +2264,13 @@ export interface IFeaturedNewsCarouselBlock {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2080,6 +2283,9 @@ export interface IFeaturedNewsCarouselBlock {
 export interface News {
   id: number;
   title?: string | null;
+  /**
+   * Slug is automatically generated from the Title on initial save
+   */
   slug: string;
   excerpt?: string | null;
   publishDate: string;
@@ -2095,6 +2301,9 @@ export interface News {
         id?: string | null;
       }[]
     | null;
+  /**
+   * When checked, this news item will appear at or near the top of the news page, superseded by other featured news with a more recent publish date.
+   */
   featured?: boolean | null;
   content?: {
     root: {
@@ -2114,6 +2323,9 @@ export interface News {
   meta?: {
     title?: string | null;
     description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
     image?: (number | null) | Media;
   };
   updatedAt: string;
@@ -2146,6 +2358,9 @@ export interface User {
 export interface NewsType {
   id: number;
   title: string;
+  /**
+   * Slug is automatically generated from the Title on initial save
+   */
   slug: string;
   image: number | Media;
   updatedAt: string;
@@ -2158,6 +2373,9 @@ export interface NewsType {
 export interface NewsSubType {
   id: number;
   title: string;
+  /**
+   * Slug is automatically generated from the Title on initial save
+   */
   slug: string;
   image: number | Media;
   updatedAt: string;
@@ -2176,11 +2394,20 @@ export interface IBrandLogoRoll {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Align logos to the left
+   */
   alignLeft?: boolean | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2194,6 +2421,9 @@ export interface IMarqueeGallery {
   title?: string | null;
   cards?:
     | {
+        /**
+         * Add social count and link instead of image. Use global Social Channels collection to modify count, icon, and links. Social links may only be added in certain slots in the gallery to maintain the pattern of the grid
+         */
         isSocialLink?: boolean | null;
         imageCard?: {
           image: number | Media;
@@ -2221,7 +2451,13 @@ export interface IMarqueeGallery {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2239,7 +2475,13 @@ export interface IResponsiveImage {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2273,7 +2515,13 @@ export interface IStepsBlock {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2303,7 +2551,13 @@ export interface ILayerCake {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2318,7 +2572,13 @@ export interface IFastPanel {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2335,7 +2595,13 @@ export interface IDecentralizedPanel {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2350,7 +2616,13 @@ export interface ISecurePanel {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2361,11 +2633,20 @@ export interface ISecurePanel {
  * via the `definition` "IEventsWidget".
  */
 export interface IEventsWidget {
+  /**
+   * Override default title "Upcoming Events"
+   */
   titleOverride?: string | null;
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2380,7 +2661,13 @@ export interface IContactFormBlock {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2395,7 +2682,13 @@ export interface INewsletterSignupFormBlock {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2411,7 +2704,13 @@ export interface IPageTeaserGrid {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -2448,19 +2747,30 @@ export interface ITokenLinkBlock {
   createSideNavLink?: boolean | null;
   linkText?: string | null;
   blockMarginSettings?: boolean | null;
+  /**
+   * Set top margin to standard paragraph spacing
+   */
   standardTopMargin?: boolean | null;
+  /**
+   * Set bottom margin to standard paragraph spacing
+   */
   standardBottomMargin?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'tokenLink';
 }
 /**
+ * Options for page's teaser, for example in the PageGrid block.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "IPageTeaser".
  */
 export interface IPageTeaser {
   icon?: (number | null) | Media;
   shortDescription?: string | null;
+  /**
+   * Override the page title in teasers.
+   */
   titleOverride?: string | null;
 }
 /**
@@ -2484,6 +2794,9 @@ export interface DeveloperGuide {
 export interface DeveloperGuideTag {
   id: number;
   title: string;
+  /**
+   * Slug is automatically generated from the Title on initial save
+   */
   slug: string;
   updatedAt: string;
   createdAt: string;
@@ -2667,61 +2980,7 @@ export interface GrantTypesSelect<T extends boolean = true> {
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
-  hero?:
-    | T
-    | {
-        style?: T;
-        headline?: T;
-        eyebrow?: T;
-        hideEyebrow?: T;
-        buttonText?: T;
-        buttonLink?: T;
-        buttonSecondaryText?: T;
-        buttonSecondaryLink?: T;
-        textLinkText?: T;
-        textLinkButton?: T;
-        backgroundImage?: T;
-        showBackgroundVideo?: T;
-        logo?: T;
-        text?: T;
-        grantsInfo?:
-          | T
-          | {
-              grantsAwarded?: T;
-              countries?:
-                | T
-                | {
-                    country?: T;
-                    id?: T;
-                  };
-              topCategories?:
-                | T
-                | {
-                    type?: T;
-                    number?: T;
-                    id?: T;
-                  };
-            };
-        protocolInfo?:
-          | T
-          | {
-              providersLabelIcon?: T;
-              providersLabelOverride?: T;
-              providers?: T;
-              providersUnit?: T;
-              feedsLabelIcon?: T;
-              feedsLabelOverride?: T;
-              feeds?: T;
-              tokensLabelIcon?: T;
-              tokensLabelOverride?: T;
-              stakeTokens?: T;
-              stakeValue?: T;
-              averageBlockTimeLabelIcon?: T;
-              averageBlockTimeLabelOverride?: T;
-              averageBlockTime?: T;
-              averageBlockTimeUnit?: T;
-            };
-      };
+  hero?: T | PageHeroSelect<T>;
   hideHero?: T;
   previousPage?: T;
   nextPage?: T;
@@ -2732,600 +2991,42 @@ export interface PagesSelect<T extends boolean = true> {
         togglePageBanner?: T;
         bannerText?: T;
       };
-  devHub?:
-    | T
-    | {
-        productsGrid?: T;
-        linkBand?:
-          | T
-          | {
-              linkBandTitle?: T;
-              links?:
-                | T
-                | {
-                    linkText?: T;
-                    linkUrl?: T;
-                    id?: T;
-                  };
-            };
-      };
-  teamGrid?:
-    | T
-    | {
-        gridTitle?: T;
-        team?: T;
-      };
-  walletsGrid?:
-    | T
-    | {
-        walletsGridIntro?: T;
-        wallets?: T;
-      };
-  careers?:
-    | T
-    | {
-        pageTitle?: T;
-        content?: T;
-        emptyListingsText?: T;
-      };
+  devHub?: T | DevHubSelect<T>;
+  teamGrid?: T | TeamGridSelect<T>;
+  walletsGrid?: T | WalletsGridSelect<T>;
+  careers?: T | CareersSelect<T>;
   components?:
     | T
     | {
-        columns?:
-          | T
-          | {
-              layout?: T;
-              alignColumns?: T;
-              leftColumnBlock?:
-                | T
-                | {
-                    colImage?:
-                      | T
-                      | {
-                          image?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                    richText?:
-                      | T
-                      | {
-                          richText?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                  };
-              rightColumnBlock?:
-                | T
-                | {
-                    colImage?:
-                      | T
-                      | {
-                          image?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                    richText?:
-                      | T
-                      | {
-                          richText?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                  };
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        imageTextGrid?:
-          | T
-          | {
-              imageTextGridTitle?: T;
-              imageTextCardGrid?:
-                | T
-                | {
-                    cardImage?: T;
-                    cardHeader?: T;
-                    cardText?: T;
-                    id?: T;
-                  };
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        richTextBlock?:
-          | T
-          | {
-              richText?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        pastFeaturedGrantsGrid?:
-          | T
-          | {
-              gridTitle?: T;
-              grantsGrid?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        stats?:
-          | T
-          | {
-              pullFromApi?: T;
-              stats?:
-                | T
-                | {
-                    label?: T;
-                    stat?: T;
-                    id?: T;
-                  };
-              caption?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        tableDrawers?:
-          | T
-          | {
-              column1Header?: T;
-              column2Header?: T;
-              sections?:
-                | T
-                | {
-                    name?: T;
-                    rows?:
-                      | T
-                      | {
-                          rowLabel?: T;
-                          column1Data?: T;
-                          column2Data?: T;
-                          id?: T;
-                        };
-                    id?: T;
-                  };
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        talkingPoints?:
-          | T
-          | {
-              variation?: T;
-              points?:
-                | T
-                | {
-                    icon?: T;
-                    header?: T;
-                    text?: T;
-                    addLogos?: T;
-                    logos?:
-                      | T
-                      | {
-                          logo?: T;
-                          link?: T;
-                          id?: T;
-                        };
-                    id?: T;
-                  };
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        twoColumn?:
-          | T
-          | {
-              layout?: T;
-              ColumnOne?:
-                | T
-                | {
-                    contentType?: T;
-                    image?: T;
-                    text?: T;
-                    imageAlignment?: T;
-                    imageFill?: T;
-                  };
-              ColumnTwo?:
-                | T
-                | {
-                    contentType?: T;
-                    image?: T;
-                    text?: T;
-                    imageAlignment?: T;
-                    imageFill?: T;
-                  };
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        applicationProcess?:
-          | T
-          | {
-              title?: T;
-              steps?:
-                | T
-                | {
-                    title?: T;
-                    description?: T;
-                    graphicTitle?: T;
-                    graphicText?: T;
-                    id?: T;
-                  };
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        officialChannels?:
-          | T
-          | {
-              title?: T;
-              text?: T;
-              selectSocialChannels?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        regionalLinkGrid?:
-          | T
-          | {
-              title?: T;
-              description?: T;
-              links?:
-                | T
-                | {
-                    link?: T;
-                    name?: T;
-                    translatedName?: T;
-                    country?: T;
-                    id?: T;
-                  };
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        flareDropDates?:
-          | T
-          | {
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        twoColumnCta?:
-          | T
-          | {
-              variation?: T;
-              image?: T;
-              eyebrow?: T;
-              header?: T;
-              text?: T;
-              primaryButtonText?: T;
-              primaryButtonLink?: T;
-              secondaryButtonText?: T;
-              secondaryButtonLink?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        videoEmbedBlock?:
-          | T
-          | {
-              title?: T;
-              url?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        codeCta?:
-          | T
-          | {
-              header?: T;
-              text?: T;
-              buttonText?: T;
-              buttonLink?: T;
-              buttonSecondaryText?: T;
-              buttonSecondaryLink?: T;
-              hideCode?: T;
-              solidityLabelOverride?: T;
-              codeSolidity?: T;
-              javaScriptLabelOverride?: T;
-              codeJs?: T;
-              pythonLabelOverride?: T;
-              codePython?: T;
-              rustLabelOverride?: T;
-              codeRust?: T;
-              goLabelOverride?: T;
-              codeGo?: T;
-              image?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        featuredNewsCarousel?:
-          | T
-          | {
-              newsPosts?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        brandLogoRoll?:
-          | T
-          | {
-              header?: T;
-              logos?:
-                | T
-                | {
-                    image?: T;
-                    link?: T;
-                    id?: T;
-                  };
-              alignLeft?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        marqueeGallery?:
-          | T
-          | {
-              title?: T;
-              cards?:
-                | T
-                | {
-                    isSocialLink?: T;
-                    imageCard?:
-                      | T
-                      | {
-                          image?: T;
-                          titleOverlay?: T;
-                          textOverlay?: T;
-                        };
-                    socialChannel?: T;
-                    id?: T;
-                  };
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        responsiveImage?:
-          | T
-          | {
-              header?: T;
-              imageDefault?: T;
-              imageMedium?: T;
-              imageMobile?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        steps?:
-          | T
-          | {
-              title?: T;
-              steps?:
-                | T
-                | {
-                    title?: T;
-                    description?: T;
-                    id?: T;
-                  };
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        layerCake?:
-          | T
-          | {
-              bannerText?: T;
-              primaryColumnLabel?: T;
-              layers?:
-                | T
-                | {
-                    header?: T;
-                    text?: T;
-                    id?: T;
-                  };
-              secondaryColumnSections?:
-                | T
-                | {
-                    label?: T;
-                    products?: T;
-                    id?: T;
-                  };
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        fastPanel?:
-          | T
-          | {
-              text?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        decentralizedPanel?:
-          | T
-          | {
-              header?: T;
-              subheader?: T;
-              text?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        securePanel?:
-          | T
-          | {
-              text?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        eventsWidget?:
-          | T
-          | {
-              titleOverride?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        contactForm?:
-          | T
-          | {
-              title?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        newsletterSignupForm?:
-          | T
-          | {
-              title?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        pageTeaserGrid?:
-          | T
-          | {
-              title?: T;
-              teasers?: T;
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
-        tokenLink?:
-          | T
-          | {
-              richText?: T;
-              tokenLinks?:
-                | T
-                | {
-                    title?: T;
-                    link?: T;
-                    icon?: T;
-                    id?: T;
-                  };
-              createSideNavLink?: T;
-              linkText?: T;
-              blockMarginSettings?: T;
-              standardTopMargin?: T;
-              standardBottomMargin?: T;
-              id?: T;
-              blockName?: T;
-            };
+        columns?: T | ColumnsSelect<T>;
+        imageTextGrid?: T | ImageTextGridBlockSelect<T>;
+        richTextBlock?: T | RichTextBlockSelect<T>;
+        pastFeaturedGrantsGrid?: T | PastFeaturedGrantsGridBlockSelect<T>;
+        stats?: T | StatsSelect<T>;
+        tableDrawers?: T | TableWithDrawersSelect<T>;
+        talkingPoints?: T | ITalkingPointsSelect<T>;
+        twoColumn?: T | TwoColumnsSelect<T>;
+        applicationProcess?: T | ApplicationProcessSelect<T>;
+        officialChannels?: T | OfficialChannelsBlockSelect<T>;
+        regionalLinkGrid?: T | IRegionalLinkGridSelect<T>;
+        flareDropDates?: T | FlareDropDatesSelect<T>;
+        twoColumnCta?: T | ITwoColumnCtaSelect<T>;
+        videoEmbedBlock?: T | VideoEmbedBlockSelect<T>;
+        codeCta?: T | ICodeCtaSelect<T>;
+        featuredNewsCarousel?: T | IFeaturedNewsCarouselBlockSelect<T>;
+        brandLogoRoll?: T | IBrandLogoRollSelect<T>;
+        marqueeGallery?: T | IMarqueeGallerySelect<T>;
+        responsiveImage?: T | IResponsiveImageSelect<T>;
+        steps?: T | IStepsBlockSelect<T>;
+        layerCake?: T | ILayerCakeSelect<T>;
+        fastPanel?: T | IFastPanelSelect<T>;
+        decentralizedPanel?: T | IDecentralizedPanelSelect<T>;
+        securePanel?: T | ISecurePanelSelect<T>;
+        eventsWidget?: T | IEventsWidgetSelect<T>;
+        contactForm?: T | IContactFormBlockSelect<T>;
+        newsletterSignupForm?: T | INewsletterSignupFormBlockSelect<T>;
+        pageTeaserGrid?: T | IPageTeaserGridSelect<T>;
+        tokenLink?: T | ITokenLinkBlockSelect<T>;
       };
   relatedNewsType?: T;
   pageFooterCTA?: T;
@@ -3340,13 +3041,7 @@ export interface PagesSelect<T extends boolean = true> {
         backgroundImageStyle?: T;
         useSocialMediaButtons?: T;
       };
-  pageTeaser?:
-    | T
-    | {
-        icon?: T;
-        shortDescription?: T;
-        titleOverride?: T;
-      };
+  pageTeaser?: T | IPageTeaserSelect<T>;
   pageTemplate?: T;
   meta?:
     | T
@@ -3357,6 +3052,759 @@ export interface PagesSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PageHero_select".
+ */
+export interface PageHeroSelect<T extends boolean = true> {
+  style?: T;
+  headline?: T;
+  eyebrow?: T;
+  hideEyebrow?: T;
+  buttonText?: T;
+  buttonLink?: T;
+  buttonSecondaryText?: T;
+  buttonSecondaryLink?: T;
+  textLinkText?: T;
+  textLinkButton?: T;
+  backgroundImage?: T;
+  showBackgroundVideo?: T;
+  logo?: T;
+  text?: T;
+  grantsInfo?: T | PageHeroGrantsInfoSelect<T>;
+  protocolInfo?: T | PageHeroProtocolInfoSelect<T>;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PageHeroGrantsInfo_select".
+ */
+export interface PageHeroGrantsInfoSelect<T extends boolean = true> {
+  grantsAwarded?: T;
+  countries?: T | FeaturedGrantsCountriesSelect<T>;
+  topCategories?: T | FeaturedGrantsTopCategoriesSelect<T>;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedGrantsCountries_select".
+ */
+export interface FeaturedGrantsCountriesSelect<T extends boolean = true> {
+  country?: T;
+  id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedGrantsTopCategories_select".
+ */
+export interface FeaturedGrantsTopCategoriesSelect<T extends boolean = true> {
+  type?: T;
+  number?: T;
+  id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PageHeroProtocolInfo_select".
+ */
+export interface PageHeroProtocolInfoSelect<T extends boolean = true> {
+  providersLabelIcon?: T;
+  providersLabelOverride?: T;
+  providers?: T;
+  providersUnit?: T;
+  feedsLabelIcon?: T;
+  feedsLabelOverride?: T;
+  feeds?: T;
+  tokensLabelIcon?: T;
+  tokensLabelOverride?: T;
+  stakeTokens?: T;
+  stakeValue?: T;
+  averageBlockTimeLabelIcon?: T;
+  averageBlockTimeLabelOverride?: T;
+  averageBlockTime?: T;
+  averageBlockTimeUnit?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DevHub_select".
+ */
+export interface DevHubSelect<T extends boolean = true> {
+  productsGrid?: T;
+  linkBand?:
+    | T
+    | {
+        linkBandTitle?: T;
+        links?: T | LinkBandLinksSelect<T>;
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LinkBandLinks_select".
+ */
+export interface LinkBandLinksSelect<T extends boolean = true> {
+  linkText?: T;
+  linkUrl?: T;
+  id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamGrid_select".
+ */
+export interface TeamGridSelect<T extends boolean = true> {
+  gridTitle?: T;
+  team?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WalletsGrid_select".
+ */
+export interface WalletsGridSelect<T extends boolean = true> {
+  walletsGridIntro?: T;
+  wallets?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "careers_select".
+ */
+export interface CareersSelect<T extends boolean = true> {
+  pageTitle?: T;
+  content?: T;
+  emptyListingsText?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Columns_select".
+ */
+export interface ColumnsSelect<T extends boolean = true> {
+  layout?: T;
+  alignColumns?: T;
+  leftColumnBlock?:
+    | T
+    | {
+        colImage?:
+          | T
+          | {
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        richText?: T | RichTextSelect<T>;
+      };
+  rightColumnBlock?:
+    | T
+    | {
+        colImage?:
+          | T
+          | {
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        richText?: T | RichTextSelect<T>;
+      };
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RichText_select".
+ */
+export interface RichTextSelect<T extends boolean = true> {
+  richText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageTextGridBlock_select".
+ */
+export interface ImageTextGridBlockSelect<T extends boolean = true> {
+  imageTextGridTitle?: T;
+  imageTextCardGrid?: T | ImageTextCardsSelect<T>;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageTextCards_select".
+ */
+export interface ImageTextCardsSelect<T extends boolean = true> {
+  cardImage?: T;
+  cardHeader?: T;
+  cardText?: T;
+  id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RichTextBlock_select".
+ */
+export interface RichTextBlockSelect<T extends boolean = true> {
+  richText?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PastFeaturedGrantsGridBlock_select".
+ */
+export interface PastFeaturedGrantsGridBlockSelect<T extends boolean = true> {
+  gridTitle?: T;
+  grantsGrid?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Stats_select".
+ */
+export interface StatsSelect<T extends boolean = true> {
+  pullFromApi?: T;
+  stats?: T | StatsListSelect<T>;
+  caption?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsList_select".
+ */
+export interface StatsListSelect<T extends boolean = true> {
+  label?: T;
+  stat?: T;
+  id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Table with Drawers_select".
+ */
+export interface TableWithDrawersSelect {
+  column1Header?: boolean;
+  column2Header?: boolean;
+  sections?: boolean | SectionsSelect;
+  createSideNavLink?: boolean;
+  linkText?: boolean;
+  blockMarginSettings?: boolean;
+  standardTopMargin?: boolean;
+  standardBottomMargin?: boolean;
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Sections_select".
+ */
+export interface SectionsSelect<T extends boolean = true> {
+  name?: T;
+  rows?: T | RowsSelect<T>;
+  id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Rows_select".
+ */
+export interface RowsSelect<T extends boolean = true> {
+  rowLabel?: T;
+  column1Data?: T;
+  column2Data?: T;
+  id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ITalkingPoints_select".
+ */
+export interface ITalkingPointsSelect<T extends boolean = true> {
+  variation?: T;
+  points?: T | PointsListSelect<T>;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PointsList_select".
+ */
+export interface PointsListSelect<T extends boolean = true> {
+  icon?: T;
+  header?: T;
+  text?: T;
+  addLogos?: T;
+  logos?:
+    | T
+    | {
+        logo?: T;
+        link?: T;
+        id?: T;
+      };
+  id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "twoColumns_select".
+ */
+export interface TwoColumnsSelect<T extends boolean = true> {
+  layout?: T;
+  ColumnOne?:
+    | T
+    | {
+        contentType?: T;
+        image?: T;
+        text?: T;
+        imageAlignment?: T;
+        imageFill?: T;
+      };
+  ColumnTwo?:
+    | T
+    | {
+        contentType?: T;
+        image?: T;
+        text?: T;
+        imageAlignment?: T;
+        imageFill?: T;
+      };
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ApplicationProcess_select".
+ */
+export interface ApplicationProcessSelect<T extends boolean = true> {
+  title?: T;
+  steps?: T | ApplicationProcessStepsSelect<T>;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ApplicationProcessSteps_select".
+ */
+export interface ApplicationProcessStepsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  graphicTitle?: T;
+  graphicText?: T;
+  id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OfficialChannelsBlock_select".
+ */
+export interface OfficialChannelsBlockSelect<T extends boolean = true> {
+  title?: T;
+  text?: T;
+  selectSocialChannels?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IRegionalLinkGrid_select".
+ */
+export interface IRegionalLinkGridSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  links?:
+    | T
+    | {
+        link?: T;
+        name?: T;
+        translatedName?: T;
+        country?: T;
+        id?: T;
+      };
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FlareDropDates_select".
+ */
+export interface FlareDropDatesSelect<T extends boolean = true> {
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ITwoColumnCta_select".
+ */
+export interface ITwoColumnCtaSelect<T extends boolean = true> {
+  variation?: T;
+  image?: T;
+  eyebrow?: T;
+  header?: T;
+  text?: T;
+  primaryButtonText?: T;
+  primaryButtonLink?: T;
+  secondaryButtonText?: T;
+  secondaryButtonLink?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VideoEmbedBlock_select".
+ */
+export interface VideoEmbedBlockSelect<T extends boolean = true> {
+  title?: T;
+  url?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ICodeCta_select".
+ */
+export interface ICodeCtaSelect<T extends boolean = true> {
+  header?: T;
+  text?: T;
+  buttonText?: T;
+  buttonLink?: T;
+  buttonSecondaryText?: T;
+  buttonSecondaryLink?: T;
+  hideCode?: T;
+  solidityLabelOverride?: T;
+  codeSolidity?: T;
+  javaScriptLabelOverride?: T;
+  codeJs?: T;
+  pythonLabelOverride?: T;
+  codePython?: T;
+  rustLabelOverride?: T;
+  codeRust?: T;
+  goLabelOverride?: T;
+  codeGo?: T;
+  image?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IFeaturedNewsCarouselBlock_select".
+ */
+export interface IFeaturedNewsCarouselBlockSelect<T extends boolean = true> {
+  newsPosts?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IBrandLogoRoll_select".
+ */
+export interface IBrandLogoRollSelect<T extends boolean = true> {
+  header?: T;
+  logos?:
+    | T
+    | {
+        image?: T;
+        link?: T;
+        id?: T;
+      };
+  alignLeft?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IMarqueeGallery_select".
+ */
+export interface IMarqueeGallerySelect<T extends boolean = true> {
+  title?: T;
+  cards?:
+    | T
+    | {
+        isSocialLink?: T;
+        imageCard?:
+          | T
+          | {
+              image?: T;
+              titleOverlay?: T;
+              textOverlay?: T;
+            };
+        socialChannel?: T;
+        id?: T;
+      };
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IResponsiveImage_select".
+ */
+export interface IResponsiveImageSelect<T extends boolean = true> {
+  header?: T;
+  imageDefault?: T;
+  imageMedium?: T;
+  imageMobile?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IStepsBlock_select".
+ */
+export interface IStepsBlockSelect<T extends boolean = true> {
+  title?: T;
+  steps?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ILayerCake_select".
+ */
+export interface ILayerCakeSelect<T extends boolean = true> {
+  bannerText?: T;
+  primaryColumnLabel?: T;
+  layers?:
+    | T
+    | {
+        header?: T;
+        text?: T;
+        id?: T;
+      };
+  secondaryColumnSections?:
+    | T
+    | {
+        label?: T;
+        products?: T;
+        id?: T;
+      };
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IFastPanel_select".
+ */
+export interface IFastPanelSelect<T extends boolean = true> {
+  text?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IDecentralizedPanel_select".
+ */
+export interface IDecentralizedPanelSelect<T extends boolean = true> {
+  header?: T;
+  subheader?: T;
+  text?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ISecurePanel_select".
+ */
+export interface ISecurePanelSelect<T extends boolean = true> {
+  text?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IEventsWidget_select".
+ */
+export interface IEventsWidgetSelect<T extends boolean = true> {
+  titleOverride?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IContactFormBlock_select".
+ */
+export interface IContactFormBlockSelect<T extends boolean = true> {
+  title?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "INewsletterSignupFormBlock_select".
+ */
+export interface INewsletterSignupFormBlockSelect<T extends boolean = true> {
+  title?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IPageTeaserGrid_select".
+ */
+export interface IPageTeaserGridSelect<T extends boolean = true> {
+  title?: T;
+  teasers?: T;
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ITokenLinkBlock_select".
+ */
+export interface ITokenLinkBlockSelect<T extends boolean = true> {
+  richText?: T;
+  tokenLinks?:
+    | T
+    | {
+        title?: T;
+        link?: T;
+        icon?: T;
+        id?: T;
+      };
+  createSideNavLink?: T;
+  linkText?: T;
+  blockMarginSettings?: T;
+  standardTopMargin?: T;
+  standardBottomMargin?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IPageTeaser_select".
+ */
+export interface IPageTeaserSelect<T extends boolean = true> {
+  icon?: T;
+  shortDescription?: T;
+  titleOverride?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -3514,27 +3962,6 @@ export interface WalletsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "careers_select".
- */
-export interface CareersSelect<T extends boolean = true> {
-  title?: T;
-  slug?: T;
-  excerpt?: T;
-  productTeam?: T;
-  locations?:
-    | T
-    | {
-        Remote?: T;
-        Europe?: T;
-        Asia?: T;
-        Americas?: T;
-      };
-  description?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-teams_select".
  */
 export interface ProductTeamsSelect<T extends boolean = true> {
@@ -3580,7 +4007,13 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface EventSetting {
   id: number;
+  /**
+   * This will display on the event card in a marquee gallery when there's no featured event.
+   */
   eventCardEyebrow: string;
+  /**
+   * This will display on the event card in a marquee gallery when there's no featured event.
+   */
   eventCardTitle: string;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -3591,6 +4024,9 @@ export interface EventSetting {
  */
 export interface SelectPageFooterCtaSocialChannel {
   id: number;
+  /**
+   * Select Social Channels to display as Social Media buttons in Page Footer CTAs.
+   */
   selectSocialChannels?: ('discord' | 'github' | 'linkedin' | 'medium' | 'telegram' | 'x' | 'youtube')[] | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -3604,36 +4040,57 @@ export interface SocialChannel {
   discord: {
     title: string;
     url: string;
+    /**
+     * Used in Marquee Gallery block, for example.
+     */
     followerCount?: string | null;
   };
   github: {
     title: string;
     url: string;
+    /**
+     * Used in Marquee Gallery block, for example.
+     */
     followerCount?: string | null;
   };
   linkedin: {
     title: string;
     url: string;
+    /**
+     * Used in Marquee Gallery block, for example.
+     */
     followerCount?: string | null;
   };
   medium: {
     title: string;
     url: string;
+    /**
+     * Used in Marquee Gallery block, for example.
+     */
     followerCount?: string | null;
   };
   telegram: {
     title: string;
     url: string;
+    /**
+     * Used in Marquee Gallery block, for example.
+     */
     followerCount?: string | null;
   };
   x: {
     title: string;
     url: string;
+    /**
+     * Used in Marquee Gallery block, for example.
+     */
     followerCount?: string | null;
   };
   youtube: {
     title: string;
     url: string;
+    /**
+     * Used in Marquee Gallery block, for example.
+     */
     followerCount?: string | null;
   };
   updatedAt?: string | null;

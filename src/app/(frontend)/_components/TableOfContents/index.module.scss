@@ -1,0 +1,69 @@
+.tableOfContents {
+  position: sticky;
+  top: 20px;
+  max-height: 80vh;
+  width: 25rem;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.scrollArea {
+  position: relative;
+  height: 100%;
+}
+
+.tocViewport {
+  padding: 10px;
+}
+
+.tocItem {
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid #979696;
+}
+
+.tocLink {
+  font-size: 16px;
+  padding: 4px 0;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.tocLink:hover {
+  padding-left: 10px;
+}
+
+.scrollbar {
+  width: 10px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+.thumb {
+  background-color: #007acc;
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #005f87;
+  }
+}
+
+.tocItem a {
+  padding-left: 10px;
+  margin-left: 0;
+}
+
+@media (max-width: 768px) {
+  .tableOfContents {
+    width: 100%;
+    position: relative;
+    top: auto;
+    box-shadow: none;
+  }
+}
