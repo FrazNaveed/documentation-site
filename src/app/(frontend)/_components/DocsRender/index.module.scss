@@ -1,50 +1,80 @@
 .docsPage {
-  display: flex;
-  min-height: 100vh;
-}
-
-.mainContent {
-  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 250px auto 250px; // Sidebar | Content | TOC
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 2rem;
 }
 
-.pageTitle {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+.content {
+  max-width: 800px;
+  width: 100%;
 }
 
-.pageDescription {
-  color: #4a4a4a;
-  margin-bottom: 2rem;
+.toc {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  padding: 1rem;
 }
 
-.sectionTitle {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+.alert {
+  margin: 1.6em 0;
+  padding-left: 1em;
+  border-left: 0.25rem solid;
+
+  &.danger {
+    border-color: #dc2626; // Equivalent to Tailwind's `border-danger`
+    color: #dc2626; // Equivalent to Tailwind's `text-danger`
+  }
+
+  &.info {
+    border-color: #2563eb; // Equivalent to Tailwind's `border-primary`
+    color: #2563eb; // Equivalent to Tailwind's `text-primary`
+  }
+
+  .alert-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    svg {
+      margin-right: 0.75rem;
+      flex-shrink: 0;
+    }
+  }
 }
 
-.sectionContent {
-  margin-bottom: 1rem;
+.mdx-heading {
+  scroll-margin: 6rem; // Equivalent to scroll-m-24
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; // Equivalent to gap-2
+  position: relative;
 }
 
-.subsectionTitle {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+.heading-link {
+  margin-left: 0.5rem; // Equivalent to ms-2
+  font-size: 1rem; // Equivalent to text-base
+  color: #6b7280; // Equivalent to text-muted-foreground
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+
+  &:hover,
+  .mdx-heading:hover & {
+    opacity: 1;
+  }
 }
 
-.subsectionContent {
-  margin-bottom: 1rem;
+.heading-icon {
+  display: inline;
+  transform: translateY(calc(-50% + 0.3em));
 }
 
-.subsubsectionTitle {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.subsubsectionContent {
-  margin-bottom: 1rem;
+@media print {
+  .heading-link {
+    display: none;
+  }
 }

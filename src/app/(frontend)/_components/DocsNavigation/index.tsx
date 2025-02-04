@@ -1,12 +1,13 @@
 "use client";
-import React from "react";
+
+import React, { useEffect, useState } from "react";
 import * as Accordion from "@radix-ui/react-accordion";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
-import { ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import styles from "./index.module.scss";
 
-// Sidebar item type definition
 interface SidebarItem {
   type: string;
   label?: string;
@@ -18,14 +19,6 @@ interface SidebarItem {
     description?: string;
   };
   items?: SidebarItem[];
-  dirName?: string;
-  value?: string;
-}
-
-interface SidebarLinkProps {
-  href: string;
-  className: string;
-  children: React.ReactNode;
 }
 
 const sidebars = {
@@ -39,12 +32,12 @@ const sidebars = {
       type: "category" as "category",
       label: "Network",
       collapsed: true,
-      link: { type: "doc", id: "network/overview" },
+      link: { type: "doc", id: "fassets/overview" },
       items: [
         {
           type: "doc" as "doc",
           label: "Getting Started",
-          link: { type: "doc", id: "network/getting-started" },
+          link: { type: "doc", id: "intro" },
         },
         {
           type: "category" as "category",
@@ -120,76 +113,80 @@ const sidebars = {
   ],
 };
 
-const renderSidebarItems = (items: SidebarItem[]) => {
-  return items.map((item, index) => (
-    <Accordion.Item
-      key={index}
-      value={`item-${index}`}
-      className={styles.accordionItem}
-    >
-      {/* Check if item has children (i.e., items property exists and has children) */}
-      {item.items && item.items.length > 0 ? (
-        <>
-          <Accordion.Trigger className={styles.accordionTrigger}>
-            {item.label}
-            <ChevronDown className={styles.chevron} />
-          </Accordion.Trigger>
-          <Accordion.Content className={styles.accordionContent}>
-            <Accordion.Root type="multiple">
-              {renderSidebarItems(item.items)}{" "}
-              {/* Recursive call to render child items */}
-            </Accordion.Root>
-          </Accordion.Content>
-        </>
-      ) : (
-        // If no children, render the item as a simple link
-        item.link &&
-        item.link.type === "doc" && (
-          <SidebarLink href={item.link.id || "#"} className={styles.link}>
-            {item.label}
-          </SidebarLink>
-        )
-      )}
-    </Accordion.Item>
-  ));
-};
-
-// Custom SidebarLink component for manual navigation
-const SidebarLink: React.FC<SidebarLinkProps> = ({
-  href,
-  children,
-  className,
-}) => {
+const DocsNavigation: React.FC = () => {
   const router = useRouter();
+  const [openItems, setOpenItems] = useState<string[]>([]);
 
-  // Handle link click event
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    e.preventDefault(); // Prevent default anchor behavior
+  // Load open items from localStorage
+  useEffect(() => {
+    const storedOpenItems = localStorage.getItem("openAccordionItems");
+    if (storedOpenItems) {
+      setOpenItems(JSON.parse(storedOpenItems));
+    }
+  }, []);
 
-    // Programmatically navigate to the link's destination
-    router.push(href); // Use Next.js router to navigate to the desired path
+  // Save open items to localStorage whenever they change
+  const handleAccordionChange = (newOpenItems: string[]) => {
+    setOpenItems(newOpenItems);
+    localStorage.setItem("openAccordionItems", JSON.stringify(newOpenItems));
   };
 
-  return (
-    <a href={href} className={className} onClick={handleClick}>
-      {children}
-    </a>
-  );
-};
+  const renderSidebarItems = (items: SidebarItem[], parentIndex = "") =>
+    items.map((item, index) => {
+      const value = `${parentIndex}${index}`;
 
-const DocsNavigation: React.FC = () => {
+      return (
+        <Accordion.Item
+          key={value}
+          value={value}
+          className={styles.accordionItem}
+        >
+          {item.items && item.items.length > 0 ? (
+            <>
+              <Accordion.Trigger
+                className={styles.accordionTrigger}
+                onClick={() => {
+                  if (item.link?.type === "doc") {
+                    router.push(`/docs/${item.link.id}`);
+                  }
+                }}
+              >
+                {item.label}
+                <ChevronRight className={styles.chevron} />
+              </Accordion.Trigger>
+              <Accordion.Content className={styles.accordionContent}>
+                <Accordion.Root
+                  type="multiple"
+                  value={openItems}
+                  onValueChange={handleAccordionChange}
+                >
+                  {renderSidebarItems(item.items, value + "-")}
+                </Accordion.Root>
+              </Accordion.Content>
+            </>
+          ) : (
+            item.link &&
+            item.link.type === "doc" && (
+              <Link href={`/docs/${item.link.id}`} className={styles.link}>
+                {item.label}
+              </Link>
+            )
+          )}
+        </Accordion.Item>
+      );
+    });
+
   return (
     <aside className={styles.sidebar}>
-      <div className={styles.sidebarHeader}>
-        {/* Add search bar or other header elements here */}
-      </div>
       <ScrollArea.Root className={styles.scrollArea}>
         <ScrollArea.Viewport>
           <nav className={styles.nav}>
-            <Accordion.Root type="multiple">
-              {sidebars.networkSidebar &&
-                renderSidebarItems(sidebars.networkSidebar)}{" "}
-              {/* Render the entire sidebar */}
+            <Accordion.Root
+              type="multiple"
+              value={openItems}
+              onValueChange={handleAccordionChange}
+            >
+              {renderSidebarItems(sidebars.networkSidebar)}
             </Accordion.Root>
           </nav>
         </ScrollArea.Viewport>
